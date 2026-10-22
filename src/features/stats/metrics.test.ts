@@ -44,6 +44,11 @@ describe('bestStreak', () => {
     expect(bestStreak(['2026-10-01', '2026-10-02', '2026-10-03', '2026-10-10', '2026-10-11'])).toBe(3);
   });
 
+  it('um único dia faltando quebra a sequência', () => {
+    expect(bestStreak(['2026-10-01', '2026-10-03'])).toBe(1);
+    expect(bestStreak(['2026-10-01', '2026-10-02', '2026-10-04', '2026-10-05'])).toBe(2);
+  });
+
   it('não depende da ordem nem de repetições', () => {
     expect(bestStreak(['2026-10-03', '2026-10-01', '2026-10-02', '2026-10-02'])).toBe(3);
   });

@@ -1,15 +1,19 @@
 import { ALL_ITEMS, getItem, type StudyItem } from '@/features/catalog';
+import { isWritable } from '@/features/writing/model';
 
 /** Gerador de números em [0, 1). Injetável para os testes serem determinísticos. */
 export type Rng = () => number;
 
-/** k2r: mostra o caractere, responde o som/significado. r2k: o contrário. */
-export type Direction = 'k2r' | 'r2k';
+/**
+ * k2r: mostra o caractere, responde o som/significado. r2k: o contrário.
+ * write: mostra o significado e o som, e o usuário desenha o caractere (sem alternativas).
+ */
+export type Direction = 'k2r' | 'r2k' | 'write';
 
 export interface Question {
   item: StudyItem;
   direction: Direction;
-  /** Alternativas já embaralhadas (a certa está entre elas). */
+  /** Alternativas já embaralhadas (a certa está entre elas). Vazio na direção write. */
   options: readonly StudyItem[];
   /** Pergunta repetida por ter sido errada antes. */
   retry: boolean;
@@ -77,10 +81,28 @@ export function buildLessonQuestions(chars: readonly string[], isReview: boolean
   );
 }
 
-/** Revisão espaçada: sentido sorteado (kanji prefere ver o caractere) e distratores do mesmo grupo. */
-export function buildReviewQuestions(chars: readonly string[], rng: Rng = Math.random): Question[] {
+/** Fatia das perguntas de revisão que viram "write" (nos itens que têm traços). */
+export const WRITE_SHARE = 0.2;
+
+export interface ReviewOptions {
+  /** Inclui a direção write (desenhar o símbolo). Itens sem traços, como きゃ, nunca a recebem. */
+  write?: boolean;
+}
+
+/**
+ * Revisão espaçada: cerca de 20% das perguntas dos itens com traços viram write (se ligado);
+ * o resto sorteia o sentido como antes (kanji prefere ver o caractere) com distratores do mesmo grupo.
+ */
+export function buildReviewQuestions(
+  chars: readonly string[],
+  rng: Rng = Math.random,
+  options: ReviewOptions = {},
+): Question[] {
   const questions = chars.map((c): Question => {
     const item = getItem(c);
+    const writeRoll = options.write && isWritable(c) ? rng() : 1;
+    if (writeRoll < WRITE_SHARE) return { item, direction: 'write', options: [], retry: false };
+
     const direction: Direction = rng() < (item.script === 'kanji' ? 0.7 : 0.6) ? 'k2r' : 'r2k';
     const pool = ALL_ITEMS.filter((x) => x.script === item.script && x.group === item.group);
     return { item, direction, options: buildOptions(item, pool, rng), retry: false };
@@ -129,7 +151,16 @@ export interface AnswerOutcome {
 export function answerQuestion(state: QuizState, chosenChar: string, rng: Rng = Math.random): AnswerOutcome {
   const q = state.current;
   if (!q) throw new Error('Quiz já terminou');
-  const correct = chosenChar === q.item.char;
+  return resolveQuestion(state, chosenChar === q.item.char, rng);
+}
+
+/**
+ * Registra o resultado da pergunta atual quando o acerto vem de fora (ex.: a nota do desenho,
+ * que não tem alternativa escolhida). Errar recoloca a pergunta 2 ou 3 posições adiante.
+ */
+export function resolveQuestion(state: QuizState, correct: boolean, rng: Rng = Math.random): AnswerOutcome {
+  const q = state.current;
+  if (!q) throw new Error('Quiz já terminou');
   const firstTry = !q.retry;
   if (correct) {
     return {

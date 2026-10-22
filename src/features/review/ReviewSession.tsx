@@ -7,7 +7,7 @@ import { resultMood } from '@/features/lessons/resultCopy';
 import { buildReviewQuestions, type QuizResult } from '@/features/quiz/quiz';
 import { QuizView } from '@/features/quiz/QuizView';
 import { ResultCard } from '@/features/quiz/ResultCard';
-import { useProgressStore } from '@/store';
+import { useProgressStore, useSettingsStore } from '@/store';
 import { spacing } from '@/theme';
 import { pickExtraReviewChars, reviewIntro, reviewTitle, REVIEW_GOOD_PCT } from './session';
 import { dueChars } from './srs';
@@ -25,6 +25,8 @@ interface ReviewSessionProps {
   onExit: () => void;
   /** Pétalas (80% ou mais) e confete (100%) cobrem a tela toda, por isso ficam no pai. */
   onCelebrate: (celebration: ReviewCelebration) => void;
+  /** Avisa quando o dedo começa/termina um traço (perguntas de desenho), para travar a rolagem. */
+  onDrawingChange?: (drawing: boolean) => void;
 }
 
 interface Outcome extends QuizResult {
@@ -33,7 +35,7 @@ interface Outcome extends QuizResult {
 }
 
 /** Revisão espaçada: o quiz com os caracteres vencidos (ou os mais fracos) e a tela de resultado. */
-export function ReviewSession({ extra, onExit, onCelebrate }: ReviewSessionProps) {
+export function ReviewSession({ extra, onExit, onCelebrate, onDrawingChange }: ReviewSessionProps) {
   const [attempt, setAttempt] = useState(0);
   const [outcome, setOutcome] = useState<Outcome | null>(null);
 
@@ -52,7 +54,7 @@ export function ReviewSession({ extra, onExit, onCelebrate }: ReviewSessionProps
   };
 
   if (!outcome) {
-    return <ReviewRun key={attempt} extra={extra} onExit={onExit} onDone={finish} />;
+    return <ReviewRun key={attempt} extra={extra} onExit={onExit} onDone={finish} onDrawingChange={onDrawingChange} />;
   }
 
   const pct = outcome.total ? Math.round((outcome.first / outcome.total) * 100) : 0;
@@ -81,17 +83,20 @@ interface ReviewRunProps {
   extra: boolean;
   onExit: () => void;
   onDone: (result: QuizResult) => void;
+  onDrawingChange?: (drawing: boolean) => void;
 }
 
-function ReviewRun({ extra, onExit, onDone }: ReviewRunProps) {
+function ReviewRun({ extra, onExit, onDone, onDrawingChange }: ReviewRunProps) {
   const recordReviewAnswer = useProgressStore((s) => s.recordReviewAnswer);
-  // Os caracteres são escolhidos uma vez, ao abrir: responder não muda a lista no meio da sessão.
+  // Os caracteres e o sorteio dos tipos de pergunta são feitos uma vez, ao abrir:
+  // responder (ou mudar o ajuste) não altera a sessão em andamento.
+  const [writeEnabled] = useState(() => useSettingsStore.getState().writeInReview);
   const [questions] = useState(() => {
     const { srs } = useProgressStore.getState();
     const chars = extra
       ? pickExtraReviewChars(srs, isKnown)
       : dueChars(srs, Date.now(), isKnown).slice(0, REVIEW_BATCH);
-    return buildReviewQuestions(chars);
+    return buildReviewQuestions(chars, Math.random, { write: writeEnabled });
   });
 
   if (questions.length === 0) {
@@ -113,12 +118,13 @@ function ReviewRun({ extra, onExit, onDone }: ReviewRunProps) {
 
   return (
     <View style={styles.run}>
-      <AppText color="muted">{reviewIntro(extra)}</AppText>
+      <AppText color="muted">{reviewIntro(extra, writeEnabled)}</AppText>
       <QuizView
         questions={questions}
         title={reviewTitle(extra)}
         onAnswer={(q, ok, firstTry) => recordReviewAnswer(q.item.char, ok, firstTry, extra)}
         onDone={onDone}
+        onDrawingChange={onDrawingChange}
       />
     </View>
   );

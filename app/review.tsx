@@ -10,13 +10,14 @@ export default function ReviewScreen() {
   const router = useRouter();
   const { extra } = useLocalSearchParams<{ extra?: string }>();
   const isExtra = extra === '1';
+  const [drawing, setDrawing] = useState(false);
   const [celebration, setCelebration] = useState<ReviewCelebration>({ petals: false, confetti: false });
 
   const goBack = () => (router.canGoBack() ? router.back() : router.replace('/'));
 
   return (
     <View style={styles.root}>
-      <Screen>
+      <Screen scrollEnabled={!drawing}>
         <View style={styles.header}>
           <Pressable accessibilityRole="button" onPress={goBack} hitSlop={8}>
             <AppText color="primary">← Voltar</AppText>
@@ -27,7 +28,13 @@ export default function ReviewScreen() {
           <AppText variant="headline">{reviewTitle(isExtra)}</AppText>
         </View>
         {/* A chave reinicia a sessão se a tela for reaberta no outro modo. */}
-        <ReviewSession key={String(isExtra)} extra={isExtra} onExit={goBack} onCelebrate={setCelebration} />
+        <ReviewSession
+          key={String(isExtra)}
+          extra={isExtra}
+          onExit={goBack}
+          onCelebrate={setCelebration}
+          onDrawingChange={setDrawing}
+        />
       </Screen>
       {/* Fora da rolagem, para cobrir a tela inteira. */}
       {celebration.petals ? <PetalRain /> : null}

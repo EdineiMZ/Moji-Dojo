@@ -8,6 +8,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { AppText, Button, Card, Mascot, ProgressBar, SPRING, useMotionEnabled, type MascotMood } from '@/components';
+import { isPassing, type WritingScore } from '@/features/writing/score';
 import { hapticError, hapticSuccess } from '@/lib/haptics';
 import { radii, spacing, useTheme } from '@/theme';
 import { autoAdvanceMs, buildFeedback, type Feedback } from './explain';
@@ -17,11 +18,17 @@ import {
   answerQuestion,
   isFinished,
   quizResult,
+  resolveQuestion,
   startQuiz,
+  type AnswerOutcome,
   type Question,
   type QuizResult,
   type QuizState,
 } from './quiz';
+import { WriteQuestion } from './WriteQuestion';
+
+/** Depois de acertar um desenho há mais o que olhar (o modelo e os traços), então espera mais. */
+const WRITE_ADVANCE_MS = 2200;
 
 interface QuizViewProps {
   questions: readonly Question[];
@@ -29,24 +36,32 @@ interface QuizViewProps {
   /** Chamado a cada resposta; `firstTry` é falso nas perguntas repetidas depois de um erro. */
   onAnswer?: (question: Question, correct: boolean, firstTry: boolean) => void;
   onDone: (result: QuizResult) => void;
+  /** Avisa quando o dedo começa/termina um traço, para a tela travar a rolagem. */
+  onDrawingChange?: (drawing: boolean) => void;
 }
 
 interface Answered {
+  /** Alternativa escolhida; vazio nas perguntas de desenho. */
   chosen: string;
   correct: boolean;
   feedback: Feedback;
+  /** Nota do desenho (só nas perguntas write). */
+  score?: WritingScore;
 }
 
 /**
- * Quiz de alternativas. Acerto avança sozinho; erro mostra a resposta, a dica de memorização
- * e espera o toque em "Continuar". Perguntas erradas voltam mais tarde (ver quiz.ts).
+ * Quiz com dois tipos de pergunta: alternativas (k2r, r2k) e desenho (write).
+ * Acerto avança sozinho; erro mostra a resposta, a dica de memorização e espera o toque
+ * em "Continuar". Perguntas erradas voltam mais tarde (ver quiz.ts).
  */
-export function QuizView({ questions, title, onAnswer, onDone }: QuizViewProps) {
+export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }: QuizViewProps) {
   const { colors } = useTheme();
   const motion = useMotionEnabled();
   const [quiz, setQuiz] = useState<QuizState>(() => startQuiz(questions));
   const [answered, setAnswered] = useState<Answered | null>(null);
   const [mood, setMood] = useState<MascotMood>('neutral');
+  /** Muda a cada pergunta mostrada: reinicia o quadro de desenho, mesmo na repetição do mesmo item. */
+  const [step, setStep] = useState(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shake = useSharedValue(0);
   const pop = useSharedValue(1);
@@ -64,6 +79,7 @@ export function QuizView({ questions, title, onAnswer, onDone }: QuizViewProps) 
 
   const current = quiz.current;
   if (!current) return null;
+  const isWrite = current.direction === 'write';
 
   const proceed = (state: QuizState) => {
     const next = advance(state);
@@ -72,23 +88,22 @@ export function QuizView({ questions, title, onAnswer, onDone }: QuizViewProps) 
     if (isFinished(next)) {
       onDone(quizResult(next));
     } else {
+      setStep((s) => s + 1);
       setQuiz(next);
     }
   };
 
-  const pick = (char: string) => {
-    if (answered) return;
-    const outcome = answerQuestion(quiz, char);
-    const feedback = buildFeedback(current.item, outcome.correct);
+  /** Parte comum a qualquer resposta: estado, feedback, vibração, animação e avanço automático. */
+  const settle = (outcome: AnswerOutcome, chosen: string, score?: WritingScore) => {
     setQuiz(outcome.state);
-    setAnswered({ chosen: char, correct: outcome.correct, feedback });
+    setAnswered({ chosen, correct: outcome.correct, feedback: buildFeedback(current.item, outcome.correct), ...(score ? { score } : {}) });
     setMood(outcome.correct ? 'happy' : 'sad');
     onAnswer?.(current, outcome.correct, outcome.firstTry);
 
     if (outcome.correct) {
       hapticSuccess();
       if (motion) pop.value = withSequence(withSpring(1.06, SPRING), withSpring(1, SPRING));
-      timer.current = setTimeout(() => proceed(outcome.state), autoAdvanceMs(current.item));
+      timer.current = setTimeout(() => proceed(outcome.state), isWrite ? WRITE_ADVANCE_MS : autoAdvanceMs(current.item));
     } else {
       hapticError();
       if (motion) {
@@ -100,6 +115,17 @@ export function QuizView({ questions, title, onAnswer, onDone }: QuizViewProps) 
         );
       }
     }
+  };
+
+  const pick = (char: string) => {
+    if (answered) return;
+    settle(answerQuestion(quiz, char), char);
+  };
+
+  /** Desenho conferido: a nota decide (70% ou mais); ordem e direção dos traços são só feedback. */
+  const submitWriting = (score: WritingScore) => {
+    if (answered) return;
+    settle(resolveQuestion(quiz, isPassing(score)), '', score);
   };
 
   const toChar = current.direction === 'r2k';
@@ -125,37 +151,51 @@ export function QuizView({ questions, title, onAnswer, onDone }: QuizViewProps) 
         <Mascot mood={mood} size={84} />
       </View>
 
-      <Animated.View style={cardMotion}>
-        <Card
-          style={[
-            styles.prompt,
-            answered && { borderColor: answered.correct ? colors.ok : colors.bad, borderWidth: 2 },
-          ]}
-        >
-          {toChar ? (
-            <AppText variant="headline" center>
-              {current.item.label}
-            </AppText>
-          ) : (
-            <AppText variant="glyph" center style={styles.promptGlyph}>
-              {current.item.char}
-            </AppText>
-          )}
-        </Card>
-      </Animated.View>
-
-      <View style={styles.options}>
-        {current.options.map((opt, i) => (
-          <OptionButton
-            key={`${current.item.char}-${opt.char}`}
-            index={i}
-            label={toChar ? opt.char : opt.label}
-            glyph={toChar}
-            state={stateOf(opt.char)}
-            onPress={() => pick(opt.char)}
+      {isWrite ? (
+        <Animated.View style={cardMotion}>
+          <WriteQuestion
+            key={step}
+            item={current.item}
+            score={answered?.score ?? null}
+            onCheck={submitWriting}
+            onDrawingChange={onDrawingChange}
           />
-        ))}
-      </View>
+        </Animated.View>
+      ) : (
+        <>
+          <Animated.View style={cardMotion}>
+            <Card
+              style={[
+                styles.prompt,
+                answered && { borderColor: answered.correct ? colors.ok : colors.bad, borderWidth: 2 },
+              ]}
+            >
+              {toChar ? (
+                <AppText variant="headline" center>
+                  {current.item.label}
+                </AppText>
+              ) : (
+                <AppText variant="glyph" center style={styles.promptGlyph}>
+                  {current.item.char}
+                </AppText>
+              )}
+            </Card>
+          </Animated.View>
+
+          <View style={styles.options}>
+            {current.options.map((opt, i) => (
+              <OptionButton
+                key={`${current.item.char}-${opt.char}`}
+                index={i}
+                label={toChar ? opt.char : opt.label}
+                glyph={toChar}
+                state={stateOf(opt.char)}
+                onPress={() => pick(opt.char)}
+              />
+            ))}
+          </View>
+        </>
+      )}
 
       {answered ? (
         <View
@@ -171,10 +211,11 @@ export function QuizView({ questions, title, onAnswer, onDone }: QuizViewProps) 
         </View>
       ) : null}
 
-      {answered && !answered.correct ? <Button label="Continuar" onPress={() => proceed(quiz)} /> : null}
+      {answered && (!answered.correct || isWrite) ? <Button label="Continuar" onPress={() => proceed(quiz)} /> : null}
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   root: { gap: spacing.lg },

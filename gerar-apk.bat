@@ -57,7 +57,9 @@ rem --- 3. Compilar o APK de release ---
 echo.
 echo [3/4] Compilando o APK ^(Gradle; o primeiro build baixa dependencias e leva varios minutos^)...
 pushd android
-call gradlew.bat assembleRelease
+rem So arm64-v8a (celulares atuais de 64 bits): o APK fica bem menor. Para aparelhos antigos de 32 bits,
+rem troque por arm64-v8a,armeabi-v7a.
+call gradlew.bat assembleRelease -PreactNativeArchitectures=arm64-v8a
 set "GRADLE_EXIT=%errorlevel%"
 popd
 if not "%GRADLE_EXIT%"=="0" goto :erro

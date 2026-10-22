@@ -2,6 +2,8 @@
 
 App pessoal de estudo de japonês (hiragana, katakana e kanji N5), feito com React Native e Expo, só para Android por enquanto. Visual kawaii, com um mascote gatinho, o **Mochi**, que reage aos acertos e erros.
 
+> **Créditos:** a ordem dos traços vem do [KanjiVG](https://kanjivg.tagaini.net), de Ulrich Apel, licença **CC BY-SA 3.0**. O crédito, a licença e as alterações feitas estão em [`src/data/strokes/LICENSE.md`](src/data/strokes/LICENSE.md).
+
 O protótipo web `Nihongo Dojo.html` (na raiz do repositório; é o nome antigo do projeto, e o arquivo foi mantido como está) é a especificação: todo o conteúdo em japonês vem dele, nada foi inventado.
 
 ## O que já funciona
@@ -117,6 +119,8 @@ A lógica das regras (SRS, trilha, quiz, escrita, montar, teclado, backup, dias 
 ## Dados do HTML
 
 Tudo em `src/data/` é **gerado** por `scripts/extract-data.mjs`. O script executa só os trechos de dados do próprio HTML num contexto isolado, então os ids de lição (`hira:L0`, `kanji:L3`...) e as listas de caracteres saem idênticos aos do protótipo. Isso é essencial para o backup `NDJ1:` funcionar. Os textos que no HTML têm marcação (`<b>`, `<span lang="ja">`, a tabela de verbos) passam por um conversor que gera texto estruturado, para o app não interpretar HTML.
+
+O `src/data/strokes/LICENSE.md` é texto jurídico escrito à mão: o script não o gera nem o sobrescreve, apenas confere que ele existe.
 
 Se alterar o HTML, rode `npm run extract-data` e depois `npm test` (testes conferem a consistência dos dados: caracteres únicos, lições que só citam caracteres existentes, traços para todo kanji, textos sem marcas de HTML, palavras do simulador digitáveis...).
 

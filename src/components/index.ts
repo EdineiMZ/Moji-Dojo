@@ -7,3 +7,5 @@ export { ProgressBar } from './ProgressBar';
 export { Screen } from './Screen';
 export { SegmentedControl } from './SegmentedControl';
 export { StrokeAnimation } from './StrokeAnimation';
+export { Confetti } from './Confetti';
+export { PetalRain } from './PetalRain';

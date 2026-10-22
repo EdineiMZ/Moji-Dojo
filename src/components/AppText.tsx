@@ -2,7 +2,7 @@ import { Text, type TextProps, type TextStyle } from 'react-native';
 import { fonts, fontSizes, useTheme, type Palette } from '@/theme';
 
 export type TextVariant = 'body' | 'caption' | 'title' | 'headline' | 'glyph';
-type TextColor = keyof Pick<Palette, 'ink' | 'muted' | 'primary' | 'lilac' | 'sky' | 'ok' | 'bad' | 'onPrimary'>;
+type TextColor = keyof Pick<Palette, 'ink' | 'muted' | 'primary' | 'lilac' | 'sky' | 'ok' | 'bad' | 'warn' | 'onPrimary'>;
 
 interface AppTextProps extends TextProps {
   variant?: TextVariant;

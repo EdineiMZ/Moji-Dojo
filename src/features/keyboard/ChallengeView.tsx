@@ -88,7 +88,7 @@ export function ChallengeView() {
         onSubmitEditing={check}
         style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
       />
-      <Button label="Conferir" onPress={check} />
+      <Button label="Conferir" silent onPress={check} />
 
       {result ? (
         <View style={[styles.feedback, { backgroundColor: result.ok ? colors.okSoft : colors.badSoft }]}>

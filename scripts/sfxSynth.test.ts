@@ -57,8 +57,8 @@ describe('freq', () => {
 });
 
 describe('os sons sintetizados', () => {
-  it('há os cinco sons usados pelo app', () => {
-    expect([...SOUND_NAMES].sort()).toEqual(['complete', 'correct', 'perfect', 'tap', 'wrong']);
+  it('há os seis sons usados pelo app', () => {
+    expect([...SOUND_NAMES].sort()).toEqual(['complete', 'correct', 'open', 'perfect', 'tap', 'wrong']);
   });
 
   it.each(SOUND_NAMES.map((n) => [n]))('%s: sem estouro, sem estalo nas pontas e com som de verdade', (name) => {
@@ -73,6 +73,7 @@ describe('os sons sintetizados', () => {
   it('são curtos: de 0,1 s (toque) a 1,5 s (100%), do menor para o maior em importância', () => {
     const seconds = (n: string) => renderSound(n).length / SAMPLE_RATE;
     expect(seconds('tap')).toBeLessThan(0.15);
+    expect(seconds('open')).toBeLessThan(1.3);
     expect(seconds('correct')).toBeLessThan(0.7);
     expect(seconds('wrong')).toBeLessThan(0.7);
     expect(seconds('complete')).toBeLessThan(1.2);

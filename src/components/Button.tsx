@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, type StyleProp, type ViewStyle } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import { feedbackTap } from '@/lib/feedback';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { SPRING, useMotionEnabled } from './motion';
 import { AppText } from './AppText';
@@ -11,17 +12,19 @@ interface ButtonProps {
   onPress?: () => void;
   variant?: ButtonVariant;
   disabled?: boolean;
+  /** Sem som nem vibração de toque: para botões cujo resultado já tem o próprio feedback (acerto/erro). */
+  silent?: boolean;
   style?: StyleProp<ViewStyle>;
 }
 
-/** Botão que "afunda" ao tocar (mola). Com "reduzir movimento", só escurece levemente. */
-export function Button({ label, onPress, variant = 'primary', disabled = false, style }: ButtonProps) {
+/** Botão que "afunda" de leve ao tocar (mola) e faz um toquinho de som e vibração. Com "reduzir movimento", só escurece levemente. */
+export function Button({ label, onPress, variant = 'primary', disabled = false, silent = false, style }: ButtonProps) {
   const { colors } = useTheme();
   const motion = useMotionEnabled();
   const pressed = useSharedValue(0);
 
   const animated = useAnimatedStyle(() => ({
-    transform: [{ scale: 1 - 0.06 * pressed.value }, { translateY: 2 * pressed.value }],
+    transform: [{ scale: 1 - 0.03 * pressed.value }, { translateY: 1.5 * pressed.value }],
     opacity: motion ? 1 : 1 - 0.15 * pressed.value,
   }));
 
@@ -40,7 +43,10 @@ export function Button({ label, onPress, variant = 'primary', disabled = false, 
       accessibilityRole="button"
       accessibilityState={{ disabled }}
       disabled={disabled}
-      onPress={onPress}
+      onPress={() => {
+        if (!silent) feedbackTap();
+        onPress?.();
+      }}
       onPressIn={() => setPressed(1)}
       onPressOut={() => setPressed(0)}
     >

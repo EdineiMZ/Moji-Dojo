@@ -9,10 +9,10 @@ export const useMotionEnabled = (): boolean => !useReducedMotion();
 
 export { ReduceMotion };
 
-/** Mola suave e um pouco saltitante, padrão dos botões e cartões. */
-export const SPRING = { damping: 14, stiffness: 190, mass: 0.8 } as const;
+/** Mola bem amortecida: chega ao destino com suavidade, sem quicar. Padrão dos botões e do seletor. */
+export const SPRING = { damping: 24, stiffness: 200, mass: 1 } as const;
 
 export const EASE_OUT = Easing.out(Easing.cubic);
 
 /** Atraso entre cartões que entram em sequência. */
-export const STAGGER_MS = 70;
+export const STAGGER_MS = 60;

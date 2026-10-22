@@ -8,7 +8,7 @@ import { useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { remainingLoadingMs } from '@/lib/loading';
-import { preloadSfx } from '@/lib/sfx';
+import { playSfx, preloadSfx } from '@/lib/sfx';
 import { fontAssets, ThemeProvider, useTheme } from '@/theme';
 
 SplashScreen.preventAutoHideAsync();
@@ -57,6 +57,7 @@ export default function RootLayout() {
     if (fontsLoaded || fontError) {
       SplashScreen.hideAsync();
       preloadSfx();
+      playSfx('open');
     }
   }, [fontsLoaded, fontError]);
 

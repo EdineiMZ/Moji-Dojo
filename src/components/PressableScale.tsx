@@ -1,6 +1,7 @@
 import { Pressable, type PressableProps, type StyleProp, type ViewStyle } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { hapticLight } from '@/lib/haptics';
+import { playSfx } from '@/lib/sfx';
 import { SPRING, useMotionEnabled } from './motion';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -11,6 +12,8 @@ interface PressableScaleProps extends Omit<PressableProps, 'style'> {
   scaleTo?: number;
   /** Vibração leve ao tocar (respeita o interruptor de Ajustes). */
   haptic?: boolean;
+  /** Som de toque (respeita o interruptor de Ajustes). Desligue onde o toque já tem outro som. */
+  sound?: boolean;
 }
 
 /**
@@ -18,8 +21,9 @@ interface PressableScaleProps extends Omit<PressableProps, 'style'> {
  * não anima: só fica um pouco transparente enquanto o dedo está em cima.
  */
 export function PressableScale({
-  scaleTo = 0.96,
+  scaleTo = 0.97,
   haptic = false,
+  sound = true,
   style,
   onPress,
   onPressIn,
@@ -45,6 +49,7 @@ export function PressableScale({
       style={[style, animated]}
       onPress={(e) => {
         if (haptic) hapticLight();
+        if (sound) playSfx('tap');
         onPress?.(e);
       }}
       onPressIn={(e) => {

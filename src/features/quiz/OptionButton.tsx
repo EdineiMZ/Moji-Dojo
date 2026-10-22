@@ -28,7 +28,7 @@ export function OptionButton({ index, label, glyph, state, onPress }: OptionButt
   const motion = useMotionEnabled();
   const pressed = useSharedValue(0);
 
-  const animated = useAnimatedStyle(() => ({ transform: [{ scale: 1 - 0.05 * pressed.value }] }));
+  const animated = useAnimatedStyle(() => ({ transform: [{ scale: 1 - 0.03 * pressed.value }] }));
   const setPressed = (to: 0 | 1) => {
     pressed.value = motion ? withSpring(to, SPRING) : to;
   };

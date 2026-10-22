@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import Animated, { FadeIn, FadeInRight } from 'react-native-reanimated';
-import { ReduceMotion } from './motion';
+import { EASE_OUT, ReduceMotion } from './motion';
 
 interface SwapViewProps {
   /** Quando a chave muda, o conteúdo antigo sai e o novo entra com animação. */
@@ -19,8 +19,8 @@ interface SwapViewProps {
 export function SwapView({ viewKey, children, kind = 'fade', style }: SwapViewProps) {
   const entering =
     kind === 'slide'
-      ? FadeInRight.duration(260).reduceMotion(ReduceMotion.System)
-      : FadeIn.duration(220).reduceMotion(ReduceMotion.System);
+      ? FadeInRight.duration(340).easing(EASE_OUT).reduceMotion(ReduceMotion.System)
+      : FadeIn.duration(280).easing(EASE_OUT).reduceMotion(ReduceMotion.System);
   return (
     <Animated.View key={viewKey} entering={entering} style={style}>
       {children}

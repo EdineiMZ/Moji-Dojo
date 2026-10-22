@@ -128,7 +128,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
 
     if (outcome.correct) {
       feedbackCorrect();
-      if (motion) pop.value = withSequence(withSpring(1.06, SPRING), withSpring(1, SPRING));
+      if (motion) pop.value = withSequence(withSpring(1.025, SPRING), withSpring(1, SPRING));
       // No ouvido o usuário pode querer ouvir de novo antes de seguir: só avança no toque.
       if (!isAudio) {
         timer.current = setTimeout(() => proceed(outcome.state), isWrite ? WRITE_ADVANCE_MS : autoAdvanceMs(current.item));
@@ -137,10 +137,10 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
       feedbackWrong();
       if (motion) {
         shake.value = withSequence(
-          withTiming(-10, { duration: 60 }),
-          withTiming(10, { duration: 60 }),
-          withTiming(-6, { duration: 60 }),
-          withTiming(0, { duration: 60 }),
+          withTiming(-5, { duration: 80 }),
+          withTiming(5, { duration: 100 }),
+          withTiming(-3, { duration: 100 }),
+          withTiming(0, { duration: 80 }),
         );
       }
     }

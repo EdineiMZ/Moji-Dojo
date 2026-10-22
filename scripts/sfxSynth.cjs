@@ -45,8 +45,17 @@ const arpeggio = (names, step, duration, gain) =>
 
 /** Cada som: duração total (s) e as notas que o formam. */
 const SOUND_SPECS = {
-  /** Toque curto (teclas do simulador). */
-  tap: { length: 0.1, notes: [{ note: 'E6', start: 0, duration: 0.07, gain: 0.5, partials: [[1, 1], [2, 0.15]], decay: 0.4 }] },
+  /** Toque curto e macio (botões e teclas): um "pop" grave, sem brilho. */
+  tap: { length: 0.1, notes: [{ note: 'A5', start: 0, duration: 0.08, gain: 0.5, partials: [[1, 1], [2, 0.08]], decay: 0.35 }] },
+  /** Abertura do app: três notas suaves subindo, como um sininho. */
+  open: {
+    length: 1.1,
+    notes: [
+      { note: 'G5', start: 0, duration: 0.55, gain: 0.4, decay: 0.4 },
+      { note: 'D6', start: 0.16, duration: 0.6, gain: 0.4, decay: 0.4 },
+      { note: 'G6', start: 0.32, duration: 0.7, gain: 0.35, partials: [[1, 1], [2, 0.12]], decay: 0.45 },
+    ],
+  },
   /** Acerto: duas notas subindo, claras. */
   correct: {
     length: 0.55,

@@ -117,10 +117,10 @@ describe('playSfx', () => {
 });
 
 describe('preloadSfx', () => {
-  it('prepara os cinco players com antecedência', () => {
+  it('prepara os seis players com antecedência', () => {
     const { preloadSfx } = load();
     preloadSfx();
-    expect(createAudioPlayer).toHaveBeenCalledTimes(5);
+    expect(createAudioPlayer).toHaveBeenCalledTimes(6);
   });
 });
 

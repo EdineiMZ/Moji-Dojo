@@ -2,10 +2,11 @@ import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-aud
 import { isSoundOn } from './feedbackPrefs';
 
 /**
- * Efeitos sonoros curtos (acerto, erro, conclusão...). Os arquivos de assets/sfx são gerados por
+ * Efeitos sonoros curtos (abertura, toque, acerto, erro, conclusão...). Os arquivos de assets/sfx são gerados por
  * scripts/generate-sounds.mjs: sons originais, sintetizados por código.
  */
 const SOURCES = {
+  open: require('../../assets/sfx/open.wav') as number,
   tap: require('../../assets/sfx/tap.wav') as number,
   correct: require('../../assets/sfx/correct.wav') as number,
   wrong: require('../../assets/sfx/wrong.wav') as number,
@@ -17,7 +18,8 @@ export type SfxName = keyof typeof SOURCES;
 
 /** Volume de cada som (0 a 1): o toque é discreto e a comemoração é a mais forte. */
 export const SFX_VOLUME: Readonly<Record<SfxName, number>> = {
-  tap: 0.5,
+  open: 0.6,
+  tap: 0.45,
   correct: 0.7,
   wrong: 0.6,
   complete: 0.8,

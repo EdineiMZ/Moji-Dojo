@@ -2,7 +2,7 @@ import type { ComponentProps, ReactNode } from 'react';
 import { StyleSheet, type StyleProp, type ViewStyle } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { radii, spacing, useTheme } from '@/theme';
-import { ReduceMotion, STAGGER_MS } from './motion';
+import { EASE_OUT, ReduceMotion, STAGGER_MS } from './motion';
 
 export type CardTone = 'plain' | 'pink' | 'lilac' | 'sky';
 
@@ -16,7 +16,7 @@ interface CardProps {
   layout?: ComponentProps<typeof Animated.View>['layout'];
 }
 
-/** Cartão arredondado com sombra suave; entra com mola quando recebe `enterIndex`. */
+/** Cartão arredondado com sombra suave; entra deslizando de leve quando recebe `enterIndex`. */
 export function Card({ children, tone = 'plain', enterIndex, layout, style }: CardProps) {
   const { colors } = useTheme();
   const background = {
@@ -30,8 +30,8 @@ export function Card({ children, tone = 'plain', enterIndex, layout, style }: Ca
     enterIndex === undefined
       ? undefined
       : FadeInDown.delay(enterIndex * STAGGER_MS)
-          .springify()
-          .damping(14)
+          .duration(420)
+          .easing(EASE_OUT)
           .reduceMotion(ReduceMotion.System);
 
   return (

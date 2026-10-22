@@ -31,8 +31,8 @@ function Dot({ index, color }: { index: number; color: string }) {
       index * 160,
       withRepeat(
         withSequence(
-          withTiming(-10, { duration: 320, easing: Easing.out(Easing.quad) }),
-          withTiming(0, { duration: 320, easing: Easing.in(Easing.quad) }),
+          withTiming(-6, { duration: 420, easing: Easing.inOut(Easing.sin) }),
+          withTiming(0, { duration: 420, easing: Easing.inOut(Easing.sin) }),
           withTiming(0, { duration: 400 }),
         ),
         -1,
@@ -57,7 +57,7 @@ export function LoadingScreen() {
       accessibilityRole="progressbar"
       accessibilityLabel="Carregando o Moji Dojo"
       entering={FadeIn.duration(150).reduceMotion(ReduceMotion.System)}
-      exiting={FadeOut.duration(350).reduceMotion(ReduceMotion.System)}
+      exiting={FadeOut.duration(450).reduceMotion(ReduceMotion.System)}
       style={StyleSheet.absoluteFill}
     >
       <LinearGradient colors={colors.backgroundGradient} style={styles.fill}>

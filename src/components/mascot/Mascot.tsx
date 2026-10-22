@@ -6,10 +6,9 @@ import Animated, {
   useSharedValue,
   withRepeat,
   withSequence,
-  withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { SPRING, useMotionEnabled } from '../motion';
+import { useMotionEnabled } from '../motion';
 import { MochiArt, type MascotMood } from './MochiArt';
 
 export type { MascotMood };
@@ -51,28 +50,34 @@ export function Mascot({ mood = 'neutral', size = 160 }: MascotProps) {
     if (mood === 'neutral') {
       squash.value = withRepeat(
         withSequence(
-          withTiming(1.035, { duration: 1500, easing: Easing.inOut(Easing.sin) }),
-          withTiming(1, { duration: 1500, easing: Easing.inOut(Easing.sin) }),
+          withTiming(1.025, { duration: 1800, easing: Easing.inOut(Easing.sin) }),
+          withTiming(1, { duration: 1800, easing: Easing.inOut(Easing.sin) }),
         ),
         -1,
       );
     } else if (mood === 'happy') {
-      lift.value = withSequence(withSpring(-18, SPRING), withSpring(0, SPRING));
+      lift.value = withSequence(
+        withTiming(-9, { duration: 260, easing: up }),
+        withTiming(0, { duration: 340, easing: down }),
+      );
     } else if (mood === 'sad') {
       tilt.value = withSequence(
-        withTiming(-5, { duration: 140 }),
-        withTiming(5, { duration: 140 }),
-        withTiming(-3, { duration: 140 }),
-        withTiming(0, { duration: 140 }),
+        withTiming(-3, { duration: 220, easing: Easing.inOut(Easing.sin) }),
+        withTiming(3, { duration: 280, easing: Easing.inOut(Easing.sin) }),
+        withTiming(-1.5, { duration: 240, easing: Easing.inOut(Easing.sin) }),
+        withTiming(0, { duration: 220, easing: Easing.inOut(Easing.sin) }),
       );
-      squash.value = withTiming(0.96, { duration: 500 });
+      squash.value = withTiming(0.97, { duration: 600 });
     } else {
       lift.value = withRepeat(
-        withSequence(withTiming(-22, { duration: 320, easing: up }), withTiming(0, { duration: 320, easing: down })),
+        withSequence(withTiming(-11, { duration: 420, easing: up }), withTiming(0, { duration: 420, easing: down })),
         -1,
       );
       tilt.value = withRepeat(
-        withSequence(withTiming(-4, { duration: 320 }), withTiming(4, { duration: 320 })),
+        withSequence(
+          withTiming(-2.5, { duration: 420, easing: Easing.inOut(Easing.sin) }),
+          withTiming(2.5, { duration: 420, easing: Easing.inOut(Easing.sin) }),
+        ),
         -1,
         true,
       );

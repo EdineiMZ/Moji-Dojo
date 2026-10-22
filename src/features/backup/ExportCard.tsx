@@ -3,6 +3,7 @@ import { Share, StyleSheet, TextInput, View } from 'react-native';
 import { AppText, Bold, Button, Card } from '@/components';
 import { useProgressStore } from '@/store';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
+import { learnedWordIds } from '@/features/vocab/cards';
 import { exportBackup, summarizeProgress } from './backup';
 import { describeCounts, hasProgress } from './describe';
 
@@ -19,11 +20,15 @@ export function ExportCard() {
   const history = useProgressStore((s) => s.history);
   const shadow = useProgressStore((s) => s.shadow);
   const challenges = useProgressStore((s) => s.challenges);
+  const vocab = useProgressStore((s) => s.vocab);
 
-  const counts = useMemo(() => summarizeProgress({ srs, lessons, stats, days }), [srs, lessons, stats, days]);
+  const counts = useMemo(
+    () => ({ ...summarizeProgress({ srs, lessons, stats, days }), words: learnedWordIds(vocab).size }),
+    [srs, lessons, stats, days, vocab],
+  );
   const [code, setCode] = useState<string | null>(null);
 
-  const generate = () => setCode(exportBackup({ srs, lessons, stats, days, history, shadow, challenges }));
+  const generate = () => setCode(exportBackup({ srs, lessons, stats, days, history, shadow, challenges, vocab }));
 
   const share = () => {
     if (!code) return;
@@ -35,7 +40,7 @@ export function ExportCard() {
     <Card enterIndex={1}>
       <AppText variant="title">Exportar backup</AppText>
 
-      {!hasProgress(counts) ? (
+      {!hasProgress(counts) && !counts.words ? (
         <AppText color="muted">Ainda não há progresso para exportar. Estude uma lição e volte aqui.</AppText>
       ) : code === null ? (
         <>

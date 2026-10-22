@@ -5,7 +5,10 @@ import type { QuizItem } from './quiz';
 
 /** Resposta certa em uma linha: "か = ka · かさ guarda-chuva" ou "水 = água · on スイ · kun みず". */
 export function explainItem(item: QuizItem): string {
-  if (item.script === 'pair') return `${item.char} = ${item.label}`;
+  if (item.script === 'pair') {
+    const shown = item.reading && item.reading !== item.char ? `${item.char} (${item.reading})` : item.char;
+    return `${shown} = ${item.label}`;
+  }
   if (item.script === 'kanji') {
     return `${item.char} = ${item.label} · on ${formatReadings(item.on)} · kun ${formatReadings(item.kun)}`;
   }

@@ -3,14 +3,16 @@ import { findItem } from '@/features/catalog';
 import type { CharStats, ProgressSnapshot } from '@/features/progress/types';
 import { LAST_BOX, type SrsEntry } from '@/features/review/srs';
 import { MAX_HISTORY_DAYS, type DayActivity } from '@/features/stats/metrics';
+import { learnedWordIds, parseCardKey } from '@/features/vocab/cards';
 import type { ProgressExtras, ShadowRating } from '@/store/progressStore';
 
 /**
  * Dois formatos, os dois "prefixo" + base64 de um JSON em UTF-8:
  * - "NDJ1:" é o backup do protótipo HTML (btoa(unescape(encodeURIComponent(JSON.stringify(store))))).
  *   Só os campos srs, lessons, stats e days são importados.
- * - "MDJ1:" é o backup do próprio app (exportBackup): além desses, histórico, autoavaliação do Repetir e
- *   desafios de digitação, com um campo `v` de versão.
+ * - "MDJ1:" é o backup do próprio app (exportBackup): além desses, histórico, autoavaliação do Repetir,
+ *   desafios de digitação e vocabulário, com um campo `v` de versão. Campos novos entram como opcionais,
+ *   então um código antigo continua valendo (sem o campo, vale vazio).
  */
 export const BACKUP_PREFIX = 'NDJ1:';
 export const APP_BACKUP_PREFIX = 'MDJ1:';
@@ -35,6 +37,8 @@ export interface ProgressCounts {
 export interface BackupSummary extends ProgressCounts {
   /** Itens do código que não existem mais neste app e foram descartados. */
   ignored: number;
+  /** Palavras de vocabulário no backup (só nos códigos do app). */
+  words?: number;
 }
 
 export const summarizeProgress = (p: ProgressSnapshot): ProgressCounts => ({
@@ -173,7 +177,16 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
     challenges[word] = true;
   }
 
-  return { value: { history: recent, shadow, challenges }, ignored };
+  const vocab: Record<string, SrsEntry> = {};
+  for (const [key, v] of Object.entries(recordField(root, 'vocab'))) {
+    if (!parseCardKey(key) || !isRecord(v) || !isCount(v.b) || !isCount(v.due)) {
+      ignored++;
+      continue;
+    }
+    vocab[key] = { b: Math.min(Math.max(Math.round(v.b), 1), LAST_BOX), due: v.due };
+  }
+
+  return { value: { history: recent, shadow, challenges, vocab }, ignored };
 }
 
 /**
@@ -237,7 +250,7 @@ export function parseBackup(code: string): BackupParseResult {
     return {
       ok: true,
       snapshot,
-      summary: { ...counts, ignored: ignored + extras.ignored },
+      summary: { ...counts, ignored: ignored + extras.ignored, words: learnedWordIds(extras.value.vocab).size },
       source,
       extras: extras.value,
     };
@@ -285,6 +298,7 @@ export function exportBackup(progress: ProgressSnapshot & ProgressExtras, now: D
     history: progress.history,
     shadow: progress.shadow,
     challenges: progress.challenges,
+    vocab: progress.vocab,
   };
   return APP_BACKUP_PREFIX + btoa(encodeUtf8(JSON.stringify(payload)));
 }

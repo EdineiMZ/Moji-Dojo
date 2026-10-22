@@ -5,6 +5,7 @@ import type { ProgressSnapshot } from '@/features/progress/types';
 import type { ProgressExtras } from '@/store/progressStore';
 import { useProgressStore } from '@/store';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
+import { learnedWordIds } from '@/features/vocab/cards';
 import { BACKUP_ERROR_MESSAGES, parseBackup, summarizeProgress, type BackupSummary } from './backup';
 import { describeCounts, hasProgress, ignoredNote } from './describe';
 
@@ -32,7 +33,9 @@ export function BackupCard() {
   const lessons = useProgressStore((s) => s.lessons);
   const stats = useProgressStore((s) => s.stats);
   const days = useProgressStore((s) => s.days);
+  const vocab = useProgressStore((s) => s.vocab);
   const current = useMemo(() => summarizeProgress({ srs, lessons, stats, days }), [srs, lessons, stats, days]);
+  const currentWords = useMemo(() => learnedWordIds(vocab).size, [vocab]);
 
   const scrollIntoView = useScrollIntoView();
   const inputRef = useRef<TextInput>(null);
@@ -106,12 +109,12 @@ export function BackupCard() {
               {ignoredNote(stage.summary.ignored)}
             </AppText>
           ) : null}
-          {hasProgress(current) ? (
+          {hasProgress(current) || currentWords > 0 ? (
             <View style={[styles.warning, { backgroundColor: colors.primarySoft }]}>
               <AppText>
                 <Bold>Isso substitui o progresso deste aparelho</Bold>, que hoje tem:
               </AppText>
-              <Lines lines={describeCounts(current)} />
+              <Lines lines={describeCounts({ ...current, words: currentWords })} />
             </View>
           ) : null}
           {stage.source === 'prototype' ? (

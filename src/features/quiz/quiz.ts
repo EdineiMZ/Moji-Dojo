@@ -12,13 +12,15 @@ export type Rng = () => number;
  */
 export type Direction = 'k2r' | 'r2k' | 'audio' | 'write';
 
-/** Palavra de um par difícil (treino de ouvido). Só existe como alternativa de áudio. */
+/** Palavra solta: de um par difícil (treino de ouvido) ou do vocabulário. */
 export interface PairItem {
   /** A palavra em japonês. */
   char: string;
   /** Romaji e tradução, para a explicação depois da resposta. */
   label: string;
   script: 'pair';
+  /** Leitura em kana, quando a palavra tem kanji: é o que a voz fala e o que a explicação mostra. */
+  reading?: string;
 }
 
 /** O que uma pergunta pode ter como resposta: um caractere estudado ou uma palavra de par difícil. */

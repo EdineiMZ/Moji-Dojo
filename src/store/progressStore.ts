@@ -1,9 +1,11 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
 import { emptyProgress, type ProgressSnapshot } from '@/features/progress/types';
-import { answerReview, boostSkippedItems, learnItems, shouldApplyReviewAnswer } from '@/features/review/srs';
+import { answerReview, boostSkippedItems, learnItems, shouldApplyReviewAnswer, type SrsEntry, type SrsState } from '@/features/review/srs';
 import { addActivity, type ActivityHistory } from '@/features/stats/metrics';
 import { markDay } from '@/features/streak/days';
+import { cardKeysFor } from '@/features/vocab/cards';
+import { findWord } from '@/content';
 
 /** Como a pessoa avalia a própria fala no "Repetir" (shadowing). */
 export type ShadowRating = 'ok' | 'mid' | 'bad';
@@ -19,6 +21,10 @@ export interface ProgressActions {
   completeChallenge: (word: string, now?: number) => void;
   /** Guarda a autoavaliação de uma frase do Repetir (chave = a frase em japonês) e marca o dia. */
   rateShadow: (phrase: string, rating: ShadowRating, now?: number) => void;
+  /** Palavras aprendidas: entram na revisão (3 cartões, ou 2 se tiver kanji) já vencidas, para praticar na hora. */
+  learnWords: (wordIds: readonly string[], now?: number) => void;
+  /** Resposta numa revisão de vocabulário (chave = o cartão): reagenda e marca o dia. */
+  recordVocabAnswer: (cardKey: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Marca o dia como estudado (ex.: ao conferir uma escrita). */
   markStudied: (now?: number) => void;
   /**
@@ -39,6 +45,8 @@ export interface ProgressExtras {
   challenges: Readonly<Record<string, true>>;
   /** Atividade por dia (respostas, acertos, caracteres aprendidos), para o painel de evolução. */
   history: ActivityHistory;
+  /** Revisão espaçada do vocabulário, por cartão ("palavra|direção"). Separada do `srs` dos caracteres. */
+  vocab: SrsState;
 }
 
 export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions;
@@ -57,6 +65,7 @@ export function createProgressStore(storage: StateStorage) {
         shadow: {},
         challenges: {},
         history: {},
+        vocab: {},
 
         completeLesson: (lessonId, chars, skipped = false, now = Date.now()) =>
           set((s) => {
@@ -100,6 +109,27 @@ export function createProgressStore(storage: StateStorage) {
         rateShadow: (phrase, rating, now = Date.now()) =>
           set((s) => ({ shadow: { ...s.shadow, [phrase]: rating }, days: markDay(s.days, new Date(now)) })),
 
+        learnWords: (wordIds, now = Date.now()) =>
+          set((s) => {
+            const vocab: Record<string, SrsEntry> = { ...s.vocab };
+            for (const id of wordIds) {
+              const word = findWord(id);
+              if (!word) continue;
+              for (const key of cardKeysFor(word)) if (!vocab[key]) vocab[key] = { b: 1, due: now };
+            }
+            return { vocab, days: markDay(s.days, new Date(now)) };
+          }),
+
+        recordVocabAnswer: (cardKey, ok, firstTry, now = Date.now()) =>
+          set((s) => {
+            const entry = s.vocab[cardKey];
+            return {
+              days: markDay(s.days, new Date(now)),
+              history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
+              ...(entry ? { vocab: { ...s.vocab, [cardKey]: answerReview(entry, ok, !firstTry, now) } } : {}),
+            };
+          }),
+
         markStudied: (now = Date.now()) => set((s) => ({ days: markDay(s.days, new Date(now)) })),
 
         replaceProgress: (snapshot, extras) =>
@@ -110,17 +140,17 @@ export function createProgressStore(storage: StateStorage) {
             stats: snapshot.stats,
             days: snapshot.days,
             history: extras?.history ?? {},
-            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges } : {}),
+            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab } : {}),
           }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {} }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow, challenges, history }) => ({
+        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab }) => ({
           srs,
           lessons,
           stats,
@@ -128,6 +158,7 @@ export function createProgressStore(storage: StateStorage) {
           shadow,
           challenges,
           history,
+          vocab,
         }),
       },
     ),

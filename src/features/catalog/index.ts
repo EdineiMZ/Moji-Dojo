@@ -52,13 +52,15 @@ export function getItem(char: string): StudyItem {
 export interface Pronounceable {
   char: string;
   script: string;
+  /** Leitura de uma palavra com kanji (vocabulário): a voz fala isto em vez do texto escrito. */
+  reading?: string;
   on?: readonly string[];
   kun?: readonly string[];
 }
 
 /** Texto enviado à voz. Kanji: primeira leitura kun (ou on, se não houver), sem os parênteses de okurigana. */
 export function pronunciationText(item: Pronounceable): string {
-  if (item.script !== 'kanji') return item.char;
+  if (item.script !== 'kanji') return item.reading ?? item.char;
   const reading = item.kun?.[0] ?? item.on?.[0] ?? item.char;
   return reading.replace(/[()]/g, '');
 }

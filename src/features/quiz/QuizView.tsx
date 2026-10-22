@@ -44,6 +44,13 @@ import {
 } from './quiz';
 import { WriteQuestion } from './WriteQuestion';
 
+/** Tamanho do texto do enunciado: caractere ou sílaba grande; palavra de vocabulário, menor para caber em uma linha. */
+function promptGlyphStyle(text: string): { fontSize: number; lineHeight: number } {
+  const length = [...text].length;
+  const size = length <= 2 ? 96 : length <= 4 ? 64 : length <= 6 ? 48 : 36;
+  return { fontSize: size, lineHeight: Math.round(size * 1.17) };
+}
+
 /** Depois de acertar um desenho há mais o que olhar (o modelo e os traços), então espera mais. */
 const WRITE_ADVANCE_MS = 2200;
 
@@ -213,7 +220,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
                     {current.item.label}
                   </AppText>
                 ) : (
-                  <AppText variant="glyph" center style={styles.promptGlyph}>
+                  <AppText variant="glyph" center style={promptGlyphStyle(current.item.char)}>
                     {current.item.char}
                   </AppText>
                 )}
@@ -263,7 +270,6 @@ const styles = StyleSheet.create({
   top: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
   bar: { marginVertical: spacing.xs },
   prompt: { alignItems: 'center', justifyContent: 'center', minHeight: 150 },
-  promptGlyph: { fontSize: 96, lineHeight: 112 },
   options: { gap: spacing.sm },
   feedback: { borderRadius: radii.md, padding: spacing.md, gap: spacing.xs },
 });

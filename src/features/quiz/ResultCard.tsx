@@ -19,6 +19,8 @@ interface ResultCardProps {
   mood: MascotMood;
   /** Frase antes da lista de erros. */
   wrongLabel?: string;
+  /** Como mostrar cada erro (padrão: o caractere e o romaji/significado dele). */
+  wrongText?: (char: string) => string;
   children?: ReactNode;
 }
 
@@ -33,6 +35,7 @@ export function ResultCard({
   passed,
   mood,
   wrongLabel = 'Você errou:',
+  wrongText = (c) => `${c} ${getItem(c).label}`,
   children,
 }: ResultCardProps) {
   const color = passed ? 'ok' : pct >= 60 ? 'warn' : 'bad';
@@ -55,7 +58,7 @@ export function ResultCard({
       </View>
       {wrong.length ? (
         <AppText color="muted" center>
-          {wrongLabel} {wrong.map((c) => `${c} ${getItem(c).label}`).join(' · ')}
+          {wrongLabel} {wrong.map(wrongText).join(' · ')}
         </AppText>
       ) : null}
       {children}

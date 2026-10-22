@@ -8,7 +8,11 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { AppText, Button, Card, Mascot, ProgressBar, SPRING, useMotionEnabled, type MascotMood } from '@/components';
+import { pronunciationText } from '@/features/catalog';
+import { speakJapanese } from '@/features/speech/voiceStore';
 import { isPassing, type WritingScore } from '@/features/writing/score';
+import { useSettingsStore } from '@/store';
+import { SPEECH_RATES } from '@/store/settingsStore';
 import { hapticError, hapticSuccess } from '@/lib/haptics';
 import { radii, spacing, useTheme } from '@/theme';
 import { autoAdvanceMs, buildFeedback, type Feedback } from './explain';
@@ -17,6 +21,7 @@ import {
   advance,
   answerQuestion,
   isFinished,
+  isStudyItem,
   quizResult,
   resolveQuestion,
   startQuiz,
@@ -63,6 +68,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
   /** Muda a cada pergunta mostrada: reinicia o quadro de desenho, mesmo na repetição do mesmo item. */
   const [step, setStep] = useState(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const speed = useSettingsStore((s) => s.speechSpeed);
   const shake = useSharedValue(0);
   const pop = useSharedValue(1);
 
@@ -73,6 +79,13 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
     [],
   );
 
+  // Pergunta de áudio: toca o som assim que ela aparece (e de novo a cada repetição).
+  useEffect(() => {
+    const q = quiz.current;
+    if (q?.direction === 'audio') speakJapanese(pronunciationText(q.item), SPEECH_RATES[speed]);
+    // Só quando a pergunta muda (step): mudar a velocidade no meio não deve tocar de novo.
+  }, [step]);
+
   const cardMotion = useAnimatedStyle(() => ({
     transform: [{ translateX: shake.value }, { scale: pop.value }],
   }));
@@ -80,6 +93,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
   const current = quiz.current;
   if (!current) return null;
   const isWrite = current.direction === 'write';
+  const isAudio = current.direction === 'audio';
 
   const proceed = (state: QuizState) => {
     const next = advance(state);
@@ -103,7 +117,10 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
     if (outcome.correct) {
       hapticSuccess();
       if (motion) pop.value = withSequence(withSpring(1.06, SPRING), withSpring(1, SPRING));
-      timer.current = setTimeout(() => proceed(outcome.state), isWrite ? WRITE_ADVANCE_MS : autoAdvanceMs(current.item));
+      // No ouvido o usuário pode querer ouvir de novo antes de seguir: só avança no toque.
+      if (!isAudio) {
+        timer.current = setTimeout(() => proceed(outcome.state), isWrite ? WRITE_ADVANCE_MS : autoAdvanceMs(current.item));
+      }
     } else {
       hapticError();
       if (motion) {
@@ -128,7 +145,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
     settle(resolveQuestion(quiz, isPassing(score)), '', score);
   };
 
-  const toChar = current.direction === 'r2k';
+  const toChar = current.direction === 'r2k' || isAudio;
   const stateOf = (char: string): OptionState => {
     if (!answered) return 'idle';
     if (char === current.item.char) return 'right';
@@ -151,7 +168,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
         <Mascot mood={mood} size={84} />
       </View>
 
-      {isWrite ? (
+      {isWrite && isStudyItem(current.item) ? (
         <Animated.View style={cardMotion}>
           <WriteQuestion
             key={step}
@@ -170,7 +187,12 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
                 answered && { borderColor: answered.correct ? colors.ok : colors.bad, borderWidth: 2 },
               ]}
             >
-              {toChar ? (
+              {isAudio ? (
+                <Button
+                  label="🔊 Ouvir de novo"
+                  onPress={() => speakJapanese(pronunciationText(current.item), SPEECH_RATES[speed])}
+                />
+              ) : toChar ? (
                 <AppText variant="headline" center>
                   {current.item.label}
                 </AppText>
@@ -211,7 +233,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
         </View>
       ) : null}
 
-      {answered && (!answered.correct || isWrite) ? <Button label="Continuar" onPress={() => proceed(quiz)} /> : null}
+      {answered && (!answered.correct || isWrite || isAudio) ? <Button label="Continuar" onPress={() => proceed(quiz)} /> : null}
     </View>
   );
 }

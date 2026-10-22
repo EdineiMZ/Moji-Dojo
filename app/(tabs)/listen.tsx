@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { AppText, Screen, SegmentedControl, SoonCard } from '@/components';
+import { AppText, Screen, SegmentedControl } from '@/components';
+import { EarView } from '@/features/listen/EarView';
+import { RepeatView } from '@/features/listen/RepeatView';
 import { SoundsView } from '@/features/listen/SoundsView';
 import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
@@ -21,7 +23,9 @@ export default function ListenScreen() {
       <VoiceWarning />
       <SpeedControl />
       <SegmentedControl options={VIEWS} value={view} onChange={setView} />
-      {view === 'sounds' ? <SoundsView /> : <SoonCard text="Esta parte chega em breve." />}
+      {view === 'sounds' ? <SoundsView /> : null}
+      {view === 'ear' ? <EarView /> : null}
+      {view === 'repeat' ? <RepeatView /> : null}
     </Screen>
   );
 }

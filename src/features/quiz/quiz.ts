@@ -1,3 +1,4 @@
+import type { MinimalPair, PhraseExample } from '@/data/types';
 import { ALL_ITEMS, getItem, type StudyItem } from '@/features/catalog';
 import { isWritable } from '@/features/writing/model';
 
@@ -6,15 +7,30 @@ export type Rng = () => number;
 
 /**
  * k2r: mostra o caractere, responde o som/significado. r2k: o contrário.
+ * audio: toca o som e o usuário escolhe o caractere (ou a palavra, nos pares difíceis).
  * write: mostra o significado e o som, e o usuário desenha o caractere (sem alternativas).
  */
-export type Direction = 'k2r' | 'r2k' | 'write';
+export type Direction = 'k2r' | 'r2k' | 'audio' | 'write';
+
+/** Palavra de um par difícil (treino de ouvido). Só existe como alternativa de áudio. */
+export interface PairItem {
+  /** A palavra em japonês. */
+  char: string;
+  /** Romaji e tradução, para a explicação depois da resposta. */
+  label: string;
+  script: 'pair';
+}
+
+/** O que uma pergunta pode ter como resposta: um caractere estudado ou uma palavra de par difícil. */
+export type QuizItem = StudyItem | PairItem;
+
+export const isStudyItem = (item: QuizItem): item is StudyItem => item.script !== 'pair';
 
 export interface Question {
-  item: StudyItem;
+  item: QuizItem;
   direction: Direction;
   /** Alternativas já embaralhadas (a certa está entre elas). Vazio na direção write. */
-  options: readonly StudyItem[];
+  options: readonly QuizItem[];
   /** Pergunta repetida por ter sido errada antes. */
   retry: boolean;
 }
@@ -108,6 +124,47 @@ export function buildReviewQuestions(
     return { item, direction, options: buildOptions(item, pool, rng), retry: false };
   });
   return shuffle(questions, rng);
+}
+
+// ---------- Treino de ouvido ----------
+
+export const EAR_QUESTIONS = 10;
+
+/** `count` itens do pool, sem repetir enquanto der (embaralha o pool de novo se faltar). */
+function sampleCycle<T>(pool: readonly T[], count: number, rng: Rng): T[] {
+  const picks: T[] = [];
+  while (picks.length < count && pool.length > 0) picks.push(...shuffle(pool, rng));
+  return picks.slice(0, count);
+}
+
+/** Ouvido, kana: toca o som e as alternativas são os caracteres. */
+export function buildEarQuestions(
+  pool: readonly StudyItem[],
+  rng: Rng = Math.random,
+  count: number = EAR_QUESTIONS,
+): Question[] {
+  return sampleCycle(pool, count, rng).map((item) => ({
+    item,
+    direction: 'audio',
+    options: buildOptions(item, pool, rng),
+    retry: false,
+  }));
+}
+
+const pairItem = (ex: PhraseExample): PairItem => ({ char: ex.jp, label: `${ex.romaji}, ${ex.pt}`, script: 'pair' });
+
+/** Ouvido, pares difíceis: toca uma das duas palavras e a pessoa escolhe qual foi. */
+export function buildPairQuestions(
+  pairs: readonly MinimalPair[],
+  rng: Rng = Math.random,
+  count: number = EAR_QUESTIONS,
+): Question[] {
+  return sampleCycle(pairs, count, rng).map((pair) => {
+    const a = pairItem(pair.first);
+    const b = pairItem(pair.second);
+    const item = rng() < 0.5 ? a : b;
+    return { item, direction: 'audio', options: shuffle([a, b], rng), retry: false };
+  });
 }
 
 // ---------- Sessão de quiz (estado imutável) ----------

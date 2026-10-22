@@ -11,3 +11,4 @@ export { Confetti } from './Confetti';
 export { PetalRain } from './PetalRain';
 export { RichText } from './RichText';
 export { SoonCard } from './SoonCard';
+export { ChipRow } from './ChipRow';

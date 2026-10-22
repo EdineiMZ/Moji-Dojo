@@ -93,6 +93,31 @@ describe('recordReviewAnswer', () => {
   });
 });
 
+describe('rateShadow (Repetir)', () => {
+  it('guarda a autoavaliação da frase, marca o dia e permite mudar de ideia', () => {
+    const store = createProgressStore(memoryStorage());
+    store.getState().rateShadow('こんにちは', 'mid');
+    expect(store.getState().shadow).toEqual({ こんにちは: 'mid' });
+    expect(store.getState().days).toEqual(['2026-10-22']);
+    store.getState().rateShadow('こんにちは', 'ok');
+    expect(store.getState().shadow['こんにちは']).toBe('ok');
+  });
+
+  it('fica salva ao reabrir; zerar o progresso apaga; importar backup não mexe', () => {
+    const storage = memoryStorage();
+    const store = createProgressStore(storage);
+    store.getState().rateShadow('はい / いいえ', 'bad');
+    expect(createProgressStore(storage).getState().shadow).toEqual({ 'はい / いいえ': 'bad' });
+
+    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] });
+    expect(store.getState().shadow).toEqual({ 'はい / いいえ': 'bad' });
+
+    store.getState().resetProgress();
+    expect(store.getState().shadow).toEqual({});
+    expect(createProgressStore(storage).getState().shadow).toEqual({});
+  });
+});
+
 describe('markStudied', () => {
   it('marca o dia de hoje uma única vez e mantém o streak', () => {
     const store = createProgressStore(memoryStorage());
@@ -127,7 +152,7 @@ describe('persistência', () => {
     first.getState().recordAnswer('あ', true);
 
     const saved = JSON.parse(storage.data.get(PROGRESS_STORAGE_KEY) ?? '{}');
-    expect(Object.keys(saved.state).sort()).toEqual(['days', 'lessons', 'srs', 'stats']);
+    expect(Object.keys(saved.state).sort()).toEqual(['days', 'lessons', 'shadow', 'srs', 'stats']);
 
     const second = createProgressStore(storage);
     expect(second.persist.hasHydrated()).toBe(true);

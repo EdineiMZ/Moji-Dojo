@@ -48,8 +48,16 @@ export function getItem(char: string): StudyItem {
   return item;
 }
 
+/** O que a voz precisa saber de um item: o caractere (ou palavra) e, nos kanji, as leituras. */
+export interface Pronounceable {
+  char: string;
+  script: string;
+  on?: readonly string[];
+  kun?: readonly string[];
+}
+
 /** Texto enviado à voz. Kanji: primeira leitura kun (ou on, se não houver), sem os parênteses de okurigana. */
-export function pronunciationText(item: StudyItem): string {
+export function pronunciationText(item: Pronounceable): string {
   if (item.script !== 'kanji') return item.char;
   const reading = item.kun?.[0] ?? item.on?.[0] ?? item.char;
   return reading.replace(/[()]/g, '');

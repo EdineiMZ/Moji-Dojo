@@ -8,7 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { G, Line, Path, Text as SvgText } from 'react-native-svg';
 import type { StrokeData } from '@/data/types';
-import { pathLength } from '@/features/strokes/pathLength';
+import { pathLength } from '@/features/strokes/svgPath';
 import { useTheme } from '@/theme';
 import { useMotionEnabled } from './motion';
 

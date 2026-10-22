@@ -79,6 +79,20 @@ Antes de commitar, vale rodar `npm run typecheck`, `npm test` e `npx expo-doctor
 
 > **Sobre o `.npmrc`:** ele define `legacy-peer-deps=true`. O Expo fixa o React em 19.2.x, mas o npm tenta puxar um `react-dom` 19.3 como peer dependency. O app é só Android e não usa `react-dom`, então o conflito é ignorado. O `package-lock.json` foi gerado assim; sem essa configuração o `npm ci` recusa o lockfile.
 
+## Gerar o APK e a versão
+
+No Windows, dê dois cliques em `gerar-apk.bat` (precisa de Node, JDK 17 ou 21 e Android SDK). Ele gera o projeto Android, compila e copia o APK para a raiz com **nome + versão**, por exemplo `MojiDojo-1.1.0.apk`. Só arm64 (celulares de 64 bits); para aparelhos antigos de 32 bits, veja o comentário no próprio script.
+
+A versão fica em `app.json` (`expo.version`), espelhada em `package.json` e `package-lock.json`; o `android.versionCode` é derivado dela (1.2.3 → 10203), então o Android aceita instalar a atualização por cima. Cada versão tem uma entrada no [CHANGELOG](CHANGELOG.md).
+
+```bash
+npm run version:show             # versão atual
+npm run version:bump -- minor    # fase concluída (patch = correções; major = virada grande)
+npm run version:sync             # depois de editar a versão no app.json à mão
+```
+
+O `bump` abre a entrada do changelog com um texto provisório, que precisa ser escrito. Um teste falha se a versão, o `versionCode` e o changelog divergirem, e a regra de aumentar a versão a cada fase concluída está no `AGENTS.md`.
+
 ## Estrutura de pastas
 
 ```

@@ -1,6 +1,6 @@
 {
   "name": "moji-dojo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "expo-router/entry",
   "dependencies": {
     "@expo-google-fonts/m-plus-rounded-1c": "^0.4.4",
@@ -44,6 +44,9 @@
     "test": "jest",
     "extract-data": "node scripts/extract-data.mjs",
     "generate-sounds": "node scripts/generate-sounds.mjs",
+    "version:show": "node scripts/version.mjs show",
+    "version:bump": "node scripts/version.mjs bump",
+    "version:sync": "node scripts/version.mjs sync",
     "lint": "expo lint"
   },
   "private": true,

@@ -39,3 +39,12 @@ Docs: https://docs.expo.dev/eas/index.md
 - If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
 - Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
 - Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
+
+## Versioning (mandatory)
+
+The app version is `expo.version` in `app.json` (mirrored in `package.json` and `package-lock.json`), with `android.versionCode` derived from it. The APK is named `MojiDojo-<version>.apk`. Rules live in `scripts/versioning.cjs`; the history lives in `CHANGELOG.md`.
+
+- **Every time a phase of `ROADMAP.md` is concluded, or an update/fix batch is delivered, bump the version before the last commit and before generating an APK:** `npm run version:bump -- minor` for a concluded phase or a notable feature, `-- patch` for fixes and small updates, `-- major` only for a big break (store release, incompatible progress format).
+- `bump` opens an entry in `CHANGELOG.md` with a placeholder; **write the entry** (what changed, in Portuguese) — a Jest test fails while the placeholder remains or when `app.json`, `package.json`, `package-lock.json`, `versionCode` and the changelog disagree.
+- Never edit the version in only one file. After a manual edit of `app.json`, run `npm run version:sync`.
+- Commit the bump together with (or right after) the work it versions, e.g. `chore(release): 1.2.0`.

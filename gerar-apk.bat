@@ -33,6 +33,8 @@ if not defined JAVA_HOME (
 )
 set "PATH=%JAVA_HOME%\bin;%ANDROID_HOME%\platform-tools;%PATH%"
 echo Node : & node -v
+for /f "delims=" %%v in ('node scripts\version.mjs apk-name') do set "APK_NAME=%%v"
+for /f "delims=" %%v in ('node scripts\version.mjs show') do echo App  : %%v
 echo Java : %JAVA_HOME%
 echo SDK  : %ANDROID_HOME%
 echo.
@@ -67,11 +69,11 @@ if not "%GRADLE_EXIT%"=="0" goto :erro
 rem --- 4. Copiar o resultado para a raiz ---
 echo.
 echo [4/4] Copiando o APK...
-copy /y "android\app\build\outputs\apk\release\app-release.apk" "MojiDojo.apk" >nul
+copy /y "android\app\build\outputs\apk\release\app-release.apk" "%APK_NAME%" >nul
 if errorlevel 1 goto :erro
 
 echo.
-echo Pronto: %~dp0MojiDojo.apk
+echo Pronto: %~dp0%APK_NAME%
 echo Copie para o celular e instale ^(permita "apps desconhecidos" se o Android pedir^).
 goto :fim
 

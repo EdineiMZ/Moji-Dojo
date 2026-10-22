@@ -11,6 +11,8 @@ export interface Palette {
   line: string;
   /** Rosa sakura: ação principal. */
   primary: string;
+  /** O rosa quando é texto ou ícone sobre fundo claro (o `primary` não tem contraste suficiente ali). */
+  primaryText: string;
   primarySoft: string;
   onPrimary: string;
   /** Lilás: destaque secundário. */
@@ -35,18 +37,19 @@ export const lightPalette: Palette = {
   backgroundGradient: ['#FFF1F5', '#EEF6FF'],
   surface: '#FFFFFF',
   ink: '#3B2F4A',
-  muted: '#7D6E8E',
+  muted: '#726481',
   line: '#F1E2EA',
   primary: '#F2799F',
+  primaryText: '#C42A5F',
   primarySoft: '#FFE3EE',
-  onPrimary: '#FFFFFF',
+  onPrimary: '#2A1030',
   lilac: '#A78BEA',
   lilacSoft: '#EEE8FF',
   sky: '#6DB9F2',
   skySoft: '#E1F3FF',
-  ok: '#2F9E73',
+  ok: '#247B59',
   okSoft: '#DFF5EA',
-  bad: '#E0506B',
+  bad: '#CA2443',
   badSoft: '#FFE4E9',
   warn: '#D98E1F',
   chart: '#D4487A',
@@ -62,6 +65,7 @@ export const darkPalette: Palette = {
   muted: '#A9A3CB',
   line: '#33336B',
   primary: '#FF9EC4',
+  primaryText: '#FF9EC4',
   primarySoft: '#4A2A4F',
   onPrimary: '#2A1030',
   lilac: '#B9A4FF',

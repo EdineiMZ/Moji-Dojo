@@ -40,5 +40,5 @@ export function ChipRow<T extends string>({ options, value, onChange }: ChipRowP
 
 const styles = StyleSheet.create({
   row: { gap: spacing.sm, paddingVertical: spacing.xs },
-  chip: { borderRadius: radii.pill, borderWidth: 1.5, minHeight: 44, justifyContent: 'center', paddingHorizontal: spacing.lg },
+  chip: { borderRadius: radii.pill, borderWidth: 1.5, minHeight: 48, justifyContent: 'center', paddingHorizontal: spacing.lg },
 });

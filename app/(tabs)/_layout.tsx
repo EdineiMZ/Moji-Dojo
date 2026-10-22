@@ -5,7 +5,12 @@ import { fonts, useTheme } from '@/theme';
 
 /** Ícone da aba: um caractere japonês, combinando com o tema do app. */
 function TabGlyph({ char, color }: { char: string; color: ColorValue }) {
-  return <Text style={{ fontFamily: fonts.bold, fontSize: 22, color }}>{char}</Text>;
+  // O leitor de tela já lê o título da aba; o caractere do ícone é só visual.
+  return (
+    <Text accessible={false} importantForAccessibility="no" style={{ fontFamily: fonts.bold, fontSize: 22, color }}>
+      {char}
+    </Text>
+  );
 }
 
 const TABS = [
@@ -24,7 +29,7 @@ export default function TabsLayout() {
       screenOptions={{
         headerShown: false,
         animation: 'fade',
-        tabBarActiveTintColor: colors.primary,
+        tabBarActiveTintColor: colors.primaryText,
         tabBarInactiveTintColor: colors.muted,
         tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.line },
         tabBarLabelStyle: { fontFamily: fonts.bold, fontSize: 12 },

@@ -21,9 +21,11 @@ const variantStyles: Record<TextVariant, TextStyle> = {
 /** Texto com a fonte e as cores do tema. Use no lugar do Text puro. */
 export function AppText({ variant = 'body', color = 'ink', center, style, ...rest }: AppTextProps) {
   const { colors } = useTheme();
+  // O rosa como texto usa a versão com contraste (no tema claro, o `primary` puro fica claro demais).
+  const textColor = color === 'primary' ? colors.primaryText : colors[color];
   return (
     <Text
-      style={[variantStyles[variant], { color: colors[color] }, center && { textAlign: 'center' }, style]}
+      style={[variantStyles[variant], { color: textColor }, center && { textAlign: 'center' }, style]}
       {...rest}
     />
   );

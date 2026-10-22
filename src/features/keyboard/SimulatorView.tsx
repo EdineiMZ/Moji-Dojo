@@ -84,7 +84,7 @@ export function SimulatorView() {
         )}
       </View>
 
-      <View style={[styles.status, progress.done && { backgroundColor: colors.okSoft }]}>
+      <View accessibilityLiveRegion="polite" style={[styles.status, progress.done && { backgroundColor: colors.okSoft }]}>
         <AppText variant="caption" color={progress.done ? 'ok' : 'muted'}>
           {status || ' '}
         </AppText>

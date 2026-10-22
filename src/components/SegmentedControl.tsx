@@ -73,5 +73,5 @@ const styles = StyleSheet.create({
   track: { borderRadius: radii.pill, borderWidth: 1.5, padding: spacing.xs },
   row: { flexDirection: 'row' },
   indicator: { position: 'absolute', top: 0, bottom: 0, left: 0, borderRadius: radii.pill },
-  segment: { flex: 1, minHeight: 44, justifyContent: 'center', borderRadius: radii.pill },
+  segment: { flex: 1, minHeight: 48, justifyContent: 'center', borderRadius: radii.pill },
 });

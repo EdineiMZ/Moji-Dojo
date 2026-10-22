@@ -13,7 +13,8 @@ const MAX_DAYS = 400;
 const DAY_FORMAT = /^\d{4}-\d{2}-\d{2}$/;
 const BASE64_FORMAT = /^[A-Za-z0-9+/]*={0,2}$/;
 
-export interface BackupSummary {
+/** Quanto progresso existe, em números. */
+export interface ProgressCounts {
   /** Lições concluídas. */
   lessons: number;
   /** Caracteres na revisão espaçada. */
@@ -22,9 +23,19 @@ export interface BackupSummary {
   characters: number;
   /** Dias de estudo. */
   days: number;
+}
+
+export interface BackupSummary extends ProgressCounts {
   /** Itens do código que não existem mais neste app e foram descartados. */
   ignored: number;
 }
+
+export const summarizeProgress = (p: ProgressSnapshot): ProgressCounts => ({
+  lessons: Object.keys(p.lessons).length,
+  reviews: Object.keys(p.srs).length,
+  characters: Object.keys(p.stats).length,
+  days: p.days.length,
+});
 
 /**
  * - format: não começa com NDJ1:
@@ -157,17 +168,12 @@ export function parseBackup(code: string): BackupParseResult {
     ignored += (rawDays?.length ?? 0) - validDays.length;
     const days = [...new Set(validDays)].sort().slice(-MAX_DAYS);
 
-    const summary: BackupSummary = {
-      lessons: Object.keys(lessons).length,
-      reviews: Object.keys(srs).length,
-      characters: Object.keys(stats).length,
-      days: days.length,
-      ignored,
-    };
-    if (!summary.lessons && !summary.reviews && !summary.characters && !summary.days) {
+    const snapshot: ProgressSnapshot = { srs, lessons, stats, days };
+    const counts = summarizeProgress(snapshot);
+    if (!counts.lessons && !counts.reviews && !counts.characters && !counts.days) {
       throw new BackupFailure('empty');
     }
-    return { ok: true, snapshot: { srs, lessons, stats, days }, summary };
+    return { ok: true, snapshot, summary: { ...counts, ignored } };
   } catch (e) {
     if (e instanceof BackupFailure) return { ok: false, error: e.code };
     throw e;

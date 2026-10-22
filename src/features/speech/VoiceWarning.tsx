@@ -1,17 +1,10 @@
 import { useEffect } from 'react';
-import { Linking, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, Card } from '@/components';
 import { spacing } from '@/theme';
+import { openVoiceSettings } from './openVoiceSettings';
 import { ensureVoiceChecked, useVoiceStore } from './voiceStore';
 import { VOICE_INSTALL_STEPS } from './voices';
-
-async function openVoiceSettings(): Promise<void> {
-  try {
-    await Linking.sendIntent('com.android.settings.TTS_SETTINGS');
-  } catch {
-    await Linking.openSettings();
-  }
-}
 
 /**
  * Aviso amigável quando o aparelho não tem voz japonesa, com o passo a passo para instalar.

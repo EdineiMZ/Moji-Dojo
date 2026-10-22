@@ -3,10 +3,9 @@ import { useRouter } from 'expo-router';
 import { AppText, Bold, Button, Card } from '@/components';
 import { SCRIPT_NAMES } from '@/features/catalog';
 import { formatReviewTime } from '@/features/review/format';
+import { plural } from '@/lib/plural';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { REVIEW_BATCH, type TodaySummary } from './summary';
-
-const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
 
 interface TodayCardProps {
   summary: TodaySummary;

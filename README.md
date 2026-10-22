@@ -39,7 +39,7 @@ O app tem cinco abas (**Início, Trilha, Ouvir, Frases, Teclado**) e uma tela de
 - **Desafio:** digitar com o seu teclado real (Gboard em japonês); se errar, o app diz o que provavelmente faltou.
 
 **Ajustes**
-- Importar o código de backup do protótipo (`NDJ1:`), status e teste da voz japonesa, escrever nas revisões (liga/desliga), **efeitos sonoros e vibração** (liga/desliga), zerar progresso e créditos.
+- **Exportar e importar backup** (códigos `MDJ1:` do app e `NDJ1:` do protótipo), status e teste da voz japonesa, escrever nas revisões (liga/desliga), **efeitos sonoros e vibração** (liga/desliga), zerar progresso e créditos.
 
 **Geral:** tela de carregamento animada com o Mochi; **efeitos sonoros** (acerto, erro, conclusão, 100% e toque nas teclas) e vibração leve; transições suaves entre abas, passos e perguntas; confirmação ao sair de um teste em andamento; animações (cartões com mola, botões que afundam, barra de progresso animada, pétalas de sakura e confete) que respeitam o "reduzir movimento" do Android; modo claro e escuro (céu noturno de Tóquio); progresso salvo no celular.
 
@@ -105,7 +105,7 @@ src/
     phrases/              Gramática, Montar e Viagem
     keyboard/             Guia, simulador de flick e desafios de digitação
     speech/               Voz japonesa (detecção ja-JP, aviso, teste, velocidade)
-    backup/               Validação e importação do código NDJ1
+    backup/               Exportação (MDJ1) e validação/importação dos códigos MDJ1 e NDJ1
     progress/             Tipos do progresso e cartões de Ajustes (zerar, sobre)
   components/             UI reutilizável (Card, Button, ProgressBar, Mascot, animações...)
   store/                  Zustand + armazenamento persistente (progresso e preferências)
@@ -141,11 +141,14 @@ O protótipo compara imagens (canvas). Medimos que isso não separa caracteres p
 
 Só a forma decide o resultado; direção e ordem aparecem como feedback. Os limites ficam em `src/features/writing/score.ts` (`MAX_STROKE_DISTANCE`, `OK_STROKE_DISTANCE`, `WRITE_PASS_SCORE`) e foram calibrados com erros de mão **simulados**: ajuste-os com o seu desenho real se a nota parecer exigente ou frouxa demais. Só 245 itens têm traços (143 kana de um símbolo e 102 kanji); as 84 combinações e sons estrangeiros (きゃ, ファ…) não têm, e seguem só com perguntas de alternativas.
 
-## Backup do protótipo
+## Backup
 
-O código de backup do protótipo tem o formato `NDJ1:` + base64 de um JSON em UTF-8. Em **Ajustes → Importar backup**, o código é validado, o app mostra um resumo (lições, revisões, caracteres e dias) e só substitui o progresso depois da confirmação. São importados `srs`, `lessons`, `stats` e `days`; a melhor sequência de acertos (`best`), as notas de desenho e os demais campos do protótipo não entram. Itens que não existem mais neste app são ignorados.
+Há dois formatos, os dois "prefixo" + base64 de um JSON em UTF-8, e ambos são importados em **Ajustes → Importar backup**:
 
-Essa importação é uma função **temporária**, feita para migrar o progresso do protótipo. Ainda não há exportação de backup.
+- **`MDJ1:` (do próprio app).** Em **Ajustes → Exportar backup** o app gera o código com todo o progresso: `srs`, `lessons`, `stats`, `days`, o histórico por dia (painel de evolução), a autoavaliação do Repetir e os desafios de digitação. O código pode ser compartilhado pelo Android ou copiado, e serve para trocar de celular ou reinstalar o app. Tem um campo `v` de versão: um código gerado por uma versão mais nova do app é recusado com uma mensagem clara.
+- **`NDJ1:` (do protótipo HTML).** São importados só `srs`, `lessons`, `stats` e `days`; a melhor sequência de acertos (`best`), as notas de desenho e os demais campos do protótipo não entram. Essa importação existe para migrar o progresso do protótipo.
+
+Em qualquer um, o código é validado, o app mostra um resumo (lições, revisões, caracteres e dias) e só substitui o progresso depois da confirmação. Itens que não existem mais neste app são ignorados.
 
 ## Decisões técnicas
 
@@ -173,7 +176,6 @@ Essa importação é uma função **temporária**, feita para migrar o progresso
 
 **Ideias em aberto:**
 - As abas do protótipo que não entraram: tabela de caracteres, treino livre e dicas de pares parecidos.
-- Exportar o backup do próprio app.
 - Dicas de memorização para os kana com dakuten (o HTML não tem).
 
 ## Problemas conhecidos

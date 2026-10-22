@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { BackLink, AppText, Screen } from '@/components';
 import { BackupCard } from '@/features/backup/BackupCard';
+import { ExportCard } from '@/features/backup/ExportCard';
 import { AboutCard } from '@/features/progress/AboutCard';
 import { FeedbackSettingsCard } from '@/features/progress/FeedbackSettingsCard';
 import { ResetCard } from '@/features/progress/ResetCard';
@@ -22,6 +23,7 @@ export default function SettingsScreen() {
       <VoiceStatusCard />
       <ReviewSettingsCard />
       <FeedbackSettingsCard />
+      <ExportCard />
       <BackupCard />
       <ResetCard />
       <AboutCard />

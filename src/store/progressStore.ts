@@ -21,8 +21,11 @@ export interface ProgressActions {
   rateShadow: (phrase: string, rating: ShadowRating, now?: number) => void;
   /** Marca o dia como estudado (ex.: ao conferir uma escrita). */
   markStudied: (now?: number) => void;
-  /** Substitui todo o progresso (importação de backup). */
-  replaceProgress: (snapshot: ProgressSnapshot) => void;
+  /**
+   * Substitui todo o progresso (importação de backup). Com `extras` (backup do próprio app), troca também
+   * histórico, autoavaliação e desafios; sem eles (backup do protótipo), só o histórico é zerado.
+   */
+  replaceProgress: (snapshot: ProgressSnapshot, extras?: ProgressExtras) => void;
   resetProgress: () => void;
 }
 
@@ -99,9 +102,16 @@ export function createProgressStore(storage: StateStorage) {
 
         markStudied: (now = Date.now()) => set((s) => ({ days: markDay(s.days, new Date(now)) })),
 
-        replaceProgress: (snapshot) =>
-          // O histórico do progresso antigo não vale para o importado (que não traz histórico).
-          set({ srs: snapshot.srs, lessons: snapshot.lessons, stats: snapshot.stats, days: snapshot.days, history: {} }),
+        replaceProgress: (snapshot, extras) =>
+          // O histórico do progresso antigo não vale para o importado; o backup do protótipo não traz histórico.
+          set({
+            srs: snapshot.srs,
+            lessons: snapshot.lessons,
+            stats: snapshot.stats,
+            days: snapshot.days,
+            history: extras?.history ?? {},
+            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges } : {}),
+          }),
 
         resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {} }),
       }),

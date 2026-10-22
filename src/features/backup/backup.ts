@@ -2,13 +2,20 @@ import { LESSONS } from '@/data/lessons';
 import { findItem } from '@/features/catalog';
 import type { CharStats, ProgressSnapshot } from '@/features/progress/types';
 import { LAST_BOX, type SrsEntry } from '@/features/review/srs';
+import { MAX_HISTORY_DAYS, type DayActivity } from '@/features/stats/metrics';
+import type { ProgressExtras, ShadowRating } from '@/store/progressStore';
 
 /**
- * Backup do protótipo HTML: "NDJ1:" + base64 de um JSON em UTF-8
- * (no HTML: btoa(unescape(encodeURIComponent(JSON.stringify(store))))).
- * Só os campos srs, lessons, stats e days são importados.
+ * Dois formatos, os dois "prefixo" + base64 de um JSON em UTF-8:
+ * - "NDJ1:" é o backup do protótipo HTML (btoa(unescape(encodeURIComponent(JSON.stringify(store))))).
+ *   Só os campos srs, lessons, stats e days são importados.
+ * - "MDJ1:" é o backup do próprio app (exportBackup): além desses, histórico, autoavaliação do Repetir e
+ *   desafios de digitação, com um campo `v` de versão.
  */
 export const BACKUP_PREFIX = 'NDJ1:';
+export const APP_BACKUP_PREFIX = 'MDJ1:';
+/** Versão do formato MDJ1; quem lê recusa versões maiores (de um app mais novo). */
+export const APP_BACKUP_VERSION = 1;
 const MAX_DAYS = 400;
 const DAY_FORMAT = /^\d{4}-\d{2}-\d{2}$/;
 const BASE64_FORMAT = /^[A-Za-z0-9+/]*={0,2}$/;
@@ -42,12 +49,21 @@ export const summarizeProgress = (p: ProgressSnapshot): ProgressCounts => ({
  * - encoding: base64 ou UTF-8 inválido (código cortado ou alterado)
  * - json: o conteúdo não é JSON
  * - data: é JSON, mas não tem a forma de um backup
+ * - version: backup do app gerado por uma versão mais nova que esta
  * - empty: backup válido, porém sem nenhum progresso
  */
-export type BackupError = 'format' | 'encoding' | 'json' | 'data' | 'empty';
+export type BackupError = 'format' | 'encoding' | 'json' | 'data' | 'version' | 'empty';
 
 export type BackupParseResult =
-  | { ok: true; snapshot: ProgressSnapshot; summary: BackupSummary }
+  | {
+      ok: true;
+      snapshot: ProgressSnapshot;
+      summary: BackupSummary;
+      /** "prototype" = NDJ1 (HTML); "app" = MDJ1 (este app). */
+      source: 'prototype' | 'app';
+      /** Só nos backups do app. */
+      extras?: ProgressExtras;
+    }
   | { ok: false; error: BackupError };
 
 class BackupFailure extends Error {
@@ -90,10 +106,11 @@ function decodeUtf8(binary: string): string {
   return out;
 }
 
-function decodePayload(code: string): unknown {
+function decodePayload(code: string): { root: unknown; source: 'prototype' | 'app' } {
   const clean = code.replace(/\s+/g, '');
-  if (!clean.startsWith(BACKUP_PREFIX)) throw new BackupFailure('format');
-  const base64 = clean.slice(BACKUP_PREFIX.length);
+  const source = clean.startsWith(BACKUP_PREFIX) ? 'prototype' : clean.startsWith(APP_BACKUP_PREFIX) ? 'app' : null;
+  if (!source) throw new BackupFailure('format');
+  const base64 = clean.slice(BACKUP_PREFIX.length); // os dois prefixos têm o mesmo tamanho
   if (!base64 || base64.length % 4 !== 0 || !BASE64_FORMAT.test(base64)) throw new BackupFailure('encoding');
   let json: string;
   try {
@@ -102,7 +119,7 @@ function decodePayload(code: string): unknown {
     throw e instanceof BackupFailure ? e : new BackupFailure('encoding');
   }
   try {
-    return JSON.parse(json);
+    return { root: JSON.parse(json) as unknown, source };
   } catch {
     throw new BackupFailure('json');
   }
@@ -121,14 +138,56 @@ function recordField(root: Record<string, unknown>, key: string): Record<string,
   return v;
 }
 
+const RATINGS: readonly ShadowRating[] = ['ok', 'mid', 'bad'];
+
+/** Histórico, autoavaliação e desafios do backup do app; o que não tem a forma certa é descartado. */
+function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ignored: number } {
+  let ignored = 0;
+
+  const history: Record<string, DayActivity> = {};
+  for (const [day, v] of Object.entries(recordField(root, 'history'))) {
+    if (!DAY_FORMAT.test(day) || !isRecord(v) || !isCount(v.answers) || !isCount(v.correct) || !isCount(v.learned)) {
+      ignored++;
+      continue;
+    }
+    history[day] = { answers: Math.floor(v.answers), correct: Math.floor(v.correct), learned: Math.floor(v.learned) };
+  }
+  const keptDays = Object.keys(history).sort().slice(-MAX_HISTORY_DAYS);
+  const recent = Object.fromEntries(keptDays.map((day) => [day, history[day] as DayActivity]));
+
+  const shadow: Record<string, ShadowRating> = {};
+  for (const [phrase, v] of Object.entries(recordField(root, 'shadow'))) {
+    if (typeof v !== 'string' || !RATINGS.includes(v as ShadowRating)) {
+      ignored++;
+      continue;
+    }
+    shadow[phrase] = v as ShadowRating;
+  }
+
+  const challenges: Record<string, true> = {};
+  for (const [word, v] of Object.entries(recordField(root, 'challenges'))) {
+    if (v !== true) {
+      ignored++;
+      continue;
+    }
+    challenges[word] = true;
+  }
+
+  return { value: { history: recent, shadow, challenges }, ignored };
+}
+
 /**
  * Valida o código e devolve o progresso já limpo: só caracteres e lições que
  * existem neste app, com valores no intervalo certo. Não altera nada salvo.
  */
 export function parseBackup(code: string): BackupParseResult {
   try {
-    const root = decodePayload(code);
+    const { root, source } = decodePayload(code);
     if (!isRecord(root)) throw new BackupFailure('data');
+    if (source === 'app') {
+      if (typeof root.v !== 'number') throw new BackupFailure('data');
+      if (root.v > APP_BACKUP_VERSION) throw new BackupFailure('version');
+    }
     const fields = ['srs', 'lessons', 'stats', 'days'];
     if (!fields.some((f) => f in root)) throw new BackupFailure('data');
 
@@ -173,7 +232,15 @@ export function parseBackup(code: string): BackupParseResult {
     if (!counts.lessons && !counts.reviews && !counts.characters && !counts.days) {
       throw new BackupFailure('empty');
     }
-    return { ok: true, snapshot, summary: { ...counts, ignored } };
+    if (source === 'prototype') return { ok: true, snapshot, summary: { ...counts, ignored }, source };
+    const extras = parseExtras(root);
+    return {
+      ok: true,
+      snapshot,
+      summary: { ...counts, ignored: ignored + extras.ignored },
+      source,
+      extras: extras.value,
+    };
   } catch (e) {
     if (e instanceof BackupFailure) return { ok: false, error: e.code };
     throw e;
@@ -181,9 +248,43 @@ export function parseBackup(code: string): BackupParseResult {
 }
 
 export const BACKUP_ERROR_MESSAGES: Readonly<Record<BackupError, string>> = {
-  format: 'Esse texto não parece um código de backup do Moji Dojo. Ele deve começar com NDJ1:.',
+  format: 'Esse texto não parece um código de backup do Moji Dojo. Ele deve começar com MDJ1: (do app) ou NDJ1: (do protótipo).',
   encoding: 'O código parece estar cortado ou alterado. Copie de novo, inteiro, e cole aqui.',
   json: 'O código foi lido, mas o conteúdo está corrompido.',
   data: 'O código foi lido, mas não tem a forma de um backup do Moji Dojo.',
+  version: 'Esse backup foi gerado por uma versão mais nova do Moji Dojo. Atualize o app e tente de novo.',
   empty: 'Esse backup não tem nenhum progresso salvo, então não há nada para importar.',
 };
+
+/** Texto → texto binário (um byte por caractere) em UTF-8; o inverso de decodeUtf8. */
+function encodeUtf8(text: string): string {
+  let out = '';
+  for (const ch of text) {
+    const cp = ch.codePointAt(0) as number;
+    if (cp < 0x80) out += String.fromCharCode(cp);
+    else if (cp < 0x800) out += String.fromCharCode(0xc0 | (cp >> 6), 0x80 | (cp & 0x3f));
+    else if (cp < 0x10000) out += String.fromCharCode(0xe0 | (cp >> 12), 0x80 | ((cp >> 6) & 0x3f), 0x80 | (cp & 0x3f));
+    else out += String.fromCharCode(0xf0 | (cp >> 18), 0x80 | ((cp >> 12) & 0x3f), 0x80 | ((cp >> 6) & 0x3f), 0x80 | (cp & 0x3f));
+  }
+  return out;
+}
+
+/**
+ * Gera o código de backup do app ("MDJ1:...") com todo o progresso; `parseBackup` lê o resultado de volta.
+ * Funciona sem internet, e o código pode ser guardado em qualquer lugar (notas, e-mail, nuvem).
+ */
+export function exportBackup(progress: ProgressSnapshot & ProgressExtras, now: Date = new Date()): string {
+  const payload = {
+    v: APP_BACKUP_VERSION,
+    app: 'moji-dojo',
+    at: now.toISOString(),
+    srs: progress.srs,
+    lessons: progress.lessons,
+    stats: progress.stats,
+    days: progress.days,
+    history: progress.history,
+    shadow: progress.shadow,
+    challenges: progress.challenges,
+  };
+  return APP_BACKUP_PREFIX + btoa(encodeUtf8(JSON.stringify(payload)));
+}

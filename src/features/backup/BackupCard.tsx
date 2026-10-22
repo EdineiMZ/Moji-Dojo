@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { AppText, Bold, Button, Card, Mascot, useScrollIntoView } from '@/components';
 import type { ProgressSnapshot } from '@/features/progress/types';
+import type { ProgressExtras } from '@/store/progressStore';
 import { useProgressStore } from '@/store';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { BACKUP_ERROR_MESSAGES, parseBackup, summarizeProgress, type BackupSummary } from './backup';
@@ -9,7 +10,7 @@ import { describeCounts, hasProgress, ignoredNote } from './describe';
 
 type Stage =
   | { kind: 'input' }
-  | { kind: 'confirm'; snapshot: ProgressSnapshot; summary: BackupSummary }
+  | { kind: 'confirm'; snapshot: ProgressSnapshot; summary: BackupSummary; source: 'prototype' | 'app'; extras?: ProgressExtras }
   | { kind: 'done'; summary: BackupSummary };
 
 const Lines = ({ lines }: { lines: readonly string[] }) => (
@@ -21,8 +22,8 @@ const Lines = ({ lines }: { lines: readonly string[] }) => (
 );
 
 /**
- * Importa o código de backup ("NDJ1:...") do protótipo HTML. O código é validado e resumido,
- * e o progresso só é substituído depois de o usuário confirmar.
+ * Importa um código de backup: "MDJ1:..." (exportado por este app) ou "NDJ1:..." (do protótipo HTML).
+ * O código é validado e resumido, e o progresso só é substituído depois de o usuário confirmar.
  */
 export function BackupCard() {
   const { colors } = useTheme();
@@ -46,11 +47,11 @@ export function BackupCard() {
       return;
     }
     setError(null);
-    setStage({ kind: 'confirm', snapshot: result.snapshot, summary: result.summary });
+    setStage({ kind: 'confirm', snapshot: result.snapshot, summary: result.summary, source: result.source, extras: result.extras });
   };
 
-  const confirm = (snapshot: ProgressSnapshot, summary: BackupSummary) => {
-    replaceProgress(snapshot);
+  const confirm = (snapshot: ProgressSnapshot, summary: BackupSummary, extras?: ProgressExtras) => {
+    replaceProgress(snapshot, extras);
     setText('');
     setStage({ kind: 'done', summary });
   };
@@ -62,8 +63,8 @@ export function BackupCard() {
       {stage.kind === 'input' ? (
         <>
           <AppText color="muted">
-            Traga o progresso do protótipo web: no protótipo, toque em “Copiar código de backup” (aba Aprender, no fim
-            da página) e cole o código aqui. Ele começa com NDJ1:
+            Cole aqui um código de backup. Ele começa com MDJ1: (gerado pelo “Exportar backup” deste app) ou com NDJ1:
+            (do protótipo web: toque em “Copiar código de backup”, na aba Aprender, no fim da página).
           </AppText>
           <TextInput
             ref={inputRef}
@@ -77,7 +78,7 @@ export function BackupCard() {
             autoCapitalize="none"
             autoCorrect={false}
             spellCheck={false}
-            placeholder="NDJ1:..."
+            placeholder="MDJ1:... ou NDJ1:..."
             placeholderTextColor={colors.muted}
             accessibilityLabel="Código de backup"
             style={[
@@ -113,11 +114,13 @@ export function BackupCard() {
               <Lines lines={describeCounts(current)} />
             </View>
           ) : null}
-          <AppText variant="caption" color="muted">
-            A melhor sequência de acertos e as notas de desenho do protótipo não são importadas.
-          </AppText>
+          {stage.source === 'prototype' ? (
+            <AppText variant="caption" color="muted">
+              A melhor sequência de acertos e as notas de desenho do protótipo não são importadas.
+            </AppText>
+          ) : null}
           <View style={styles.actions}>
-            <Button label="Substituir meu progresso" onPress={() => confirm(stage.snapshot, stage.summary)} />
+            <Button label="Substituir meu progresso" onPress={() => confirm(stage.snapshot, stage.summary, stage.extras)} />
             <Button label="Cancelar" variant="ghost" onPress={() => setStage({ kind: 'input' })} />
           </View>
         </>

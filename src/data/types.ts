@@ -60,3 +60,112 @@ export interface StrokeData {
   /** Posição [x, y] do número de cada traço. */
   n: readonly (readonly [number, number])[];
 }
+
+// ---------- Texto formatado (extraído do HTML do protótipo) ----------
+
+/** Trecho de texto; `ja` marca japonês (para usar a fonte e a leitura certas). */
+export interface RichRun {
+  text: string;
+  bold?: true;
+  ja?: true;
+}
+
+export interface RichParagraph {
+  kind: 'p';
+  runs: readonly RichRun[];
+}
+
+export interface RichTableCell {
+  text: string;
+  header?: true;
+  ja?: true;
+}
+
+export interface RichTable {
+  kind: 'table';
+  rows: readonly (readonly RichTableCell[])[];
+}
+
+export type RichBlock = RichParagraph | RichTable;
+
+// ---------- Frases, sons e viagem ----------
+
+export interface PhraseExample {
+  jp: string;
+  romaji: string;
+  /** Tradução em português. */
+  pt: string;
+  /** Texto a falar, quando difere do japonês mostrado (ex.: "はし (箸)" → "箸"). */
+  say?: string;
+}
+
+export interface GrammarTopic {
+  id: string;
+  title: string;
+  body: readonly RichBlock[];
+  /** Esquema da frase, ex.: "[assunto] は [informação] です". */
+  pattern?: string;
+  examples: readonly PhraseExample[];
+}
+
+/** Exercício "Montar": ordenar blocos para formar a frase. */
+export interface BuildExercise {
+  /** Id do tópico de gramática. */
+  topic: string;
+  pt: string;
+  /** A resposta, bloco a bloco. */
+  answer: readonly string[];
+  /** Blocos a mais, de propósito. */
+  extra: readonly string[];
+  /** Outras ordens aceitas. */
+  alternatives?: readonly (readonly string[])[];
+  romaji: string;
+  hint: string;
+}
+
+export interface SoundTopic {
+  title: string;
+  body: readonly RichBlock[];
+  examples: readonly PhraseExample[];
+}
+
+/** Duas palavras que só diferem pela duração do som (treino de ouvido). */
+export interface MinimalPair {
+  first: PhraseExample;
+  second: PhraseExample;
+}
+
+export interface PhrasePart {
+  part: string;
+  meaning: string;
+}
+
+export interface TravelPhrase {
+  jp: string;
+  romaji: string;
+  pt: string;
+  /** "Palavra por palavra". */
+  breakdown: readonly PhrasePart[];
+}
+
+export interface TravelCategory {
+  category: string;
+  phrases: readonly TravelPhrase[];
+}
+
+// ---------- Teclado ----------
+
+/** Tecla do teclado de flick: `chars` = [toque, esquerda, cima, direita, baixo]. A tecla "mod" é a de 小゛゜. */
+export interface FlickKey {
+  label: string;
+  chars: string;
+}
+
+export interface TypingWord {
+  word: string;
+  meaning: string;
+}
+
+export interface TypingChallenge extends TypingWord {
+  hint: string;
+}

@@ -1,0 +1,31 @@
+// Gerado por scripts/extract-data.mjs a partir de "Nihongo Dojo.html". Não edite à mão.
+import type { BuildExercise } from './types';
+
+export const BUILD_EXERCISES: readonly BuildExercise[] = [
+  {"topic":"g1","pt":"Eu sou brasileiro.","answer":["わたし","は","ブラジルじん","です"],"extra":["を","の"],"romaji":"watashi wa burajirujin desu","hint":"X は Y です = X é Y. は (wa) marca o assunto."},
+  {"topic":"g1","pt":"Isto é sushi.","answer":["これ","は","すし","です"],"extra":["を","に"],"romaji":"kore wa sushi desu","hint":"これ = isto. です fecha a frase de forma educada."},
+  {"topic":"g1","pt":"Eu não sou japonês.","answer":["わたし","は","にほんじん","じゃないです"],"extra":["です","を"],"romaji":"watashi wa nihonjin ja nai desu","hint":"Para negar, troque です por じゃないです."},
+  {"topic":"g1","pt":"Isto é sushi?","answer":["これ","は","すし","ですか"],"extra":["です","を"],"romaji":"kore wa sushi desu ka","hint":"か no final transforma em pergunta."},
+  {"topic":"g2","pt":"Eu como lámen.","answer":["わたし","は","ラーメン","を","たべます"],"extra":["に","で"],"romaji":"watashi wa rāmen o tabemasu","hint":"を (o) marca o que recebe a ação. O verbo vai no fim."},
+  {"topic":"g2","pt":"Eu bebo café.","answer":["わたし","は","コーヒー","を","のみます"],"extra":["に","の"],"romaji":"watashi wa kōhī o nomimasu","hint":"quem は, o quê を, verbo."},
+  {"topic":"g3","pt":"Eu não como carne.","answer":["わたし","は","にく","を","たべません"],"extra":["たべます","に"],"romaji":"watashi wa niku o tabemasen","hint":"ます vira ません no negativo."},
+  {"topic":"g3","pt":"Ontem eu bebi cerveja.","answer":["きのう","ビール","を","のみました"],"extra":["のみます","に"],"alternatives":[["ビール","を","きのう","のみました"]],"romaji":"kinō bīru o nomimashita","hint":"ます vira ました no passado. Palavras de tempo, como きのう (ontem), costumam vir no começo."},
+  {"topic":"g4","pt":"Vou para o Japão.","answer":["にほん","に","いきます"],"extra":["を","で"],"alternatives":[["にほん","へ","いきます"]],"romaji":"nihon ni ikimasu","hint":"に (ou へ) marca o destino."},
+  {"topic":"g4","pt":"Como no restaurante.","answer":["レストラン","で","たべます"],"extra":["に","を"],"romaji":"resutoran de tabemasu","hint":"で marca o lugar onde a ação acontece."},
+  {"topic":"g4","pt":"Vou de trem.","answer":["でんしゃ","で","いきます"],"extra":["を","に"],"romaji":"densha de ikimasu","hint":"で também marca o meio: de trem, de ônibus."},
+  {"topic":"g4","pt":"Vou ao hotel às 3 horas.","answer":["さんじ","に","ホテル","に","いきます"],"extra":["で","を"],"alternatives":[["ホテル","に","さんじ","に","いきます"]],"romaji":"sanji ni hoteru ni ikimasu","hint":"に serve para o horário (às 3h) e para o destino."},
+  {"topic":"g5","pt":"Este é o meu livro.","answer":["これ","は","わたし","の","ほん","です"],"extra":["を","に"],"romaji":"kore wa watashi no hon desu","hint":"わたしの ほん = livro de mim = meu livro."},
+  {"topic":"g5","pt":"É um carro japonês.","answer":["にほん","の","くるま","です"],"extra":["を","は"],"romaji":"nihon no kuruma desu","hint":"の liga as palavras: carro do Japão."},
+  {"topic":"g6","pt":"Onde fica a estação?","answer":["えき","は","どこ","ですか"],"extra":["を","に"],"romaji":"eki wa doko desu ka","hint":"どこ = onde. A ordem é a mesma de uma frase normal."},
+  {"topic":"g6","pt":"Este lámen é gostoso.","answer":["この","ラーメン","は","おいしいです"],"extra":["これ","を"],"romaji":"kono rāmen wa oishii desu","hint":"この vem antes de um substantivo. これ fica sozinho."},
+  {"topic":"g6","pt":"Quanto custa isto?","answer":["これ","は","いくら","ですか"],"extra":["を","の"],"romaji":"kore wa ikura desu ka","hint":"いくら = quanto (preço)."},
+  {"topic":"g7","pt":"Tem água?","answer":["みず","は","ありますか"],"extra":["を","いますか"],"romaji":"mizu wa arimasu ka","hint":"あります é para coisas. います é para pessoas e animais."},
+  {"topic":"g7","pt":"Onde fica o banheiro?","answer":["トイレ","は","どこ","に","ありますか"],"extra":["を","で"],"romaji":"toire wa doko ni arimasu ka","hint":"どこに ありますか = em que lugar existe?"},
+  {"topic":"g8","pt":"Isto, por favor.","answer":["これ","を","ください"],"extra":["は","に"],"romaji":"kore o kudasai","hint":"[coisa] を ください = me dê, por favor."},
+  {"topic":"g8","pt":"Quero comer sushi.","answer":["すし","を","たべたいです"],"extra":["に","で"],"alternatives":[["すし","が","たべたいです"]],"romaji":"sushi o tabetai desu","hint":"Tire o ます e coloque たいです: たべます vira たべたいです."},
+  {"topic":"g8","pt":"Quero ir para o Japão.","answer":["にほん","に","いきたいです"],"extra":["を","で"],"alternatives":[["にほん","へ","いきたいです"]],"romaji":"nihon ni ikitai desu","hint":"いきます vira いきたいです."},
+  {"topic":"g9","pt":"Isto é caro.","answer":["これ","は","たかいです"],"extra":["たかいな","を"],"romaji":"kore wa takai desu","hint":"Adjetivo terminado em い vai direto antes de です."},
+  {"topic":"g9","pt":"É uma cidade bonita.","answer":["きれいな","まち","です"],"extra":["きれい","を"],"romaji":"kirei na machi desu","hint":"Adjetivo do tipo な ganha な antes do substantivo."},
+  {"topic":"g10","pt":"Eu também vou.","answer":["わたし","も","いきます"],"extra":["を","に"],"romaji":"watashi mo ikimasu","hint":"も = também. Ele toma o lugar do は."},
+  {"topic":"g10","pt":"Vou com um amigo.","answer":["ともだち","と","いきます"],"extra":["を","の"],"romaji":"tomodachi to ikimasu","hint":"と = com (pessoas) ou \"e\" entre coisas."},
+];

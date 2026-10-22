@@ -141,6 +141,15 @@ O protótipo compara imagens (canvas). Medimos que isso não separa caracteres p
 
 Só a forma decide o resultado; direção e ordem aparecem como feedback. Os limites ficam em `src/features/writing/score.ts` (`MAX_STROKE_DISTANCE`, `OK_STROKE_DISTANCE`, `WRITE_PASS_SCORE`) e foram calibrados com erros de mão **simulados**: ajuste-os com o seu desenho real se a nota parecer exigente ou frouxa demais. Só 245 itens têm traços (143 kana de um símbolo e 102 kanji); as 84 combinações e sons estrangeiros (きゃ, ファ…) não têm, e seguem só com perguntas de alternativas.
 
+### Conteúdo novo (fora do protótipo)
+
+O HTML é a fonte do conteúdo **atual**, mas não vai crescer com o app. O conteúdo que vier depois (vocabulário, frases, textos; ver o [ROADMAP](ROADMAP.md)) **não** entra em `src/data/`, para o `extract-data` nunca sobrescrevê-lo:
+
+- Vive em arquivos de dados próprios, **escritos à mão** (ou importados de fonte aberta), num diretório separado (`src/content/`), com tipos TypeScript.
+- Cada coleção tem **testes de consistência**, como os de `src/data/*.test.ts`: toda palavra tem leitura e significado, todo kanji citado existe no catálogo, sem duplicatas, sem marcas de HTML.
+- Regra do projeto: **nada de japonês inventado**. Todo item vem de fonte com licença conferida (e creditada, como o KanjiVG em `src/data/strokes/LICENSE.md`) ou foi revisado por um falante.
+- O esquema concreto será definido junto com o vocabulário (Fase 1 do roadmap), para nascer do que ele realmente precisa.
+
 ## Backup
 
 Há dois formatos, os dois "prefixo" + base64 de um JSON em UTF-8, e ambos são importados em **Ajustes → Importar backup**:

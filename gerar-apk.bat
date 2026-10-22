@@ -49,6 +49,8 @@ if not exist node_modules (
 )
 
 rem --- 2. Projeto Android nativo (gerado a partir do app.json) ---
+rem Daemons do Gradle de builds anteriores seguram arquivos de android\ e fazem o prebuild falhar (EBUSY).
+if exist android\gradlew.bat call android\gradlew.bat --stop >nul 2>nul
 echo.
 echo [2/4] Gerando o projeto Android ^(expo prebuild^)...
 call npx expo prebuild --platform android

@@ -1,0 +1,75 @@
+import { KANA } from '@/data/kana';
+import { KANA_EXAMPLES, KANJI_EXAMPLES } from '@/data/examples';
+import { KANJI, KANJI_CATEGORIES } from '@/data/kanji';
+import { SIMULATOR_WORDS } from '@/data/keyboard';
+import type { VocabKind, VocabWord } from './types';
+
+const KANJI_CHAR = /[一-鿿]/u;
+
+/** Tira o comentário entre parênteses no fim ("lámen (no teclado real, ...)" → "lámen"). */
+const plainMeaning = (meaning: string): string => meaning.replace(/\s*\([^)]*\)\s*$/u, '').trim();
+
+const GROUP_LABELS = {
+  hira: 'Hiragana',
+  kata: 'Katakana',
+  misc: 'Teclado',
+} as const;
+
+const categoryLabel = new Map(KANJI_CATEGORIES.map((c) => [c.id, c.label] as const));
+
+/**
+ * Vocabulário que já vem da especificação (o HTML): a palavra de exemplo de cada kana e de cada kanji e as
+ * palavras do simulador de teclado. Nenhuma palavra é inventada. Ordem da trilha: hiragana, katakana, kanji.
+ * Palavras repetidas aparecem uma vez só (vale a primeira). O vocabulário que vier de outras fontes entra
+ * depois, no mesmo formato.
+ */
+export function buildHtmlVocabulary(): VocabWord[] {
+  const words = new Map<string, VocabWord>();
+  const add = (word: VocabWord): void => {
+    if (!words.has(word.id)) words.set(word.id, word);
+  };
+  const kanjiOf = (jp: string): string[] => [...jp].filter((c) => KANJI_CHAR.test(c));
+
+  for (const kana of KANA) {
+    const example = KANA_EXAMPLES[kana.char];
+    if (!example) continue;
+    add({
+      id: example.word,
+      jp: example.word,
+      reading: example.word,
+      romaji: example.romaji,
+      meaning: plainMeaning(example.meaning),
+      kind: kana.script,
+      group: GROUP_LABELS[kana.script],
+      kanji: [],
+    });
+  }
+
+  for (const kanji of KANJI) {
+    const example = KANJI_EXAMPLES[kanji.char];
+    if (!example) continue;
+    add({
+      id: example.word,
+      jp: example.word,
+      reading: example.reading,
+      meaning: plainMeaning(example.meaning),
+      kind: 'kanji',
+      group: categoryLabel.get(kanji.category) ?? 'Kanji',
+      kanji: kanjiOf(example.word),
+    });
+  }
+
+  for (const sim of SIMULATOR_WORDS) {
+    add({
+      id: sim.word,
+      jp: sim.word,
+      reading: sim.word,
+      meaning: plainMeaning(sim.meaning),
+      kind: 'misc' satisfies VocabKind,
+      group: GROUP_LABELS.misc,
+      kanji: [],
+    });
+  }
+
+  return [...words.values()];
+}

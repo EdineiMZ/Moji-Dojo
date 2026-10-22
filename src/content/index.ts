@@ -1,0 +1,20 @@
+import type { VocabGroup, VocabWord } from './types';
+import { buildHtmlVocabulary } from './vocab';
+
+export type { VocabGroup, VocabKind, VocabWord } from './types';
+
+/** Todo o vocabulário do app, na ordem de estudo. */
+export const VOCAB: readonly VocabWord[] = buildHtmlVocabulary();
+
+const WORD_BY_ID: ReadonlyMap<string, VocabWord> = new Map(VOCAB.map((w) => [w.id, w]));
+
+export const findWord = (id: string): VocabWord | undefined => WORD_BY_ID.get(id);
+
+/** Grupos na ordem em que aparecem no vocabulário. */
+export const VOCAB_GROUPS: readonly VocabGroup[] = [...new Set(VOCAB.map((w) => w.group))].map((label) => ({
+  id: label,
+  label,
+}));
+
+/** Palavras que usam um kanji (do kanji para as palavras). */
+export const wordsWithKanji = (char: string): readonly VocabWord[] => VOCAB.filter((w) => w.kanji.includes(char));

@@ -22,3 +22,6 @@ export const VOICE_INSTALL_STEPS: readonly string[] = [
   'Toque na engrenagem do mecanismo do Google.',
   'Escolha "Instalar dados de voz" e depois "Japonês".',
 ];
+
+/** Texto enviado à voz: uma barra entre alternativas ("はい / いいえ") vira pausa, como no protótipo. */
+export const speechText = (text: string): string => text.replace(/\s*\/\s*/g, '。');

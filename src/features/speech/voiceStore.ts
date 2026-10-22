@@ -1,6 +1,6 @@
 import * as Speech from 'expo-speech';
 import { create } from 'zustand';
-import { pickJapaneseVoice, type VoiceInfo, type VoiceStatus } from './voices';
+import { pickJapaneseVoice, speechText, type VoiceInfo, type VoiceStatus } from './voices';
 
 interface VoiceState {
   status: VoiceStatus;
@@ -54,5 +54,5 @@ export function ensureVoiceChecked(): void {
 export function speakJapanese(text: string, rate = 0.9): void {
   const { voice } = useVoiceStore.getState();
   Speech.stop();
-  Speech.speak(text, { language: 'ja-JP', rate, ...(voice ? { voice: voice.identifier } : {}) });
+  Speech.speak(speechText(text), { language: 'ja-JP', rate, ...(voice ? { voice: voice.identifier } : {}) });
 }

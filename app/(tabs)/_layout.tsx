@@ -2,10 +2,18 @@ import { Tabs } from 'expo-router';
 import { Text, type ColorValue } from 'react-native';
 import { fonts, useTheme } from '@/theme';
 
-/** Ícone da aba: um kanji, combinando com o tema do app. */
+/** Ícone da aba: um caractere japonês, combinando com o tema do app. */
 function TabGlyph({ char, color }: { char: string; color: ColorValue }) {
   return <Text style={{ fontFamily: fonts.bold, fontSize: 22, color }}>{char}</Text>;
 }
+
+const TABS = [
+  { name: 'index', title: 'Início', glyph: '今' },
+  { name: 'trail', title: 'Trilha', glyph: '道' },
+  { name: 'listen', title: 'Ouvir', glyph: '聞' },
+  { name: 'phrases', title: 'Frases', glyph: '話' },
+  { name: 'keyboard', title: 'Teclado', glyph: 'あ' },
+] as const;
 
 export default function TabsLayout() {
   const { colors } = useTheme();
@@ -20,18 +28,13 @@ export default function TabsLayout() {
         sceneStyle: { backgroundColor: colors.background },
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{ title: 'Início', tabBarIcon: ({ color }) => <TabGlyph char="今" color={color} /> }}
-      />
-      <Tabs.Screen
-        name="trail"
-        options={{ title: 'Trilha', tabBarIcon: ({ color }) => <TabGlyph char="道" color={color} /> }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{ title: 'Ajustes', tabBarIcon: ({ color }) => <TabGlyph char="設" color={color} /> }}
-      />
+      {TABS.map((tab) => (
+        <Tabs.Screen
+          key={tab.name}
+          name={tab.name}
+          options={{ title: tab.title, tabBarIcon: ({ color }) => <TabGlyph char={tab.glyph} color={color} /> }}
+        />
+      ))}
     </Tabs>
   );
 }

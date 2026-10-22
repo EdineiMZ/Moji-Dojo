@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { useRouter } from 'expo-router';
 import { AppText, Mascot, Screen } from '@/components';
 import { ProgressCard } from '@/features/home/ProgressCard';
 import { buildTodaySummary, scriptProgress } from '@/features/home/summary';
@@ -9,6 +10,7 @@ import { useProgressStore } from '@/store';
 import { spacing } from '@/theme';
 
 export default function HomeScreen() {
+  const router = useRouter();
   const now = useNow();
   const srs = useProgressStore((s) => s.srs);
   const lessons = useProgressStore((s) => s.lessons);
@@ -27,6 +29,15 @@ export default function HomeScreen() {
           <AppText variant="headline">Nihongo Dojo</AppText>
         </View>
         <Mascot mood={summary.dueCount ? 'neutral' : 'happy'} size={96} />
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Ajustes"
+          onPress={() => router.push('/settings')}
+          hitSlop={8}
+          style={styles.gear}
+        >
+          <AppText>⚙️</AppText>
+        </Pressable>
       </View>
       <TodayCard summary={summary} now={now} />
       <ProgressCard progress={progress} />
@@ -37,4 +48,5 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   header: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
+  gear: { alignSelf: 'flex-start', padding: spacing.xs },
 });

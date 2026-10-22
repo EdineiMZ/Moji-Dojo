@@ -8,11 +8,13 @@ interface ScreenProps {
   children: ReactNode;
   /** Rolável (padrão). Use false para telas que cabem inteiras. */
   scroll?: boolean;
+  /** Trava a rolagem (ex.: enquanto o dedo desenha). */
+  scrollEnabled?: boolean;
   contentStyle?: StyleProp<ViewStyle>;
 }
 
 /** Fundo em degradê pastel + áreas seguras + margens padrão. */
-export function Screen({ children, scroll = true, contentStyle }: ScreenProps) {
+export function Screen({ children, scroll = true, scrollEnabled = true, contentStyle }: ScreenProps) {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const padding: ViewStyle = {
@@ -26,6 +28,7 @@ export function Screen({ children, scroll = true, contentStyle }: ScreenProps) {
       {scroll ? (
         <ScrollView
           contentContainerStyle={[styles.content, padding, contentStyle]}
+          scrollEnabled={scrollEnabled}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >

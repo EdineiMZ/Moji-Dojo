@@ -11,6 +11,8 @@ export interface ProgressActions {
   recordAnswer: (char: string, ok: boolean, now?: number) => void;
   /** Resposta numa revisão: além das estatísticas, reagenda o caractere. */
   recordReviewAnswer: (char: string, ok: boolean, firstTry: boolean, extra: boolean, now?: number) => void;
+  /** Marca o dia como estudado (ex.: ao conferir uma escrita). */
+  markStudied: (now?: number) => void;
   /** Substitui todo o progresso (importação de backup). */
   replaceProgress: (snapshot: ProgressSnapshot) => void;
   resetProgress: () => void;
@@ -61,6 +63,8 @@ export function createProgressStore(storage: StateStorage) {
               ...(reschedule ? { srs: { ...s.srs, [char]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
           }),
+
+        markStudied: (now = Date.now()) => set((s) => ({ days: markDay(s.days, new Date(now)) })),
 
         replaceProgress: (snapshot) =>
           set({ srs: snapshot.srs, lessons: snapshot.lessons, stats: snapshot.stats, days: snapshot.days }),

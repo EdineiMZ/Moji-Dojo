@@ -43,13 +43,14 @@ function LessonFlow({ lesson: { script, index, lesson }, skip }: LessonFlowProps
 
   const [step, setStep] = useState<LessonStep>(testOnly ? 'test' : 'know');
   const [pos, setPos] = useState(0);
+  const [drawing, setDrawing] = useState(false);
   const [celebration, setCelebration] = useState<Celebration>(NO_CELEBRATION);
 
   const goBack = () => (router.canGoBack() ? router.back() : router.replace('/'));
 
   return (
     <View style={styles.root}>
-      <Screen>
+      <Screen scrollEnabled={!drawing}>
         <View style={styles.header}>
           <Pressable accessibilityRole="button" onPress={goBack} hitSlop={8}>
             <AppText color="primary">← Voltar à trilha</AppText>
@@ -74,7 +75,9 @@ function LessonFlow({ lesson: { script, index, lesson }, skip }: LessonFlowProps
           </>
         ) : null}
   
-        {step === 'write' ? <WriteStep onContinue={() => setStep('test')} /> : null}
+        {step === 'write' ? (
+          <WriteStep items={lesson.items} onContinue={() => setStep('test')} onDrawingChange={setDrawing} />
+        ) : null}
   
         {step === 'test' ? (
           <TestStep

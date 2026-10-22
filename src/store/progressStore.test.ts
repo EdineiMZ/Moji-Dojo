@@ -93,6 +93,15 @@ describe('recordReviewAnswer', () => {
   });
 });
 
+describe('markStudied', () => {
+  it('marca o dia de hoje uma única vez e mantém o streak', () => {
+    const store = createProgressStore(memoryStorage());
+    store.getState().markStudied();
+    store.getState().markStudied();
+    expect(store.getState().days).toEqual(['2026-10-22']);
+  });
+});
+
 describe('importação de backup', () => {
   it('replaceProgress troca todo o progresso pelo do backup', () => {
     const store = createProgressStore(memoryStorage());

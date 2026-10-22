@@ -1,5 +1,5 @@
 import type { ComponentProps, ReactNode } from 'react';
-import { StyleSheet, type StyleProp, type ViewStyle } from 'react-native';
+import { StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { radii, spacing, useTheme } from '@/theme';
 import { EASE_OUT, ReduceMotion, STAGGER_MS } from './motion';
@@ -34,13 +34,11 @@ export function Card({ children, tone = 'plain', enterIndex, layout, style }: Ca
           .easing(EASE_OUT)
           .reduceMotion(ReduceMotion.System);
 
+  // Entrada e transição de layout ficam no nó externo; o visual (inclusive `opacity`) no interno.
+  // No mesmo nó, o Reanimated avisa que a opacity pode ser sobrescrita pela animação de layout.
   return (
-    <Animated.View
-      entering={entering}
-      layout={layout}
-      style={[styles.card, { backgroundColor: background, shadowColor: colors.shadow }, style]}
-    >
-      {children}
+    <Animated.View entering={entering} layout={layout}>
+      <View style={[styles.card, { backgroundColor: background, shadowColor: colors.shadow }, style]}>{children}</View>
     </Animated.View>
   );
 }

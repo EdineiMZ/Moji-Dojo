@@ -1,7 +1,7 @@
 import { LESSONS } from '@/data/lessons';
 import { STROKES } from '@/data/strokes';
 import type { Lesson, Script } from '@/data/types';
-import { isSingleChar } from '@/features/catalog';
+import { isSingleChar, SCRIPT_ORDER } from '@/features/catalog';
 
 export type LessonStatus = 'done' | 'open' | 'lock';
 export type CompletedLessons = Readonly<Record<string, true>>;
@@ -30,6 +30,22 @@ export function lessonStatus(script: Script, index: number, completed: Completed
 /** Índice da primeira lição não concluída, ou -1 se a trilha acabou. */
 export const nextLessonIndex = (script: Script, completed: CompletedLessons): number =>
   LESSONS[script].findIndex((l) => !completed[l.id]);
+
+export interface NextLesson {
+  script: Script;
+  index: number;
+  lesson: Lesson;
+}
+
+/** Próxima lição a estudar, seguindo a ordem hiragana → katakana → kanji. `null` se tudo foi concluído. */
+export function nextLessonOverall(completed: CompletedLessons): NextLesson | null {
+  for (const script of SCRIPT_ORDER) {
+    const index = nextLessonIndex(script, completed);
+    const lesson = LESSONS[script][index];
+    if (lesson) return { script, index, lesson };
+  }
+  return null;
+}
 
 export function trailProgress(script: Script, completed: CompletedLessons): { done: number; total: number } {
   const list = LESSONS[script];

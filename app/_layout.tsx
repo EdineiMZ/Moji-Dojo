@@ -15,8 +15,16 @@ function ThemedStack() {
     <>
       <StatusBar style={isDark ? 'light' : 'dark'} />
       <Stack
-        screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}
-      />
+        screenOptions={{
+          headerShown: false,
+          animation: 'slide_from_right',
+          contentStyle: { backgroundColor: colors.background },
+        }}
+      >
+        <Stack.Screen name="(tabs)" options={{ animation: 'none' }} />
+        <Stack.Screen name="lesson/[id]" />
+        <Stack.Screen name="review" />
+      </Stack>
     </>
   );
 }

@@ -14,6 +14,15 @@ export interface StudyItem {
   kun?: readonly string[];
 }
 
+export const SCRIPT_NAMES: Readonly<Record<Script, string>> = {
+  hira: 'Hiragana',
+  kata: 'Katakana',
+  kanji: 'Kanji',
+};
+
+/** Ordem recomendada de estudo. */
+export const SCRIPT_ORDER: readonly Script[] = ['hira', 'kata', 'kanji'];
+
 /** Mesma ordem do protótipo: hiragana, katakana, kanji. */
 export const ALL_ITEMS: readonly StudyItem[] = [
   ...KANA.map((k): StudyItem => ({ char: k.char, label: k.romaji, script: k.script, group: k.group })),

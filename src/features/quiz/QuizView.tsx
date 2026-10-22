@@ -1,13 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
+  FadeInDown,
   useAnimatedStyle,
   useSharedValue,
   withSequence,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { AppText, Button, Card, Mascot, ProgressBar, SPRING, useMotionEnabled, type MascotMood } from '@/components';
+import {
+  AppText,
+  Button,
+  Card,
+  Mascot,
+  ProgressBar,
+  ReduceMotion,
+  SPRING,
+  SwapView,
+  useMotionEnabled,
+  type MascotMood,
+} from '@/components';
 import { pronunciationText } from '@/features/catalog';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { isPassing, type WritingScore } from '@/features/writing/score';
@@ -168,60 +180,63 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
         <Mascot mood={mood} size={84} />
       </View>
 
-      {isWrite && isStudyItem(current.item) ? (
-        <Animated.View style={cardMotion}>
-          <WriteQuestion
-            key={step}
-            item={current.item}
-            score={answered?.score ?? null}
-            onCheck={submitWriting}
-            onDrawingChange={onDrawingChange}
-          />
-        </Animated.View>
-      ) : (
-        <>
+      <SwapView viewKey={step} kind="slide" style={styles.root}>
+        {isWrite && isStudyItem(current.item) ? (
           <Animated.View style={cardMotion}>
-            <Card
-              style={[
-                styles.prompt,
-                answered && { borderColor: answered.correct ? colors.ok : colors.bad, borderWidth: 2 },
-              ]}
-            >
-              {isAudio ? (
-                <Button
-                  label="🔊 Ouvir de novo"
-                  onPress={() => speakJapanese(pronunciationText(current.item), SPEECH_RATES[speed])}
-                />
-              ) : toChar ? (
-                <AppText variant="headline" center>
-                  {current.item.label}
-                </AppText>
-              ) : (
-                <AppText variant="glyph" center style={styles.promptGlyph}>
-                  {current.item.char}
-                </AppText>
-              )}
-            </Card>
+            <WriteQuestion
+              key={step}
+              item={current.item}
+              score={answered?.score ?? null}
+              onCheck={submitWriting}
+              onDrawingChange={onDrawingChange}
+            />
           </Animated.View>
+        ) : (
+          <>
+            <Animated.View style={cardMotion}>
+              <Card
+                style={[
+                  styles.prompt,
+                  answered && { borderColor: answered.correct ? colors.ok : colors.bad, borderWidth: 2 },
+                ]}
+              >
+                {isAudio ? (
+                  <Button
+                    label="🔊 Ouvir de novo"
+                    onPress={() => speakJapanese(pronunciationText(current.item), SPEECH_RATES[speed])}
+                  />
+                ) : toChar ? (
+                  <AppText variant="headline" center>
+                    {current.item.label}
+                  </AppText>
+                ) : (
+                  <AppText variant="glyph" center style={styles.promptGlyph}>
+                    {current.item.char}
+                  </AppText>
+                )}
+              </Card>
+            </Animated.View>
 
-          <View style={styles.options}>
-            {current.options.map((opt, i) => (
-              <OptionButton
-                key={`${current.item.char}-${opt.char}`}
-                index={i}
-                label={toChar ? opt.char : opt.label}
-                glyph={toChar}
-                state={stateOf(opt.char)}
-                onPress={() => pick(opt.char)}
-              />
-            ))}
-          </View>
-        </>
-      )}
+            <View style={styles.options}>
+              {current.options.map((opt, i) => (
+                <OptionButton
+                  key={`${current.item.char}-${opt.char}`}
+                  index={i}
+                  label={toChar ? opt.char : opt.label}
+                  glyph={toChar}
+                  state={stateOf(opt.char)}
+                  onPress={() => pick(opt.char)}
+                />
+              ))}
+            </View>
+          </>
+        )}
+      </SwapView>
 
       {answered ? (
-        <View
+        <Animated.View
           accessibilityLiveRegion="polite"
+          entering={FadeInDown.duration(240).reduceMotion(ReduceMotion.System)}
           style={[styles.feedback, { backgroundColor: answered.correct ? colors.okSoft : colors.badSoft }]}
         >
           <AppText color={answered.correct ? 'ok' : 'bad'}>{answered.feedback.text}</AppText>
@@ -230,7 +245,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
               Para lembrar: {answered.feedback.hint}
             </AppText>
           ) : null}
-        </View>
+        </Animated.View>
       ) : null}
 
       {answered && (!answered.correct || isWrite || isAudio) ? <Button label="Continuar" onPress={() => proceed(quiz)} /> : null}

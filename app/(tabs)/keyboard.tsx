@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AppText, Screen, SegmentedControl } from '@/components';
+import { AppText, Screen, SegmentedControl, SwapView } from '@/components';
 import { ChallengeView } from '@/features/keyboard/ChallengeView';
 import { GuideView } from '@/features/keyboard/GuideView';
 import { SimulatorView } from '@/features/keyboard/SimulatorView';
@@ -19,9 +19,11 @@ export default function KeyboardScreen() {
     <Screen>
       <AppText variant="headline">Teclado</AppText>
       <SegmentedControl options={VIEWS} value={view} onChange={setView} />
-      {view === 'guide' ? <GuideView onPractice={() => setView('simulator')} /> : null}
-      {view === 'simulator' ? <SimulatorView /> : null}
-      {view === 'challenge' ? <ChallengeView /> : null}
+      <SwapView viewKey={view}>
+        {view === 'guide' ? <GuideView onPractice={() => setView('simulator')} /> : null}
+        {view === 'simulator' ? <SimulatorView /> : null}
+        {view === 'challenge' ? <ChallengeView /> : null}
+      </SwapView>
     </Screen>
   );
 }

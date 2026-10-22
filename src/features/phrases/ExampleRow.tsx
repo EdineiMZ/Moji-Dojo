@@ -1,5 +1,5 @@
-import { Pressable, StyleSheet, View } from 'react-native';
-import { AppText } from '@/components';
+import { StyleSheet, View } from 'react-native';
+import { AppText, PressableScale } from '@/components';
 import type { PhraseExample } from '@/data/types';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { SPEECH_RATES } from '@/store/settingsStore';
@@ -12,7 +12,7 @@ export function ExampleRow({ example }: { example: PhraseExample }) {
   const speed = useSettingsStore((s) => s.speechSpeed);
 
   return (
-    <Pressable
+    <PressableScale
       accessibilityRole="button"
       accessibilityLabel={`Ouvir ${example.jp}`}
       onPress={() => speakJapanese(example.say ?? example.jp, SPEECH_RATES[speed])}
@@ -28,7 +28,7 @@ export function ExampleRow({ example }: { example: PhraseExample }) {
         </AppText>
         <AppText variant="caption">{example.pt}</AppText>
       </View>
-    </Pressable>
+    </PressableScale>
   );
 }
 

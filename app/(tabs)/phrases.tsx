@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AppText, Screen, SegmentedControl } from '@/components';
+import { AppText, Screen, SegmentedControl, SwapView } from '@/components';
 import { BuildView } from '@/features/phrases/BuildView';
 import { ALL_TOPICS } from '@/features/phrases/build';
 import { GrammarView } from '@/features/phrases/GrammarView';
@@ -25,16 +25,18 @@ export default function PhrasesScreen() {
       <VoiceWarning />
       <SpeedControl />
       <SegmentedControl options={VIEWS} value={view} onChange={setView} />
-      {view === 'grammar' ? (
-        <GrammarView
-          onPractice={(id) => {
-            setTopic(id);
-            setView('build');
-          }}
-        />
-      ) : null}
-      {view === 'build' ? <BuildView key={topic} topic={topic} onTopicChange={setTopic} /> : null}
-      {view === 'travel' ? <TravelView /> : null}
+      <SwapView viewKey={view}>
+        {view === 'grammar' ? (
+          <GrammarView
+            onPractice={(id) => {
+              setTopic(id);
+              setView('build');
+            }}
+          />
+        ) : null}
+        {view === 'build' ? <BuildView key={topic} topic={topic} onTopicChange={setTopic} /> : null}
+        {view === 'travel' ? <TravelView /> : null}
+      </SwapView>
     </Screen>
   );
 }

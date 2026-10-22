@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
-import { AppText, Bold, Button, Card, StrokeAnimation } from '@/components';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import { AppText, Bold, Button, Card, StrokeAnimation, PressableScale } from '@/components';
 import { KANA_EXAMPLES, KANJI_EXAMPLES } from '@/data/examples';
 import { KANA_MNEMONICS, KANJI_HINTS } from '@/data/hints';
 import { STROKES } from '@/data/strokes';
@@ -73,11 +73,11 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
                 leitura on <Bold>{formatReadings(item.on)}</Bold> · leitura kun <Bold>{formatReadings(item.kun)}</Bold>
               </AppText>
               {kanjiExample ? (
-                <Pressable accessibilityRole="button" onPress={() => speakJapanese(kanjiExample.reading)}>
+                <PressableScale accessibilityRole="button" onPress={() => speakJapanese(kanjiExample.reading)}>
                   <AppText center>
                     <Bold>{kanjiExample.word}</Bold> ({kanjiExample.reading}) {kanjiExample.meaning} 🔊
                   </AppText>
-                </Pressable>
+                </PressableScale>
               ) : null}
             </>
           ) : (
@@ -91,11 +91,11 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
                 </AppText>
               ) : null}
               {kanaExample ? (
-                <Pressable accessibilityRole="button" onPress={() => speakJapanese(kanaExample.word)}>
+                <PressableScale accessibilityRole="button" onPress={() => speakJapanese(kanaExample.word)}>
                   <AppText center>
                     Exemplo: <Bold>{kanaExample.word}</Bold> {kanaExample.romaji}, {kanaExample.meaning} 🔊
                   </AppText>
-                </Pressable>
+                </PressableScale>
               ) : null}
             </>
           )}
@@ -142,7 +142,7 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
 
       <View style={styles.dots}>
         {items.map((c, i) => (
-          <Pressable
+          <PressableScale
             key={c}
             accessibilityRole="button"
             accessibilityLabel={`Ir para ${c}`}
@@ -159,7 +159,7 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
             >
               {c}
             </AppText>
-          </Pressable>
+          </PressableScale>
         ))}
       </View>
     </View>

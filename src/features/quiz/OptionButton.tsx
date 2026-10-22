@@ -1,5 +1,12 @@
+import { useEffect } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import Animated, {
+  interpolateColor,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import { AppText, SPRING, useMotionEnabled } from '@/components';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 
@@ -26,12 +33,17 @@ export function OptionButton({ index, label, glyph, state, onPress }: OptionButt
     pressed.value = motion ? withSpring(to, SPRING) : to;
   };
 
-  const look = {
-    idle: { bg: colors.surface, border: colors.line },
-    right: { bg: colors.okSoft, border: colors.ok },
-    wrong: { bg: colors.badSoft, border: colors.bad },
-    dim: { bg: colors.surface, border: colors.line },
-  }[state];
+  // 0 = neutra (também a esmaecida), 1 = certa, 2 = errada: as cores deslizam entre elas.
+  const colorStep = { idle: 0, right: 1, wrong: 2, dim: 0 }[state];
+  const color = useSharedValue(colorStep);
+  useEffect(() => {
+    color.value = motion ? withTiming(colorStep, { duration: 220 }) : colorStep;
+  }, [colorStep, motion, color]);
+
+  const tint = useAnimatedStyle(() => ({
+    backgroundColor: interpolateColor(color.value, [0, 1, 2], [colors.surface, colors.okSoft, colors.badSoft]),
+    borderColor: interpolateColor(color.value, [0, 1, 2], [colors.line, colors.ok, colors.bad]),
+  }));
 
   return (
     <Pressable
@@ -45,7 +57,8 @@ export function OptionButton({ index, label, glyph, state, onPress }: OptionButt
       <Animated.View
         style={[
           styles.option,
-          { backgroundColor: look.bg, borderColor: look.border, opacity: state === 'dim' ? 0.5 : 1 },
+          { opacity: state === 'dim' ? 0.5 : 1 },
+          tint,
           animated,
         ]}
       >

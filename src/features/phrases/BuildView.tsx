@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
-import { AppText, Bold, Button, Card, ChipRow } from '@/components';
+import { StyleSheet, View } from 'react-native';
+import { AppText, Bold, Button, Card, ChipRow, PressableScale } from '@/components';
 import { BUILD_EXERCISES } from '@/data/exercises';
 import { GRAMMAR_TOPICS } from '@/data/grammar';
 import { speakJapanese } from '@/features/speech/voiceStore';
@@ -137,7 +137,7 @@ export function BuildView({ topic, onTopicChange }: BuildViewProps) {
             <AppText color="muted">Toque nos blocos abaixo, na ordem certa</AppText>
           ) : (
             round.chosen.map((token, i) => (
-              <Pressable
+              <PressableScale
                 key={token.id}
                 accessibilityRole="button"
                 accessibilityLabel={`Remover ${token.text}`}
@@ -146,7 +146,7 @@ export function BuildView({ topic, onTopicChange }: BuildViewProps) {
                 style={[styles.token, { backgroundColor: colors.primarySoft, borderColor: colors.primary }]}
               >
                 <AppText style={styles.tokenText}>{token.text}</AppText>
-              </Pressable>
+              </PressableScale>
             ))
           )}
         </View>
@@ -155,7 +155,7 @@ export function BuildView({ topic, onTopicChange }: BuildViewProps) {
           {round.pool.map((token) => {
             const used = round.chosen.some((c) => c.id === token.id);
             return (
-              <Pressable
+              <PressableScale
                 key={token.id}
                 accessibilityRole="button"
                 accessibilityState={{ disabled: used || checked !== null }}
@@ -167,7 +167,7 @@ export function BuildView({ topic, onTopicChange }: BuildViewProps) {
                 ]}
               >
                 <AppText style={styles.tokenText}>{token.text}</AppText>
-              </Pressable>
+              </PressableScale>
             );
           })}
         </View>

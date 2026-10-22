@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
-import { AppText, Bold, Button, Card } from '@/components';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import { AppText, Bold, Button, Card, PressableScale } from '@/components';
 import { FLICK_KEYS, SIMULATOR_WORDS } from '@/data/keyboard';
 import { useProgressStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
@@ -51,11 +51,11 @@ export function SimulatorView() {
         <AppText variant="caption" color="muted">
           Palavra {(wordIndex % SIMULATOR_WORDS.length) + 1} de {SIMULATOR_WORDS.length}
         </AppText>
-        <Pressable accessibilityRole="checkbox" accessibilityState={{ checked: hint }} onPress={() => setHint((h) => !h)} hitSlop={8}>
+        <PressableScale accessibilityRole="checkbox" accessibilityState={{ checked: hint }} onPress={() => setHint((h) => !h)} hitSlop={8}>
           <AppText variant="caption" color="muted">
             {hint ? '☑' : '☐'} mostrar dica
           </AppText>
-        </Pressable>
+        </PressableScale>
       </View>
 
       <AppText variant="caption" color="muted">
@@ -100,21 +100,21 @@ export function SimulatorView() {
           ))}
         </View>
         <View style={styles.side}>
-          <Pressable
+          <PressableScale
             accessibilityRole="button"
             accessibilityLabel="Apagar"
             onPress={() => setBuffer([...buffer].slice(0, -1).join(''))}
             style={[styles.sideKey, { backgroundColor: colors.lilacSoft, borderColor: colors.line }]}
           >
             <AppText style={{ fontFamily: fonts.bold, fontSize: 22 }}>⌫</AppText>
-          </Pressable>
-          <Pressable
+          </PressableScale>
+          <PressableScale
             accessibilityRole="button"
             onPress={() => setBuffer('')}
             style={[styles.sideKey, { backgroundColor: colors.lilacSoft, borderColor: colors.line }]}
           >
             <AppText style={{ fontFamily: fonts.bold }}>Limpar</AppText>
-          </Pressable>
+          </PressableScale>
         </View>
       </View>
 

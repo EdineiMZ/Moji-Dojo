@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AppText, Screen, SegmentedControl } from '@/components';
+import { AppText, Screen, SegmentedControl, SwapView } from '@/components';
 import { EarView } from '@/features/listen/EarView';
 import { RepeatView } from '@/features/listen/RepeatView';
 import { SoundsView } from '@/features/listen/SoundsView';
@@ -23,9 +23,11 @@ export default function ListenScreen() {
       <VoiceWarning />
       <SpeedControl />
       <SegmentedControl options={VIEWS} value={view} onChange={setView} />
-      {view === 'sounds' ? <SoundsView /> : null}
-      {view === 'ear' ? <EarView /> : null}
-      {view === 'repeat' ? <RepeatView /> : null}
+      <SwapView viewKey={view}>
+        {view === 'sounds' ? <SoundsView /> : null}
+        {view === 'ear' ? <EarView /> : null}
+        {view === 'repeat' ? <RepeatView /> : null}
+      </SwapView>
     </Screen>
   );
 }

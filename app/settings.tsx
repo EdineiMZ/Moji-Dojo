@@ -1,6 +1,6 @@
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { AppText, Screen } from '@/components';
+import { BackLink, AppText, Screen } from '@/components';
 import { BackupCard } from '@/features/backup/BackupCard';
 import { AboutCard } from '@/features/progress/AboutCard';
 import { ResetCard } from '@/features/progress/ResetCard';
@@ -15,9 +15,7 @@ export default function SettingsScreen() {
   return (
     <Screen>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={goBack} hitSlop={8}>
-          <AppText color="primary">← Voltar</AppText>
-        </Pressable>
+        <BackLink label="← Voltar" onPress={goBack} />
         <AppText variant="headline">Ajustes</AppText>
       </View>
       <VoiceStatusCard />

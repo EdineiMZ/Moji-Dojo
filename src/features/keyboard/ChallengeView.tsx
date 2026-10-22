@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, TextInput, View } from 'react-native';
-import { AppText, Bold, Button, Card } from '@/components';
+import { StyleSheet, TextInput, View } from 'react-native';
+import { AppText, Bold, Button, Card, PressableScale } from '@/components';
 import { TYPING_CHALLENGES } from '@/data/keyboard';
 import { hapticError, hapticSuccess } from '@/lib/haptics';
 import { useProgressStore } from '@/store';
@@ -101,7 +101,7 @@ export function ChallengeView() {
 
       <View style={styles.list}>
         {TYPING_CHALLENGES.map((c, i) => (
-          <Pressable
+          <PressableScale
             key={c.word}
             accessibilityRole="button"
             onPress={() => select(i)}
@@ -114,7 +114,7 @@ export function ChallengeView() {
             <AppText variant="caption" color={done[c.word] ? 'ok' : 'muted'}>
               {done[c.word] ? 'feito ✓' : c.meaning}
             </AppText>
-          </Pressable>
+          </PressableScale>
         ))}
       </View>
     </Card>

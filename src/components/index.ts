@@ -11,3 +11,8 @@ export { Confetti } from './Confetti';
 export { PetalRain } from './PetalRain';
 export { RichText } from './RichText';
 export { ChipRow } from './ChipRow';
+export { CountUp } from './CountUp';
+export { PressableScale } from './PressableScale';
+export { SwapView } from './SwapView';
+export { BackLink } from './BackLink';
+export { ReduceMotion } from './motion';

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { AppText, Confetti, PetalRain, Screen } from '@/components';
+import { BackLink, AppText, Confetti, PetalRain, Screen } from '@/components';
 import { ReviewSession, type ReviewCelebration } from '@/features/review/ReviewSession';
 import { reviewTitle } from '@/features/review/session';
 import { spacing } from '@/theme';
@@ -19,9 +19,7 @@ export default function ReviewScreen() {
     <View style={styles.root}>
       <Screen scrollEnabled={!drawing}>
         <View style={styles.header}>
-          <Pressable accessibilityRole="button" onPress={goBack} hitSlop={8}>
-            <AppText color="primary">← Voltar</AppText>
-          </Pressable>
+          <BackLink label="← Voltar" onPress={goBack} />
           <AppText variant="caption" color="muted">
             ESTUDAR HOJE
           </AppText>

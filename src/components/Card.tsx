@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 import { StyleSheet, type StyleProp, type ViewStyle } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { radii, spacing, useTheme } from '@/theme';
@@ -12,10 +12,12 @@ interface CardProps {
   /** Posição numa lista: cada cartão entra um pouco depois do anterior. Omita para não animar. */
   enterIndex?: number;
   style?: StyleProp<ViewStyle>;
+  /** Transição de layout: quando o cartão muda de tamanho ou posição, anima em vez de pular. */
+  layout?: ComponentProps<typeof Animated.View>['layout'];
 }
 
 /** Cartão arredondado com sombra suave; entra com mola quando recebe `enterIndex`. */
-export function Card({ children, tone = 'plain', enterIndex, style }: CardProps) {
+export function Card({ children, tone = 'plain', enterIndex, layout, style }: CardProps) {
   const { colors } = useTheme();
   const background = {
     plain: colors.surface,
@@ -35,6 +37,7 @@ export function Card({ children, tone = 'plain', enterIndex, style }: CardProps)
   return (
     <Animated.View
       entering={entering}
+      layout={layout}
       style={[styles.card, { backgroundColor: background, shadowColor: colors.shadow }, style]}
     >
       {children}

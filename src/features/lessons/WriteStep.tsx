@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
-import { AppText, Button, Card, SegmentedControl } from '@/components';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import { AppText, Button, Card, SegmentedControl, PressableScale } from '@/components';
 import { getItem } from '@/features/catalog';
 import type { Point } from '@/features/strokes/svgPath';
 import { DrawingPad } from '@/features/writing/DrawingPad';
@@ -139,11 +139,11 @@ export function WriteStep({ items, onContinue, onDrawingChange }: WriteStepProps
       </Card>
 
       <Button label={isLast ? 'Ir para o teste' : 'Próximo'} onPress={next} />
-      <Pressable accessibilityRole="button" onPress={onContinue} hitSlop={8}>
+      <PressableScale accessibilityRole="button" onPress={onContinue} hitSlop={8}>
         <AppText variant="caption" color="primary" center style={styles.link}>
           Pular escrita e ir para o teste
         </AppText>
-      </Pressable>
+      </PressableScale>
     </View>
   );
 }

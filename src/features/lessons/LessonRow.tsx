@@ -1,5 +1,5 @@
-import { Pressable, StyleSheet, View } from 'react-native';
-import { AppText, Button, Card } from '@/components';
+import { StyleSheet, View } from 'react-native';
+import { AppText, Button, Card, PressableScale } from '@/components';
 import type { Lesson } from '@/data/types';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import type { LessonStatus } from './trail';
@@ -59,11 +59,11 @@ export function LessonRow({ lesson, index, status, isNext, onStart, onSkip }: Le
           />
         )}
         {!done && !lesson.review ? (
-          <Pressable accessibilityRole="button" onPress={onSkip} hitSlop={8}>
+          <PressableScale accessibilityRole="button" onPress={onSkip} hitSlop={8}>
             <AppText variant="caption" color="primary" style={styles.link}>
               Já sei: fazer o teste
             </AppText>
-          </Pressable>
+          </PressableScale>
         ) : null}
       </View>
     </Card>

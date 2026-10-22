@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { AppText, Mascot, Screen } from '@/components';
+import { AppText, Mascot, Screen, PressableScale } from '@/components';
 import { ProgressCard } from '@/features/home/ProgressCard';
 import { buildTodaySummary, scriptProgress } from '@/features/home/summary';
 import { TodayCard } from '@/features/home/TodayCard';
@@ -44,7 +44,7 @@ export default function HomeScreen() {
           </AppText>
         </View>
         <Mascot mood={summary.dueCount ? 'neutral' : 'happy'} size={96} />
-        <Pressable
+        <PressableScale
           accessibilityRole="button"
           accessibilityLabel="Ajustes"
           onPress={() => router.push('/settings')}
@@ -52,7 +52,7 @@ export default function HomeScreen() {
           style={styles.gear}
         >
           <AppText>⚙️</AppText>
-        </Pressable>
+        </PressableScale>
       </View>
       <TodayCard summary={summary} now={now} />
       <StatsCard

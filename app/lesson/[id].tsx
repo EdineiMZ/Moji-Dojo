@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { AppText, Card, Confetti, Mascot, PetalRain, Screen } from '@/components';
+import { AppText, BackLink, Card, Confetti, Mascot, PetalRain, Screen, SwapView } from '@/components';
 import { SCRIPT_NAMES } from '@/features/catalog';
 import { KnowStep } from '@/features/lessons/KnowStep';
 import { StepsBar, type LessonStep } from '@/features/lessons/StepsBar';
@@ -52,9 +52,7 @@ function LessonFlow({ lesson: { script, index, lesson }, skip }: LessonFlowProps
     <View style={styles.root}>
       <Screen scrollEnabled={!drawing}>
         <View style={styles.header}>
-          <Pressable accessibilityRole="button" onPress={goBack} hitSlop={8}>
-            <AppText color="primary">← Voltar à trilha</AppText>
-          </Pressable>
+          <BackLink label="← Voltar à trilha" onPress={goBack} />
           <AppText variant="caption" color="muted">
             {SCRIPT_NAMES[script].toUpperCase()} · LIÇÃO {index + 1}
           </AppText>
@@ -62,37 +60,39 @@ function LessonFlow({ lesson: { script, index, lesson }, skip }: LessonFlowProps
           {testOnly ? null : <StepsBar steps={steps} current={step} />}
         </View>
   
-        {step === 'know' ? (
-          <>
-            <VoiceWarning />
-            <KnowStep
-              items={lesson.items}
-              pos={pos}
-              onPosChange={setPos}
-              finishLabel={hasWriting ? 'Ir para a escrita' : 'Ir para o teste'}
-              onFinish={() => setStep(hasWriting ? 'write' : 'test')}
+        <SwapView viewKey={step} kind="slide" style={styles.steps}>
+          {step === 'know' ? (
+            <>
+              <VoiceWarning />
+              <KnowStep
+                items={lesson.items}
+                pos={pos}
+                onPosChange={setPos}
+                finishLabel={hasWriting ? 'Ir para a escrita' : 'Ir para o teste'}
+                onFinish={() => setStep(hasWriting ? 'write' : 'test')}
+              />
+            </>
+          ) : null}
+  
+          {step === 'write' ? (
+            <WriteStep items={lesson.items} onContinue={() => setStep('test')} onDrawingChange={setDrawing} />
+          ) : null}
+  
+          {step === 'test' ? (
+            <TestStep
+              script={script}
+              lesson={lesson}
+              skipped={skip}
+              onReview={() => {
+                setPos(0);
+                setStep('know');
+              }}
+              onNext={(nextId) => router.replace({ pathname: '/lesson/[id]', params: { id: nextId } })}
+              onExit={goBack}
+              onCelebrate={setCelebration}
             />
-          </>
-        ) : null}
-  
-        {step === 'write' ? (
-          <WriteStep items={lesson.items} onContinue={() => setStep('test')} onDrawingChange={setDrawing} />
-        ) : null}
-  
-        {step === 'test' ? (
-          <TestStep
-            script={script}
-            lesson={lesson}
-            skipped={skip}
-            onReview={() => {
-              setPos(0);
-              setStep('know');
-            }}
-            onNext={(nextId) => router.replace({ pathname: '/lesson/[id]', params: { id: nextId } })}
-            onExit={goBack}
-            onCelebrate={setCelebration}
-          />
-        ) : null}
+          ) : null}
+        </SwapView>
       </Screen>
       {/* Fora da rolagem, para cobrir a tela inteira. */}
       {celebration.petals ? <PetalRain /> : null}
@@ -102,6 +102,7 @@ function LessonFlow({ lesson: { script, index, lesson }, skip }: LessonFlowProps
 }
 
 const styles = StyleSheet.create({
+  steps: { gap: spacing.lg },
   root: { flex: 1 },
   center: { alignItems: 'center' },
   header: { gap: spacing.sm },

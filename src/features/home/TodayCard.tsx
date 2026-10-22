@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { AppText, Bold, Button, Card } from '@/components';
+import { AppText, Bold, Button, Card, CountUp } from '@/components';
 import { SCRIPT_NAMES } from '@/features/catalog';
 import { formatReviewTime } from '@/features/review/format';
 import { plural } from '@/lib/plural';
@@ -40,9 +40,7 @@ export function TodayCard({ summary, now }: TodayCardProps) {
           <AppText variant="title">{heading}</AppText>
         </View>
         <View style={[styles.streak, { backgroundColor: colors.surface }]}>
-          <AppText style={styles.streakNumber} color="primary">
-            {streak}
-          </AppText>
+          <CountUp value={streak} style={styles.streakNumber} color="primary" />
           <AppText variant="caption" color="muted">
             {streak === 1 ? 'dia seguido' : 'dias seguidos'}
           </AppText>

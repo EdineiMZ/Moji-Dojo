@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
-import { AppText, Button, Card, RichText } from '@/components';
+import { StyleSheet, View } from 'react-native';
+import Animated, { FadeIn, FadeOut, LinearTransition } from 'react-native-reanimated';
+import { AppText, Button, Card, PressableScale, ReduceMotion, RichText } from '@/components';
 import { GRAMMAR_TOPICS } from '@/data/grammar';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { exercisesForTopic } from './build';
@@ -26,8 +27,8 @@ export function GrammarView({ onPractice }: GrammarViewProps) {
         const open = openId === topic.id;
         const canPractice = exercisesForTopic(topic.id).length > 0;
         return (
-          <Card key={topic.id} enterIndex={Math.min(i, 6)}>
-            <Pressable
+          <Card key={topic.id} enterIndex={Math.min(i, 6)} layout={LinearTransition.duration(240).reduceMotion(ReduceMotion.System)}>
+            <PressableScale
               accessibilityRole="button"
               accessibilityState={{ expanded: open }}
               onPress={() => setOpenId(open ? null : topic.id)}
@@ -40,10 +41,14 @@ export function GrammarView({ onPractice }: GrammarViewProps) {
               </View>
               <AppText style={[styles.title, { fontFamily: fonts.bold }]}>{topic.title}</AppText>
               <AppText color="muted">{open ? '▲' : '▼'}</AppText>
-            </Pressable>
+            </PressableScale>
 
             {open ? (
-              <View style={styles.body}>
+              <Animated.View
+                style={styles.body}
+                entering={FadeIn.duration(220).reduceMotion(ReduceMotion.System)}
+                exiting={FadeOut.duration(150).reduceMotion(ReduceMotion.System)}
+              >
                 <RichText blocks={topic.body} />
                 {topic.pattern ? (
                   <View style={[styles.pattern, { backgroundColor: colors.lilacSoft }]}>
@@ -56,7 +61,7 @@ export function GrammarView({ onPractice }: GrammarViewProps) {
                   ))}
                 </View>
                 {canPractice ? <Button label="Praticar este tópico" onPress={() => onPractice(topic.id)} /> : null}
-              </View>
+              </Animated.View>
             ) : null}
           </Card>
         );

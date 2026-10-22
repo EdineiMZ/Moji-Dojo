@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { AppText, Card, Mascot, type MascotMood } from '@/components';
+import { AppText, Card, CountUp, Mascot, type MascotMood } from '@/components';
 import { getItem } from '@/features/catalog';
 import { fonts, spacing } from '@/theme';
 
@@ -49,9 +49,7 @@ export function ResultCard({
         {heading}
       </AppText>
       <View style={styles.score}>
-        <AppText style={styles.pct} color={color}>
-          {pct}%
-        </AppText>
+        <CountUp value={pct} suffix="%" style={styles.pct} color={color} />
         <AppText color="muted" center>
           de acerto na primeira tentativa ({firstTry} de {total})
         </AppText>

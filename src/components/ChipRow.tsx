@@ -1,6 +1,7 @@
-import { Pressable, ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { AppText } from './AppText';
+import { PressableScale } from './PressableScale';
 
 interface ChipRowProps<T extends string> {
   options: readonly { value: T; label: string }[];
@@ -16,7 +17,7 @@ export function ChipRow<T extends string>({ options, value, onChange }: ChipRowP
       {options.map((opt) => {
         const selected = opt.value === value;
         return (
-          <Pressable
+          <PressableScale
             key={opt.value}
             accessibilityRole="tab"
             accessibilityState={{ selected }}
@@ -29,7 +30,7 @@ export function ChipRow<T extends string>({ options, value, onChange }: ChipRowP
             <AppText color={selected ? 'onPrimary' : 'ink'} style={{ fontFamily: fonts.bold }}>
               {opt.label}
             </AppText>
-          </Pressable>
+          </PressableScale>
         );
       })}
     </ScrollView>
@@ -38,5 +39,5 @@ export function ChipRow<T extends string>({ options, value, onChange }: ChipRowP
 
 const styles = StyleSheet.create({
   row: { gap: spacing.sm, paddingVertical: spacing.xs },
-  chip: { borderRadius: radii.pill, borderWidth: 1.5, paddingVertical: spacing.sm, paddingHorizontal: spacing.lg },
+  chip: { borderRadius: radii.pill, borderWidth: 1.5, minHeight: 44, justifyContent: 'center', paddingHorizontal: spacing.lg },
 });

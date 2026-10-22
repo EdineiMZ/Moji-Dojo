@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native';
-import { AppText, Card } from '@/components';
+import { AppText, Card, CountUp } from '@/components';
 import { plural } from '@/lib/plural';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import type { StripDay } from './metrics';
@@ -17,11 +17,16 @@ interface StatsCardProps {
   strip: readonly StripDay[];
 }
 
-function Tile({ value, label }: { value: string; label: string }) {
+/** `value` null mostra um traço (ex.: precisão sem nenhuma resposta ainda). */
+function Tile({ value, suffix, label }: { value: number | null; suffix?: string; label: string }) {
   const { colors } = useTheme();
   return (
     <View style={[styles.tile, { backgroundColor: colors.background, borderColor: colors.line }]}>
-      <AppText style={styles.tileValue}>{value}</AppText>
+      {value === null ? (
+        <AppText style={styles.tileValue}>—</AppText>
+      ) : (
+        <CountUp value={value} {...(suffix ? { suffix } : {})} style={styles.tileValue} />
+      )}
       <AppText variant="caption" color="muted">
         {label}
       </AppText>
@@ -38,10 +43,10 @@ export function StatsCard({ streak, bestStreak, studiedDays, accuracy, strip }: 
     <Card enterIndex={1}>
       <AppText variant="title">Sua constância</AppText>
       <View style={styles.tiles}>
-        <Tile value={String(streak)} label={streak === 1 ? 'dia seguido' : 'dias seguidos'} />
-        <Tile value={String(bestStreak)} label="melhor sequência" />
-        <Tile value={String(studiedDays)} label={studiedDays === 1 ? 'dia estudado' : 'dias estudados'} />
-        <Tile value={accuracy === null ? '—' : `${accuracy}%`} label="de acertos" />
+        <Tile value={streak} label={streak === 1 ? 'dia seguido' : 'dias seguidos'} />
+        <Tile value={bestStreak} label="melhor sequência" />
+        <Tile value={studiedDays} label={studiedDays === 1 ? 'dia estudado' : 'dias estudados'} />
+        <Tile value={accuracy} suffix="%" label="de acertos" />
       </View>
 
       <View

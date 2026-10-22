@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Nihongo Dojo",
+    "slug": "nihongo-dojo",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.edi.nihongodojo"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-sqlite",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FFF4F0",
+          "dark": {
+            "backgroundColor": "#12122B"
+          }
+        }
+      ]
+    ],
+    "scheme": "nihongodojo",
+    "platforms": [
+      "android"
+    ]
+  }
+}

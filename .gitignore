@@ -1,0 +1,10 @@
+node_modules/
+.expo/
+dist/
+web-build/
+*.log
+.claude-flow/
+.swarm/
+.env*
+coverage/
+*.tsbuildinfo

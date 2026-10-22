@@ -28,7 +28,8 @@
             "backgroundColor": "#12122B"
           }
         }
-      ]
+      ],
+      "expo-status-bar"
     ],
     "scheme": "nihongodojo",
     "platforms": [

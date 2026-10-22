@@ -8,3 +8,14 @@ web-build/
 .env*
 coverage/
 *.tsbuildinfo
+
+# Build nativo local (gerado por "expo prebuild"; nao editar a mao)
+/android/
+/ios/
+*.apk
+*.aab
+.idea/
+
+# Material de teste local (print do aparelho e backup de progresso)
+/*.jpg
+/exemplo de código backup*.txt

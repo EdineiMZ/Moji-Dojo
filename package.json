@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
+    "android": "expo run:android",
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "extract-data": "node scripts/extract-data.mjs",

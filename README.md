@@ -9,7 +9,10 @@ O protótipo web `Nihongo Dojo.html` (na raiz do repositório; é o nome antigo 
 O app tem cinco abas (**Início, Trilha, Ouvir, Frases, Teclado**) e uma tela de **Ajustes**, aberta pela engrenagem na Início.
 
 **Estudo (Fase 1)**
-- **Início:** "Estudar hoje" com as revisões pendentes, a próxima lição, os dias seguidos e o aviso de quando vence a próxima revisão (e quantas).
+- **Início:** "Estudar hoje" com as revisões pendentes, a próxima lição, os dias seguidos e o aviso de quando vence a próxima revisão (e quantas). Abaixo, o painel:
+  - **Sua constância:** dias seguidos, melhor sequência, dias estudados, precisão e uma faixa dos últimos 14 dias.
+  - **Sua evolução:** caracteres aprendidos nos últimos 30 dias e respostas por dia nos últimos 14, com os valores também em lista. A evolução só existe a partir de quando o app passou a registrar o histórico; antes disso, a linha mostra o que você já tinha (ex.: um backup importado).
+  - **Seu progresso:** quanto de cada escrita já entrou na revisão.
 - **Trilha:** lições de hiragana, katakana e kanji em sequência, com bloqueio progressivo e o atalho "Já sei: fazer o teste".
 - **Lição em três passos:**
   - **Conhecer:** caractere com os traços se desenhando, som, exemplo e dica de memorização.
@@ -36,7 +39,7 @@ O app tem cinco abas (**Início, Trilha, Ouvir, Frases, Teclado**) e uma tela de
 **Ajustes**
 - Importar o código de backup do protótipo (`NDJ1:`), status e teste da voz japonesa, escrever nas revisões (liga/desliga), zerar progresso e créditos.
 
-**Geral:** animações (cartões com mola, botões que afundam, barra de progresso animada, pétalas de sakura e confete) que respeitam o "reduzir movimento" do Android; modo claro e escuro (céu noturno de Tóquio); progresso salvo no celular.
+**Geral:** tela de carregamento animada com o Mochi; animações (cartões com mola, botões que afundam, barra de progresso animada, pétalas de sakura e confete) que respeitam o "reduzir movimento" do Android; modo claro e escuro (céu noturno de Tóquio); progresso salvo no celular.
 
 ## Como rodar
 
@@ -155,9 +158,9 @@ Essa importação é uma função **temporária**, feita para migrar o progresso
 
 ## O que fica para depois
 
-**Polimento final (pedidos já combinados):**
-- Tela de carregamento animada com o Mochi.
-- Painel inicial com métricas: sequência de dias e evolução ao longo do tempo. A evolução provavelmente exige guardar um histórico novo, porque hoje o app só guarda a lista de dias e o estado atual.
+**Antes de publicar na loja:**
+- Trocar os **ícones e a imagem de splash**: `assets/icon.png`, os `android-icon-*.png` e `splash-icon.png` ainda são os do template do Expo. Eles só aparecem em builds (o Expo Go não os usa).
+- Confirmar o prefixo do `applicationId` (`com.edi.mojidojo`, provisório).
 
 **Ideias em aberto:**
 - As abas do protótipo que não entraram: tabela de caracteres, treino livre e dicas de pares parecidos.

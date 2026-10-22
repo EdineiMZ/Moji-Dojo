@@ -1,13 +1,32 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { LoadingScreen } from '@/components/LoadingScreen';
+import { remainingLoadingMs } from '@/lib/loading';
 import { fontAssets, ThemeProvider, useTheme } from '@/theme';
 
 SplashScreen.preventAutoHideAsync();
+
+/** Quando o app começou a abrir; o carregamento das fontes conta para o tempo da tela de carregamento. */
+const APP_START = Date.now();
+
+/** Mantém a tela de carregamento animada por cima do app durante o tempo mínimo e a remove com um fade. */
+function LoadingGate() {
+  const reduceMotion = useReducedMotion();
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    const id = setTimeout(() => setDone(true), remainingLoadingMs(Date.now() - APP_START, reduceMotion));
+    return () => clearTimeout(id);
+  }, [reduceMotion]);
+
+  return done ? null : <LoadingScreen />;
+}
 
 function ThemedStack() {
   const { colors, isDark } = useTheme();
@@ -44,6 +63,7 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <ThemeProvider>
           <ThemedStack />
+          <LoadingGate />
         </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

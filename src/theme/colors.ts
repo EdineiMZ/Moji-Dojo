@@ -24,6 +24,8 @@ export interface Palette {
   bad: string;
   badSoft: string;
   warn: string;
+  /** Cor das marcas dos gráficos (linhas e barras): contraste de pelo menos 3:1 com o cartão. */
+  chart: string;
   /** Cor da sombra suave dos cartões. */
   shadow: string;
 }
@@ -47,6 +49,7 @@ export const lightPalette: Palette = {
   bad: '#E0506B',
   badSoft: '#FFE4E9',
   warn: '#D98E1F',
+  chart: '#D4487A',
   shadow: '#B58AA5',
 };
 
@@ -70,5 +73,6 @@ export const darkPalette: Palette = {
   bad: '#FF8498',
   badSoft: '#4A1F2C',
   warn: '#F2BC5E',
+  chart: '#FF9EC4',
   shadow: '#000000',
 };

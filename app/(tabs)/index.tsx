@@ -5,6 +5,9 @@ import { AppText, Mascot, Screen } from '@/components';
 import { ProgressCard } from '@/features/home/ProgressCard';
 import { buildTodaySummary, scriptProgress } from '@/features/home/summary';
 import { TodayCard } from '@/features/home/TodayCard';
+import { EvolutionCard } from '@/features/stats/EvolutionCard';
+import { accuracy, activityStrip, bestStreak, dailyAnswers, evolution } from '@/features/stats/metrics';
+import { StatsCard } from '@/features/stats/StatsCard';
 import { useNow } from '@/hooks/useNow';
 import { useProgressStore } from '@/store';
 import { spacing } from '@/theme';
@@ -15,9 +18,21 @@ export default function HomeScreen() {
   const srs = useProgressStore((s) => s.srs);
   const lessons = useProgressStore((s) => s.lessons);
   const days = useProgressStore((s) => s.days);
+  const stats = useProgressStore((s) => s.stats);
+  const history = useProgressStore((s) => s.history);
 
   const summary = useMemo(() => buildTodaySummary({ srs, lessons, days }, now), [srs, lessons, days, now]);
   const progress = useMemo(() => scriptProgress(srs), [srs]);
+  const metrics = useMemo(() => {
+    const today = new Date(now);
+    return {
+      best: Math.max(bestStreak(days), summary.streak),
+      accuracy: accuracy(stats),
+      strip: activityStrip(days, today),
+      evolution: evolution(history, summary.learnedCount, today),
+      answers: dailyAnswers(history, today),
+    };
+  }, [days, stats, history, now, summary.streak, summary.learnedCount]);
 
   return (
     <Screen>
@@ -40,6 +55,14 @@ export default function HomeScreen() {
         </Pressable>
       </View>
       <TodayCard summary={summary} now={now} />
+      <StatsCard
+        streak={summary.streak}
+        bestStreak={metrics.best}
+        studiedDays={days.length}
+        accuracy={metrics.accuracy}
+        strip={metrics.strip}
+      />
+      <EvolutionCard evolution={metrics.evolution} answers={metrics.answers} />
       <ProgressCard progress={progress} />
     </Screen>
   );

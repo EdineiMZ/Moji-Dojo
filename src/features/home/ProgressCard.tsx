@@ -11,7 +11,7 @@ const BAR_COLORS = ['primary', 'lilac', 'sky'] as const;
 export function ProgressCard({ progress }: { progress: Record<Script, ScriptProgress> }) {
   const { colors } = useTheme();
   return (
-    <Card enterIndex={1}>
+    <Card enterIndex={3}>
       <AppText variant="title">Seu progresso</AppText>
       {SCRIPT_ORDER.map((script, i) => {
         const p = progress[script];

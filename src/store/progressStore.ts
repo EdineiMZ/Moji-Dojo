@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
 import { emptyProgress, type ProgressSnapshot } from '@/features/progress/types';
 import { answerReview, boostSkippedItems, learnItems, shouldApplyReviewAnswer } from '@/features/review/srs';
+import { addActivity, type ActivityHistory } from '@/features/stats/metrics';
 import { markDay } from '@/features/streak/days';
 
 /** Como a pessoa avalia a própria fala no "Repetir" (shadowing). */
@@ -33,6 +34,8 @@ export interface ProgressExtras {
   shadow: Readonly<Record<string, ShadowRating>>;
   /** Desafios de digitação feitos, pela palavra-alvo. */
   challenges: Readonly<Record<string, true>>;
+  /** Atividade por dia (respostas, acertos, caracteres aprendidos), para o painel de evolução. */
+  history: ActivityHistory;
 }
 
 export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions;
@@ -50,15 +53,18 @@ export function createProgressStore(storage: StateStorage) {
         ...emptyProgress(),
         shadow: {},
         challenges: {},
+        history: {},
 
         completeLesson: (lessonId, chars, skipped = false, now = Date.now()) =>
           set((s) => {
             let srs = learnItems(s.srs, chars, now);
             if (skipped) srs = boostSkippedItems(srs, chars, now);
+            const newlyLearned = chars.filter((c) => !s.srs[c]).length;
             return {
               srs,
               lessons: { ...s.lessons, [lessonId]: true },
               days: markDay(s.days, new Date(now)),
+              history: addActivity(s.history, new Date(now), { learned: newlyLearned }),
             };
           }),
 
@@ -68,6 +74,7 @@ export function createProgressStore(storage: StateStorage) {
             return {
               stats: { ...s.stats, [char]: ok ? { ...prev, c: prev.c + 1 } : { ...prev, w: prev.w + 1 } },
               days: markDay(s.days, new Date(now)),
+              history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
             };
           }),
 
@@ -79,6 +86,7 @@ export function createProgressStore(storage: StateStorage) {
             return {
               stats: { ...s.stats, [char]: ok ? { ...prev, c: prev.c + 1 } : { ...prev, w: prev.w + 1 } },
               days: markDay(s.days, new Date(now)),
+              history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               ...(reschedule ? { srs: { ...s.srs, [char]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
           }),
@@ -92,16 +100,25 @@ export function createProgressStore(storage: StateStorage) {
         markStudied: (now = Date.now()) => set((s) => ({ days: markDay(s.days, new Date(now)) })),
 
         replaceProgress: (snapshot) =>
-          set({ srs: snapshot.srs, lessons: snapshot.lessons, stats: snapshot.stats, days: snapshot.days }),
+          // O histórico do progresso antigo não vale para o importado (que não traz histórico).
+          set({ srs: snapshot.srs, lessons: snapshot.lessons, stats: snapshot.stats, days: snapshot.days, history: {} }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {} }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow, challenges }) => ({ srs, lessons, stats, days, shadow, challenges }),
+        partialize: ({ srs, lessons, stats, days, shadow, challenges, history }) => ({
+          srs,
+          lessons,
+          stats,
+          days,
+          shadow,
+          challenges,
+          history,
+        }),
       },
     ),
   );

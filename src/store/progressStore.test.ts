@@ -93,6 +93,38 @@ describe('recordReviewAnswer', () => {
   });
 });
 
+describe('histórico por dia (painel de evolução)', () => {
+  it('cada resposta soma respostas e acertos no dia de hoje (relógio congelado)', () => {
+    const store = createProgressStore(memoryStorage());
+    store.getState().recordAnswer('あ', true);
+    store.getState().recordAnswer('あ', false);
+    store.getState().recordReviewAnswer('い', true, true, false);
+    expect(store.getState().history).toEqual({ '2026-10-22': { answers: 3, correct: 2, learned: 0 } });
+  });
+
+  it('concluir uma lição conta só os caracteres que ainda não estavam na revisão', () => {
+    const store = createProgressStore(memoryStorage());
+    store.getState().completeLesson('hira:L0', ['あ', 'い', 'う']);
+    expect(store.getState().history['2026-10-22']?.learned).toBe(3);
+    store.getState().completeLesson('hira:L0', ['あ', 'い', 'う', 'え']); // refazer: só え é novo
+    expect(store.getState().history['2026-10-22']?.learned).toBe(4);
+  });
+
+  it('fica salvo ao reabrir; importar backup e zerar o progresso o limpam', () => {
+    const storage = memoryStorage();
+    const store = createProgressStore(storage);
+    store.getState().recordAnswer('あ', true);
+    expect(createProgressStore(storage).getState().history).toEqual(store.getState().history);
+
+    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] });
+    expect(store.getState().history).toEqual({});
+
+    store.getState().recordAnswer('あ', true);
+    store.getState().resetProgress();
+    expect(store.getState().history).toEqual({});
+  });
+});
+
 describe('rateShadow (Repetir)', () => {
   it('guarda a autoavaliação da frase, marca o dia e permite mudar de ideia', () => {
     const store = createProgressStore(memoryStorage());
@@ -169,7 +201,7 @@ describe('persistência', () => {
     first.getState().recordAnswer('あ', true);
 
     const saved = JSON.parse(storage.data.get(PROGRESS_STORAGE_KEY) ?? '{}');
-    expect(Object.keys(saved.state).sort()).toEqual(['challenges', 'days', 'lessons', 'shadow', 'srs', 'stats']);
+    expect(Object.keys(saved.state).sort()).toEqual(['challenges', 'days', 'history', 'lessons', 'shadow', 'srs', 'stats']);
 
     const second = createProgressStore(storage);
     expect(second.persist.hasHydrated()).toBe(true);

@@ -6,3 +6,4 @@ export { useMotionEnabled, SPRING } from './motion';
 export { ProgressBar } from './ProgressBar';
 export { Screen } from './Screen';
 export { SegmentedControl } from './SegmentedControl';
+export { StrokeAnimation } from './StrokeAnimation';

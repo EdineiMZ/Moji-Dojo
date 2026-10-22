@@ -6,6 +6,7 @@ import { KANA_MNEMONICS, KANJI_HINTS } from '@/data/hints';
 import { STROKES } from '@/data/strokes';
 import { getItem, pronunciationText } from '@/features/catalog';
 import { speakJapanese } from '@/features/speech/voiceStore';
+import { otherWordsWithKanji } from '@/features/vocab/kanjiWords';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { comboExplanation, formatReadings, isCombo } from './knowText';
 
@@ -36,6 +37,7 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
 
   const kanaExample = KANA_EXAMPLES[char];
   const kanjiExample = KANJI_EXAMPLES[char];
+  const moreWords = item.script === 'kanji' ? otherWordsWithKanji(char, kanjiExample?.word) : [];
 
   return (
     <View style={styles.root}>
@@ -78,6 +80,20 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
                     <Bold>{kanjiExample.word}</Bold> ({kanjiExample.reading}) {kanjiExample.meaning} 🔊
                   </AppText>
                 </PressableScale>
+              ) : null}
+              {moreWords.length > 0 ? (
+                <View style={styles.moreWords}>
+                  <AppText variant="caption" color="muted" center>
+                    TAMBÉM APARECE EM
+                  </AppText>
+                  {moreWords.map((w) => (
+                    <PressableScale key={w.id} accessibilityRole="button" onPress={() => speakJapanese(w.reading)}>
+                      <AppText center>
+                        <Bold>{w.jp}</Bold> ({w.reading}) {w.meaning} 🔊
+                      </AppText>
+                    </PressableScale>
+                  ))}
+                </View>
               ) : null}
             </>
           ) : (
@@ -169,6 +185,7 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
 const styles = StyleSheet.create({
   root: { gap: spacing.lg },
   card: { alignItems: 'center' },
+  moreWords: { alignSelf: 'stretch', gap: spacing.xs },
   glyphBox: {
     borderWidth: 1.5,
     borderRadius: radii.lg,

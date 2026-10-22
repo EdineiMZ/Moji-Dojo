@@ -7,6 +7,7 @@ import { resultMood } from '@/features/lessons/resultCopy';
 import { buildReviewQuestions, type QuizResult } from '@/features/quiz/quiz';
 import { QuizView } from '@/features/quiz/QuizView';
 import { ResultCard } from '@/features/quiz/ResultCard';
+import { feedbackComplete } from '@/lib/feedback';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { spacing } from '@/theme';
 import { pickExtraReviewChars, reviewIntro, reviewTitle, REVIEW_GOOD_PCT } from './session';
@@ -46,6 +47,7 @@ export function ReviewSession({ extra, onExit, onCelebrate, onDrawingChange, onA
     const remaining = extra ? 0 : dueChars(srs, Date.now(), isKnown).length;
     const pct = result.total ? Math.round((result.first / result.total) * 100) : 0;
     setOutcome({ ...result, remaining });
+    if (pct >= REVIEW_GOOD_PCT) feedbackComplete(result.first === result.total);
     onCelebrate({ petals: pct >= REVIEW_GOOD_PCT, confetti: result.total > 0 && result.first === result.total });
   };
 

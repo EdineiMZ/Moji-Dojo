@@ -25,7 +25,7 @@ import { speakJapanese } from '@/features/speech/voiceStore';
 import { isPassing, type WritingScore } from '@/features/writing/score';
 import { useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
-import { hapticError, hapticSuccess } from '@/lib/haptics';
+import { feedbackCorrect, feedbackWrong } from '@/lib/feedback';
 import { radii, spacing, useTheme } from '@/theme';
 import { autoAdvanceMs, buildFeedback, type Feedback } from './explain';
 import { OptionButton, type OptionState } from './OptionButton';
@@ -127,14 +127,14 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
     onAnswer?.(current, outcome.correct, outcome.firstTry);
 
     if (outcome.correct) {
-      hapticSuccess();
+      feedbackCorrect();
       if (motion) pop.value = withSequence(withSpring(1.06, SPRING), withSpring(1, SPRING));
       // No ouvido o usuário pode querer ouvir de novo antes de seguir: só avança no toque.
       if (!isAudio) {
         timer.current = setTimeout(() => proceed(outcome.state), isWrite ? WRITE_ADVANCE_MS : autoAdvanceMs(current.item));
       }
     } else {
-      hapticError();
+      feedbackWrong();
       if (motion) {
         shake.value = withSequence(
           withTiming(-10, { duration: 60 }),

@@ -7,6 +7,7 @@ import { DrawingPad } from '@/features/writing/DrawingPad';
 import { isWritable, strokeModel } from '@/features/writing/model';
 import { scoreWriting, type WritingScore } from '@/features/writing/score';
 import { ScoreResult } from '@/features/writing/ScoreResult';
+import { feedbackCorrect, feedbackTap } from '@/lib/feedback';
 import { useProgressStore } from '@/store';
 import { fonts, spacing } from '@/theme';
 
@@ -61,8 +62,11 @@ export function WriteStep({ items, onContinue, onDrawingChange }: WriteStepProps
       return;
     }
     setNotice(null);
-    setScore(scoreWriting(model, strokes));
+    const result = scoreWriting(model, strokes);
+    setScore(result);
     markStudied();
+    if (result.level === 'ok') feedbackCorrect();
+    else feedbackTap();
   };
 
   const next = () => {

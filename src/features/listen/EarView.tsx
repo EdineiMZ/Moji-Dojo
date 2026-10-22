@@ -15,6 +15,7 @@ import {
 } from '@/features/quiz/quiz';
 import { QuizView } from '@/features/quiz/QuizView';
 import { ResultCard } from '@/features/quiz/ResultCard';
+import { feedbackComplete } from '@/lib/feedback';
 import { useProgressStore } from '@/store';
 import { spacing } from '@/theme';
 
@@ -77,6 +78,7 @@ export function EarView() {
           else markStudied();
         }}
         onDone={(r) => {
+          if (r.total > 0 && r.first / r.total >= 0.8) feedbackComplete(r.first === r.total);
           setResult({ ...r, mode: run.mode });
           setRun(null);
         }}

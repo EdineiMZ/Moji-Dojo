@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { AppText, Bold, Button, Card, PressableScale, useScrollIntoView } from '@/components';
 import { TYPING_CHALLENGES } from '@/data/keyboard';
-import { hapticError, hapticSuccess } from '@/lib/haptics';
+import { feedbackCorrect, feedbackWrong } from '@/lib/feedback';
 import { useProgressStore } from '@/store';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { checkTyping, type TypingCheck } from './flick';
@@ -38,10 +38,10 @@ export function ChallengeView() {
     const outcome = checkTyping(text, challenge.word);
     setResult(outcome);
     if (outcome.ok) {
-      hapticSuccess();
+      feedbackCorrect();
       completeChallenge(challenge.word);
     } else {
-      hapticError();
+      feedbackWrong();
     }
   };
 

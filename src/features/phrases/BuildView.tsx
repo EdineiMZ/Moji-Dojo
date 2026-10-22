@@ -4,7 +4,7 @@ import { AppText, Bold, Button, Card, ChipRow, PressableScale } from '@/componen
 import { BUILD_EXERCISES } from '@/data/exercises';
 import { GRAMMAR_TOPICS } from '@/data/grammar';
 import { speakJapanese } from '@/features/speech/voiceStore';
-import { hapticError, hapticSuccess } from '@/lib/haptics';
+import { feedbackCorrect, feedbackWrong } from '@/lib/feedback';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { fonts, radii, spacing, useTheme } from '@/theme';
@@ -64,10 +64,10 @@ export function BuildView({ topic, onTopicChange }: BuildViewProps) {
     setRound(next);
     markStudied();
     if (next.checked === 'ok') {
-      hapticSuccess();
+      feedbackCorrect();
       if (exercise) speakJapanese(exercise.answer.join(''), SPEECH_RATES[speed]);
     } else {
-      hapticError();
+      feedbackWrong();
     }
   };
 

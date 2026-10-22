@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import { AppText, Bold, Button, Card, PressableScale } from '@/components';
 import { FLICK_KEYS, SIMULATOR_WORDS } from '@/data/keyboard';
+import { feedbackCorrect } from '@/lib/feedback';
 import { useProgressStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { applyMod, howTo, simulatorProgress } from './flick';
@@ -30,7 +31,10 @@ export function SimulatorView() {
 
   const update = (next: string) => {
     setBuffer(next);
-    if (next === target && buffer !== target) markStudied();
+    if (next === target && buffer !== target) {
+      markStudied();
+      feedbackCorrect();
+    }
   };
   const nextWord = () => {
     setWordIndex((i) => (i + 1) % SIMULATOR_WORDS.length);

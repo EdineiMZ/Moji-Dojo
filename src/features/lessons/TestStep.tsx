@@ -6,7 +6,7 @@ import type { Lesson, Script } from '@/data/types';
 import { buildLessonQuestions, type QuizResult } from '@/features/quiz/quiz';
 import { QuizView } from '@/features/quiz/QuizView';
 import { ResultCard } from '@/features/quiz/ResultCard';
-import { hapticSuccess } from '@/lib/haptics';
+import { feedbackComplete } from '@/lib/feedback';
 import { useProgressStore } from '@/store';
 import { spacing } from '@/theme';
 import { lessonResultCopy, resultMood, testIntro } from './resultCopy';
@@ -52,7 +52,7 @@ export function TestStep({ script, lesson, skipped, onReview, onNext, onExit, on
     let next: Lesson | null = null;
     if (passed) {
       completeLesson(lesson.id, lesson.items, skipped);
-      hapticSuccess();
+      feedbackComplete(result.first === result.total);
       const nextIndex = nextLessonIndex(script, useProgressStore.getState().lessons);
       next = LESSONS[script][nextIndex] ?? null;
     }

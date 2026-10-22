@@ -39,9 +39,9 @@ O app tem cinco abas (**Início, Trilha, Ouvir, Frases, Teclado**) e uma tela de
 - **Desafio:** digitar com o seu teclado real (Gboard em japonês); se errar, o app diz o que provavelmente faltou.
 
 **Ajustes**
-- Importar o código de backup do protótipo (`NDJ1:`), status e teste da voz japonesa, escrever nas revisões (liga/desliga), zerar progresso e créditos.
+- Importar o código de backup do protótipo (`NDJ1:`), status e teste da voz japonesa, escrever nas revisões (liga/desliga), **efeitos sonoros e vibração** (liga/desliga), zerar progresso e créditos.
 
-**Geral:** tela de carregamento animada com o Mochi; animações (cartões com mola, botões que afundam, barra de progresso animada, pétalas de sakura e confete) que respeitam o "reduzir movimento" do Android; modo claro e escuro (céu noturno de Tóquio); progresso salvo no celular.
+**Geral:** tela de carregamento animada com o Mochi; **efeitos sonoros** (acerto, erro, conclusão, 100% e toque nas teclas) e vibração leve; transições suaves entre abas, passos e perguntas; confirmação ao sair de um teste em andamento; animações (cartões com mola, botões que afundam, barra de progresso animada, pétalas de sakura e confete) que respeitam o "reduzir movimento" do Android; modo claro e escuro (céu noturno de Tóquio); progresso salvo no celular.
 
 ## Como rodar
 
@@ -72,6 +72,7 @@ No Expo Go, escaneie o QR code mostrado no terminal. Se o QR não funcionar, use
 | `npm run typecheck` | Checa os tipos (TypeScript em modo `strict`) |
 | `npm test` | Roda os testes (Jest com `jest-expo`) |
 | `npm run extract-data` | Regera `src/data/` a partir de `Nihongo Dojo.html` |
+| `npm run generate-sounds` | Regera os efeitos sonoros em `assets/sfx/` (sintetizados por código) |
 | `npx expo-doctor` | Confere se as dependências são compatíveis com o SDK |
 
 Antes de commitar, vale rodar `npm run typecheck`, `npm test` e `npx expo-doctor`.
@@ -111,7 +112,8 @@ src/
   theme/                  Cores (claro/escuro), fontes e espaçamentos
   hooks/, lib/            Utilitários pequenos (relógio da tela, vibração, plural)
 
-scripts/                  extract-data.mjs (lê o HTML e gera src/data/) e o conversor de HTML
+assets/sfx/               Efeitos sonoros (WAV), gerados por scripts/generate-sounds.mjs
+scripts/                  extract-data.mjs (lê o HTML e gera src/data/), o conversor de HTML e o sintetizador de sons
 ```
 
 A lógica das regras (SRS, trilha, quiz, escrita, montar, teclado, backup, dias seguidos) é feita de **funções puras**, sem React, com o relógio e a aleatoriedade passados de fora. Por isso são testáveis com datas fixas e sorteios determinísticos. Os arquivos `*.test.ts` ficam ao lado do código que testam.
@@ -151,6 +153,7 @@ Essa importação é uma função **temporária**, feita para migrar o progresso
 - **Zustand + `expo-sqlite/kv-store`** para o progresso e as preferências, em duas stores separadas (zerar ou importar o progresso não mexe nas preferências). O MMKV foi descartado por exigir build nativo (não roda no Expo Go); um SQLite completo seria exagero para um JSON pequeno. A API síncrona do `kv-store` faz os dados já estarem carregados na primeira tela.
 - **Reanimated + gesture-handler + SVG** para animações e desenho; os traços são desenhados com `strokeDashoffset` e o traço ao vivo do pad é montado na thread de UI. Não há Skia nem outra dependência nativa.
 - **M PLUS Rounded 1c**, só os pesos Regular e Bold (importados pelos caminhos `.../400Regular` e `.../700Bold`; o índice do pacote carregaria todos os pesos).
+- **Efeitos sonoros:** `expo-audio` (com `expo-asset`, que ele exige). Os cinco sons são **sintetizados por código** (`scripts/sfxSynth.cjs`: notas com harmônicos de sino e decaimento exponencial), então são originais e sem licença de terceiros; um teste confere que os arquivos versionados são exatamente o que o gerador produz. Tocam no modo `mixWithOthers`, sem interromper a música de quem usa o celular. O plugin do `expo-audio` traz por padrão a permissão de **microfone** (`RECORD_AUDIO`) e a de reprodução em segundo plano; o app não grava nem toca em segundo plano, então elas foram desligadas em `app.json`, e as permissões de armazenamento externo do template do Expo foram bloqueadas.
 - **Voz:** `expo-speech` com a voz do Android. O app procura uma voz `ja-JP` e, se não achar, mostra como instalar.
 - O mascote e toda a arte são originais, feitos em SVG. Não há imagens de terceiros.
 - **Nome:** o projeto se chamava Nihongo Dojo e foi renomeado para **Moji Dojo** (o mascote continua Mochi). O `slug` é `moji-dojo`, o esquema de links é `mojidojo` e o `applicationId` do Android é `com.edi.mojidojo`, com o prefixo `com.edi` **provisório** (nenhuma build foi publicada, então dá para trocar sem consequências; confirme o prefixo antes da primeira build para a loja). As chaves de armazenamento antigas (`nihongo-dojo-*`) são migradas sozinhas para `moji-dojo-*` na primeira abertura, então o progresso já salvo é mantido.
@@ -159,12 +162,14 @@ Essa importação é uma função **temporária**, feita para migrar o progresso
 
 - **Ordem dos traços:** [KanjiVG](https://kanjivg.tagaini.net), de Ulrich Apel, licença **CC BY-SA 3.0**. O crédito está em `src/data/strokes/LICENSE.md` e na tela Ajustes. Por ser CC BY-SA, o arquivo de traços (e obras derivadas dele) deve manter o crédito e a mesma licença.
 - **Fonte:** M PLUS Rounded 1c (SIL Open Font License).
+- **Efeitos sonoros:** gerados por código neste projeto (originais).
 
 ## O que fica para depois
 
 **Antes de publicar na loja:**
 - Trocar os **ícones e a imagem de splash**: `assets/icon.png`, os `android-icon-*.png` e `splash-icon.png` ainda são os do template do Expo. Eles só aparecem em builds (o Expo Go não os usa).
 - Confirmar o prefixo do `applicationId` (`com.edi.mojidojo`, provisório).
+- Conferir o `AndroidManifest.xml` da primeira build: o app só deve pedir `INTERNET`, `VIBRATE` e `MODIFY_AUDIO_SETTINGS` (a `SYSTEM_ALERT_WINDOW` do template vale apenas para builds de desenvolvimento).
 
 **Ideias em aberto:**
 - As abas do protótipo que não entraram: tabela de caracteres, treino livre e dicas de pares parecidos.

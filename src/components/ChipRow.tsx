@@ -22,6 +22,7 @@ export function ChipRow<T extends string>({ options, value, onChange }: ChipRowP
             accessibilityRole="tab"
             accessibilityState={{ selected }}
             onPress={() => onChange(opt.value)}
+            haptic
             style={[
               styles.chip,
               { backgroundColor: selected ? colors.primary : colors.surface, borderColor: selected ? colors.primary : colors.line },

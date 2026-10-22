@@ -10,18 +10,29 @@ export interface SettingsData {
   /** Nas revisões, algumas perguntas pedem para desenhar o símbolo. */
   writeInReview: boolean;
   speechSpeed: SpeechSpeed;
+  /** Vibração leve ao acertar, errar e em alguns toques. */
+  hapticsEnabled: boolean;
+  /** Efeitos sonoros (acerto, erro, conclusão...). A voz japonesa não é afetada. */
+  soundEnabled: boolean;
 }
 
 export interface SettingsActions {
   setWriteInReview: (value: boolean) => void;
   setSpeechSpeed: (value: SpeechSpeed) => void;
+  setHapticsEnabled: (value: boolean) => void;
+  setSoundEnabled: (value: boolean) => void;
 }
 
 export type SettingsState = SettingsData & SettingsActions;
 
 export const SETTINGS_STORAGE_KEY = 'moji-dojo-settings';
 
-export const DEFAULT_SETTINGS: SettingsData = { writeInReview: true, speechSpeed: 'normal' };
+export const DEFAULT_SETTINGS: SettingsData = {
+  writeInReview: true,
+  speechSpeed: 'normal',
+  hapticsEnabled: true,
+  soundEnabled: true,
+};
 
 /**
  * Preferências do usuário. Ficam separadas do progresso: importar um backup ou zerar o
@@ -34,12 +45,19 @@ export function createSettingsStore(storage: StateStorage) {
         ...DEFAULT_SETTINGS,
         setWriteInReview: (value) => set({ writeInReview: value }),
         setSpeechSpeed: (value) => set({ speechSpeed: value }),
+        setHapticsEnabled: (value) => set({ hapticsEnabled: value }),
+        setSoundEnabled: (value) => set({ soundEnabled: value }),
       }),
       {
         name: SETTINGS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ writeInReview, speechSpeed }) => ({ writeInReview, speechSpeed }),
+        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled }) => ({
+          writeInReview,
+          speechSpeed,
+          hapticsEnabled,
+          soundEnabled,
+        }),
       },
     ),
   );

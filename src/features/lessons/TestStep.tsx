@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Button } from '@/components';
 import { LESSONS } from '@/data/lessons';
@@ -23,6 +23,8 @@ interface TestStepProps {
   onExit: () => void;
   /** Pede ao pai as pétalas (passou) e o confete (100%); precisam cobrir a tela toda, fora da rolagem. */
   onCelebrate: (celebration: Celebration) => void;
+  /** Avisa se há um teste em andamento (para a tela pedir confirmação ao sair). */
+  onActiveChange?: (active: boolean) => void;
 }
 
 export interface Celebration {
@@ -39,7 +41,7 @@ interface Outcome extends QuizResult {
 }
 
 /** Passo 3: o teste da lição e a tela de resultado. Passar conclui a lição e põe os caracteres na revisão. */
-export function TestStep({ script, lesson, skipped, onReview, onNext, onExit, onCelebrate }: TestStepProps) {
+export function TestStep({ script, lesson, skipped, onReview, onNext, onExit, onCelebrate, onActiveChange }: TestStepProps) {
   const [attempt, setAttempt] = useState(0);
   const [outcome, setOutcome] = useState<Outcome | null>(null);
   const recordAnswer = useProgressStore((s) => s.recordAnswer);
@@ -75,6 +77,7 @@ export function TestStep({ script, lesson, skipped, onReview, onNext, onExit, on
           title={skipped ? 'Teste para pular' : 'Teste da lição'}
           onAnswer={(char, ok) => recordAnswer(char, ok)}
           onDone={finish}
+          onActiveChange={onActiveChange}
         />
       </View>
     );
@@ -116,10 +119,18 @@ interface TestAttemptProps {
   title: string;
   onAnswer: (char: string, ok: boolean) => void;
   onDone: (result: QuizResult) => void;
+  onActiveChange?: (active: boolean) => void;
 }
 
-function TestAttempt({ lesson, title, onAnswer, onDone }: TestAttemptProps) {
+function TestAttempt({ lesson, title, onAnswer, onDone, onActiveChange }: TestAttemptProps) {
   const [questions] = useState(() => buildLessonQuestions(lesson.items, lesson.review === true));
+
+  // Enquanto as perguntas estão na tela há um teste em andamento; ao ir para o resultado, não mais.
+  useEffect(() => {
+    onActiveChange?.(true);
+    return () => onActiveChange?.(false);
+  }, [onActiveChange]);
+
   return (
     <QuizView
       questions={questions}

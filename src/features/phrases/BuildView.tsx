@@ -143,6 +143,7 @@ export function BuildView({ topic, onTopicChange }: BuildViewProps) {
                 accessibilityLabel={`Remover ${token.text}`}
                 disabled={checked !== null}
                 onPress={() => setRound(removeToken(round, i))}
+                haptic
                 style={[styles.token, { backgroundColor: colors.primarySoft, borderColor: colors.primary }]}
               >
                 <AppText style={styles.tokenText}>{token.text}</AppText>
@@ -161,6 +162,7 @@ export function BuildView({ topic, onTopicChange }: BuildViewProps) {
                 accessibilityState={{ disabled: used || checked !== null }}
                 disabled={used || checked !== null}
                 onPress={() => setRound(addToken(round, token.id))}
+                haptic
                 style={[
                   styles.token,
                   { backgroundColor: colors.surface, borderColor: colors.line, opacity: used || checked ? 0.4 : 1 },

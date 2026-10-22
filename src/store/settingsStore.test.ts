@@ -19,7 +19,12 @@ describe('settingsStore', () => {
   it('a escolha fica salva e volta ao reabrir o app', () => {
     const storage = memory();
     createSettingsStore(storage).getState().setWriteInReview(false);
-    expect(JSON.parse(storage.data.get(SETTINGS_STORAGE_KEY) ?? '{}').state).toEqual({ writeInReview: false, speechSpeed: 'normal' });
+    expect(JSON.parse(storage.data.get(SETTINGS_STORAGE_KEY) ?? '{}').state).toEqual({
+      writeInReview: false,
+      speechSpeed: 'normal',
+      hapticsEnabled: true,
+      soundEnabled: true,
+    });
     expect(createSettingsStore(storage).getState().writeInReview).toBe(false);
   });
 
@@ -30,6 +35,15 @@ describe('settingsStore', () => {
     store.getState().setSpeechSpeed('slow');
     expect(createSettingsStore(storage).getState().speechSpeed).toBe('slow');
     expect(SPEECH_RATES.slow).toBeLessThan(SPEECH_RATES.normal);
+  });
+
+  it('vibração e efeitos sonoros vêm ligados e as escolhas ficam salvas', () => {
+    const storage = memory();
+    const store = createSettingsStore(storage);
+    expect(store.getState()).toMatchObject({ hapticsEnabled: true, soundEnabled: true });
+    store.getState().setHapticsEnabled(false);
+    store.getState().setSoundEnabled(false);
+    expect(createSettingsStore(storage).getState()).toMatchObject({ hapticsEnabled: false, soundEnabled: false });
   });
 
   it('zerar o progresso ou importar um backup não mexe nas preferências', () => {

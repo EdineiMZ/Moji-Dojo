@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import { BackLink, AppText, Screen } from '@/components';
 import { BackupCard } from '@/features/backup/BackupCard';
 import { AboutCard } from '@/features/progress/AboutCard';
+import { FeedbackSettingsCard } from '@/features/progress/FeedbackSettingsCard';
 import { ResetCard } from '@/features/progress/ResetCard';
 import { ReviewSettingsCard } from '@/features/review/ReviewSettingsCard';
 import { VoiceStatusCard } from '@/features/speech/VoiceStatusCard';
@@ -20,6 +21,7 @@ export default function SettingsScreen() {
       </View>
       <VoiceStatusCard />
       <ReviewSettingsCard />
+      <FeedbackSettingsCard />
       <BackupCard />
       <ResetCard />
       <AboutCard />

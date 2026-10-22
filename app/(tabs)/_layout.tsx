@@ -1,5 +1,6 @@
 import { Tabs } from 'expo-router';
 import { Text, type ColorValue } from 'react-native';
+import { hapticLight } from '@/lib/haptics';
 import { fonts, useTheme } from '@/theme';
 
 /** Ícone da aba: um caractere japonês, combinando com o tema do app. */
@@ -19,6 +20,7 @@ export default function TabsLayout() {
   const { colors } = useTheme();
   return (
     <Tabs
+      screenListeners={{ tabPress: () => hapticLight() }}
       screenOptions={{
         headerShown: false,
         animation: 'fade',

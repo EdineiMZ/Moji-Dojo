@@ -9,6 +9,7 @@ import { NO_CELEBRATION, TestStep, type Celebration } from '@/features/lessons/T
 import { findLesson, lessonHasWriting, type NextLesson } from '@/features/lessons/trail';
 import { WriteStep } from '@/features/lessons/WriteStep';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
+import { useConfirmExit } from '@/hooks/useConfirmExit';
 import { spacing } from '@/theme';
 
 export default function LessonScreen() {
@@ -44,9 +45,15 @@ function LessonFlow({ lesson: { script, index, lesson }, skip }: LessonFlowProps
   const [step, setStep] = useState<LessonStep>(testOnly ? 'test' : 'know');
   const [pos, setPos] = useState(0);
   const [drawing, setDrawing] = useState(false);
+  const [testActive, setTestActive] = useState(false);
   const [celebration, setCelebration] = useState<Celebration>(NO_CELEBRATION);
 
   const goBack = () => (router.canGoBack() ? router.back() : router.replace('/'));
+  useConfirmExit(
+    testActive,
+    'Sair da lição?',
+    'Você ainda não terminou o teste. As respostas dadas ficam salvas, mas a lição só conta depois de passar no teste.',
+  );
 
   return (
     <View style={styles.root}>
@@ -90,6 +97,7 @@ function LessonFlow({ lesson: { script, index, lesson }, skip }: LessonFlowProps
               onNext={(nextId) => router.replace({ pathname: '/lesson/[id]', params: { id: nextId } })}
               onExit={goBack}
               onCelebrate={setCelebration}
+            onActiveChange={setTestActive}
             />
           ) : null}
         </SwapView>

@@ -51,6 +51,7 @@ export function SegmentedControl<T extends string>({ options, value, onChange }:
               accessibilityState={{ selected }}
               onPress={() => onChange(opt.value)}
               scaleTo={0.97}
+              haptic
               style={styles.segment}
             >
               <AppText

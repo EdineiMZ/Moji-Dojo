@@ -4,6 +4,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { BackLink, AppText, Confetti, PetalRain, Screen } from '@/components';
 import { ReviewSession, type ReviewCelebration } from '@/features/review/ReviewSession';
 import { reviewTitle } from '@/features/review/session';
+import { useConfirmExit } from '@/hooks/useConfirmExit';
 import { spacing } from '@/theme';
 
 export default function ReviewScreen() {
@@ -11,9 +12,15 @@ export default function ReviewScreen() {
   const { extra } = useLocalSearchParams<{ extra?: string }>();
   const isExtra = extra === '1';
   const [drawing, setDrawing] = useState(false);
+  const [active, setActive] = useState(false);
   const [celebration, setCelebration] = useState<ReviewCelebration>({ petals: false, confetti: false });
 
   const goBack = () => (router.canGoBack() ? router.back() : router.replace('/'));
+  useConfirmExit(
+    active,
+    'Sair da revisão?',
+    'Suas respostas até aqui ficam salvas, mas você vai encerrar esta revisão.',
+  );
 
   return (
     <View style={styles.root}>
@@ -32,6 +39,7 @@ export default function ReviewScreen() {
           onExit={goBack}
           onCelebrate={setCelebration}
           onDrawingChange={setDrawing}
+          onActiveChange={setActive}
         />
       </Screen>
       {/* Fora da rolagem, para cobrir a tela inteira. */}

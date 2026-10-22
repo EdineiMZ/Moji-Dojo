@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, Mascot } from '@/components';
 import { findItem } from '@/features/catalog';
@@ -27,6 +27,8 @@ interface ReviewSessionProps {
   onCelebrate: (celebration: ReviewCelebration) => void;
   /** Avisa quando o dedo começa/termina um traço (perguntas de desenho), para travar a rolagem. */
   onDrawingChange?: (drawing: boolean) => void;
+  /** Avisa se há uma revisão em andamento (para a tela pedir confirmação ao sair). */
+  onActiveChange?: (active: boolean) => void;
 }
 
 interface Outcome extends QuizResult {
@@ -35,7 +37,7 @@ interface Outcome extends QuizResult {
 }
 
 /** Revisão espaçada: o quiz com os caracteres vencidos (ou os mais fracos) e a tela de resultado. */
-export function ReviewSession({ extra, onExit, onCelebrate, onDrawingChange }: ReviewSessionProps) {
+export function ReviewSession({ extra, onExit, onCelebrate, onDrawingChange, onActiveChange }: ReviewSessionProps) {
   const [attempt, setAttempt] = useState(0);
   const [outcome, setOutcome] = useState<Outcome | null>(null);
 
@@ -54,7 +56,16 @@ export function ReviewSession({ extra, onExit, onCelebrate, onDrawingChange }: R
   };
 
   if (!outcome) {
-    return <ReviewRun key={attempt} extra={extra} onExit={onExit} onDone={finish} onDrawingChange={onDrawingChange} />;
+    return (
+      <ReviewRun
+        key={attempt}
+        extra={extra}
+        onExit={onExit}
+        onDone={finish}
+        onDrawingChange={onDrawingChange}
+        onActiveChange={onActiveChange}
+      />
+    );
   }
 
   const pct = outcome.total ? Math.round((outcome.first / outcome.total) * 100) : 0;
@@ -84,9 +95,10 @@ interface ReviewRunProps {
   onExit: () => void;
   onDone: (result: QuizResult) => void;
   onDrawingChange?: (drawing: boolean) => void;
+  onActiveChange?: (active: boolean) => void;
 }
 
-function ReviewRun({ extra, onExit, onDone, onDrawingChange }: ReviewRunProps) {
+function ReviewRun({ extra, onExit, onDone, onDrawingChange, onActiveChange }: ReviewRunProps) {
   const recordReviewAnswer = useProgressStore((s) => s.recordReviewAnswer);
   // Os caracteres e o sorteio dos tipos de pergunta são feitos uma vez, ao abrir:
   // responder (ou mudar o ajuste) não altera a sessão em andamento.
@@ -99,7 +111,14 @@ function ReviewRun({ extra, onExit, onDone, onDrawingChange }: ReviewRunProps) {
     return buildReviewQuestions(chars, Math.random, { write: writeEnabled });
   });
 
-  if (questions.length === 0) {
+  const hasQuestions = questions.length > 0;
+  useEffect(() => {
+    if (!hasQuestions) return undefined;
+    onActiveChange?.(true);
+    return () => onActiveChange?.(false);
+  }, [hasQuestions, onActiveChange]);
+
+  if (!hasQuestions) {
     return (
       <Card enterIndex={0} style={styles.empty}>
         <Mascot mood="happy" size={120} />

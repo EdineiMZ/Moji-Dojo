@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
-import { AppText, Bold, Button, Card, PressableScale } from '@/components';
+import { AppText, Bold, Button, Card, PressableScale, useScrollIntoView } from '@/components';
 import { TYPING_CHALLENGES } from '@/data/keyboard';
 import { hapticError, hapticSuccess } from '@/lib/haptics';
 import { useProgressStore } from '@/store';
@@ -13,6 +13,8 @@ import { checkTyping, type TypingCheck } from './flick';
  */
 export function ChallengeView() {
   const { colors } = useTheme();
+  const scrollIntoView = useScrollIntoView();
+  const inputRef = useRef<TextInput>(null);
   const done = useProgressStore((s) => s.challenges);
   const completeChallenge = useProgressStore((s) => s.completeChallenge);
 
@@ -70,6 +72,8 @@ export function ChallengeView() {
       ) : null}
 
       <TextInput
+        ref={inputRef}
+        onFocus={() => scrollIntoView(inputRef.current)}
         value={text}
         onChangeText={(t) => {
           setText(t);

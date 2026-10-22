@@ -5,6 +5,7 @@ import { useSharedValue } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { AppText } from '@/components';
 import type { FlickKey } from '@/data/types';
+import { hapticLight } from '@/lib/haptics';
 import { fonts, radii, useTheme } from '@/theme';
 import { charFor, MOD_KEY, resolveDirection, type FlickDirection } from './flick';
 
@@ -36,6 +37,7 @@ export function FlickKeyButton({ keyData, hinted, size, onInput, onMod }: FlickK
 
   const finish = (d: FlickDirection) => {
     setDirection(null);
+    hapticLight();
     if (isMod) onMod();
     else onInput(charFor(keyData, d));
   };

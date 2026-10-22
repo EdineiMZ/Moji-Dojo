@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
-import { AppText, Bold, Button, Card, Mascot } from '@/components';
+import { AppText, Bold, Button, Card, Mascot, useScrollIntoView } from '@/components';
 import type { ProgressSnapshot } from '@/features/progress/types';
 import { useProgressStore } from '@/store';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
@@ -33,6 +33,8 @@ export function BackupCard() {
   const days = useProgressStore((s) => s.days);
   const current = useMemo(() => summarizeProgress({ srs, lessons, stats, days }), [srs, lessons, stats, days]);
 
+  const scrollIntoView = useScrollIntoView();
+  const inputRef = useRef<TextInput>(null);
   const [stage, setStage] = useState<Stage>({ kind: 'input' });
   const [text, setText] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -64,6 +66,8 @@ export function BackupCard() {
             da página) e cole o código aqui. Ele começa com NDJ1:
           </AppText>
           <TextInput
+            ref={inputRef}
+            onFocus={() => scrollIntoView(inputRef.current)}
             value={text}
             onChangeText={(t) => {
               setText(t);

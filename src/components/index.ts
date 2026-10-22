@@ -16,3 +16,4 @@ export { PressableScale } from './PressableScale';
 export { SwapView } from './SwapView';
 export { BackLink } from './BackLink';
 export { ReduceMotion } from './motion';
+export { useScrollIntoView } from './ScrollContext';

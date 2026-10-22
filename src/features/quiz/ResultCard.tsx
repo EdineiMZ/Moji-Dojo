@@ -17,11 +17,24 @@ interface ResultCardProps {
   /** Verde quando "passou"; senão amarelo (60% ou mais) ou vermelho. */
   passed: boolean;
   mood: MascotMood;
+  /** Frase antes da lista de erros. */
+  wrongLabel?: string;
   children?: ReactNode;
 }
 
 /** Resultado de um quiz: nota, o que errou e o Mochi reagindo. Os botões vêm como `children`. */
-export function ResultCard({ label, heading, pct, firstTry, total, wrong, passed, mood, children }: ResultCardProps) {
+export function ResultCard({
+  label,
+  heading,
+  pct,
+  firstTry,
+  total,
+  wrong,
+  passed,
+  mood,
+  wrongLabel = 'Você errou:',
+  children,
+}: ResultCardProps) {
   const color = passed ? 'ok' : pct >= 60 ? 'warn' : 'bad';
   return (
     <Card enterIndex={0} style={styles.card}>
@@ -42,8 +55,7 @@ export function ResultCard({ label, heading, pct, firstTry, total, wrong, passed
       </View>
       {wrong.length ? (
         <AppText color="muted" center>
-          Você errou:{' '}
-          {wrong.map((c) => `${c} ${getItem(c).label}`).join(' · ')}
+          {wrongLabel} {wrong.map((c) => `${c} ${getItem(c).label}`).join(' · ')}
         </AppText>
       ) : null}
       {children}

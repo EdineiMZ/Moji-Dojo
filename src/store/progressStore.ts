@@ -37,7 +37,7 @@ export interface ProgressExtras {
 
 export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions;
 
-export const PROGRESS_STORAGE_KEY = 'nihongo-dojo-progress';
+export const PROGRESS_STORAGE_KEY = 'moji-dojo-progress';
 
 /**
  * Cria o store de progresso. O armazenamento é injetado: o app usa o SQLite

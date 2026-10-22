@@ -181,9 +181,9 @@ export function parseBackup(code: string): BackupParseResult {
 }
 
 export const BACKUP_ERROR_MESSAGES: Readonly<Record<BackupError, string>> = {
-  format: 'Esse texto não parece um código de backup do Nihongo Dojo. Ele deve começar com NDJ1:.',
+  format: 'Esse texto não parece um código de backup do Moji Dojo. Ele deve começar com NDJ1:.',
   encoding: 'O código parece estar cortado ou alterado. Copie de novo, inteiro, e cole aqui.',
   json: 'O código foi lido, mas o conteúdo está corrompido.',
-  data: 'O código foi lido, mas não tem a forma de um backup do Nihongo Dojo.',
+  data: 'O código foi lido, mas não tem a forma de um backup do Moji Dojo.',
   empty: 'Esse backup não tem nenhum progresso salvo, então não há nada para importar.',
 };

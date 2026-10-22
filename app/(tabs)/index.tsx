@@ -23,10 +23,10 @@ export default function HomeScreen() {
     <Screen>
       <View style={styles.header}>
         <View style={styles.flex}>
+          <AppText variant="headline">Moji Dojo</AppText>
           <AppText variant="caption" color="muted">
-            こんにちは
+            もじどうじょう
           </AppText>
-          <AppText variant="headline">Nihongo Dojo</AppText>
         </View>
         <Mascot mood={summary.dueCount ? 'neutral' : 'happy'} size={96} />
         <Pressable

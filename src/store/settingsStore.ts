@@ -19,7 +19,7 @@ export interface SettingsActions {
 
 export type SettingsState = SettingsData & SettingsActions;
 
-export const SETTINGS_STORAGE_KEY = 'nihongo-dojo-settings';
+export const SETTINGS_STORAGE_KEY = 'moji-dojo-settings';
 
 export const DEFAULT_SETTINGS: SettingsData = { writeInReview: true, speechSpeed: 'normal' };
 

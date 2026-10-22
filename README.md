@@ -1,8 +1,8 @@
-# Nihongo Dojo 🌸
+# Moji Dojo 🌸
 
 App pessoal de estudo de japonês (hiragana, katakana e kanji N5), feito com React Native e Expo, só para Android por enquanto. Visual kawaii, com um mascote gatinho, o **Mochi**, que reage aos acertos e erros.
 
-O protótipo web `Nihongo Dojo.html` (na raiz do repositório) é a especificação: todo o conteúdo em japonês vem dele, nada foi inventado.
+O protótipo web `Nihongo Dojo.html` (na raiz do repositório; é o nome antigo do projeto, e o arquivo foi mantido como está) é a especificação: todo o conteúdo em japonês vem dele, nada foi inventado.
 
 ## O que já funciona
 
@@ -146,6 +146,7 @@ Essa importação é uma função **temporária**, feita para migrar o progresso
 - **M PLUS Rounded 1c**, só os pesos Regular e Bold (importados pelos caminhos `.../400Regular` e `.../700Bold`; o índice do pacote carregaria todos os pesos).
 - **Voz:** `expo-speech` com a voz do Android. O app procura uma voz `ja-JP` e, se não achar, mostra como instalar.
 - O mascote e toda a arte são originais, feitos em SVG. Não há imagens de terceiros.
+- **Nome:** o projeto se chamava Nihongo Dojo e foi renomeado para **Moji Dojo** (o mascote continua Mochi). O `slug` é `moji-dojo`, o esquema de links é `mojidojo` e o `applicationId` do Android é `com.edi.mojidojo`, com o prefixo `com.edi` **provisório** (nenhuma build foi publicada, então dá para trocar sem consequências; confirme o prefixo antes da primeira build para a loja). As chaves de armazenamento antigas (`nihongo-dojo-*`) são migradas sozinhas para `moji-dojo-*` na primeira abertura, então o progresso já salvo é mantido.
 
 ## Licenças e créditos
 

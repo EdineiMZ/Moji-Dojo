@@ -1,5 +1,5 @@
 import type { Script } from '@/data/types';
-import { ALL_ITEMS, findItem, SCRIPT_ORDER } from '@/features/catalog';
+import { ALL_ITEMS, findItem } from '@/features/catalog';
 import { nextLessonOverall, type NextLesson } from '@/features/lessons/trail';
 import type { ProgressSnapshot } from '@/features/progress/types';
 import { dueChars, FIRM_BOX, upcomingReviews, type SrsState, type UpcomingReviews } from '@/features/review/srs';
@@ -65,5 +65,3 @@ export function scriptProgress(srs: SrsState): Record<Script, ScriptProgress> {
   }
   return result;
 }
-
-export { SCRIPT_ORDER };

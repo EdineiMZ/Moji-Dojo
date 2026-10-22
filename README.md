@@ -4,16 +4,39 @@ App pessoal de estudo de japonês (hiragana, katakana e kanji N5), feito com Rea
 
 O protótipo web `Nihongo Dojo.html` (na raiz do repositório) é a especificação: todo o conteúdo em japonês vem dele, nada foi inventado.
 
-## O que já funciona (Fase 1)
+## O que já funciona
 
+O app tem cinco abas (**Início, Trilha, Ouvir, Frases, Teclado**) e uma tela de **Ajustes**, aberta pela engrenagem na Início.
+
+**Estudo (Fase 1)**
 - **Início:** "Estudar hoje" com as revisões pendentes, a próxima lição, os dias seguidos e o aviso de quando vence a próxima revisão (e quantas).
 - **Trilha:** lições de hiragana, katakana e kanji em sequência, com bloqueio progressivo e o atalho "Já sei: fazer o teste".
-- **Lição:** passo **Conhecer** (caractere com os traços se desenhando, som, exemplo e dica de memorização) e passo **Testar** (quiz de alternativas nos dois sentidos; passa com 80% de acerto na primeira tentativa, 90% no "Já sei"; as erradas voltam). O passo **Escrever** é só um espaço reservado.
+- **Lição em três passos:**
+  - **Conhecer:** caractere com os traços se desenhando, som, exemplo e dica de memorização.
+  - **Escrever:** desenho com o dedo, em modo Decalcar (modelo cinza com números) ou Livre. A conferência mostra a nota e o que cada traço fez (certo, invertido, ordem, errado, faltou). A nota é só um guia e não bloqueia a lição.
+  - **Testar:** quiz de alternativas nos dois sentidos; passa com 80% de acerto na primeira tentativa (90% no "Já sei"); as erradas voltam.
 - **Revisão espaçada:** caixas de 1, 3, 7, 14, 30 e 60 dias, como no protótipo, mais a "Revisão extra" com os caracteres mais fracos.
-- **Ajustes:** importar o código de backup do protótipo (`NDJ1:`), status e teste da voz japonesa, zerar progresso.
-- **Animações:** cartões que entram com mola, botões que afundam ao tocar, barra de progresso animada, pétalas de sakura e confete no resultado. Tudo respeita a opção "reduzir movimento" do Android.
-- **Modo claro e escuro** (céu noturno de Tóquio), seguindo o sistema.
-- O progresso fica salvo no celular.
+- **Modo "write" nas revisões:** em cerca de 20% das perguntas dos caracteres que têm traços, o app mostra o significado e o som (nunca o símbolo) e você **desenha** o caractere. Nota de 70% ou mais conta como acerto (sobe de caixa); abaixo disso, volta à caixa 1. Pode ser desligado em Ajustes.
+
+**Ouvir**
+- **Sons:** guia de pronúncia para quem fala português, com exemplos em áudio.
+- **Ouvido:** toca um som e você escolhe o que foi dito (kana aprendidos, ou palavras dos "pares difíceis", que só mudam pela duração do som).
+- **Repetir:** frases de viagem para treinar a fala (shadowing), com ouvir normal/devagar e autoavaliação salva (Igual, Quase, Diferente).
+
+**Frases**
+- **Gramática:** 10 tópicos expansíveis, com tabela de verbos, esquema da frase e exemplos em áudio.
+- **Montar:** monte a frase em japonês tocando nos blocos (sobram blocos de propósito; algumas frases aceitam mais de uma ordem).
+- **Viagem:** frases por categoria, com áudio e "Palavra por palavra".
+
+**Teclado**
+- **Guia:** como funciona o teclado japonês de 12 teclas com deslize (flick).
+- **Simulador:** teclas de verdade que você segura e arrasta, com a cruz de opções e a dica de qual tecla e direção usar.
+- **Desafio:** digitar com o seu teclado real (Gboard em japonês); se errar, o app diz o que provavelmente faltou.
+
+**Ajustes**
+- Importar o código de backup do protótipo (`NDJ1:`), status e teste da voz japonesa, escrever nas revisões (liga/desliga), zerar progresso e créditos.
+
+**Geral:** animações (cartões com mola, botões que afundam, barra de progresso animada, pétalas de sakura e confete) que respeitam o "reduzir movimento" do Android; modo claro e escuro (céu noturno de Tóquio); progresso salvo no celular.
 
 ## Como rodar
 
@@ -55,9 +78,10 @@ Antes de commitar, vale rodar `npm run typecheck`, `npm test` e `npx expo-doctor
 ```
 app/                      Rotas do expo-router (uma tela por arquivo)
   _layout.tsx             Fontes, tema, gestos e a pilha de telas
-  (tabs)/                 Abas: index (Início), trail (Trilha), settings (Ajustes)
-  lesson/[id].tsx         Lição: Conhecer → Escrever (reservado) → Testar
+  (tabs)/                 Abas: index (Início), trail, listen, phrases, keyboard
+  lesson/[id].tsx         Lição: Conhecer → Escrever → Testar
   review.tsx              Revisão espaçada (e revisão extra)
+  settings.tsx            Ajustes (aberta pela engrenagem na Início)
 
 src/
   data/                   Dados extraídos do HTML (arquivos gerados, não edite à mão)
@@ -65,43 +89,60 @@ src/
   features/               Regras do app e as telas de cada assunto
     catalog/              Lista de caracteres estudáveis e busca
     lessons/              Trilha, bloqueio, passos da lição (Conhecer, Escrever, Testar)
-    quiz/                 Motor do quiz, tela do quiz, feedback e cartão de resultado
+    quiz/                 Motor do quiz (k2r, r2k, audio, write), telas e cartão de resultado
     review/               Repetição espaçada (SRS), sessão de revisão, formatação de datas
+    writing/              Conferência da escrita (geometria por traço) e o pad de desenho
+    strokes/              Caminhos SVG: comprimento, amostragem e extremidades
     streak/               Dias de estudo e dias seguidos
     home/                 Resumo "Estudar hoje" e cartões da tela Início
+    listen/               Sons, treino de ouvido e Repetir
+    phrases/              Gramática, Montar e Viagem
+    keyboard/             Guia, simulador de flick e desafios de digitação
+    speech/               Voz japonesa (detecção ja-JP, aviso, teste, velocidade)
     backup/               Validação e importação do código NDJ1
-    speech/               Voz japonesa (detecção ja-JP, aviso, teste)
-    strokes/              Comprimento dos caminhos SVG, usado na animação dos traços
     progress/             Tipos do progresso e cartões de Ajustes (zerar, sobre)
   components/             UI reutilizável (Card, Button, ProgressBar, Mascot, animações...)
-  store/                  Zustand + armazenamento persistente do progresso
+  store/                  Zustand + armazenamento persistente (progresso e preferências)
   theme/                  Cores (claro/escuro), fontes e espaçamentos
   hooks/, lib/            Utilitários pequenos (relógio da tela, vibração, plural)
 
-scripts/extract-data.mjs  Lê o HTML e gera os arquivos de src/data/
+scripts/                  extract-data.mjs (lê o HTML e gera src/data/) e o conversor de HTML
 ```
 
-A lógica das regras (SRS, trilha, quiz, backup, dias seguidos) é feita de **funções puras**, sem React, com o relógio e a aleatoriedade passados de fora. Por isso são testáveis com datas fixas e sorteios determinísticos. Os arquivos `*.test.ts` ficam ao lado do código que testam.
+A lógica das regras (SRS, trilha, quiz, escrita, montar, teclado, backup, dias seguidos) é feita de **funções puras**, sem React, com o relógio e a aleatoriedade passados de fora. Por isso são testáveis com datas fixas e sorteios determinísticos. Os arquivos `*.test.ts` ficam ao lado do código que testam.
 
 ## Dados do HTML
 
-Tudo em `src/data/` é **gerado** por `scripts/extract-data.mjs`. O script executa só os trechos de dados do próprio HTML num contexto isolado, então os ids de lição (`hira:L0`, `kanji:L3`...) e as listas de caracteres saem idênticos aos do protótipo. Isso é essencial para o backup `NDJ1:` funcionar.
+Tudo em `src/data/` é **gerado** por `scripts/extract-data.mjs`. O script executa só os trechos de dados do próprio HTML num contexto isolado, então os ids de lição (`hira:L0`, `kanji:L3`...) e as listas de caracteres saem idênticos aos do protótipo. Isso é essencial para o backup `NDJ1:` funcionar. Os textos que no HTML têm marcação (`<b>`, `<span lang="ja">`, a tabela de verbos) passam por um conversor que gera texto estruturado, para o app não interpretar HTML.
 
-Se alterar o HTML, rode `npm run extract-data` e depois `npm test` (um teste confere a consistência dos dados: caracteres únicos, lições que só citam caracteres existentes, traços para todo kanji...).
+Se alterar o HTML, rode `npm run extract-data` e depois `npm test` (testes conferem a consistência dos dados: caracteres únicos, lições que só citam caracteres existentes, traços para todo kanji, textos sem marcas de HTML, palavras do simulador digitáveis...).
 
-Extraídos agora: kana, kanji, exemplos, dicas de memorização, lições e traços. **Ainda não extraídos** (ficam para a fase que precisar deles): as explicações de gramática, a seção Sons, as regras e dicas de pares parecidos, os pares difíceis e as frases de viagem. Esses textos têm HTML dentro das strings (`<b>`, `<span>`), que deve virar texto estruturado.
+Extraídos: kana, kanji, exemplos, dicas de memorização, lições, traços, gramática, exercícios do Montar, sons, pares difíceis, frases de viagem e dados do teclado. **Não extraídos** (abas do protótipo que não entraram no app): as regras e dicas de pares parecidos da aba Dicas.
+
+O script avisa de 3 ordens alternativas do protótipo, no Montar, que usam um bloco que não é oferecido (por exemplo `へ` em "Vou para o Japão") e por isso nunca poderiam ser montadas. Os dados ficam fiéis ao HTML; não inventamos blocos.
+
+## Como a escrita é conferida
+
+O protótipo compara imagens (canvas). Medimos que isso não separa caracteres parecidos: um 水 perfeito contra o modelo de 日 dava 81%, e pares como ぬ/め ou は/ほ davam mais de 90%. Por isso o app compara **por geometria, traço a traço**:
+
+1. alinha o desenho ao modelo em posição e escala (escrever menor ou fora do centro não prejudica);
+2. reamostra cada traço em 24 pontos;
+3. casa cada traço do modelo com o desenho mais parecido (algoritmo húngaro), sem depender da ordem;
+4. a nota é a média das semelhanças, dividida pelo maior número de traços (modelo ou desenho), então faltar ou sobrar traço custa nota.
+
+Só a forma decide o resultado; direção e ordem aparecem como feedback. Os limites ficam em `src/features/writing/score.ts` (`MAX_STROKE_DISTANCE`, `OK_STROKE_DISTANCE`, `WRITE_PASS_SCORE`) e foram calibrados com erros de mão **simulados**: ajuste-os com o seu desenho real se a nota parecer exigente ou frouxa demais. Só 245 itens têm traços (143 kana de um símbolo e 102 kanji); as 84 combinações e sons estrangeiros (きゃ, ファ…) não têm, e seguem só com perguntas de alternativas.
 
 ## Backup do protótipo
 
-O código de backup do protótipo tem o formato `NDJ1:` + base64 de um JSON em UTF-8. Em **Ajustes → Importar backup**, o código é validado, o app mostra um resumo (lições, revisões, caracteres e dias) e só substitui o progresso depois da confirmação. São importados `srs`, `lessons`, `stats` e `days`; a melhor sequência de acertos (`best`) e as notas de desenho não entram. Itens que não existem mais neste app são ignorados.
+O código de backup do protótipo tem o formato `NDJ1:` + base64 de um JSON em UTF-8. Em **Ajustes → Importar backup**, o código é validado, o app mostra um resumo (lições, revisões, caracteres e dias) e só substitui o progresso depois da confirmação. São importados `srs`, `lessons`, `stats` e `days`; a melhor sequência de acertos (`best`), as notas de desenho e os demais campos do protótipo não entram. Itens que não existem mais neste app são ignorados.
 
-Ainda **não há exportação** de backup neste app.
+Essa importação é uma função **temporária**, feita para migrar o progresso do protótipo. Ainda não há exportação de backup.
 
 ## Decisões técnicas
 
 - **Expo SDK 57**, TypeScript `strict` e `expo-router`.
-- **Zustand + `expo-sqlite/kv-store`** para o progresso. O MMKV foi descartado por exigir build nativo (não roda no Expo Go); um SQLite completo seria exagero para um JSON pequeno. A API síncrona do `kv-store` faz o progresso já estar carregado na primeira tela.
-- **Reanimated + SVG** para as animações; os traços são desenhados com `strokeDashoffset`.
+- **Zustand + `expo-sqlite/kv-store`** para o progresso e as preferências, em duas stores separadas (zerar ou importar o progresso não mexe nas preferências). O MMKV foi descartado por exigir build nativo (não roda no Expo Go); um SQLite completo seria exagero para um JSON pequeno. A API síncrona do `kv-store` faz os dados já estarem carregados na primeira tela.
+- **Reanimated + gesture-handler + SVG** para animações e desenho; os traços são desenhados com `strokeDashoffset` e o traço ao vivo do pad é montado na thread de UI. Não há Skia nem outra dependência nativa.
 - **M PLUS Rounded 1c**, só os pesos Regular e Bold (importados pelos caminhos `.../400Regular` e `.../700Bold`; o índice do pacote carregaria todos os pesos).
 - **Voz:** `expo-speech` com a voz do Android. O app procura uma voz `ja-JP` e, se não achar, mostra como instalar.
 - O mascote e toda a arte são originais, feitos em SVG. Não há imagens de terceiros.
@@ -111,24 +152,21 @@ Ainda **não há exportação** de backup neste app.
 - **Ordem dos traços:** [KanjiVG](https://kanjivg.tagaini.net), de Ulrich Apel, licença **CC BY-SA 3.0**. O crédito está em `src/data/strokes/LICENSE.md` e na tela Ajustes. Por ser CC BY-SA, o arquivo de traços (e obras derivadas dele) deve manter o crédito e a mesma licença.
 - **Fonte:** M PLUS Rounded 1c (SIL Open Font License).
 
-## O que fica para as próximas fases
-
-**Fase 2 (do pedido original):**
-- **Escrever:** desenho livre com o dedo por cima do modelo, com conferência de ordem e direção dos traços (hoje é só um espaço reservado dentro da lição).
-- Teclado (digitar romaji), frases (gramática e viagem) e as abas de ouvir (sons, treino de ouvido e repetição).
-- As outras abas do protótipo: tabela de caracteres, treino livre e dicas de pares parecidos.
+## O que fica para depois
 
 **Polimento final (pedidos já combinados):**
 - Tela de carregamento animada com o Mochi.
 - Painel inicial com métricas: sequência de dias e evolução ao longo do tempo. A evolução provavelmente exige guardar um histórico novo, porque hoje o app só guarda a lista de dias e o estado atual.
 
 **Ideias em aberto:**
+- As abas do protótipo que não entraram: tabela de caracteres, treino livre e dicas de pares parecidos.
 - Exportar o backup do próprio app.
 - Dicas de memorização para os kana com dakuten (o HTML não tem).
 
 ## Problemas conhecidos
 
+- **Verificado por testes e empacotamento, não no aparelho:** o gesto de desenho (e se a rolagem trava mesmo enquanto se desenha), a "sensação" do corte de 70% do write, o teclado de flick, a vibração e a voz dependem do aparelho. Se algo se comportar diferente no seu Android, anote o sintoma.
 - O `npm install` mostra dezenas de avisos de vulnerabilidade (`npm audit`). Vêm de dependências internas do Expo e do React Native, não do código do app. **Não rode `npm audit fix --force`**: ele costuma quebrar as versões compatíveis com o SDK.
-- A animação dos traços, a vibração e a voz foram verificadas por testes e pelo empacotamento, mas dependem do aparelho. Se algo se comportar diferente no seu Android, anote o sintoma.
 - O app carrega só as fontes M PLUS Regular e Bold, mas o pacote final inclui uma terceira fonte, a Material Symbols (cerca de 1 MB), que vem de dentro do `expo-router` (`expo-router → expo-symbols`). Ela não é usada pelo código do app e não dá para removê-la sem alterar o pacote.
 - O ajuste "reduzir movimento" do Android é lido ao abrir o app: depois de mudá-lo, reabra o Expo Go.
+- No Simulador de teclado, o dia de estudo é marcado ao completar uma palavra (o protótipo marcava a cada tecla).

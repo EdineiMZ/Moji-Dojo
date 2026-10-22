@@ -53,10 +53,13 @@ Esforço: **P** = dias, **M** = 1 a 2 semanas, **G** = várias semanas.
 
 Objetivo: saber o que as palavras *significam* e reconhecê-las ao ouvir e ler.
 
-- [ ] **Decks de vocabulário N5** (cerca de 600 a 800 palavras), organizados por tema (comida, família, tempo, lugares, verbos do dia a dia...) e por frequência de uso. *(G)*
-- [ ] **Cartões em várias direções:** japonês → significado, significado → japonês, leitura, e ouvir → significado. Cada direção revisada separadamente. *(M)*
-- [ ] **Palavra ligada ao kanji:** ao estudar um kanji, mostrar as palavras que o usam; ao aprender uma palavra, destacar os kanji que a formam. *(M)*
-- [ ] **Cada palavra com:** leitura, significado em português, classe (substantivo, verbo, adjetivo), uma frase de exemplo com tradução e áudio. *(M)*
+- [~] **Decks de vocabulário N5** (cerca de 600 a 800 palavras), organizados por tema (comida, família, tempo, lugares, verbos do dia a dia...) e por frequência de uso. *(G)*
+  - Feito (1.2.0): a estrutura toda e 179 palavras que vêm da especificação. Falta a ampliação para centenas de palavras, **parada à espera de decisão sobre fonte e licença** (a lista N5 aberta não teve a licença confirmada; o JMdict é CC BY-SA 4.0 com crédito obrigatório).
+- [x] **Cartões em várias direções:** japonês → significado, significado → japonês, leitura, e ouvir → significado. Cada direção revisada separadamente. *(M)*
+  - Feito: japonês → significado, significado → japonês e ouvir → palavra escrita (só palavras de kana). A direção "leitura" (kanji → como se lê) ainda não existe.
+- [x] **Palavra ligada ao kanji:** ao estudar um kanji, mostrar as palavras que o usam; ao aprender uma palavra, destacar os kanji que a formam. *(M)*
+- [~] **Cada palavra com:** leitura, significado em português, classe (substantivo, verbo, adjetivo), uma frase de exemplo com tradução e áudio. *(M)*
+  - Feito: leitura, significado, romaji (quando a fonte traz), kanji da palavra e áudio. Falta: classe gramatical e frase de exemplo, que dependem de uma fonte nova.
 - [ ] **Palavras mais úteis primeiro:** ordenar por frequência e por situações reais (restaurante, transporte, compras, apresentação). *(P)*
 - [ ] **Mnemônicos e notas:** campo para o aluno escrever a própria dica de memória em cada palavra. *(P)*
 - [ ] **Expandir kanji:** completar o N5 e avançar para o N4, com as mesmas lições de traços, leituras e exemplos. *(G)*

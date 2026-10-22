@@ -32,6 +32,7 @@ O app tem cinco abas (**Início, Trilha, Ouvir, Frases, Teclado**) e uma tela de
 - **Gramática:** 10 tópicos expansíveis, com tabela de verbos, esquema da frase e exemplos em áudio.
 - **Montar:** monte a frase em japonês tocando nos blocos (sobram blocos de propósito; algumas frases aceitam mais de uma ordem).
 - **Viagem:** frases por categoria, com áudio e "Palavra por palavra".
+- **Palavras (vocabulário):** 179 palavras que vêm da especificação, aprendidas 5 por vez, por assunto, com leitura, significado, kanji da palavra e som. Cada palavra vira cartões de revisão espaçada (japonês → significado, significado → japonês e, nas palavras só de kana, ouvir → palavra).
 
 **Teclado**
 - **Guia:** como funciona o teclado japonês de 12 teclas com deslize (flick).
@@ -104,6 +105,7 @@ app/                      Rotas do expo-router (uma tela por arquivo)
   settings.tsx            Ajustes (aberta pela engrenagem na Início)
 
 src/
+  content/                Vocabulário (montado a partir dos dados do HTML; fontes novas entram aqui)
   data/                   Dados extraídos do HTML (arquivos gerados, não edite à mão)
     strokes/              Traços do KanjiVG + LICENSE.md (CC BY-SA 3.0)
   features/               Regras do app e as telas de cada assunto
@@ -111,6 +113,7 @@ src/
     lessons/              Trilha, bloqueio, passos da lição (Conhecer, Escrever, Testar)
     quiz/                 Motor do quiz (k2r, r2k, audio, write), telas e cartão de resultado
     review/               Repetição espaçada (SRS), sessão de revisão, formatação de datas
+    vocab/                Cartões de vocabulário (SRS por palavra), perguntas e telas da sub-aba Palavras
     writing/              Conferência da escrita (geometria por traço) e o pad de desenho
     strokes/              Caminhos SVG: comprimento, amostragem e extremidades
     streak/               Dias de estudo e dias seguidos

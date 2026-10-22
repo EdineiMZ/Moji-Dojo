@@ -2,6 +2,17 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.2.0] - 2026-10-22
+
+Primeira parte da Fase 1 do [ROADMAP](ROADMAP.md): vocabulário.
+
+- **Palavras:** nova sub-aba em Frases. Aprenda 5 palavras por vez, por assunto (cartão com leitura, romaji, significado, kanji da palavra e som), pratique na hora e revise os cartões vencidos.
+- **Revisão espaçada por palavra:** cada palavra vira cartões (japonês → significado, significado → japonês e, nas palavras só de kana, ouvir → palavra), com as mesmas caixas dos caracteres e progresso guardado à parte.
+- **Vocabulário inicial:** 179 palavras que já vinham da especificação (exemplos de kana e kanji e palavras do simulador). Nenhuma palavra nova foi inventada; a ampliação para centenas de palavras depende de uma fonte aberta com licença conferida.
+- **Kanji:** o passo Conhecer mostra "também aparece em" com outras palavras que usam o kanji.
+- **Backup:** o código `MDJ1:` inclui o vocabulário; códigos antigos continuam valendo.
+- **Quiz:** o enunciado ajusta o tamanho do texto ao comprimento da palavra.
+
 ## [1.1.0] - 2026-10-22
 
 Fase 0 do [ROADMAP](ROADMAP.md): correções e base para crescer.

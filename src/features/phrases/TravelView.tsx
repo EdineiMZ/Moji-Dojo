@@ -7,7 +7,7 @@ import { PhraseCard } from './PhraseCard';
 
 const CATEGORY_OPTIONS = TRAVEL_CATEGORIES.map((c) => ({ value: c.category, label: c.category }));
 
-/** Frases prontas para a viagem, por categoria, com áudio e "Palavra por palavra". */
+/** Frases prontas para a viagem, por categoria, com áudio e “Palavra por palavra”. */
 export function TravelView() {
   const [category, setCategory] = useState(TRAVEL_CATEGORIES[0]?.category ?? '');
   const current = TRAVEL_CATEGORIES.find((c) => c.category === category) ?? TRAVEL_CATEGORIES[0];
@@ -15,7 +15,7 @@ export function TravelView() {
   return (
     <View style={styles.root}>
       <AppText color="muted">
-        Frases prontas para a viagem. Toque em "Palavra por palavra" para entender cada pedaço. Para treinar a fala, use a
+        Frases prontas para a viagem. Toque em “Palavra por palavra” para entender cada pedaço. Para treinar a fala, use a
         aba Ouvir, em Repetir.
       </AppText>
       <ChipRow options={CATEGORY_OPTIONS} value={category} onChange={setCategory} />

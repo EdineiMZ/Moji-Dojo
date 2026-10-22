@@ -23,7 +23,6 @@ export function CountUp({ value, suffix = '', ...textProps }: CountUpProps) {
       progress.value = withTiming(value, { duration: 700, easing: Easing.out(Easing.cubic) });
     } else {
       progress.value = value;
-      setShown(value);
     }
   }, [value, motion, progress]);
 
@@ -37,7 +36,7 @@ export function CountUp({ value, suffix = '', ...textProps }: CountUpProps) {
 
   return (
     <AppText {...textProps}>
-      {shown}
+      {motion ? shown : value}
       {suffix}
     </AppText>
   );

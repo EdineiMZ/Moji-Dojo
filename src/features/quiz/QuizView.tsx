@@ -96,6 +96,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
     const q = quiz.current;
     if (q?.direction === 'audio') speakJapanese(pronunciationText(q.item), SPEECH_RATES[speed]);
     // Só quando a pergunta muda (step): mudar a velocidade no meio não deve tocar de novo.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
   const cardMotion = useAnimatedStyle(() => ({
@@ -128,7 +129,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
 
     if (outcome.correct) {
       feedbackCorrect();
-      if (motion) pop.value = withSequence(withSpring(1.025, SPRING), withSpring(1, SPRING));
+      if (motion) pop.set(withSequence(withSpring(1.025, SPRING), withSpring(1, SPRING)));
       // No ouvido o usuário pode querer ouvir de novo antes de seguir: só avança no toque.
       if (!isAudio) {
         timer.current = setTimeout(() => proceed(outcome.state), isWrite ? WRITE_ADVANCE_MS : autoAdvanceMs(current.item));
@@ -136,11 +137,13 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
     } else {
       feedbackWrong();
       if (motion) {
-        shake.value = withSequence(
-          withTiming(-5, { duration: 80 }),
-          withTiming(5, { duration: 100 }),
-          withTiming(-3, { duration: 100 }),
-          withTiming(0, { duration: 80 }),
+        shake.set(
+          withSequence(
+            withTiming(-5, { duration: 80 }),
+            withTiming(5, { duration: 100 }),
+            withTiming(-3, { duration: 100 }),
+            withTiming(0, { duration: 80 }),
+          ),
         );
       }
     }

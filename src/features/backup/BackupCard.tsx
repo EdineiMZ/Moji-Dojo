@@ -62,7 +62,7 @@ export function BackupCard() {
       {stage.kind === 'input' ? (
         <>
           <AppText color="muted">
-            Traga o progresso do protótipo web: no protótipo, toque em "Copiar código de backup" (aba Aprender, no fim
+            Traga o progresso do protótipo web: no protótipo, toque em “Copiar código de backup” (aba Aprender, no fim
             da página) e cole o código aqui. Ele começa com NDJ1:
           </AppText>
           <TextInput

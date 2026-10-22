@@ -72,7 +72,7 @@ export function DrawingPad({
       const y = (e.y / size) * CANVAS_SIZE;
       lastX.value = x;
       lastY.value = y;
-      live.value = `M${x.toFixed(1)} ${y.toFixed(1)}`;
+      live.set(`M${x.toFixed(1)} ${y.toFixed(1)}`);
       scheduleOnRN(notify, true);
     })
     .onUpdate((e) => {
@@ -81,7 +81,7 @@ export function DrawingPad({
       if (Math.hypot(x - lastX.value, y - lastY.value) < MIN_POINT_STEP) return;
       lastX.value = x;
       lastY.value = y;
-      live.value = `${live.value} L${x.toFixed(1)} ${y.toFixed(1)}`;
+      live.set(`${live.get()} L${x.toFixed(1)} ${y.toFixed(1)}`);
     })
     .onFinalize(() => {
       if (live.value) scheduleOnRN(toStroke, live.value);

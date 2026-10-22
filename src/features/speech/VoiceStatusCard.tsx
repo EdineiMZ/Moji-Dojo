@@ -24,7 +24,7 @@ export function VoiceStatusCard() {
 
       {status === 'available' ? (
         <AppText>
-          <Bold>Pronta:</Bold> {voice?.name ?? 'voz japonesa'}. Toque em "Testar voz" para ouvir.
+          <Bold>Pronta:</Bold> {voice?.name ?? 'voz japonesa'}. Toque em “Testar voz” para ouvir.
         </AppText>
       ) : null}
 
@@ -43,7 +43,7 @@ export function VoiceStatusCard() {
             ))}
           </View>
           <AppText variant="caption" color="muted">
-            Os nomes dos menus mudam um pouco entre aparelhos. Depois de instalar, toque em "Verificar de novo".
+            Os nomes dos menus mudam um pouco entre aparelhos. Depois de instalar, toque em “Verificar de novo”.
           </AppText>
         </>
       ) : null}

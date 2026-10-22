@@ -36,7 +36,7 @@ export function VoiceWarning() {
         ))}
       </View>
       <AppText variant="caption" color="muted">
-        Os nomes dos menus mudam um pouco entre aparelhos. Depois de instalar, toque em "Verificar de novo".
+        Os nomes dos menus mudam um pouco entre aparelhos. Depois de instalar, toque em “Verificar de novo”.
       </AppText>
       <View style={styles.actions}>
         <Button label="Abrir ajustes de voz" onPress={() => void openVoiceSettings()} />

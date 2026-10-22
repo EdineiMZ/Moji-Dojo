@@ -88,7 +88,7 @@ export function GuideView({ onPractice }: GuideViewProps) {
         </AppText>
         <AppText variant="caption" color="muted">
           Prefere digitar com letras? Nas configurações do Gboard, em Idiomas → Japonês, dá para escolher o layout QWERTY: você
-          digita "ka" e sai か. Os nomes e posições podem mudar um pouco entre versões do teclado.
+          digita “ka” e sai か. Os nomes e posições podem mudar um pouco entre versões do teclado.
         </AppText>
         <Button label="Treinar no simulador" onPress={onPractice} />
       </Card>

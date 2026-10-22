@@ -117,7 +117,7 @@ export function EarView() {
   return (
     <Card enterIndex={0}>
       <AppText color="muted">
-        Você ouve e escolhe o que foi dito. Pode tocar em "Ouvir de novo" quantas vezes quiser.
+        Você ouve e escolhe o que foi dito. Pode tocar em “Ouvir de novo” quantas vezes quiser.
       </AppText>
       <SegmentedControl options={MODES} value={mode} onChange={setMode} />
       <AppText variant="caption" color="muted">

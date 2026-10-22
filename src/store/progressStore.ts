@@ -14,6 +14,8 @@ export interface ProgressActions {
   recordAnswer: (char: string, ok: boolean, now?: number) => void;
   /** Resposta numa revisão: além das estatísticas, reagenda o caractere. */
   recordReviewAnswer: (char: string, ok: boolean, firstTry: boolean, extra: boolean, now?: number) => void;
+  /** Marca um desafio de digitação (chave = a palavra-alvo) como feito e marca o dia. */
+  completeChallenge: (word: string, now?: number) => void;
   /** Guarda a autoavaliação de uma frase do Repetir (chave = a frase em japonês) e marca o dia. */
   rateShadow: (phrase: string, rating: ShadowRating, now?: number) => void;
   /** Marca o dia como estudado (ex.: ao conferir uma escrita). */
@@ -29,6 +31,8 @@ export interface ProgressActions {
  */
 export interface ProgressExtras {
   shadow: Readonly<Record<string, ShadowRating>>;
+  /** Desafios de digitação feitos, pela palavra-alvo. */
+  challenges: Readonly<Record<string, true>>;
 }
 
 export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions;
@@ -45,6 +49,7 @@ export function createProgressStore(storage: StateStorage) {
       (set) => ({
         ...emptyProgress(),
         shadow: {},
+        challenges: {},
 
         completeLesson: (lessonId, chars, skipped = false, now = Date.now()) =>
           set((s) => {
@@ -78,6 +83,9 @@ export function createProgressStore(storage: StateStorage) {
             };
           }),
 
+        completeChallenge: (word, now = Date.now()) =>
+          set((s) => ({ challenges: { ...s.challenges, [word]: true }, days: markDay(s.days, new Date(now)) })),
+
         rateShadow: (phrase, rating, now = Date.now()) =>
           set((s) => ({ shadow: { ...s.shadow, [phrase]: rating }, days: markDay(s.days, new Date(now)) })),
 
@@ -86,14 +94,14 @@ export function createProgressStore(storage: StateStorage) {
         replaceProgress: (snapshot) =>
           set({ srs: snapshot.srs, lessons: snapshot.lessons, stats: snapshot.stats, days: snapshot.days }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {} }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow }) => ({ srs, lessons, stats, days, shadow }),
+        partialize: ({ srs, lessons, stats, days, shadow, challenges }) => ({ srs, lessons, stats, days, shadow, challenges }),
       },
     ),
   );

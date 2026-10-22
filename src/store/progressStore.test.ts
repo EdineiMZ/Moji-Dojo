@@ -118,6 +118,23 @@ describe('rateShadow (Repetir)', () => {
   });
 });
 
+describe('completeChallenge (Teclado)', () => {
+  it('guarda o desafio feito, marca o dia e fica salvo; zerar apaga; importar backup não mexe', () => {
+    const storage = memoryStorage();
+    const store = createProgressStore(storage);
+    store.getState().completeChallenge('ねこ');
+    expect(store.getState().challenges).toEqual({ ねこ: true });
+    expect(store.getState().days).toEqual(['2026-10-22']);
+    expect(createProgressStore(storage).getState().challenges).toEqual({ ねこ: true });
+
+    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] });
+    expect(store.getState().challenges).toEqual({ ねこ: true });
+
+    store.getState().resetProgress();
+    expect(store.getState().challenges).toEqual({});
+  });
+});
+
 describe('markStudied', () => {
   it('marca o dia de hoje uma única vez e mantém o streak', () => {
     const store = createProgressStore(memoryStorage());
@@ -152,7 +169,7 @@ describe('persistência', () => {
     first.getState().recordAnswer('あ', true);
 
     const saved = JSON.parse(storage.data.get(PROGRESS_STORAGE_KEY) ?? '{}');
-    expect(Object.keys(saved.state).sort()).toEqual(['days', 'lessons', 'shadow', 'srs', 'stats']);
+    expect(Object.keys(saved.state).sort()).toEqual(['challenges', 'days', 'lessons', 'shadow', 'srs', 'stats']);
 
     const second = createProgressStore(storage);
     expect(second.persist.hasHydrated()).toBe(true);

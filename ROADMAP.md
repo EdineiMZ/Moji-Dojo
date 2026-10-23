@@ -117,8 +117,8 @@ Objetivo: entender o japonês falado e conseguir se fazer entender.
   - Feito: Ouvir → **Ditado**. Palavras (as que você já aprendeu, ou todas no começo) ou frases; a voz toca sozinha, com botão Devagar; digita com o teclado do app ou do celular; a conferência aceita kana ou kanji e mostra o que sobrou ou faltou; o sentido em português só aparece depois.
 - [x] **Compreensão de frases e diálogos:** ouvir e responder perguntas de sentido, com velocidade normal e lenta. *(M)*
   - Feito (frases): Ouvir → **Compreensão**. A frase toca sem texto e você escolhe o sentido entre quatro traduções; velocidade normal ou lenta pelo controle do topo. Depois: em **Diálogos**, o modo **Só ouvir** esconde o texto da fala do atendente (ela toca sozinha) e a pessoa escolhe a resposta; o texto aparece ao toque.
-- [~] **Áudio de melhor qualidade:** hoje a voz é a síntese do sistema. Avaliar áudio gravado por falantes nativos com licença livre, que também mostra o sotaque melhor. *(G)*
-  - Feito: Ajustes → Voz japonesa lista as vozes japonesas do aparelho (as de melhor qualidade primeiro, marcando as online) e deixa **escolher e testar**; a escolha vale em todo o app. A voz automática passa a preferir a de melhor qualidade. **Não feito:** áudio gravado por falantes nativos. As fontes abertas que existem (frases do Tatoeba com áudio, gravações do Lingua Libre no Wikimedia Commons, CC BY-SA) cobrem só parte do vocabulário, variam de qualidade e exigem checar a licença de cada gravação; fica para quando houver revisão de conteúdo.
+- [x] **Áudio de melhor qualidade:** hoje a voz é a síntese do sistema. Avaliar áudio gravado por falantes nativos com licença livre, que também mostra o sotaque melhor. *(G)*
+  - Feito: Ajustes → Voz japonesa lista as vozes japonesas do aparelho (as de melhor qualidade primeiro, marcando as online) e deixa **escolher e testar**; a escolha vale em todo o app. A voz automática passa a preferir a de melhor qualidade. Depois (1.9.0): **360 gravações de falantes nativos** do Lingua Libre (Wikimedia Commons; só CC0, CC BY e CC BY-SA, 9 falantes), cerca de metade do vocabulário, em mp3 mono pequeno (~3 MB). Tocam no lugar da voz do aparelho quando o texto é uma palavra gravada, também em velocidade lenta; opção em Ajustes → Sons e vibração; créditos em Ajustes → Sobre. As demais palavras e as frases seguem com a voz do aparelho. **Falta testar no aparelho.**
 - [x] **Tom das palavras (pitch accent):** indicar a queda de tom das palavras mais comuns, com exemplos de pares. *(M)*
   - Feito: dados do **Kanjium** (CC BY-SA 4.0) para 538 palavras do N5. O cartão da palavra mostra o gráfico do tom (barra alta e baixa por mora, mais a partícula depois). Ouvir → **Tom**: explicação, 12 pares que só o tom separa (はし, あめ...) e um quiz de onde o tom cai. O app não afirma que a voz do sistema marca o tom.
 - [x] **Gravar e comparar (shadowing):** gravar a própria voz e ouvir ao lado do modelo, com a forma de onda. É a evolução do "Repetir" atual, que só tem autoavaliação. *(M)*
@@ -130,17 +130,22 @@ Objetivo: entender o japonês falado e conseguir se fazer entender.
 
 Objetivo: ler textos reais e ganhar vocabulário em contexto.
 
-- [ ] **Textos graduados:** historinhas e diálogos curtos escritos para o nível (N5, depois N4), com áudio. *(G)*
-- [ ] **Toque na palavra:** mostra leitura, significado e classe a partir de um dicionário offline (seção 6). *(G)*
-- [ ] **Palavra desconhecida vira cartão** com um toque, já com a frase de onde veio. *(M)*
-- [ ] **Furigana opcional** e destaque das palavras já aprendidas, para o aluno enxergar o quanto já entende. *(M)*
-- [ ] **Leitura do dia a dia:** cardápios, placas, avisos e horários de trem, para treinar o que se encontra em viagem. *(M)*
+- [x] **Textos graduados:** historinhas e diálogos curtos escritos para o nível (N5, depois N4), com áudio. *(G)*
+  - Feito (1.9.0): Frases → **Leitura**, com 5 textos curtos (N5) escritos por IA só com palavras do vocabulário (um teste confere que todo texto é cortado pelo léxico do app), tradução por frase e áudio. **Escritos por IA, a revisar por um falante.** N4 e áudio gravado por texto ficam para depois.
+- [x] **Toque na palavra:** mostra leitura, significado e classe a partir de um dicionário offline (seção 6). *(G)*
+- [x] **Palavra desconhecida vira cartão** com um toque, já com a frase de onde veio. *(M)*
+- [x] **Furigana opcional** e destaque das palavras já aprendidas, para o aluno enxergar o quanto já entende. *(M)*
+- [x] **Leitura do dia a dia:** cardápios, placas, avisos e horários de trem, para treinar o que se encontra em viagem. *(M)*
+  - Feito (1.9.0): cardápio, aviso e horário de estação e horário de biblioteca, com o lugar onde se vê cada um (escritos por IA, a revisar). Faltam mais exemplos (placas, preços em lojas).
 - [ ] **Câmera para ler (opcional):** apontar para um texto e ver as leituras. Depende de OCR no aparelho e deve ser avaliado com cuidado. *(G)*
+  - Avaliado e **não feito**: exige OCR de japonês no aparelho (módulo nativo e modelo grande) e não há como testar sem um celular conectado. Fica para quando houver aparelho de teste.
 
 ### Fase 5b: fluidez de leitura de kana
 
-- [ ] **Treino cronometrado de kana:** ler e reconhecer rápido, o que separa "sei" de "leio sem pensar". *(P)*
-- [ ] **Katakana de palavras estrangeiras:** treinar com palavras de origem inglesa (コーヒー, ホテル) para ligar a escrita ao som. *(P)*
+- [x] **Treino cronometrado de kana:** ler e reconhecer rápido, o que separa "sei" de "leio sem pensar". *(P)*
+  - Feito (1.9.0): Teclado → **Velocidade**, 20 kana seguidos (os que você já estuda; se forem poucos, os básicos), com a média de tempo dos acertos e um recorde pessoal (só vale com mais de 80% de acertos).
+- [x] **Katakana de palavras estrangeiras:** treinar com palavras de origem inglesa (コーヒー, ホテル) para ligar a escrita ao som. *(P)*
+  - Feito (1.9.0): Frases → **Katakana**, com as palavras do vocabulário escritas só em katakana: escolher o romaji (as erradas são os tropeços típicos, シ/ツ, ソ/ン, ー e ッ) ou o significado.
 
 ### Fase 6: motor de aprendizado e plano diário
 

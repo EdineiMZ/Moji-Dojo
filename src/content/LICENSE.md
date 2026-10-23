@@ -97,6 +97,12 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
 - Foram convertidas para mp3 mono (22 kHz, 40 kbps), o que é uma adaptação: com CC BY-SA, o áudio do app segue a mesma licença.
 - Crédito em **Ajustes → Sobre**. Cobertura: cerca de metade das palavras do vocabulário; as outras usam a voz do aparelho.
 
+## Textos de leitura (Fase 5)
+
+- `src/content/readings.ts`: textos curtos e leituras do dia a dia **escritos por IA** para este app, só com palavras do
+  vocabulário (um teste confere). Não vêm de fonte externa. **Escritos por IA, a revisar por um falante de japonês**
+  (japonês e traduções).
+
 ## Antes de publicar
 
 1. **Confirmar a licença das listas do Tanos** (https://www.tanos.co.uk/jlpt/) e se ela permite o uso e a

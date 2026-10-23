@@ -2,6 +2,22 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.9.0] - 2026-10-23
+
+Vocabulário, kanji, gramática, áudio nativo, leitura e treinos de fluência. Tudo funciona no aparelho, sem servidor.
+
+- **Prévia da compra:** na loja do Mochi, o cartão do item mostra o Mochi vestido com ele e pede confirmação antes de gastar as pétalas.
+- **Desenho de caracteres mais gentil:** a nota mínima para acertar sobe com a prática. Num caractere novo basta 50%, e a régua sobe 5 pontos por caixa de revisão até os 70% de quem já domina. Errar derruba a caixa e a régua volta a ser mais branda.
+- **Vocabulário:** classe gramatical de 829 das 837 palavras (JMdict), ordenação por frequência de uso (Tatoeba) e estudo por situação de viagem.
+- **Kanji:** de 102 para 284 (N5 completo e N4), com leituras do KANJIDIC2, ordem dos traços do KanjiVG e 35 lições novas. Os significados em português dos kanji novos foram escritos para o app e precisam de revisão.
+- **Gramática:** tópicos novos de forma simples e de dar e receber (あげる, もらう, くれる), e mais exemplos de ながら e だけ.
+- **Limites por dia** de palavras novas e de respostas de revisão (Meu Mochi → Metas), macios: o app avisa e deixa continuar. O humor do Mochi agora reflete a constância (estudou hoje, sequência, dias sem estudar).
+- **Áudio de falantes nativos:** 360 gravações do Lingua Libre (Wikimedia Commons, CC0, CC BY e CC BY-SA) tocam no lugar da voz do aparelho nas palavras que as têm, inclusive em velocidade lenta. Opção em Ajustes → Sons e vibração; créditos em Ajustes → Sobre. Falta testar no aparelho.
+- **Leitura (Frases → Leitura):** 5 textos curtos e 3 leituras do dia a dia (cardápio, aviso e horário de estação, biblioteca), com toque na palavra (leitura, significado e classe), leitura sobre o kanji opcional, destaque do que você já estuda, tradução por frase, áudio e "Aprender esta palavra" (a frase vira nota da palavra). Textos escritos por IA, a revisar por um falante.
+- **Katakana (Frases → Katakana):** treino com as palavras do vocabulário escritas em katakana: escolher o romaji (alternativas erradas são os tropeços típicos, シ/ツ, ソ/ン, ー e ッ) ou o significado.
+- **Velocidade (Teclado → Velocidade):** 20 kana seguidos com a média de tempo dos acertos e recorde pessoal.
+- Leitura por câmera (OCR) foi avaliada e não foi feita: precisa de um aparelho de teste.
+
 ## [1.8.0] - 2026-10-23
 
 Mochi, pétalas e hábito: a parte do app que ajuda a voltar todo dia. Tudo funciona no aparelho, sem servidor.

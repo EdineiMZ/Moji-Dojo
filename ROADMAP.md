@@ -112,14 +112,15 @@ Objetivo: entender o japonês falado e conseguir se fazer entender.
 
 - [x] **Ditado:** ouvir uma palavra ou frase e digitar. Corrige em kana e mostra a diferença. *(M)*
   - Feito: Ouvir → **Ditado**. Palavras (as que você já aprendeu, ou todas no começo) ou frases; a voz toca sozinha, com botão Devagar; digita com o teclado do app ou do celular; a conferência aceita kana ou kanji e mostra o que sobrou ou faltou; o sentido em português só aparece depois.
-- [~] **Compreensão de frases e diálogos:** ouvir e responder perguntas de sentido, com velocidade normal e lenta. *(M)*
-  - Feito (frases): Ouvir → **Compreensão**. A frase toca sem texto e você escolhe o sentido entre quatro traduções; velocidade normal ou lenta pelo controle do topo. Falta: ouvir diálogos inteiros e responder perguntas sobre eles.
+- [x] **Compreensão de frases e diálogos:** ouvir e responder perguntas de sentido, com velocidade normal e lenta. *(M)*
+  - Feito (frases): Ouvir → **Compreensão**. A frase toca sem texto e você escolhe o sentido entre quatro traduções; velocidade normal ou lenta pelo controle do topo. Depois: em **Diálogos**, o modo **Só ouvir** esconde o texto da fala do atendente (ela toca sozinha) e a pessoa escolhe a resposta; o texto aparece ao toque.
 - [ ] **Áudio de melhor qualidade:** hoje a voz é a síntese do sistema. Avaliar áudio gravado por falantes nativos com licença livre, que também mostra o sotaque melhor. *(G)*
 - [x] **Tom das palavras (pitch accent):** indicar a queda de tom das palavras mais comuns, com exemplos de pares. *(M)*
   - Feito: dados do **Kanjium** (CC BY-SA 4.0) para 538 palavras do N5. O cartão da palavra mostra o gráfico do tom (barra alta e baixa por mora, mais a partícula depois). Ouvir → **Tom**: explicação, 12 pares que só o tom separa (はし, あめ...) e um quiz de onde o tom cai. O app não afirma que a voz do sistema marca o tom.
 - [x] **Gravar e comparar (shadowing):** gravar a própria voz e ouvir ao lado do modelo, com a forma de onda. É a evolução do "Repetir" atual, que só tem autoavaliação. *(M)*
   - Feito: em Ouvir → Repetir, cada frase tem **Gravar a minha voz e comparar** (`expo-audio`, pede a permissão do microfone). Mostra a onda do que você gravou (ritmo e pausas, não pronúncia) e botões para ouvir o modelo e a sua voz, um depois do outro. A gravação fica só no aparelho e não entra no backup. O modelo é a voz do sistema, que não gera arquivo, por isso a onda é só da sua voz. **Falta testar no aparelho.**
-- [ ] **Reconhecimento de fala em japonês:** pedir ao aluno para dizer a frase e conferir com o reconhecimento do Android. Exige módulo nativo, que o build local já suporta. Resultado aproximado, usado como guia e não como nota. *(G)*
+- [x] **Reconhecimento de fala em japonês:** pedir ao aluno para dizer a frase e conferir com o reconhecimento do Android. Exige módulo nativo, que o build local já suporta. Resultado aproximado, usado como guia e não como nota. *(G)*
+  - Feito (precisa ser testado no aparelho): Ouvir → **Falar**, com `expo-speech-recognition` (MIT, usa o reconhecimento do Google no Android). Mostra o sentido em português, você diz a frase e o app compara o que ouviu (até 5 alternativas) com as formas aceitas, com o mesmo critério tolerante da digitação. Só entram frases com a escrita em kanji, porque o reconhecedor devolve kanji. O resultado é guia, não nota, e a tela avisa que a voz vai ao serviço de reconhecimento do aparelho.
 
 ### Fase 5: leitura
 

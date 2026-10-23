@@ -64,6 +64,12 @@
 - **Pendência:** confirmar a cadeia de licenças (Kanjium → EDRDG → fontes originais do acento) antes de publicar. O
   CC BY-SA é o mesmo do KanjiVG, então a escolha da licença do projeto (item 4 de "Antes de publicar") já precisa dele.
 
+## Reconhecimento de fala (biblioteca)
+
+- **`expo-speech-recognition`** (MIT) usa o reconhecimento de fala do Android (serviço do Google). O app não guarda o áudio,
+  mas a voz é enviada a esse serviço. Antes de publicar: incluir isso numa política de privacidade e conferir as regras da
+  loja para o uso do microfone e do reconhecimento de fala.
+
 ## Vocabulário da especificação (HTML)
 
 A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado vêm do protótipo

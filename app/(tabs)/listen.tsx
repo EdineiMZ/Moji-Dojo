@@ -3,13 +3,14 @@ import { AppText, ChipRow, Screen, SwapView } from '@/components';
 import { ComprehensionView } from '@/features/listen/ComprehensionView';
 import { DictationView } from '@/features/listen/DictationView';
 import { TomView } from '@/features/pitch/TomView';
+import { SpeakView } from '@/features/speak/SpeakView';
 import { EarView } from '@/features/listen/EarView';
 import { RepeatView } from '@/features/listen/RepeatView';
 import { SoundsView } from '@/features/listen/SoundsView';
 import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 
-type ListenView = 'sounds' | 'ear' | 'dictation' | 'understand' | 'tone' | 'repeat';
+type ListenView = 'sounds' | 'ear' | 'dictation' | 'understand' | 'tone' | 'speak' | 'repeat';
 
 const VIEWS = [
   { value: 'sounds' as const, label: 'Sons' },
@@ -17,6 +18,7 @@ const VIEWS = [
   { value: 'dictation' as const, label: 'Ditado' },
   { value: 'understand' as const, label: 'Compreensão' },
   { value: 'tone' as const, label: 'Tom' },
+  { value: 'speak' as const, label: 'Falar' },
   { value: 'repeat' as const, label: 'Repetir' },
 ];
 
@@ -35,6 +37,7 @@ export default function ListenScreen() {
         {view === 'dictation' ? <DictationView /> : null}
         {view === 'understand' ? <ComprehensionView /> : null}
         {view === 'tone' ? <TomView /> : null}
+        {view === 'speak' ? <SpeakView /> : null}
         {view === 'repeat' ? <RepeatView /> : null}
       </SwapView>
     </Screen>

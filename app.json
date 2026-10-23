@@ -26,6 +26,14 @@
       "expo-font",
       "expo-sqlite",
       [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "O Moji Dojo usa o microfone para conferir a frase que você diz em japonês.",
+          "speechRecognitionPermission": "O Moji Dojo usa o reconhecimento de fala para conferir a frase que você diz em japonês.",
+          "androidSpeechServicePackages": ["com.google.android.googlequicksearchbox"]
+        }
+      ],
+      [
         "expo-audio",
         {
           "microphonePermission": "O Moji Dojo usa o microfone só para você gravar a sua voz e comparar com o modelo.",

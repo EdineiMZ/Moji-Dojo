@@ -501,4 +501,28 @@ export const TOPICS = [
       { id: 11610218, ja: '誰か来る。', furi: '[誰|だれ]か[来|く]る。', kana: 'だれ~か くる', pt: 'Alguém está vindo.' },
     ],
   },
+  {
+    id: 'g39',
+    title: 'Quem faz: a partícula が',
+    body: [
+      '**が** marca o **sujeito** quando ele é uma informação nova ou o foco da frase. Use **が** em três casos principais:',
+      {
+        table: [
+          ['#caso', '#exemplo'],
+          ['Palavra de pergunta é o sujeito', '__だれが__ きましたか (quem veio?)'],
+          ['Existir: あります, います', '__ねこが__ います (há um gato)'],
+          ['Dizer QUEM faz (e não outra pessoa)', '__わたしが__ いきます (EU vou)'],
+        ],
+      },
+      'Já **は** apresenta o assunto sobre o qual você vai falar ("quanto a mim..."). A resposta de uma pergunta com **だれが** também leva **が**: __だれが きましたか?__ → __たなかさんが きました__.',
+    ],
+    pattern: '[sujeito] が [verbo] · だれが / なにが ...?',
+    hint: 'が: sujeito novo, pergunta com だれ/なに e existência (あります, います).',
+    examples: [
+      { id: 7551823, ja: '誰が来ましたか？', furi: '[誰|だれ]が[来|き]ましたか？', kana: 'だれ~が きました~か', pt: 'Quem veio?' },
+      { id: 1507527, ja: '私が行きます。', furi: '[私|わたし]が[行|い]きます。', kana: 'わたし~が いきます', pt: 'Eu vou.' },
+      { id: 11003497, ja: '家の門の前に猫がいます。', furi: '[家|いえ]の[門|もん]の[前|まえ]に[猫|ねこ]がいます。', kana: 'いえ~の もん~の まえ~に ねこ~が います', pt: 'Há um gato na frente do portão.' },
+      { id: 3553343, ja: '他に何がありますか。', furi: '[他|ほか]に[何|なに]がありますか。', kana: 'ほか~に なに~が あります~か', pt: 'O que mais você tem?' },
+    ],
+  },
 ];

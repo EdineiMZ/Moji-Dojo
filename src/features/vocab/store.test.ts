@@ -25,7 +25,7 @@ describe('learnWords e recordVocabAnswer', () => {
     const { vocab, days } = store.getState();
     expect(Object.keys(vocab).sort()).toEqual([...cardKeysFor(kana), ...cardKeysFor(kanji)].sort());
     expect(Object.values(vocab).every((e) => e.b === 1 && e.due === NOW)).toBe(true);
-    expect(dueCards(vocab, NOW)).toHaveLength(5); // 3 da palavra de kana + 2 da de kanji
+    expect(dueCards(vocab, NOW)).toHaveLength(6); // 3 da palavra de kana + 3 da de kanji (com a leitura)
     expect(days).toHaveLength(1);
   });
 
@@ -128,7 +128,28 @@ describe('vocabulário no backup (MDJ1)', () => {
     store.getState().learnWords([kana.id], NOW);
     store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }); // sem extras = protótipo
     expect(Object.keys(store.getState().vocab)).toHaveLength(3);
-    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: {}, conj: {}, particles: {}, mastered: {}, myPhrases: {} });
+    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, mastered: {}, myPhrases: {} });
     expect(store.getState().vocab).toEqual({});
+  });
+});
+
+describe('cartões de leitura', () => {
+  const NOW_MS = 1_800_000_000_000;
+  const DAY = 86_400_000;
+  const withKanji = VOCAB.filter((w) => w.reading !== w.jp).slice(0, 9);
+
+  it('palavras aprendidas antes ganham o cartão de leitura aos poucos (6 por dia), uma vez só', () => {
+    const store = createProgressStore(memoryStorage());
+    // Simula quem aprendeu antes: só os cartões jm e mj.
+    const old = Object.fromEntries(withKanji.flatMap((w) => [[`${w.id}|jm`, { b: 2, due: NOW_MS }], [`${w.id}|mj`, { b: 2, due: NOW_MS }]]));
+    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: old, conj: {}, particles: {}, wordNotes: {}, mastered: {}, myPhrases: {} });
+    store.getState().unlockVocabReadings(NOW_MS);
+    const readings = Object.entries(store.getState().vocab).filter(([key]) => key.endsWith('|rd'));
+    expect(readings).toHaveLength(9);
+    const days = readings.map(([, e]) => Math.round((e.due - NOW_MS) / DAY)).sort((a, b) => a - b);
+    expect(days).toEqual([0, 0, 0, 0, 0, 0, 1, 1, 1]);
+    const before = store.getState().vocab;
+    store.getState().unlockVocabReadings(NOW_MS + 3 * DAY);
+    expect(store.getState().vocab).toBe(before);
   });
 });

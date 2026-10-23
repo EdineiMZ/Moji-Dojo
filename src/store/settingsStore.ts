@@ -28,6 +28,8 @@ export interface SettingsData {
   furiganaMode: ReadingAid;
   /** Teclado usado nos exercícios de digitar frases. */
   typingInput: TypingInput;
+  /** Voz japonesa escolhida (identificador do Android); null = a melhor disponível. */
+  voiceId: string | null;
 }
 
 export interface SettingsActions {
@@ -39,6 +41,7 @@ export interface SettingsActions {
   setShowKanji: (value: boolean) => void;
   setFuriganaMode: (value: ReadingAid) => void;
   setTypingInput: (value: TypingInput) => void;
+  setVoiceId: (value: string | null) => void;
 }
 
 export type SettingsState = SettingsData & SettingsActions;
@@ -54,6 +57,7 @@ export const DEFAULT_SETTINGS: SettingsData = {
   showKanji: false,
   furiganaMode: 'always',
   typingInput: 'pad',
+  voiceId: null,
 };
 
 /**
@@ -73,12 +77,13 @@ export function createSettingsStore(storage: StateStorage) {
         setShowKanji: (value) => set({ showKanji: value }),
         setFuriganaMode: (value) => set({ furiganaMode: value }),
         setTypingInput: (value) => set({ typingInput: value }),
+        setVoiceId: (value) => set({ voiceId: value }),
       }),
       {
         name: SETTINGS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput }) => ({
+        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId }) => ({
           writeInReview,
           speechSpeed,
           hapticsEnabled,
@@ -87,6 +92,7 @@ export function createSettingsStore(storage: StateStorage) {
           showKanji,
           furiganaMode,
           typingInput,
+          voiceId,
         }),
       },
     ),

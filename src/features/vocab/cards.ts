@@ -4,16 +4,23 @@ import { dueChars, type SrsState } from '@/features/review/srs';
 /**
  * Cada palavra vira até 3 cartões de revisão espaçada, um por direção:
  * jm = vê o japonês, escolhe o significado; mj = vê o significado, escolhe o japonês;
- * au = ouve, escolhe a palavra escrita (só nas palavras só de kana: com kanji seria adivinhar).
+ * au = ouve, escolhe a palavra escrita (só nas palavras só de kana: com kanji seria adivinhar);
+ * rd = vê a palavra com kanji, escolhe como se lê (só nas palavras com kanji).
  */
-export type CardDir = 'jm' | 'mj' | 'au';
+export type CardDir = 'jm' | 'mj' | 'au' | 'rd';
 
 const SEPARATOR = '|';
 
 /** Palavra escrita só com kana: lê-se igual a como se escreve. */
 export const isKanaOnly = (word: VocabWord): boolean => word.reading === word.jp;
 
-export const cardDirs = (word: VocabWord): readonly CardDir[] => (isKanaOnly(word) ? ['jm', 'mj', 'au'] : ['jm', 'mj']);
+export const cardDirs = (word: VocabWord): readonly CardDir[] => (isKanaOnly(word) ? ['jm', 'mj', 'au'] : ['jm', 'mj', 'rd']);
+
+/** Quantos cartões de leitura (rd) entram na revisão por dia, para os verbos e palavras que já estavam aprendidos. */
+export const READINGS_PER_DAY = 6;
+
+/** Os cartões de leitura de uma palavra (vazio se ela é só kana). */
+export const readingKeysFor = (word: VocabWord): string[] => (isKanaOnly(word) ? [] : [cardKey(word.id, 'rd')]);
 
 /** Chave do cartão no progresso e no backup: "palavra|direção". */
 export const cardKey = (wordId: string, dir: CardDir): string => `${wordId}${SEPARATOR}${dir}`;

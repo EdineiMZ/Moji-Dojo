@@ -138,4 +138,8 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
     'なに + か (なにか) é "alguma coisa"; なに sozinho é "o quê?". Em perguntas simples, a entonação sobe nos dois casos, então o contexto ajuda.',
     'Em frases negativas se usa も (なにも ない), e não か.',
   ],
+  g39: [
+    'は e が não são "o sujeito" e "o assunto" como em português: は apresenta o assunto, が aponta quem faz ou o que é novo. A pergunta com だれ ou なに leva が, e a resposta também.',
+    'Com あります e います, o que existe leva が (ねこが います), e o lugar leva に.',
+  ],
 };

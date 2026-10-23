@@ -26,10 +26,10 @@ const kanjiWord = VOCAB.find((w) => !isKanaOnly(w)) as (typeof VOCAB)[number];
 const NOW = 1_800_000_000_000;
 
 describe('cartões', () => {
-  it('palavra só de kana tem 3 cartões (com áudio); com kanji, 2', () => {
+  it('palavra só de kana tem 3 cartões (com áudio); com kanji, 3 (com a leitura)', () => {
     expect(cardDirs(kanaWord)).toEqual(['jm', 'mj', 'au']);
-    expect(cardDirs(kanjiWord)).toEqual(['jm', 'mj']);
-    expect(cardKeysFor(kanjiWord)).toEqual([`${kanjiWord.id}|jm`, `${kanjiWord.id}|mj`]);
+    expect(cardDirs(kanjiWord)).toEqual(['jm', 'mj', 'rd']);
+    expect(cardKeysFor(kanjiWord)).toEqual([`${kanjiWord.id}|jm`, `${kanjiWord.id}|mj`, `${kanjiWord.id}|rd`]);
   });
 
   it('a chave vai e volta; chave inválida, palavra desconhecida ou direção que não vale dão null', () => {
@@ -127,5 +127,30 @@ describe('perguntas', () => {
       const order = buildVocabQuestions(keys, seeded(seed)).map((q) => q.item.char);
       for (let i = 1; i < order.length; i++) expect(order[i]).not.toBe(order[i - 1]);
     }
+  });
+});
+
+describe('pergunta de leitura', () => {
+  it('mostra a palavra com kanji e quatro leituras diferentes, com a certa entre elas', () => {
+    const words = VOCAB.filter((w) => w.reading !== w.jp).slice(0, 60);
+    for (const word of words) {
+      const [q] = buildVocabQuestions([`${word.id}|rd`], () => 0.4);
+      if (!q) throw new Error('sem pergunta');
+      expect(q.direction).toBe('k2r');
+      expect(q.item.char).toBe(word.jp);
+      expect(q.item.label).toBe(word.reading);
+      const readings = q.options.map((o) => o.label);
+      expect(readings).toContain(word.reading);
+      expect(new Set(readings).size).toBe(readings.length);
+      expect(q.options.map((o) => o.char)).toContain(word.jp);
+      expect(questionCardKey(q)).toBe(`${word.id}|rd`);
+    }
+  });
+
+  it('a pergunta de significado do mesmo cartão continua com a chave jm', () => {
+    const word = VOCAB.find((w) => w.reading !== w.jp);
+    if (!word) throw new Error('sem palavra');
+    const [q] = buildVocabQuestions([`${word.id}|jm`]);
+    expect(q ? questionCardKey(q) : '').toBe(`${word.id}|jm`);
   });
 });

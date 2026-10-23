@@ -56,12 +56,13 @@ Objetivo: saber o que as palavras *significam* e reconhecê-las ao ouvir e ler.
 - [x] **Decks de vocabulário N5** (cerca de 600 a 800 palavras), organizados por tema (comida, família, tempo, lugares, verbos do dia a dia...) e por frequência de uso. *(G)*
   - Feito (1.3.0): a estrutura toda, as 179 palavras da especificação e **700 palavras da lista JLPT N5**, com significados traduzidos (revisão por um falante ainda pendente) e a fonte/licença documentadas em `src/content/LICENSE.md`. Falta confirmar a licença antes de publicar.
 - [x] **Cartões em várias direções:** japonês → significado, significado → japonês, leitura, e ouvir → significado. Cada direção revisada separadamente. *(M)*
-  - Feito: japonês → significado, significado → japonês e ouvir → palavra escrita (só palavras de kana). A direção "leitura" (kanji → como se lê) ainda não existe.
+  - Feito: japonês → significado, significado → japonês, ouvir → palavra escrita (só kana) e **leitura** (palavra com kanji → como se lê, 4 opções). Para quem já tinha palavras aprendidas, os cartões de leitura chegam 6 por dia.
 - [x] **Palavra ligada ao kanji:** ao estudar um kanji, mostrar as palavras que o usam; ao aprender uma palavra, destacar os kanji que a formam. *(M)*
-- [~] **Cada palavra com:** leitura, significado em português, classe (substantivo, verbo, adjetivo), uma frase de exemplo com tradução e áudio. *(M)*
-  - Feito: leitura, significado, romaji (quando a fonte traz), kanji da palavra e áudio. Falta: classe gramatical e frase de exemplo, que dependem de uma fonte nova.
+- [x] **Cada palavra com:** leitura, significado em português, classe (substantivo, verbo, adjetivo), uma frase de exemplo com tradução e áudio. *(M)*
+  - Feito: leitura, significado, romaji (quando a fonte traz), kanji da palavra, áudio, **tom** (gráfico), **classe** dos verbos (com o grupo) e dos adjetivos (い ou な) e até 2 **frases de exemplo** reais do Tatoeba (mais de 200 palavras têm). Substantivos e o resto ficam sem classe, porque a lista não diz e chutar seria inventar.
 - [ ] **Palavras mais úteis primeiro:** ordenar por frequência e por situações reais (restaurante, transporte, compras, apresentação). *(P)*
-- [ ] **Mnemônicos e notas:** campo para o aluno escrever a própria dica de memória em cada palavra. *(P)*
+- [x] **Mnemônicos e notas:** campo para o aluno escrever a própria dica de memória em cada palavra. *(P)*
+  - Feito: no cartão de cada palavra, **Escrever uma dica de memória** (até 200 letras, `progress.wordNotes`, também no backup).
 - [ ] **Expandir kanji:** completar o N5 e avançar para o N4, com as mesmas lições de traços, leituras e exemplos. *(G)*
 
 ### Antes de publicar (pendência registrada)
@@ -79,7 +80,7 @@ Objetivo: transformar "li sobre は e が" em "uso は e が sem pensar".
 - [x] **Treinador de conjugação:** o app mostra o verbo e a forma pedida (ます, ない, て, た...) e o aluno escolhe ou digita. Revisão espaçada por verbo e por forma. *(M)*
   - Feito: sub-aba **Conjugar** em Frases, com ~110 verbos do vocabulário, 4 formas (ます, ない, て, た) geradas por regra, alternativas com os erros típicos (regra de outro grupo, final de て errado) e revisão espaçada por verbo e forma (`progress.conj`, também no backup). Depois: **digitar a resposta** (kanji ou kana, ao lado de "Escolher") e as formas **ませんでした, たい, ている e ましょう**, que entram na revisão aos poucos (6 cartões por dia) para os verbos já aprendidos. Falta só a forma de dicionário como pergunta.
 - [~] **Treinador de partículas:** は/が, に/で, を, へ, と, も, de/para. É onde brasileiros mais erram, com treino de pares confusos. *(M)*
-  - Feito: o filtro "Partículas" das Lacunas, com os pares confusos (は/を/も, に/で/を). Depois: **revisão espaçada por partícula** (`progress.particles`, também no backup): cada uma das 12 partículas é um cartão, a pergunta é uma lacuna de uma frase sorteada. Falta só um tópico de gramática só para が.
+  - Feito: o filtro "Partículas" das Lacunas, com os pares confusos (は/を/も, に/で/を). Depois: **revisão espaçada por partícula** (`progress.particles`, também no backup): cada uma das 12 partículas é um cartão, a pergunta é uma lacuna de uma frase sorteada. Também há o tópico 39, **que faz**: a partícula が (sujeito novo, perguntas com だれ/なに, あります/います).
 - [x] **Contadores e números:** leitura, datas, horas e preços, com áudio. *(M)*
   - Feito: sub-aba **Contar** em Frases. Números de 1 a 99.999, horas (よじ, しちじ, くじ, ふん/ぷん, はん), datas (ついたち... はつか), preços (よえん) e 11 contadores (人, つ, 本, 枚, 冊, 台, 匹, 個, 歳, 階, 回) de 1 a 10, tudo gerado por regra e tabela e conferido por testes. Dois modos: ler (ver a escrita, escolher a leitura) e ouvir. As respostas erradas são a regra sem a exceção (さんびゃく → さんひゃく). Inclui tabela de consulta.
 - [x] **"Erros comuns de quem fala português":** notas curtas (ordem das palavras, sujeito omitido, falta de artigos e plural). *(P)*
@@ -114,7 +115,8 @@ Objetivo: entender o japonês falado e conseguir se fazer entender.
   - Feito: Ouvir → **Ditado**. Palavras (as que você já aprendeu, ou todas no começo) ou frases; a voz toca sozinha, com botão Devagar; digita com o teclado do app ou do celular; a conferência aceita kana ou kanji e mostra o que sobrou ou faltou; o sentido em português só aparece depois.
 - [x] **Compreensão de frases e diálogos:** ouvir e responder perguntas de sentido, com velocidade normal e lenta. *(M)*
   - Feito (frases): Ouvir → **Compreensão**. A frase toca sem texto e você escolhe o sentido entre quatro traduções; velocidade normal ou lenta pelo controle do topo. Depois: em **Diálogos**, o modo **Só ouvir** esconde o texto da fala do atendente (ela toca sozinha) e a pessoa escolhe a resposta; o texto aparece ao toque.
-- [ ] **Áudio de melhor qualidade:** hoje a voz é a síntese do sistema. Avaliar áudio gravado por falantes nativos com licença livre, que também mostra o sotaque melhor. *(G)*
+- [~] **Áudio de melhor qualidade:** hoje a voz é a síntese do sistema. Avaliar áudio gravado por falantes nativos com licença livre, que também mostra o sotaque melhor. *(G)*
+  - Feito: Ajustes → Voz japonesa lista as vozes japonesas do aparelho (as de melhor qualidade primeiro, marcando as online) e deixa **escolher e testar**; a escolha vale em todo o app. A voz automática passa a preferir a de melhor qualidade. **Não feito:** áudio gravado por falantes nativos. As fontes abertas que existem (frases do Tatoeba com áudio, gravações do Lingua Libre no Wikimedia Commons, CC BY-SA) cobrem só parte do vocabulário, variam de qualidade e exigem checar a licença de cada gravação; fica para quando houver revisão de conteúdo.
 - [x] **Tom das palavras (pitch accent):** indicar a queda de tom das palavras mais comuns, com exemplos de pares. *(M)*
   - Feito: dados do **Kanjium** (CC BY-SA 4.0) para 538 palavras do N5. O cartão da palavra mostra o gráfico do tom (barra alta e baixa por mora, mais a partícula depois). Ouvir → **Tom**: explicação, 12 pares que só o tom separa (はし, あめ...) e um quiz de onde o tom cai. O app não afirma que a voz do sistema marca o tom.
 - [x] **Gravar e comparar (shadowing):** gravar a própria voz e ouvir ao lado do modelo, com a forma de onda. É a evolução do "Repetir" atual, que só tem autoavaliação. *(M)*

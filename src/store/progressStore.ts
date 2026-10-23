@@ -8,10 +8,13 @@ import { checkPhrase, newPhraseId, type MyPhrase, type MyPhrases, type PhrasePro
 import { cardKeysFor as verbCardKeys, extraKeysFor as verbExtraKeys, EXTRA_PER_DAY, learnedVerbIds } from '@/features/conjugation/cards';
 import { findVerb } from '@/features/conjugation/verbs';
 import { isParticleCard } from '@/features/cloze/particles';
-import { cardKeysFor } from '@/features/vocab/cards';
+import { cardKeysFor, learnedWordIds as learnedVocabIds, READINGS_PER_DAY, readingKeysFor } from '@/features/vocab/cards';
 import { findWord } from '@/content';
 
 const DAY_MS = 86_400_000;
+
+/** Tamanho máximo da dica de memória de uma palavra. */
+export const MAX_NOTE_LENGTH = 200;
 
 /** Como a pessoa avalia a própria fala no "Repetir" (shadowing). */
 export type ShadowRating = 'ok' | 'mid' | 'bad';
@@ -29,6 +32,11 @@ export interface ProgressActions {
   rateShadow: (phrase: string, rating: ShadowRating, now?: number) => void;
   /** Palavras aprendidas: entram na revisão (3 cartões, ou 2 se tiver kanji) já vencidas, para praticar na hora. */
   learnWords: (wordIds: readonly string[], now?: number) => void;
+  /**
+   * Libera os cartões de leitura (kanji → como se lê) das palavras com kanji já aprendidas, `READINGS_PER_DAY` por dia
+   * para a pilha de revisões não crescer de uma vez. Não faz nada se não falta cartão.
+   */
+  unlockVocabReadings: (now?: number) => void;
   /** Resposta numa revisão de vocabulário (chave = o cartão): reagenda e marca o dia. */
   recordVocabAnswer: (cardKey: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Verbos aprendidos: entram na revisão (um cartão por forma) já vencidos, para praticar na hora. */
@@ -38,6 +46,8 @@ export interface ProgressActions {
    * para a pilha de revisões não crescer de uma vez. Não faz nada se não falta cartão.
    */
   unlockConjForms: (now?: number) => void;
+  /** Guarda a dica de memória de uma palavra (texto vazio apaga). Devolve false se o texto é longo demais. */
+  setWordNote: (wordId: string, note: string) => boolean;
   /** Resposta numa revisão de partículas (chave = a partícula): reagenda e marca o dia. */
   recordParticleAnswer: (particle: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Resposta numa revisão de conjugação (chave = "verbo|forma"): reagenda e marca o dia. */
@@ -80,6 +90,8 @@ export interface ProgressExtras {
   vocab: SrsState;
   /** Revisão espaçada da conjugação, por cartão ("verbo|forma"). */
   conj: SrsState;
+  /** Dica de memória escrita pela pessoa, por palavra (a chave é o id da palavra). */
+  wordNotes: Readonly<Record<string, string>>;
   /** Revisão espaçada das partículas, por cartão (a própria partícula). Quem nunca foi revisada está sempre vencida. */
   particles: SrsState;
   /** Tópicos de gramática dominados (mini-teste aprovado), pelo id, com o momento da aprovação. */
@@ -107,6 +119,7 @@ export function createProgressStore(storage: StateStorage) {
         vocab: {},
         conj: {},
         particles: {},
+        wordNotes: {},
         mastered: {},
         myPhrases: {},
 
@@ -163,6 +176,21 @@ export function createProgressStore(storage: StateStorage) {
             return { vocab, days: markDay(s.days, new Date(now)) };
           }),
 
+        unlockVocabReadings: (now = Date.now()) =>
+          set((s) => {
+            const missing: string[] = [];
+            for (const id of learnedVocabIds(s.vocab)) {
+              const word = findWord(id);
+              if (word) for (const key of readingKeysFor(word)) if (!s.vocab[key]) missing.push(key);
+            }
+            if (missing.length === 0) return s;
+            const vocab: Record<string, SrsEntry> = { ...s.vocab };
+            missing.forEach((key, i) => {
+              vocab[key] = { b: 1, due: now + Math.floor(i / READINGS_PER_DAY) * DAY_MS };
+            });
+            return { vocab };
+          }),
+
         recordVocabAnswer: (cardKey, ok, firstTry, now = Date.now()) =>
           set((s) => {
             const entry = s.vocab[cardKey];
@@ -198,6 +226,18 @@ export function createProgressStore(storage: StateStorage) {
             });
             return { conj };
           }),
+
+        setWordNote: (wordId, note) => {
+          const text = note.trim();
+          if (text.length > MAX_NOTE_LENGTH || !findWord(wordId)) return false;
+          set((s) => {
+            const wordNotes = { ...s.wordNotes };
+            if (text) wordNotes[wordId] = text;
+            else delete wordNotes[wordId];
+            return { wordNotes };
+          });
+          return true;
+        },
 
         recordParticleAnswer: (particle, ok, firstTry, now = Date.now()) =>
           set((s) => {
@@ -288,17 +328,17 @@ export function createProgressStore(storage: StateStorage) {
             stats: snapshot.stats,
             days: snapshot.days,
             history: extras?.history ?? {},
-            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, particles: extras.particles, mastered: extras.mastered, myPhrases: extras.myPhrases } : {}),
+            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, particles: extras.particles, wordNotes: extras.wordNotes, mastered: extras.mastered, myPhrases: extras.myPhrases } : {}),
           }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, mastered: {}, myPhrases: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, mastered: {}, myPhrases: {} }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, mastered, myPhrases }) => ({
+        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, wordNotes, mastered, myPhrases }) => ({
           srs,
           lessons,
           stats,
@@ -309,6 +349,7 @@ export function createProgressStore(storage: StateStorage) {
           vocab,
           conj,
           particles,
+          wordNotes,
           mastered,
           myPhrases,
         }),

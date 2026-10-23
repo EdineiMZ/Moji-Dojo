@@ -28,6 +28,7 @@ describe('settingsStore', () => {
       showKanji: false,
       furiganaMode: 'always',
       typingInput: 'pad',
+      voiceId: null,
     });
     expect(createSettingsStore(storage).getState().writeInReview).toBe(false);
   });

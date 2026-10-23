@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, ChipRow, Mascot, ProgressBar } from '@/components';
 import { VOCAB, VOCAB_GROUPS, type VocabWord } from '@/content';
@@ -24,8 +24,12 @@ type Mode =
 export function VocabView() {
   const vocab = useProgressStore((s) => s.vocab);
   const learnWords = useProgressStore((s) => s.learnWords);
+  const unlockVocabReadings = useProgressStore((s) => s.unlockVocabReadings);
   const now = useNow();
   const [mode, setMode] = useState<Mode>({ kind: 'home' });
+
+  // Palavras aprendidas antes dos cartões de leitura existirem ganham os novos aos poucos.
+  useEffect(() => unlockVocabReadings(), [unlockVocabReadings]);
   const [group, setGroup] = useState(ALL);
 
   const counts = vocabCounts(vocab, now);

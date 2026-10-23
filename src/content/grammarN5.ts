@@ -4368,6 +4368,224 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
         "pt": "Alguém está vindo."
       }
     ]
+  },
+  {
+    "id": "g39",
+    "title": "Quem faz: a partícula が",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "が",
+            "bold": true
+          },
+          {
+            "text": " marca o "
+          },
+          {
+            "text": "sujeito",
+            "bold": true
+          },
+          {
+            "text": " quando ele é uma informação nova ou o foco da frase. Use "
+          },
+          {
+            "text": "が",
+            "bold": true
+          },
+          {
+            "text": " em três casos principais:"
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "caso",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "Palavra de pergunta é o sujeito"
+            },
+            {
+              "text": "だれが きましたか (quem veio?)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "Existir: あります, います"
+            },
+            {
+              "text": "ねこが います (há um gato)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "Dizer QUEM faz (e não outra pessoa)"
+            },
+            {
+              "text": "わたしが いきます (EU vou)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Já "
+          },
+          {
+            "text": "は",
+            "bold": true
+          },
+          {
+            "text": " apresenta o assunto sobre o qual você vai falar (\"quanto a mim...\"). A resposta de uma pergunta com "
+          },
+          {
+            "text": "だれが",
+            "bold": true
+          },
+          {
+            "text": " também leva "
+          },
+          {
+            "text": "が",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "だれが きましたか?",
+            "ja": true
+          },
+          {
+            "text": " → "
+          },
+          {
+            "text": "たなかさんが きました",
+            "ja": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "pattern": "[sujeito] が [verbo] · だれが / なにが ...?",
+    "examples": [
+      {
+        "jp": "だれが きましたか",
+        "ruby": [
+          {
+            "text": "誰",
+            "reading": "だれ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "来",
+            "reading": "き"
+          },
+          {
+            "text": "ましたか？"
+          }
+        ],
+        "romaji": "dare ga kimashita ka",
+        "pt": "Quem veio?"
+      },
+      {
+        "jp": "わたしが いきます",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "きます。"
+          }
+        ],
+        "romaji": "watashi ga ikimasu",
+        "pt": "Eu vou."
+      },
+      {
+        "jp": "いえの もんの まえに ねこが います",
+        "ruby": [
+          {
+            "text": "家",
+            "reading": "いえ"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "門",
+            "reading": "もん"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "前",
+            "reading": "まえ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "猫",
+            "reading": "ねこ"
+          },
+          {
+            "text": "がいます。"
+          }
+        ],
+        "romaji": "ie no mon no mae ni neko ga imasu",
+        "pt": "Há um gato na frente do portão."
+      },
+      {
+        "jp": "ほかに なにが ありますか",
+        "ruby": [
+          {
+            "text": "他",
+            "reading": "ほか"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "何",
+            "reading": "なに"
+          },
+          {
+            "text": "がありますか。"
+          }
+        ],
+        "romaji": "hoka ni nani ga arimasu ka",
+        "pt": "O que mais você tem?"
+      }
+    ]
   }
 ];
 
@@ -5715,8 +5933,57 @@ export const BUILD_N5: readonly BuildExercise[] = [
     ],
     "romaji": "dare ka kuru",
     "hint": "Palavra de pergunta + か = algum(a)."
+  },
+  {
+    "topic": "g39",
+    "pt": "Quem veio?",
+    "answer": [
+      "だれ",
+      "が",
+      "きました",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "dare ga kimashita ka",
+    "hint": "が: sujeito novo, pergunta com だれ/なに e existência (あります, います)."
+  },
+  {
+    "topic": "g39",
+    "pt": "Eu vou.",
+    "answer": [
+      "わたし",
+      "が",
+      "いきます"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "watashi ga ikimasu",
+    "hint": "が: sujeito novo, pergunta com だれ/なに e existência (あります, います)."
+  },
+  {
+    "topic": "g39",
+    "pt": "O que mais você tem?",
+    "answer": [
+      "ほか",
+      "に",
+      "なに",
+      "が",
+      "あります",
+      "か"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "hoka ni nani ga arimasu ka",
+    "hint": "が: sujeito novo, pergunta com だれ/なに e existência (あります, います)."
   }
 ];
 
 /** Ids das frases do Tatoeba usadas nos exemplos (para o crédito). */
-export const GRAMMAR_N5_SENTENCE_IDS: readonly number[] = [9740661,1193930,12055984,10081492,1019460,10901764,11643291,184159,1216866,4002000,338057,2128256,170848,5748800,1039551,78718,11630865,11512358,123257,5955826,2006378,2349145,123791,5845217,4147428,2242416,10899008,2040852,741581,201956,201775,213581,10631584,442923,170842,140285,143813,5272,3552884,11776723,625254,157401,179732,12412206,2626290,10625858,10366825,9644550,354378,13254283,3347455,10194978,2672966,5323,11029605,10967392,9755700,9199895,1700213,187577,347338,8532899,432825,2412106,13218484,2969830,2701348,8733259,183436,149673,2139043,5390444,177906,9475751,125811,14007955,215019,232933,1799658,920509,873959,11065768,13201627,10617667,11017844,174334,169135,11009755,82874,171179,1299272,80265,158658,150453,8723018,5157,213984,10671567,140345,227047,173392,3449190,205799,890127,2552450,137130,11610218];
+export const GRAMMAR_N5_SENTENCE_IDS: readonly number[] = [9740661,1193930,12055984,10081492,1019460,10901764,11643291,184159,1216866,4002000,338057,2128256,170848,5748800,1039551,78718,11630865,11512358,123257,5955826,2006378,2349145,123791,5845217,4147428,2242416,10899008,2040852,741581,201956,201775,213581,10631584,442923,170842,140285,143813,5272,3552884,11776723,625254,157401,179732,12412206,2626290,10625858,10366825,9644550,354378,13254283,3347455,10194978,2672966,5323,11029605,10967392,9755700,9199895,1700213,187577,347338,8532899,432825,2412106,13218484,2969830,2701348,8733259,183436,149673,2139043,5390444,177906,9475751,125811,14007955,215019,232933,1799658,920509,873959,11065768,13201627,10617667,11017844,174334,169135,11009755,82874,171179,1299272,80265,158658,150453,8723018,5157,213984,10671567,140345,227047,173392,3449190,205799,890127,2552450,137130,11610218,7551823,1507527,11003497,3553343];

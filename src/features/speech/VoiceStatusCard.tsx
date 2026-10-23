@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { AppText, Bold, Button, Card } from '@/components';
+import { AppText, Bold, Button, Card, ChipRow } from '@/components';
+import { useSettingsStore } from '@/store';
 import { spacing } from '@/theme';
 import { openVoiceSettings } from './openVoiceSettings';
 import { ensureVoiceChecked, speakJapanese, useVoiceStore } from './voiceStore';
-import { VOICE_INSTALL_STEPS } from './voices';
+import { VOICE_INSTALL_STEPS, voiceLabel } from './voices';
 
 const TEST_PHRASE = 'こんにちは。にほんごの れんしゅうを しましょう。';
 
@@ -13,6 +14,9 @@ export function VoiceStatusCard() {
   const status = useVoiceStore((s) => s.status);
   const voice = useVoiceStore((s) => s.voice);
   const check = useVoiceStore((s) => s.check);
+  const voices = useVoiceStore((s) => s.voices);
+  const choose = useVoiceStore((s) => s.choose);
+  const voiceId = useSettingsStore((s) => s.voiceId);
 
   useEffect(ensureVoiceChecked, []);
 
@@ -44,6 +48,29 @@ export function VoiceStatusCard() {
           </View>
           <AppText variant="caption" color="muted">
             Os nomes dos menus mudam um pouco entre aparelhos. Depois de instalar, toque em “Verificar de novo”.
+          </AppText>
+        </>
+      ) : null}
+
+      {voices.length > 1 ? (
+        <>
+          <AppText variant="caption" color="muted">
+            ESCOLHER A VOZ
+          </AppText>
+          <ChipRow
+            options={[
+              { value: 'auto', label: 'Automática' },
+              ...voices.map((v, i) => ({ value: v.identifier, label: voiceLabel(v, i) })),
+            ]}
+            value={voiceId && voices.some((v) => v.identifier === voiceId) ? voiceId : 'auto'}
+            onChange={(v) => {
+              choose(v === 'auto' ? null : v);
+              setTimeout(() => speakJapanese(TEST_PHRASE), 100);
+            }}
+          />
+          <AppText variant="caption" color="muted">
+            A automática usa a de melhor qualidade que o aparelho tiver. Vozes online costumam soar mais naturais, mas
+            precisam de internet.
           </AppText>
         </>
       ) : null}

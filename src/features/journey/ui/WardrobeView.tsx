@@ -1,11 +1,13 @@
 import { StyleSheet, View } from 'react-native';
 import { AppText, Card, ChipRow } from '@/components';
 import { useProgressStore } from '@/store';
-import { spacing } from '@/theme';
-import { findItem, SLOT_LABELS, SLOTS } from '../items';
+import { spacing, useTheme } from '@/theme';
+import { findItem, ITEMS, RARITY_LABELS, SLOT_LABELS, SLOTS } from '../items';
+import { rarityStyle } from './rarity';
 
 /** Armário: para cada espaço, escolhe o que o Mochi veste entre os itens que o aluno tem. */
 export function WardrobeView() {
+  const { colors } = useTheme();
   const journey = useProgressStore((s) => s.journey);
   const equip = useProgressStore((s) => s.equipJourneyItem);
   const unequip = useProgressStore((s) => s.unequipJourneySlot);
@@ -21,19 +23,21 @@ export function WardrobeView() {
         const worn = journey.equipped[slot];
         return (
           <Card key={slot} enterIndex={Math.min(i + 1, 6)}>
-            <AppText variant="title">{SLOT_LABELS[slot]}</AppText>
+            <AppText variant="title">
+              {SLOT_LABELS[slot]} <AppText color="muted">{owned.length} de {ITEMS.filter((i) => i.slot === slot).length}</AppText>
+            </AppText>
             {owned.length === 0 ? (
               <AppText color="muted">Você ainda não tem itens aqui. Veja a loja e as conquistas.</AppText>
             ) : (
               <ChipRow
-                options={[{ value: 'none', label: 'Nenhum' }, ...owned.map((item) => ({ value: item.id, label: item.name }))]}
+                options={[{ value: 'none', label: 'Nenhum' }, ...owned.map((item) => ({ value: item.id, label: `${item.name} ${rarityStyle(item.rarity, colors).stars}`.trim() }))]}
                 value={worn ?? 'none'}
                 onChange={(id) => (id === 'none' ? unequip(slot) : equip(id))}
               />
             )}
             {worn ? (
               <AppText variant="caption" color="muted">
-                {findItem(worn)?.description}
+                {RARITY_LABELS[findItem(worn)?.rarity ?? 'common']} · {findItem(worn)?.description}
               </AppText>
             ) : null}
           </Card>

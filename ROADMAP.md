@@ -168,6 +168,17 @@ Pedido do aluno: aprender como a frase se monta, montar frases e ter frases e di
 - Limite conhecido: o tempo de uso não conta o que a pessoa faz fora do app, e o nome e a meta não entram no backup (são preferências do aparelho).
 
 
+### Mochi: loja, baús e raridades (1.14.0)
+
+- [x] **Economia mais difícil:** o teto diário de pétalas de lição e revisão caiu de 150 para 60, lições e revisões pagam cerca de metade, missões 6 (antes 10), o desafio da semana 25 (antes 40) e subir de nível dá menos. Os preços da loja subiram 2,5 vezes (150 a 900 pétalas).
+- [x] **Baú do dia:** ao abrir o app pela primeira vez no dia aparece o baú, com revelação animada: pétalas (8 a 80, mais um bônus pela sequência) e, às vezes, um item exclusivo. Se a pessoa fechar com "Depois", o baú continua esperando (cartão na tela inicial). Sem item por 6 dias seguidos, o próximo traz um item raro ou melhor.
+- [x] **Baú da semana:** quando a meta de 4 dias é batida, abre com o mesmo efeito, sempre com pétalas e um item exclusivo (raro, épico ou lendário), e nunca repete um item que já se tem.
+- [x] **Raridades:** comum, raro, épico e lendário em todos os itens, com cores e estrelinhas.
+- [x] **111 itens** (eram 45): novos acessórios de cabeça, rosto e pescoço, 10 fundos, 8 cores e uma categoria nova, as **peles** (listras, manchas, estrelas, corações, ondas e as raras: panda, robô, dragão, fantasma, cósmico, coruja, sensei). 22 itens só saem de baú e 29 só por conquista (14 conquistas ganharam item).
+- [x] **Loja redesenhada:** categorias (cabeça, rosto, pescoço, fundos, cores, peles e coleção rara), filtros (todos, posso comprar, meus), ordem (padrão, menor preço, raridade), cartões com o Mochi vestido com cada item, raridade e preço, prévia grande com confirmação de compra e chuva de pétalas ao comprar. Os itens de baú e de conquista aparecem trancados.
+- [x] **Mochi com mais vida:** 7 humores novos (com sono, surpreso, apaixonado, pensando, orgulhoso, piscando, animado), piscadas, animações próprias por humor e reações ao toque (pula, gira, se espreme e muda de humor por um instante).
+- [x] **Humor pela situação:** com sono de madrugada, orgulhoso quando a meta de minutos é batida, apaixonado com sequência de 30 dias ou mais, pensativo quando a sequência espera.
+
 ### Fase 6: motor de aprendizado e plano diário
 
 Objetivo: o app decide o que estudar hoje e mede o que realmente ficou.

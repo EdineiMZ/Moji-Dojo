@@ -2,6 +2,19 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.14.0] - 2026-10-23
+
+Loja, baús e raridades: ganhar pétalas ficou mais difícil, o baú diário de verdade, 66 itens novos e um Mochi com mais vida.
+
+- **Pétalas mais difíceis de ganhar:** o teto diário de lições e revisões caiu de 150 para 60, lições e revisões pagam cerca de metade, missões valem 6 (antes 10) e o desafio da semana 25 (antes 40). Os preços da loja subiram 2,5 vezes (de 150 a 900 pétalas). Quem já tinha itens e pétalas mantém tudo.
+- **Baú do dia:** ao abrir o app pela primeira vez no dia, o baú aparece com uma revelação animada: pétalas e, às vezes, um item exclusivo. Com "Depois" ele fica esperando (botão na tela inicial). Sem item por 6 dias seguidos, o próximo traz um item raro ou melhor.
+- **Baú da semana:** ao bater a meta de 4 dias, abre com o mesmo efeito e sempre traz um item exclusivo, sem repetir os que você já tem.
+- **Raridades:** comum, raro, épico e lendário, com cores e estrelinhas, na loja, no armário e nos baús.
+- **66 itens novos (111 no total):** acessórios de cabeça, rosto e pescoço, 10 fundos, 8 cores e as **peles**, uma categoria nova que muda o jeito do corpo do Mochi (listrado, manchado, estrelado, de ondas, panda, robô, dragão, fantasma, cósmico, coruja, sensei...). 22 itens só saem de baú e 29 só por conquista; 14 conquistas ganharam item.
+- **Loja redesenhada:** categorias (cabeça, rosto, pescoço, fundos, cores, peles e coleção rara), filtros (todos, posso comprar, meus), ordem (padrão, menor preço, raridade), cartões com o Mochi vestido com cada item, prévia grande, confirmação de compra e chuva de pétalas ao comprar. O armário também mostra a raridade e quantos itens você tem de cada espaço.
+- **Mochi com mais vida:** 7 humores novos (com sono, surpreso, apaixonado, pensando, orgulhoso, piscando, animado), piscadas e movimentos próprios; tocar no Mochi na tela inicial e em Meu Mochi faz ele reagir (pula, gira, se espreme e muda de humor por um instante). O humor também segue a situação: com sono de madrugada, orgulhoso quando a meta de minutos é batida, apaixonado com 30 dias de sequência.
+- **Correção de áudio:** os kana soltos (あ, い, う, え, お e outros) não tocavam em várias telas porque a voz japonesa do Android fica muda com um caractere só. Agora o app diz o kana duas vezes ("あ、あ") e ele passa a tocar.
+
 ## [1.13.0] - 2026-10-23
 
 Introdução com perfil, ajustes mais simples, lembretes com meta de minutos e textos de placas e cardápios reais. Tudo no aparelho.

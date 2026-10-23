@@ -127,6 +127,10 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
 
 - `src/content/readings.ts` (textos do dia a dia com `parts`): placas, avisos, horários, cardápio, preços, onsen, regras de transporte e conbini, **escritos por IA** com expressões de uso corrente no Japão. A leitura em kana e o significado em português de cada pedaço também foram escritos por IA. **A revisar por um falante.**
 
+## Arte dos itens do Mochi (1.14.0)
+
+- `src/components/mascot/artWear.tsx` e `artScenes.tsx`: os 66 desenhos novos (acessórios, fundos, cores e peles) são **originais**, feitos em SVG para este app. Não há licença de terceiros a creditar.
+
 ## Antes de publicar
 
 1. **Confirmar a licença das listas do Tanos** (https://www.tanos.co.uk/jlpt/) e se ela permite o uso e a

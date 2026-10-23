@@ -24,6 +24,7 @@ export function ExportCard() {
   const conj = useProgressStore((s) => s.conj);
   const particles = useProgressStore((s) => s.particles);
   const wordNotes = useProgressStore((s) => s.wordNotes);
+  const journey = useProgressStore((s) => s.journey);
   const mastered = useProgressStore((s) => s.mastered);
   const myPhrases = useProgressStore((s) => s.myPhrases);
 
@@ -33,7 +34,7 @@ export function ExportCard() {
   );
   const [code, setCode] = useState<string | null>(null);
 
-  const generate = () => setCode(exportBackup({ srs, lessons, stats, days, history, shadow, challenges, vocab, conj, particles, wordNotes, mastered, myPhrases }));
+  const generate = () => setCode(exportBackup({ srs, lessons, stats, days, history, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases }));
 
   const share = () => {
     if (!code) return;

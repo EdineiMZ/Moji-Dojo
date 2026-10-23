@@ -1,4 +1,5 @@
 import { VOCAB } from '@/content';
+import { emptyJourney } from '@/features/journey/journey';
 import { createProgressStore } from '@/store/progressStore';
 import { APP_BACKUP_PREFIX, exportBackup, parseBackup } from '@/features/backup/backup';
 import { describeCounts } from '@/features/backup/describe';
@@ -128,7 +129,7 @@ describe('vocabulário no backup (MDJ1)', () => {
     store.getState().learnWords([kana.id], NOW);
     store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }); // sem extras = protótipo
     expect(Object.keys(store.getState().vocab)).toHaveLength(3);
-    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, mastered: {}, myPhrases: {} });
+    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, journey: emptyJourney(), mastered: {}, myPhrases: {} });
     expect(store.getState().vocab).toEqual({});
   });
 });
@@ -142,7 +143,7 @@ describe('cartões de leitura', () => {
     const store = createProgressStore(memoryStorage());
     // Simula quem aprendeu antes: só os cartões jm e mj.
     const old = Object.fromEntries(withKanji.flatMap((w) => [[`${w.id}|jm`, { b: 2, due: NOW_MS }], [`${w.id}|mj`, { b: 2, due: NOW_MS }]]));
-    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: old, conj: {}, particles: {}, wordNotes: {}, mastered: {}, myPhrases: {} });
+    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: old, conj: {}, particles: {}, wordNotes: {}, journey: emptyJourney(), mastered: {}, myPhrases: {} });
     store.getState().unlockVocabReadings(NOW_MS);
     const readings = Object.entries(store.getState().vocab).filter(([key]) => key.endsWith('|rd'));
     expect(readings).toHaveLength(9);

@@ -201,7 +201,7 @@ describe('persistência', () => {
     first.getState().recordAnswer('あ', true);
 
     const saved = JSON.parse(storage.data.get(PROGRESS_STORAGE_KEY) ?? '{}');
-    expect(Object.keys(saved.state).sort()).toEqual(['challenges', 'conj', 'days', 'history', 'lessons', 'mastered', 'myPhrases', 'particles', 'shadow', 'srs', 'stats', 'vocab', 'wordNotes']);
+    expect(Object.keys(saved.state).sort()).toEqual(['challenges', 'conj', 'days', 'history', 'journey', 'lessons', 'mastered', 'myPhrases', 'particles', 'shadow', 'srs', 'stats', 'vocab', 'wordNotes']);
 
     const second = createProgressStore(storage);
     expect(second.persist.hasHydrated()).toBe(true);
@@ -217,5 +217,44 @@ describe('persistência', () => {
     store.getState().resetProgress();
     expect(store.getState().lessons).toEqual({});
     expect(createProgressStore(storage).getState().lessons).toEqual({});
+  });
+});
+
+describe('jornada no progresso', () => {
+  const memory = () => {
+    const data = new Map<string, string>();
+    return {
+      getItem: (k: string) => data.get(k) ?? null,
+      setItem: (k: string, v: string) => void data.set(k, v),
+      removeItem: (k: string) => void data.delete(k),
+    };
+  };
+
+  it('comprar e vestir pelo store, com o motivo quando não dá', () => {
+    const store = createProgressStore(memory());
+    expect(store.getState().buyJourneyItem('boina')).toBe('poor');
+    store.getState().updateJourney((j) => ({ ...j, petals: 500 }));
+    expect(store.getState().buyJourneyItem('boina', Date.now())).toBeNull();
+    expect(store.getState().journey.petals).toBe(400);
+    expect(store.getState().journey.equipped.head).toBe('boina');
+    store.getState().unequipJourneySlot('head');
+    expect(store.getState().journey.equipped).toEqual({});
+    store.getState().equipJourneyItem('boina');
+    expect(store.getState().journey.equipped.head).toBe('boina');
+  });
+
+  it('o reset zera a jornada', () => {
+    const store = createProgressStore(memory());
+    store.getState().updateJourney((j) => ({ ...j, petals: 99 }));
+    store.getState().resetProgress();
+    expect(store.getState().journey.petals).toBe(0);
+  });
+
+  it('um estado salvo por uma versão antiga (sem jornada) abre com a jornada vazia', () => {
+    const storage = memory();
+    storage.setItem('moji-dojo-progress', JSON.stringify({ state: { srs: {}, lessons: {}, stats: {}, days: ['2026-10-01'] }, version: 1 }));
+    const store = createProgressStore(storage);
+    expect(store.getState().journey.petals).toBe(0);
+    expect(store.getState().days).toEqual(['2026-10-01']);
   });
 });

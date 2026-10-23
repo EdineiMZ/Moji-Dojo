@@ -4,6 +4,7 @@ import type { CharStats, ProgressSnapshot } from '@/features/progress/types';
 import { LAST_BOX, type SrsEntry } from '@/features/review/srs';
 import { MAX_HISTORY_DAYS, type DayActivity } from '@/features/stats/metrics';
 import { findWord } from '@/content';
+import { sanitizeJourney } from '@/features/journey/journey';
 import { ALL_GRAMMAR } from '@/content/grammar';
 import { MAX_MY_PHRASES, MAX_PHRASE_LENGTH, type MyPhrase } from '@/features/myphrases/phrases';
 import { parseCardKey as parseVerbKey } from '@/features/conjugation/cards';
@@ -220,6 +221,8 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
     wordNotes[id] = v.trim();
   }
 
+  const journey = sanitizeJourney(root.journey);
+
   const knownTopics = new Set(ALL_GRAMMAR.map((t) => t.id));
   const mastered: Record<string, number> = {};
   for (const [topic, at] of Object.entries(recordField(root, 'mastered'))) {
@@ -251,7 +254,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
     };
   }
 
-  return { value: { history: recent, shadow, challenges, vocab, conj, particles, wordNotes, mastered, myPhrases }, ignored };
+  return { value: { history: recent, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases }, ignored };
 }
 
 /**
@@ -367,6 +370,7 @@ export function exportBackup(progress: ProgressSnapshot & ProgressExtras, now: D
     conj: progress.conj,
     particles: progress.particles,
     wordNotes: progress.wordNotes,
+    journey: progress.journey,
     mastered: progress.mastered,
     myPhrases: progress.myPhrases,
   };

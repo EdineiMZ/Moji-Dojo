@@ -10,6 +10,8 @@ import { findVerb } from '@/features/conjugation/verbs';
 import { isParticleCard } from '@/features/cloze/particles';
 import { cardKeysFor, learnedWordIds as learnedVocabIds, READINGS_PER_DAY, readingKeysFor } from '@/features/vocab/cards';
 import { findWord } from '@/content';
+import { buyItem, dismissToast, emptyJourney, equipItem, sanitizeJourney, unequipSlot, type BuyError, type JourneyState } from '@/features/journey/journey';
+import type { Slot } from '@/features/journey/items';
 
 const DAY_MS = 86_400_000;
 
@@ -46,6 +48,16 @@ export interface ProgressActions {
    * para a pilha de revisões não crescer de uma vez. Não faz nada se não falta cartão.
    */
   unlockConjForms: (now?: number) => void;
+  /** Compra um item do Mochi com pétalas. Devolve o motivo de não ter comprado, ou null. */
+  buyJourneyItem: (itemId: string, now?: number) => BuyError | null;
+  /** Veste um item que a pessoa tem. */
+  equipJourneyItem: (itemId: string) => void;
+  /** Tira o item de um espaço do Mochi. */
+  unequipJourneySlot: (slot: Slot) => void;
+  /** Fecha um aviso (conquista, nível, item...). */
+  dismissJourneyToast: (id: string) => void;
+  /** Troca uma função da jornada por outra pura: é por aqui que as telas fazem mudanças simples (opções, metas). */
+  updateJourney: (change: (journey: JourneyState) => JourneyState) => void;
   /** Guarda a dica de memória de uma palavra (texto vazio apaga). Devolve false se o texto é longo demais. */
   setWordNote: (wordId: string, note: string) => boolean;
   /** Resposta numa revisão de partículas (chave = a partícula): reagenda e marca o dia. */
@@ -90,6 +102,8 @@ export interface ProgressExtras {
   vocab: SrsState;
   /** Revisão espaçada da conjugação, por cartão ("verbo|forma"). */
   conj: SrsState;
+  /** Pétalas, itens do Mochi, conquistas, missões, metas e nível (ver features/journey). */
+  journey: JourneyState;
   /** Dica de memória escrita pela pessoa, por palavra (a chave é o id da palavra). */
   wordNotes: Readonly<Record<string, string>>;
   /** Revisão espaçada das partículas, por cartão (a própria partícula). Quem nunca foi revisada está sempre vencida. */
@@ -120,6 +134,7 @@ export function createProgressStore(storage: StateStorage) {
         conj: {},
         particles: {},
         wordNotes: {},
+        journey: emptyJourney(),
         mastered: {},
         myPhrases: {},
 
@@ -227,6 +242,23 @@ export function createProgressStore(storage: StateStorage) {
             return { conj };
           }),
 
+        buyJourneyItem: (itemId, now = Date.now()) => {
+          let failure: BuyError | null = null;
+          set((s) => {
+            const result = buyItem(s.journey, itemId, new Date(now));
+            if (!result.ok) {
+              failure = result.error;
+              return s;
+            }
+            return { journey: result.state };
+          });
+          return failure;
+        },
+        equipJourneyItem: (itemId) => set((s) => ({ journey: equipItem(s.journey, itemId) })),
+        unequipJourneySlot: (slot) => set((s) => ({ journey: unequipSlot(s.journey, slot) })),
+        dismissJourneyToast: (id) => set((s) => ({ journey: dismissToast(s.journey, id) })),
+        updateJourney: (change) => set((s) => ({ journey: change(s.journey) })),
+
         setWordNote: (wordId, note) => {
           const text = note.trim();
           if (text.length > MAX_NOTE_LENGTH || !findWord(wordId)) return false;
@@ -328,17 +360,22 @@ export function createProgressStore(storage: StateStorage) {
             stats: snapshot.stats,
             days: snapshot.days,
             history: extras?.history ?? {},
-            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, particles: extras.particles, wordNotes: extras.wordNotes, mastered: extras.mastered, myPhrases: extras.myPhrases } : {}),
+            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, particles: extras.particles, wordNotes: extras.wordNotes, journey: extras.journey, mastered: extras.mastered, myPhrases: extras.myPhrases } : {}),
           }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, mastered: {}, myPhrases: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, journey: emptyJourney(), mastered: {}, myPhrases: {} }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
+        // O que vem do disco passa pela leitura segura: estado salvo por uma versão antiga ganha os campos novos.
+        merge: (persisted, current) => {
+          const saved = (persisted ?? {}) as Partial<ProgressState> & { journey?: unknown };
+          return { ...current, ...saved, journey: sanitizeJourney(saved.journey) };
+        },
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, wordNotes, mastered, myPhrases }) => ({
+        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, wordNotes, journey, mastered, myPhrases }) => ({
           srs,
           lessons,
           stats,
@@ -350,6 +387,7 @@ export function createProgressStore(storage: StateStorage) {
           conj,
           particles,
           wordNotes,
+          journey,
           mastered,
           myPhrases,
         }),

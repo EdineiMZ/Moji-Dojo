@@ -88,6 +88,8 @@ export const TOPICS = [
       { id: 5748800, ja: '英語で話してください。', furi: '[英語|えい|ご]で[話|はな]してください。', kana: 'えいご~で はなして|ください', pt: 'Por favor, fale em inglês.' },
       { id: 1039551, ja: '助けてください。', furi: '[助|たす]けてください。', kana: 'たすけて|ください', pt: 'Me ajude, por favor!' },
       { id: 78718, ja: '来て下さい。', furi: '[来|き]て[下|くだ]さい。', kana: 'きて|ください', pt: 'Venha, por favor.' },
+      { id: 79930, ja: '目を閉じてください。', furi: '[目|め]を[閉|と]じてください。', kana: 'め~を とじて|ください', pt: 'Feche seus olhos, por favor.' },
+      { id: 152144, ja: '私を見てください。', furi: '[私|わたし]を[見|み]てください。', kana: 'わたし~を みて|ください', pt: 'Por favor, olhe para mim.' },
     ],
   },
   {
@@ -105,6 +107,8 @@ export const TOPICS = [
       { id: 11512358, ja: '知っていますか？', furi: '[知|し]っていますか？', kana: 'しって|います~か', pt: 'Você sabe?' },
       { id: 123257, ja: '曇っています。', furi: '[曇|くも]っています。', kana: 'くもって|います', pt: 'Está nublado.' },
       { id: 5955826, ja: '持っています。', furi: '[持|も]っています。', kana: 'もって|います', pt: 'Eu tenho um.' },
+      { id: 79988, ja: '目が疲れています。', furi: '[目|め]が[疲|つか]れています。', kana: 'め~が つかれて|います', pt: 'Meus olhos estão cansados.' },
+      { id: 4975839, ja: '雪が降っています。', furi: '[雪|ゆき]が[降|ふ]っています。', kana: 'ゆき~が ふって|います', pt: 'Está nevando.' },
     ],
   },
   {
@@ -119,7 +123,9 @@ export const TOPICS = [
       { id: 2006378, ja: '行かないでください。', furi: '[行|い]かないでください。', kana: 'いかないで|ください', pt: 'Por favor, não vá embora.' },
       { id: 2349145, ja: '心配しないでください。', furi: '[心配|しん|ぱい]しないでください。', kana: 'しんぱい しないで|ください', pt: 'Não te preocupes.' },
       { id: 123791, ja: '動かないでください。', furi: '[動|うご]かないでください。', kana: 'うごかないで|ください', pt: 'Não se mexa, por favor.' },
-      { id: 5845217, ja: '音を立てないでください。', furi: '[音|おと]を[立|た]てないでください。', kana: 'おと~を たてないで|ください', pt: 'Não faça barulho.' },
+      { id: 5845217, ja: '音を立てないでください。', furi: '[音|おと]を[立|た]てないでください。', furi: '[音|おと]を[立|た]てないでください。', kana: 'おと~を たてないで|ください', pt: 'Não faça barulho.' },
+      { id: 168184, ja: '枝を折らないでください。', furi: '[枝|えだ]を[折|お]らないでください。', kana: 'えだ~を おらないで|ください', pt: 'Não quebrem os ramos.' },
+      { id: 149270, ja: '芝生に入らないでください。', furi: '[芝生|しば|ふ]に[入|はい]らないでください。', kana: 'しばふ~に はいらないで|ください', pt: 'Não pise na grama.' },
     ],
   },
   {
@@ -166,6 +172,8 @@ export const TOPICS = [
       { id: 442923, ja: '始めましょう。', furi: '[始|はじ]めましょう。', kana: 'はじめましょう', pt: 'Vamos começar.' },
       { id: 170842, ja: '座りませんか。', furi: '[座|すわ]りませんか。', kana: 'すわりません~か', pt: 'Você não quer se sentar?' },
       { id: 140285, ja: '走りませんか。', furi: '[走|はし]りませんか。', kana: 'はしりません~か', pt: 'Que tal corrida?' },
+      { id: 79634, ja: '野球をしましょう。', furi: '[野球|や|きゅう]をしましょう。', kana: 'やきゅう~を しましょう', pt: 'Vamos jogar baseball!' },
+      { id: 126402, ja: '昼食にしましょう。', furi: '[昼食|ちゅう|しょく]にしましょう。', kana: 'ちゅうしょく~に しましょう', pt: 'Vamos almoçar.' },
     ],
   },
   {

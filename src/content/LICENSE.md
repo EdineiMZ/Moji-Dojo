@@ -103,6 +103,12 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
   vocabulário (um teste confere). Não vêm de fonte externa. **Escritos por IA, a revisar por um falante de japonês**
   (japonês e traduções).
 
+## Palavras de exemplo extras dos kanji (1.11.1)
+
+- `src/content/kanjiMoreWords.ts`: uma palavra de exemplo para cada um dos 43 kanji sem palavra no vocabulário. Palavra e leitura
+  vêm do **JMdict** (EDRDG, **CC BY-SA 4.0**, entre as de uso comum; conferidas contra o dump). O **significado em português foi escrito por IA**
+  e precisa de revisão por um falante. Só aparecem na lição do kanji.
+
 ## Antes de publicar
 
 1. **Confirmar a licença das listas do Tanos** (https://www.tanos.co.uk/jlpt/) e se ela permite o uso e a

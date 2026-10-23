@@ -3,6 +3,7 @@ import { Stack, type ErrorBoundaryProps } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
+import * as SystemUI from 'expo-system-ui';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -40,6 +41,10 @@ function LoadingGate() {
 
 function ThemedStack() {
   const { colors, isDark } = useTheme();
+  // A cor de fundo da janela segue o tema: sem isso aparece um clarão branco ao abrir o teclado ou girar a tela.
+  useEffect(() => {
+    SystemUI.setBackgroundColorAsync(colors.background).catch(() => undefined);
+  }, [colors.background]);
   return (
     <>
       <StatusBar style={isDark ? 'light' : 'dark'} />

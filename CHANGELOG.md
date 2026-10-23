@@ -2,6 +2,18 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.11.1] - 2026-10-23
+
+Validação geral do app: correções de conteúdo, layout, acessibilidade e desempenho.
+
+- **Palavras repetidas:** 36 palavras apareciam duas vezes no vocabulário (あさ e 朝, いぬ e 犬...), então dava para estudar a mesma palavra duas vezes. Agora só a forma com kanji é oferecida como nova; quem já tinha estudado a outra forma mantém o progresso, e o total e o "aprendidas" contam cada palavra uma vez. Frases de exemplo, tom e classe da forma com kanji valem para a outra.
+- **Lições de kanji:** os 43 kanji que não tinham nenhuma palavra de exemplo (員, 民, 市, 県, 森...) ganharam uma, do JMdict (significado em português escrito por IA, a revisar). Kana sem exemplo (が, ぎ, きゃ...) mostram uma palavra do vocabulário.
+- **Gramática:** os tópicos de 〜てください, 〜ています, 〜ないでください e convidar (ましょう/ませんか) tinham 0 ou 1 exercício de montar frase; agora têm de 2 a 3, com frases do Tatoeba.
+- **Layout:** a aba Frases tinha 13 chips numa fileira só; agora são 3 grupos (Palavras, Gramática, Frases) com uma segunda fileira. A aba Teclado usa chips (4 seções não cabiam bem). Texto grande do sistema não estoura mais cartões e títulos (limite de crescimento por tipo de texto).
+- **Acessibilidade:** botões com emoji ("🔊 Ouvir") agora são lidos só como "Ouvir". Tela de erro amigável no lugar de tela em branco se algo quebrar.
+- **Desempenho:** telas que não estão à vista ficam congeladas, então responder no quiz não redesenha a tela inicial por trás.
+- **Configuração:** o plugin de áudio estava declarado duas vezes com configurações contrárias; ficou um só (sem serviço de áudio em segundo plano, que o app não usa). Instalado `expo-system-ui`: o tema escuro/claro automático passa a valer e o fundo da janela acompanha o tema (sem clarão branco ao abrir o teclado).
+
 ## [1.11.0] - 2026-10-23
 
 Fase 6 quase completa (só falta trocar o algoritmo por FSRS) e conferência da Fase 7. Tudo no aparelho.

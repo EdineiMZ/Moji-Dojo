@@ -701,6 +701,48 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
         ],
         "romaji": "kite kudasai",
         "pt": "Venha, por favor."
+      },
+      {
+        "jp": "めを とじてください",
+        "ruby": [
+          {
+            "text": "目",
+            "reading": "め"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "閉",
+            "reading": "と"
+          },
+          {
+            "text": "じてください。"
+          }
+        ],
+        "romaji": "me o tojite kudasai",
+        "pt": "Feche seus olhos, por favor."
+      },
+      {
+        "jp": "わたしを みてください",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "見",
+            "reading": "み"
+          },
+          {
+            "text": "てください。"
+          }
+        ],
+        "romaji": "watashi o mite kudasai",
+        "pt": "Por favor, olhe para mim."
       }
     ]
   },
@@ -860,6 +902,48 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
         ],
         "romaji": "motte imasu",
         "pt": "Eu tenho um."
+      },
+      {
+        "jp": "めが つかれています",
+        "ruby": [
+          {
+            "text": "目",
+            "reading": "め"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "疲",
+            "reading": "つか"
+          },
+          {
+            "text": "れています。"
+          }
+        ],
+        "romaji": "me ga tsukarete imasu",
+        "pt": "Meus olhos estão cansados."
+      },
+      {
+        "jp": "ゆきが ふっています",
+        "ruby": [
+          {
+            "text": "雪",
+            "reading": "ゆき"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "降",
+            "reading": "ふ"
+          },
+          {
+            "text": "っています。"
+          }
+        ],
+        "romaji": "yuki ga futte imasu",
+        "pt": "Está nevando."
       }
     ]
   },
@@ -975,6 +1059,48 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
         ],
         "romaji": "oto o tatenaide kudasai",
         "pt": "Não faça barulho."
+      },
+      {
+        "jp": "えだを おらないでください",
+        "ruby": [
+          {
+            "text": "枝",
+            "reading": "えだ"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "折",
+            "reading": "お"
+          },
+          {
+            "text": "らないでください。"
+          }
+        ],
+        "romaji": "eda o oranaide kudasai",
+        "pt": "Não quebrem os ramos."
+      },
+      {
+        "jp": "しばふに はいらないでください",
+        "ruby": [
+          {
+            "text": "芝生",
+            "reading": "しばふ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "入",
+            "reading": "はい"
+          },
+          {
+            "text": "らないでください。"
+          }
+        ],
+        "romaji": "shibafu ni hairanaide kudasai",
+        "pt": "Não pise na grama."
       }
     ]
   },
@@ -1323,6 +1449,34 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
         ],
         "romaji": "hashirimasen ka",
         "pt": "Que tal corrida?"
+      },
+      {
+        "jp": "やきゅうを しましょう",
+        "ruby": [
+          {
+            "text": "野球",
+            "reading": "やきゅう"
+          },
+          {
+            "text": "をしましょう。"
+          }
+        ],
+        "romaji": "yakyū o shimashō",
+        "pt": "Vamos jogar baseball!"
+      },
+      {
+        "jp": "ちゅうしょくに しましょう",
+        "ruby": [
+          {
+            "text": "昼食",
+            "reading": "ちゅうしょく"
+          },
+          {
+            "text": "にしましょう。"
+          }
+        ],
+        "romaji": "chūshoku ni shimashō",
+        "pt": "Vamos almoçar."
       }
     ]
   },
@@ -5343,6 +5497,36 @@ export const BUILD_N5: readonly BuildExercise[] = [
     "hint": "Forma て + ください = pedido educado."
   },
   {
+    "topic": "g14",
+    "pt": "Feche seus olhos, por favor.",
+    "answer": [
+      "め",
+      "を",
+      "とじてください"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "me o tojite kudasai",
+    "hint": "Forma て + ください = pedido educado."
+  },
+  {
+    "topic": "g14",
+    "pt": "Por favor, olhe para mim.",
+    "answer": [
+      "わたし",
+      "を",
+      "みてください"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "watashi o mite kudasai",
+    "hint": "Forma て + ください = pedido educado."
+  },
+  {
     "topic": "g15",
     "pt": "O que você está fazendo?",
     "answer": [
@@ -5359,6 +5543,36 @@ export const BUILD_N5: readonly BuildExercise[] = [
     "hint": "Forma て + います = fazendo agora, ou um estado que continua."
   },
   {
+    "topic": "g15",
+    "pt": "Meus olhos estão cansados.",
+    "answer": [
+      "め",
+      "が",
+      "つかれています"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "me ga tsukarete imasu",
+    "hint": "Forma て + います = fazendo agora, ou um estado que continua."
+  },
+  {
+    "topic": "g15",
+    "pt": "Está nevando.",
+    "answer": [
+      "ゆき",
+      "が",
+      "ふっています"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "yuki ga futte imasu",
+    "hint": "Forma て + います = fazendo agora, ou um estado que continua."
+  },
+  {
     "topic": "g16",
     "pt": "Não faça barulho.",
     "answer": [
@@ -5371,6 +5585,36 @@ export const BUILD_N5: readonly BuildExercise[] = [
       "は"
     ],
     "romaji": "oto o tatenaide kudasai",
+    "hint": "Forma ない + で + ください = por favor, não faça."
+  },
+  {
+    "topic": "g16",
+    "pt": "Não quebrem os ramos.",
+    "answer": [
+      "えだ",
+      "を",
+      "おらないでください"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "eda o oranaide kudasai",
+    "hint": "Forma ない + で + ください = por favor, não faça."
+  },
+  {
+    "topic": "g16",
+    "pt": "Não pise na grama.",
+    "answer": [
+      "しばふ",
+      "に",
+      "はいらないでください"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "shibafu ni hairanaide kudasai",
     "hint": "Forma ない + で + ください = por favor, não faça."
   },
   {
@@ -5482,6 +5726,36 @@ export const BUILD_N5: readonly BuildExercise[] = [
     ],
     "romaji": "soko e itte wa ikemasen",
     "hint": "Forma て + は + いけません = não pode."
+  },
+  {
+    "topic": "g19",
+    "pt": "Vamos jogar baseball!",
+    "answer": [
+      "やきゅう",
+      "を",
+      "しましょう"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "yakyū o shimashō",
+    "hint": "ましょう = vamos; ませんか = não quer...? (convite)."
+  },
+  {
+    "topic": "g19",
+    "pt": "Vamos almoçar.",
+    "answer": [
+      "ちゅうしょく",
+      "に",
+      "しましょう"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "chūshoku ni shimashō",
+    "hint": "ましょう = vamos; ませんか = não quer...? (convite)."
   },
   {
     "topic": "g20",
@@ -6810,4 +7084,4 @@ export const BUILD_N5: readonly BuildExercise[] = [
 ];
 
 /** Ids das frases do Tatoeba usadas nos exemplos (para o crédito). */
-export const GRAMMAR_N5_SENTENCE_IDS: readonly number[] = [9740661,1193930,12055984,10081492,1019460,10901764,11643291,184159,1216866,4002000,338057,2128256,170848,5748800,1039551,78718,11630865,11512358,123257,5955826,2006378,2349145,123791,5845217,4147428,2242416,10899008,2040852,741581,201956,201775,213581,10631584,442923,170842,140285,143813,5272,3552884,11776723,625254,157401,179732,12412206,2626290,10625858,10366825,9644550,354378,13254283,3347455,10194978,2672966,5323,11029605,10967392,9755700,9199895,1700213,187577,347338,8532899,432825,2412106,13218484,2969830,2701348,8733259,183436,149673,2139043,5390444,177906,9475751,125811,14007955,215019,232933,1799658,920509,873959,11065768,13201627,10617667,11017844,174334,169135,11009755,82874,151284,88812,171179,1299272,80265,158658,150453,8723018,5157,213984,10671567,140345,227047,173392,3449190,205799,433715,890127,2552450,137130,11610218,7551823,1507527,11003497,3553343,468677,670057,155138,110803,13563699,102805,152773,119074,95543,10744345,106065];
+export const GRAMMAR_N5_SENTENCE_IDS: readonly number[] = [9740661,1193930,12055984,10081492,1019460,10901764,11643291,184159,1216866,4002000,338057,2128256,170848,5748800,1039551,78718,79930,152144,11630865,11512358,123257,5955826,79988,4975839,2006378,2349145,123791,5845217,168184,149270,4147428,2242416,10899008,2040852,741581,201956,201775,213581,10631584,442923,170842,140285,79634,126402,143813,5272,3552884,11776723,625254,157401,179732,12412206,2626290,10625858,10366825,9644550,354378,13254283,3347455,10194978,2672966,5323,11029605,10967392,9755700,9199895,1700213,187577,347338,8532899,432825,2412106,13218484,2969830,2701348,8733259,183436,149673,2139043,5390444,177906,9475751,125811,14007955,215019,232933,1799658,920509,873959,11065768,13201627,10617667,11017844,174334,169135,11009755,82874,151284,88812,171179,1299272,80265,158658,150453,8723018,5157,213984,10671567,140345,227047,173392,3449190,205799,433715,890127,2552450,137130,11610218,7551823,1507527,11003497,3553343,468677,670057,155138,110803,13563699,102805,152773,119074,95543,10744345,106065];

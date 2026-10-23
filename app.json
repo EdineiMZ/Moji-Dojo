@@ -2,7 +2,7 @@
   "expo": {
     "name": "Moji Dojo",
     "slug": "moji-dojo",
-    "version": "1.11.0",
+    "version": "1.11.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -19,7 +19,7 @@
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE"
       ],
-      "versionCode": 11100
+      "versionCode": 11101
     },
     "plugins": [
       "expo-router",
@@ -47,7 +47,9 @@
         "expo-audio",
         {
           "microphonePermission": "O Moji Dojo usa o microfone só para você gravar a sua voz e comparar com o modelo.",
-          "recordAudioAndroid": true
+          "recordAudioAndroid": true,
+          "enableBackgroundPlayback": false,
+          "enableBackgroundRecording": false
         }
       ],
       [
@@ -62,15 +64,6 @@
         }
       ],
       "expo-status-bar",
-      [
-        "expo-audio",
-        {
-          "recordAudioAndroid": false,
-          "microphonePermission": false,
-          "enableBackgroundPlayback": false,
-          "enableBackgroundRecording": false
-        }
-      ],
       "expo-asset"
     ],
     "scheme": "mojidojo",

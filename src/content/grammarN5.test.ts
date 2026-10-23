@@ -41,8 +41,8 @@ describe('gramática N5 (Tatoeba)', () => {
   it('quase todo tópico novo tem exercícios para o Montar e as Lacunas', () => {
     const withExercises = new Set(BUILD_N5.map((e) => e.topic));
     const missing = GRAMMAR_N5.filter((t) => !withExercises.has(t.id)).map((t) => t.id);
-    // Só ficam de fora tópicos cujas frases são curtas demais para montar (menos de 3 blocos).
-    expect(missing).toEqual(['g19']);
+    // Só ficaria de fora um tópico cujas frases fossem curtas demais para montar (menos de 3 blocos).
+    expect(missing).toEqual([]);
     expect(ALL_EXERCISES.length).toBe(26 + BUILD_N5.length);
   });
 

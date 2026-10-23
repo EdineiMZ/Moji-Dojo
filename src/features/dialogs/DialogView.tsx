@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, ChipRow, Mascot, PetalRain, PressableScale } from '@/components';
 import { DIALOG_SCENES, type DialogOption, type DialogScene } from '@/content/dialogs';
@@ -33,9 +33,11 @@ interface Attempt {
 }
 
 /** Uma fala na conversa: o atendente à esquerda e o aluno à direita. */
-function Bubble({ line, mine }: { line: { jp: string; romaji: string; pt: string }; mine: boolean }) {
+function Bubble({ line, mine, hidden = false }: { line: { jp: string; romaji: string; pt: string }; mine: boolean; hidden?: boolean }) {
   const { colors } = useTheme();
   const speed = useSettingsStore((s) => s.speechSpeed);
+  const [revealed, setRevealed] = useState(false);
+  const covered = hidden && !revealed;
   return (
     <View
       style={[
@@ -47,9 +49,17 @@ function Bubble({ line, mine }: { line: { jp: string; romaji: string; pt: string
       <AppText variant="caption" color="muted">
         {mine ? 'VOCÊ' : 'ATENDENTE'}
       </AppText>
-      <AppText style={styles.jp}>{line.jp}</AppText>
-      <RomajiLine text={line.romaji} />
-      <AppText variant="caption">{line.pt}</AppText>
+      {covered ? (
+        <PressableScale accessibilityRole="button" accessibilityLabel="Mostrar o texto da fala" onPress={() => setRevealed(true)}>
+          <AppText color="muted">Só áudio. Toque para ver o texto e a tradução.</AppText>
+        </PressableScale>
+      ) : (
+        <>
+          <AppText style={styles.jp}>{line.jp}</AppText>
+          <RomajiLine text={line.romaji} />
+          <AppText variant="caption">{line.pt}</AppText>
+        </>
+      )}
       <PressableScale
         accessibilityRole="button"
         accessibilityLabel={`Ouvir: ${line.jp}`}
@@ -80,6 +90,20 @@ function SceneSession({ scene, onExit, onRestart }: { scene: DialogScene; onExit
     Object.fromEntries(scene.turns.flatMap((t, i) => (isYouTurn(t) ? [[i, shuffledOptions(t)] as const] : []))),
   );
   const [writing, setWriting] = useState(false);
+  const [listenOnly, setListenOnly] = useState(false);
+
+  // No modo "só ouvir", a fala do atendente toca sozinha quando aparece.
+  useEffect(() => {
+    if (!listenOnly || current < 0) return;
+    for (let i = current - 1; i >= 0; i--) {
+      const turn = scene.turns[i];
+      if (turn?.kind === 'staff') {
+        speakJapanese(turn.jp.replace(/ /g, ''), SPEECH_RATES[speed]);
+        return;
+      }
+      if (turn?.kind === 'you') return;
+    }
+  }, [listenOnly, current, scene, speed]);
 
   const turns = youTurns(scene);
   const turn = scene.turns[current];
@@ -177,6 +201,17 @@ function SceneSession({ scene, onExit, onRestart }: { scene: DialogScene; onExit
           <Mascot mood={attempt.solved ? 'happy' : lastWrong ? 'sad' : 'neutral'} size={64} />
         </View>
         <AppText variant="caption" color="muted">
+          COMO OUVIR O ATENDENTE
+        </AppText>
+        <ChipRow
+          options={[
+            { value: 'read', label: 'Ler e ouvir' },
+            { value: 'listen', label: 'Só ouvir' },
+          ]}
+          value={listenOnly ? 'listen' : 'read'}
+          onChange={(v) => setListenOnly(v === 'listen')}
+        />
+        <AppText variant="caption" color="muted">
           AJUDA NAS RESPOSTAS
         </AppText>
         <ChipRow options={OPTION_HELPS} value={help} onChange={setHelp} />
@@ -185,7 +220,7 @@ function SceneSession({ scene, onExit, onRestart }: { scene: DialogScene; onExit
       <View style={styles.chat}>
         {shownTurns.map((t, i) => {
           if (t.kind === 'narrator') return <Narration key={i} text={t.pt} />;
-          if (t.kind === 'staff') return <Bubble key={i} line={t} mine={false} />;
+          if (t.kind === 'staff') return <Bubble key={`${i}-${listenOnly}`} line={t} mine={false} hidden={listenOnly} />;
           return attempts[i]?.solved ? <Bubble key={i} line={correctOption(t)} mine /> : null;
         })}
       </View>

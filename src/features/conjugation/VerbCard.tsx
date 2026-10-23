@@ -52,6 +52,6 @@ const styles = StyleSheet.create({
   jp: { fontFamily: fonts.bold, fontSize: 40, lineHeight: 50 },
   forms: { gap: spacing.xs },
   row: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
-  label: { width: 110 },
+  label: { minWidth: 110 },
   form: { flex: 1 },
 });

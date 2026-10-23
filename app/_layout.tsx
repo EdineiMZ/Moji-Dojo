@@ -47,6 +47,7 @@ function ThemedStack() {
         screenOptions={{
           headerShown: false,
           animation: 'slide_from_right',
+          freezeOnBlur: true,
           contentStyle: { backgroundColor: colors.background },
         }}
       >

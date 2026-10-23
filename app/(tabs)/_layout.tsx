@@ -29,6 +29,8 @@ export default function TabsLayout() {
       screenOptions={{
         headerShown: false,
         animation: 'fade',
+        // Abas e telas que não estão à vista ficam congeladas: respostas no quiz não redesenham a tela inicial por trás.
+        freezeOnBlur: true,
         tabBarActiveTintColor: colors.primaryText,
         tabBarInactiveTintColor: colors.muted,
         tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.line },

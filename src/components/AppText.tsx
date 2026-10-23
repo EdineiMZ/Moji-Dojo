@@ -18,6 +18,12 @@ const variantStyles: Record<TextVariant, TextStyle> = {
   glyph: { fontFamily: fonts.bold, fontSize: fontSizes.glyph, lineHeight: fontSizes.glyph * 1.15 },
 };
 
+/**
+ * Até quanto a fonte do sistema pode crescer (tamanho de fonte grande nas configurações do Android). Texto corrido cresce bastante;
+ * títulos e os caracteres grandes do quiz crescem menos, senão estouram os cartões.
+ */
+const MAX_SCALE: Record<TextVariant, number> = { body: 1.8, caption: 1.8, title: 1.5, headline: 1.4, glyph: 1.2 };
+
 /** Texto com a fonte e as cores do tema. Use no lugar do Text puro. */
 export function AppText({ variant = 'body', color = 'ink', center, style, ...rest }: AppTextProps) {
   const { colors } = useTheme();
@@ -25,6 +31,7 @@ export function AppText({ variant = 'body', color = 'ink', center, style, ...res
   const textColor = color === 'primary' ? colors.primaryText : colors[color];
   return (
     <Text
+      maxFontSizeMultiplier={MAX_SCALE[variant]}
       style={[variantStyles[variant], { color: textColor }, center && { textAlign: 'center' }, style]}
       {...rest}
     />

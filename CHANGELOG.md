@@ -2,6 +2,20 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.4.0] - 2026-10-23
+
+Fase 2 do [ROADMAP](ROADMAP.md): gramática ativa. A aba Frases agora tem sete seções (os chips rolam na horizontal).
+
+- **Conjugar:** treinador de conjugação com cerca de 110 verbos do vocabulário. Aprenda 3 por vez e treine as formas ます, ない, て e た (geradas por regra, com os grupos 1, 2 e os irregulares). As respostas erradas são os erros típicos (regra de outro grupo, final de て errado) e a revisão é espaçada por verbo e forma.
+- **Lacunas:** frases com um espaço para a partícula certa (は, を, に, で, の, も, と, が, から, まで, より) ou para a forma do final da frase, com a tradução embaixo e a regra ao errar.
+- **Gramática de 10 para 30 tópicos:** 20 tópicos novos (でした/ではありません, adjetivos no negativo e no passado, 〜てください, 〜ています, 〜ないでください, 〜てもいい, 〜てはいけません, 〜ましょう/ませんか, ほしい, より, いちばん, すき/じょうず, から/まで, から (motivo), palavras interrogativas, もう/まだ, posições, になる, できる). As explicações são originais e os exemplos são 80 frases reais do Tatoeba (CC BY 2.0 FR), conferidas na fonte com `npm run verify-grammar`.
+- **Praticar:** os exemplos novos viraram 59 exercícios de Montar e de Lacunas.
+- **Contar:** números de 1 a 99.999, horas, datas, preços e 11 contadores, gerados por regra, em dois modos (ler e ouvir), com tabela de consulta.
+- **Erros comuns de quem fala português:** 10 dicas gerais e notas em 28 dos 30 tópicos (ordem das palavras, sujeito omitido, sem artigos, を não é "o"...).
+- **Mini-teste por tópico:** até 5 perguntas sem a explicação à vista; 80% de acertos de primeira marcam o tópico como dominado (✓ na lista e contador no topo).
+- **Backup:** o código `MDJ1:` inclui a conjugação e os tópicos dominados; códigos antigos continuam valendo.
+- **Pendências para publicar:** as explicações, as notas de erros comuns e as traduções do vocabulário foram escritas por IA e precisam de revisão por um falante; o crédito do Tatoeba está em Ajustes → Sobre e em `src/content/LICENSE.md`.
+
 ## [1.3.0] - 2026-10-23
 
 Fecha o vocabulário da Fase 1 do [ROADMAP](ROADMAP.md): de 179 para **837 palavras**.

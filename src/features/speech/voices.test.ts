@@ -25,6 +25,16 @@ describe('pickJapaneseVoice', () => {
 });
 
 describe('speechText', () => {
+  it('um kana sozinho é repetido, porque a voz do Android fica muda com um caractere só', () => {
+    expect(speechText('あ')).toBe('あ、あ');
+    expect(speechText('ン')).toBe('ン、ン');
+    expect(speechText(' い ')).toBe('い、い');
+    // duas letras ou mais já saem normalmente
+    expect(speechText('あい')).toBe('あい');
+    expect(speechText('きゃ')).toBe('きゃ');
+    expect(speechText('日')).toBe('日');
+  });
+
   it('uma barra entre alternativas vira pausa', () => {
     expect(speechText('はい / いいえ')).toBe('はい。いいえ');
     expect(speechText('はい/いいえ')).toBe('はい。いいえ');

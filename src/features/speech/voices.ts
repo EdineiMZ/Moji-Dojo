@@ -47,4 +47,15 @@ export function voiceLabel(voice: VoiceInfo, index: number): string {
 }
 
 /** Texto enviado à voz: uma barra entre alternativas ("はい / いいえ") vira pausa, como no protótipo. */
-export const speechText = (text: string): string => text.replace(/\s*\/\s*/g, '。');
+const SINGLE_KANA = /^[ぁ-ゖァ-ヶ]$/u;
+
+/**
+ * Texto enviado à voz. Uma barra entre alternativas ("はい / いいえ") vira pausa, como no protótipo. Um kana sozinho ("あ", "い")
+ * é dito duas vezes ("あ、あ"): a voz japonesa do Android costuma ficar muda com um único caractere, e com dois ela fala (a
+ * pausa deixa claro que é o mesmo som repetido, não uma vogal longa).
+ */
+export const speechText = (text: string): string => {
+  const clean = text.trim();
+  if (SINGLE_KANA.test(clean)) return `${clean}、${clean}`;
+  return text.replace(/\s*\/\s*/g, '。');
+};

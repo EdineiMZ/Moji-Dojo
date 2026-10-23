@@ -109,6 +109,12 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
   vêm do **JMdict** (EDRDG, **CC BY-SA 4.0**, entre as de uso comum; conferidas contra o dump). O **significado em português foi escrito por IA**
   e precisa de revisão por um falante. Só aparecem na lição do kanji.
 
+## Dicas dos kanji (1.11.2)
+
+- `src/content/kanjiHints.ts`: dicas de memorização para os 216 kanji que o protótipo não trazia, **escritas por IA** a partir dos
+  componentes de cada kanji no KanjiVG (CC BY-SA 3.0). São imagens para lembrar a forma, não a origem histórica do caractere.
+  **Escritas por IA, a revisar por um falante.**
+
 ## Antes de publicar
 
 1. **Confirmar a licença das listas do Tanos** (https://www.tanos.co.uk/jlpt/) e se ela permite o uso e a

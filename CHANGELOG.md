@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.11.2] - 2026-10-23
+
+Fecha o que a validação geral (1.11.1) deixou aberto.
+
+- **Dicas de memorização:** os 216 kanji que não tinham dica (os do N4 e vários do N5) ganharam uma, escrita por IA a partir dos componentes de cada kanji no KanjiVG. São imagens para lembrar a forma, não a origem histórica do caractere. A revisar por um falante.
+- **Frases de exemplo:** 33 palavras que não tinham nenhuma frase no Banco ganharam (153 frases novas do Tatoeba). Ainda faltam frases para 176 palavras, quase todas de uma forma que só aparece em kanji nas frases (くつ, すし) ou palavras raras em frases curtas.
+- **Tom:** o script de acento passou a incluir as palavras de exemplo dos kanji (日本語, 東京...): mais 9 palavras com tom. As outras não estão no Kanjium (principalmente palavras em katakana).
+- **Permissões:** `SYSTEM_ALERT_WINDOW`, que só serve para ferramentas de desenvolvimento, foi bloqueada no app.
+
 ## [1.11.1] - 2026-10-23
 
 Validação geral do app: correções de conteúdo, layout, acessibilidade e desempenho.

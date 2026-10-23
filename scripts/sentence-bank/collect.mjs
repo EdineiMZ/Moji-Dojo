@@ -13,7 +13,18 @@ const perWord = flag('--per', 8);
 const maxLength = flag('--max', 22);
 
 const n5 = readFileSync(new URL('../../src/content/n5.ts', import.meta.url), 'utf8');
-const queries = [...new Set([...n5.matchAll(/jp: "([^"]+)"/g)].map((m) => m[1]))].filter((q) => !/[〜~()（）]/.test(q));
+const extraIndex = args.indexOf('--queries');
+// --queries arquivo.tsv: busca só as palavras (e leituras) dessa lista (colunas: escrita, leitura), para cobrir quem ficou sem frase.
+const extra =
+  extraIndex < 0
+    ? null
+    : readFileSync(args[extraIndex + 1], 'utf8')
+        .split(/\r?\n/)
+        .flatMap((line) => line.split(/\t/).slice(0, 2))
+        .filter(Boolean);
+const queries = (extra ?? [...n5.matchAll(/jp: "([^"]+)"/g)].map((m) => m[1]))
+  .filter((q, i, all) => all.indexOf(q) === i)
+  .filter((q) => !/[〜~()（）]/.test(q));
 
 const out = new URL('./candidates.json', import.meta.url);
 const bank = existsSync(out) ? JSON.parse(readFileSync(out, 'utf8')) : { done: [], sentences: {} };

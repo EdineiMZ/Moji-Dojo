@@ -15,7 +15,6 @@ export const USERNAME_MAX = 20;
 
 /** Tira espaços das pontas e repetidos, caracteres de controle, e limita o tamanho. */
 export function cleanUsername(raw: string): string {
-  // eslint-disable-next-line no-control-regex
   return raw.replace(/[\u0000-\u001f\u007f]/g, '').replace(/\s+/g, ' ').trim().slice(0, USERNAME_MAX).trim();
 }
 

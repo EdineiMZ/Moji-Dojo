@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, Card, ChipRow, PressableScale } from '@/components';
 import { findWord } from '@/content';
-import { READINGS, type ReadingLine, type ReadingText } from '@/content/readings';
+import { READINGS, type LinePart, type ReadingLine, type ReadingText } from '@/content/readings';
 import { segment, type Token } from '@/features/bank/lexicon';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { learnedWordIds } from '@/features/vocab/cards';
@@ -19,8 +19,14 @@ const KINDS = [
 /** O texto da frase sem os espaços que separam, por exemplo, o prato do preço num cardápio. */
 const plain = (line: ReadingLine): string => line.jp.replace(/ /g, '');
 
+/** O que a voz lê: com as leituras em kana quando a frase tem kanji (placas e cardápios), para ela não errar. */
+const spokenOf = (line: ReadingLine): string => (line.parts ? line.parts.map((p) => p.reading ?? p.jp).join('') : plain(line));
+
+/** O que a pessoa tocou: uma palavra do léxico do app (que dá para aprender) ou um pedaço de uma frase real (só explicado). */
+type Piece = { kind: 'token'; token: Token } | { kind: 'part'; part: LinePart };
+
 interface Picked {
-  token: Token;
+  piece: Piece;
   line: ReadingLine;
 }
 
@@ -28,8 +34,8 @@ interface LineProps {
   line: ReadingLine;
   known: ReadonlySet<string>;
   furigana: boolean;
-  onPick: (token: Token) => void;
-  picked: Token | null;
+  onPick: (piece: Piece) => void;
+  picked: Piece | null;
 }
 
 /** Uma frase: cada palavra do vocabulário é tocável; as que o aluno já estuda ganham destaque. */
@@ -37,10 +43,25 @@ function Line({ line, known, furigana, onPick, picked }: LineProps) {
   const { colors } = useTheme();
   const speed = useSettingsStore((s) => s.speechSpeed);
   const [showPt, setShowPt] = useState(false);
-  const tokens = useMemo(() => segment(plain(line)) ?? [], [line]);
+  const tokens = useMemo(() => (line.parts ? [] : (segment(plain(line)) ?? [])), [line]);
   return (
     <View style={styles.line}>
       <View style={styles.tokens}>
+        {line.parts?.map((part, i) => {
+          const needsReading = furigana && part.reading !== undefined && part.reading !== part.jp;
+          const piece: Piece = { kind: 'part', part };
+          const isPicked = picked?.kind === 'part' && picked.part === part;
+          return (
+            <PressableScale key={`${i}-${part.jp}`} accessibilityRole="button" accessibilityLabel={part.jp} onPress={() => onPick(piece)}>
+              <View style={styles.token}>
+                <AppText color="muted" style={[styles.ruby, { opacity: needsReading ? 1 : 0 }]}>
+                  {needsReading ? part.reading : ' '}
+                </AppText>
+                <AppText style={[styles.jp, { borderBottomWidth: 2, borderBottomColor: colors.primary }, isPicked && { backgroundColor: colors.primarySoft }]}>{part.jp}</AppText>
+              </View>
+            </PressableScale>
+          );
+        })}
         {tokens.map((token, i) => {
           const tappable = token.entry.id !== null;
           const isKnown = token.entry.id !== null && known.has(token.entry.id);
@@ -54,7 +75,7 @@ function Line({ line, known, furigana, onPick, picked }: LineProps) {
                 style={[
                   styles.jp,
                   tappable && { borderBottomWidth: 2, borderBottomColor: isKnown ? colors.ok : colors.primary },
-                  picked === token && { backgroundColor: colors.primarySoft },
+                  picked?.kind === 'token' && picked.token === token && { backgroundColor: colors.primarySoft },
                 ]}
               >
                 {token.surface}
@@ -62,7 +83,7 @@ function Line({ line, known, furigana, onPick, picked }: LineProps) {
             </View>
           );
           return tappable ? (
-            <PressableScale key={`${i}-${token.surface}`} accessibilityRole="button" accessibilityLabel={token.surface} onPress={() => onPick(token)}>
+            <PressableScale key={`${i}-${token.surface}`} accessibilityRole="button" accessibilityLabel={token.surface} onPress={() => onPick({ kind: 'token', token })}>
               {body}
             </PressableScale>
           ) : (
@@ -71,7 +92,7 @@ function Line({ line, known, furigana, onPick, picked }: LineProps) {
         })}
       </View>
       <View style={styles.actions}>
-        <Button label="🔊" variant="ghost" onPress={() => speakJapanese(plain(line), SPEECH_RATES[speed])} style={styles.small} />
+        <Button label="🔊" variant="ghost" onPress={() => speakJapanese(spokenOf(line), SPEECH_RATES[speed])} style={styles.small} />
         <Button label={showPt ? 'Esconder tradução' : 'Tradução'} variant="ghost" onPress={() => setShowPt((v) => !v)} style={styles.small} />
       </View>
       {showPt ? <AppText color="muted">{line.pt}</AppText> : null}
@@ -82,11 +103,32 @@ function Line({ line, known, furigana, onPick, picked }: LineProps) {
 /** Painel da palavra tocada: leitura, significado, classe, áudio e "aprender" (com a frase de origem como nota). */
 function WordPanel({ picked, onClose }: { picked: Picked; onClose: () => void }) {
   const speed = useSettingsStore((s) => s.speechSpeed);
+  const { piece } = picked;
+  // Pedaço de uma frase real: só explica (leitura e significado), sem "aprender".
+  if (piece.kind === 'part') {
+    const { part } = piece;
+    return (
+      <Card style={styles.panel}>
+        <View style={styles.panelHead}>
+          <AppText variant="title">
+            {part.jp} {part.reading && part.reading !== part.jp ? <AppText color="muted">{part.reading}</AppText> : null}
+          </AppText>
+          <Button label="Fechar" variant="ghost" onPress={onClose} style={styles.small} />
+        </View>
+        {part.pt ? (
+          <AppText>
+            <Bold>{part.pt}</Bold>
+          </AppText>
+        ) : null}
+        <Button label="🔊 Ouvir" variant="soft" onPress={() => speakJapanese(part.reading ?? part.jp, SPEECH_RATES[speed])} style={styles.small} />
+      </Card>
+    );
+  }
   const vocab = useProgressStore((s) => s.vocab);
   const learnWords = useProgressStore((s) => s.learnWords);
   const setWordNote = useProgressStore((s) => s.setWordNote);
   const notes = useProgressStore((s) => s.wordNotes);
-  const word = picked.token.entry.id ? findWord(picked.token.entry.id) : undefined;
+  const word = piece.token.entry.id ? findWord(piece.token.entry.id) : undefined;
   if (!word) return null;
   const learned = learnedWordIds(vocab).has(word.id);
   const cls = wordClass(word);
@@ -150,12 +192,12 @@ function TextReader({ text, onBack }: { text: ReadingText; onBack: () => void })
             line={line}
             known={known}
             furigana={furigana}
-            picked={picked && picked.line === line ? picked.token : null}
-            onPick={(token) => setPicked({ token, line })}
+            picked={picked && picked.line === line ? picked.piece : null}
+            onPick={(piece) => setPicked({ piece, line })}
           />
         ))}
         <AppText variant="caption" color="muted">
-          Toque numa palavra sublinhada. Verde: você já estuda. Roxa: ainda não.
+          Toque numa palavra sublinhada. Verde: você já estuda. Roxa: ainda não (nas placas e cardápios, toda palavra tem explicação).
         </AppText>
       </Card>
       {picked ? <WordPanel picked={picked} onClose={() => setPicked(null)} /> : null}

@@ -27,6 +27,8 @@ export interface PairItem {
   explain?: string;
   /** Dica mostrada só quando a pessoa erra. */
   hint?: string;
+  /** Por que cada alternativa errada está errada, pelo texto dela (`char`). Mostrado quando ela é escolhida. */
+  whyWrong?: Readonly<Record<string, string>>;
 }
 
 /** O que uma pergunta pode ter como resposta: um caractere estudado ou uma palavra de par difícil. */

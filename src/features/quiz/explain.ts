@@ -26,12 +26,15 @@ export interface Feedback {
   text: string;
   /** Só quando errou: ajuda a fixar. */
   hint?: string;
+  /** Só quando errou e a alternativa escolhida tem explicação própria: o que ela muda. */
+  why?: string;
 }
 
-export function buildFeedback(item: QuizItem, correct: boolean): Feedback {
+export function buildFeedback(item: QuizItem, correct: boolean, chosen?: string): Feedback {
   const text = `${correct ? 'Certo! ' : 'Era '}${explainItem(item)}`;
   const hint = correct ? undefined : mnemonicFor(item);
-  return hint ? { correct, text, hint } : { correct, text };
+  const why = correct || chosen === undefined || item.script !== 'pair' ? undefined : item.whyWrong?.[chosen];
+  return { correct, text, ...(hint ? { hint } : {}), ...(why ? { why } : {}) };
 }
 
 /** Tempo até avançar sozinho depois de um acerto (kanji tem mais texto para ler). */

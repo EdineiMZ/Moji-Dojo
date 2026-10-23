@@ -130,7 +130,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
   /** Parte comum a qualquer resposta: estado, feedback, vibração, animação e avanço automático. */
   const settle = (outcome: AnswerOutcome, chosen: string, score?: WritingScore) => {
     setQuiz(outcome.state);
-    setAnswered({ chosen, correct: outcome.correct, feedback: buildFeedback(current.item, outcome.correct), ...(score ? { score } : {}) });
+    setAnswered({ chosen, correct: outcome.correct, feedback: buildFeedback(current.item, outcome.correct, chosen), ...(score ? { score } : {}) });
     setMood(outcome.correct ? 'happy' : 'sad');
     onAnswer?.(current, outcome.correct, outcome.firstTry);
 
@@ -250,6 +250,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
           style={[styles.feedback, { backgroundColor: answered.correct ? colors.okSoft : colors.badSoft }]}
         >
           <AppText color={answered.correct ? 'ok' : 'bad'}>{answered.feedback.text}</AppText>
+          {answered.feedback.why ? <AppText>O que mudou: {answered.feedback.why}</AppText> : null}
           {answered.feedback.hint ? (
             <AppText variant="caption" color="muted">
               Para lembrar: {answered.feedback.hint}

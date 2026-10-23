@@ -91,7 +91,8 @@ Objetivo: transformar "li sobre は e が" em "uso は e が sem pensar".
 
 Objetivo: sair de reconhecer para **produzir**.
 
-- [ ] **Montar evoluído:** além de blocos prontos, escolher entre várias respostas válidas, com feedback do que mudou o sentido. Já aceita mais de uma ordem; ampliar a variedade. *(M)*
+- [x] **Montar evoluído:** além de blocos prontos, escolher entre várias respostas válidas, com feedback do que mudou o sentido. Já aceita mais de uma ordem; ampliar a variedade. *(M)*
+  - Feito: ao errar no Montar, **"O que mudou"** diz a causa (partícula trocada e o que cada uma faz, final do verbo trocado, bloco que sobra ou falta, ordem) e mostra as outras ordens que valem. Novo modo **Qual está certa?**: escolher entre frases parecidas, cada errada com um tipo de erro e a explicação de por que muda o sentido. As trocas de は/が/も ficam de fora, porque podem estar certas.
 - [x] **Traduzir digitando:** do português para o japonês usando o teclado de flick do app ou o do celular, com correção tolerante (kana ou kanji, espaços, pontuação). *(G)*
   - Feito: sub-aba **Traduzir → Escrever**. Teclado do app (flick) ou do celular, à escolha. A conferência ignora espaços, pontuação, largura e hiragana/katakana, aceita kana ou kanji e as outras ordens do Montar, e mostra o que sobrou na digitação. Frases: ~130, da gramática, do Montar e de Viagem.
 - [x] **Traduzir do japonês:** mostrar uma frase e pedir o sentido, com opções e depois resposta livre. *(M)*

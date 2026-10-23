@@ -3,7 +3,7 @@ import { AppText, ChipRow, Screen, SwapView } from '@/components';
 import { ClozeView } from '@/features/cloze/ClozeView';
 import { CountingView } from '@/features/counting/CountingView';
 import { ConjugationView } from '@/features/conjugation/ConjugationView';
-import { BuildView } from '@/features/phrases/BuildView';
+import { BuildHub } from '@/features/phrases/BuildHub';
 import { ALL_TOPICS } from '@/features/phrases/build';
 import { GrammarView } from '@/features/phrases/GrammarView';
 import { TravelView } from '@/features/phrases/TravelView';
@@ -53,7 +53,7 @@ export default function PhrasesScreen() {
         {view === 'count' ? <CountingView /> : null}
         {view === 'translate' ? <TranslateView /> : null}
         {view === 'mine' ? <MyPhrasesView /> : null}
-        {view === 'build' ? <BuildView key={topic} topic={topic} onTopicChange={setTopic} /> : null}
+        {view === 'build' ? <BuildHub topic={topic} onTopicChange={setTopic} /> : null}
         {view === 'travel' ? <TravelView /> : null}
       </SwapView>
     </Screen>

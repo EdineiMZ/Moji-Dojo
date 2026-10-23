@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { AppText, Bold, Button, Card, ChipRow, PressableScale } from '@/components';
-import { ALL_EXERCISES, ALL_GRAMMAR } from '@/content/grammar';
+import { AppText, Bold, Button, Card, PressableScale } from '@/components';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { feedbackCorrect, feedbackWrong } from '@/lib/feedback';
 import { useProgressStore, useSettingsStore } from '@/store';
@@ -9,7 +8,6 @@ import { SPEECH_RATES } from '@/store/settingsStore';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import {
   addToken,
-  ALL_TOPICS,
   checkRound,
   clearTokens,
   createRound,
@@ -19,31 +17,17 @@ import {
   removeToken,
   type BuildRound,
 } from './build';
-
-/** Só os tópicos que têm exercício entram no seletor. */
-const TOPIC_OPTIONS = [
-  { value: ALL_TOPICS, label: 'Todos' },
-  ...ALL_GRAMMAR.map((t, i) => ({ topic: t, number: i + 1 }))
-    .filter(({ topic }) => ALL_EXERCISES.some((e) => e.topic === topic.id))
-    .map(({ topic, number }) => ({ value: topic.id, label: String(number) })),
-];
-
-const topicTitle = (topicId: string): string => {
-  if (topicId === ALL_TOPICS) return 'Todos os tópicos';
-  const index = ALL_GRAMMAR.findIndex((t) => t.id === topicId);
-  return `${index + 1}. ${ALL_GRAMMAR[index]?.title ?? ''}`;
-};
+import { diagnose, otherValid } from './diagnose';
 
 interface BuildViewProps {
   topic: string;
-  onTopicChange: (topic: string) => void;
 }
 
 /**
  * Monte em japonês: toque nos blocos, na ordem certa. Sobram blocos de propósito.
  * Quem usa deve passar `key={topic}`: trocar de tópico começa uma rodada nova.
  */
-export function BuildView({ topic, onTopicChange }: BuildViewProps) {
+export function BuildView({ topic }: BuildViewProps) {
   const { colors } = useTheme();
   const speed = useSettingsStore((s) => s.speechSpeed);
   const markStudied = useProgressStore((s) => s.markStudied);
@@ -70,23 +54,10 @@ export function BuildView({ topic, onTopicChange }: BuildViewProps) {
     }
   };
 
-  const picker = (
-    <View style={styles.picker}>
-      <AppText variant="caption" color="muted">
-        TÓPICO
-      </AppText>
-      <ChipRow options={TOPIC_OPTIONS} value={topic} onChange={onTopicChange} />
-      <AppText variant="caption" color="muted">
-        {topicTitle(topic)}
-      </AppText>
-    </View>
-  );
-
   if (round.finished) {
     const good = total > 0 && round.correct / total >= 0.8;
     return (
       <View style={styles.root}>
-        {picker}
         <Card enterIndex={0} style={styles.center}>
           <AppText variant="headline" center>
             Rodada terminada
@@ -109,14 +80,16 @@ export function BuildView({ topic, onTopicChange }: BuildViewProps) {
     );
   }
 
-  if (!exercise) return <View style={styles.root}>{picker}</View>;
+  if (!exercise) return null;
 
   const checked = round.checked;
+  const built = round.chosen.map((t) => t.text);
+  const changes = checked === 'bad' ? diagnose(exercise, built) : [];
+  const alsoValid = otherValid(exercise, built);
   const lineColor = checked === 'ok' ? colors.ok : checked === 'bad' ? colors.bad : colors.line;
 
   return (
     <View style={styles.root}>
-      {picker}
       <Card enterIndex={0}>
         <View style={styles.counter}>
           <AppText variant="caption" color="muted">
@@ -182,6 +155,18 @@ export function BuildView({ topic, onTopicChange }: BuildViewProps) {
             <AppText variant="caption" color="muted">
               {exercise.romaji}
             </AppText>
+            {changes.map((line, i) => (
+              <AppText key={i}>
+                <Bold>O que mudou: </Bold>
+                {line}
+              </AppText>
+            ))}
+            {alsoValid.length > 0 ? (
+              <AppText variant="caption" color="muted">
+                {checked === 'ok' ? 'Também vale: ' : 'Outras ordens que valem: '}
+                {alsoValid.join(' · ')}
+              </AppText>
+            ) : null}
             <AppText variant="caption">{exercise.hint}</AppText>
           </View>
         ) : null}
@@ -225,7 +210,6 @@ export function BuildView({ topic, onTopicChange }: BuildViewProps) {
 
 const styles = StyleSheet.create({
   root: { gap: spacing.md },
-  picker: { gap: spacing.xs },
   center: { alignItems: 'center' },
   score: { fontFamily: fonts.bold, fontSize: 48, lineHeight: 56 },
   counter: { flexDirection: 'row', justifyContent: 'space-between' },

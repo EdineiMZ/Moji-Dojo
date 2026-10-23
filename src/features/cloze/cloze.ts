@@ -8,13 +8,13 @@ export type ClozeKind = 'particle' | 'form';
 export const BLANK = '＿＿';
 
 /** Partículas que aparecem soltas nas frases do "Montar". */
-const PARTICLES: ReadonlySet<string> = new Set(['は', 'を', 'に', 'へ', 'で', 'の', 'も', 'と', 'が', 'から', 'まで', 'より']);
+export const PARTICLES: ReadonlySet<string> = new Set(['は', 'を', 'に', 'へ', 'で', 'の', 'も', 'と', 'が', 'から', 'まで', 'より']);
 
 /**
  * Partículas que se confundem com cada uma, na ordem de preferência (a confusão mais comum primeiro).
  * Fora daqui só entra o que também é um erro claro naquela frase.
  */
-const CONFUSABLE: Readonly<Record<string, readonly string[]>> = {
+export const CONFUSABLE: Readonly<Record<string, readonly string[]>> = {
   は: ['を', 'も', 'の', 'に'],
   を: ['に', 'は', 'で', 'の'],
   に: ['で', 'を', 'は', 'の'],
@@ -65,7 +65,7 @@ export function allBlanks(exercises: readonly BuildExercise[] = ALL_EXERCISES): 
 }
 
 /** Blocos a mais que parecem a forma certa do final da frase (começam ou terminam igual), e não partículas. */
-function formDistractors(exercise: BuildExercise): string[] {
+export function formDistractors(exercise: BuildExercise): string[] {
   const last = exercise.answer.at(-1) ?? '';
   return exercise.extra.filter((t) => !PARTICLES.has(t) && t !== last && commonAffix(t, last));
 }

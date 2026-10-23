@@ -156,7 +156,17 @@ Pedido do aluno: aprender como a frase se monta, montar frases e ter frases e di
 - [x] **Montar com frases de viagem:** Frases → Montar ganhou uma segunda fileira com as categorias de viagem (147 exercícios, blocos tirados do "Palavra por palavra", sem japonês novo).
 - [x] **Estrutura da frase** (Frases → Estrutura): o mapa da frase (blocos "palavra + partícula", verbo no fim), as frases de viagem abertas em blocos coloridos pelo papel (tema, objeto, lugar, alvo, fim da frase...) e um treino "Qual é o papel?".
 - [x] **Frases-modelo** (Frases → Modelos): 13 moldes com uma lacuna ([coisa] を ください, [lugar] は どこ ですか, [comida] の アレルギーが あります...) e um desafio de escolher a frase certa para uma tradução.
-- [ ] **Para depois:** mais moldes (horas, datas, pedidos mais longos), diálogos com a fala do atendente também para escolher e vozes diferentes por papel, textos de leitura sobre cardápios e placas reais.
+- [x] **Textos de leitura de placas, avisos e cardápios reais** (1.13.0): Frases → Leitura → Dia a dia ganhou 9 textos (placas da estação, avisos e proibições, horários de loja, cardápio de lámen, preços e impostos, banheiros e onsen, regras no transporte, conbini e supermercado). Usam kanji de verdade; cada pedaço da frase é tocável e mostra a leitura e o significado. Escritos por IA, a revisar por um falante.
+- [ ] **Para depois:** mais moldes (horas, datas, pedidos mais longos), diálogos com a fala do atendente também para escolher e vozes diferentes por papel.
+
+### Perfil, introdução e lembretes (1.13.0)
+
+- [x] **Introdução na primeira abertura** (e na primeira depois da atualização): nome de usuário, apresentação das funções, meta de minutos por dia, dia de folga e lembretes. Pode ser pulada; dá para rever em Ajustes → Você → Rever a introdução.
+- [x] **Meta de minutos por dia:** o app conta o tempo de uso ativo (toques nos últimos 60 s, só com o app aberto) e mostra o progresso em "Sessão de hoje". A meta de minutos também ajusta a meta diária de respostas.
+- [x] **Lembretes com a meta:** "Você ainda não completou seus 20 minutos hoje! Faltam X min.", "Não esqueça de aprender algo novo hoje!", com o nome da pessoa. O aviso da noite só sai se a meta ainda não foi batida; o dia de folga não tem lembrete.
+- [x] **Ajustes mais simples:** lembretes viraram três jeitos prontos (sem, leves, normais) e horários prontos, com o resto em "Personalizar"; o perfil (nome, meta, folga) fica no topo; voz, revisão, exibição, sons e dados ficam em seções que abrem com um toque.
+- Limite conhecido: o tempo de uso não conta o que a pessoa faz fora do app, e o nome e a meta não entram no backup (são preferências do aparelho).
+
 
 ### Fase 6: motor de aprendizado e plano diário
 

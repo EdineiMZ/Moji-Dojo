@@ -123,6 +123,10 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
 - `src/features/structure/`: as descrições dos papéis (tema, objeto...) e a frase de exemplo do mapa (わたしは きのう えきで ともだちに ほんを あげました) são **escritas por IA, a revisar.**
 - Nada disso vem de fonte externa: não há licença de terceiros a creditar, mas também não há revisão humana ainda.
 
+## Textos de placas e cardápios reais (1.13.0)
+
+- `src/content/readings.ts` (textos do dia a dia com `parts`): placas, avisos, horários, cardápio, preços, onsen, regras de transporte e conbini, **escritos por IA** com expressões de uso corrente no Japão. A leitura em kana e o significado em português de cada pedaço também foram escritos por IA. **A revisar por um falante.**
+
 ## Antes de publicar
 
 1. **Confirmar a licença das listas do Tanos** (https://www.tanos.co.uk/jlpt/) e se ela permite o uso e a

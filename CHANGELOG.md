@@ -2,6 +2,17 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.13.0] - 2026-10-23
+
+Introdução com perfil, ajustes mais simples, lembretes com meta de minutos e textos de placas e cardápios reais. Tudo no aparelho.
+
+- **Introdução na primeira abertura** (também na primeira depois desta atualização): você escolhe um nome de usuário, conhece as funções do app, define quantos minutos quer treinar por dia, se quer um dia de folga e como quer os lembretes. Dá para pular, e para rever em Ajustes → Você → Rever a introdução.
+- **Meta de minutos por dia:** o app conta o tempo em que você está usando de verdade (toques nos últimos 60 s, com o app aberto) e mostra o progresso em "Sessão de hoje". A meta também ajusta a meta diária de respostas.
+- **Lembretes com a sua meta e o seu nome:** "Você ainda não completou seus 20 minutos hoje! Faltam X min.", "Não esqueça de aprender algo novo hoje!" e outros. O aviso da noite só aparece se a meta ainda não foi batida, e o dia de folga não tem lembrete.
+- **Ajustes mais simples:** os lembretes viraram três jeitos prontos (sem lembretes, leves, normais) com horários prontos (manhã, almoço, fim da tarde, noite) e uma prévia de como as mensagens aparecem. Horário exato, dias e silêncio ficam em "Personalizar". O perfil (nome, meta, folga) ficou no topo, e voz, revisão, exibição, sons e dados ficaram em seções que abrem com um toque.
+- **Nome na tela inicial** ("Olá, Ana!") e nas mensagens do Mochi.
+- **Leitura de placas, avisos e cardápios reais** (Frases → Leitura → Dia a dia): 9 textos novos (estação, proibições, horários de loja, cardápio de lámen, preços e impostos, banheiros e onsen, regras no transporte, conbini). Usam kanji de verdade, e cada pedaço da frase é tocável e mostra a leitura e o significado. Escritos por IA, a revisar por um falante.
+
 ## [1.12.0] - 2026-10-23
 
 Foco em viagem e dia a dia: como a frase se monta, montar frases, e frases e diálogos prontos. Tudo no aparelho.

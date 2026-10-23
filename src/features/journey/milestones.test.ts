@@ -8,6 +8,13 @@ describe('caminho por nível', () => {
     expect((n5?.milestones.find((m) => m.id === 'kanji5')?.goal ?? 0) + (n4?.milestones[0]?.goal ?? 0)).toBe(284);
   });
 
+  it('inclui verbos e gramática dominada', () => {
+    const [n5] = levelPaths({}, {}, {}, { g1: 1 });
+    const ids = n5?.milestones.map((m) => m.id);
+    expect(ids).toEqual(expect.arrayContaining(['verbs', 'grammar']));
+    expect(n5?.milestones.find((m) => m.id === 'grammar')?.have).toBe(1);
+  });
+
   it('só conta como firme a partir da caixa 3', () => {
     const [n5] = levelPaths({ あ: { b: 3, due: 0 }, い: { b: 2, due: 0 } }, {});
     expect(n5?.milestones.find((m) => m.id === 'kana')?.have).toBe(1);

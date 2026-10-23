@@ -1,4 +1,5 @@
 import { formatDay } from '@/features/streak/days';
+import { countSkill } from './skills';
 import { newlyEarned, type AchievementContext } from './achievements';
 import { answerXp, lessonReward, roomToday, sessionReward, openBonus } from './economy';
 import { findItem, ITEMS } from './items';
@@ -121,6 +122,8 @@ export interface AnswerEvent {
   group?: string;
   /** A resposta é de um cartão de revisão espaçada (conta para o limite de revisões do dia). */
   review?: boolean;
+  /** A resposta é de um cartão já maduro (caixa 4 ou mais, intervalo de 2 semanas ou mais): mede a retenção real. */
+  mature?: boolean;
 }
 
 /** Uma resposta numa pergunta de qualquer área. */
@@ -131,6 +134,7 @@ export function onAnswer(state: JourneyState, ctx: EventContext, event: AnswerEv
   next = countDay(next, 'answers');
   if (event.ok) next = { ...next, counters: bump(next.counters, 'correct') };
   if (event.review) next = countDay(next, 'reviews');
+  next = { ...next, counters: countSkill(next.counters, event) };
 
   if (event.area === 'dictation' || event.area === 'understand') next = countDay(next, 'listen');
   if (event.area === 'dictation') next = { ...next, counters: bump(next.counters, 'dictations') };

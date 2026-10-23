@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
 import { emptyProgress, type ProgressSnapshot } from '@/features/progress/types';
+import { MATURE_BOX } from '@/features/journey/skills';
 import { answerReview, boostSkippedItems, learnItems, shouldApplyReviewAnswer, type SrsEntry, type SrsState } from '@/features/review/srs';
 import { addActivity, type ActivityHistory } from '@/features/stats/metrics';
 import { markDay } from '@/features/streak/days';
@@ -197,7 +198,7 @@ export function createProgressStore(storage: StateStorage) {
             return {
               stats: { ...s.stats, [char]: ok ? { ...prev, c: prev.c + 1 } : { ...prev, w: prev.w + 1 } },
               days,
-              journey: trackAnswer(s, days, now, { ok, area: 'kana', ref: `srs:${char}`, review: true }),
+              journey: trackAnswer(s, days, now, { ok, area: 'kana', ref: `srs:${char}`, review: true, mature: (entry?.b ?? 0) >= MATURE_BOX }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               ...(reschedule ? { srs: { ...s.srs, [char]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
@@ -245,7 +246,7 @@ export function createProgressStore(storage: StateStorage) {
             const days = markDay(s.days, new Date(now));
             return {
               days,
-              journey: trackAnswer(s, days, now, { ok, area: 'vocab', ref: `vocab:${cardKey}`, review: true, ...groupOf(cardKey) }),
+              journey: trackAnswer(s, days, now, { ok, area: 'vocab', ref: `vocab:${cardKey}`, review: true, mature: (entry?.b ?? 0) >= MATURE_BOX, ...groupOf(cardKey) }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               ...(entry ? { vocab: { ...s.vocab, [cardKey]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
@@ -317,7 +318,7 @@ export function createProgressStore(storage: StateStorage) {
             const days = markDay(s.days, new Date(now));
             return {
               days,
-              journey: trackAnswer(s, days, now, { ok, area: 'particle', ref: `particle:${particle}`, review: true }),
+              journey: trackAnswer(s, days, now, { ok, area: 'particle', ref: `particle:${particle}`, review: true, mature: (entry?.b ?? 0) >= MATURE_BOX }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               particles: { ...s.particles, [particle]: answerReview(entry, ok, !firstTry, now) },
             };
@@ -329,7 +330,7 @@ export function createProgressStore(storage: StateStorage) {
             const days = markDay(s.days, new Date(now));
             return {
               days,
-              journey: trackAnswer(s, days, now, { ok, area: 'conj', ref: `conj:${cardKey}`, review: true }),
+              journey: trackAnswer(s, days, now, { ok, area: 'conj', ref: `conj:${cardKey}`, review: true, mature: (entry?.b ?? 0) >= MATURE_BOX }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               ...(entry ? { conj: { ...s.conj, [cardKey]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
@@ -397,7 +398,7 @@ export function createProgressStore(storage: StateStorage) {
             return {
               myPhrases: { ...s.myPhrases, [id]: { ...phrase, b: next.b, due: next.due } },
               days,
-              journey: trackAnswer(s, days, now, { ok, area: 'phrase', ref: `phrase:${id}`, review: true }),
+              journey: trackAnswer(s, days, now, { ok, area: 'phrase', ref: `phrase:${id}`, review: true, mature: phrase.b >= MATURE_BOX }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
             };
           }),

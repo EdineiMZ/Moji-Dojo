@@ -9,7 +9,9 @@ import { levelPaths } from '../milestones';
 export function LevelPathCard() {
   const srs = useProgressStore((s) => s.srs);
   const vocab = useProgressStore((s) => s.vocab);
-  const paths = useMemo(() => levelPaths(srs, vocab), [srs, vocab]);
+  const conj = useProgressStore((s) => s.conj);
+  const mastered = useProgressStore((s) => s.mastered);
+  const paths = useMemo(() => levelPaths(srs, vocab, conj, mastered), [srs, vocab, conj, mastered]);
   return (
     <Card>
       <AppText variant="title">Caminho por nível</AppText>

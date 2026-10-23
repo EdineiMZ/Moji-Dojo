@@ -9,6 +9,7 @@ import { spacing } from '@/theme';
 import { levelOf, titleFor } from '../levels';
 import { mochiComment, monthName, monthSummary, shareText, weekSummary, type PeriodSummary } from '../summary';
 import { CalendarView } from './CalendarView';
+import { SkillsCard } from './SkillsCard';
 
 type Period = 'week' | 'last-week' | 'month' | 'last-month';
 
@@ -112,6 +113,7 @@ export function SummaryView() {
           O texto compartilhado só tem números (dias, respostas, nível). Nada de nome nem de conteúdo seu.
         </AppText>
       </Card>
+      <SkillsCard />
     </View>
   );
 }

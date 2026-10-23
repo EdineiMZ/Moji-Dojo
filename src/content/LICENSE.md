@@ -37,6 +37,24 @@
 - **Pendência:** as explicações em português foram escritas por um assistente de IA e **não foram revisadas por um
   falante**. Vale o mesmo cuidado das traduções do vocabulário.
 
+## Banco de frases (`sentenceBank.ts`, gerado em `scripts/sentence-bank/`)
+
+- **Origem:** frases do **Tatoeba** (https://tatoeba.org) sob **CC BY 2.0 FR**, buscadas pela API a partir das palavras
+  do N5 (`npm run collect-sentences`). Só entram frases com essa licença, com tradução em português e leitura.
+  Cada frase guarda o id do Tatoeba (`https://tatoeba.org/sentences/show/<id>`); os autores estão nas páginas do Tatoeba.
+- **Alterações feitas neste projeto:** a frase é cortada em palavras por um léxico do próprio app
+  (`src/features/bank/lexicon.ts`), só ficam as que o léxico cobre por inteiro e cuja leitura confere com a do Tatoeba
+  (`npm run build-sentences`). O kana com espaços e o romaji são gerados por regra. A tradução é uma das do Tatoeba.
+- **Pendência:** o corte em palavras é automático e pode errar (palavras só em kana com mais de um sentido). A lista
+  "palavras que a frase usa" (que decide o filtro "frases que eu sei ler") não foi revisada por um falante.
+
+## Diálogos (`dialogs.ts`, gerado em `scripts/dialogs/`)
+
+- **Falas do aluno:** frases de Viagem, vindas do protótipo HTML. Nada novo.
+- **Falas do atendente** (ex.: "いらっしゃいませ", "ご注文はお決まりですか"), **narração e motivos das respostas
+  erradas:** texto próprio, escrito para este app por um assistente de IA, com frases fixas de atendimento.
+- **Pendência:** as falas do atendente e as explicações **não foram revisadas por um falante**. Revisar junto com o resto.
+
 ## Vocabulário da especificação (HTML)
 
 A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado vêm do protótipo

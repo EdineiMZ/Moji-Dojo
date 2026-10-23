@@ -90,8 +90,16 @@ export type RichBlock = RichParagraph | RichTable;
 
 // ---------- Frases, sons e viagem ----------
 
+/** Um trecho de uma frase com kanji: o texto e, se tiver kanji, a leitura em kana (furigana). */
+export interface RubySegment {
+  text: string;
+  reading?: string;
+}
+
 export interface PhraseExample {
   jp: string;
+  /** A mesma frase escrita com kanji e a leitura de cada trecho; só nos exemplos que têm kanji. */
+  ruby?: readonly RubySegment[];
   romaji: string;
   /** Tradução em português. */
   pt: string;

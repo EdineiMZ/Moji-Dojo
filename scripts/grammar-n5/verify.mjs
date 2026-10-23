@@ -30,6 +30,8 @@ for (const topic of TOPICS) {
     const ours = stripPunctuation(plainKana(example.kana));
     if (reading !== ours) report(topic, example, `leitura diferente: Tatoeba "${reading}", nossa "${ours}"`);
 
+    if (example.furi && hrkt?.text !== example.furi) report(topic, example, `furigana diferente: Tatoeba "${hrkt?.text}", nossa "${example.furi}"`);
+
     const translations = found.translations.flat().filter((t) => t.lang === 'por').map((t) => t.text);
     const ptOk = translations.some((t) => t.replace(/[.!?]+$/, '') === example.pt.replace(/[.!?]+$/, ''));
     if (!ptOk) report(topic, example, `tradução "${example.pt}" não está entre: ${translations.join(' / ')}`);

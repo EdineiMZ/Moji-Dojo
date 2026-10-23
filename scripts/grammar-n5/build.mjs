@@ -37,15 +37,43 @@ function block(item) {
   };
 }
 
+/** "[来|き]て[手紙|て|がみ]" → trechos com texto e leitura. Os pedaços depois do primeiro "|" são a leitura. */
+function rubyOf(furi) {
+  const segments = [];
+  let last = 0;
+  for (const m of furi.matchAll(/\[([^\]]+)\]/g)) {
+    if (m.index > last) segments.push({ text: furi.slice(last, m.index) });
+    const [text, ...readings] = m[1].split('|');
+    segments.push({ text, reading: readings.join('') });
+    last = m.index + m[0].length;
+  }
+  if (last < furi.length) segments.push({ text: furi.slice(last) });
+  return segments;
+}
+
+const PUNCTUATION = /[\s。、！？!?.,「」『』…・〜~]/g;
+
+function exampleOf(e) {
+  const { jp, romaji } = parseAnnotation(e.kana);
+  const out = { jp, romaji, pt: e.pt };
+  if (!e.furi) return out;
+  const ruby = rubyOf(e.furi);
+  // A escrita com kanji e a leitura têm de fechar com o original e com a nossa escrita em kana.
+  const written = ruby.map((s) => s.text).join('');
+  const read = ruby.map((s) => s.reading ?? s.text).join('');
+  if (written !== e.ja) throw new Error(`furigana não fecha com o texto (${e.id}): ${written} ≠ ${e.ja}`);
+  if (read.replace(PUNCTUATION, '') !== plainKana(e.kana).replace(PUNCTUATION, '')) {
+    throw new Error(`furigana não fecha com a leitura (${e.id}): ${read} ≠ ${plainKana(e.kana)}`);
+  }
+  return { jp, ruby, romaji, pt: e.pt };
+}
+
 const topics = TOPICS.map((t) => ({
   id: t.id,
   title: t.title,
   body: t.body.map(block),
   pattern: t.pattern,
-  examples: t.examples.map((e) => {
-    const { jp, romaji } = parseAnnotation(e.kana);
-    return { jp, romaji, pt: e.pt };
-  }),
+  examples: t.examples.map(exampleOf),
 }));
 
 /** Blocos de um exemplo para o Montar: quebra nos espaços e antes de cada partícula ("|" fica junto). */

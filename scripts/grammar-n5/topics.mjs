@@ -29,10 +29,10 @@ export const TOPICS = [
     pattern: '[coisa] ではありません · [coisa] でした · [coisa] ではありませんでした',
     hint: 'Negativo formal: ではありません. Passado: でした.',
     examples: [
-      { id: 9740661, ja: '私は猫ではありません。', kana: 'わたし~は ねこ~では|ありません', pt: 'Eu não sou um gato.' },
-      { id: 1193930, ja: '私は医者ではありません。', kana: 'わたし~は いしゃ~では|ありません', pt: 'Eu não sou doutor.' },
+      { id: 9740661, ja: '私は猫ではありません。', furi: '[私|わたし]は[猫|ねこ]ではありません。', kana: 'わたし~は ねこ~では|ありません', pt: 'Eu não sou um gato.' },
+      { id: 1193930, ja: '私は医者ではありません。', furi: '[私|わたし]は[医者|い|しゃ]ではありません。', kana: 'わたし~は いしゃ~では|ありません', pt: 'Eu não sou doutor.' },
       { id: 12055984, ja: 'ミスでした。', kana: 'ミス|でした', pt: 'Foi um erro.' },
-      { id: 10081492, ja: '空腹ではありませんでした。', kana: 'くうふく~では|ありません|でした', pt: 'Eu não estava com fome.' },
+      { id: 10081492, ja: '空腹ではありませんでした。', furi: '[空腹|くう|ふく]ではありませんでした。', kana: 'くうふく~では|ありません|でした', pt: 'Eu não estava com fome.' },
     ],
   },
   {
@@ -52,10 +52,10 @@ export const TOPICS = [
     pattern: 'たかい → たかくないです · たかかったです',
     hint: 'Adjetivo い: troque o い por くない (negativo) ou かった (passado).',
     examples: [
-      { id: 1019460, ja: 'これは高くないです。', kana: 'これ~は たかくない|です', pt: 'Isso não é caro.' },
-      { id: 10901764, ja: 'きょうは寒くないです。', kana: 'きょう~は さむくない|です', pt: 'Não está frio hoje.' },
-      { id: 11643291, ja: '美味しかったです。', kana: 'おいしかった|です', pt: 'Estava delicioso.' },
-      { id: 184159, ja: '楽しかったですか。', kana: 'たのしかった|です~か', pt: 'Você se divertiu?' },
+      { id: 1019460, ja: 'これは高くないです。', furi: 'これは[高|たか]くないです。', kana: 'これ~は たかくない|です', pt: 'Isso não é caro.' },
+      { id: 10901764, ja: 'きょうは寒くないです。', furi: 'きょうは[寒|さむ]くないです。', kana: 'きょう~は さむくない|です', pt: 'Não está frio hoje.' },
+      { id: 11643291, ja: '美味しかったです。', furi: '[美味|おい]しかったです。', kana: 'おいしかった|です', pt: 'Estava delicioso.' },
+      { id: 184159, ja: '楽しかったですか。', furi: '[楽|たの]しかったですか。', kana: 'たのしかった|です~か', pt: 'Você se divertiu?' },
     ],
   },
   {
@@ -68,10 +68,10 @@ export const TOPICS = [
     pattern: '[adjetivo な] ではありません · [adjetivo な] でした',
     hint: 'Adjetivo な não muda: quem muda é o です (ではありません, でした).',
     examples: [
-      { id: 1216866, ja: '勉強は好きではありません。', kana: 'べんきょう~は すき~では|ありません', pt: 'Não gosto de estudar.' },
-      { id: 4002000, ja: 'サラダは好きではありません。', kana: 'サラダ~は すき~では|ありません', pt: 'Eu não gosto de salada.' },
-      { id: 338057, ja: 'この町は昔きれいでした。', kana: 'この まち~は むかし きれい|でした', pt: 'Antigamente, esta cidade era linda.' },
-      { id: 2128256, ja: 'その夜は大変静かでした。', kana: 'その よる~は たいへん しずか|でした', pt: 'A noite estava muito silenciosa.' },
+      { id: 1216866, ja: '勉強は好きではありません。', furi: '[勉強|べん|きょう]は[好|す]きではありません。', kana: 'べんきょう~は すき~では|ありません', pt: 'Não gosto de estudar.' },
+      { id: 4002000, ja: 'サラダは好きではありません。', furi: 'サラダは[好|す]きではありません。', kana: 'サラダ~は すき~では|ありません', pt: 'Eu não gosto de salada.' },
+      { id: 338057, ja: 'この町は昔きれいでした。', furi: 'この[町|まち]は[昔|むかし]きれいでした。', kana: 'この まち~は むかし きれい|でした', pt: 'Antigamente, esta cidade era linda.' },
+      { id: 2128256, ja: 'その夜は大変静かでした。', furi: 'その[夜|よる]は[大変|たい|へん][静|しず]かでした。', kana: 'その よる~は たいへん しずか|でした', pt: 'A noite estava muito silenciosa.' },
     ],
   },
   {
@@ -84,10 +84,10 @@ export const TOPICS = [
     pattern: '[verbo na forma て] ください',
     hint: 'Forma て + ください = pedido educado.',
     examples: [
-      { id: 170848, ja: '座って下さい。', kana: 'すわって|ください', pt: 'Sente-se, por favor.' },
-      { id: 5748800, ja: '英語で話してください。', kana: 'えいご~で はなして|ください', pt: 'Por favor, fale em inglês.' },
-      { id: 1039551, ja: '助けてください。', kana: 'たすけて|ください', pt: 'Me ajude, por favor!' },
-      { id: 78718, ja: '来て下さい。', kana: 'きて|ください', pt: 'Venha, por favor.' },
+      { id: 170848, ja: '座って下さい。', furi: '[座|すわ]って[下|くだ]さい。', kana: 'すわって|ください', pt: 'Sente-se, por favor.' },
+      { id: 5748800, ja: '英語で話してください。', furi: '[英語|えい|ご]で[話|はな]してください。', kana: 'えいご~で はなして|ください', pt: 'Por favor, fale em inglês.' },
+      { id: 1039551, ja: '助けてください。', furi: '[助|たす]けてください。', kana: 'たすけて|ください', pt: 'Me ajude, por favor!' },
+      { id: 78718, ja: '来て下さい。', furi: '[来|き]て[下|くだ]さい。', kana: 'きて|ください', pt: 'Venha, por favor.' },
     ],
   },
   {
@@ -101,10 +101,10 @@ export const TOPICS = [
     pattern: '[verbo na forma て] います',
     hint: 'Forma て + います = fazendo agora, ou um estado que continua.',
     examples: [
-      { id: 11630865, ja: '何をしていますか？', kana: 'なに~を して|います~か', pt: 'O que você está fazendo?' },
-      { id: 11512358, ja: '知っていますか？', kana: 'しって|います~か', pt: 'Você sabe?' },
-      { id: 123257, ja: '曇っています。', kana: 'くもって|います', pt: 'Está nublado.' },
-      { id: 5955826, ja: '持っています。', kana: 'もって|います', pt: 'Eu tenho um.' },
+      { id: 11630865, ja: '何をしていますか？', furi: '[何|なに]をしていますか？', kana: 'なに~を して|います~か', pt: 'O que você está fazendo?' },
+      { id: 11512358, ja: '知っていますか？', furi: '[知|し]っていますか？', kana: 'しって|います~か', pt: 'Você sabe?' },
+      { id: 123257, ja: '曇っています。', furi: '[曇|くも]っています。', kana: 'くもって|います', pt: 'Está nublado.' },
+      { id: 5955826, ja: '持っています。', furi: '[持|も]っています。', kana: 'もって|います', pt: 'Eu tenho um.' },
     ],
   },
   {
@@ -116,10 +116,10 @@ export const TOPICS = [
     pattern: '[verbo na forma ない] で ください',
     hint: 'Forma ない + で + ください = por favor, não faça.',
     examples: [
-      { id: 2006378, ja: '行かないでください。', kana: 'いかないで|ください', pt: 'Por favor, não vá embora.' },
-      { id: 2349145, ja: '心配しないでください。', kana: 'しんぱい しないで|ください', pt: 'Não te preocupes.' },
-      { id: 123791, ja: '動かないでください。', kana: 'うごかないで|ください', pt: 'Não se mexa, por favor.' },
-      { id: 5845217, ja: '音を立てないでください。', kana: 'おと~を たてないで|ください', pt: 'Não faça barulho.' },
+      { id: 2006378, ja: '行かないでください。', furi: '[行|い]かないでください。', kana: 'いかないで|ください', pt: 'Por favor, não vá embora.' },
+      { id: 2349145, ja: '心配しないでください。', furi: '[心配|しん|ぱい]しないでください。', kana: 'しんぱい しないで|ください', pt: 'Não te preocupes.' },
+      { id: 123791, ja: '動かないでください。', furi: '[動|うご]かないでください。', kana: 'うごかないで|ください', pt: 'Não se mexa, por favor.' },
+      { id: 5845217, ja: '音を立てないでください。', furi: '[音|おと]を[立|た]てないでください。', kana: 'おと~を たてないで|ください', pt: 'Não faça barulho.' },
     ],
   },
   {
@@ -131,10 +131,10 @@ export const TOPICS = [
     pattern: '[verbo na forma て] も いいですか',
     hint: 'Forma て + も + いいですか = posso...?',
     examples: [
-      { id: 4147428, ja: '入ってもいいですか？', kana: 'はいって~も|いい|です~か', pt: 'Posso entrar?' },
-      { id: 2242416, ja: '食べてもいいですか？', kana: 'たべて~も|いい|です~か', pt: 'Posso comer?' },
-      { id: 10899008, ja: '窓を開けてもいいですか？', kana: 'まど~を あけて~も|いい|です~か', pt: 'Posso abrir a janela?' },
-      { id: 2040852, ja: '座ってもいいですか。', kana: 'すわって~も|いい|です~か', pt: 'Posso sentar?' },
+      { id: 4147428, ja: '入ってもいいですか？', furi: '[入|はい]ってもいいですか？', kana: 'はいって~も|いい|です~か', pt: 'Posso entrar?' },
+      { id: 2242416, ja: '食べてもいいですか？', furi: '[食|た]べてもいいですか？', kana: 'たべて~も|いい|です~か', pt: 'Posso comer?' },
+      { id: 10899008, ja: '窓を開けてもいいですか？', furi: '[窓|まど]を[開|あ]けてもいいですか？', kana: 'まど~を あけて~も|いい|です~か', pt: 'Posso abrir a janela?' },
+      { id: 2040852, ja: '座ってもいいですか。', furi: '[座|すわ]ってもいいですか。', kana: 'すわって~も|いい|です~か', pt: 'Posso sentar?' },
     ],
   },
   {
@@ -146,10 +146,10 @@ export const TOPICS = [
     pattern: '[verbo na forma て] は いけません',
     hint: 'Forma て + は + いけません = não pode.',
     examples: [
-      { id: 741581, ja: '食べてはいけません。', kana: 'たべて~は|いけません', pt: 'Não coma.' },
-      { id: 201956, ja: 'テレビを見てはいけません。', kana: 'テレビ~を みて~は|いけません', pt: 'Não assista televisão.' },
-      { id: 201775, ja: 'ドアを閉めてはいけません。', kana: 'ドア~を しめて~は|いけません', pt: 'Não feche a porta!' },
-      { id: 213581, ja: 'そこへ行ってはいけません。', kana: 'そこ~へ いって~は|いけません', pt: 'Não vá para lá.' },
+      { id: 741581, ja: '食べてはいけません。', furi: '[食|た]べてはいけません。', kana: 'たべて~は|いけません', pt: 'Não coma.' },
+      { id: 201956, ja: 'テレビを見てはいけません。', furi: 'テレビを[見|み]てはいけません。', kana: 'テレビ~を みて~は|いけません', pt: 'Não assista televisão.' },
+      { id: 201775, ja: 'ドアを閉めてはいけません。', furi: 'ドアを[閉|し]めてはいけません。', kana: 'ドア~を しめて~は|いけません', pt: 'Não feche a porta!' },
+      { id: 213581, ja: 'そこへ行ってはいけません。', furi: 'そこへ[行|い]ってはいけません。', kana: 'そこ~へ いって~は|いけません', pt: 'Não vá para lá.' },
     ],
   },
   {
@@ -162,10 +162,10 @@ export const TOPICS = [
     pattern: '[verbo sem ます] ましょう · [verbo sem ます] ませんか',
     hint: 'ましょう = vamos; ませんか = não quer...? (convite).',
     examples: [
-      { id: 10631584, ja: '戻りましょう。', kana: 'もどりましょう', pt: 'Vamos voltar.' },
-      { id: 442923, ja: '始めましょう。', kana: 'はじめましょう', pt: 'Vamos começar.' },
-      { id: 170842, ja: '座りませんか。', kana: 'すわりません~か', pt: 'Você não quer se sentar?' },
-      { id: 140285, ja: '走りませんか。', kana: 'はしりません~か', pt: 'Que tal corrida?' },
+      { id: 10631584, ja: '戻りましょう。', furi: '[戻|もど]りましょう。', kana: 'もどりましょう', pt: 'Vamos voltar.' },
+      { id: 442923, ja: '始めましょう。', furi: '[始|はじ]めましょう。', kana: 'はじめましょう', pt: 'Vamos começar.' },
+      { id: 170842, ja: '座りませんか。', furi: '[座|すわ]りませんか。', kana: 'すわりません~か', pt: 'Você não quer se sentar?' },
+      { id: 140285, ja: '走りませんか。', furi: '[走|はし]りませんか。', kana: 'はしりません~か', pt: 'Que tal corrida?' },
     ],
   },
   {
@@ -178,10 +178,10 @@ export const TOPICS = [
     pattern: '[coisa] が ほしいです',
     hint: 'Uma coisa que se quer vem com が + ほしい.',
     examples: [
-      { id: 143813, ja: '水が欲しい。', kana: 'みず~が ほしい', pt: 'Quero água.' },
-      { id: 5272, ja: '飴がほしい。', kana: 'あめ~が ほしい', pt: 'Eu quero uma bala.' },
-      { id: 3552884, ja: '何が欲しいの？', kana: 'なに~が ほしい~の', pt: 'O que você quer?' },
-      { id: 11776723, ja: '彼女が欲しい。', kana: 'かのじょ~が ほしい', pt: 'Eu quero uma namorada.' },
+      { id: 143813, ja: '水が欲しい。', furi: '[水|みず]が[欲|ほ]しい。', kana: 'みず~が ほしい', pt: 'Quero água.' },
+      { id: 5272, ja: '飴がほしい。', furi: '[飴|あめ]がほしい。', kana: 'あめ~が ほしい', pt: 'Eu quero uma bala.' },
+      { id: 3552884, ja: '何が欲しいの？', furi: '[何|なに]が[欲|ほ]しいの？', kana: 'なに~が ほしい~の', pt: 'O que você quer?' },
+      { id: 11776723, ja: '彼女が欲しい。', furi: '[彼女|かの|じょ]が[欲|ほ]しい。', kana: 'かのじょ~が ほしい', pt: 'Eu quero uma namorada.' },
     ],
   },
   {
@@ -194,10 +194,10 @@ export const TOPICS = [
     pattern: '[A] は [B] より [adjetivo] · [A] のほうが [adjetivo]',
     hint: 'A は B より [adjetivo] = A é mais ... que B.',
     examples: [
-      { id: 625254, ja: '中国は日本より大きいです。', kana: 'ちゅうごく~は にほん~より おおきい|です', pt: 'A China é maior que o Japão.' },
-      { id: 157401, ja: '私は君より背が高い。', kana: 'わたし~は きみ~より せ~が たかい', pt: 'Sou mais alto que você.' },
-      { id: 179732, ja: '金は銀より重い。', kana: 'きん~は ぎん~より おもい', pt: 'O ouro é mais pesado do que a prata.' },
-      { id: 12412206, ja: 'こっちの方が安いよ。', kana: 'こっち~の ほう~が やすい~よ', pt: 'Este aqui é mais barato.' },
+      { id: 625254, ja: '中国は日本より大きいです。', furi: '[中国|ちゅう|ごく]は[日本|に|ほん]より[大|おお]きいです。', kana: 'ちゅうごく~は にほん~より おおきい|です', pt: 'A China é maior que o Japão.' },
+      { id: 157401, ja: '私は君より背が高い。', furi: '[私|わたし]は[君|きみ]より[背|せ]が[高|たか]い。', kana: 'わたし~は きみ~より せ~が たかい', pt: 'Sou mais alto que você.' },
+      { id: 179732, ja: '金は銀より重い。', furi: '[金|きん]は[銀|ぎん]より[重|おも]い。', kana: 'きん~は ぎん~より おもい', pt: 'O ouro é mais pesado do que a prata.' },
+      { id: 12412206, ja: 'こっちの方が安いよ。', furi: 'こっちの[方|ほう]が[安|やす]いよ。', kana: 'こっち~の ほう~が やすい~よ', pt: 'Este aqui é mais barato.' },
     ],
   },
   {
@@ -210,10 +210,10 @@ export const TOPICS = [
     pattern: '[coisa] が いちばん [adjetivo]',
     hint: 'いちばん + adjetivo = o mais...',
     examples: [
-      { id: 2626290, ja: 'トムが一番強い。', kana: 'トム~が いちばん つよい', pt: 'Tom é o mais forte.' },
-      { id: 10625858, ja: '私が一番若いです。', kana: 'わたし~が いちばん わかい|です', pt: 'Sou o mais jovem.' },
-      { id: 10366825, ja: '何曜日が一番好き？', kana: 'なんようび~が いちばん すき', pt: 'Qual é o seu dia da semana favorito?' },
-      { id: 9644550, ja: 'どの教科が一番好き？', kana: 'どの きょうか~が いちばん すき', pt: 'De que matéria você gosta mais?' },
+      { id: 2626290, ja: 'トムが一番強い。', furi: 'トムが[一番|いち|ばん][強|つよ]い。', kana: 'トム~が いちばん つよい', pt: 'Tom é o mais forte.' },
+      { id: 10625858, ja: '私が一番若いです。', furi: '[私|わたし]が[一番|いち|ばん][若|わか]いです。', kana: 'わたし~が いちばん わかい|です', pt: 'Sou o mais jovem.' },
+      { id: 10366825, ja: '何曜日が一番好き？', furi: '[何|なん][曜日|よう|び]が[一番|いち|ばん][好|す]き？', kana: 'なんようび~が いちばん すき', pt: 'Qual é o seu dia da semana favorito?' },
+      { id: 9644550, ja: 'どの教科が一番好き？', furi: 'どの[教科|きょう|か]が[一番|いち|ばん][好|す]き？', kana: 'どの きょうか~が いちばん すき', pt: 'De que matéria você gosta mais?' },
     ],
   },
   {
@@ -226,10 +226,10 @@ export const TOPICS = [
     pattern: '[coisa] が すきです · [coisa] が じょうずです',
     hint: 'Com すき, きらい e じょうず, a coisa vem com が.',
     examples: [
-      { id: 354378, ja: '猫が好きです。', kana: 'ねこ~が すき|です', pt: 'Eu gosto de gatos.' },
-      { id: 13254283, ja: '音楽が好きです。', kana: 'おんがく~が すき|です', pt: 'Eu gosto de música.' },
-      { id: 3347455, ja: '犬が好きですか？', kana: 'いぬ~が すき|です~か', pt: 'Você gosta de cães?' },
-      { id: 10194978, ja: '勉強が好きです。', kana: 'べんきょう~が すき|です', pt: 'Eu gosto de estudar.' },
+      { id: 354378, ja: '猫が好きです。', furi: '[猫|ねこ]が[好|す]きです。', kana: 'ねこ~が すき|です', pt: 'Eu gosto de gatos.' },
+      { id: 13254283, ja: '音楽が好きです。', furi: '[音楽|おん|がく]が[好|す]きです。', kana: 'おんがく~が すき|です', pt: 'Eu gosto de música.' },
+      { id: 3347455, ja: '犬が好きですか？', furi: '[犬|いぬ]が[好|す]きですか？', kana: 'いぬ~が すき|です~か', pt: 'Você gosta de cães?' },
+      { id: 10194978, ja: '勉強が好きです。', furi: '[勉強|べん|きょう]が[好|す]きです。', kana: 'べんきょう~が すき|です', pt: 'Eu gosto de estudar.' },
     ],
   },
   {
@@ -242,10 +242,10 @@ export const TOPICS = [
     pattern: '[início] から [fim] まで',
     hint: 'から = a partir de / vindo de. まで = até.',
     examples: [
-      { id: 2672966, ja: '中国から来ました。', kana: 'ちゅうごく~から きました', pt: 'Eu vim da China.' },
-      { id: 5323, ja: 'どこから来ましたか？', kana: 'どこ~から きました~か', pt: 'De onde é você?' },
-      { id: 11029605, ja: '授業は10時からです。', kana: 'じゅぎょう~は じゅうじ~から|です', pt: 'A nossa aula começa às 10h.' },
-      { id: 10967392, ja: '二時半まで待ちます。', kana: 'にじはん~まで まちます', pt: 'Eu irei esperar até 2:30.' },
+      { id: 2672966, ja: '中国から来ました。', furi: '[中国|ちゅう|ごく]から[来|き]ました。', kana: 'ちゅうごく~から きました', pt: 'Eu vim da China.' },
+      { id: 5323, ja: 'どこから来ましたか？', furi: 'どこから[来|き]ましたか？', kana: 'どこ~から きました~か', pt: 'De onde é você?' },
+      { id: 11029605, ja: '授業は10時からです。', furi: '[授業|じゅ|ぎょう]は[10|じゅう][時|じ]からです。', kana: 'じゅぎょう~は じゅうじ~から|です', pt: 'A nossa aula começa às 10h.' },
+      { id: 10967392, ja: '二時半まで待ちます。', furi: '[二|に][時半|じ|はん]まで[待|ま]ちます。', kana: 'にじはん~まで まちます', pt: 'Eu irei esperar até 2:30.' },
     ],
   },
   {
@@ -258,9 +258,9 @@ export const TOPICS = [
     pattern: '[motivo] から、[resultado]',
     hint: 'O motivo vem primeiro, com から no fim dele.',
     examples: [
-      { id: 9755700, ja: '寒いから、窓閉めてもいい？', kana: 'さむい~から まど しめて~も|いい', pt: 'Estou com frio. Posso fechar a janela?' },
-      { id: 9199895, ja: '眠いから、寝るね。', kana: 'ねむい~から ねる~ね', pt: 'Eu estou com sono, então estou indo para a cama.' },
-      { id: 1700213, ja: '法律ですから。', kana: 'ほうりつ|です~から', pt: 'É a lei.' },
+      { id: 9755700, ja: '寒いから、窓閉めてもいい？', furi: '[寒|さむ]いから、[窓|まど][閉|し]めてもいい？', kana: 'さむい~から まど しめて~も|いい', pt: 'Estou com frio. Posso fechar a janela?' },
+      { id: 9199895, ja: '眠いから、寝るね。', furi: '[眠|ねむ]いから、[寝|ね]るね。', kana: 'ねむい~から ねる~ね', pt: 'Eu estou com sono, então estou indo para a cama.' },
+      { id: 1700213, ja: '法律ですから。', furi: '[法律|ほう|りつ]ですから。', kana: 'ほうりつ|です~から', pt: 'É a lei.' },
     ],
   },
   {
@@ -286,11 +286,11 @@ export const TOPICS = [
     pattern: '[assunto] は [なに / だれ / どこ / いくら] ですか',
     hint: 'A palavra interrogativa fica no lugar da resposta.',
     examples: [
-      { id: 187577, ja: '何を飲みますか。', kana: 'なに~を のみます~か', pt: 'O que você quer beber?' },
-      { id: 347338, ja: '彼は誰ですか。', kana: 'かれ~は だれ|です~か', pt: 'Quem é ele?' },
-      { id: 8532899, ja: '台所はどこ？', kana: 'だいどころ~は どこ', pt: 'Onde fica a cozinha?' },
+      { id: 187577, ja: '何を飲みますか。', furi: '[何|なに]を[飲|の]みますか。', kana: 'なに~を のみます~か', pt: 'O que você quer beber?' },
+      { id: 347338, ja: '彼は誰ですか。', furi: '[彼|かれ]は[誰|だれ]ですか。', kana: 'かれ~は だれ|です~か', pt: 'Quem é ele?' },
+      { id: 8532899, ja: '台所はどこ？', furi: '[台所|だい|どころ]はどこ？', kana: 'だいどころ~は どこ', pt: 'Onde fica a cozinha?' },
       { id: 432825, ja: 'これはいくらですか。', kana: 'これ~は いくら|です~か', pt: 'Quanto custa isto?' },
-      { id: 2412106, ja: 'いま何時ですか？', kana: 'いま なんじ|です~か', pt: 'Que horas são?' },
+      { id: 2412106, ja: 'いま何時ですか？', furi: 'いま[何|なん][時|じ]ですか？', kana: 'いま なんじ|です~か', pt: 'Que horas são?' },
     ],
   },
   {
@@ -304,10 +304,10 @@ export const TOPICS = [
     pattern: 'もう [verbo no passado] · まだ [verbo / adjetivo]',
     hint: 'もう = já (com passado). まだ = ainda.',
     examples: [
-      { id: 13218484, ja: 'もう食べましたか？', kana: 'もう たべました~か', pt: 'Você já comeu?' },
-      { id: 2969830, ja: 'もう食べました。', kana: 'もう たべました', pt: 'Já comi.' },
-      { id: 2701348, ja: 'トムはまだ来てません。', kana: 'トム~は まだ きてません', pt: 'Tom ainda não chegou.' },
-      { id: 8733259, ja: 'まだ寒い？', kana: 'まだ さむい', pt: 'Você ainda está com frio?' },
+      { id: 13218484, ja: 'もう食べましたか？', furi: 'もう[食|た]べましたか？', kana: 'もう たべました~か', pt: 'Você já comeu?' },
+      { id: 2969830, ja: 'もう食べました。', furi: 'もう[食|た]べました。', kana: 'もう たべました', pt: 'Já comi.' },
+      { id: 2701348, ja: 'トムはまだ来てません。', furi: 'トムはまだ[来|き]てません。', kana: 'トム~は まだ きてません', pt: 'Tom ainda não chegou.' },
+      { id: 8733259, ja: 'まだ寒い？', furi: 'まだ[寒|さむ]い？', kana: 'まだ さむい', pt: 'Você ainda está com frio?' },
     ],
   },
   {
@@ -331,10 +331,10 @@ export const TOPICS = [
     pattern: '[referência] の [posição] に あります / います',
     hint: '[referência] の [posição] に あります / います.',
     examples: [
-      { id: 183436, ja: '机の上に鍵がある。', kana: 'つくえ~の うえ~に かぎ~が ある', pt: 'Tem uma chave na escrivaninha.' },
-      { id: 149673, ja: '辞書が机の上にある。', kana: 'じしょ~が つくえ~の うえ~に ある', pt: 'Tem um dicionário em cima da mesa.' },
-      { id: 2139043, ja: '犬は家の中にいる。', kana: 'いぬ~は いえ~の なか~に いる', pt: 'O cachorro está na casa.' },
-      { id: 5390444, ja: '橋の上に犬がいる。', kana: 'はし~の うえ~に いぬ~が いる', pt: 'Há um cachorro na ponte.' },
+      { id: 183436, ja: '机の上に鍵がある。', furi: '[机|つくえ]の[上|うえ]に[鍵|かぎ]がある。', kana: 'つくえ~の うえ~に かぎ~が ある', pt: 'Tem uma chave na escrivaninha.' },
+      { id: 149673, ja: '辞書が机の上にある。', furi: '[辞書|じ|しょ]が[机|つくえ]の[上|うえ]にある。', kana: 'じしょ~が つくえ~の うえ~に ある', pt: 'Tem um dicionário em cima da mesa.' },
+      { id: 2139043, ja: '犬は家の中にいる。', furi: '[犬|いぬ]は[家|いえ]の[中|なか]にいる。', kana: 'いぬ~は いえ~の なか~に いる', pt: 'O cachorro está na casa.' },
+      { id: 5390444, ja: '橋の上に犬がいる。', furi: '[橋|はし]の[上|うえ]に[犬|いぬ]がいる。', kana: 'はし~の うえ~に いぬ~が いる', pt: 'Há um cachorro na ponte.' },
     ],
   },
   {
@@ -347,10 +347,10 @@ export const TOPICS = [
     pattern: '[coisa / adjetivo な] に なります · [adjetivo い] く なります',
     hint: 'に なります = virar. に なりたい = quero ser.',
     examples: [
-      { id: 177906, ja: 'いつ暇になりますか？', kana: 'いつ ひま~に なります~か', pt: 'Quando você estará livre?' },
-      { id: 9475751, ja: '政治家になりたい。', kana: 'せいじか~に なりたい', pt: 'Quero ser político.' },
-      { id: 125811, ja: '鳥になりたいな。', kana: 'とり~に なりたい~な', pt: 'Queria ser um pássaro.' },
-      { id: 14007955, ja: '友達になりたいです。', kana: 'ともだち~に なりたい|です', pt: 'Quero que sejamos amigos.' },
+      { id: 177906, ja: 'いつ暇になりますか？', furi: 'いつ[暇|ひま]になりますか？', kana: 'いつ ひま~に なります~か', pt: 'Quando você estará livre?' },
+      { id: 9475751, ja: '政治家になりたい。', furi: '[政治|せい|じ][家|か]になりたい。', kana: 'せいじか~に なりたい', pt: 'Quero ser político.' },
+      { id: 125811, ja: '鳥になりたいな。', furi: '[鳥|とり]になりたいな。', kana: 'とり~に なりたい~な', pt: 'Queria ser um pássaro.' },
+      { id: 14007955, ja: '友達になりたいです。', furi: '[友達|とも|だち]になりたいです。', kana: 'ともだち~に なりたい|です', pt: 'Quero que sejamos amigos.' },
     ],
   },
   {
@@ -365,8 +365,8 @@ export const TOPICS = [
     examples: [
       { id: 215019, ja: 'スキーができます。', kana: 'スキー~が できます', pt: 'Eu sei esquiar.' },
       { id: 232933, ja: 'テニスができますか。', kana: 'テニス~が できます~か', pt: 'Você joga tênis?' },
-      { id: 1799658, ja: '私にはできません。', kana: 'わたし~に~は できません', pt: 'Não posso fazer isso.' },
-      { id: 920509, ja: '私も説明できません。', kana: 'わたし~も せつめい できません', pt: 'Eu também não consigo explicar.' },
+      { id: 1799658, ja: '私にはできません。', furi: '[私|わたし]にはできません。', kana: 'わたし~に~は できません', pt: 'Não posso fazer isso.' },
+      { id: 920509, ja: '私も説明できません。', furi: '[私|わたし]も[説明|せつ|めい]できません。', kana: 'わたし~も せつめい できません', pt: 'Eu também não consigo explicar.' },
     ],
   },
 ];

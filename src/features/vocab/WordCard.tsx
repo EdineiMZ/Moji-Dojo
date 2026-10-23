@@ -5,6 +5,7 @@ import { speakJapanese } from '@/features/speech/voiceStore';
 import { useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { fonts, spacing } from '@/theme';
+import { RomajiLine } from '@/features/phrases/RomajiLine';
 import { kanjiBreakdown } from './kanjiWords';
 
 interface WordCardProps {
@@ -17,12 +18,12 @@ export function WordCard({ word, enterIndex }: WordCardProps) {
   const speed = useSettingsStore((s) => s.speechSpeed);
   const breakdown = kanjiBreakdown(word);
   const showReading = word.reading !== word.jp;
-  const pronunciation = [showReading ? word.reading : null, word.romaji].filter(Boolean).join(' · ');
 
   return (
     <Card {...(enterIndex === undefined ? {} : { enterIndex })}>
       <AppText style={styles.jp}>{word.jp}</AppText>
-      {pronunciation ? <AppText color="muted">{pronunciation}</AppText> : null}
+      {showReading ? <AppText color="muted">{word.reading}</AppText> : null}
+      {word.romaji ? <RomajiLine text={word.romaji} /> : null}
       <AppText variant="title">{word.meaning}</AppText>
       {breakdown.length > 0 ? (
         <View style={styles.kanji}>

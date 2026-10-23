@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card } from '@/components';
 import type { TravelPhrase } from '@/data/types';
 import { speakJapanese } from '@/features/speech/voiceStore';
+import { RomajiLine } from './RomajiLine';
 import { useSettingsStore } from '@/store';
 import type { ShadowRating } from '@/store/progressStore';
 import { SPEECH_RATES } from '@/store/settingsStore';
@@ -35,7 +36,7 @@ export function PhraseCard({ phrase, breakdown = false, rating, enterIndex }: Ph
   return (
     <Card {...(enterIndex === undefined ? {} : { enterIndex })}>
       <AppText style={styles.jp}>{phrase.jp}</AppText>
-      <AppText color="muted">{phrase.romaji}</AppText>
+      <RomajiLine text={phrase.romaji} />
       <AppText>{phrase.pt}</AppText>
 
       <View style={styles.row}>

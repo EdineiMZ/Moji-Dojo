@@ -10,6 +10,7 @@ export { StrokeAnimation } from './StrokeAnimation';
 export { Confetti } from './Confetti';
 export { PetalRain } from './PetalRain';
 export { RichText } from './RichText';
+export { FuriganaText } from './FuriganaText';
 export { ChipRow } from './ChipRow';
 export { CountUp } from './CountUp';
 export { PressableScale } from './PressableScale';

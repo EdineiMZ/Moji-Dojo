@@ -24,8 +24,21 @@ describe('settingsStore', () => {
       speechSpeed: 'normal',
       hapticsEnabled: true,
       soundEnabled: true,
+      romajiMode: 'always',
+      showKanji: false,
+      furiganaMode: 'always',
     });
     expect(createSettingsStore(storage).getState().writeInReview).toBe(false);
+  });
+
+  it('romaji e furigana vêm sempre à mostra, o kanji vem desligado, e as escolhas ficam salvas', () => {
+    const storage = memory();
+    const store = createSettingsStore(storage);
+    expect(store.getState()).toMatchObject({ romajiMode: 'always', showKanji: false, furiganaMode: 'always' });
+    store.getState().setRomajiMode('tap');
+    store.getState().setShowKanji(true);
+    store.getState().setFuriganaMode('never');
+    expect(createSettingsStore(storage).getState()).toMatchObject({ romajiMode: 'tap', showKanji: true, furiganaMode: 'never' });
   });
 
   it('a velocidade da voz começa normal, pode ficar devagar e é lembrada', () => {

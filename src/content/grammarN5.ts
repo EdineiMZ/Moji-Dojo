@@ -131,11 +131,43 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "わたしは ねこではありません",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "猫",
+            "reading": "ねこ"
+          },
+          {
+            "text": "ではありません。"
+          }
+        ],
         "romaji": "watashi wa neko dewa arimasen",
         "pt": "Eu não sou um gato."
       },
       {
         "jp": "わたしは いしゃではありません",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "医者",
+            "reading": "いしゃ"
+          },
+          {
+            "text": "ではありません。"
+          }
+        ],
         "romaji": "watashi wa isha dewa arimasen",
         "pt": "Eu não sou doutor."
       },
@@ -146,6 +178,15 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
       },
       {
         "jp": "くうふくではありませんでした",
+        "ruby": [
+          {
+            "text": "空腹",
+            "reading": "くうふく"
+          },
+          {
+            "text": "ではありませんでした。"
+          }
+        ],
         "romaji": "kūfuku dewa arimasen deshita",
         "pt": "Eu não estava com fome."
       }
@@ -286,21 +327,63 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "これは たかくないです",
+        "ruby": [
+          {
+            "text": "これは"
+          },
+          {
+            "text": "高",
+            "reading": "たか"
+          },
+          {
+            "text": "くないです。"
+          }
+        ],
         "romaji": "kore wa takakunai desu",
         "pt": "Isso não é caro."
       },
       {
         "jp": "きょうは さむくないです",
+        "ruby": [
+          {
+            "text": "きょうは"
+          },
+          {
+            "text": "寒",
+            "reading": "さむ"
+          },
+          {
+            "text": "くないです。"
+          }
+        ],
         "romaji": "kyō wa samukunai desu",
         "pt": "Não está frio hoje."
       },
       {
         "jp": "おいしかったです",
+        "ruby": [
+          {
+            "text": "美味",
+            "reading": "おい"
+          },
+          {
+            "text": "しかったです。"
+          }
+        ],
         "romaji": "oishikatta desu",
         "pt": "Estava delicioso."
       },
       {
         "jp": "たのしかったですか",
+        "ruby": [
+          {
+            "text": "楽",
+            "reading": "たの"
+          },
+          {
+            "text": "しかったですか。"
+          }
+        ],
         "romaji": "tanoshikatta desu ka",
         "pt": "Você se divertiu?"
       }
@@ -394,21 +477,91 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "べんきょうは すきではありません",
+        "ruby": [
+          {
+            "text": "勉強",
+            "reading": "べんきょう"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "好",
+            "reading": "す"
+          },
+          {
+            "text": "きではありません。"
+          }
+        ],
         "romaji": "benkyō wa suki dewa arimasen",
         "pt": "Não gosto de estudar."
       },
       {
         "jp": "サラダは すきではありません",
+        "ruby": [
+          {
+            "text": "サラダは"
+          },
+          {
+            "text": "好",
+            "reading": "す"
+          },
+          {
+            "text": "きではありません。"
+          }
+        ],
         "romaji": "sarada wa suki dewa arimasen",
         "pt": "Eu não gosto de salada."
       },
       {
         "jp": "この まちは むかし きれいでした",
+        "ruby": [
+          {
+            "text": "この"
+          },
+          {
+            "text": "町",
+            "reading": "まち"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "昔",
+            "reading": "むかし"
+          },
+          {
+            "text": "きれいでした。"
+          }
+        ],
         "romaji": "kono machi wa mukashi kirei deshita",
         "pt": "Antigamente, esta cidade era linda."
       },
       {
         "jp": "その よるは たいへん しずかでした",
+        "ruby": [
+          {
+            "text": "その"
+          },
+          {
+            "text": "夜",
+            "reading": "よる"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "大変",
+            "reading": "たいへん"
+          },
+          {
+            "text": "静",
+            "reading": "しず"
+          },
+          {
+            "text": "かでした。"
+          }
+        ],
         "romaji": "sono yoru wa taihen shizuka deshita",
         "pt": "A noite estava muito silenciosa."
       }
@@ -474,21 +627,78 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "すわってください",
+        "ruby": [
+          {
+            "text": "座",
+            "reading": "すわ"
+          },
+          {
+            "text": "って"
+          },
+          {
+            "text": "下",
+            "reading": "くだ"
+          },
+          {
+            "text": "さい。"
+          }
+        ],
         "romaji": "suwatte kudasai",
         "pt": "Sente-se, por favor."
       },
       {
         "jp": "えいごで はなしてください",
+        "ruby": [
+          {
+            "text": "英語",
+            "reading": "えいご"
+          },
+          {
+            "text": "で"
+          },
+          {
+            "text": "話",
+            "reading": "はな"
+          },
+          {
+            "text": "してください。"
+          }
+        ],
         "romaji": "eigo de hanashite kudasai",
         "pt": "Por favor, fale em inglês."
       },
       {
         "jp": "たすけてください",
+        "ruby": [
+          {
+            "text": "助",
+            "reading": "たす"
+          },
+          {
+            "text": "けてください。"
+          }
+        ],
         "romaji": "tasukete kudasai",
         "pt": "Me ajude, por favor!"
       },
       {
         "jp": "きてください",
+        "ruby": [
+          {
+            "text": "来",
+            "reading": "き"
+          },
+          {
+            "text": "て"
+          },
+          {
+            "text": "下",
+            "reading": "くだ"
+          },
+          {
+            "text": "さい。"
+          }
+        ],
         "romaji": "kite kudasai",
         "pt": "Venha, por favor."
       }
@@ -597,21 +807,57 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "なにを していますか",
+        "ruby": [
+          {
+            "text": "何",
+            "reading": "なに"
+          },
+          {
+            "text": "をしていますか？"
+          }
+        ],
         "romaji": "nani o shite imasu ka",
         "pt": "O que você está fazendo?"
       },
       {
         "jp": "しっていますか",
+        "ruby": [
+          {
+            "text": "知",
+            "reading": "し"
+          },
+          {
+            "text": "っていますか？"
+          }
+        ],
         "romaji": "shitte imasu ka",
         "pt": "Você sabe?"
       },
       {
         "jp": "くもっています",
+        "ruby": [
+          {
+            "text": "曇",
+            "reading": "くも"
+          },
+          {
+            "text": "っています。"
+          }
+        ],
         "romaji": "kumotte imasu",
         "pt": "Está nublado."
       },
       {
         "jp": "もっています",
+        "ruby": [
+          {
+            "text": "持",
+            "reading": "も"
+          },
+          {
+            "text": "っています。"
+          }
+        ],
         "romaji": "motte imasu",
         "pt": "Eu tenho um."
       }
@@ -669,21 +915,64 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "いかないでください",
+        "ruby": [
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "かないでください。"
+          }
+        ],
         "romaji": "ikanaide kudasai",
         "pt": "Por favor, não vá embora."
       },
       {
         "jp": "しんぱい しないでください",
+        "ruby": [
+          {
+            "text": "心配",
+            "reading": "しんぱい"
+          },
+          {
+            "text": "しないでください。"
+          }
+        ],
         "romaji": "shinpai shinaide kudasai",
         "pt": "Não te preocupes."
       },
       {
         "jp": "うごかないでください",
+        "ruby": [
+          {
+            "text": "動",
+            "reading": "うご"
+          },
+          {
+            "text": "かないでください。"
+          }
+        ],
         "romaji": "ugokanaide kudasai",
         "pt": "Não se mexa, por favor."
       },
       {
         "jp": "おとを たてないでください",
+        "ruby": [
+          {
+            "text": "音",
+            "reading": "おと"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "立",
+            "reading": "た"
+          },
+          {
+            "text": "てないでください。"
+          }
+        ],
         "romaji": "oto o tatenaide kudasai",
         "pt": "Não faça barulho."
       }
@@ -741,21 +1030,64 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "はいってもいいですか",
+        "ruby": [
+          {
+            "text": "入",
+            "reading": "はい"
+          },
+          {
+            "text": "ってもいいですか？"
+          }
+        ],
         "romaji": "haitte mo ii desu ka",
         "pt": "Posso entrar?"
       },
       {
         "jp": "たべてもいいですか",
+        "ruby": [
+          {
+            "text": "食",
+            "reading": "た"
+          },
+          {
+            "text": "べてもいいですか？"
+          }
+        ],
         "romaji": "tabete mo ii desu ka",
         "pt": "Posso comer?"
       },
       {
         "jp": "まどを あけてもいいですか",
+        "ruby": [
+          {
+            "text": "窓",
+            "reading": "まど"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "開",
+            "reading": "あ"
+          },
+          {
+            "text": "けてもいいですか？"
+          }
+        ],
         "romaji": "mado o akete mo ii desu ka",
         "pt": "Posso abrir a janela?"
       },
       {
         "jp": "すわってもいいですか",
+        "ruby": [
+          {
+            "text": "座",
+            "reading": "すわ"
+          },
+          {
+            "text": "ってもいいですか。"
+          }
+        ],
         "romaji": "suwatte mo ii desu ka",
         "pt": "Posso sentar?"
       }
@@ -806,21 +1138,66 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "たべてはいけません",
+        "ruby": [
+          {
+            "text": "食",
+            "reading": "た"
+          },
+          {
+            "text": "べてはいけません。"
+          }
+        ],
         "romaji": "tabete wa ikemasen",
         "pt": "Não coma."
       },
       {
         "jp": "テレビを みてはいけません",
+        "ruby": [
+          {
+            "text": "テレビを"
+          },
+          {
+            "text": "見",
+            "reading": "み"
+          },
+          {
+            "text": "てはいけません。"
+          }
+        ],
         "romaji": "terebi o mite wa ikemasen",
         "pt": "Não assista televisão."
       },
       {
         "jp": "ドアを しめてはいけません",
+        "ruby": [
+          {
+            "text": "ドアを"
+          },
+          {
+            "text": "閉",
+            "reading": "し"
+          },
+          {
+            "text": "めてはいけません。"
+          }
+        ],
         "romaji": "doa o shimete wa ikemasen",
         "pt": "Não feche a porta!"
       },
       {
         "jp": "そこへ いってはいけません",
+        "ruby": [
+          {
+            "text": "そこへ"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "ってはいけません。"
+          }
+        ],
         "romaji": "soko e itte wa ikemasen",
         "pt": "Não vá para lá."
       }
@@ -893,21 +1270,57 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "もどりましょう",
+        "ruby": [
+          {
+            "text": "戻",
+            "reading": "もど"
+          },
+          {
+            "text": "りましょう。"
+          }
+        ],
         "romaji": "modorimashō",
         "pt": "Vamos voltar."
       },
       {
         "jp": "はじめましょう",
+        "ruby": [
+          {
+            "text": "始",
+            "reading": "はじ"
+          },
+          {
+            "text": "めましょう。"
+          }
+        ],
         "romaji": "hajimemashō",
         "pt": "Vamos começar."
       },
       {
         "jp": "すわりませんか",
+        "ruby": [
+          {
+            "text": "座",
+            "reading": "すわ"
+          },
+          {
+            "text": "りませんか。"
+          }
+        ],
         "romaji": "suwarimasen ka",
         "pt": "Você não quer se sentar?"
       },
       {
         "jp": "はしりませんか",
+        "ruby": [
+          {
+            "text": "走",
+            "reading": "はし"
+          },
+          {
+            "text": "りませんか。"
+          }
+        ],
         "romaji": "hashirimasen ka",
         "pt": "Que tal corrida?"
       }
@@ -991,21 +1404,78 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "みずが ほしい",
+        "ruby": [
+          {
+            "text": "水",
+            "reading": "みず"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "欲",
+            "reading": "ほ"
+          },
+          {
+            "text": "しい。"
+          }
+        ],
         "romaji": "mizu ga hoshii",
         "pt": "Quero água."
       },
       {
         "jp": "あめが ほしい",
+        "ruby": [
+          {
+            "text": "飴",
+            "reading": "あめ"
+          },
+          {
+            "text": "がほしい。"
+          }
+        ],
         "romaji": "ame ga hoshii",
         "pt": "Eu quero uma bala."
       },
       {
         "jp": "なにが ほしいの",
+        "ruby": [
+          {
+            "text": "何",
+            "reading": "なに"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "欲",
+            "reading": "ほ"
+          },
+          {
+            "text": "しいの？"
+          }
+        ],
         "romaji": "nani ga hoshii no",
         "pt": "O que você quer?"
       },
       {
         "jp": "かのじょが ほしい",
+        "ruby": [
+          {
+            "text": "彼女",
+            "reading": "かのじょ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "欲",
+            "reading": "ほ"
+          },
+          {
+            "text": "しい。"
+          }
+        ],
         "romaji": "kanojo ga hoshii",
         "pt": "Eu quero uma namorada."
       }
@@ -1071,21 +1541,116 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "ちゅうごくは にほんより おおきいです",
+        "ruby": [
+          {
+            "text": "中国",
+            "reading": "ちゅうごく"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "日本",
+            "reading": "にほん"
+          },
+          {
+            "text": "より"
+          },
+          {
+            "text": "大",
+            "reading": "おお"
+          },
+          {
+            "text": "きいです。"
+          }
+        ],
         "romaji": "chūgoku wa nihon yori ōkii desu",
         "pt": "A China é maior que o Japão."
       },
       {
         "jp": "わたしは きみより せが たかい",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "君",
+            "reading": "きみ"
+          },
+          {
+            "text": "より"
+          },
+          {
+            "text": "背",
+            "reading": "せ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "高",
+            "reading": "たか"
+          },
+          {
+            "text": "い。"
+          }
+        ],
         "romaji": "watashi wa kimi yori se ga takai",
         "pt": "Sou mais alto que você."
       },
       {
         "jp": "きんは ぎんより おもい",
+        "ruby": [
+          {
+            "text": "金",
+            "reading": "きん"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "銀",
+            "reading": "ぎん"
+          },
+          {
+            "text": "より"
+          },
+          {
+            "text": "重",
+            "reading": "おも"
+          },
+          {
+            "text": "い。"
+          }
+        ],
         "romaji": "kin wa gin yori omoi",
         "pt": "O ouro é mais pesado do que a prata."
       },
       {
         "jp": "こっちの ほうが やすいよ",
+        "ruby": [
+          {
+            "text": "こっちの"
+          },
+          {
+            "text": "方",
+            "reading": "ほう"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "安",
+            "reading": "やす"
+          },
+          {
+            "text": "いよ。"
+          }
+        ],
         "romaji": "kotchi no hō ga yasui yo",
         "pt": "Este aqui é mais barato."
       }
@@ -1141,21 +1706,104 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "トムが いちばん つよい",
+        "ruby": [
+          {
+            "text": "トムが"
+          },
+          {
+            "text": "一番",
+            "reading": "いちばん"
+          },
+          {
+            "text": "強",
+            "reading": "つよ"
+          },
+          {
+            "text": "い。"
+          }
+        ],
         "romaji": "tomu ga ichiban tsuyoi",
         "pt": "Tom é o mais forte."
       },
       {
         "jp": "わたしが いちばん わかいです",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "一番",
+            "reading": "いちばん"
+          },
+          {
+            "text": "若",
+            "reading": "わか"
+          },
+          {
+            "text": "いです。"
+          }
+        ],
         "romaji": "watashi ga ichiban wakai desu",
         "pt": "Sou o mais jovem."
       },
       {
         "jp": "なんようびが いちばん すき",
+        "ruby": [
+          {
+            "text": "何",
+            "reading": "なん"
+          },
+          {
+            "text": "曜日",
+            "reading": "ようび"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "一番",
+            "reading": "いちばん"
+          },
+          {
+            "text": "好",
+            "reading": "す"
+          },
+          {
+            "text": "き？"
+          }
+        ],
         "romaji": "nan'yōbi ga ichiban suki",
         "pt": "Qual é o seu dia da semana favorito?"
       },
       {
         "jp": "どの きょうかが いちばん すき",
+        "ruby": [
+          {
+            "text": "どの"
+          },
+          {
+            "text": "教科",
+            "reading": "きょうか"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "一番",
+            "reading": "いちばん"
+          },
+          {
+            "text": "好",
+            "reading": "す"
+          },
+          {
+            "text": "き？"
+          }
+        ],
         "romaji": "dono kyōka ga ichiban suki",
         "pt": "De que matéria você gosta mais?"
       }
@@ -1242,21 +1890,85 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "ねこが すきです",
+        "ruby": [
+          {
+            "text": "猫",
+            "reading": "ねこ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "好",
+            "reading": "す"
+          },
+          {
+            "text": "きです。"
+          }
+        ],
         "romaji": "neko ga suki desu",
         "pt": "Eu gosto de gatos."
       },
       {
         "jp": "おんがくが すきです",
+        "ruby": [
+          {
+            "text": "音楽",
+            "reading": "おんがく"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "好",
+            "reading": "す"
+          },
+          {
+            "text": "きです。"
+          }
+        ],
         "romaji": "ongaku ga suki desu",
         "pt": "Eu gosto de música."
       },
       {
         "jp": "いぬが すきですか",
+        "ruby": [
+          {
+            "text": "犬",
+            "reading": "いぬ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "好",
+            "reading": "す"
+          },
+          {
+            "text": "きですか？"
+          }
+        ],
         "romaji": "inu ga suki desu ka",
         "pt": "Você gosta de cães?"
       },
       {
         "jp": "べんきょうが すきです",
+        "ruby": [
+          {
+            "text": "勉強",
+            "reading": "べんきょう"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "好",
+            "reading": "す"
+          },
+          {
+            "text": "きです。"
+          }
+        ],
         "romaji": "benkyō ga suki desu",
         "pt": "Eu gosto de estudar."
       }
@@ -1333,21 +2045,89 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "ちゅうごくから きました",
+        "ruby": [
+          {
+            "text": "中国",
+            "reading": "ちゅうごく"
+          },
+          {
+            "text": "から"
+          },
+          {
+            "text": "来",
+            "reading": "き"
+          },
+          {
+            "text": "ました。"
+          }
+        ],
         "romaji": "chūgoku kara kimashita",
         "pt": "Eu vim da China."
       },
       {
         "jp": "どこから きましたか",
+        "ruby": [
+          {
+            "text": "どこから"
+          },
+          {
+            "text": "来",
+            "reading": "き"
+          },
+          {
+            "text": "ましたか？"
+          }
+        ],
         "romaji": "doko kara kimashita ka",
         "pt": "De onde é você?"
       },
       {
         "jp": "じゅぎょうは じゅうじからです",
+        "ruby": [
+          {
+            "text": "授業",
+            "reading": "じゅぎょう"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "10",
+            "reading": "じゅう"
+          },
+          {
+            "text": "時",
+            "reading": "じ"
+          },
+          {
+            "text": "からです。"
+          }
+        ],
         "romaji": "jugyō wa jūji kara desu",
         "pt": "A nossa aula começa às 10h."
       },
       {
         "jp": "にじはんまで まちます",
+        "ruby": [
+          {
+            "text": "二",
+            "reading": "に"
+          },
+          {
+            "text": "時半",
+            "reading": "じはん"
+          },
+          {
+            "text": "まで"
+          },
+          {
+            "text": "待",
+            "reading": "ま"
+          },
+          {
+            "text": "ちます。"
+          }
+        ],
         "romaji": "nijihan made machimasu",
         "pt": "Eu irei esperar até 2:30."
       }
@@ -1424,16 +2204,61 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "さむいから まど しめてもいい",
+        "ruby": [
+          {
+            "text": "寒",
+            "reading": "さむ"
+          },
+          {
+            "text": "いから、"
+          },
+          {
+            "text": "窓",
+            "reading": "まど"
+          },
+          {
+            "text": "閉",
+            "reading": "し"
+          },
+          {
+            "text": "めてもいい？"
+          }
+        ],
         "romaji": "samui kara mado shimete mo ii",
         "pt": "Estou com frio. Posso fechar a janela?"
       },
       {
         "jp": "ねむいから ねるね",
+        "ruby": [
+          {
+            "text": "眠",
+            "reading": "ねむ"
+          },
+          {
+            "text": "いから、"
+          },
+          {
+            "text": "寝",
+            "reading": "ね"
+          },
+          {
+            "text": "るね。"
+          }
+        ],
         "romaji": "nemui kara neru ne",
         "pt": "Eu estou com sono, então estou indo para a cama."
       },
       {
         "jp": "ほうりつですから",
+        "ruby": [
+          {
+            "text": "法律",
+            "reading": "ほうりつ"
+          },
+          {
+            "text": "ですから。"
+          }
+        ],
         "romaji": "hōritsu desu kara",
         "pt": "É a lei."
       }
@@ -1579,16 +2404,57 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "なにを のみますか",
+        "ruby": [
+          {
+            "text": "何",
+            "reading": "なに"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "飲",
+            "reading": "の"
+          },
+          {
+            "text": "みますか。"
+          }
+        ],
         "romaji": "nani o nomimasu ka",
         "pt": "O que você quer beber?"
       },
       {
         "jp": "かれは だれですか",
+        "ruby": [
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "誰",
+            "reading": "だれ"
+          },
+          {
+            "text": "ですか。"
+          }
+        ],
         "romaji": "kare wa dare desu ka",
         "pt": "Quem é ele?"
       },
       {
         "jp": "だいどころは どこ",
+        "ruby": [
+          {
+            "text": "台所",
+            "reading": "だいどころ"
+          },
+          {
+            "text": "はどこ？"
+          }
+        ],
         "romaji": "daidokoro wa doko",
         "pt": "Onde fica a cozinha?"
       },
@@ -1599,6 +2465,22 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
       },
       {
         "jp": "いま なんじですか",
+        "ruby": [
+          {
+            "text": "いま"
+          },
+          {
+            "text": "何",
+            "reading": "なん"
+          },
+          {
+            "text": "時",
+            "reading": "じ"
+          },
+          {
+            "text": "ですか？"
+          }
+        ],
         "romaji": "ima nanji desu ka",
         "pt": "Que horas são?"
       }
@@ -1694,21 +2576,69 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "もう たべましたか",
+        "ruby": [
+          {
+            "text": "もう"
+          },
+          {
+            "text": "食",
+            "reading": "た"
+          },
+          {
+            "text": "べましたか？"
+          }
+        ],
         "romaji": "mō tabemashita ka",
         "pt": "Você já comeu?"
       },
       {
         "jp": "もう たべました",
+        "ruby": [
+          {
+            "text": "もう"
+          },
+          {
+            "text": "食",
+            "reading": "た"
+          },
+          {
+            "text": "べました。"
+          }
+        ],
         "romaji": "mō tabemashita",
         "pt": "Já comi."
       },
       {
         "jp": "トムは まだ きてません",
+        "ruby": [
+          {
+            "text": "トムはまだ"
+          },
+          {
+            "text": "来",
+            "reading": "き"
+          },
+          {
+            "text": "てません。"
+          }
+        ],
         "romaji": "tomu wa mada kitemasen",
         "pt": "Tom ainda não chegou."
       },
       {
         "jp": "まだ さむい",
+        "ruby": [
+          {
+            "text": "まだ"
+          },
+          {
+            "text": "寒",
+            "reading": "さむ"
+          },
+          {
+            "text": "い？"
+          }
+        ],
         "romaji": "mada samui",
         "pt": "Você ainda está com frio?"
       }
@@ -1864,21 +2794,113 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "つくえの うえに かぎが ある",
+        "ruby": [
+          {
+            "text": "机",
+            "reading": "つくえ"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "上",
+            "reading": "うえ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "鍵",
+            "reading": "かぎ"
+          },
+          {
+            "text": "がある。"
+          }
+        ],
         "romaji": "tsukue no ue ni kagi ga aru",
         "pt": "Tem uma chave na escrivaninha."
       },
       {
         "jp": "じしょが つくえの うえに ある",
+        "ruby": [
+          {
+            "text": "辞書",
+            "reading": "じしょ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "机",
+            "reading": "つくえ"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "上",
+            "reading": "うえ"
+          },
+          {
+            "text": "にある。"
+          }
+        ],
         "romaji": "jisho ga tsukue no ue ni aru",
         "pt": "Tem um dicionário em cima da mesa."
       },
       {
         "jp": "いぬは いえの なかに いる",
+        "ruby": [
+          {
+            "text": "犬",
+            "reading": "いぬ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "家",
+            "reading": "いえ"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "中",
+            "reading": "なか"
+          },
+          {
+            "text": "にいる。"
+          }
+        ],
         "romaji": "inu wa ie no naka ni iru",
         "pt": "O cachorro está na casa."
       },
       {
         "jp": "はしの うえに いぬが いる",
+        "ruby": [
+          {
+            "text": "橋",
+            "reading": "はし"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "上",
+            "reading": "うえ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "犬",
+            "reading": "いぬ"
+          },
+          {
+            "text": "がいる。"
+          }
+        ],
         "romaji": "hashi no ue ni inu ga iru",
         "pt": "Há um cachorro na ponte."
       }
@@ -1952,21 +2974,64 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
     "examples": [
       {
         "jp": "いつ ひまに なりますか",
+        "ruby": [
+          {
+            "text": "いつ"
+          },
+          {
+            "text": "暇",
+            "reading": "ひま"
+          },
+          {
+            "text": "になりますか？"
+          }
+        ],
         "romaji": "itsu hima ni narimasu ka",
         "pt": "Quando você estará livre?"
       },
       {
         "jp": "せいじかに なりたい",
+        "ruby": [
+          {
+            "text": "政治",
+            "reading": "せいじ"
+          },
+          {
+            "text": "家",
+            "reading": "か"
+          },
+          {
+            "text": "になりたい。"
+          }
+        ],
         "romaji": "seijika ni naritai",
         "pt": "Quero ser político."
       },
       {
         "jp": "とりに なりたいな",
+        "ruby": [
+          {
+            "text": "鳥",
+            "reading": "とり"
+          },
+          {
+            "text": "になりたいな。"
+          }
+        ],
         "romaji": "tori ni naritai na",
         "pt": "Queria ser um pássaro."
       },
       {
         "jp": "ともだちに なりたいです",
+        "ruby": [
+          {
+            "text": "友達",
+            "reading": "ともだち"
+          },
+          {
+            "text": "になりたいです。"
+          }
+        ],
         "romaji": "tomodachi ni naritai desu",
         "pt": "Quero que sejamos amigos."
       }
@@ -2039,11 +3104,36 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
       },
       {
         "jp": "わたしには できません",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "にはできません。"
+          }
+        ],
         "romaji": "watashi ni wa dekimasen",
         "pt": "Não posso fazer isso."
       },
       {
         "jp": "わたしも せつめい できません",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "も"
+          },
+          {
+            "text": "説明",
+            "reading": "せつめい"
+          },
+          {
+            "text": "できません。"
+          }
+        ],
         "romaji": "watashi mo setsumei dekimasen",
         "pt": "Eu também não consigo explicar."
       }

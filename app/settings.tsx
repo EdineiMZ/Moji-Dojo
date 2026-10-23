@@ -4,6 +4,7 @@ import { BackLink, AppText, Screen } from '@/components';
 import { BackupCard } from '@/features/backup/BackupCard';
 import { ExportCard } from '@/features/backup/ExportCard';
 import { AboutCard } from '@/features/progress/AboutCard';
+import { DisplaySettingsCard } from '@/features/progress/DisplaySettingsCard';
 import { FeedbackSettingsCard } from '@/features/progress/FeedbackSettingsCard';
 import { ResetCard } from '@/features/progress/ResetCard';
 import { ReviewSettingsCard } from '@/features/review/ReviewSettingsCard';
@@ -22,6 +23,7 @@ export default function SettingsScreen() {
       </View>
       <VoiceStatusCard />
       <ReviewSettingsCard />
+      <DisplaySettingsCard />
       <FeedbackSettingsCard />
       <ExportCard />
       <BackupCard />

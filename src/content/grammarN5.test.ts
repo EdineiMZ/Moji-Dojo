@@ -58,3 +58,28 @@ describe('gramática N5 (Tatoeba)', () => {
     }
   });
 });
+
+describe('furigana dos exemplos', () => {
+  const withRuby = GRAMMAR_N5.flatMap((t) => t.examples).filter((e) => e.ruby !== undefined);
+  const punctuation = /[\s。、！？!?.,]/g;
+
+  it('a maioria dos exemplos tem a escrita com kanji', () => {
+    expect(withRuby.length).toBeGreaterThan(60);
+  });
+
+  it('a leitura dos trechos fecha com o kana do exemplo', () => {
+    for (const e of withRuby) {
+      const read = (e.ruby ?? []).map((s) => s.reading ?? s.text).join('').replace(punctuation, '');
+      expect(read).toBe(e.jp.replace(punctuation, ''));
+    }
+  });
+
+  it('todo trecho com kanji tem leitura; só kanji e números (10 → じゅう) levam leitura', () => {
+    const kanji = /[一-鿿]/;
+    const readable = /[一-鿿0-9０-９]/;
+    for (const s of withRuby.flatMap((e) => e.ruby ?? [])) {
+      if (kanji.test(s.text)) expect(s.reading).toBeTruthy();
+      if (s.reading !== undefined) expect(s.text).toMatch(readable);
+    }
+  });
+});

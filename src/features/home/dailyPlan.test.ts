@@ -4,7 +4,8 @@ describe('sessão diária', () => {
   it('sem nada feito, os quatro passos estão abertos e a revisão leva ao kana quando há kana vencido', () => {
     const plan = dailyPlan({ counts: {}, dueKana: 12, dueOther: 3 });
     expect(plan.map((s) => s.done)).toEqual([false, false, false, false]);
-    expect(plan[0]?.route).toBe('/review');
+    expect(plan[0]?.route).toBe('/mixed');
+    expect(dailyPlan({ counts: {}, dueKana: 12, dueOther: 0 })[0]?.route).toBe('/review');
     expect(plan[0]?.hint).toBe('15 para revisar');
   });
 

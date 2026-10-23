@@ -1,4 +1,4 @@
-export type PlanRoute = '/review' | '/(tabs)/trail' | '/(tabs)/listen' | '/(tabs)/phrases';
+export type PlanRoute = '/mixed' | '/review' | '/(tabs)/trail' | '/(tabs)/listen' | '/(tabs)/phrases';
 
 export interface PlanStep {
   id: 'review' | 'new' | 'listen' | 'phrase';
@@ -32,7 +32,8 @@ export function dailyPlan({ counts, dueKana, dueOther }: PlanInput): PlanStep[] 
       title: 'Revisar o que venceu',
       hint: due > 0 ? `${due} para revisar` : 'Nada vencido hoje',
       done: due === 0 || n('reviews') >= Math.min(PLAN_REVIEW_GOAL, due + n('reviews')),
-      route: dueKana > 0 ? '/review' : '/(tabs)/phrases',
+      // Com mais de um tipo vencido, a revisão mista intercala kana, palavras e verbos.
+      route: dueKana > 0 && dueOther > 0 ? '/mixed' : dueKana > 0 ? '/review' : '/(tabs)/phrases',
     },
     {
       id: 'new',

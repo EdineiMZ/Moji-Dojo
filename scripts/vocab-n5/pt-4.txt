@@ -1,0 +1,140 @@
+436|V|sair; aparecer
+437|L|televisão
+438|C|tempo (clima)
+439|L|eletricidade; luz elétrica
+440|X|trem (elétrico)
+441|L|telefone
+442|L|porta (estilo japonês)
+443|N|vezes; graus; pontos
+444|L|porta
+445|L|banheiro
+446|E|como
+447|E|por quê
+448|E|por favor, fique à vontade
+449|C|animal
+450|E|obrigado(a); de algum modo
+452|A|longe, distante
+453|T|dez dias; dia 10 do mês
+455|E|às vezes
+456|L|relógio
+457|E|onde
+458|L|lugar
+459|T|ano; idade
+460|L|biblioteca
+461|E|qual (dos dois); onde (educado)
+462|E|qual, para onde
+463|E|muito
+464|E|quem (educado)
+465|D|ao lado, vizinho
+466|E|qual
+467|V|voar, pular
+468|V|parar
+469|P|amigo
+470|T|sábado
+471|C|pássaro, ave
+472|F|carne de frango
+473|V|fazer (uma matéria); tirar (nota); pegar
+474|V|tirar (foto); filmar
+475|E|qual (de vários)
+476|E|que tipo de
+477|A|não haver, não ter
+478|L|faca
+480|A|longo, comprido
+481|V|cantar, fazer som (animal)
+482|V|perder (algo)
+483|E|por quê
+484|T|verão
+485|T|férias de verão
+486|E|etc., entre outros
+487|N|sete (coisas)
+488|E|o quê
+489|T|sete dias; dia 7 do mês
+490|P|nome
+491|V|aprender (com alguém)
+492|V|ficar em fila; alinhar-se
+493|V|pôr lado a lado; enfileirar
+494|V|tornar-se, virar
+496|N|dois
+497|A|movimentado, animado
+498|F|carne
+499|D|oeste
+500|T|dia do mês; dias (contador)
+501|T|domingo
+502|X|bagagem
+503|L|notícias
+504|L|jardim
+506|V|tirar (roupa)
+507|A|morno
+508|R|gravata
+509|C|gato
+510|V|dormir; ir para a cama
+512|L|caderno
+513|V|subir, escalar
+514|F|bebida
+515|V|beber
+516|V|subir (em veículo), andar de, embarcar
+517|C|dente
+518|L|festa
+519|E|sim
+520|N|contador de copos e xícaras
+521|L|cinzeiro
+522|V|entrar; caber, conter
+523|L|cartão-postal
+524|V|calçar, vestir (peças de baixo)
+525|L|caixa
+526|L|ponte
+527|F|hashi, pauzinhos
+528|V|começar (algo)
+529|T|início, começo
+530|E|pela primeira vez
+531|V|correr
+532|X|ônibus
+533|F|manteiga
+534|T|20 anos de idade
+535|V|trabalhar
+536|N|oito
+537|T|vinte dias; dia 20 do mês
+538|C|flor
+539|C|nariz
+540|P|conversa; história
+541|V|falar
+542|P|minha mãe
+543|A|cedo
+544|A|rápido
+545|T|primavera
+546|V|colar, afixar
+547|C|tempo bom, céu limpo
+548|V|ficar ensolarado, abrir o tempo
+549|T|meio; e meia (hora)
+550|T|noite (entardecer)
+551|N|número (ordem); ...º
+552|F|pão
+553|R|lenço
+554|L|número (de telefone etc.)
+555|F|jantar
+556|E|metade
+557|D|leste
+558|N|contador de animais pequenos
+559|V|puxar; subtrair
+560|V|tocar (instrumento de corda, piano)
+561|A|baixo (altura ou nível)
+562|X|avião
+563|D|esquerda
+565|N|um (coisa)
+566|T|um mês
+567|N|uma pessoa; sozinho
+568|A|tempo livre; desocupado
+569|N|cem
+570|L|hospital
+571|C|doença
+572|P|hiragana
+573|T|meio-dia; dia (período)
+574|F|almoço
+575|A|amplo, largo
+576|L|filme (rolo)
+577|L|envelope
+578|L|piscina
+579|L|garfo
+580|V|soprar (vento)
+581|R|roupa
+582|N|dois (coisas)

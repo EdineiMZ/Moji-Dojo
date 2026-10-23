@@ -1,0 +1,140 @@
+1|E|ah!, oh!
+2|V|encontrar, ver (alguém)
+3|L|azul (cor)
+4|A|azul
+5|L|vermelho (cor)
+6|A|vermelho
+7|A|claro, brilhante; alegre
+8|T|outono
+9|V|abrir (algo que se abre sozinho)
+10|V|abrir (algo)
+11|V|levantar, erguer; dar
+12|T|manhã
+13|F|café da manhã
+14|T|depois de amanhã
+15|C|pé; perna
+16|T|amanhã
+17|E|lá, naquele lugar
+18|V|brincar; passear, se divertir
+19|A|quente, agradável (clima)
+20|C|cabeça
+21|A|novo
+22|E|por ali, lá (educado)
+23|A|quente (clima)
+24|A|quente (coisas)
+25|A|grosso, espesso
+26|E|lá, para lá
+27|T|depois; mais tarde
+28|P|você
+29|P|meu irmão mais velho
+30|P|minha irmã mais velha
+31|L|apartamento (prédio)
+32|E|aquele (lá longe); hã...
+33|V|tomar (banho, ducha)
+34|A|perigoso
+35|A|doce
+36|E|não muito (com negativa); sobra
+37|C|chuva
+38|F|bala, doce duro
+39|V|lavar
+40|V|haver, existir, estar (coisas)
+41|V|ter; haver, existir
+42|V|andar, caminhar
+43|E|aquilo (lá longe)
+44|A|bom
+45|E|não; de nada
+46|V|dizer
+47|L|casa, lar
+48|E|como; que tal
+49|V|ir
+50|N|quantos; quantos anos
+51|E|quanto (preço)
+52|C|lago, lagoa
+53|P|médico
+54|L|cadeira
+55|A|ocupado
+56|A|dolorido, que dói
+57|N|um
+58|T|um dia (duração)
+59|E|o mais...; número um
+60|E|quando
+61|T|cinco dias; dia 5 do mês
+62|E|junto
+63|N|cinco (coisas)
+64|E|sempre
+65|C|cachorro
+66|T|agora
+67|E|significado
+68|P|minha irmã mais nova
+69|A|desagradável; que não se gosta
+70|L|entrada
+71|V|estar, existir (seres vivos)
+72|V|precisar, ser necessário
+73|V|colocar dentro, pôr
+74|L|cor
+75|E|vários, de vários tipos
+76|D|em cima, sobre
+77|D|atrás, parte de trás
+78|A|fino; fraco (claro)
+79|L|canção
+80|V|cantar
+81|L|casa; minha casa
+82|V|nascer
+83|C|mar
+84|V|vender
+85|A|barulhento; chato
+86|R|casaco, jaqueta
+87|L|pintura, desenho, quadro
+88|L|filme
+89|L|cinema
+90|P|inglês (idioma)
+91|E|sim
+92|X|estação
+93|L|elevador
+94|R|iene
+95|L|lápis
+96|E|prefixo de respeito (お〜)
+97|A|gostoso, delicioso
+98|A|muitos, numeroso
+99|A|grande
+100|A|grande (antes de substantivo)
+101|P|muita gente
+102|P|mãe (educado)
+103|F|doces, petiscos
+104|R|dinheiro
+105|V|acordar, levantar-se; acontecer
+106|V|pôr, colocar
+107|P|esposa (de outra pessoa)
+108|F|saquê; bebida alcoólica
+109|L|prato
+110|P|tio; senhor de meia-idade
+111|P|avô; senhor idoso
+112|V|ensinar; informar
+113|V|empurrar, apertar, carimbar
+114|A|lento; tarde (atrasado)
+115|F|chá (verde)
+116|L|banheiro, toalete
+117|P|pai (educado)
+118|P|irmão mais novo
+119|P|homem
+120|P|menino
+121|T|anteontem
+122|T|ano retrasado
+123|P|adulto
+124|C|barriga, estômago
+125|E|mesmo, igual
+126|P|irmão mais velho (de outra pessoa)
+127|P|irmã mais velha (de outra pessoa)
+128|P|tia
+129|P|avó; senhora idosa
+130|L|banho; banheira
+131|F|marmita, lanche embalado
+132|V|aprender, memorizar, lembrar
+133|P|policial
+134|A|pesado; grave
+135|A|interessante, divertido
+136|V|nadar
+137|V|descer (de um veículo)
+138|V|terminar, acabar
+139|L|música
+140|P|mulher

@@ -1,0 +1,140 @@
+141|P|menina
+142|N|vezes (contador de ocorrências)
+143|N|andar (contador de pisos)
+144|L|país estrangeiro; exterior
+145|P|estrangeiro
+146|P|empresa
+147|L|escada
+148|R|compras
+149|V|comprar
+150|V|devolver
+151|V|voltar, ir para casa
+152|C|rosto, cara
+153|V|levar, demorar (tempo, dinheiro)
+154|L|chave; fechadura
+155|V|escrever
+156|P|estudante
+157|N|meses (contador)
+158|V|pôr (óculos); pendurar
+159|V|telefonar, ligar; sentar-se
+160|L|guarda-chuva
+161|V|emprestar
+162|C|vento
+163|C|resfriado, gripe
+164|P|pessoa (forma educada); maneira
+165|P|família
+166|P|katakana
+167|T|mês (do ano)
+168|P|escola
+169|L|xícara, copo
+170|P|lar; família
+171|L|canto, esquina
+172|L|bolsa, mala
+173|L|vaso (de flores)
+174|V|pôr na cabeça (chapéu)
+175|L|papel
+176|L|câmera
+177|T|terça-feira
+178|A|picante; salgado
+179|C|corpo; saúde
+180|V|pegar emprestado; dever
+181|-|
+182|A|leve; simples, pouco sério
+183|F|curry, arroz com curry
+184|L|calendário
+185|C|rio
+186|D|lado
+187|A|fofo, adorável
+188|P|kanji
+189|C|árvore; madeira
+190|L|amarelo (cor)
+191|A|amarelo
+192|V|sumir, desaparecer; apagar-se
+193|V|ouvir, escutar; perguntar
+194|D|norte
+195|L|violão, guitarra
+196|A|sujo
+197|L|cafeteria
+198|L|selo (postal)
+199|X|bilhete, passagem
+200|T|ontem
+201|N|nove
+202|F|carne bovina
+203|F|leite
+204|T|hoje
+205|P|sala de aula
+206|P|irmãos
+207|T|ano passado
+208|A|que não se gosta, desagradável
+209|V|cortar; desligar (telefone)
+210|V|vestir, usar (roupa)
+211|A|bonito; limpo, arrumado
+212|N|quilo (quilograma)
+214|L|banco
+215|T|sexta-feira
+217|C|remédio
+218|E|por favor (dê-me / faça)
+219|F|fruta
+220|C|boca
+221|R|sapatos
+222|R|meias
+223|L|país; terra natal
+224|C|tempo nublado
+225|V|ficar nublado
+226|A|escuro; sombrio
+227|E|mais ou menos, cerca de (quantidade)
+228|P|turma, classe
+229|N|grama
+230|V|vir
+231|X|carro
+232|L|preto (cor)
+233|A|preto; escuro
+234|P|policial
+235|T|esta manhã
+236|V|apagar; desligar
+237|E|ótimo; suficiente; bastante
+238|P|casamento (casar-se)
+239|T|segunda-feira
+240|L|entrada (da casa), hall
+241|A|saudável, com energia
+242|N|contador de coisas pequenas
+243|N|cinco
+244|P|língua; palavra
+245|L|parque
+246|X|cruzamento
+247|F|chá preto
+248|L|posto policial
+249|C|voz
+250|R|casaco; quadra (de tênis)
+251|F|café
+252|E|aqui
+253|T|tarde (da tarde); p.m.
+254|T|nove dias; dia 9 do mês
+255|N|nove (coisas)
+256|T|manhã (da manhã); a.m.
+257|V|responder
+258|E|esta pessoa (educado); por aqui
+259|E|esta pessoa; por aqui; este lado
+260|L|copo
+261|T|este ano
+262|P|palavra, idioma; expressão
+263|P|criança
+264|E|este
+265|F|arroz (cozido); refeição
+266|V|copiar, tirar cópia
+267|V|ter problemas, ficar em apuros
+268|E|isto
+269|E|por volta de (tempo)
+270|T|este mês
+271|T|esta semana
+272|E|assim, deste tipo
+273|T|esta noite
+274|E|vamos; bem...
+275|N|anos de idade
+276|R|carteira
+277|F|peixe
+278|T|antes; futuro; ponta
+279|V|florescer
+280|P|redação
+281|V|estender (mão); abrir (guarda-chuva)
+282|N|contador de livros

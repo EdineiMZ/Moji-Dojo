@@ -1,0 +1,150 @@
+283|L|revista
+284|F|açúcar
+285|A|frio (clima)
+286|T|daqui a dois anos
+287|E|Sr., Sra. (tratamento)
+288|N|três
+289|L|passeio, caminhada
+290|N|quatro
+291|T|horas (hora do relógio)
+292|F|sal
+293|E|porém, mas
+294|T|tempo; hora (duração)
+296|P|trabalho, emprego
+297|L|dicionário
+298|A|quieto, calmo
+299|D|embaixo, abaixo
+300|N|sete
+301|P|pergunta
+302|X|bicicleta
+303|X|automóvel
+304|V|morrer
+305|L|dicionário
+306|E|eu mesmo, si mesmo
+307|V|fechar-se, estar fechado
+308|V|fechar
+309|V|apertar, amarrar (gravata)
+310|E|então, bem
+311|L|foto, fotografia
+312|R|camisa
+313|L|chuveiro, ducha
+314|N|dez
+315|E|durante, em todo o
+316|N|semanas (contador)
+317|P|aula
+318|P|lição de casa
+319|A|habilidoso, bom em
+320|A|forte, resistente
+321|F|molho de soja
+322|L|refeitório, restaurante
+323|V|saber, conhecer
+324|L|branco (cor)
+325|A|branco
+326|N|pessoas (contador); pessoa de (país)
+327|L|jornal
+328|T|quarta-feira
+329|V|inspirar; fumar; sugar
+330|R|saia
+331|A|gostar; favorito
+332|E|depois de (tempo); demais (excesso)
+333|A|pouco(s)
+334|E|imediatamente, logo
+335|E|um pouco
+336|A|fresco (clima)
+337|E|cada, por vez
+338|L|aquecedor
+339|L|colher
+340|L|esporte
+341|R|calça
+342|V|morar
+343|V|fazer; usar (acessórios)
+344|V|sentar-se
+345|C|altura (estatura); costas
+346|P|aluno
+347|R|suéter
+348|L|sabonete, sabão
+349|R|terno
+350|A|estreito, apertado
+351|N|zero
+352|N|mil
+353|T|mês passado
+354|T|semana passada
+355|P|professor; mestre; médico
+356|L|lavagem de roupa
+357|E|tudo, todo
+358|E|sim, é assim
+359|L|limpeza, faxina
+360|E|e então, e assim
+361|E|aí, esse lugar
+362|E|por aí, aí (educado)
+363|E|por aí
+364|D|fora, exterior
+365|E|esse
+366|D|perto, ao lado; soba (macarrão)
+367|C|céu
+368|E|isso
+369|E|e depois, depois disso
+370|E|então, bem...
+371|N|contador de veículos e máquinas
+372|P|universidade
+373|L|embaixada
+374|A|tudo bem, não se preocupe
+375|A|gostar muito
+376|A|importante, precioso
+377|L|cozinha
+378|A|muito; difícil, complicado
+379|A|alto; caro
+380|E|apenas, só
+381|E|muito(s)
+382|X|táxi
+383|V|tirar para fora; entregar
+384|E|sufixo de plural (pessoas)
+385|V|ficar de pé, levantar-se
+386|D|comprimento, altura (vertical)
+387|L|prédio, edifício
+388|A|divertido, agradável
+389|V|pedir (um favor), solicitar
+390|L|cigarro, tabaco
+391|E|talvez, provavelmente
+392|F|comida
+393|V|comer
+394|F|ovo
+395|E|quem
+396|E|alguém
+397|T|aniversário
+398|E|aos poucos, gradualmente
+399|A|pequeno
+400|A|pequeno (antes de substantivo)
+401|A|perto, próximo
+402|V|ser diferente; estar errado
+403|D|perto, nas proximidades
+404|X|metrô
+405|L|mapa
+406|P|meu pai
+407|L|marrom (cor)
+408|L|tigela de arroz
+410|E|exatamente, justo
+411|E|um pouco; um momento
+413|V|usar
+414|V|cansar-se
+415|E|próximo
+416|V|chegar
+417|L|mesa de estudo, escrivaninha
+418|V|fazer, criar, preparar
+419|V|ligar (luz); acender
+420|V|trabalhar (em uma empresa)
+421|A|chato; sem importância
+422|A|frio (coisas, pessoas)
+423|A|forte
+424|C|mão
+425|L|fita
+426|L|gravador de fita
+427|L|mesa
+428|V|sair (de casa); partir
+429|L|carta
+430|V|conseguir, poder, ser capaz
+431|L|saída
+432|P|teste, prova
+433|E|então, bem
+434|R|loja de departamentos
+435|E|mas, porém; ou algo assim

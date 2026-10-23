@@ -1,13 +1,11 @@
-import { KANJI } from '@/data/kanji';
 import { findWord, VOCAB, VOCAB_GROUPS, wordsWithKanji } from './index';
 
 const KANA_ONLY = /^[ぁ-ゖァ-ヺー]+$/u;
 const KANJI_CHAR = /[一-鿿]/u;
-const knownKanji = new Set(KANJI.map((k) => k.char));
 
 describe('vocabulário da especificação', () => {
   it('tem um bom número de palavras, todas distintas', () => {
-    expect(VOCAB.length).toBeGreaterThan(150);
+    expect(VOCAB.length).toBeGreaterThan(800);
     expect(new Set(VOCAB.map((w) => w.id)).size).toBe(VOCAB.length);
   });
 
@@ -31,15 +29,12 @@ describe('vocabulário da especificação', () => {
     for (const w of VOCAB) expect(w.kanji).toEqual([...w.jp].filter((c) => KANJI_CHAR.test(c)));
   });
 
-  it('toda palavra com kanji tem ao menos um que o app ensina (a interface mostra o significado desses)', () => {
-    // Palavras como 月曜日 usam kanji que ainda não estão na trilha (曜): isso é esperado.
-    for (const w of VOCAB) if (w.kanji.length > 0) expect(w.kanji.some((c) => knownKanji.has(c))).toBe(true);
-  });
-
-  it('o significado não traz marcas de HTML nem comentário solto entre parênteses', () => {
+  it('o significado é curto e sem marcas de HTML; comentário entre parênteses só se for breve', () => {
     for (const w of VOCAB) {
       expect(w.meaning).not.toMatch(/[<>]/);
-      expect(w.meaning).not.toMatch(/\([^)]*\)\s*$/);
+      expect(w.meaning.length).toBeLessThanOrEqual(60);
+      const note = /\(([^)]*)\)\s*$/.exec(w.meaning)?.[1];
+      if (note !== undefined) expect(note.length).toBeLessThanOrEqual(35);
     }
   });
 

@@ -1,10 +1,10 @@
 import type { VocabGroup, VocabWord } from './types';
-import { buildHtmlVocabulary } from './vocab';
+import { buildHtmlVocabulary, buildN5Vocabulary, mergeVocabulary } from './vocab';
 
 export type { VocabGroup, VocabKind, VocabWord } from './types';
 
-/** Todo o vocabulário do app, na ordem de estudo. */
-export const VOCAB: readonly VocabWord[] = buildHtmlVocabulary();
+/** Todo o vocabulário do app, na ordem de estudo: o da especificação (HTML) e depois a lista N5. */
+export const VOCAB: readonly VocabWord[] = mergeVocabulary(buildHtmlVocabulary(), buildN5Vocabulary());
 
 const WORD_BY_ID: ReadonlyMap<string, VocabWord> = new Map(VOCAB.map((w) => [w.id, w]));
 

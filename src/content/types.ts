@@ -23,3 +23,17 @@ export interface VocabGroup {
   id: string;
   label: string;
 }
+
+/** Palavra vinda de uma lista externa (ex.: JLPT N5), antes de virar `VocabWord`. */
+export interface SourceWord {
+  jp: string;
+  reading: string;
+  /** Significado em português (tradução). */
+  meaning: string;
+  /** Significado original, em inglês, para conferir a tradução. */
+  en: string;
+  /** Assunto (mesmos nomes dos grupos dos kanji quando é o mesmo tema). */
+  group: string;
+  /** Lição do Genki (livro-texto) em que a palavra aparece, quando se sabe. */
+  lesson?: number;
+}

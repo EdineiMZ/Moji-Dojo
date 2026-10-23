@@ -2,6 +2,7 @@ import { KANA } from '@/data/kana';
 import { KANA_EXAMPLES, KANJI_EXAMPLES } from '@/data/examples';
 import { KANJI, KANJI_CATEGORIES } from '@/data/kanji';
 import { SIMULATOR_WORDS } from '@/data/keyboard';
+import { N5_WORDS } from './n5';
 import type { VocabKind, VocabWord } from './types';
 
 const KANJI_CHAR = /[一-鿿]/u;
@@ -71,5 +72,26 @@ export function buildHtmlVocabulary(): VocabWord[] {
     });
   }
 
+  return [...words.values()];
+}
+
+const KATAKANA = /[ァ-ヺ]/u;
+
+/**
+ * Lista JLPT N5 (scripts/vocab-n5/, gerada em ./n5.ts): leitura e palavra vêm da lista; o significado é a
+ * tradução para o português. Fonte e licença em src/content/LICENSE.md.
+ */
+export function buildN5Vocabulary(): VocabWord[] {
+  return N5_WORDS.map((w): VocabWord => {
+    const kanji = [...w.jp].filter((c) => KANJI_CHAR.test(c));
+    const kind: VocabKind = kanji.length > 0 ? 'kanji' : KATAKANA.test(w.jp) ? 'kata' : 'hira';
+    return { id: w.jp, jp: w.jp, reading: w.reading, meaning: w.meaning, kind, group: w.group, kanji };
+  });
+}
+
+/** Junta as listas na ordem dada; palavra repetida aparece uma vez só (vale a primeira lista). */
+export function mergeVocabulary(...lists: readonly (readonly VocabWord[])[]): VocabWord[] {
+  const words = new Map<string, VocabWord>();
+  for (const list of lists) for (const word of list) if (!words.has(word.id)) words.set(word.id, word);
   return [...words.values()];
 }

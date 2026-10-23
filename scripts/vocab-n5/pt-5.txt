@@ -1,0 +1,132 @@
+583|F|carne de porco
+584|N|duas pessoas
+585|T|dois dias; dia 2 do mês
+586|A|grosso, gordo
+587|T|inverno
+588|V|cair (chuva, neve)
+589|A|velho (coisas), antigo
+590|T|minutos (contador)
+591|P|frase, texto
+592|L|página
+593|A|sem habilidade, ruim em
+594|L|cama
+595|C|animal de estimação
+596|L|quarto, cômodo
+597|D|arredores, vizinhança
+598|L|caneta
+599|P|estudo
+600|A|conveniente, prático
+601|R|chapéu, boné
+602|L|caneta esferográfica
+604|R|bolso
+605|A|querer, desejar (algo)
+606|L|caixa de correio; posto
+607|A|fino, estreito, delgado
+608|L|botão
+609|X|hotel
+610|L|livro
+612|L|estante de livros
+613|A|verdade, real
+614|N|contador de coisas planas
+615|T|toda manhã
+616|T|todo mês
+617|T|toda semana
+618|T|todo dia
+619|T|todo ano
+620|T|toda noite
+621|D|antes; na frente
+623|V|virar, dobrar, curvar
+624|A|ruim (sabor), sem graça
+625|E|e também; de novo
+626|E|ainda
+627|L|cidade, vila
+628|V|esperar
+629|E|reto, direto
+630|L|fósforo
+631|L|janela
+632|A|redondo
+633|N|dez mil
+634|L|caneta-tinteiro
+635|V|escovar (dentes); polir
+636|D|direita
+637|A|curto
+638|F|água
+639|L|loja
+640|V|mostrar
+641|X|caminho, rua; direção
+642|T|três dias; dia 3 do mês
+643|N|três (coisas)
+644|L|verde (cor)
+645|P|todos vocês, pessoal
+646|D|sul
+647|C|orelha
+648|V|ver, olhar
+649|P|todos
+650|T|seis dias; dia 6 do mês
+651|D|do outro lado, lá
+652|A|difícil
+653|N|seis (coisas)
+654|L|vila, aldeia
+655|C|olho
+656|N|metro
+657|R|óculos
+658|E|já; mais (de novo)
+659|T|quinta-feira
+660|E|alô (ao telefone)
+661|V|segurar, carregar; possuir
+662|E|mais
+663|L|coisa (objeto)
+664|L|portão
+665|P|problema; questão
+666|L|loja de...
+667|L|quitanda, hortifrúti
+668|F|legumes, verduras
+669|A|fácil, simples
+670|A|barato
+671|T|folga, feriado; ausência
+672|V|descansar, fazer uma pausa; faltar
+673|N|oito (coisas)
+674|C|montanha
+675|V|fazer; dar (a animais, irmãos menores)
+676|T|fim da tarde, entardecer
+677|F|jantar
+678|L|correio
+679|T|ontem à noite
+680|A|famoso
+681|C|neve
+682|E|devagar, com calma
+683|T|oito dias; dia 8 do mês
+684|R|roupa ocidental
+685|E|frequentemente; bem
+686|D|ao lado; largura
+687|T|quatro dias; dia 4 do mês
+688|N|quatro (coisas)
+689|V|chamar; convidar
+690|V|ler
+691|T|noite
+692|A|fraco
+693|T|mês que vem
+694|T|semana que vem
+695|T|ano que vem
+696|L|rádio
+697|-|
+698|A|esplêndido, admirável
+699|P|estudante estrangeiro (intercâmbio)
+700|P|pais (pai e mãe)
+701|F|culinária, prato (cozinhar)
+702|X|viagem
+703|N|zero
+704|L|geladeira
+705|L|disco (de vinil)
+706|L|restaurante
+707|P|prática, treino
+708|L|corredor
+709|N|seis
+710|R|camisa social
+711|A|jovem
+712|V|entender
+713|V|esquecer
+714|P|eu
+716|V|entregar, passar (algo)
+717|V|atravessar
+718|A|ruim, mau

@@ -9,13 +9,14 @@ import { BuildHub } from '@/features/phrases/BuildHub';
 import { ALL_TOPICS } from '@/features/phrases/build';
 import { GrammarView } from '@/features/phrases/GrammarView';
 import { TravelView } from '@/features/phrases/TravelView';
+import { LoanwordsView } from '@/features/katakana/LoanwordsView';
 import { MyPhrasesView } from '@/features/myphrases/MyPhrasesView';
 import { TranslateView } from '@/features/translate/TranslateView';
 import { VocabView } from '@/features/vocab/VocabView';
 import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 
-type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel';
+type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata';
 
 const VIEWS = [
   { value: 'vocab' as const, label: 'Palavras' },
@@ -29,6 +30,7 @@ const VIEWS = [
   { value: 'mine' as const, label: 'Minhas frases' },
   { value: 'build' as const, label: 'Montar' },
   { value: 'travel' as const, label: 'Viagem' },
+  { value: 'kata' as const, label: 'Katakana' },
 ];
 
 export default function PhrasesScreen() {
@@ -55,6 +57,7 @@ export default function PhrasesScreen() {
         {view === 'conjugate' ? <ConjugationView /> : null}
         {view === 'cloze' ? <ClozeView /> : null}
         {view === 'count' ? <CountingView /> : null}
+        {view === 'kata' ? <LoanwordsView /> : null}
         {view === 'translate' ? <TranslateView /> : null}
         {view === 'bank' ? <BankView /> : null}
         {view === 'dialog' ? <DialogView /> : null}

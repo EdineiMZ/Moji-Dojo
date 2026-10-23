@@ -22,9 +22,8 @@ import {
 } from '@/components';
 import { pronunciationText } from '@/features/catalog';
 import { speakJapanese } from '@/features/speech/voiceStore';
-import { useProgressStore } from '@/store';
 import { isPassing, writePassScore, type WritingScore } from '@/features/writing/score';
-import { useSettingsStore } from '@/store';
+import { useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { feedbackCorrect, feedbackWrong } from '@/lib/feedback';
 import { radii, spacing, useTheme } from '@/theme';

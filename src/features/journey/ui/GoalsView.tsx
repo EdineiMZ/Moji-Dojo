@@ -10,6 +10,7 @@ import { buildContext } from '../track';
 import { limitLabel, NEW_OPTIONS, REVIEW_OPTIONS } from '@/features/limits/limits';
 import { roll, weekChestReady } from '../events';
 import { weekDays } from '../week';
+import { LevelPathCard } from './LevelPathCard';
 
 const WEEKDAYS = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'] as const;
 
@@ -124,6 +125,8 @@ export function GoalsView() {
           {journey.week.challengeClaimed ? ' ✓' : ''}
         </AppText>
       </Card>
+
+      <LevelPathCard />
 
       <Card enterIndex={4}>
         <AppText variant="title">Limites por dia</AppText>

@@ -151,14 +151,18 @@ Objetivo: ler textos reais e ganhar vocabulário em contexto.
 
 Objetivo: o app decide o que estudar hoje e mede o que realmente ficou.
 
-- [ ] **Algoritmo de revisão melhor:** trocar as caixas fixas (1, 3, 7, 14, 30 e 60 dias) por um modelo que ajusta o intervalo à dificuldade de cada item (como o FSRS, de código aberto). Mantém a importação do progresso antigo. *(G)*
-- [ ] **Sessão diária guiada** de 15 a 20 minutos: revisões, 1 conteúdo novo, 1 exercício de escuta, 1 frase para produzir. Tem começo, meio e fim. *(M)*
+- [~] **Algoritmo de revisão melhor:** trocar as caixas fixas (1, 3, 7, 14, 30 e 60 dias) por um modelo que ajusta o intervalo à dificuldade de cada item (como o FSRS, de código aberto). Mantém a importação do progresso antigo. *(G)*
+  - Feito em parte (1.10.0): cada item guarda quantas vezes foi **esquecido**; o intervalo encolhe 10% por esquecimento (até 40%) e quem chega à caixa 3 sem tropeçar "perdoa" um esquecimento. Entra no backup (campo opcional, backups antigos continuam valendo). **Não é o FSRS completo** (as caixas continuam): trocar por um modelo de estabilidade/dificuldade fica para depois, com dados reais de uso para calibrar.
+- [x] **Sessão diária guiada** de 15 a 20 minutos: revisões, 1 conteúdo novo, 1 exercício de escuta, 1 frase para produzir. Tem começo, meio e fim. *(M)*
+  - Feito (1.10.0): card **Sessão de hoje** na tela inicial, em quatro passos (revisar o que venceu, algo novo, ouvir, uma frase), marcados pelo que já foi feito hoje; cada passo leva à tela certa.
 - [x] **Limites e metas:** quantos itens novos por dia, revisões máximas, meta semanal. Evita acumular uma pilha desanimadora de revisões. *(P)*
   - Feito em parte (1.8.0): **meta diária de respostas** (5, 10, 20 ou 40) e **meta semanal de dias** (4 de 7). Depois (1.9.0): **limites por dia** de itens novos (5, 10, 20) e de respostas de revisão (30, 60, 100), em Meu Mochi → Metas. São limites macios: ao chegar neles o app avisa e deixa continuar se a pessoa quiser.
 - [ ] **Mistura de tipos de exercício** (intercalar kana, vocabulário, gramática) em vez de blocos longos do mesmo tipo. *(M)*
-- [ ] **Itens "teimosos" (leeches):** detectar o que o aluno erra sempre e propor outra abordagem (mnemônico, exemplo novo, quebrar em partes). *(M)*
+- [x] **Itens "teimosos" (leeches):** detectar o que o aluno erra sempre e propor outra abordagem (mnemônico, exemplo novo, quebrar em partes). *(M)*
+  - Feito (1.10.0): com 4 esquecimentos ou mais e ainda nas caixas 1 e 2, o item aparece no card **Itens teimosos** (kana, palavras, verbos e partículas) com uma outra abordagem por tipo, e volta mais cedo na revisão.
 - [ ] **Estatísticas por habilidade:** leitura, escrita, escuta, fala e vocabulário, com retenção real (% que continua lembrando após semanas). *(M)*
-- [ ] **Metas por nível:** caminho N5 → N4 → N3 com marcos claros ("sabe 800 palavras e 40 pontos de gramática"). *(M)*
+- [~] **Metas por nível:** caminho N5 → N4 → N3 com marcos claros ("sabe 800 palavras e 40 pontos de gramática"). *(M)*
+  - Feito em parte (1.10.0): Meu Mochi → Metas → **Caminho por nível**, com marcos N5 (kana, palavras, kanji firmes) e N4 (kanji firmes). Faltam marcos de gramática e verbos.
 - [ ] **Teste de nivelamento** para quem já sabe parte do conteúdo e quer pular. *(M)*
 - [x] **Lembretes** no horário que o aluno escolher, sem insistir demais. *(P)*
   - Feito (1.8.0): lembretes **locais** (sem servidor) em Ajustes → Lembretes: horário, dias, aviso da noite quando a sequência está em risco, horário de silêncio e teste. Quem passa dias sem abrir recebe menos avisos, nunca cobrança. Precisa de permissão de notificação (Android 13+).

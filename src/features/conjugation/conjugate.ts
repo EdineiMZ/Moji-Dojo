@@ -12,6 +12,21 @@ export type VerbForm = 'masu' | 'nai' | 'te' | 'ta';
 
 export const VERB_FORMS: readonly VerbForm[] = ['masu', 'nai', 'te', 'ta'];
 
+/**
+ * Formas que entram depois das quatro primeiras: masendeshita = ませんでした (passado negativo), tai = たい (querer),
+ * teiru = ている (em andamento), mashou = ましょう (vamos).
+ */
+export type ExtraForm = 'masendeshita' | 'tai' | 'teiru' | 'mashou';
+
+export const EXTRA_FORMS: readonly ExtraForm[] = ['masendeshita', 'tai', 'teiru', 'mashou'];
+
+/** Qualquer forma treinável. */
+export type AnyForm = VerbForm | ExtraForm;
+
+export const ALL_FORMS: readonly AnyForm[] = [...VERB_FORMS, ...EXTRA_FORMS];
+
+export const isExtraForm = (form: AnyForm): form is ExtraForm => (EXTRA_FORMS as readonly string[]).includes(form);
+
 export interface VerbSpec {
   /** Forma do dicionário, com kanji ou só em kana. */
   jp: string;
@@ -59,7 +74,18 @@ const splitLast = (text: string): [string, string] => {
  * Conjuga `text` (a forma do dicionário, em kanji ou em kana) na forma pedida.
  * Lança erro se o final não combina com o grupo: é um erro nos dados, não do aluno.
  */
-export function conjugate(text: string, spec: Pick<VerbSpec, 'group' | 'irregular'>, form: VerbForm): string {
+export function conjugate(text: string, spec: Pick<VerbSpec, 'group' | 'irregular'>, form: AnyForm): string {
+  // As formas extras saem das básicas: o radical do ます, ou a forma て.
+  switch (form) {
+    case 'masendeshita':
+      return conjugate(text, spec, 'masu').slice(0, -2) + 'ませんでした';
+    case 'tai':
+      return conjugate(text, spec, 'masu').slice(0, -2) + 'たい';
+    case 'mashou':
+      return conjugate(text, spec, 'masu').slice(0, -2) + 'ましょう';
+    case 'teiru':
+      return conjugate(text, spec, 'te') + 'いる';
+  }
   const { group, irregular } = spec;
 
   if (group === 'suru') {

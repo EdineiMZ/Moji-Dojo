@@ -1,4 +1,4 @@
-import { conjugate, VERB_FORMS } from './conjugate';
+import { conjugate, EXTRA_FORMS, VERB_FORMS } from './conjugate';
 import { cardKeysFor, conjCounts, dueCards, learnedVerbIds, newVerbs, parseCardKey } from './cards';
 import { buildConjugationQuestion, buildConjugationQuestions, buildFormOptions, questionCardKey } from './questions';
 import { findVerb, VERBS } from './verbs';
@@ -107,10 +107,40 @@ describe('progresso da conjugação', () => {
     expect(store.getState().conj).toEqual({});
   });
 
+  it('liberar formas extras: 6 cartões por dia, só dos verbos aprendidos, sem repetir', () => {
+    const store = createProgressStore(memoryStorage());
+    store.getState().learnVerbs(['飲む', '食べる', '見る'], NOW);
+    store.getState().unlockConjForms(NOW);
+    const conj = store.getState().conj;
+    expect(Object.keys(conj)).toHaveLength(3 * 8);
+    const extras = Object.entries(conj).filter(([key]) => EXTRA_FORMS.some((f) => key.endsWith(`|${f}`)));
+    expect(extras).toHaveLength(12);
+    const days = extras.map(([, entry]) => Math.round((entry.due - NOW) / 86_400_000)).sort((a, b) => a - b);
+    expect(days).toEqual([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]);
+    // Chamar de novo não muda nada (nem reagenda).
+    const before = store.getState().conj;
+    store.getState().unlockConjForms(NOW + 5 * 86_400_000);
+    expect(store.getState().conj).toBe(before);
+  });
+
   it('o reset zera a conjugação', () => {
     const store = createProgressStore(memoryStorage());
     store.getState().learnVerbs(['飲む'], NOW);
     store.getState().resetProgress();
     expect(store.getState().conj).toEqual({});
+  });
+});
+
+describe('formas extras nas perguntas', () => {
+  it('cada forma extra tem a resposta certa entre as alternativas, sem repetir', () => {
+    for (const verb of VERBS.slice(0, 40)) {
+      for (const form of EXTRA_FORMS) {
+        const q = buildConjugationQuestion(verb, form, () => 0.4);
+        const chars = q.options.map((o) => o.char);
+        expect(chars).toContain(conjugate(verb.word.jp, verb.spec, form));
+        expect(new Set(chars).size).toBe(chars.length);
+        expect(chars.length).toBeGreaterThanOrEqual(3);
+      }
+    }
   });
 });

@@ -1,5 +1,5 @@
 import { VOCAB } from '@/content';
-import { conjugate, VERB_FORMS, type VerbForm, type VerbSpec } from './conjugate';
+import { ALL_FORMS, conjugate, VERB_FORMS, type VerbForm, type VerbSpec } from './conjugate';
 import { findVerb, missingVerbIds, VERBS } from './verbs';
 
 const forms = (text: string, spec: Pick<VerbSpec, 'group' | 'irregular'>): Record<VerbForm, string> => ({
@@ -93,5 +93,29 @@ describe('verbos do vocabulário', () => {
     expect(new Set(VERBS.map((v) => v.word.id)).size).toBe(VERBS.length);
     expect(VERBS.length).toBeGreaterThan(80);
     expect(VOCAB.length).toBeGreaterThan(VERBS.length);
+  });
+});
+
+describe('formas extras', () => {
+  it.each([
+    ['たべる', { group: 'ichidan' }, 'たべませんでした', 'たべたい', 'たべている', 'たべましょう'],
+    ['のむ', { group: 'godan' }, 'のみませんでした', 'のみたい', 'のんでいる', 'のみましょう'],
+    ['いく', { group: 'godan', irregular: 'iku' }, 'いきませんでした', 'いきたい', 'いっている', 'いきましょう'],
+    ['する', { group: 'suru' }, 'しませんでした', 'したい', 'している', 'しましょう'],
+    ['くる', { group: 'kuru' }, 'きませんでした', 'きたい', 'きている', 'きましょう'],
+  ] as const)('%s', (dict, spec, masendeshita, tai, teiru, mashou) => {
+    expect(conjugate(dict, spec, 'masendeshita')).toBe(masendeshita);
+    expect(conjugate(dict, spec, 'tai')).toBe(tai);
+    expect(conjugate(dict, spec, 'teiru')).toBe(teiru);
+    expect(conjugate(dict, spec, 'mashou')).toBe(mashou);
+  });
+
+  it('todo verbo do vocabulário conjuga todas as formas, na escrita e na leitura', () => {
+    for (const verb of VERBS) {
+      for (const form of ALL_FORMS) {
+        expect(conjugate(verb.word.jp, verb.spec, form).length).toBeGreaterThan(1);
+        expect(conjugate(verb.word.reading, verb.spec, form).length).toBeGreaterThan(1);
+      }
+    }
   });
 });

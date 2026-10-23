@@ -5,10 +5,12 @@ import { answerReview, boostSkippedItems, learnItems, shouldApplyReviewAnswer, t
 import { addActivity, type ActivityHistory } from '@/features/stats/metrics';
 import { markDay } from '@/features/streak/days';
 import { checkPhrase, newPhraseId, type MyPhrase, type MyPhrases, type PhraseProblem } from '@/features/myphrases/phrases';
-import { cardKeysFor as verbCardKeys } from '@/features/conjugation/cards';
+import { cardKeysFor as verbCardKeys, extraKeysFor as verbExtraKeys, EXTRA_PER_DAY, learnedVerbIds } from '@/features/conjugation/cards';
 import { findVerb } from '@/features/conjugation/verbs';
 import { cardKeysFor } from '@/features/vocab/cards';
 import { findWord } from '@/content';
+
+const DAY_MS = 86_400_000;
 
 /** Como a pessoa avalia a própria fala no "Repetir" (shadowing). */
 export type ShadowRating = 'ok' | 'mid' | 'bad';
@@ -30,6 +32,11 @@ export interface ProgressActions {
   recordVocabAnswer: (cardKey: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Verbos aprendidos: entram na revisão (um cartão por forma) já vencidos, para praticar na hora. */
   learnVerbs: (verbIds: readonly string[], now?: number) => void;
+  /**
+   * Libera as formas extras (ませんでした, たい, ている, ましょう) dos verbos já aprendidos, `EXTRA_PER_DAY` cartões por dia
+   * para a pilha de revisões não crescer de uma vez. Não faz nada se não falta cartão.
+   */
+  unlockConjForms: (now?: number) => void;
   /** Resposta numa revisão de conjugação (chave = "verbo|forma"): reagenda e marca o dia. */
   recordConjAnswer: (cardKey: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Exercício solto (lacunas): conta no histórico do dia e marca o dia, sem agendar revisão. */
@@ -169,6 +176,21 @@ export function createProgressStore(storage: StateStorage) {
               for (const key of verbCardKeys(verb)) if (!conj[key]) conj[key] = { b: 1, due: now };
             }
             return { conj, days: markDay(s.days, new Date(now)) };
+          }),
+
+        unlockConjForms: (now = Date.now()) =>
+          set((s) => {
+            const missing: string[] = [];
+            for (const id of learnedVerbIds(s.conj)) {
+              const verb = findVerb(id);
+              if (verb) for (const key of verbExtraKeys(verb)) if (!s.conj[key]) missing.push(key);
+            }
+            if (missing.length === 0) return s;
+            const conj: Record<string, SrsEntry> = { ...s.conj };
+            missing.forEach((key, i) => {
+              conj[key] = { b: 1, due: now + Math.floor(i / EXTRA_PER_DAY) * DAY_MS };
+            });
+            return { conj };
           }),
 
         recordConjAnswer: (cardKey, ok, firstTry, now = Date.now()) =>

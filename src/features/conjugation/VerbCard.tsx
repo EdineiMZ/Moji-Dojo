@@ -5,7 +5,7 @@ import { useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { fonts, spacing } from '@/theme';
 import { FORM_LABELS } from './cards';
-import { conjugate, VERB_FORMS } from './conjugate';
+import { ALL_FORMS, conjugate } from './conjugate';
 import { GROUP_LABELS, type Verb } from './verbs';
 
 interface VerbCardProps {
@@ -27,7 +27,7 @@ export function VerbCard({ verb, enterIndex }: VerbCardProps) {
       </AppText>
       <AppText variant="title">{word.meaning}</AppText>
       <View style={styles.forms}>
-        {VERB_FORMS.map((form) => {
+        {ALL_FORMS.map((form) => {
           const written = conjugate(word.jp, spec, form);
           const read = conjugate(word.reading, spec, form);
           return (

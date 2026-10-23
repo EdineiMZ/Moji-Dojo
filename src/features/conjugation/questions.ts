@@ -1,6 +1,6 @@
 import { shuffle, type PairItem, type Question, type Rng } from '@/features/quiz/quiz';
 import { cardKey, FORM_LABELS, parseCardKey } from './cards';
-import { conjugate, VERB_FORMS, type VerbForm, type VerbSpec } from './conjugate';
+import { conjugate, ALL_FORMS, type AnyForm, type VerbSpec } from './conjugate';
 import type { Verb } from './verbs';
 
 /** Finais possíveis de て/た dos verbos do grupo 1, para montar respostas erradas plausíveis. */
@@ -12,6 +12,16 @@ const TE_ENDINGS = [
   ['して', 'した'],
 ] as const;
 
+type ExtraTail = 'masendeshita' | 'tai' | 'mashou' | 'teiru';
+
+/** Como cada forma extra sai de uma básica: tira `strip` do fim da errada e põe `tail`. */
+const EXTRA_TAILS: Readonly<Record<ExtraTail, { base: AnyForm; strip: string; tail: string }>> = {
+  masendeshita: { base: 'masu', strip: 'ます', tail: 'ませんでした' },
+  tai: { base: 'masu', strip: 'ます', tail: 'たい' },
+  mashou: { base: 'masu', strip: 'ます', tail: 'ましょう' },
+  teiru: { base: 'te', strip: '', tail: 'いる' },
+};
+
 /** Troca o final do verbo (a última letra) por `tail`. */
 const swapLast = (text: string, tail: string): string => [...text].slice(0, -1).join('') + tail;
 
@@ -19,8 +29,11 @@ const swapLast = (text: string, tail: string): string => [...text].slice(0, -1).
  * Respostas erradas que um aluno de verdade daria: a regra de outro grupo aplicada ao verbo
  * (ex.: tratar 飲む como se fosse do grupo 2) e o final de て/た de outro tipo (飲って).
  */
-export function wrongRuleForms(text: string, spec: Pick<VerbSpec, 'group'>, form: VerbForm): string[] {
+export function wrongRuleForms(text: string, spec: Pick<VerbSpec, 'group'>, form: AnyForm): string[] {
   const ichidanLike = spec.group === 'ichidan';
+  // Formas extras: o erro é o mesmo da base (o radical do ます ou o て errado), com o final da forma pedida.
+  const extra = EXTRA_TAILS[form as ExtraTail];
+  if (extra) return wrongRuleForms(text, spec, extra.base).map((wrong) => wrong.slice(0, wrong.length - extra.strip.length) + extra.tail);
   switch (form) {
     case 'masu':
       return ichidanLike ? [swapLast(text, 'ります'), swapLast(text, 'います')] : [swapLast(text, 'ます'), swapLast(text, 'ります')];
@@ -30,16 +43,18 @@ export function wrongRuleForms(text: string, spec: Pick<VerbSpec, 'group'>, form
       return [...TE_ENDINGS.map(([te]) => swapLast(text, te)), swapLast(text, 'て')];
     case 'ta':
       return [...TE_ENDINGS.map(([, ta]) => swapLast(text, ta)), swapLast(text, 'た')];
+    default:
+      return [];
   }
 }
 
 /** A forma certa + 3 respostas erradas: primeiro as de regra errada, depois as outras formas do mesmo verbo. */
-export function buildFormOptions(verb: Verb, form: VerbForm, rng: Rng = Math.random): string[] {
+export function buildFormOptions(verb: Verb, form: AnyForm, rng: Rng = Math.random): string[] {
   const { spec, word } = verb;
   const answer = conjugate(word.jp, spec, form);
   const wrongRule = shuffle(wrongRuleForms(word.jp, spec, form), rng);
   const otherForms = shuffle(
-    VERB_FORMS.filter((f) => f !== form).map((f) => conjugate(word.jp, spec, f)),
+    ALL_FORMS.filter((f) => f !== form).map((f) => conjugate(word.jp, spec, f)),
     rng,
   );
   const picked: string[] = [];
@@ -64,7 +79,7 @@ const toItem = (text: string, label: string, reading?: string, key?: string): Pa
 });
 
 /** Pergunta de um cartão: "食べる (comer) → forma ない"; as alternativas são as formas escritas. */
-export function buildConjugationQuestion(verb: Verb, form: VerbForm, rng: Rng = Math.random): Question {
+export function buildConjugationQuestion(verb: Verb, form: AnyForm, rng: Rng = Math.random): Question {
   const { word, spec } = verb;
   const answer = conjugate(word.jp, spec, form);
   const answerReading = conjugate(word.reading, spec, form);

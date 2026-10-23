@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { AppText, Button, Card, Mascot, ProgressBar } from '@/components';
+import { AppText, Button, Card, ChipRow, Mascot, ProgressBar } from '@/components';
 import { useNow } from '@/hooks/useNow';
 import { plural } from '@/lib/plural';
 import { useProgressStore } from '@/store';
@@ -13,7 +13,7 @@ import type { Verb } from './verbs';
 type Mode =
   | { kind: 'home' }
   | { kind: 'learn'; verbs: readonly Verb[] }
-  | { kind: 'review'; keys?: readonly string[]; title?: string };
+  | { kind: 'review'; keys?: readonly string[]; title?: string; typed?: boolean };
 
 /** As regras em poucas linhas, para ler antes de treinar. */
 function RulesCard() {
@@ -46,8 +46,13 @@ function RulesCard() {
 export function ConjugationView() {
   const conj = useProgressStore((s) => s.conj);
   const learnVerbs = useProgressStore((s) => s.learnVerbs);
+  const unlockConjForms = useProgressStore((s) => s.unlockConjForms);
   const now = useNow();
   const [mode, setMode] = useState<Mode>({ kind: 'home' });
+  const [typed, setTyped] = useState(false);
+
+  // Verbos aprendidos antes das formas extras existirem ganham os cartões novos aos poucos.
+  useEffect(() => unlockConjForms(), [unlockConjForms]);
 
   const counts = conjCounts(conj, now);
 
@@ -64,7 +69,7 @@ export function ConjugationView() {
           label="Praticar esses verbos"
           onPress={() => {
             learnVerbs(mode.verbs.map((v) => v.word.id));
-            setMode({ kind: 'review', keys: mode.verbs.flatMap(cardKeysFor), title: 'Praticando verbos novos' });
+            setMode({ kind: 'review', keys: mode.verbs.flatMap(cardKeysFor), title: 'Praticando verbos novos', typed });
           }}
         />
         <Button label="Cancelar" variant="ghost" onPress={() => setMode({ kind: 'home' })} />
@@ -77,6 +82,7 @@ export function ConjugationView() {
       <ConjugationReview
         {...(mode.keys ? { keys: mode.keys } : {})}
         {...(mode.title ? { title: mode.title } : {})}
+        typed={mode.typed ?? false}
         onExit={() => setMode({ kind: 'home' })}
       />
     );
@@ -99,12 +105,23 @@ export function ConjugationView() {
         </View>
 
         {due > 0 ? (
-          <Button label={`Revisar agora (${Math.min(due, CONJ_REVIEW_BATCH)})`} onPress={() => setMode({ kind: 'review' })} />
+          <Button label={`Revisar agora (${Math.min(due, CONJ_REVIEW_BATCH)})`} onPress={() => setMode({ kind: 'review', typed })} />
         ) : (
           <AppText color="muted">
             {counts.learned > 0 ? 'Nenhuma revisão de conjugação pendente.' : 'Comece aprendendo os primeiros verbos.'}
           </AppText>
         )}
+        <AppText variant="caption" color="muted">
+          COMO RESPONDER
+        </AppText>
+        <ChipRow
+          options={[
+            { value: 'pick', label: 'Escolher' },
+            { value: 'type', label: 'Digitar' },
+          ]}
+          value={typed ? 'type' : 'pick'}
+          onChange={(v) => setTyped(v === 'type')}
+        />
         {due > CONJ_REVIEW_BATCH ? (
           <AppText variant="caption" color="muted">
             {plural(due, 'cartão vencido', 'cartões vencidos')}: a revisão leva {CONJ_REVIEW_BATCH} por vez.
@@ -122,7 +139,7 @@ export function ConjugationView() {
         )}
 
         <AppText variant="caption" color="muted">
-          Cada verbo vira quatro cartões: ます, ない, て e た. As respostas erradas são as que mais aparecem no começo (a
+          Cada verbo vira quatro cartões: ます, ない, て e た. Depois entram, aos poucos, ませんでした, たい, ている e ましょう. Digitar vale escrita com kanji ou em kana. As respostas erradas são as que mais aparecem no começo (a
           regra de outro grupo, o final de て errado). Quanto mais você acerta, mais espaçada fica a revisão.
         </AppText>
       </Card>

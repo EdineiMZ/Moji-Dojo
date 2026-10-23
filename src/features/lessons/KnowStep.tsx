@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import { AppText, Bold, Button, Card, StrokeAnimation, PressableScale } from '@/components';
-import { KANA_EXAMPLES, KANJI_EXAMPLES } from '@/data/examples';
+import { kanaExampleFor, kanjiExampleFor } from './examples';
 import { KANA_MNEMONICS, KANJI_HINTS } from '@/data/hints';
 import { STROKES } from '@/data/strokes';
 import { getItem, pronunciationText } from '@/features/catalog';
@@ -35,8 +35,8 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
   const isLast = pos === items.length - 1;
   const strokeCount = strokes?.p.length ?? 0;
 
-  const kanaExample = KANA_EXAMPLES[char];
-  const kanjiExample = KANJI_EXAMPLES[char];
+  const kanaExample = kanaExampleFor(char);
+  const kanjiExample = kanjiExampleFor(char);
   const moreWords = item.script === 'kanji' ? otherWordsWithKanji(char, kanjiExample?.word) : [];
 
   return (

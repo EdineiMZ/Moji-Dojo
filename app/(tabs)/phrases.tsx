@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AppText, Screen, SegmentedControl, SwapView } from '@/components';
+import { ConjugationView } from '@/features/conjugation/ConjugationView';
 import { BuildView } from '@/features/phrases/BuildView';
 import { ALL_TOPICS } from '@/features/phrases/build';
 import { GrammarView } from '@/features/phrases/GrammarView';
@@ -8,11 +9,12 @@ import { VocabView } from '@/features/vocab/VocabView';
 import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 
-type PhrasesView = 'vocab' | 'grammar' | 'build' | 'travel';
+type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'build' | 'travel';
 
 const VIEWS = [
   { value: 'vocab' as const, label: 'Palavras' },
   { value: 'grammar' as const, label: 'Gramática' },
+  { value: 'conjugate' as const, label: 'Conjugar' },
   { value: 'build' as const, label: 'Montar' },
   { value: 'travel' as const, label: 'Viagem' },
 ];
@@ -37,6 +39,7 @@ export default function PhrasesScreen() {
             }}
           />
         ) : null}
+        {view === 'conjugate' ? <ConjugationView /> : null}
         {view === 'build' ? <BuildView key={topic} topic={topic} onTopicChange={setTopic} /> : null}
         {view === 'travel' ? <TravelView /> : null}
       </SwapView>

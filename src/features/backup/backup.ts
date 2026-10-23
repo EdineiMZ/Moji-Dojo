@@ -3,6 +3,7 @@ import { findItem } from '@/features/catalog';
 import type { CharStats, ProgressSnapshot } from '@/features/progress/types';
 import { LAST_BOX, type SrsEntry } from '@/features/review/srs';
 import { MAX_HISTORY_DAYS, type DayActivity } from '@/features/stats/metrics';
+import { parseCardKey as parseVerbKey } from '@/features/conjugation/cards';
 import { learnedWordIds, parseCardKey } from '@/features/vocab/cards';
 import type { ProgressExtras, ShadowRating } from '@/store/progressStore';
 
@@ -186,7 +187,16 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
     vocab[key] = { b: Math.min(Math.max(Math.round(v.b), 1), LAST_BOX), due: v.due };
   }
 
-  return { value: { history: recent, shadow, challenges, vocab }, ignored };
+  const conj: Record<string, SrsEntry> = {};
+  for (const [key, v] of Object.entries(recordField(root, 'conj'))) {
+    if (!parseVerbKey(key) || !isRecord(v) || !isCount(v.b) || !isCount(v.due)) {
+      ignored++;
+      continue;
+    }
+    conj[key] = { b: Math.min(Math.max(Math.round(v.b), 1), LAST_BOX), due: v.due };
+  }
+
+  return { value: { history: recent, shadow, challenges, vocab, conj }, ignored };
 }
 
 /**
@@ -299,6 +309,7 @@ export function exportBackup(progress: ProgressSnapshot & ProgressExtras, now: D
     shadow: progress.shadow,
     challenges: progress.challenges,
     vocab: progress.vocab,
+    conj: progress.conj,
   };
   return APP_BACKUP_PREFIX + btoa(encodeUtf8(JSON.stringify(payload)));
 }

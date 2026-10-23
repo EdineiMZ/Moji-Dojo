@@ -128,7 +128,7 @@ describe('vocabulário no backup (MDJ1)', () => {
     store.getState().learnWords([kana.id], NOW);
     store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }); // sem extras = protótipo
     expect(Object.keys(store.getState().vocab)).toHaveLength(3);
-    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: {} });
+    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: {}, conj: {} });
     expect(store.getState().vocab).toEqual({});
   });
 });

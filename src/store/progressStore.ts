@@ -4,6 +4,8 @@ import { emptyProgress, type ProgressSnapshot } from '@/features/progress/types'
 import { answerReview, boostSkippedItems, learnItems, shouldApplyReviewAnswer, type SrsEntry, type SrsState } from '@/features/review/srs';
 import { addActivity, type ActivityHistory } from '@/features/stats/metrics';
 import { markDay } from '@/features/streak/days';
+import { cardKeysFor as verbCardKeys } from '@/features/conjugation/cards';
+import { findVerb } from '@/features/conjugation/verbs';
 import { cardKeysFor } from '@/features/vocab/cards';
 import { findWord } from '@/content';
 
@@ -25,6 +27,10 @@ export interface ProgressActions {
   learnWords: (wordIds: readonly string[], now?: number) => void;
   /** Resposta numa revisão de vocabulário (chave = o cartão): reagenda e marca o dia. */
   recordVocabAnswer: (cardKey: string, ok: boolean, firstTry: boolean, now?: number) => void;
+  /** Verbos aprendidos: entram na revisão (um cartão por forma) já vencidos, para praticar na hora. */
+  learnVerbs: (verbIds: readonly string[], now?: number) => void;
+  /** Resposta numa revisão de conjugação (chave = "verbo|forma"): reagenda e marca o dia. */
+  recordConjAnswer: (cardKey: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Marca o dia como estudado (ex.: ao conferir uma escrita). */
   markStudied: (now?: number) => void;
   /**
@@ -47,6 +53,8 @@ export interface ProgressExtras {
   history: ActivityHistory;
   /** Revisão espaçada do vocabulário, por cartão ("palavra|direção"). Separada do `srs` dos caracteres. */
   vocab: SrsState;
+  /** Revisão espaçada da conjugação, por cartão ("verbo|forma"). */
+  conj: SrsState;
 }
 
 export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions;
@@ -66,6 +74,7 @@ export function createProgressStore(storage: StateStorage) {
         challenges: {},
         history: {},
         vocab: {},
+        conj: {},
 
         completeLesson: (lessonId, chars, skipped = false, now = Date.now()) =>
           set((s) => {
@@ -130,6 +139,27 @@ export function createProgressStore(storage: StateStorage) {
             };
           }),
 
+        learnVerbs: (verbIds, now = Date.now()) =>
+          set((s) => {
+            const conj: Record<string, SrsEntry> = { ...s.conj };
+            for (const id of verbIds) {
+              const verb = findVerb(id);
+              if (!verb) continue;
+              for (const key of verbCardKeys(verb)) if (!conj[key]) conj[key] = { b: 1, due: now };
+            }
+            return { conj, days: markDay(s.days, new Date(now)) };
+          }),
+
+        recordConjAnswer: (cardKey, ok, firstTry, now = Date.now()) =>
+          set((s) => {
+            const entry = s.conj[cardKey];
+            return {
+              days: markDay(s.days, new Date(now)),
+              history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
+              ...(entry ? { conj: { ...s.conj, [cardKey]: answerReview(entry, ok, !firstTry, now) } } : {}),
+            };
+          }),
+
         markStudied: (now = Date.now()) => set((s) => ({ days: markDay(s.days, new Date(now)) })),
 
         replaceProgress: (snapshot, extras) =>
@@ -140,17 +170,17 @@ export function createProgressStore(storage: StateStorage) {
             stats: snapshot.stats,
             days: snapshot.days,
             history: extras?.history ?? {},
-            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab } : {}),
+            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj } : {}),
           }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {} }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab }) => ({
+        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj }) => ({
           srs,
           lessons,
           stats,
@@ -159,6 +189,7 @@ export function createProgressStore(storage: StateStorage) {
           challenges,
           history,
           vocab,
+          conj,
         }),
       },
     ),

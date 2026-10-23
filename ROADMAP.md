@@ -74,7 +74,8 @@ Objetivo: transformar "li sobre は e が" em "uso は e が sem pensar".
 
 - [ ] **Completar o N5 gramatical** (cerca de 40 pontos): partículas, formas do verbo, adjetivos, pedidos, permissão, desejo, comparação, contadores. Hoje são 10 tópicos. *(G)*
 - [ ] **Exercícios de lacuna (cloze):** frases com um espaço para a partícula ou a forma correta, com explicação do erro. *(M)*
-- [ ] **Treinador de conjugação:** o app mostra o verbo e a forma pedida (ます, ない, て, た...) e o aluno escolhe ou digita. Revisão espaçada por verbo e por forma. *(M)*
+- [~] **Treinador de conjugação:** o app mostra o verbo e a forma pedida (ます, ない, て, た...) e o aluno escolhe ou digita. Revisão espaçada por verbo e por forma. *(M)*
+  - Feito: sub-aba **Conjugar** em Frases, com ~110 verbos do vocabulário, 4 formas (ます, ない, て, た) geradas por regra, alternativas com os erros típicos (regra de outro grupo, final de て errado) e revisão espaçada por verbo e forma (`progress.conj`, também no backup). Falta: digitar a resposta, e as formas ませんでした, たい, ている e a de dicionário.
 - [ ] **Treinador de partículas:** は/が, に/で, を, へ, と, も, de/para. É onde brasileiros mais erram, com treino de pares confusos. *(M)*
 - [ ] **Contadores e números:** leitura, datas, horas e preços, com áudio. *(M)*
 - [ ] **"Erros comuns de quem fala português":** notas curtas (ordem das palavras, sujeito omitido, falta de artigos e plural). *(P)*

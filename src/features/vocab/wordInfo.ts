@@ -1,6 +1,7 @@
 import type { VocabWord } from '@/content';
 import { SENTENCE_BANK, type BankSentence } from '@/content/sentenceBank';
 import { WORD_CLASS } from '@/content/wordClass';
+import { fromTwins } from './twins';
 import { findVerb, GROUP_LABELS } from '@/features/conjugation/verbs';
 
 /** Adjetivos que terminam em い mas são do tipo な (きれい, きらい). */
@@ -12,7 +13,7 @@ const NA_ENDING_IN_I: ReadonlySet<string> = new Set(['きれい', 'きらい', '
  * resto, devolve null em vez de chutar.
  */
 export function wordClass(word: VocabWord): string | null {
-  const labels = WORD_CLASS[`${word.jp}|${word.reading}`];
+  const labels = fromTwins(word, (w) => WORD_CLASS[`${w.jp}|${w.reading}`]);
   const verb = findVerb(word.id);
   if (verb) return `verbo · ${GROUP_LABELS[verb.spec.group]}`;
   if (labels && labels.length > 0) return labels.join(' · ');

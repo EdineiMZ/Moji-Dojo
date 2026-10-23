@@ -2,10 +2,10 @@ import { ALL_KANJI, ALL_KANJI_CATEGORIES } from '@/content/kanji';
 import { ALL_GRAMMAR } from '@/content/grammar';
 import { learnedVerbIds } from '@/features/conjugation/cards';
 import { VERBS } from '@/features/conjugation/verbs';
-import { VOCAB } from '@/content';
 import { ALL_ITEMS } from '@/features/catalog';
 import { FIRM_BOX, type SrsState } from '@/features/review/srs';
-import { learnedWordIds } from '@/features/vocab/cards';
+import { vocabCounts } from '@/features/vocab/cards';
+import { DISTINCT_WORDS } from '@/features/vocab/twins';
 
 export interface Milestone {
   id: string;
@@ -29,7 +29,7 @@ const firm = (srs: SrsState, chars: readonly string[]): number => chars.filter((
 
 /** O caminho N5 → N4 em marcos que o aluno enxerga: quantos kana, palavras e kanji já estão firmes (caixa 3 ou mais). */
 export function levelPaths(srs: SrsState, vocab: SrsState, conj: SrsState = {}, mastered: Readonly<Record<string, number>> = {}): LevelPath[] {
-  const words = learnedWordIds(vocab).size;
+  const words = vocabCounts(vocab, 0).learned;
   const n4Total = N4_KANJI.length;
   return [
     {
@@ -37,7 +37,7 @@ export function levelPaths(srs: SrsState, vocab: SrsState, conj: SrsState = {}, 
       title: 'Nível N5',
       milestones: [
         { id: 'kana', label: 'Hiragana e katakana firmes', have: firm(srs, KANA.map((i) => i.char)), goal: KANA.length },
-        { id: 'words', label: 'Palavras do vocabulário aprendidas', have: words, goal: VOCAB.length },
+        { id: 'words', label: 'Palavras do vocabulário aprendidas', have: words, goal: DISTINCT_WORDS },
         { id: 'verbs', label: 'Verbos com a conjugação em estudo', have: learnedVerbIds(conj).size, goal: VERBS.length },
         { id: 'grammar', label: 'Tópicos de gramática dominados (teste)', have: ALL_GRAMMAR.filter((t) => mastered[t.id] !== undefined).length, goal: ALL_GRAMMAR.length },
         { id: 'kanji5', label: 'Kanji do N5 firmes', have: firm(srs, N5_KANJI), goal: N5_KANJI.length },

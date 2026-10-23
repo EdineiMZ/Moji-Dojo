@@ -1,4 +1,5 @@
 import { findWord, VOCAB, type VocabWord } from '@/content';
+import { isSecondaryTwin, twinsOf, DISTINCT_WORDS } from './twins';
 import { dueChars, type SrsState } from '@/features/review/srs';
 
 /**
@@ -61,7 +62,9 @@ export function learnedWordIds(vocab: SrsState): Set<string> {
 /** Palavras ainda não aprendidas, na ordem de estudo (opcionalmente só de um grupo). */
 export function newWords(vocab: SrsState, group?: string): VocabWord[] {
   const learned = learnedWordIds(vocab);
-  return VOCAB.filter((w) => !learned.has(w.id) && (group === undefined || w.group === group));
+  // Gêmeas (あさ / 朝): se uma forma já foi estudada, a outra não é "nova"; se nenhuma foi, só a principal é oferecida.
+  const covered = (w: VocabWord): boolean => twinsOf(w.id).some((t) => learned.has(t.id));
+  return VOCAB.filter((w) => !learned.has(w.id) && !covered(w) && !isSecondaryTwin(w.id) && (group === undefined || w.group === group));
 }
 
 /** Cartões vencidos, do mais atrasado ao menos. */
@@ -74,5 +77,8 @@ export interface VocabCounts {
 }
 
 export function vocabCounts(vocab: SrsState, now: number): VocabCounts {
-  return { learned: learnedWordIds(vocab).size, total: VOCAB.length, due: dueCards(vocab, now).length };
+  const learned = learnedWordIds(vocab);
+  // Conta cada palavra distinta uma vez: a forma extra de uma gêmea já estudada não aumenta o total nem o aprendido.
+  const learnedDistinct = new Set([...learned].map((id) => twinsOf(id)[0]?.id ?? id)).size;
+  return { learned: learnedDistinct, total: DISTINCT_WORDS, due: dueCards(vocab, now).length };
 }

@@ -14,6 +14,7 @@ import {
   vocabCounts,
 } from './cards';
 import { buildVocabOptions, buildVocabQuestions, questionCardKey, toQuizItem } from './questions';
+import { DISTINCT_WORDS, fromTwins, isSecondaryTwin, twinsOf } from './twins';
 
 /** Sorteio repetível: sequência fixa de números em [0, 1). */
 const seeded = (seed: number) => () => {
@@ -47,8 +48,8 @@ describe('progresso do vocabulário', () => {
 
   it('conta palavras aprendidas (não cartões) e o que vence', () => {
     expect(learnedWordIds(vocab)).toEqual(new Set([kanaWord.id]));
-    expect(vocabCounts(vocab, NOW)).toEqual({ learned: 1, total: VOCAB.length, due: 3 });
-    expect(vocabCounts({}, NOW)).toEqual({ learned: 0, total: VOCAB.length, due: 0 });
+    expect(vocabCounts(vocab, NOW)).toEqual({ learned: 1, total: DISTINCT_WORDS, due: 3 });
+    expect(vocabCounts({}, NOW)).toEqual({ learned: 0, total: DISTINCT_WORDS, due: 0 });
   });
 
   it('ignora chaves que não existem mais', () => {
@@ -65,12 +66,36 @@ describe('progresso do vocabulário', () => {
 
   it('newWords tira as já aprendidas, mantém a ordem e filtra por grupo', () => {
     const rest = newWords(vocab);
-    expect(rest).toHaveLength(VOCAB.length - 1);
+    expect(rest).toHaveLength(DISTINCT_WORDS - 1);
     expect(rest.find((w) => w.id === kanaWord.id)).toBeUndefined();
-    expect(rest[0]?.id).toBe(VOCAB[1]?.id);
+    expect(rest[0]?.id).not.toBe(kanaWord.id);
     const group = kanjiWord.group;
     expect(newWords({}, group).every((w) => w.group === group)).toBe(true);
     expect(newWords({}, 'grupo que não existe')).toEqual([]);
+  });
+});
+
+describe('palavras gêmeas (あさ e 朝)', () => {
+  it('há gêmeas, e cada grupo tem uma principal (a com kanji)', () => {
+    const asa = twinsOf('あさ');
+    expect(asa.map((w) => w.id)).toEqual(['朝', 'あさ']);
+    expect(isSecondaryTwin('あさ')).toBe(true);
+    expect(isSecondaryTwin('朝')).toBe(false);
+    expect(DISTINCT_WORDS).toBeLessThan(VOCAB.length - 30);
+  });
+
+  it('só a principal é oferecida como nova; estudada uma forma, a outra some das novas', () => {
+    expect(newWords({}).some((w) => w.id === 'あさ')).toBe(false);
+    expect(newWords({}).some((w) => w.id === '朝')).toBe(true);
+    const learnedKana = { 'あさ|jm': { b: 1, due: NOW } };
+    expect(newWords(learnedKana).some((w) => w.id === '朝')).toBe(false);
+    expect(vocabCounts(learnedKana, NOW).learned).toBe(1);
+    expect(vocabCounts({ ...learnedKana, '朝|jm': { b: 1, due: NOW } }, NOW).learned).toBe(1);
+  });
+
+  it('os dados da forma com kanji servem para a gêmea', () => {
+    const asa = VOCAB.find((w) => w.id === 'あさ')!;
+    expect(fromTwins(asa, (w) => (w.id === '朝' ? 'achou' : undefined))).toBe('achou');
   });
 });
 

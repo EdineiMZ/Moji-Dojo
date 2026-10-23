@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, ChipRow, Mascot, ProgressBar } from '@/components';
-import { VOCAB, VOCAB_GROUPS, type VocabWord } from '@/content';
+import { VOCAB_GROUPS, type VocabWord } from '@/content';
 import { useNow } from '@/hooks/useNow';
 import { plural } from '@/lib/plural';
 import { useProgressStore } from '@/store';
@@ -51,7 +51,7 @@ export function VocabView() {
     [vocab],
   );
   const options = [
-    { value: ALL, label: `Todas (${VOCAB.length - counts.learned})` },
+    { value: ALL, label: `Todas (${counts.total - counts.learned})` },
     ...groups.map((g) => ({ value: g.value, label: `${g.label} (${g.left})` })),
   ];
   const selected = options.some((o) => o.value === group) ? group : ALL;

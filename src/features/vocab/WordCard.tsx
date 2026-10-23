@@ -13,6 +13,7 @@ import { accentOf, moras } from '@/features/pitch/pitch';
 import { ExampleRow } from '@/features/phrases/ExampleRow';
 import { toExample } from '@/features/bank/bank';
 import { kanjiBreakdown } from './kanjiWords';
+import { fromTwins } from './twins';
 import { examplesFor, wordClass } from './wordInfo';
 
 interface WordCardProps {
@@ -25,9 +26,9 @@ export function WordCard({ word, enterIndex }: WordCardProps) {
   const speed = useSettingsStore((s) => s.speechSpeed);
   const breakdown = kanjiBreakdown(word);
   const showReading = word.reading !== word.jp;
-  const accent = accentOf(word);
+  const accent = fromTwins(word, accentOf);
   const kind = wordClass(word);
-  const examples = examplesFor(word.id);
+  const examples = fromTwins(word, (w) => { const found = examplesFor(w.id); return found.length > 0 ? found : undefined; }) ?? [];
   const { colors } = useTheme();
   const note = useProgressStore((s) => s.wordNotes[word.id]);
   const setWordNote = useProgressStore((s) => s.setWordNote);

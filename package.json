@@ -45,6 +45,8 @@
     "extract-data": "node scripts/extract-data.mjs",
     "generate-sounds": "node scripts/generate-sounds.mjs",
     "build-n5": "node scripts/build-n5.mjs",
+    "build-grammar": "node scripts/grammar-n5/build.mjs",
+    "verify-grammar": "node scripts/grammar-n5/verify.mjs",
     "version:show": "node scripts/version.mjs show",
     "version:bump": "node scripts/version.mjs bump",
     "version:sync": "node scripts/version.mjs sync",

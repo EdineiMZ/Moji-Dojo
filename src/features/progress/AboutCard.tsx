@@ -17,6 +17,10 @@ export function AboutCard() {
         (tanos.co.uk). Os significados em português foram traduzidos para este app e não foram revisados por um
         falante. Uso pessoal: as licenças ainda precisam ser validadas antes de qualquer publicação.
       </AppText>
+      <AppText variant="caption" color="muted">
+        Frases de exemplo da gramática (tópicos 11 a 30): Tatoeba (tatoeba.org), licença CC BY 2.0 FR, com a escrita em
+        kana e o romaji feitos para este app. Os textos explicativos são originais.
+      </AppText>
     </Card>
   );
 }

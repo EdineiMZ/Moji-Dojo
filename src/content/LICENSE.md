@@ -22,6 +22,21 @@
 - **As traduções e a classificação por assunto são minhas (de um assistente de IA) e não foram revisadas por
   um falante.** Podem conter erros ou escolhas discutíveis.
 
+## Gramática N5, tópicos 11 a 30 (`grammarN5.ts`, gerado em `scripts/grammar-n5/`)
+
+- **Explicações, esquemas e tabelas:** texto próprio, escrito para este app em português.
+- **Frases de exemplo:** 80 frases reais do **Tatoeba** (https://tatoeba.org), todas sob a licença
+  **CC BY 2.0 FR** (Creative Commons Atribuição 2.0 França), que permite uso e redistribuição **com crédito**.
+  Cada exemplo guarda o id da frase em `scripts/grammar-n5/topics.mjs`, e `GRAMMAR_N5_SENTENCE_IDS` lista os ids;
+  o link de cada uma é `https://tatoeba.org/sentences/show/<id>`. Os autores individuais de cada frase estão
+  nas páginas do Tatoeba.
+- **A tradução em português** de cada exemplo é uma das traduções que o próprio Tatoeba lista para a frase.
+- **Alterações feitas neste projeto:** a frase é mostrada **só em kana** (a leitura vem do Tatoeba) e o **romaji
+  foi gerado por regra** a partir dela, com a marcação das partículas feita à mão. `npm run verify-grammar`
+  confere, na internet, que cada exemplo é a frase original (id, texto, leitura e tradução).
+- **Pendência:** as explicações em português foram escritas por um assistente de IA e **não foram revisadas por um
+  falante**. Vale o mesmo cuidado das traduções do vocabulário.
+
 ## Vocabulário da especificação (HTML)
 
 A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado vêm do protótipo
@@ -38,4 +53,6 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
    depois `npm run build-n5`.
 4. **Escolher a licença do restante do projeto** (hoje não há `LICENSE` na raiz) de forma compatível com o
    CC BY-SA do KanjiVG e com o que ficar decidido acima.
-5. Conferir a tela **Ajustes → Sobre** (créditos) e este arquivo, e atualizar o texto se a fonte mudar.
+5. **Crédito do Tatoeba** (CC BY 2.0 FR): manter a menção em **Ajustes → Sobre** e, se as frases saírem do app
+   (repositório público, site), incluir o crédito e o link junto delas.
+6. Conferir a tela **Ajustes → Sobre** (créditos) e este arquivo, e atualizar o texto se a fonte mudar.

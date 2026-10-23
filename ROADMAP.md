@@ -72,7 +72,8 @@ O app é de **uso pessoal e privado**, então as licenças de conteúdo ainda n�
 
 Objetivo: transformar "li sobre は e が" em "uso は e が sem pensar".
 
-- [ ] **Completar o N5 gramatical** (cerca de 40 pontos): partículas, formas do verbo, adjetivos, pedidos, permissão, desejo, comparação, contadores. Hoje são 10 tópicos. *(G)*
+- [~] **Completar o N5 gramatical** (cerca de 40 pontos): partículas, formas do verbo, adjetivos, pedidos, permissão, desejo, comparação, contadores. Hoje são 10 tópicos. *(G)*
+  - Feito (30 tópicos): +20 tópicos (11 a 30) com explicação própria e 80 frases reais do **Tatoeba** (CC BY 2.0 FR) conferidas na fonte (`npm run verify-grammar`): でした/ではありません, adjetivos い e な no negativo e no passado, 〜てください, 〜ています, 〜ないでください, 〜てもいい, 〜てはいけません, 〜ましょう/ませんか, がほしい, より, いちばん, すき/じょうず, から/まで, から (motivo), palavras interrogativas, もう/まだ, posições, になる, できる. Fonte e crédito em `src/content/LICENSE.md`. Falta: ~10 pontos (contadores, ～前に/～後で, ～ながら, forma simples...), a revisão das explicações por um falante, e exercícios de Montar e Lacunas para os tópicos novos.
 - [~] **Exercícios de lacuna (cloze):** frases com um espaço para a partícula ou a forma correta, com explicação do erro. *(M)*
   - Feito: sub-aba **Lacunas** em Frases, com as frases do Montar (26) viradas em ~40 lacunas de partícula e de final da frase, tradução embaixo e a regra ao errar. Aceita as variações (に/へ, を/が). Falta: mais frases, quando o N5 gramatical crescer.
 - [~] **Treinador de conjugação:** o app mostra o verbo e a forma pedida (ます, ない, て, た...) e o aluno escolhe ou digita. Revisão espaçada por verbo e por forma. *(M)*

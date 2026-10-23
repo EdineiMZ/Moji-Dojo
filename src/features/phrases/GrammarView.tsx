@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut, LinearTransition } from 'react-native-reanimated';
 import { AppText, Button, Card, PressableScale, ReduceMotion, RichText } from '@/components';
-import { GRAMMAR_TOPICS } from '@/data/grammar';
+import { ALL_GRAMMAR } from '@/content/grammar';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { exercisesForTopic } from './build';
 import { ExampleRow } from './ExampleRow';
@@ -20,10 +20,10 @@ export function GrammarView({ onPractice }: GrammarViewProps) {
   return (
     <View style={styles.root}>
       <AppText color="muted">
-        Leia na ordem, um tópico por dia já está ótimo. Cada tópico tem exemplos com áudio e um botão para praticar montando
-        frases.
+        Leia na ordem, um tópico por dia já está ótimo. Cada tópico tem exemplos com áudio. Os dez primeiros têm também um botão
+        para praticar montando frases.
       </AppText>
-      {GRAMMAR_TOPICS.map((topic, i) => {
+      {ALL_GRAMMAR.map((topic, i) => {
         const open = openId === topic.id;
         const canPractice = exercisesForTopic(topic.id).length > 0;
         return (

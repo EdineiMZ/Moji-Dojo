@@ -80,7 +80,8 @@ Objetivo: transformar "li sobre は e が" em "uso は e が sem pensar".
   - Feito: sub-aba **Conjugar** em Frases, com ~110 verbos do vocabulário, 4 formas (ます, ない, て, た) geradas por regra, alternativas com os erros típicos (regra de outro grupo, final de て errado) e revisão espaçada por verbo e forma (`progress.conj`, também no backup). Falta: digitar a resposta, e as formas ませんでした, たい, ている e a de dicionário.
 - [~] **Treinador de partículas:** は/が, に/で, を, へ, と, も, de/para. É onde brasileiros mais erram, com treino de pares confusos. *(M)*
   - Feito: o filtro "Partículas" das Lacunas, com os pares confusos (は/を/も, に/で/を). Falta: が (precisa do tópico de gramática antes) e a revisão espaçada por partícula.
-- [ ] **Contadores e números:** leitura, datas, horas e preços, com áudio. *(M)*
+- [x] **Contadores e números:** leitura, datas, horas e preços, com áudio. *(M)*
+  - Feito: sub-aba **Contar** em Frases. Números de 1 a 99.999, horas (よじ, しちじ, くじ, ふん/ぷん, はん), datas (ついたち... はつか), preços (よえん) e 11 contadores (人, つ, 本, 枚, 冊, 台, 匹, 個, 歳, 階, 回) de 1 a 10, tudo gerado por regra e tabela e conferido por testes. Dois modos: ler (ver a escrita, escolher a leitura) e ouvir. As respostas erradas são a regra sem a exceção (さんびゃく → さんひゃく). Inclui tabela de consulta.
 - [ ] **"Erros comuns de quem fala português":** notas curtas (ordem das palavras, sujeito omitido, falta de artigos e plural). *(P)*
 - [ ] **Mini-teste por tópico:** só libera "dominado" depois de acertar sem consultar a explicação. *(P)*
 

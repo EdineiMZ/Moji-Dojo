@@ -1,6 +1,6 @@
 // Gerado por scripts/grammar-n5/build.mjs a partir de scripts/grammar-n5/topics.mjs. Não edite à mão.
 // Exemplos: frases do Tatoeba (CC BY 2.0 FR), conferidas por scripts/grammar-n5/verify.mjs. Ver LICENSE.md.
-import type { GrammarTopic } from '@/data/types';
+import type { BuildExercise, GrammarTopic } from '@/data/types';
 
 export const GRAMMAR_N5: readonly GrammarTopic[] = [
   {
@@ -2048,6 +2048,958 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
         "pt": "Eu também não consigo explicar."
       }
     ]
+  }
+];
+
+/** Exercícios do Montar e das Lacunas feitos com os exemplos acima (mesmo formato dos do protótipo). */
+export const BUILD_N5: readonly BuildExercise[] = [
+  {
+    "topic": "g11",
+    "pt": "Eu não sou um gato.",
+    "answer": [
+      "わたし",
+      "は",
+      "ねこ",
+      "ではありません"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "watashi wa neko dewa arimasen",
+    "hint": "Negativo formal: ではありません. Passado: でした."
+  },
+  {
+    "topic": "g11",
+    "pt": "Eu não sou doutor.",
+    "answer": [
+      "わたし",
+      "は",
+      "いしゃ",
+      "ではありません"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "watashi wa isha dewa arimasen",
+    "hint": "Negativo formal: ではありません. Passado: でした."
+  },
+  {
+    "topic": "g12",
+    "pt": "Isso não é caro.",
+    "answer": [
+      "これ",
+      "は",
+      "たかくないです"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kore wa takakunai desu",
+    "hint": "Adjetivo い: troque o い por くない (negativo) ou かった (passado)."
+  },
+  {
+    "topic": "g12",
+    "pt": "Não está frio hoje.",
+    "answer": [
+      "きょう",
+      "は",
+      "さむくないです"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kyō wa samukunai desu",
+    "hint": "Adjetivo い: troque o い por くない (negativo) ou かった (passado)."
+  },
+  {
+    "topic": "g13",
+    "pt": "Não gosto de estudar.",
+    "answer": [
+      "べんきょう",
+      "は",
+      "すき",
+      "ではありません"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "benkyō wa suki dewa arimasen",
+    "hint": "Adjetivo な não muda: quem muda é o です (ではありません, でした)."
+  },
+  {
+    "topic": "g13",
+    "pt": "Eu não gosto de salada.",
+    "answer": [
+      "サラダ",
+      "は",
+      "すき",
+      "ではありません"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "sarada wa suki dewa arimasen",
+    "hint": "Adjetivo な não muda: quem muda é o です (ではありません, でした)."
+  },
+  {
+    "topic": "g13",
+    "pt": "Antigamente, esta cidade era linda.",
+    "answer": [
+      "この",
+      "まち",
+      "は",
+      "むかし",
+      "きれいでした"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kono machi wa mukashi kirei deshita",
+    "hint": "Adjetivo な não muda: quem muda é o です (ではありません, でした)."
+  },
+  {
+    "topic": "g13",
+    "pt": "A noite estava muito silenciosa.",
+    "answer": [
+      "その",
+      "よる",
+      "は",
+      "たいへん",
+      "しずかでした"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "sono yoru wa taihen shizuka deshita",
+    "hint": "Adjetivo な não muda: quem muda é o です (ではありません, でした)."
+  },
+  {
+    "topic": "g14",
+    "pt": "Por favor, fale em inglês.",
+    "answer": [
+      "えいご",
+      "で",
+      "はなしてください"
+    ],
+    "extra": [
+      "に",
+      "を"
+    ],
+    "romaji": "eigo de hanashite kudasai",
+    "hint": "Forma て + ください = pedido educado."
+  },
+  {
+    "topic": "g15",
+    "pt": "O que você está fazendo?",
+    "answer": [
+      "なに",
+      "を",
+      "しています",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "nani o shite imasu ka",
+    "hint": "Forma て + います = fazendo agora, ou um estado que continua."
+  },
+  {
+    "topic": "g16",
+    "pt": "Não faça barulho.",
+    "answer": [
+      "おと",
+      "を",
+      "たてないでください"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "oto o tatenaide kudasai",
+    "hint": "Forma ない + で + ください = por favor, não faça."
+  },
+  {
+    "topic": "g17",
+    "pt": "Posso entrar?",
+    "answer": [
+      "はいって",
+      "もいいです",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "haitte mo ii desu ka",
+    "hint": "Forma て + も + いいですか = posso...?"
+  },
+  {
+    "topic": "g17",
+    "pt": "Posso comer?",
+    "answer": [
+      "たべて",
+      "もいいです",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "tabete mo ii desu ka",
+    "hint": "Forma て + も + いいですか = posso...?"
+  },
+  {
+    "topic": "g17",
+    "pt": "Posso abrir a janela?",
+    "answer": [
+      "まど",
+      "を",
+      "あけて",
+      "もいいです",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "mado o akete mo ii desu ka",
+    "hint": "Forma て + も + いいですか = posso...?"
+  },
+  {
+    "topic": "g17",
+    "pt": "Posso sentar?",
+    "answer": [
+      "すわって",
+      "もいいです",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "suwatte mo ii desu ka",
+    "hint": "Forma て + も + いいですか = posso...?"
+  },
+  {
+    "topic": "g18",
+    "pt": "Não assista televisão.",
+    "answer": [
+      "テレビ",
+      "を",
+      "みて",
+      "はいけません"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "terebi o mite wa ikemasen",
+    "hint": "Forma て + は + いけません = não pode."
+  },
+  {
+    "topic": "g18",
+    "pt": "Não feche a porta!",
+    "answer": [
+      "ドア",
+      "を",
+      "しめて",
+      "はいけません"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "doa o shimete wa ikemasen",
+    "hint": "Forma て + は + いけません = não pode."
+  },
+  {
+    "topic": "g18",
+    "pt": "Não vá para lá.",
+    "answer": [
+      "そこ",
+      "へ",
+      "いって",
+      "はいけません"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "soko e itte wa ikemasen",
+    "hint": "Forma て + は + いけません = não pode."
+  },
+  {
+    "topic": "g20",
+    "pt": "Quero água.",
+    "answer": [
+      "みず",
+      "が",
+      "ほしい"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "mizu ga hoshii",
+    "hint": "Uma coisa que se quer vem com が + ほしい."
+  },
+  {
+    "topic": "g20",
+    "pt": "Eu quero uma bala.",
+    "answer": [
+      "あめ",
+      "が",
+      "ほしい"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "ame ga hoshii",
+    "hint": "Uma coisa que se quer vem com が + ほしい."
+  },
+  {
+    "topic": "g20",
+    "pt": "O que você quer?",
+    "answer": [
+      "なに",
+      "が",
+      "ほしい",
+      "の"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "nani ga hoshii no",
+    "hint": "Uma coisa que se quer vem com が + ほしい."
+  },
+  {
+    "topic": "g20",
+    "pt": "Eu quero uma namorada.",
+    "answer": [
+      "かのじょ",
+      "が",
+      "ほしい"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "kanojo ga hoshii",
+    "hint": "Uma coisa que se quer vem com が + ほしい."
+  },
+  {
+    "topic": "g21",
+    "pt": "A China é maior que o Japão.",
+    "answer": [
+      "ちゅうごく",
+      "は",
+      "にほん",
+      "より",
+      "おおきいです"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "chūgoku wa nihon yori ōkii desu",
+    "hint": "A は B より [adjetivo] = A é mais ... que B."
+  },
+  {
+    "topic": "g21",
+    "pt": "Sou mais alto que você.",
+    "answer": [
+      "わたし",
+      "は",
+      "きみ",
+      "より",
+      "せ",
+      "が",
+      "たかい"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "watashi wa kimi yori se ga takai",
+    "hint": "A は B より [adjetivo] = A é mais ... que B."
+  },
+  {
+    "topic": "g21",
+    "pt": "O ouro é mais pesado do que a prata.",
+    "answer": [
+      "きん",
+      "は",
+      "ぎん",
+      "より",
+      "おもい"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kin wa gin yori omoi",
+    "hint": "A は B より [adjetivo] = A é mais ... que B."
+  },
+  {
+    "topic": "g21",
+    "pt": "Este aqui é mais barato.",
+    "answer": [
+      "こっち",
+      "の",
+      "ほう",
+      "が",
+      "やすい",
+      "よ"
+    ],
+    "extra": [
+      "は",
+      "を"
+    ],
+    "romaji": "kotchi no hō ga yasui yo",
+    "hint": "A は B より [adjetivo] = A é mais ... que B."
+  },
+  {
+    "topic": "g22",
+    "pt": "Tom é o mais forte.",
+    "answer": [
+      "トム",
+      "が",
+      "いちばん",
+      "つよい"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "tomu ga ichiban tsuyoi",
+    "hint": "いちばん + adjetivo = o mais..."
+  },
+  {
+    "topic": "g22",
+    "pt": "Sou o mais jovem.",
+    "answer": [
+      "わたし",
+      "が",
+      "いちばん",
+      "わかいです"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "watashi ga ichiban wakai desu",
+    "hint": "いちばん + adjetivo = o mais..."
+  },
+  {
+    "topic": "g22",
+    "pt": "Qual é o seu dia da semana favorito?",
+    "answer": [
+      "なんようび",
+      "が",
+      "いちばん",
+      "すき"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "nan'yōbi ga ichiban suki",
+    "hint": "いちばん + adjetivo = o mais..."
+  },
+  {
+    "topic": "g22",
+    "pt": "De que matéria você gosta mais?",
+    "answer": [
+      "どの",
+      "きょうか",
+      "が",
+      "いちばん",
+      "すき"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "dono kyōka ga ichiban suki",
+    "hint": "いちばん + adjetivo = o mais..."
+  },
+  {
+    "topic": "g23",
+    "pt": "Eu gosto de gatos.",
+    "answer": [
+      "ねこ",
+      "が",
+      "すきです"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "neko ga suki desu",
+    "hint": "Com すき, きらい e じょうず, a coisa vem com が."
+  },
+  {
+    "topic": "g23",
+    "pt": "Eu gosto de música.",
+    "answer": [
+      "おんがく",
+      "が",
+      "すきです"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "ongaku ga suki desu",
+    "hint": "Com すき, きらい e じょうず, a coisa vem com が."
+  },
+  {
+    "topic": "g23",
+    "pt": "Você gosta de cães?",
+    "answer": [
+      "いぬ",
+      "が",
+      "すきです",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "inu ga suki desu ka",
+    "hint": "Com すき, きらい e じょうず, a coisa vem com が."
+  },
+  {
+    "topic": "g23",
+    "pt": "Eu gosto de estudar.",
+    "answer": [
+      "べんきょう",
+      "が",
+      "すきです"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "benkyō ga suki desu",
+    "hint": "Com すき, きらい e じょうず, a coisa vem com が."
+  },
+  {
+    "topic": "g24",
+    "pt": "Eu vim da China.",
+    "answer": [
+      "ちゅうごく",
+      "から",
+      "きました"
+    ],
+    "extra": [
+      "まで",
+      "に"
+    ],
+    "romaji": "chūgoku kara kimashita",
+    "hint": "から = a partir de / vindo de. まで = até."
+  },
+  {
+    "topic": "g24",
+    "pt": "De onde é você?",
+    "answer": [
+      "どこ",
+      "から",
+      "きました",
+      "か"
+    ],
+    "extra": [
+      "まで",
+      "に"
+    ],
+    "romaji": "doko kara kimashita ka",
+    "hint": "から = a partir de / vindo de. まで = até."
+  },
+  {
+    "topic": "g24",
+    "pt": "A nossa aula começa às 10h.",
+    "answer": [
+      "じゅぎょう",
+      "は",
+      "じゅうじ",
+      "からです"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "jugyō wa jūji kara desu",
+    "hint": "から = a partir de / vindo de. まで = até."
+  },
+  {
+    "topic": "g24",
+    "pt": "Eu irei esperar até 2:30.",
+    "answer": [
+      "にじはん",
+      "まで",
+      "まちます"
+    ],
+    "extra": [
+      "から",
+      "に"
+    ],
+    "romaji": "nijihan made machimasu",
+    "hint": "から = a partir de / vindo de. まで = até."
+  },
+  {
+    "topic": "g25",
+    "pt": "Estou com frio. Posso fechar a janela?",
+    "answer": [
+      "さむい",
+      "から",
+      "まど",
+      "しめて",
+      "もいい"
+    ],
+    "extra": [
+      "まで",
+      "に"
+    ],
+    "romaji": "samui kara mado shimete mo ii",
+    "hint": "O motivo vem primeiro, com から no fim dele."
+  },
+  {
+    "topic": "g25",
+    "pt": "Eu estou com sono, então estou indo para a cama.",
+    "answer": [
+      "ねむい",
+      "から",
+      "ねる",
+      "ね"
+    ],
+    "extra": [
+      "まで",
+      "に"
+    ],
+    "romaji": "nemui kara neru ne",
+    "hint": "O motivo vem primeiro, com から no fim dele."
+  },
+  {
+    "topic": "g26",
+    "pt": "O que você quer beber?",
+    "answer": [
+      "なに",
+      "を",
+      "のみます",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "nani o nomimasu ka",
+    "hint": "A palavra interrogativa fica no lugar da resposta."
+  },
+  {
+    "topic": "g26",
+    "pt": "Quem é ele?",
+    "answer": [
+      "かれ",
+      "は",
+      "だれです",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kare wa dare desu ka",
+    "hint": "A palavra interrogativa fica no lugar da resposta."
+  },
+  {
+    "topic": "g26",
+    "pt": "Onde fica a cozinha?",
+    "answer": [
+      "だいどころ",
+      "は",
+      "どこ"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "daidokoro wa doko",
+    "hint": "A palavra interrogativa fica no lugar da resposta."
+  },
+  {
+    "topic": "g26",
+    "pt": "Quanto custa isto?",
+    "answer": [
+      "これ",
+      "は",
+      "いくらです",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kore wa ikura desu ka",
+    "hint": "A palavra interrogativa fica no lugar da resposta."
+  },
+  {
+    "topic": "g26",
+    "pt": "Que horas são?",
+    "answer": [
+      "いま",
+      "なんじです",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "ima nanji desu ka",
+    "hint": "A palavra interrogativa fica no lugar da resposta."
+  },
+  {
+    "topic": "g27",
+    "pt": "Você já comeu?",
+    "answer": [
+      "もう",
+      "たべました",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "mō tabemashita ka",
+    "hint": "もう = já (com passado). まだ = ainda."
+  },
+  {
+    "topic": "g27",
+    "pt": "Tom ainda não chegou.",
+    "answer": [
+      "トム",
+      "は",
+      "まだ",
+      "きてません"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "tomu wa mada kitemasen",
+    "hint": "もう = já (com passado). まだ = ainda."
+  },
+  {
+    "topic": "g28",
+    "pt": "Tem uma chave na escrivaninha.",
+    "answer": [
+      "つくえ",
+      "の",
+      "うえ",
+      "に",
+      "かぎ",
+      "が",
+      "ある"
+    ],
+    "extra": [
+      "は",
+      "を"
+    ],
+    "romaji": "tsukue no ue ni kagi ga aru",
+    "hint": "[referência] の [posição] に あります / います."
+  },
+  {
+    "topic": "g28",
+    "pt": "Tem um dicionário em cima da mesa.",
+    "answer": [
+      "じしょ",
+      "が",
+      "つくえ",
+      "の",
+      "うえ",
+      "に",
+      "ある"
+    ],
+    "extra": [
+      "で",
+      "は"
+    ],
+    "romaji": "jisho ga tsukue no ue ni aru",
+    "hint": "[referência] の [posição] に あります / います."
+  },
+  {
+    "topic": "g28",
+    "pt": "O cachorro está na casa.",
+    "answer": [
+      "いぬ",
+      "は",
+      "いえ",
+      "の",
+      "なか",
+      "に",
+      "いる"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "inu wa ie no naka ni iru",
+    "hint": "[referência] の [posição] に あります / います."
+  },
+  {
+    "topic": "g28",
+    "pt": "Há um cachorro na ponte.",
+    "answer": [
+      "はし",
+      "の",
+      "うえ",
+      "に",
+      "いぬ",
+      "が",
+      "いる"
+    ],
+    "extra": [
+      "は",
+      "を"
+    ],
+    "romaji": "hashi no ue ni inu ga iru",
+    "hint": "[referência] の [posição] に あります / います."
+  },
+  {
+    "topic": "g29",
+    "pt": "Quando você estará livre?",
+    "answer": [
+      "いつ",
+      "ひま",
+      "に",
+      "なります",
+      "か"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "itsu hima ni narimasu ka",
+    "hint": "に なります = virar. に なりたい = quero ser."
+  },
+  {
+    "topic": "g29",
+    "pt": "Quero ser político.",
+    "answer": [
+      "せいじか",
+      "に",
+      "なりたい"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "seijika ni naritai",
+    "hint": "に なります = virar. に なりたい = quero ser."
+  },
+  {
+    "topic": "g29",
+    "pt": "Queria ser um pássaro.",
+    "answer": [
+      "とり",
+      "に",
+      "なりたい",
+      "な"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "tori ni naritai na",
+    "hint": "に なります = virar. に なりたい = quero ser."
+  },
+  {
+    "topic": "g29",
+    "pt": "Quero que sejamos amigos.",
+    "answer": [
+      "ともだち",
+      "に",
+      "なりたいです"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "tomodachi ni naritai desu",
+    "hint": "に なります = virar. に なりたい = quero ser."
+  },
+  {
+    "topic": "g30",
+    "pt": "Eu sei esquiar.",
+    "answer": [
+      "スキー",
+      "が",
+      "できます"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "sukī ga dekimasu",
+    "hint": "O que se sabe fazer vem com が + できます."
+  },
+  {
+    "topic": "g30",
+    "pt": "Você joga tênis?",
+    "answer": [
+      "テニス",
+      "が",
+      "できます",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "tenisu ga dekimasu ka",
+    "hint": "O que se sabe fazer vem com が + できます."
+  },
+  {
+    "topic": "g30",
+    "pt": "Não posso fazer isso.",
+    "answer": [
+      "わたし",
+      "に",
+      "は",
+      "できません"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "watashi ni wa dekimasen",
+    "hint": "O que se sabe fazer vem com が + できます."
+  },
+  {
+    "topic": "g30",
+    "pt": "Eu também não consigo explicar.",
+    "answer": [
+      "わたし",
+      "も",
+      "せつめい",
+      "できません"
+    ],
+    "extra": [
+      "は",
+      "を"
+    ],
+    "romaji": "watashi mo setsumei dekimasen",
+    "hint": "O que se sabe fazer vem com が + できます."
   }
 ];
 

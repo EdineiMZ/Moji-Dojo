@@ -1,4 +1,4 @@
-import { BUILD_EXERCISES } from '@/data/exercises';
+import { ALL_EXERCISES } from '@/content/grammar';
 import type { BuildExercise } from '@/data/types';
 import { shuffle, type PairItem, type Question, type Rng } from '@/features/quiz/quiz';
 
@@ -8,7 +8,7 @@ export type ClozeKind = 'particle' | 'form';
 export const BLANK = '＿＿';
 
 /** Partículas que aparecem soltas nas frases do "Montar". */
-const PARTICLES: ReadonlySet<string> = new Set(['は', 'を', 'に', 'へ', 'で', 'の', 'も', 'と', 'が']);
+const PARTICLES: ReadonlySet<string> = new Set(['は', 'を', 'に', 'へ', 'で', 'の', 'も', 'と', 'が', 'から', 'まで', 'より']);
 
 /**
  * Partículas que se confundem com cada uma, na ordem de preferência (a confusão mais comum primeiro).
@@ -23,7 +23,10 @@ const CONFUSABLE: Readonly<Record<string, readonly string[]>> = {
   の: ['は', 'を', 'に', 'で'],
   も: ['は', 'を', 'に', 'の'],
   と: ['も', 'に', 'を', 'の'],
-  が: ['を', 'に', 'で', 'の'],
+  が: ['に', 'で', 'の', 'と'],
+  から: ['まで', 'に', 'で', 'の'],
+  まで: ['から', 'に', 'で', 'の'],
+  より: ['から', 'の', 'に', 'は'],
 };
 
 export interface ClozeBlank {
@@ -47,7 +50,7 @@ export function acceptedAt(exercise: BuildExercise, index: number): Set<string> 
 }
 
 /** Todas as lacunas possíveis: cada partícula de cada frase e, quando há erro plausível, o final da frase. */
-export function allBlanks(exercises: readonly BuildExercise[] = BUILD_EXERCISES): ClozeBlank[] {
+export function allBlanks(exercises: readonly BuildExercise[] = ALL_EXERCISES): ClozeBlank[] {
   const blanks: ClozeBlank[] = [];
   for (const exercise of exercises) {
     exercise.answer.forEach((token, index) => {

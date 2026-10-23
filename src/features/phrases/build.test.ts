@@ -1,5 +1,5 @@
 import { BUILD_EXERCISES } from '@/data/exercises';
-import { GRAMMAR_TOPICS } from '@/data/grammar';
+import { ALL_EXERCISES, ALL_GRAMMAR } from '@/content/grammar';
 import type { BuildExercise } from '@/data/types';
 import {
   addToken,
@@ -39,15 +39,16 @@ const tokens = (...texts: string[]): Token[] => texts.map((text, id) => ({ id, t
 
 describe('exercisesForTopic', () => {
   it('todos os tópicos ou um só', () => {
-    expect(exercisesForTopic(ALL_TOPICS)).toHaveLength(26);
+    expect(exercisesForTopic(ALL_TOPICS)).toHaveLength(ALL_EXERCISES.length);
+    expect(ALL_EXERCISES.length).toBeGreaterThan(26);
     const g4 = exercisesForTopic('g4');
     expect(g4.length).toBeGreaterThan(0);
     expect(g4.every((e) => e.topic === 'g4')).toBe(true);
   });
 
   it('todo tópico com exercício existe na gramática', () => {
-    const ids = new Set(GRAMMAR_TOPICS.map((t) => t.id));
-    expect(BUILD_EXERCISES.every((e) => ids.has(e.topic))).toBe(true);
+    const ids = new Set(ALL_GRAMMAR.map((t) => t.id));
+    expect(ALL_EXERCISES.every((e) => ids.has(e.topic))).toBe(true);
   });
 });
 

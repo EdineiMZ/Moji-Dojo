@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, Card, ChipRow, PressableScale } from '@/components';
-import { BUILD_EXERCISES } from '@/data/exercises';
-import { GRAMMAR_TOPICS } from '@/data/grammar';
+import { ALL_EXERCISES, ALL_GRAMMAR } from '@/content/grammar';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { feedbackCorrect, feedbackWrong } from '@/lib/feedback';
 import { useProgressStore, useSettingsStore } from '@/store';
@@ -24,15 +23,15 @@ import {
 /** Só os tópicos que têm exercício entram no seletor. */
 const TOPIC_OPTIONS = [
   { value: ALL_TOPICS, label: 'Todos' },
-  ...GRAMMAR_TOPICS.map((t, i) => ({ topic: t, number: i + 1 }))
-    .filter(({ topic }) => BUILD_EXERCISES.some((e) => e.topic === topic.id))
+  ...ALL_GRAMMAR.map((t, i) => ({ topic: t, number: i + 1 }))
+    .filter(({ topic }) => ALL_EXERCISES.some((e) => e.topic === topic.id))
     .map(({ topic, number }) => ({ value: topic.id, label: String(number) })),
 ];
 
 const topicTitle = (topicId: string): string => {
   if (topicId === ALL_TOPICS) return 'Todos os tópicos';
-  const index = GRAMMAR_TOPICS.findIndex((t) => t.id === topicId);
-  return `${index + 1}. ${GRAMMAR_TOPICS[index]?.title ?? ''}`;
+  const index = ALL_GRAMMAR.findIndex((t) => t.id === topicId);
+  return `${index + 1}. ${ALL_GRAMMAR[index]?.title ?? ''}`;
 };
 
 interface BuildViewProps {

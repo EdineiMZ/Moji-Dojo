@@ -1,4 +1,4 @@
-import { BUILD_EXERCISES } from '@/data/exercises';
+import { ALL_EXERCISES } from '@/content/grammar';
 import type { BuildExercise } from '@/data/types';
 import { shuffle, type Rng } from '@/features/quiz/quiz';
 
@@ -31,7 +31,7 @@ export interface BuildRound {
 }
 
 export const exercisesForTopic = (topic: string): readonly BuildExercise[] =>
-  topic === ALL_TOPICS ? BUILD_EXERCISES : BUILD_EXERCISES.filter((e) => e.topic === topic);
+  topic === ALL_TOPICS ? ALL_EXERCISES : ALL_EXERCISES.filter((e) => e.topic === topic);
 
 function poolFor(exercise: BuildExercise, rng: Rng): Token[] {
   return shuffle([...exercise.answer, ...exercise.extra].map((text, id) => ({ id, text })), rng);

@@ -27,6 +27,7 @@ export const TOPICS = [
       'Vale para substantivos e para adjetivos do tipo **な**. Em **ではありません**, o **は** é a partícula e lê-se "wa".',
     ],
     pattern: '[coisa] ではありません · [coisa] でした · [coisa] ではありませんでした',
+    hint: 'Negativo formal: ではありません. Passado: でした.',
     examples: [
       { id: 9740661, ja: '私は猫ではありません。', kana: 'わたし~は ねこ~では|ありません', pt: 'Eu não sou um gato.' },
       { id: 1193930, ja: '私は医者ではありません。', kana: 'わたし~は いしゃ~では|ありません', pt: 'Eu não sou doutor.' },
@@ -49,6 +50,7 @@ export const TOPICS = [
       'Exceção: **いい** (bom) vira **よい** na conjugação: __よくないです__ (não é bom) e __よかったです__ (foi bom).',
     ],
     pattern: 'たかい → たかくないです · たかかったです',
+    hint: 'Adjetivo い: troque o い por くない (negativo) ou かった (passado).',
     examples: [
       { id: 1019460, ja: 'これは高くないです。', kana: 'これ~は たかくない|です', pt: 'Isso não é caro.' },
       { id: 10901764, ja: 'きょうは寒くないです。', kana: 'きょう~は さむくない|です', pt: 'Não está frio hoje.' },
@@ -64,6 +66,7 @@ export const TOPICS = [
       'Cuidado: **きれい** termina em い, mas é do tipo な. O mesmo vale para **すき** (gostar), **ゆうめい** (famoso) e **しずか** (silencioso). Se não dá para trocar o い por くない, é adjetivo な.',
     ],
     pattern: '[adjetivo な] ではありません · [adjetivo な] でした',
+    hint: 'Adjetivo な não muda: quem muda é o です (ではありません, でした).',
     examples: [
       { id: 1216866, ja: '勉強は好きではありません。', kana: 'べんきょう~は すき~では|ありません', pt: 'Não gosto de estudar.' },
       { id: 4002000, ja: 'サラダは好きではありません。', kana: 'サラダ~は すき~では|ありません', pt: 'Eu não gosto de salada.' },
@@ -79,6 +82,7 @@ export const TOPICS = [
       'Para pedir uma coisa, e não uma ação, o tópico 8 já mostrou __[coisa] を ください__.',
     ],
     pattern: '[verbo na forma て] ください',
+    hint: 'Forma て + ください = pedido educado.',
     examples: [
       { id: 170848, ja: '座って下さい。', kana: 'すわって|ください', pt: 'Sente-se, por favor.' },
       { id: 5748800, ja: '英語で話してください。', kana: 'えいご~で はなして|ください', pt: 'Por favor, fale em inglês.' },
@@ -95,6 +99,7 @@ export const TOPICS = [
       'Atenção: o negativo de __しっています__ (sei) é __しりません__ (não sei), e não __しっていません__.',
     ],
     pattern: '[verbo na forma て] います',
+    hint: 'Forma て + います = fazendo agora, ou um estado que continua.',
     examples: [
       { id: 11630865, ja: '何をしていますか？', kana: 'なに~を して|います~か', pt: 'O que você está fazendo?' },
       { id: 11512358, ja: '知っていますか？', kana: 'しって|います~か', pt: 'Você sabe?' },
@@ -109,6 +114,7 @@ export const TOPICS = [
       'Para pedir que alguém **não** faça algo, use a forma **ない** do verbo + **で** + **ください**: __いかないで ください__ = por favor, não vá.',
     ],
     pattern: '[verbo na forma ない] で ください',
+    hint: 'Forma ない + で + ください = por favor, não faça.',
     examples: [
       { id: 2006378, ja: '行かないでください。', kana: 'いかないで|ください', pt: 'Por favor, não vá embora.' },
       { id: 2349145, ja: '心配しないでください。', kana: 'しんぱい しないで|ください', pt: 'Não te preocupes.' },
@@ -123,6 +129,7 @@ export const TOPICS = [
       'Forma **て** + **も** + **いいですか** quer dizer "posso...?". Para dar permissão, responda __はい、いいですよ__. Uma recusa suave é __ちょっと…__ (um pouco difícil).',
     ],
     pattern: '[verbo na forma て] も いいですか',
+    hint: 'Forma て + も + いいですか = posso...?',
     examples: [
       { id: 4147428, ja: '入ってもいいですか？', kana: 'はいって~も|いい|です~か', pt: 'Posso entrar?' },
       { id: 2242416, ja: '食べてもいいですか？', kana: 'たべて~も|いい|です~か', pt: 'Posso comer?' },
@@ -137,6 +144,7 @@ export const TOPICS = [
       'Forma **て** + **は** + **いけません** quer dizer "não pode" ou "não deve". É a proibição direta, de regra ou de aviso. Aqui o **は** lê-se "wa".',
     ],
     pattern: '[verbo na forma て] は いけません',
+    hint: 'Forma て + は + いけません = não pode.',
     examples: [
       { id: 741581, ja: '食べてはいけません。', kana: 'たべて~は|いけません', pt: 'Não coma.' },
       { id: 201956, ja: 'テレビを見てはいけません。', kana: 'テレビ~を みて~は|いけません', pt: 'Não assista televisão.' },
@@ -152,6 +160,7 @@ export const TOPICS = [
       'Troque por **ませんか** para convidar com mais delicadeza: __いきませんか__ (não quer ir?). A resposta mais comum é __いいですね__ (boa ideia).',
     ],
     pattern: '[verbo sem ます] ましょう · [verbo sem ます] ませんか',
+    hint: 'ましょう = vamos; ませんか = não quer...? (convite).',
     examples: [
       { id: 10631584, ja: '戻りましょう。', kana: 'もどりましょう', pt: 'Vamos voltar.' },
       { id: 442923, ja: '始めましょう。', kana: 'はじめましょう', pt: 'Vamos começar.' },
@@ -167,6 +176,7 @@ export const TOPICS = [
       '**ほしい** é um adjetivo do tipo い, então ele muda como os outros: __ほしくないです__ (não quero), __ほしかったです__ (eu queria).',
     ],
     pattern: '[coisa] が ほしいです',
+    hint: 'Uma coisa que se quer vem com が + ほしい.',
     examples: [
       { id: 143813, ja: '水が欲しい。', kana: 'みず~が ほしい', pt: 'Quero água.' },
       { id: 5272, ja: '飴がほしい。', kana: 'あめ~が ほしい', pt: 'Eu quero uma bala.' },
@@ -182,6 +192,7 @@ export const TOPICS = [
       'Para apontar o lado que ganha, use **のほうが**: __こっちの ほうが やすいです__ = este aqui é mais barato.',
     ],
     pattern: '[A] は [B] より [adjetivo] · [A] のほうが [adjetivo]',
+    hint: 'A は B より [adjetivo] = A é mais ... que B.',
     examples: [
       { id: 625254, ja: '中国は日本より大きいです。', kana: 'ちゅうごく~は にほん~より おおきい|です', pt: 'A China é maior que o Japão.' },
       { id: 157401, ja: '私は君より背が高い。', kana: 'わたし~は きみ~より せ~が たかい', pt: 'Sou mais alto que você.' },
@@ -197,6 +208,7 @@ export const TOPICS = [
       'Para escolher dentro de um grupo, use **の なかで**: __にほんりょうりの なかで なにが いちばん すきですか__ (entre as comidas japonesas, de qual você mais gosta?).',
     ],
     pattern: '[coisa] が いちばん [adjetivo]',
+    hint: 'いちばん + adjetivo = o mais...',
     examples: [
       { id: 2626290, ja: 'トムが一番強い。', kana: 'トム~が いちばん つよい', pt: 'Tom é o mais forte.' },
       { id: 10625858, ja: '私が一番若いです。', kana: 'わたし~が いちばん わかい|です', pt: 'Sou o mais jovem.' },
@@ -212,6 +224,7 @@ export const TOPICS = [
       'Para gostar muito, diga __だいすき__ (adoro). Todos são adjetivos do tipo な.',
     ],
     pattern: '[coisa] が すきです · [coisa] が じょうずです',
+    hint: 'Com すき, きらい e じょうず, a coisa vem com が.',
     examples: [
       { id: 354378, ja: '猫が好きです。', kana: 'ねこ~が すき|です', pt: 'Eu gosto de gatos.' },
       { id: 13254283, ja: '音楽が好きです。', kana: 'おんがく~が すき|です', pt: 'Eu gosto de música.' },
@@ -227,6 +240,7 @@ export const TOPICS = [
       'Cuidado com **までに**: __ろくじまでに もどります__ é "voltarei **antes das** 6" (um prazo), enquanto __ろくじまで まちます__ é "esperarei **até** as 6" (uma duração).',
     ],
     pattern: '[início] から [fim] まで',
+    hint: 'から = a partir de / vindo de. まで = até.',
     examples: [
       { id: 2672966, ja: '中国から来ました。', kana: 'ちゅうごく~から きました', pt: 'Eu vim da China.' },
       { id: 5323, ja: 'どこから来ましたか？', kana: 'どこ~から きました~か', pt: 'De onde é você?' },
@@ -242,6 +256,7 @@ export const TOPICS = [
       'Depois de **です** fica __ですから__ (ou __だから__ entre amigos).',
     ],
     pattern: '[motivo] から、[resultado]',
+    hint: 'O motivo vem primeiro, com から no fim dele.',
     examples: [
       { id: 9755700, ja: '寒いから、窓閉めてもいい？', kana: 'さむい~から まど しめて~も|いい', pt: 'Estou com frio. Posso fechar a janela?' },
       { id: 9199895, ja: '眠いから、寝るね。', kana: 'ねむい~から ねる~ね', pt: 'Eu estou com sono, então estou indo para a cama.' },
@@ -269,6 +284,7 @@ export const TOPICS = [
       'Quando a pergunta é sobre quem faz a ação, use **が**: __だれが きましたか__ (quem veio?).',
     ],
     pattern: '[assunto] は [なに / だれ / どこ / いくら] ですか',
+    hint: 'A palavra interrogativa fica no lugar da resposta.',
     examples: [
       { id: 187577, ja: '何を飲みますか。', kana: 'なに~を のみます~か', pt: 'O que você quer beber?' },
       { id: 347338, ja: '彼は誰ですか。', kana: 'かれ~は だれ|です~か', pt: 'Quem é ele?' },
@@ -286,6 +302,7 @@ export const TOPICS = [
       'Cuidado: **もう** + negativo é "não... mais": __もう たべません__ (não como mais).',
     ],
     pattern: 'もう [verbo no passado] · まだ [verbo / adjetivo]',
+    hint: 'もう = já (com passado). まだ = ainda.',
     examples: [
       { id: 13218484, ja: 'もう食べましたか？', kana: 'もう たべました~か', pt: 'Você já comeu?' },
       { id: 2969830, ja: 'もう食べました。', kana: 'もう たべました', pt: 'Já comi.' },
@@ -312,6 +329,7 @@ export const TOPICS = [
       'Lembre do tópico 7: **あります** é para coisas e **います** para pessoas e animais. Nos exemplos aparecem **ある** e **いる**, as formas simples (sem educação) dos mesmos verbos.',
     ],
     pattern: '[referência] の [posição] に あります / います',
+    hint: '[referência] の [posição] に あります / います.',
     examples: [
       { id: 183436, ja: '机の上に鍵がある。', kana: 'つくえ~の うえ~に かぎ~が ある', pt: 'Tem uma chave na escrivaninha.' },
       { id: 149673, ja: '辞書が机の上にある。', kana: 'じしょ~が つくえ~の うえ~に ある', pt: 'Tem um dicionário em cima da mesa.' },
@@ -327,6 +345,7 @@ export const TOPICS = [
       '**に なりたい** quer dizer "quero ser": __いしゃに なりたいです__ (quero ser médico).',
     ],
     pattern: '[coisa / adjetivo な] に なります · [adjetivo い] く なります',
+    hint: 'に なります = virar. に なりたい = quero ser.',
     examples: [
       { id: 177906, ja: 'いつ暇になりますか？', kana: 'いつ ひま~に なります~か', pt: 'Quando você estará livre?' },
       { id: 9475751, ja: '政治家になりたい。', kana: 'せいじか~に なりたい', pt: 'Quero ser político.' },
@@ -342,6 +361,7 @@ export const TOPICS = [
       'Com um verbo no lugar do substantivo, junte o verbo no dicionário e __ことが できます__ (assunto que aparece mais tarde no N4). Por enquanto, pratique com substantivos.',
     ],
     pattern: '[coisa] が できます · [coisa] が できません',
+    hint: 'O que se sabe fazer vem com が + できます.',
     examples: [
       { id: 215019, ja: 'スキーができます。', kana: 'スキー~が できます', pt: 'Eu sei esquiar.' },
       { id: 232933, ja: 'テニスができますか。', kana: 'テニス~が できます~か', pt: 'Você joga tênis?' },

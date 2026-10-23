@@ -1,6 +1,5 @@
-import { BUILD_EXERCISES } from '@/data/exercises';
-import { ALL_GRAMMAR } from './grammar';
-import { GRAMMAR_N5, GRAMMAR_N5_SENTENCE_IDS } from './grammarN5';
+import { ALL_EXERCISES, ALL_GRAMMAR } from './grammar';
+import { BUILD_N5, GRAMMAR_N5, GRAMMAR_N5_SENTENCE_IDS } from './grammarN5';
 
 describe('gramática N5 (Tatoeba)', () => {
   it('os ids seguem os 10 tópicos do protótipo, sem repetir', () => {
@@ -39,8 +38,23 @@ describe('gramática N5 (Tatoeba)', () => {
     expect(GRAMMAR_N5_SENTENCE_IDS).toHaveLength(GRAMMAR_N5.flatMap((t) => t.examples).length);
   });
 
-  it('os tópicos novos ainda não têm exercício no Montar (só os dez do protótipo)', () => {
-    const withExercises = new Set(BUILD_EXERCISES.map((e) => e.topic));
-    for (const t of GRAMMAR_N5) expect(withExercises.has(t.id)).toBe(false);
+  it('quase todo tópico novo tem exercícios para o Montar e as Lacunas', () => {
+    const withExercises = new Set(BUILD_N5.map((e) => e.topic));
+    const missing = GRAMMAR_N5.filter((t) => !withExercises.has(t.id)).map((t) => t.id);
+    // Só ficam de fora tópicos cujas frases são curtas demais para montar (menos de 3 blocos).
+    expect(missing).toEqual(['g19']);
+    expect(ALL_EXERCISES.length).toBe(26 + BUILD_N5.length);
+  });
+
+  it('os exercícios fecham a frase: blocos juntos = exemplo, sem blocos a mais repetidos', () => {
+    const examples = new Map(GRAMMAR_N5.flatMap((t) => t.examples).map((e) => [e.pt + '|' + e.romaji, e.jp.replace(/ /g, '')]));
+    for (const e of BUILD_N5) {
+      expect(e.answer.length).toBeGreaterThanOrEqual(3);
+      expect(e.answer.length).toBeLessThanOrEqual(8);
+      expect(e.extra).toHaveLength(2);
+      expect(e.extra.some((x) => e.answer.includes(x))).toBe(false);
+      expect(examples.get(e.pt + '|' + e.romaji)).toBe(e.answer.join(''));
+      expect(e.hint.length).toBeGreaterThan(5);
+    }
   });
 });

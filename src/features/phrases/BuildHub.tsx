@@ -4,6 +4,7 @@ import { AppText, ChipRow } from '@/components';
 import { ALL_EXERCISES, ALL_GRAMMAR } from '@/content/grammar';
 import { spacing } from '@/theme';
 import { ALL_TOPICS } from './build';
+import { ALL_TRAVEL_TOPIC, TRAVEL_TOPIC, travelTopics } from './travelBuild';
 import { BuildView } from './BuildView';
 import { JudgeView } from './JudgeView';
 
@@ -22,8 +23,12 @@ const TOPIC_OPTIONS = [
     .map(({ topic, number }) => ({ value: topic.id, label: String(number) })),
 ];
 
+const TRAVEL_OPTIONS = [{ value: ALL_TRAVEL_TOPIC, label: 'Todas' }, ...travelTopics()];
+
 const topicTitle = (topicId: string): string => {
   if (topicId === ALL_TOPICS) return 'Todos os tópicos';
+  if (topicId === ALL_TRAVEL_TOPIC) return 'Todas as frases de viagem e dia a dia';
+  if (topicId.startsWith(TRAVEL_TOPIC)) return `Frases de viagem: ${topicId.slice(TRAVEL_TOPIC.length)}`;
   const index = ALL_GRAMMAR.findIndex((t) => t.id === topicId);
   return `${index + 1}. ${ALL_GRAMMAR[index]?.title ?? ''}`;
 };
@@ -44,6 +49,10 @@ export function BuildHub({ topic, onTopicChange }: BuildHubProps) {
           TÓPICO
         </AppText>
         <ChipRow options={TOPIC_OPTIONS} value={topic} onChange={onTopicChange} />
+        <AppText variant="caption" color="muted">
+          OU FRASES DE VIAGEM E DIA A DIA
+        </AppText>
+        <ChipRow options={TRAVEL_OPTIONS} value={topic} onChange={onTopicChange} />
         <AppText variant="caption" color="muted">
           {topicTitle(topic)}
         </AppText>

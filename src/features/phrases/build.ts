@@ -1,6 +1,7 @@
 import { ALL_EXERCISES } from '@/content/grammar';
 import type { BuildExercise } from '@/data/types';
 import { shuffle, type Rng } from '@/features/quiz/quiz';
+import { ALL_TRAVEL_TOPIC, TRAVEL_EXERCISES, TRAVEL_TOPIC } from './travelBuild';
 
 /** Todos os tópicos de gramática que têm exercício. */
 export const ALL_TOPICS = 'all';
@@ -30,8 +31,11 @@ export interface BuildRound {
   finished: boolean;
 }
 
-export const exercisesForTopic = (topic: string): readonly BuildExercise[] =>
-  topic === ALL_TOPICS ? ALL_EXERCISES : ALL_EXERCISES.filter((e) => e.topic === topic);
+export const exercisesForTopic = (topic: string): readonly BuildExercise[] => {
+  if (topic === ALL_TRAVEL_TOPIC) return TRAVEL_EXERCISES();
+  if (topic.startsWith(TRAVEL_TOPIC)) return TRAVEL_EXERCISES().filter((e) => e.topic === topic);
+  return topic === ALL_TOPICS ? ALL_EXERCISES : ALL_EXERCISES.filter((e) => e.topic === topic);
+};
 
 function poolFor(exercise: BuildExercise, rng: Rng): Token[] {
   return shuffle([...exercise.answer, ...exercise.extra].map((text, id) => ({ id, text })), rng);

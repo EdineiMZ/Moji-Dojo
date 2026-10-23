@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { AppText, Bold, Button, Card, ChipRow, PressableScale } from '@/components';
+import { AppText, Bold, Button, Card, ChipRow, Mascot, PressableScale, useScrollIntoView } from '@/components';
 import type { MochiOutfit } from '@/components/mascot/MochiArt';
 import { useProgressStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
-import { BUY_MESSAGES } from '../journey';
+import { BUY_MESSAGES, outfit as outfitOf } from '../journey';
 import { buyable, howToGet, ITEMS, priceOf, SLOT_LABELS, SLOTS, type Item, type Slot } from '../items';
 
 type Filter = Slot | 'all';
@@ -30,6 +30,9 @@ export function ShopView({ onPreview }: ShopViewProps) {
   const [filter, setFilter] = useState<Filter>('all');
   const [selected, setSelected] = useState<string | null>(null);
   const [message, setMessage] = useState<{ text: string; ok: boolean } | null>(null);
+  const [confirming, setConfirming] = useState(false);
+  const scrollIntoView = useScrollIntoView();
+  const previewRef = useRef<View>(null);
   const now = new Date();
 
   const list = ITEMS.filter((item) => filter === 'all' || item.slot === filter);
@@ -40,7 +43,10 @@ export function ShopView({ onPreview }: ShopViewProps) {
   const select = (item: Item) => {
     setSelected(item.id);
     setMessage(null);
+    setConfirming(false);
     onPreview({ [item.slot]: item.id });
+    // A prévia fica acima da lista: leva a tela até ela, para a pessoa ver o resultado.
+    scrollIntoView(previewRef.current);
   };
 
   const purchase = (item: Item) => {
@@ -49,6 +55,7 @@ export function ShopView({ onPreview }: ShopViewProps) {
       setMessage({ text: BUY_MESSAGES[error], ok: false });
       return;
     }
+    setConfirming(false);
     setMessage({ text: `${item.name} é seu! Ele já está no Mochi.`, ok: true });
     onPreview(null);
   };
@@ -103,20 +110,41 @@ export function ShopView({ onPreview }: ShopViewProps) {
         missões e conquistas.
       </AppText>
 
+      <View ref={previewRef} collapsable={false}>
       {chosen ? (
-        <Card enterIndex={0}>
-          <AppText variant="title">{chosen.name}</AppText>
-          <AppText color="muted">{chosen.description}</AppText>
+        <Card enterIndex={0} style={styles.preview}>
+          <AppText variant="caption" color="muted">
+            PRÉVIA: COMO O MOCHI FICA
+          </AppText>
+          <Mascot mood="happy" size={170} outfit={{ ...outfitOf(journey, now), [chosen.slot]: chosen.id }} />
+          <AppText variant="title" center>
+            {chosen.name}
+          </AppText>
+          <AppText color="muted" center>
+            {chosen.description}
+          </AppText>
           {chosenOwned ? (
             <AppText color="ok">Você já tem este item. Vista-o em Armário.</AppText>
           ) : chosenPrice !== null && buyable(chosen, now) ? (
-            <Button
-              label={journey.petals >= chosenPrice ? `Comprar por 🌸 ${chosenPrice}` : `Faltam 🌸 ${chosenPrice - journey.petals}`}
-              disabled={journey.petals < chosenPrice}
-              onPress={() => purchase(chosen)}
-            />
+            confirming ? (
+              <View style={styles.confirm}>
+                <AppText center>
+                  Comprar <Bold>{chosen.name}</Bold> por 🌸 {chosenPrice}? Sobram 🌸 {journey.petals - chosenPrice}.
+                </AppText>
+                <Button label="Confirmar a compra" onPress={() => purchase(chosen)} />
+                <Button label="Voltar" variant="ghost" onPress={() => setConfirming(false)} />
+              </View>
+            ) : (
+              <Button
+                label={journey.petals >= chosenPrice ? `Comprar por 🌸 ${chosenPrice}` : `Faltam 🌸 ${chosenPrice - journey.petals}`}
+                disabled={journey.petals < chosenPrice}
+                onPress={() => setConfirming(true)}
+              />
+            )
           ) : (
-            <AppText color="muted">{howToGet(chosen)}</AppText>
+            <AppText color="muted" center>
+              {howToGet(chosen)}
+            </AppText>
           )}
           {message ? (
             <AppText color={message.ok ? 'ok' : 'bad'} accessibilityLiveRegion="polite">
@@ -126,9 +154,10 @@ export function ShopView({ onPreview }: ShopViewProps) {
         </Card>
       ) : (
         <AppText variant="caption" color="muted">
-          Toque num item para ver como o Mochi fica.
+          Toque num item para ver como o Mochi fica, antes de comprar.
         </AppText>
       )}
+      </View>
 
       {forSale.length > 0 ? <AppText variant="title">À venda</AppText> : null}
       {forSale.map(row)}
@@ -142,6 +171,8 @@ export function ShopView({ onPreview }: ShopViewProps) {
 
 const styles = StyleSheet.create({
   root: { gap: spacing.md },
+  preview: { alignItems: 'center', gap: spacing.sm },
+  confirm: { alignSelf: 'stretch', gap: spacing.sm },
   flex: { flex: 1, gap: 2 },
   row: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, borderWidth: 1.5, borderRadius: radii.md, padding: spacing.md, minHeight: 64 },
   name: { fontFamily: fonts.bold, fontSize: 17 },

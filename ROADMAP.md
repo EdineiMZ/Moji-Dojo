@@ -110,8 +110,10 @@ Objetivo: sair de reconhecer para **produzir**.
 
 Objetivo: entender o japonês falado e conseguir se fazer entender.
 
-- [ ] **Ditado:** ouvir uma palavra ou frase e digitar. Corrige em kana e mostra a diferença. *(M)*
-- [ ] **Compreensão de frases e diálogos:** ouvir e responder perguntas de sentido, com velocidade normal e lenta. *(M)*
+- [x] **Ditado:** ouvir uma palavra ou frase e digitar. Corrige em kana e mostra a diferença. *(M)*
+  - Feito: Ouvir → **Ditado**. Palavras (as que você já aprendeu, ou todas no começo) ou frases; a voz toca sozinha, com botão Devagar; digita com o teclado do app ou do celular; a conferência aceita kana ou kanji e mostra o que sobrou ou faltou; o sentido em português só aparece depois.
+- [~] **Compreensão de frases e diálogos:** ouvir e responder perguntas de sentido, com velocidade normal e lenta. *(M)*
+  - Feito (frases): Ouvir → **Compreensão**. A frase toca sem texto e você escolhe o sentido entre quatro traduções; velocidade normal ou lenta pelo controle do topo. Falta: ouvir diálogos inteiros e responder perguntas sobre eles.
 - [ ] **Áudio de melhor qualidade:** hoje a voz é a síntese do sistema. Avaliar áudio gravado por falantes nativos com licença livre, que também mostra o sotaque melhor. *(G)*
 - [ ] **Tom das palavras (pitch accent):** indicar a queda de tom das palavras mais comuns, com exemplos de pares. *(M)*
 - [ ] **Gravar e comparar (shadowing):** gravar a própria voz e ouvir ao lado do modelo, com a forma de onda. É a evolução do "Repetir" atual, que só tem autoavaliação. *(M)*

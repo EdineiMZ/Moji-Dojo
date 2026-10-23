@@ -233,7 +233,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
                   key={`${current.item.char}-${opt.char}`}
                   index={i}
                   label={toChar ? opt.char : opt.label}
-                  glyph={toChar}
+                  glyph={toChar && [...opt.char].length <= 8}
                   state={stateOf(opt.char)}
                   onPress={() => pick(opt.char)}
                 />

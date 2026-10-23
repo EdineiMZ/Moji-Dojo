@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, Mascot, PetalRain, ProgressBar } from '@/components';
 import { resultMood } from '@/features/lessons/resultCopy';
@@ -23,6 +23,11 @@ export interface TypingTarget {
   romaji?: string;
   /** A regra, mostrada ao errar. */
   hint?: string;
+  /**
+   * Ditado: o que a voz fala. Com isto, a pessoa ouve a frase em vez de ler `prompt`, que só aparece (como o sentido) depois
+   * de conferir.
+   */
+  speak?: string;
 }
 
 interface TypingSessionProps {
@@ -54,6 +59,12 @@ export function TypingSession({ items, title, onResult, onExit, again }: TypingS
   // Se já contou o resultado desta frase (a primeira conferência ou a desistência), e as que errou de primeira.
   const reported = useRef(false);
   const [missed, setMissed] = useState<readonly string[]>([]);
+
+  // Ditado: a frase toca sozinha quando aparece.
+  const current = items[index];
+  useEffect(() => {
+    if (current?.speak) speakJapanese(current.speak, SPEECH_RATES[speed]);
+  }, [current, speed]);
 
   const item = items[index];
   if (!item) return null;
@@ -157,10 +168,29 @@ export function TypingSession({ items, title, onResult, onExit, again }: TypingS
       </View>
 
       <Card>
-        <AppText variant="caption" color="muted">
-          ESCREVA EM JAPONÊS
-        </AppText>
-        <AppText variant="title">{item.prompt}</AppText>
+        {item.speak ? (
+          <>
+            <AppText variant="caption" color="muted">
+              OUÇA E ESCREVA O QUE OUVIU
+            </AppText>
+            <View style={styles.row}>
+              <Button label="🔊 Ouvir" style={styles.flex} onPress={() => speakJapanese(item.speak as string, SPEECH_RATES[speed])} />
+              <Button label="🐢 Devagar" variant="soft" style={styles.flex} onPress={() => speakJapanese(item.speak as string, SPEECH_RATES.slow)} />
+            </View>
+            {showAnswer ? (
+              <AppText color="muted">
+                Quer dizer: {item.prompt}
+              </AppText>
+            ) : null}
+          </>
+        ) : (
+          <>
+            <AppText variant="caption" color="muted">
+              ESCREVA EM JAPONÊS
+            </AppText>
+            <AppText variant="title">{item.prompt}</AppText>
+          </>
+        )}
       </Card>
 
       <JapaneseInput value={text} onChange={setText} onSubmit={confirm} disabled={stage !== 'typing'} />

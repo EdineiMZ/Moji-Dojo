@@ -866,7 +866,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "にもつは どこ で うけとりますか",
+        "jp": "にもつは どこで うけとりますか",
         "romaji": "nimotsu wa doko de uketorimasu ka",
         "pt": "Onde retiro a bagagem?",
         "breakdown": [
@@ -947,7 +947,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "りょうがえは どこ で できますか",
+        "jp": "りょうがえは どこで できますか",
         "romaji": "ryōgae wa doko de dekimasu ka",
         "pt": "Onde posso trocar dinheiro?",
         "breakdown": [
@@ -978,7 +978,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "リムジンバスは どこ から のれますか",
+        "jp": "リムジンバスは どこから のれますか",
         "romaji": "rimujinbasu wa doko kara noremasu ka",
         "pt": "De onde sai o ônibus do aeroporto?",
         "breakdown": [
@@ -1106,7 +1106,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "ここ から とおい ですか",
+        "jp": "ここから とおい ですか",
         "romaji": "koko kara tōi desu ka",
         "pt": "É longe daqui?",
         "breakdown": [
@@ -1249,7 +1249,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
     "category": "Transporte",
     "phrases": [
       {
-        "jp": "しんじゅく まで いくら ですか",
+        "jp": "しんじゅくまで いくら ですか",
         "romaji": "shinjuku made ikura desu ka",
         "pt": "Quanto custa até Shinjuku?",
         "breakdown": [
@@ -1418,7 +1418,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "ここ で とめて ください",
+        "jp": "ここで とめて ください",
         "romaji": "koko de tomete kudasai",
         "pt": "Pare aqui, por favor",
         "breakdown": [
@@ -1441,7 +1441,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "ここ で おります",
+        "jp": "ここで おります",
         "romaji": "koko de orimasu",
         "pt": "Vou descer aqui",
         "breakdown": [
@@ -1801,7 +1801,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "ここ で たべます",
+        "jp": "ここで たべます",
         "romaji": "koko de tabemasu",
         "pt": "Vou comer aqui",
         "breakdown": [
@@ -2020,7 +2020,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "ぜんぶ で いくら ですか",
+        "jp": "ぜんぶで いくら ですか",
         "romaji": "zenbu de ikura desu ka",
         "pt": "Quanto fica tudo?",
         "breakdown": [
@@ -2157,7 +2157,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "なんじ まで あいて いますか",
+        "jp": "なんじまで あいて いますか",
         "romaji": "nanji made aite imasu ka",
         "pt": "Até que horas está aberto?",
         "breakdown": [
@@ -2346,7 +2346,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "あさごはんは なんじ から ですか",
+        "jp": "あさごはんは なんじから ですか",
         "romaji": "asagohan wa nanji kara desu ka",
         "pt": "A partir de que horas é o café da manhã?",
         "breakdown": [
@@ -3030,7 +3030,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "ここ で じゅうでん できますか",
+        "jp": "ここで じゅうでん できますか",
         "romaji": "koko de jūden dekimasu ka",
         "pt": "Posso carregar o celular aqui?",
         "breakdown": [
@@ -3177,7 +3177,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "なんじ まで ですか",
+        "jp": "なんじまで ですか",
         "romaji": "nanji made desu ka",
         "pt": "Até que horas?",
         "breakdown": [

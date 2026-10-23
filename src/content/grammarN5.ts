@@ -3138,6 +3138,1236 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
         "pt": "Eu também não consigo explicar."
       }
     ]
+  },
+  {
+    "id": "g31",
+    "title": "Antes de fazer: 〜まえに",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para dizer "
+          },
+          {
+            "text": "antes de",
+            "bold": true
+          },
+          {
+            "text": " fazer algo, use o verbo no "
+          },
+          {
+            "text": "dicionário",
+            "bold": true
+          },
+          {
+            "text": " (a forma simples, como "
+          },
+          {
+            "text": "ねる",
+            "ja": true
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "いく",
+            "ja": true
+          },
+          {
+            "text": ") + "
+          },
+          {
+            "text": "まえに",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "ねる まえに",
+            "ja": true
+          },
+          {
+            "text": " = antes de dormir. O verbo que vem antes de まえに "
+          },
+          {
+            "text": "não",
+            "bold": true
+          },
+          {
+            "text": " fica em ます."
+          }
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "A ação principal fica no fim da frase: "
+          },
+          {
+            "text": "いく まえに でんわ します",
+            "ja": true
+          },
+          {
+            "text": " (ligo antes de ir)."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo no dicionário] まえに [ação principal]",
+    "examples": [
+      {
+        "jp": "かれは ねる まえに ほんを よむ",
+        "ruby": [
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "寝",
+            "reading": "ね"
+          },
+          {
+            "text": "る"
+          },
+          {
+            "text": "前",
+            "reading": "まえ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "本",
+            "reading": "ほん"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "読",
+            "reading": "よ"
+          },
+          {
+            "text": "む。"
+          }
+        ],
+        "romaji": "kare wa neru mae ni hon o yomu",
+        "pt": "Ele lê antes de ir para a cama."
+      },
+      {
+        "jp": "いく まえに でんわ します",
+        "ruby": [
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "く"
+          },
+          {
+            "text": "前",
+            "reading": "まえ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "電話",
+            "reading": "でんわ"
+          },
+          {
+            "text": "します。"
+          }
+        ],
+        "romaji": "iku mae ni denwa shimasu",
+        "pt": "Ligarei para ele antes de ir."
+      },
+      {
+        "jp": "くる まえに でんわを してください",
+        "ruby": [
+          {
+            "text": "来",
+            "reading": "く"
+          },
+          {
+            "text": "る"
+          },
+          {
+            "text": "前",
+            "reading": "まえ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "電話",
+            "reading": "でんわ"
+          },
+          {
+            "text": "をしてください。"
+          }
+        ],
+        "romaji": "kuru mae ni denwa o shite kudasai",
+        "pt": "Por favor, me ligue antes de vir."
+      }
+    ]
+  },
+  {
+    "id": "g32",
+    "title": "Depois de fazer: 〜てから e あとで",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para dizer "
+          },
+          {
+            "text": "depois de",
+            "bold": true
+          },
+          {
+            "text": " fazer algo, use a forma "
+          },
+          {
+            "text": "て",
+            "bold": true
+          },
+          {
+            "text": " do verbo + "
+          },
+          {
+            "text": "から",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "たべてから",
+            "ja": true
+          },
+          {
+            "text": " = depois de comer. A ação que vem depois fica no fim da frase."
+          }
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com um substantivo, use "
+          },
+          {
+            "text": "の あとで",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "しごとの あとで",
+            "ja": true
+          },
+          {
+            "text": " = depois do trabalho. E "
+          },
+          {
+            "text": "あとで",
+            "bold": true
+          },
+          {
+            "text": " sozinho quer dizer \"mais tarde\": "
+          },
+          {
+            "text": "あとで でんわ します",
+            "ja": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo na forma て] から · [substantivo] の あとで · あとで",
+    "examples": [
+      {
+        "jp": "たべてから ねたよ",
+        "ruby": [
+          {
+            "text": "食",
+            "reading": "た"
+          },
+          {
+            "text": "べてから"
+          },
+          {
+            "text": "寝",
+            "reading": "ね"
+          },
+          {
+            "text": "たよ。"
+          }
+        ],
+        "romaji": "tabetekara neta yo",
+        "pt": "Depois que nós comemos, fomos dormir."
+      },
+      {
+        "jp": "かえってから べんきょう するよ",
+        "ruby": [
+          {
+            "text": "帰",
+            "reading": "かえ"
+          },
+          {
+            "text": "ってから"
+          },
+          {
+            "text": "勉強",
+            "reading": "べんきょう"
+          },
+          {
+            "text": "するよ。"
+          }
+        ],
+        "romaji": "kaettekara benkyō suru yo",
+        "pt": "Vou estudar depois que chegar em casa."
+      },
+      {
+        "jp": "あとで でんわ します",
+        "ruby": [
+          {
+            "text": "後",
+            "reading": "あと"
+          },
+          {
+            "text": "で"
+          },
+          {
+            "text": "電話",
+            "reading": "でんわ"
+          },
+          {
+            "text": "します。"
+          }
+        ],
+        "romaji": "atode denwa shimasu",
+        "pt": "Te ligo de volta mais tarde."
+      },
+      {
+        "jp": "しごとの あとで いっぱい どう",
+        "ruby": [
+          {
+            "text": "仕事",
+            "reading": "しごと"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "後",
+            "reading": "あと"
+          },
+          {
+            "text": "で、"
+          },
+          {
+            "text": "一杯",
+            "reading": "いっぱい"
+          },
+          {
+            "text": "どう？"
+          }
+        ],
+        "romaji": "shigoto no ato de ippai dō",
+        "pt": "E se sairmos para beber após o trabalho?"
+      }
+    ]
+  },
+  {
+    "id": "g33",
+    "title": "Fazer duas coisas juntas: 〜ながら",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Quando "
+          },
+          {
+            "text": "a mesma pessoa",
+            "bold": true
+          },
+          {
+            "text": " faz duas coisas ao mesmo tempo, tire o "
+          },
+          {
+            "text": "ます",
+            "bold": true
+          },
+          {
+            "text": " do verbo e ponha "
+          },
+          {
+            "text": "ながら",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "たべながら",
+            "ja": true
+          },
+          {
+            "text": " = comendo, enquanto come."
+          }
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "A ação principal fica no fim da frase, e a que vem com ながら é a de fundo: "
+          },
+          {
+            "text": "たべながら はなす",
+            "ja": true
+          },
+          {
+            "text": " (falar comendo)."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo sem ます] ながら [ação principal]",
+    "examples": [
+      {
+        "jp": "たべながら はなしちゃ ダメ だよ",
+        "ruby": [
+          {
+            "text": "食",
+            "reading": "た"
+          },
+          {
+            "text": "べながら"
+          },
+          {
+            "text": "話",
+            "reading": "はな"
+          },
+          {
+            "text": "しちゃダメだよ。"
+          }
+        ],
+        "romaji": "tabenagara hanashicha dame da yo",
+        "pt": "Não fale enquanto estiver comendo."
+      },
+      {
+        "jp": "ははは ほほえみながら いいました",
+        "ruby": [
+          {
+            "text": "母",
+            "reading": "はは"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "微笑",
+            "reading": "ほほえ"
+          },
+          {
+            "text": "みながら"
+          },
+          {
+            "text": "言",
+            "reading": "い"
+          },
+          {
+            "text": "いました。"
+          }
+        ],
+        "romaji": "haha wa hohoeminagara iimashita",
+        "pt": "A minha mãe disse isso com um sorriso."
+      }
+    ]
+  },
+  {
+    "id": "g34",
+    "title": "Ir fazer algo: 〜に いきます",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para dizer "
+          },
+          {
+            "text": "ir fazer",
+            "bold": true
+          },
+          {
+            "text": " algo, tire o "
+          },
+          {
+            "text": "ます",
+            "bold": true
+          },
+          {
+            "text": " do verbo e ponha "
+          },
+          {
+            "text": "に",
+            "bold": true
+          },
+          {
+            "text": " + "
+          },
+          {
+            "text": "いきます",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "たべに いきます",
+            "ja": true
+          },
+          {
+            "text": " = vou comer. Com uma palavra de ação (compras, filme), é só "
+          },
+          {
+            "text": "に",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "かいものに いきます",
+            "ja": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Serve também com "
+          },
+          {
+            "text": "きます",
+            "bold": true
+          },
+          {
+            "text": " (vir) e "
+          },
+          {
+            "text": "かえります",
+            "bold": true
+          },
+          {
+            "text": " (voltar)."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo sem ます] に いきます · [ação] に いきます",
+    "examples": [
+      {
+        "jp": "こんや すしを たべに いきませんか",
+        "ruby": [
+          {
+            "text": "今夜",
+            "reading": "こんや"
+          },
+          {
+            "text": "、"
+          },
+          {
+            "text": "寿司",
+            "reading": "すし"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "食",
+            "reading": "た"
+          },
+          {
+            "text": "べに"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "きませんか。"
+          }
+        ],
+        "romaji": "kon'ya sushi o tabe ni ikimasen ka",
+        "pt": "Você quer comer sushi hoje à noite?"
+      },
+      {
+        "jp": "えいがを みに いきませんか",
+        "ruby": [
+          {
+            "text": "映画",
+            "reading": "えいが"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "見",
+            "reading": "み"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "きませんか？"
+          }
+        ],
+        "romaji": "eiga o mi ni ikimasen ka",
+        "pt": "Por que não vamos ver um filme?"
+      },
+      {
+        "jp": "あした かいものに いきます",
+        "ruby": [
+          {
+            "text": "明日",
+            "reading": "あした"
+          },
+          {
+            "text": "買",
+            "reading": "か"
+          },
+          {
+            "text": "い"
+          },
+          {
+            "text": "物",
+            "reading": "もの"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "きます。"
+          }
+        ],
+        "romaji": "ashita kaimono ni ikimasu",
+        "pt": "Amanhã vou fazer compras."
+      },
+      {
+        "jp": "わたしは よく えいがを みに いく",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "はよく"
+          },
+          {
+            "text": "映画",
+            "reading": "えいが"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "見",
+            "reading": "み"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "く。"
+          }
+        ],
+        "romaji": "watashi wa yoku eiga o mi ni iku",
+        "pt": "Vou ao cinema com frequência."
+      }
+    ]
+  },
+  {
+    "id": "g35",
+    "title": "Com que frequência: いつも, よく, ときどき, あまり, ぜんぜん",
+    "body": [
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "palavra",
+              "header": true
+            },
+            {
+              "text": "quer dizer",
+              "header": true
+            },
+            {
+              "text": "frase",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "いつも",
+              "ja": true
+            },
+            {
+              "text": "sempre"
+            },
+            {
+              "text": "afirmativa"
+            }
+          ],
+          [
+            {
+              "text": "よく",
+              "ja": true
+            },
+            {
+              "text": "muitas vezes"
+            },
+            {
+              "text": "afirmativa"
+            }
+          ],
+          [
+            {
+              "text": "ときどき",
+              "ja": true
+            },
+            {
+              "text": "às vezes"
+            },
+            {
+              "text": "afirmativa"
+            }
+          ],
+          [
+            {
+              "text": "あまり",
+              "ja": true
+            },
+            {
+              "text": "pouco, raramente"
+            },
+            {
+              "text": "negativa"
+            }
+          ],
+          [
+            {
+              "text": "ぜんぜん",
+              "ja": true
+            },
+            {
+              "text": "de jeito nenhum, nunca"
+            },
+            {
+              "text": "negativa"
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "あまり",
+            "bold": true
+          },
+          {
+            "text": " e "
+          },
+          {
+            "text": "ぜんぜん",
+            "bold": true
+          },
+          {
+            "text": " pedem o final "
+          },
+          {
+            "text": "negativo",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "あまり みえない",
+            "ja": true
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "ぜんぜん わかりません",
+            "ja": true
+          },
+          {
+            "text": ". O advérbio vem antes do verbo."
+          }
+        ]
+      }
+    ],
+    "pattern": "[いつも / よく / ときどき] verbo · [あまり / ぜんぜん] verbo negativo",
+    "examples": [
+      {
+        "jp": "ときどき ゴルフを します",
+        "ruby": [
+          {
+            "text": "時々",
+            "reading": "ときどき"
+          },
+          {
+            "text": "ゴルフをします。"
+          }
+        ],
+        "romaji": "tokidoki gorufu o shimasu",
+        "pt": "De vez em quando eu jogo golfe."
+      },
+      {
+        "jp": "いつも いそがしいの",
+        "ruby": [
+          {
+            "text": "いつも"
+          },
+          {
+            "text": "忙",
+            "reading": "いそが"
+          },
+          {
+            "text": "しいの？"
+          }
+        ],
+        "romaji": "itsumo isogashii no",
+        "pt": "Você está sempre ocupado?"
+      },
+      {
+        "jp": "あまり みえない",
+        "ruby": [
+          {
+            "text": "あまり"
+          },
+          {
+            "text": "見",
+            "reading": "み"
+          },
+          {
+            "text": "えない。"
+          }
+        ],
+        "romaji": "amari mienai",
+        "pt": "Eu o vejo raramente."
+      },
+      {
+        "jp": "ぜんぜん つかれてません",
+        "ruby": [
+          {
+            "text": "全然",
+            "reading": "ぜんぜん"
+          },
+          {
+            "text": "疲",
+            "reading": "つか"
+          },
+          {
+            "text": "れてません。"
+          }
+        ],
+        "romaji": "zenzen tsukarete masen",
+        "pt": "Não estou nem um pouco cansado."
+      }
+    ]
+  },
+  {
+    "id": "g36",
+    "title": "Oferecer ajuda: 〜ましょうか",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Além de convidar (\"vamos\"), "
+          },
+          {
+            "text": "ましょうか",
+            "bold": true
+          },
+          {
+            "text": " serve para "
+          },
+          {
+            "text": "se oferecer",
+            "bold": true
+          },
+          {
+            "text": ": tire o ます do verbo e ponha ましょうか. "
+          },
+          {
+            "text": "てつだいましょうか",
+            "ja": true
+          },
+          {
+            "text": " = quer que eu ajude? Quem oferece é você; a outra pessoa responde sim ou não."
+          }
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Também pergunta \"vamos?\" quando o grupo decide junto: "
+          },
+          {
+            "text": "いきましょうか",
+            "ja": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo sem ます] ましょうか",
+    "examples": [
+      {
+        "jp": "なにか てつだいましょうか",
+        "ruby": [
+          {
+            "text": "何",
+            "reading": "なに"
+          },
+          {
+            "text": "か"
+          },
+          {
+            "text": "手伝",
+            "reading": "てつだ"
+          },
+          {
+            "text": "いましょうか？"
+          }
+        ],
+        "romaji": "nani ka tetsudaimashō ka",
+        "pt": "Posso ajudar com alguma coisa?"
+      },
+      {
+        "jp": "まどを あけましょうか",
+        "ruby": [
+          {
+            "text": "窓",
+            "reading": "まど"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "開",
+            "reading": "あ"
+          },
+          {
+            "text": "けましょうか。"
+          }
+        ],
+        "romaji": "mado o akemashō ka",
+        "pt": "Você quer que eu abra a janela?"
+      },
+      {
+        "jp": "おてつだい しましょうか",
+        "ruby": [
+          {
+            "text": "お"
+          },
+          {
+            "text": "手伝",
+            "reading": "てつだ"
+          },
+          {
+            "text": "いしましょうか。"
+          }
+        ],
+        "romaji": "otetsudai shimashō ka",
+        "pt": "Quer que eu te ajude?"
+      },
+      {
+        "jp": "いきましょうか",
+        "ruby": [
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "きましょうか。"
+          }
+        ],
+        "romaji": "ikimashō ka",
+        "pt": "Vamos?"
+      }
+    ]
+  },
+  {
+    "id": "g37",
+    "title": "Só e apenas: だけ",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "だけ",
+            "bold": true
+          },
+          {
+            "text": " quer dizer \"só\", \"apenas\", e vem logo depois da palavra: "
+          },
+          {
+            "text": "ひとつだけ",
+            "ja": true
+          },
+          {
+            "text": " (só um), "
+          },
+          {
+            "text": "これだけ",
+            "ja": true
+          },
+          {
+            "text": " (só isto)."
+          }
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Pode vir antes de outra partícula: "
+          },
+          {
+            "text": "それだけで",
+            "ja": true
+          },
+          {
+            "text": " (só com isso)."
+          }
+        ]
+      }
+    ],
+    "pattern": "[palavra] だけ",
+    "examples": [
+      {
+        "jp": "ねがいは ひとつ だけ",
+        "ruby": [
+          {
+            "text": "願",
+            "reading": "ねが"
+          },
+          {
+            "text": "いは"
+          },
+          {
+            "text": "一",
+            "reading": "ひと"
+          },
+          {
+            "text": "つだけ。"
+          }
+        ],
+        "romaji": "negai wa hitotsu dake",
+        "pt": "Só tenho um desejo."
+      },
+      {
+        "jp": "それ だけで けっこうです",
+        "ruby": [
+          {
+            "text": "それだけで"
+          },
+          {
+            "text": "結構",
+            "reading": "けっこう"
+          },
+          {
+            "text": "です。"
+          }
+        ],
+        "romaji": "sore dake de kekkō desu",
+        "pt": "Isso é tudo."
+      }
+    ]
+  },
+  {
+    "id": "g38",
+    "title": "Algo e alguém: なにか, だれか, どこか",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Junte "
+          },
+          {
+            "text": "か",
+            "bold": true
+          },
+          {
+            "text": " a uma palavra de pergunta e ela vira \"algum\": "
+          },
+          {
+            "text": "なにか",
+            "ja": true
+          },
+          {
+            "text": " (alguma coisa), "
+          },
+          {
+            "text": "だれか",
+            "ja": true
+          },
+          {
+            "text": " (alguém), "
+          },
+          {
+            "text": "どこか",
+            "ja": true
+          },
+          {
+            "text": " (em algum lugar), "
+          },
+          {
+            "text": "いつか",
+            "ja": true
+          },
+          {
+            "text": " (algum dia)."
+          }
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "É diferente de perguntar \"o quê?\": "
+          },
+          {
+            "text": "なにか のむ?",
+            "ja": true
+          },
+          {
+            "text": " quer dizer \"toma alguma coisa?\"."
+          }
+        ]
+      }
+    ],
+    "pattern": "[なに / だれ / どこ / いつ] か",
+    "examples": [
+      {
+        "jp": "なにか のむ",
+        "ruby": [
+          {
+            "text": "何",
+            "reading": "なに"
+          },
+          {
+            "text": "か"
+          },
+          {
+            "text": "飲",
+            "reading": "の"
+          },
+          {
+            "text": "む？"
+          }
+        ],
+        "romaji": "nani ka nomu",
+        "pt": "Quer beber algo?"
+      },
+      {
+        "jp": "なにか みえる",
+        "ruby": [
+          {
+            "text": "何",
+            "reading": "なに"
+          },
+          {
+            "text": "か"
+          },
+          {
+            "text": "見",
+            "reading": "み"
+          },
+          {
+            "text": "える？"
+          }
+        ],
+        "romaji": "nani ka mieru",
+        "pt": "Você consegue ver algo?"
+      },
+      {
+        "jp": "だれか いる",
+        "ruby": [
+          {
+            "text": "誰",
+            "reading": "だれ"
+          },
+          {
+            "text": "かいる？"
+          }
+        ],
+        "romaji": "dare ka iru",
+        "pt": "Tem alguém aí?"
+      },
+      {
+        "jp": "だれか くる",
+        "ruby": [
+          {
+            "text": "誰",
+            "reading": "だれ"
+          },
+          {
+            "text": "か"
+          },
+          {
+            "text": "来",
+            "reading": "く"
+          },
+          {
+            "text": "る。"
+          }
+        ],
+        "romaji": "dare ka kuru",
+        "pt": "Alguém está vindo."
+      }
+    ]
   }
 ];
 
@@ -4090,8 +5320,403 @@ export const BUILD_N5: readonly BuildExercise[] = [
     ],
     "romaji": "watashi mo setsumei dekimasen",
     "hint": "O que se sabe fazer vem com が + できます."
+  },
+  {
+    "topic": "g31",
+    "pt": "Ele lê antes de ir para a cama.",
+    "answer": [
+      "かれ",
+      "は",
+      "ねる",
+      "まえ",
+      "に",
+      "ほん",
+      "を",
+      "よむ"
+    ],
+    "extra": [
+      "も",
+      "の"
+    ],
+    "romaji": "kare wa neru mae ni hon o yomu",
+    "hint": "Antes de: verbo no dicionário + まえに (nunca ます)."
+  },
+  {
+    "topic": "g31",
+    "pt": "Ligarei para ele antes de ir.",
+    "answer": [
+      "いく",
+      "まえ",
+      "に",
+      "でんわ",
+      "します"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "iku mae ni denwa shimasu",
+    "hint": "Antes de: verbo no dicionário + まえに (nunca ます)."
+  },
+  {
+    "topic": "g31",
+    "pt": "Por favor, me ligue antes de vir.",
+    "answer": [
+      "くる",
+      "まえ",
+      "に",
+      "でんわ",
+      "を",
+      "してください"
+    ],
+    "extra": [
+      "で",
+      "は"
+    ],
+    "romaji": "kuru mae ni denwa o shite kudasai",
+    "hint": "Antes de: verbo no dicionário + まえに (nunca ます)."
+  },
+  {
+    "topic": "g32",
+    "pt": "Depois que nós comemos, fomos dormir.",
+    "answer": [
+      "たべてから",
+      "ねた",
+      "よ"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "tabetekara neta yo",
+    "hint": "Depois de: forma て + から, ou substantivo + の あとで."
+  },
+  {
+    "topic": "g32",
+    "pt": "Vou estudar depois que chegar em casa.",
+    "answer": [
+      "かえってから",
+      "べんきょう",
+      "する",
+      "よ"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "kaettekara benkyō suru yo",
+    "hint": "Depois de: forma て + から, ou substantivo + の あとで."
+  },
+  {
+    "topic": "g32",
+    "pt": "Te ligo de volta mais tarde.",
+    "answer": [
+      "あとで",
+      "でんわ",
+      "します"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "atode denwa shimasu",
+    "hint": "Depois de: forma て + から, ou substantivo + の あとで."
+  },
+  {
+    "topic": "g32",
+    "pt": "E se sairmos para beber após o trabalho?",
+    "answer": [
+      "しごと",
+      "の",
+      "あと",
+      "で",
+      "いっぱい",
+      "どう"
+    ],
+    "extra": [
+      "は",
+      "を"
+    ],
+    "romaji": "shigoto no ato de ippai dō",
+    "hint": "Depois de: forma て + から, ou substantivo + の あとで."
+  },
+  {
+    "topic": "g33",
+    "pt": "Não fale enquanto estiver comendo.",
+    "answer": [
+      "たべながら",
+      "はなしちゃ",
+      "ダメ",
+      "だ",
+      "よ"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "tabenagara hanashicha dame da yo",
+    "hint": "Ao mesmo tempo: radical do verbo (sem ます) + ながら."
+  },
+  {
+    "topic": "g33",
+    "pt": "A minha mãe disse isso com um sorriso.",
+    "answer": [
+      "はは",
+      "は",
+      "ほほえみながら",
+      "いいました"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "haha wa hohoeminagara iimashita",
+    "hint": "Ao mesmo tempo: radical do verbo (sem ます) + ながら."
+  },
+  {
+    "topic": "g34",
+    "pt": "Você quer comer sushi hoje à noite?",
+    "answer": [
+      "こんや",
+      "すし",
+      "を",
+      "たべ",
+      "に",
+      "いきません",
+      "か"
+    ],
+    "extra": [
+      "は",
+      "で"
+    ],
+    "romaji": "kon'ya sushi o tabe ni ikimasen ka",
+    "hint": "Ir fazer: radical do verbo (sem ます) + に + いきます."
+  },
+  {
+    "topic": "g34",
+    "pt": "Por que não vamos ver um filme?",
+    "answer": [
+      "えいが",
+      "を",
+      "み",
+      "に",
+      "いきません",
+      "か"
+    ],
+    "extra": [
+      "は",
+      "で"
+    ],
+    "romaji": "eiga o mi ni ikimasen ka",
+    "hint": "Ir fazer: radical do verbo (sem ます) + に + いきます."
+  },
+  {
+    "topic": "g34",
+    "pt": "Amanhã vou fazer compras.",
+    "answer": [
+      "あした",
+      "かいもの",
+      "に",
+      "いきます"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "ashita kaimono ni ikimasu",
+    "hint": "Ir fazer: radical do verbo (sem ます) + に + いきます."
+  },
+  {
+    "topic": "g34",
+    "pt": "Vou ao cinema com frequência.",
+    "answer": [
+      "わたし",
+      "は",
+      "よく",
+      "えいが",
+      "を",
+      "み",
+      "に",
+      "いく"
+    ],
+    "extra": [
+      "も",
+      "の"
+    ],
+    "romaji": "watashi wa yoku eiga o mi ni iku",
+    "hint": "Ir fazer: radical do verbo (sem ます) + に + いきます."
+  },
+  {
+    "topic": "g35",
+    "pt": "De vez em quando eu jogo golfe.",
+    "answer": [
+      "ときどき",
+      "ゴルフ",
+      "を",
+      "します"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "tokidoki gorufu o shimasu",
+    "hint": "いつも, よく, ときどき com afirmativa; あまり e ぜんぜん com negativa."
+  },
+  {
+    "topic": "g35",
+    "pt": "Você está sempre ocupado?",
+    "answer": [
+      "いつも",
+      "いそがしい",
+      "の"
+    ],
+    "extra": [
+      "は",
+      "を"
+    ],
+    "romaji": "itsumo isogashii no",
+    "hint": "いつも, よく, ときどき com afirmativa; あまり e ぜんぜん com negativa."
+  },
+  {
+    "topic": "g36",
+    "pt": "Posso ajudar com alguma coisa?",
+    "answer": [
+      "なに",
+      "か",
+      "てつだいましょう",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "nani ka tetsudaimashō ka",
+    "hint": "Quer que eu...?: radical do verbo + ましょうか."
+  },
+  {
+    "topic": "g36",
+    "pt": "Você quer que eu abra a janela?",
+    "answer": [
+      "まど",
+      "を",
+      "あけましょう",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "mado o akemashō ka",
+    "hint": "Quer que eu...?: radical do verbo + ましょうか."
+  },
+  {
+    "topic": "g36",
+    "pt": "Quer que eu te ajude?",
+    "answer": [
+      "おてつだい",
+      "しましょう",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "otetsudai shimashō ka",
+    "hint": "Quer que eu...?: radical do verbo + ましょうか."
+  },
+  {
+    "topic": "g37",
+    "pt": "Só tenho um desejo.",
+    "answer": [
+      "ねがい",
+      "は",
+      "ひとつ",
+      "だけ"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "negai wa hitotsu dake",
+    "hint": "だけ vai depois da palavra e quer dizer só."
+  },
+  {
+    "topic": "g37",
+    "pt": "Isso é tudo.",
+    "answer": [
+      "それ",
+      "だけ",
+      "で",
+      "けっこうです"
+    ],
+    "extra": [
+      "に",
+      "を"
+    ],
+    "romaji": "sore dake de kekkō desu",
+    "hint": "だけ vai depois da palavra e quer dizer só."
+  },
+  {
+    "topic": "g38",
+    "pt": "Quer beber algo?",
+    "answer": [
+      "なに",
+      "か",
+      "のむ"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "nani ka nomu",
+    "hint": "Palavra de pergunta + か = algum(a)."
+  },
+  {
+    "topic": "g38",
+    "pt": "Você consegue ver algo?",
+    "answer": [
+      "なに",
+      "か",
+      "みえる"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "nani ka mieru",
+    "hint": "Palavra de pergunta + か = algum(a)."
+  },
+  {
+    "topic": "g38",
+    "pt": "Tem alguém aí?",
+    "answer": [
+      "だれ",
+      "か",
+      "いる"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "dare ka iru",
+    "hint": "Palavra de pergunta + か = algum(a)."
+  },
+  {
+    "topic": "g38",
+    "pt": "Alguém está vindo.",
+    "answer": [
+      "だれ",
+      "か",
+      "くる"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "dare ka kuru",
+    "hint": "Palavra de pergunta + か = algum(a)."
   }
 ];
 
 /** Ids das frases do Tatoeba usadas nos exemplos (para o crédito). */
-export const GRAMMAR_N5_SENTENCE_IDS: readonly number[] = [9740661,1193930,12055984,10081492,1019460,10901764,11643291,184159,1216866,4002000,338057,2128256,170848,5748800,1039551,78718,11630865,11512358,123257,5955826,2006378,2349145,123791,5845217,4147428,2242416,10899008,2040852,741581,201956,201775,213581,10631584,442923,170842,140285,143813,5272,3552884,11776723,625254,157401,179732,12412206,2626290,10625858,10366825,9644550,354378,13254283,3347455,10194978,2672966,5323,11029605,10967392,9755700,9199895,1700213,187577,347338,8532899,432825,2412106,13218484,2969830,2701348,8733259,183436,149673,2139043,5390444,177906,9475751,125811,14007955,215019,232933,1799658,920509];
+export const GRAMMAR_N5_SENTENCE_IDS: readonly number[] = [9740661,1193930,12055984,10081492,1019460,10901764,11643291,184159,1216866,4002000,338057,2128256,170848,5748800,1039551,78718,11630865,11512358,123257,5955826,2006378,2349145,123791,5845217,4147428,2242416,10899008,2040852,741581,201956,201775,213581,10631584,442923,170842,140285,143813,5272,3552884,11776723,625254,157401,179732,12412206,2626290,10625858,10366825,9644550,354378,13254283,3347455,10194978,2672966,5323,11029605,10967392,9755700,9199895,1700213,187577,347338,8532899,432825,2412106,13218484,2969830,2701348,8733259,183436,149673,2139043,5390444,177906,9475751,125811,14007955,215019,232933,1799658,920509,873959,11065768,13201627,10617667,11017844,174334,169135,11009755,82874,171179,1299272,80265,158658,150453,8723018,5157,213984,10671567,140345,227047,173392,3449190,205799,890127,2552450,137130,11610218];

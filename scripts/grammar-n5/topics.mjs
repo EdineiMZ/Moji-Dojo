@@ -369,4 +369,136 @@ export const TOPICS = [
       { id: 920509, ja: '私も説明できません。', furi: '[私|わたし]も[説明|せつ|めい]できません。', kana: 'わたし~も せつめい できません', pt: 'Eu também não consigo explicar.' },
     ],
   },
+  {
+    id: 'g31',
+    title: 'Antes de fazer: 〜まえに',
+    body: [
+      'Para dizer **antes de** fazer algo, use o verbo no **dicionário** (a forma simples, como __ねる__, __いく__) + **まえに**: __ねる まえに__ = antes de dormir. O verbo que vem antes de まえに **não** fica em ます.',
+      'A ação principal fica no fim da frase: __いく まえに でんわ します__ (ligo antes de ir).',
+    ],
+    pattern: '[verbo no dicionário] まえに [ação principal]',
+    hint: 'Antes de: verbo no dicionário + まえに (nunca ます).',
+    examples: [
+      { id: 873959, ja: '彼は寝る前に本を読む。', furi: '[彼|かれ]は[寝|ね]る[前|まえ]に[本|ほん]を[読|よ]む。', kana: 'かれ~は ねる まえ~に ほん~を よむ', pt: 'Ele lê antes de ir para a cama.' },
+      { id: 11065768, ja: '行く前に電話します。', furi: '[行|い]く[前|まえ]に[電話|でん|わ]します。', kana: 'いく まえ~に でんわ します', pt: 'Ligarei para ele antes de ir.' },
+      { id: 13201627, ja: '来る前に電話をしてください。', furi: '[来|く]る[前|まえ]に[電話|でん|わ]をしてください。', kana: 'くる まえ~に でんわ~を して|ください', pt: 'Por favor, me ligue antes de vir.' },
+    ],
+  },
+  {
+    id: 'g32',
+    title: 'Depois de fazer: 〜てから e あとで',
+    body: [
+      'Para dizer **depois de** fazer algo, use a forma **て** do verbo + **から**: __たべてから__ = depois de comer. A ação que vem depois fica no fim da frase.',
+      'Com um substantivo, use **の あとで**: __しごとの あとで__ = depois do trabalho. E **あとで** sozinho quer dizer "mais tarde": __あとで でんわ します__.',
+    ],
+    pattern: '[verbo na forma て] から · [substantivo] の あとで · あとで',
+    hint: 'Depois de: forma て + から, ou substantivo + の あとで.',
+    examples: [
+      { id: 10617667, ja: '食べてから寝たよ。', furi: '[食|た]べてから[寝|ね]たよ。', kana: 'たべてから ねた~よ', pt: 'Depois que nós comemos, fomos dormir.' },
+      { id: 11017844, ja: '帰ってから勉強するよ。', furi: '[帰|かえ]ってから[勉強|べん|きょう]するよ。', kana: 'かえってから べんきょう する~よ', pt: 'Vou estudar depois que chegar em casa.' },
+      { id: 174334, ja: '後で電話します。', furi: '[後|あと]で[電話|でん|わ]します。', kana: 'あとで でんわ します', pt: 'Te ligo de volta mais tarde.' },
+      { id: 169135, ja: '仕事の後で、一杯どう？', furi: '[仕事|し|ごと]の[後|あと]で、[一杯|いっ|ぱい]どう？', kana: 'しごと~の あと~で いっぱい どう', pt: 'E se sairmos para beber após o trabalho?' },
+    ],
+  },
+  {
+    id: 'g33',
+    title: 'Fazer duas coisas juntas: 〜ながら',
+    body: [
+      'Quando **a mesma pessoa** faz duas coisas ao mesmo tempo, tire o **ます** do verbo e ponha **ながら**: __たべながら__ = comendo, enquanto come.',
+      'A ação principal fica no fim da frase, e a que vem com ながら é a de fundo: __たべながら はなす__ (falar comendo).',
+    ],
+    pattern: '[verbo sem ます] ながら [ação principal]',
+    hint: 'Ao mesmo tempo: radical do verbo (sem ます) + ながら.',
+    examples: [
+      { id: 11009755, ja: '食べながら話しちゃダメだよ。', furi: '[食|た]べながら[話|はな]しちゃダメだよ。', kana: 'たべながら はなしちゃ ダメ だ~よ', pt: 'Não fale enquanto estiver comendo.' },
+      { id: 82874, ja: '母は微笑みながら言いました。', furi: '[母|はは]は[微笑|ほほ|え]みながら[言|い]いました。', kana: 'はは~は ほほえみながら いいました', pt: 'A minha mãe disse isso com um sorriso.' },
+    ],
+  },
+  {
+    id: 'g34',
+    title: 'Ir fazer algo: 〜に いきます',
+    body: [
+      'Para dizer **ir fazer** algo, tire o **ます** do verbo e ponha **に** + **いきます**: __たべに いきます__ = vou comer. Com uma palavra de ação (compras, filme), é só **に**: __かいものに いきます__.',
+      'Serve também com **きます** (vir) e **かえります** (voltar).',
+    ],
+    pattern: '[verbo sem ます] に いきます · [ação] に いきます',
+    hint: 'Ir fazer: radical do verbo (sem ます) + に + いきます.',
+    examples: [
+      { id: 171179, ja: '今夜、寿司を食べに行きませんか。', furi: '[今夜|こん|や]、[寿司|す|し]を[食|た]べに[行|い]きませんか。', kana: 'こんや すし~を たべ~に いきません~か', pt: 'Você quer comer sushi hoje à noite?' },
+      { id: 1299272, ja: '映画を見に行きませんか？', furi: '[映画|えい|が]を[見|み]に[行|い]きませんか？', kana: 'えいが~を み~に いきません~か', pt: 'Por que não vamos ver um filme?' },
+      { id: 80265, ja: '明日買い物に行きます。', furi: '[明日|あした][買|か]い[物|もの]に[行|い]きます。', kana: 'あした かいもの~に いきます', pt: 'Amanhã vou fazer compras.' },
+      { id: 158658, ja: '私はよく映画を見に行く。', furi: '[私|わたし]はよく[映画|えい|が]を[見|み]に[行|い]く。', kana: 'わたし~は よく えいが~を み~に いく', pt: 'Vou ao cinema com frequência.' },
+    ],
+  },
+  {
+    id: 'g35',
+    title: 'Com que frequência: いつも, よく, ときどき, あまり, ぜんぜん',
+    body: [
+      {
+        table: [
+          ['#palavra', '#quer dizer', '#frase'],
+          ['__いつも__', 'sempre', 'afirmativa'],
+          ['__よく__', 'muitas vezes', 'afirmativa'],
+          ['__ときどき__', 'às vezes', 'afirmativa'],
+          ['__あまり__', 'pouco, raramente', 'negativa'],
+          ['__ぜんぜん__', 'de jeito nenhum, nunca', 'negativa'],
+        ],
+      },
+      '**あまり** e **ぜんぜん** pedem o final **negativo**: __あまり みえない__, __ぜんぜん わかりません__. O advérbio vem antes do verbo.',
+    ],
+    pattern: '[いつも / よく / ときどき] verbo · [あまり / ぜんぜん] verbo negativo',
+    hint: 'いつも, よく, ときどき com afirmativa; あまり e ぜんぜん com negativa.',
+    examples: [
+      { id: 150453, ja: '時々ゴルフをします。', furi: '[時々|ときどき]ゴルフをします。', kana: 'ときどき ゴルフ~を します', pt: 'De vez em quando eu jogo golfe.' },
+      { id: 8723018, ja: 'いつも忙しいの？', furi: 'いつも[忙|いそが]しいの？', kana: 'いつも いそがしい~の', pt: 'Você está sempre ocupado?' },
+      { id: 5157, ja: 'あまり見えない。', furi: 'あまり[見|み]えない。', kana: 'あまり みえない', pt: 'Eu o vejo raramente.' },
+      { id: 213984, ja: '全然疲れてません。', furi: '[全然|ぜん|ぜん][疲|つか]れてません。', kana: 'ぜんぜん つかれて|ません', pt: 'Não estou nem um pouco cansado.' },
+    ],
+  },
+  {
+    id: 'g36',
+    title: 'Oferecer ajuda: 〜ましょうか',
+    body: [
+      'Além de convidar ("vamos"), **ましょうか** serve para **se oferecer**: tire o ます do verbo e ponha ましょうか. __てつだいましょうか__ = quer que eu ajude? Quem oferece é você; a outra pessoa responde sim ou não.',
+      'Também pergunta "vamos?" quando o grupo decide junto: __いきましょうか__.',
+    ],
+    pattern: '[verbo sem ます] ましょうか',
+    hint: 'Quer que eu...?: radical do verbo + ましょうか.',
+    examples: [
+      { id: 10671567, ja: '何か手伝いましょうか？', furi: '[何|なに]か[手伝|て|つだ]いましょうか？', kana: 'なに~か てつだいましょう~か', pt: 'Posso ajudar com alguma coisa?' },
+      { id: 140345, ja: '窓を開けましょうか。', furi: '[窓|まど]を[開|あ]けましょうか。', kana: 'まど~を あけましょう~か', pt: 'Você quer que eu abra a janela?' },
+      { id: 227047, ja: 'お手伝いしましょうか。', furi: 'お[手伝|て|つだ]いしましょうか。', kana: 'おてつだい しましょう~か', pt: 'Quer que eu te ajude?' },
+      { id: 173392, ja: '行きましょうか。', furi: '[行|い]きましょうか。', kana: 'いきましょう~か', pt: 'Vamos?' },
+    ],
+  },
+  {
+    id: 'g37',
+    title: 'Só e apenas: だけ',
+    body: [
+      '**だけ** quer dizer "só", "apenas", e vem logo depois da palavra: __ひとつだけ__ (só um), __これだけ__ (só isto).',
+      'Pode vir antes de outra partícula: __それだけで__ (só com isso).',
+    ],
+    pattern: '[palavra] だけ',
+    hint: 'だけ vai depois da palavra e quer dizer só.',
+    examples: [
+      { id: 3449190, ja: '願いは一つだけ。', furi: '[願|ねが]いは[一|ひと]つだけ。', kana: 'ねがい~は ひとつ だけ', pt: 'Só tenho um desejo.' },
+      { id: 205799, ja: 'それだけで結構です。', furi: 'それだけで[結構|けっ|こう]です。', kana: 'それ だけ~で けっこう|です', pt: 'Isso é tudo.' },
+    ],
+  },
+  {
+    id: 'g38',
+    title: 'Algo e alguém: なにか, だれか, どこか',
+    body: [
+      'Junte **か** a uma palavra de pergunta e ela vira "algum": __なにか__ (alguma coisa), __だれか__ (alguém), __どこか__ (em algum lugar), __いつか__ (algum dia).',
+      'É diferente de perguntar "o quê?": __なにか のむ?__ quer dizer "toma alguma coisa?".',
+    ],
+    pattern: '[なに / だれ / どこ / いつ] か',
+    hint: 'Palavra de pergunta + か = algum(a).',
+    examples: [
+      { id: 890127, ja: '何か飲む？', furi: '[何|なに]か[飲|の]む？', kana: 'なに~か のむ', pt: 'Quer beber algo?' },
+      { id: 2552450, ja: '何か見える？', furi: '[何|なに]か[見|み]える？', kana: 'なに~か みえる', pt: 'Você consegue ver algo?' },
+      { id: 137130, ja: '誰かいる？', furi: '[誰|だれ]かいる？', kana: 'だれ~か いる', pt: 'Tem alguém aí?' },
+      { id: 11610218, ja: '誰か来る。', furi: '[誰|だれ]か[来|く]る。', kana: 'だれ~か くる', pt: 'Alguém está vindo.' },
+    ],
+  },
 ];

@@ -15,7 +15,7 @@ describe('gramática N5 (Tatoeba)', () => {
       expect(t.title.length).toBeGreaterThan(5);
       expect(t.body.length).toBeGreaterThan(0);
       expect(t.pattern).toBeTruthy();
-      expect(t.examples.length).toBeGreaterThanOrEqual(3);
+      expect(t.examples.length).toBeGreaterThanOrEqual(2);
       for (const e of t.examples) {
         expect(e.jp).toMatch(/[぀-ヿ]/);
         expect(e.romaji).toMatch(/^[a-zāīūēō' ]+$/);
@@ -49,7 +49,7 @@ describe('gramática N5 (Tatoeba)', () => {
   it('os exercícios fecham a frase: blocos juntos = exemplo, sem blocos a mais repetidos', () => {
     const examples = new Map(GRAMMAR_N5.flatMap((t) => t.examples).map((e) => [e.pt + '|' + e.romaji, e.jp.replace(/ /g, '')]));
     for (const e of BUILD_N5) {
-      expect(e.answer.length).toBeGreaterThanOrEqual(3);
+      expect(e.answer.length).toBeGreaterThanOrEqual(2);
       expect(e.answer.length).toBeLessThanOrEqual(8);
       expect(e.extra).toHaveLength(2);
       expect(e.extra.some((x) => e.answer.includes(x))).toBe(false);

@@ -107,4 +107,35 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
     'A pessoa que "quer ser algo" usa になりたい, e não をなりたい.',
   ],
   g30: ['O que se sabe fazer leva が: スキーが できます. Com を a frase soa estranha.'],
+  g31: [
+    'O verbo antes de まえに fica no dicionário (ねる まえに), e não em ます (ねます まえに). Em português o verbo tem um só tempo ("antes de dormir"), mas em japonês o tempo vem no fim da frase.',
+    'Com substantivo, lembre do の: しょくじの まえに.',
+  ],
+  g32: [
+    'て + から precisa da forma て certa (たべてから, かえってから). A ação principal vem depois e leva o tempo da frase.',
+    'あとで sozinho é "mais tarde"; depois de um substantivo é のあとで (しごとの あとで).',
+  ],
+  g33: [
+    'ながら só vale quando é a mesma pessoa que faz as duas coisas. Para pessoas diferentes se usa outra construção.',
+    'O verbo antes de ながら perde o ます (たべます → たべながら), e a ação principal fica no fim.',
+  ],
+  g34: [
+    'O verbo antes de に perde o ます (たべます → たべに). Não use a forma de dicionário aqui (たべるに está errado).',
+    'Com palavras de ação (かいもの, べんきょう) é só に, sem verbo.',
+  ],
+  g35: [
+    'あまり e ぜんぜん pedem o final negativo. Dizer "ぜんぜん いい" no sentido de "nada mal" existe na fala solta, mas na escola se ensina com o negativo.',
+    'O advérbio vem antes do verbo, não no fim da frase como o "sempre" do português às vezes.',
+  ],
+  g36: [
+    'ましょうか oferece algo que VOCÊ faz. Para pedir que o outro faça, use ください ou てもらえますか.',
+    'Fica ambíguo se é oferta ou convite: o contexto decide (てつだいましょうか é oferta; いきましょうか costuma ser "vamos?").',
+  ],
+  g37: [
+    'だけ vem depois da palavra e antes de partículas como は e で (これだけは, それだけで). Em português o "só" vem antes.',
+  ],
+  g38: [
+    'なに + か (なにか) é "alguma coisa"; なに sozinho é "o quê?". Em perguntas simples, a entonação sobe nos dois casos, então o contexto ajuda.',
+    'Em frases negativas se usa も (なにも ない), e não か.',
+  ],
 };

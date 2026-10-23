@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.10.0] - 2026-10-23
+
+Fase 6 (em parte): o app passa a organizar o dia e a perceber o que você não está fixando. Tudo no aparelho.
+
+- **Sessão de hoje** (tela inicial): quatro passos de uns 15 a 20 minutos (revisar o que venceu, algo novo, ouvir, produzir uma frase), marcados pelo que você já fez no dia. Cada passo leva à tela certa.
+- **Revisão que aprende com os erros:** cada item guarda quantas vezes foi esquecido. O que você esquece volta mais cedo (o intervalo encolhe até 40%), e quem chega à caixa 3 sem tropeçar "perdoa" um esquecimento. Entra no backup; backups antigos continuam valendo. As caixas continuam, não é o FSRS completo.
+- **Itens teimosos:** o que você esquece 4 vezes ou mais e ainda está nas caixas 1 e 2 aparece num card com outra abordagem para cada tipo (kana, palavra, verbo, partícula).
+- **Caminho por nível** (Meu Mochi → Metas): marcos do N5 (kana, palavras e kanji firmes) e do N4 (kanji firmes).
+
 ## [1.9.0] - 2026-10-23
 
 Vocabulário, kanji, gramática, áudio nativo, leitura e treinos de fluência. Tudo funciona no aparelho, sem servidor.

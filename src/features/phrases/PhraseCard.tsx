@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card } from '@/components';
 import type { TravelPhrase } from '@/data/types';
+import { ShadowRecorder } from '@/features/listen/ShadowRecorder';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { RomajiLine } from './RomajiLine';
 import { useSettingsStore } from '@/store';
@@ -32,6 +33,7 @@ export function PhraseCard({ phrase, breakdown = false, rating, enterIndex }: Ph
   const { colors } = useTheme();
   const speed = useSettingsStore((s) => s.speechSpeed);
   const [open, setOpen] = useState(false);
+  const [recording, setRecording] = useState(false);
 
   return (
     <Card {...(enterIndex === undefined ? {} : { enterIndex })}>
@@ -46,6 +48,12 @@ export function PhraseCard({ phrase, breakdown = false, rating, enterIndex }: Ph
 
       {rating ? (
         <View style={styles.rating}>
+          <Button
+            label={recording ? 'Fechar o gravador' : '🎙 Gravar a minha voz e comparar'}
+            variant="ghost"
+            onPress={() => setRecording((r) => !r)}
+          />
+          {recording ? <ShadowRecorder say={phrase.jp} /> : null}
           <AppText variant="caption" color="muted">
             Como saiu?
           </AppText>

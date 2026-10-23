@@ -26,6 +26,13 @@
       "expo-font",
       "expo-sqlite",
       [
+        "expo-audio",
+        {
+          "microphonePermission": "O Moji Dojo usa o microfone só para você gravar a sua voz e comparar com o modelo.",
+          "recordAudioAndroid": true
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "image": "./assets/splash-icon.png",

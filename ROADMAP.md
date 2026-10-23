@@ -116,7 +116,8 @@ Objetivo: entender o japonês falado e conseguir se fazer entender.
   - Feito (frases): Ouvir → **Compreensão**. A frase toca sem texto e você escolhe o sentido entre quatro traduções; velocidade normal ou lenta pelo controle do topo. Falta: ouvir diálogos inteiros e responder perguntas sobre eles.
 - [ ] **Áudio de melhor qualidade:** hoje a voz é a síntese do sistema. Avaliar áudio gravado por falantes nativos com licença livre, que também mostra o sotaque melhor. *(G)*
 - [ ] **Tom das palavras (pitch accent):** indicar a queda de tom das palavras mais comuns, com exemplos de pares. *(M)*
-- [ ] **Gravar e comparar (shadowing):** gravar a própria voz e ouvir ao lado do modelo, com a forma de onda. É a evolução do "Repetir" atual, que só tem autoavaliação. *(M)*
+- [x] **Gravar e comparar (shadowing):** gravar a própria voz e ouvir ao lado do modelo, com a forma de onda. É a evolução do "Repetir" atual, que só tem autoavaliação. *(M)*
+  - Feito: em Ouvir → Repetir, cada frase tem **Gravar a minha voz e comparar** (`expo-audio`, pede a permissão do microfone). Mostra a onda do que você gravou (ritmo e pausas, não pronúncia) e botões para ouvir o modelo e a sua voz, um depois do outro. A gravação fica só no aparelho e não entra no backup. O modelo é a voz do sistema, que não gera arquivo, por isso a onda é só da sua voz. **Falta testar no aparelho.**
 - [ ] **Reconhecimento de fala em japonês:** pedir ao aluno para dizer a frase e conferir com o reconhecimento do Android. Exige módulo nativo, que o build local já suporta. Resultado aproximado, usado como guia e não como nota. *(G)*
 
 ### Fase 5: leitura

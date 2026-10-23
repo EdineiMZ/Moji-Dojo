@@ -82,8 +82,10 @@ Objetivo: transformar "li sobre は e が" em "uso は e が sem pensar".
   - Feito: o filtro "Partículas" das Lacunas, com os pares confusos (は/を/も, に/で/を). Falta: が (precisa do tópico de gramática antes) e a revisão espaçada por partícula.
 - [x] **Contadores e números:** leitura, datas, horas e preços, com áudio. *(M)*
   - Feito: sub-aba **Contar** em Frases. Números de 1 a 99.999, horas (よじ, しちじ, くじ, ふん/ぷん, はん), datas (ついたち... はつか), preços (よえん) e 11 contadores (人, つ, 本, 枚, 冊, 台, 匹, 個, 歳, 階, 回) de 1 a 10, tudo gerado por regra e tabela e conferido por testes. Dois modos: ler (ver a escrita, escolher a leitura) e ouvir. As respostas erradas são a regra sem a exceção (さんびゃく → さんひゃく). Inclui tabela de consulta.
-- [ ] **"Erros comuns de quem fala português":** notas curtas (ordem das palavras, sujeito omitido, falta de artigos e plural). *(P)*
-- [ ] **Mini-teste por tópico:** só libera "dominado" depois de acertar sem consultar a explicação. *(P)*
+- [x] **"Erros comuns de quem fala português":** notas curtas (ordem das palavras, sujeito omitido, falta de artigos e plural). *(P)*
+  - Feito: 10 dicas gerais no topo da Gramática (verbo no fim, sujeito omitido, sem artigos, を não é "o", sim/não em pergunta negativa...) e notas por tópico (28 dos 30). Escritas por IA, **a revisar por um falante** antes de publicar (`src/content/pitfalls.ts`).
+- [x] **Mini-teste por tópico:** só libera "dominado" depois de acertar sem consultar a explicação. *(P)*
+  - Feito: botão em cada tópico, até 5 perguntas ("o que quer dizer?" com os exemplos e lacunas com as frases do Montar), sem a explicação à vista; 80% de acertos de primeira marcam o tópico como dominado (✓ na lista, contador no topo, `progress.mastered` e backup).
 
 ### Fase 3: montar e produzir frases
 

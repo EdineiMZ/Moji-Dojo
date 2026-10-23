@@ -33,6 +33,8 @@ export interface ProgressActions {
   recordConjAnswer: (cardKey: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Exercício solto (lacunas): conta no histórico do dia e marca o dia, sem agendar revisão. */
   recordDrill: (ok: boolean, now?: number) => void;
+  /** Mini-teste de um tópico de gramática aprovado: o tópico fica "dominado" e o dia é marcado. */
+  masterTopic: (topicId: string, now?: number) => void;
   /** Marca o dia como estudado (ex.: ao conferir uma escrita). */
   markStudied: (now?: number) => void;
   /**
@@ -57,6 +59,8 @@ export interface ProgressExtras {
   vocab: SrsState;
   /** Revisão espaçada da conjugação, por cartão ("verbo|forma"). */
   conj: SrsState;
+  /** Tópicos de gramática dominados (mini-teste aprovado), pelo id, com o momento da aprovação. */
+  mastered: Readonly<Record<string, number>>;
 }
 
 export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions;
@@ -77,6 +81,7 @@ export function createProgressStore(storage: StateStorage) {
         history: {},
         vocab: {},
         conj: {},
+        mastered: {},
 
         completeLesson: (lessonId, chars, skipped = false, now = Date.now()) =>
           set((s) => {
@@ -168,6 +173,12 @@ export function createProgressStore(storage: StateStorage) {
             history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
           })),
 
+        masterTopic: (topicId, now = Date.now()) =>
+          set((s) => ({
+            mastered: s.mastered[topicId] ? s.mastered : { ...s.mastered, [topicId]: now },
+            days: markDay(s.days, new Date(now)),
+          })),
+
         markStudied: (now = Date.now()) => set((s) => ({ days: markDay(s.days, new Date(now)) })),
 
         replaceProgress: (snapshot, extras) =>
@@ -178,17 +189,17 @@ export function createProgressStore(storage: StateStorage) {
             stats: snapshot.stats,
             days: snapshot.days,
             history: extras?.history ?? {},
-            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj } : {}),
+            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, mastered: extras.mastered } : {}),
           }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, mastered: {} }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj }) => ({
+        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, mastered }) => ({
           srs,
           lessons,
           stats,
@@ -198,6 +209,7 @@ export function createProgressStore(storage: StateStorage) {
           history,
           vocab,
           conj,
+          mastered,
         }),
       },
     ),

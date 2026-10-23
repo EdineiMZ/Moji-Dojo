@@ -3,6 +3,7 @@ import { findItem } from '@/features/catalog';
 import type { CharStats, ProgressSnapshot } from '@/features/progress/types';
 import { LAST_BOX, type SrsEntry } from '@/features/review/srs';
 import { MAX_HISTORY_DAYS, type DayActivity } from '@/features/stats/metrics';
+import { ALL_GRAMMAR } from '@/content/grammar';
 import { parseCardKey as parseVerbKey } from '@/features/conjugation/cards';
 import { learnedWordIds, parseCardKey } from '@/features/vocab/cards';
 import type { ProgressExtras, ShadowRating } from '@/store/progressStore';
@@ -196,7 +197,17 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
     conj[key] = { b: Math.min(Math.max(Math.round(v.b), 1), LAST_BOX), due: v.due };
   }
 
-  return { value: { history: recent, shadow, challenges, vocab, conj }, ignored };
+  const knownTopics = new Set(ALL_GRAMMAR.map((t) => t.id));
+  const mastered: Record<string, number> = {};
+  for (const [topic, at] of Object.entries(recordField(root, 'mastered'))) {
+    if (!knownTopics.has(topic) || !isCount(at)) {
+      ignored++;
+      continue;
+    }
+    mastered[topic] = at;
+  }
+
+  return { value: { history: recent, shadow, challenges, vocab, conj, mastered }, ignored };
 }
 
 /**
@@ -310,6 +321,7 @@ export function exportBackup(progress: ProgressSnapshot & ProgressExtras, now: D
     challenges: progress.challenges,
     vocab: progress.vocab,
     conj: progress.conj,
+    mastered: progress.mastered,
   };
   return APP_BACKUP_PREFIX + btoa(encodeUtf8(JSON.stringify(payload)));
 }

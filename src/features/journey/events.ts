@@ -265,7 +265,7 @@ export function claimWeekChest(state: JourneyState, ctx: EventContext): JourneyS
 
 // --- fechamento de cada evento ---
 
-function achievementContext(state: JourneyState, ctx: EventContext): AchievementContext {
+export function achievementContext(state: JourneyState, ctx: EventContext): AchievementContext {
   return {
     streak: ctx.streak,
     bestStreak: Math.max(state.bestStreak, ctx.bestStreak, ctx.streak),

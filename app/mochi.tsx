@@ -3,19 +3,25 @@ import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { AppText, BackLink, ChipRow, Screen } from '@/components';
 import type { MochiOutfit } from '@/components/mascot/MochiArt';
+import { AchievementsView } from '@/features/journey/ui/AchievementsView';
+import { GoalsView } from '@/features/journey/ui/GoalsView';
 import { MochiHeader } from '@/features/journey/ui/MochiHeader';
 import { ShopView } from '@/features/journey/ui/ShopView';
+import { SummaryView } from '@/features/journey/ui/SummaryView';
 import { WardrobeView } from '@/features/journey/ui/WardrobeView';
 import { spacing } from '@/theme';
 
-type Tab = 'wardrobe' | 'shop';
+type Tab = 'wardrobe' | 'shop' | 'achievements' | 'goals' | 'summary';
 
 const TABS = [
   { value: 'wardrobe' as const, label: 'Armário' },
   { value: 'shop' as const, label: 'Loja' },
+  { value: 'achievements' as const, label: 'Conquistas' },
+  { value: 'goals' as const, label: 'Metas' },
+  { value: 'summary' as const, label: 'Resumo' },
 ];
 
-/** Meu Mochi: o Mochi com a roupa atual, o armário para vestir e a loja para comprar itens com pétalas. */
+/** Meu Mochi: o Mochi, o armário, a loja, as conquistas, as metas e o resumo do estudo. */
 export default function MochiScreen() {
   const router = useRouter();
   const [tab, setTab] = useState<Tab>('wardrobe');
@@ -37,7 +43,11 @@ export default function MochiScreen() {
           setPreview(null);
         }}
       />
-      {tab === 'wardrobe' ? <WardrobeView /> : <ShopView onPreview={setPreview} />}
+      {tab === 'wardrobe' ? <WardrobeView /> : null}
+      {tab === 'shop' ? <ShopView onPreview={setPreview} /> : null}
+      {tab === 'achievements' ? <AchievementsView /> : null}
+      {tab === 'goals' ? <GoalsView /> : null}
+      {tab === 'summary' ? <SummaryView /> : null}
     </Screen>
   );
 }

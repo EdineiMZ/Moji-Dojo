@@ -72,8 +72,8 @@ describe('fluxo: revisão espaçada', () => {
 
     const { srs } = store.getState();
     expect(srs['あ']).toEqual({ b: 3, due: NOW + 7 * DAY_MS });
-    expect(srs['い']).toEqual({ b: 1, due: NOW + DAY_MS });
-    expect(srs['う']).toEqual({ b: 1, due: NOW + DAY_MS });
+    expect(srs['い']).toEqual({ b: 1, due: NOW + DAY_MS, l: 2 });
+    expect(srs['う']).toEqual({ b: 1, due: NOW + DAY_MS, l: 3 });
   });
 
   it('depois da sessão não sobra nada vencido e as estatísticas contam cada resposta', () => {
@@ -96,7 +96,7 @@ describe('fluxo: revisão espaçada', () => {
   it('revisão extra: errar ainda reagenda para a caixa 1', () => {
     const store = storeWithDueItems();
     runSession(store, { い: 1 }, true);
-    expect(store.getState().srs['い']).toEqual({ b: 1, due: NOW + DAY_MS });
+    expect(store.getState().srs['い']).toEqual({ b: 1, due: NOW + DAY_MS, l: 2 });
     expect(store.getState().srs['あ']).toEqual({ b: 2, due: NOW - DAY_MS });
   });
 });

@@ -14,6 +14,8 @@ export interface SrsEntry {
   b: number;
   /** Quando vence a próxima revisão (ms desde 1970). */
   due: number;
+  /** Quantas vezes o item foi esquecido (erro, ou acerto só depois de errar). Ausente = nunca. */
+  l?: number;
 }
 
 export type SrsState = Readonly<Record<string, SrsEntry>>;
@@ -44,11 +46,23 @@ export function boostSkippedItems(srs: SrsState, chars: readonly string[], now: 
  * - acertou de primeira: sobe uma caixa.
  */
 export function answerReview(entry: SrsEntry, ok: boolean, wasWrong: boolean, now: number): SrsEntry {
-  if (!ok) return { b: 1, due: now };
-  if (wasWrong) return { b: 1, due: now + DAY_MS };
+  const lapses = entry.l ?? 0;
+  const withLapses = (l: number): Pick<SrsEntry, 'l'> => (l > 0 ? { l } : {});
+  if (!ok) return { b: 1, due: now, ...withLapses(lapses + 1) };
+  if (wasWrong) return { b: 1, due: now + DAY_MS, ...withLapses(lapses + 1) };
   const b = Math.min(entry.b + 1, LAST_BOX);
-  return { b, due: now + (BOX_DAYS[b] ?? 0) * DAY_MS };
+  // Item que já foi esquecido várias vezes volta mais cedo: o intervalo encolhe 10% por esquecimento, até 40%.
+  const days = Math.max(1, Math.round((BOX_DAYS[b] ?? 0) * intervalFactor(lapses)));
+  // Quem chega à caixa firme sem tropeçar de novo vai "perdoando" um esquecimento.
+  return { b, due: now + days * DAY_MS, ...withLapses(b >= FIRM_BOX ? lapses - 1 : lapses) };
 }
+
+/** Fator do intervalo pelo número de esquecimentos: 1 (nunca esqueceu) até 0,6. */
+export const intervalFactor = (lapses: number): number => Math.max(0.6, 1 - 0.1 * lapses);
+
+/** Esquecimentos a partir dos quais o item é "teimoso" (leech) enquanto ainda está nas caixas baixas. */
+export const LEECH_LAPSES = 4;
+export const isLeech = (entry: SrsEntry): boolean => (entry.l ?? 0) >= LEECH_LAPSES && entry.b <= 2;
 
 /**
  * Na "revisão extra" só as respostas erradas mexem no agendamento:

@@ -82,11 +82,11 @@ describe('modo write + SRS (relógio congelado)', () => {
     const afterWrong = createProgressStore(memory());
     afterWrong.getState().replaceProgress(store.getState());
     afterWrong.getState().recordReviewAnswer('あ', false, true, false);
-    expect(afterWrong.getState().srs['あ']).toEqual({ b: 1, due: NOW });
+    expect(afterWrong.getState().srs['あ']).toEqual({ b: 1, due: NOW, l: 1 });
 
     const result = playWriteSession(store, 'あ', [scribble, perfect('あ')]);
     expect(result).toEqual({ total: 1, first: 0, wrong: ['あ'] });
-    expect(store.getState().srs['あ']).toEqual({ b: 1, due: NOW + DAY_MS });
+    expect(store.getState().srs['あ']).toEqual({ b: 1, due: NOW + DAY_MS, l: 2 });
     expect(store.getState().stats['あ']).toEqual({ c: 1, w: 1 });
   });
 

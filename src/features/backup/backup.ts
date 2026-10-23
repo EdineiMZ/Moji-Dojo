@@ -20,6 +20,12 @@ import { MAX_NOTE_LENGTH, type ProgressExtras, type ShadowRating } from '@/store
  *   desafios de digitação e vocabulário, com um campo `v` de versão. Campos novos entram como opcionais,
  *   então um código antigo continua valendo (sem o campo, vale vazio).
  */
+/** Entrada de revisão lida do backup: caixa dentro dos limites e, se houver, o número de esquecimentos. */
+function srsEntry(b: number, due: number, lapses: unknown): SrsEntry {
+  const l = isCount(lapses) ? Math.min(Math.round(lapses), 99) : 0;
+  return { b: Math.min(Math.max(Math.round(b), 1), LAST_BOX), due, ...(l > 0 ? { l } : {}) };
+}
+
 export const BACKUP_PREFIX = 'NDJ1:';
 export const APP_BACKUP_PREFIX = 'MDJ1:';
 /** Versão do formato MDJ1; quem lê recusa versões maiores (de um app mais novo). */
@@ -191,7 +197,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
       ignored++;
       continue;
     }
-    vocab[key] = { b: Math.min(Math.max(Math.round(v.b), 1), LAST_BOX), due: v.due };
+    vocab[key] = srsEntry(v.b, v.due, v.l);
   }
 
   const conj: Record<string, SrsEntry> = {};
@@ -200,7 +206,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
       ignored++;
       continue;
     }
-    conj[key] = { b: Math.min(Math.max(Math.round(v.b), 1), LAST_BOX), due: v.due };
+    conj[key] = srsEntry(v.b, v.due, v.l);
   }
 
   const particles: Record<string, SrsEntry> = {};
@@ -209,7 +215,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
       ignored++;
       continue;
     }
-    particles[key] = { b: Math.min(Math.max(Math.round(v.b), 1), LAST_BOX), due: v.due };
+    particles[key] = srsEntry(v.b, v.due, v.l);
   }
 
   const wordNotes: Record<string, string> = {};
@@ -280,7 +286,7 @@ export function parseBackup(code: string): BackupParseResult {
         ignored++;
         continue;
       }
-      srs[char] = { b: Math.min(Math.max(Math.round(v.b), 1), LAST_BOX), due: v.due };
+      srs[char] = srsEntry(v.b, v.due, v.l);
     }
 
     const knownLessons = new Set(Object.values(LESSONS).flatMap((list) => list.map((l) => l.id)));

@@ -5,6 +5,8 @@ import {
   DAY_MS,
   learnItems,
   shouldApplyReviewAnswer,
+  intervalFactor,
+  isLeech,
   upcomingReviews,
   type SrsState,
 } from './srs';
@@ -62,11 +64,11 @@ describe('answerReview', () => {
   });
 
   it('erro volta para a caixa 1 e vence agora', () => {
-    expect(answerReview({ b: 5, due: NOW }, false, false, NOW)).toEqual({ b: 1, due: NOW });
+    expect(answerReview({ b: 5, due: NOW }, false, false, NOW)).toEqual({ b: 1, due: NOW, l: 1 });
   });
 
   it('acerto depois de errar na sessão: caixa 1, vence amanhã', () => {
-    expect(answerReview({ b: 5, due: NOW }, true, true, NOW)).toEqual({ b: 1, due: NOW + DAY_MS });
+    expect(answerReview({ b: 5, due: NOW }, true, true, NOW)).toEqual({ b: 1, due: NOW + DAY_MS, l: 1 });
   });
 });
 
@@ -117,5 +119,24 @@ describe('upcomingReviews', () => {
       え: { b: 2, due: later },
     };
     expect(upcomingReviews(srs, NOW)).toEqual({ at: tomorrow, count: 2 });
+  });
+});
+
+describe('esquecimentos e itens teimosos', () => {
+  it('cada esquecimento encolhe o intervalo em 10%, até 40%', () => {
+    expect([0, 1, 2, 4, 9].map(intervalFactor)).toEqual([1, 0.9, 0.8, 0.6, 0.6]);
+    const forgetful = answerReview({ b: 4, due: NOW, l: 4 }, true, false, NOW); // caixa 5: 30 dias x 0,6
+    expect(forgetful.due).toBe(NOW + 18 * DAY_MS);
+  });
+
+  it('chegar à caixa firme sem tropeçar perdoa um esquecimento', () => {
+    expect(answerReview({ b: 2, due: NOW, l: 2 }, true, false, NOW).l).toBe(1);
+    expect(answerReview({ b: 2, due: NOW, l: 1 }, true, false, NOW).l).toBeUndefined();
+  });
+
+  it('teimoso: 4 esquecimentos e ainda nas caixas 1 e 2', () => {
+    expect(isLeech({ b: 1, due: NOW, l: 4 })).toBe(true);
+    expect(isLeech({ b: 3, due: NOW, l: 4 })).toBe(false);
+    expect(isLeech({ b: 1, due: NOW, l: 3 })).toBe(false);
   });
 });

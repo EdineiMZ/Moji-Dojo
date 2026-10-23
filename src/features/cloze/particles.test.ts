@@ -38,7 +38,7 @@ describe('revisão de partículas', () => {
     expect(store.getState().particles['を']).toMatchObject({ b: 2 });
     expect(store.getState().days).toHaveLength(1);
     store.getState().recordParticleAnswer('を', false, true, NOW);
-    expect(store.getState().particles['を']).toEqual({ b: 1, due: NOW });
+    expect(store.getState().particles['を']).toEqual({ b: 1, due: NOW, l: 1 });
     store.getState().recordParticleAnswer('xyz', true, true, NOW);
     expect(Object.keys(store.getState().particles)).toEqual(['を']);
     store.getState().resetProgress();

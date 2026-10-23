@@ -48,10 +48,10 @@ describe('learnWords e recordVocabAnswer', () => {
     expect(store.getState().vocab[key]).toEqual({ b: 2, due: NOW + 3 * DAY_MS });
 
     store.getState().recordVocabAnswer(key, false, true, NOW);
-    expect(store.getState().vocab[key]).toEqual({ b: 1, due: NOW });
+    expect(store.getState().vocab[key]).toEqual({ b: 1, due: NOW, l: 1 });
 
     store.getState().recordVocabAnswer(key, true, false, NOW);
-    expect(store.getState().vocab[key]).toEqual({ b: 1, due: NOW + DAY_MS });
+    expect(store.getState().vocab[key]).toEqual({ b: 1, due: NOW + DAY_MS, l: 2 });
   });
 
   it('conta como atividade do dia (respostas e acertos), sem inflar os caracteres aprendidos', () => {

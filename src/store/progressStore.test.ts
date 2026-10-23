@@ -70,13 +70,13 @@ describe('recordReviewAnswer', () => {
   it('erro volta à caixa 1 e fica vencido agora', () => {
     const store = withEntry();
     store.getState().recordReviewAnswer('あ', false, true, false);
-    expect(store.getState().srs['あ']).toEqual({ b: 1, due: NOW });
+    expect(store.getState().srs['あ']).toEqual({ b: 1, due: NOW, l: 1 });
   });
 
   it('acerto numa repetição vence amanhã', () => {
     const store = withEntry();
     store.getState().recordReviewAnswer('あ', true, false, false);
-    expect(store.getState().srs['あ']).toEqual({ b: 1, due: NOW + DAY_MS });
+    expect(store.getState().srs['あ']).toEqual({ b: 1, due: NOW + DAY_MS, l: 1 });
   });
 
   it('na revisão extra, acertar de primeira não reagenda, mas conta nas estatísticas', () => {

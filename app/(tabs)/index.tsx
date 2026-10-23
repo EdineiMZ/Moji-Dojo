@@ -8,6 +8,7 @@ import { PetalsBadge } from '@/features/journey/ui/PetalsBadge';
 import { ProgressCard } from '@/features/home/ProgressCard';
 import { buildTodaySummary, scriptProgress } from '@/features/home/summary';
 import { TodayCard } from '@/features/home/TodayCard';
+import { LeechCard } from '@/features/leeches/LeechCard';
 import { EvolutionCard } from '@/features/stats/EvolutionCard';
 import { accuracy, activityStrip, bestStreak, dailyAnswers, evolution } from '@/features/stats/metrics';
 import { StatsCard } from '@/features/stats/StatsCard';
@@ -72,6 +73,7 @@ export default function HomeScreen() {
         accuracy={metrics.accuracy}
         strip={metrics.strip}
       />
+      <LeechCard />
       <EvolutionCard evolution={metrics.evolution} answers={metrics.answers} />
       <ProgressCard progress={progress} />
     </Screen>

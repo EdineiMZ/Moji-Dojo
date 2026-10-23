@@ -26,6 +26,14 @@
       "expo-font",
       "expo-sqlite",
       [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#E7739A",
+          "defaultChannel": "lembretes"
+        }
+      ],
+      [
         "expo-speech-recognition",
         {
           "microphonePermission": "O Moji Dojo usa o microfone para conferir a frase que você diz em japonês.",

@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import { BackLink, AppText, Button, Card, Screen } from '@/components';
 import { BackupCard } from '@/features/backup/BackupCard';
 import { ExportCard } from '@/features/backup/ExportCard';
+import { RemindersCard } from '@/features/reminders/RemindersCard';
 import { AboutCard } from '@/features/progress/AboutCard';
 import { DisplaySettingsCard } from '@/features/progress/DisplaySettingsCard';
 import { FeedbackSettingsCard } from '@/features/progress/FeedbackSettingsCard';
@@ -26,6 +27,7 @@ export default function SettingsScreen() {
         <AppText color="muted">Vista o Mochi com os itens que você ganhou e compre novos com pétalas.</AppText>
         <Button label="Abrir o armário e a loja" onPress={() => router.push('/mochi')} />
       </Card>
+      <RemindersCard />
       <VoiceStatusCard />
       <ReviewSettingsCard />
       <DisplaySettingsCard />

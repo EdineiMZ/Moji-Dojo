@@ -1,3 +1,4 @@
+import { DEFAULT_REMINDERS } from '@/features/reminders/plan';
 import { createProgressStore } from './progressStore';
 import { createSettingsStore, SETTINGS_STORAGE_KEY, SPEECH_RATES } from './settingsStore';
 
@@ -29,6 +30,7 @@ describe('settingsStore', () => {
       furiganaMode: 'always',
       typingInput: 'pad',
       voiceId: null,
+      reminders: DEFAULT_REMINDERS,
     });
     expect(createSettingsStore(storage).getState().writeInReview).toBe(false);
   });

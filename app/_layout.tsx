@@ -8,6 +8,7 @@ import { useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { ToastHost } from '@/features/journey/ui/ToastHost';
+import { useReminderSync } from '@/features/reminders/useReminderSync';
 import { remainingLoadingMs } from '@/lib/loading';
 import { useProgressStore } from '@/store';
 import { playSfx, preloadSfx } from '@/lib/sfx';
@@ -56,6 +57,7 @@ function ThemedStack() {
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts(fontAssets);
+  useReminderSync();
 
   useEffect(() => {
     if (fontsLoaded || fontError) {

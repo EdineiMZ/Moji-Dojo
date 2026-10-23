@@ -4,7 +4,8 @@ import { AppText, Bold, Button, Card, Mascot, ProgressBar } from '@/components';
 import { formatDay } from '@/features/streak/days';
 import { useNow } from '@/hooks/useNow';
 import { plural } from '@/lib/plural';
-import { useProgressStore } from '@/store';
+import { requestPermission } from '@/features/reminders/scheduler';
+import { useProgressStore, useSettingsStore } from '@/store';
 import { spacing } from '@/theme';
 import { roll, weekChestReady } from '../events';
 import { missionsFor, WEEKLY_DAYS_GOAL } from '../missions';
@@ -21,6 +22,8 @@ export function JourneyCard() {
   const declineRescue = useProgressStore((s) => s.declineRescue);
   const claim = useProgressStore((s) => s.claimWeekChest);
   const updateJourney = useProgressStore((s) => s.updateJourney);
+  const reminders = useSettingsStore((s) => s.reminders);
+  const setReminders = useSettingsStore((s) => s.setReminders);
   const date = new Date(now);
   const journey = roll(state.journey, date);
   const ctx = buildContext(state, state.days, now);
@@ -63,6 +66,22 @@ export function JourneyCard() {
           </View>
           <Button label="Revisão leve (10)" onPress={() => router.push({ pathname: '/review', params: { light: '1' } })} />
           <Button label="Dispensar" variant="ghost" onPress={() => updateJourney((j) => ({ ...j, welcome: 0 }))} />
+        </Card>
+      ) : null}
+
+      {!reminders.asked && state.days.length >= 2 ? (
+        <Card enterIndex={1}>
+          <AppText variant="title">Quer um lembrete diário?</AppText>
+          <AppText>
+            O Mochi avisa no horário que você escolher, sem pressão. Dá para mudar o horário ou desligar em Ajustes.
+          </AppText>
+          <Button
+            label="Ativar lembretes"
+            onPress={() =>
+              void requestPermission().then((granted) => setReminders({ enabled: granted, asked: true }))
+            }
+          />
+          <Button label="Agora não" variant="ghost" onPress={() => setReminders({ asked: true })} />
         </Card>
       ) : null}
 

@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
+import { DEFAULT_REMINDERS, type ReminderSettings } from '@/features/reminders/plan';
 
 export type SpeechSpeed = 'normal' | 'slow';
 
@@ -30,6 +31,8 @@ export interface SettingsData {
   typingInput: TypingInput;
   /** Voz japonesa escolhida (identificador do Android); null = a melhor disponível. */
   voiceId: string | null;
+  /** Lembretes de estudo (notificações locais). */
+  reminders: ReminderSettings;
 }
 
 export interface SettingsActions {
@@ -42,6 +45,8 @@ export interface SettingsActions {
   setFuriganaMode: (value: ReadingAid) => void;
   setTypingInput: (value: TypingInput) => void;
   setVoiceId: (value: string | null) => void;
+  /** Muda só os campos passados dos lembretes. */
+  setReminders: (change: Partial<ReminderSettings>) => void;
 }
 
 export type SettingsState = SettingsData & SettingsActions;
@@ -58,6 +63,7 @@ export const DEFAULT_SETTINGS: SettingsData = {
   furiganaMode: 'always',
   typingInput: 'pad',
   voiceId: null,
+  reminders: DEFAULT_REMINDERS,
 };
 
 /**
@@ -78,12 +84,13 @@ export function createSettingsStore(storage: StateStorage) {
         setFuriganaMode: (value) => set({ furiganaMode: value }),
         setTypingInput: (value) => set({ typingInput: value }),
         setVoiceId: (value) => set({ voiceId: value }),
+        setReminders: (change) => set((s) => ({ reminders: { ...s.reminders, ...change } })),
       }),
       {
         name: SETTINGS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId }) => ({
+        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, reminders }) => ({
           writeInReview,
           speechSpeed,
           hapticsEnabled,
@@ -93,6 +100,7 @@ export function createSettingsStore(storage: StateStorage) {
           furiganaMode,
           typingInput,
           voiceId,
+          reminders,
         }),
       },
     ),

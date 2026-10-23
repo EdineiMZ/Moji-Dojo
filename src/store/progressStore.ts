@@ -7,6 +7,7 @@ import { markDay } from '@/features/streak/days';
 import { checkPhrase, newPhraseId, type MyPhrase, type MyPhrases, type PhraseProblem } from '@/features/myphrases/phrases';
 import { cardKeysFor as verbCardKeys, extraKeysFor as verbExtraKeys, EXTRA_PER_DAY, learnedVerbIds } from '@/features/conjugation/cards';
 import { findVerb } from '@/features/conjugation/verbs';
+import { isParticleCard } from '@/features/cloze/particles';
 import { cardKeysFor } from '@/features/vocab/cards';
 import { findWord } from '@/content';
 
@@ -37,6 +38,8 @@ export interface ProgressActions {
    * para a pilha de revisões não crescer de uma vez. Não faz nada se não falta cartão.
    */
   unlockConjForms: (now?: number) => void;
+  /** Resposta numa revisão de partículas (chave = a partícula): reagenda e marca o dia. */
+  recordParticleAnswer: (particle: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Resposta numa revisão de conjugação (chave = "verbo|forma"): reagenda e marca o dia. */
   recordConjAnswer: (cardKey: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Exercício solto (lacunas): conta no histórico do dia e marca o dia, sem agendar revisão. */
@@ -77,6 +80,8 @@ export interface ProgressExtras {
   vocab: SrsState;
   /** Revisão espaçada da conjugação, por cartão ("verbo|forma"). */
   conj: SrsState;
+  /** Revisão espaçada das partículas, por cartão (a própria partícula). Quem nunca foi revisada está sempre vencida. */
+  particles: SrsState;
   /** Tópicos de gramática dominados (mini-teste aprovado), pelo id, com o momento da aprovação. */
   mastered: Readonly<Record<string, number>>;
   /** Frases escritas pelo próprio aluno, pelo id. */
@@ -101,6 +106,7 @@ export function createProgressStore(storage: StateStorage) {
         history: {},
         vocab: {},
         conj: {},
+        particles: {},
         mastered: {},
         myPhrases: {},
 
@@ -193,6 +199,17 @@ export function createProgressStore(storage: StateStorage) {
             return { conj };
           }),
 
+        recordParticleAnswer: (particle, ok, firstTry, now = Date.now()) =>
+          set((s) => {
+            if (!isParticleCard(particle)) return s;
+            const entry = s.particles[particle] ?? { b: 1, due: now };
+            return {
+              days: markDay(s.days, new Date(now)),
+              history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
+              particles: { ...s.particles, [particle]: answerReview(entry, ok, !firstTry, now) },
+            };
+          }),
+
         recordConjAnswer: (cardKey, ok, firstTry, now = Date.now()) =>
           set((s) => {
             const entry = s.conj[cardKey];
@@ -271,17 +288,17 @@ export function createProgressStore(storage: StateStorage) {
             stats: snapshot.stats,
             days: snapshot.days,
             history: extras?.history ?? {},
-            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, mastered: extras.mastered, myPhrases: extras.myPhrases } : {}),
+            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, particles: extras.particles, mastered: extras.mastered, myPhrases: extras.myPhrases } : {}),
           }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, mastered: {}, myPhrases: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, mastered: {}, myPhrases: {} }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, mastered, myPhrases }) => ({
+        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, mastered, myPhrases }) => ({
           srs,
           lessons,
           stats,
@@ -291,6 +308,7 @@ export function createProgressStore(storage: StateStorage) {
           history,
           vocab,
           conj,
+          particles,
           mastered,
           myPhrases,
         }),

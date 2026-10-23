@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useNow } from '@/hooks/useNow';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, ChipRow, Mascot, PetalRain } from '@/components';
 import { resultMood } from '@/features/lessons/resultCopy';
@@ -10,6 +11,7 @@ import { feedbackComplete } from '@/lib/feedback';
 import { useProgressStore } from '@/store';
 import { spacing } from '@/theme';
 import { buildClozeRound, type ClozeKind } from './cloze';
+import { buildParticleReview, dueParticles, PARTICLE_REVIEW_BATCH, particleCounts } from './particles';
 
 type Filter = ClozeKind | 'all';
 
@@ -25,17 +27,22 @@ const FILTERS = [
  */
 export function ClozeView() {
   const recordDrill = useProgressStore((s) => s.recordDrill);
+  const recordParticleAnswer = useProgressStore((s) => s.recordParticleAnswer);
+  const particles = useProgressStore((s) => s.particles);
+  const now = useNow();
   const [filter, setFilter] = useState<Filter>('all');
-  const [session, setSession] = useState<{ questions: Question[]; attempt: number } | null>(null);
+  const [session, setSession] = useState<{ questions: Question[]; attempt: number; review: boolean } | null>(null);
   const [result, setResult] = useState<(QuizResult & { missed: readonly string[] }) | null>(null);
   // Frases erradas na rodada (a lista de erros do quiz só guarda a resposta, que se repete: は, を...).
   const missed = useRef<string[]>([]);
 
-  const start = () => {
+  const start = (review = false) => {
     missed.current = [];
     setResult(null);
-    setSession((s) => ({ questions: buildClozeRound(filter), attempt: (s?.attempt ?? 0) + 1 }));
+    const questions = review ? buildParticleReview(dueParticles(particles, Date.now()).slice(0, PARTICLE_REVIEW_BATCH)) : buildClozeRound(filter);
+    setSession((s) => ({ questions, attempt: (s?.attempt ?? 0) + 1, review }));
   };
+  const counts = particleCounts(particles, now);
 
   if (result) {
     const pct = result.total ? Math.round((result.first / result.total) * 100) : 0;
@@ -55,7 +62,7 @@ export function ClozeView() {
           mood={resultMood(good, pct)}
         >
           <View style={styles.actions}>
-            <Button label="Outra rodada" onPress={start} />
+            <Button label="Outra rodada" onPress={() => start(session?.review ?? false)} />
             <Button
               label="Voltar"
               variant="soft"
@@ -78,7 +85,8 @@ export function ClozeView() {
         questions={session.questions}
         title="Lacunas"
         onAnswer={(question, correct, firstTry) => {
-          recordDrill(correct);
+          if (session.review) recordParticleAnswer(question.item.char, correct, firstTry);
+          else recordDrill(correct);
           if (!correct && firstTry && question.item.script === 'pair' && question.item.explain) {
             if (!missed.current.includes(question.item.explain)) missed.current.push(question.item.explain);
           }
@@ -105,7 +113,19 @@ export function ClozeView() {
         O QUE TREINAR
       </AppText>
       <ChipRow options={FILTERS} value={filter} onChange={setFilter} />
-      <Button label="Começar (10 frases)" onPress={start} />
+      <Button label="Começar (10 frases)" onPress={() => start(false)} />
+      <AppText variant="caption" color="muted">
+        REVISÃO DAS PARTÍCULAS
+      </AppText>
+      <AppText color="muted">
+        {counts.started} de {counts.total} partículas em revisão. Cada uma volta no seu tempo: quanto mais você acerta, mais
+        espaçada fica.
+      </AppText>
+      {counts.due > 0 ? (
+        <Button label={`Revisar partículas (${Math.min(counts.due, PARTICLE_REVIEW_BATCH)})`} variant="soft" onPress={() => start(true)} />
+      ) : (
+        <AppText color="muted">Nenhuma partícula para revisar agora.</AppText>
+      )}
       <AppText variant="caption" color="muted">
         As frases são as mesmas do Montar, agora com um espaço. A tradução aparece embaixo para você saber o que a frase
         quer dizer, e quem erra vê a regra. A partícula é onde brasileiros mais erram: は e を, に e で.

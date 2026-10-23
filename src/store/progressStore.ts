@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
 import { emptyProgress, type ProgressSnapshot } from '@/features/progress/types';
+import { placeKnown } from '@/features/placement/placement';
 import { MATURE_BOX } from '@/features/journey/skills';
 import { answerReview, boostSkippedItems, learnItems, shouldApplyReviewAnswer, type SrsEntry, type SrsState } from '@/features/review/srs';
 import { addActivity, type ActivityHistory } from '@/features/stats/metrics';
@@ -79,6 +80,8 @@ export interface ProgressActions {
   recordDrill: (ok: boolean, area?: Area, now?: number) => void;
   /** Mini-teste de um tópico de gramática aprovado: o tópico fica "dominado" e o dia é marcado. */
   masterTopic: (topicId: string, now?: number) => void;
+  /** Teste de nivelamento: os kana e as palavras que a pessoa já sabe entram na revisão já firmes (caixa 3). */
+  applyPlacement: (chars: readonly string[], wordCards: readonly string[], now?: number) => void;
   /**
    * Salva uma frase própria (japonês + o que quer dizer). Devolve o id, ou o motivo de não ter salvo.
    * Entra na revisão já vencida.
@@ -344,6 +347,12 @@ export function createProgressStore(storage: StateStorage) {
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               journey: trackAnswer(s, days, now, { ok, area }),
             };
+          }),
+
+        applyPlacement: (chars, wordCards, now = Date.now()) =>
+          set((s) => {
+            const days = markDay(s.days, new Date(now));
+            return { srs: placeKnown(s.srs, chars, now), vocab: placeKnown(s.vocab, wordCards, now), days };
           }),
 
         masterTopic: (topicId, now = Date.now()) =>

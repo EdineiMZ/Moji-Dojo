@@ -1,12 +1,14 @@
 import { useMemo } from 'react';
 import { View } from 'react-native';
-import { AppText, Card, ProgressBar } from '@/components';
+import { useRouter } from 'expo-router';
+import { AppText, Button, Card, ProgressBar } from '@/components';
 import { useProgressStore } from '@/store';
 import { spacing } from '@/theme';
 import { levelPaths } from '../milestones';
 
 /** O caminho N5 → N4: quanto de cada marco já está firme (caixa 3 ou mais na revisão). */
 export function LevelPathCard() {
+  const router = useRouter();
   const srs = useProgressStore((s) => s.srs);
   const vocab = useProgressStore((s) => s.vocab);
   const conj = useProgressStore((s) => s.conj);
@@ -31,6 +33,7 @@ export function LevelPathCard() {
           ))}
         </View>
       ))}
+      <Button label="Fazer o teste de nivelamento" variant="soft" onPress={() => router.push('/placement')} />
     </Card>
   );
 }

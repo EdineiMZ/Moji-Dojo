@@ -53,8 +53,8 @@ Esforço: **P** = dias, **M** = 1 a 2 semanas, **G** = várias semanas.
 
 Objetivo: saber o que as palavras *significam* e reconhecê-las ao ouvir e ler.
 
-- [~] **Decks de vocabulário N5** (cerca de 600 a 800 palavras), organizados por tema (comida, família, tempo, lugares, verbos do dia a dia...) e por frequência de uso. *(G)*
-  - Feito (1.2.0): a estrutura toda e 179 palavras que vêm da especificação. Falta a ampliação para centenas de palavras, **parada à espera de decisão sobre fonte e licença** (a lista N5 aberta não teve a licença confirmada; o JMdict é CC BY-SA 4.0 com crédito obrigatório).
+- [x] **Decks de vocabulário N5** (cerca de 600 a 800 palavras), organizados por tema (comida, família, tempo, lugares, verbos do dia a dia...) e por frequência de uso. *(G)*
+  - Feito (1.3.0): a estrutura toda, as 179 palavras da especificação e **700 palavras da lista JLPT N5**, com significados traduzidos (revisão por um falante ainda pendente) e a fonte/licença documentadas em `src/content/LICENSE.md`. Falta confirmar a licença antes de publicar.
 - [x] **Cartões em várias direções:** japonês → significado, significado → japonês, leitura, e ouvir → significado. Cada direção revisada separadamente. *(M)*
   - Feito: japonês → significado, significado → japonês e ouvir → palavra escrita (só palavras de kana). A direção "leitura" (kanji → como se lê) ainda não existe.
 - [x] **Palavra ligada ao kanji:** ao estudar um kanji, mostrar as palavras que o usam; ao aprender uma palavra, destacar os kanji que a formam. *(M)*
@@ -63,6 +63,10 @@ Objetivo: saber o que as palavras *significam* e reconhecê-las ao ouvir e ler.
 - [ ] **Palavras mais úteis primeiro:** ordenar por frequência e por situações reais (restaurante, transporte, compras, apresentação). *(P)*
 - [ ] **Mnemônicos e notas:** campo para o aluno escrever a própria dica de memória em cada palavra. *(P)*
 - [ ] **Expandir kanji:** completar o N5 e avançar para o N4, com as mesmas lições de traços, leituras e exemplos. *(G)*
+
+### Antes de publicar (pendência registrada)
+
+O app é de **uso pessoal e privado**, então as licenças de conteúdo ainda não foram validadas. Antes de distribuir o app para outras pessoas, seguir a lista "Antes de publicar" em [`src/content/LICENSE.md`](src/content/LICENSE.md): confirmar a licença das listas do Tanos (ou trocar a fonte), cumprir o crédito do JMdict se for usado, **revisar as traduções com um falante** e escolher a licença do projeto.
 
 ### Fase 2: gramática ativa
 

@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.3.0] - 2026-10-23
+
+Fecha o vocabulário da Fase 1 do [ROADMAP](ROADMAP.md): de 179 para **837 palavras**.
+
+- **Lista JLPT N5:** 658 palavras novas (a lista tem 700; 42 já existiam), com leitura, significado em português, assunto e ordem de estudo pelas lições do Genki. Aprenda por assunto: verbos, adjetivos, comida e bebida, roupas e compras, transporte e viagem, expressões e outros.
+- **Traduções:** os significados foram traduzidos do inglês para o português e **ainda não foram revisados por um falante**; o original em inglês fica guardado no dado para conferência.
+- **Créditos e licença:** Ajustes → Sobre cita a fonte, e `src/content/LICENSE.md` documenta origem, alterações e a lista "Antes de publicar" (as licenças não foram validadas: uso pessoal por enquanto).
+- **Projeto:** `npm run build-n5` regenera `src/content/n5.ts` a partir do CSV e das traduções; a limpeza do CSV tem testes.
+
 ## [1.2.0] - 2026-10-22
 
 Primeira parte da Fase 1 do [ROADMAP](ROADMAP.md): vocabulário.

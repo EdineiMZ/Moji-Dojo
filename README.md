@@ -32,7 +32,7 @@ O app tem cinco abas (**Início, Trilha, Ouvir, Frases, Teclado**) e uma tela de
 - **Gramática:** 10 tópicos expansíveis, com tabela de verbos, esquema da frase e exemplos em áudio.
 - **Montar:** monte a frase em japonês tocando nos blocos (sobram blocos de propósito; algumas frases aceitam mais de uma ordem).
 - **Viagem:** frases por categoria, com áudio e "Palavra por palavra".
-- **Palavras (vocabulário):** 179 palavras que vêm da especificação, aprendidas 5 por vez, por assunto, com leitura, significado, kanji da palavra e som. Cada palavra vira cartões de revisão espaçada (japonês → significado, significado → japonês e, nas palavras só de kana, ouvir → palavra).
+- **Palavras (vocabulário):** 837 palavras (179 da especificação e 658 da lista JLPT N5), aprendidas 5 por vez, por assunto, com leitura, significado, kanji da palavra e som. Cada palavra vira cartões de revisão espaçada (japonês → significado, significado → japonês e, nas palavras só de kana, ouvir → palavra).
 
 **Teclado**
 - **Guia:** como funciona o teclado japonês de 12 teclas com deslize (flick).
@@ -105,7 +105,7 @@ app/                      Rotas do expo-router (uma tela por arquivo)
   settings.tsx            Ajustes (aberta pela engrenagem na Início)
 
 src/
-  content/                Vocabulário (montado a partir dos dados do HTML; fontes novas entram aqui)
+  content/                Vocabulário (dados do HTML + lista JLPT N5 gerada) e LICENSE.md das fontes
   data/                   Dados extraídos do HTML (arquivos gerados, não edite à mão)
     strokes/              Traços do KanjiVG + LICENSE.md (CC BY-SA 3.0)
   features/               Regras do app e as telas de cada assunto
@@ -165,7 +165,7 @@ O HTML é a fonte do conteúdo **atual**, mas não vai crescer com o app. O cont
 - Vive em arquivos de dados próprios, **escritos à mão** (ou importados de fonte aberta), num diretório separado (`src/content/`), com tipos TypeScript.
 - Cada coleção tem **testes de consistência**, como os de `src/data/*.test.ts`: toda palavra tem leitura e significado, todo kanji citado existe no catálogo, sem duplicatas, sem marcas de HTML.
 - Regra do projeto: **nada de japonês inventado**. Todo item vem de fonte com licença conferida (e creditada, como o KanjiVG em `src/data/strokes/LICENSE.md`) ou foi revisado por um falante.
-- O esquema concreto será definido junto com o vocabulário (Fase 1 do roadmap), para nascer do que ele realmente precisa.
+- Hoje o vocabulário é o da especificação (`src/content/vocab.ts`) mais a lista JLPT N5: o CSV e as traduções ficam em `scripts/vocab-n5/` e `npm run build-n5` gera `src/content/n5.ts` (veja `scripts/build-n5.mjs`). Fontes, alterações e a lista "Antes de publicar" estão em [`src/content/LICENSE.md`](src/content/LICENSE.md): o app é de uso pessoal e **as licenças de conteúdo ainda não foram validadas para publicação**.
 
 ## Backup
 

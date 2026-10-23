@@ -2,6 +2,17 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.11.0] - 2026-10-23
+
+Fase 6 quase completa (só falta trocar o algoritmo por FSRS) e conferência da Fase 7. Tudo no aparelho.
+
+- **Revisão mista:** kana, palavras e verbos vencidos intercalados em uma sessão de 20 perguntas, em vez de blocos longos do mesmo tipo. O primeiro passo da Sessão de hoje leva para ela quando há mais de um tipo vencido.
+- **Por habilidade** (Meu Mochi → Resumo): acertos em kana e kanji, vocabulário, gramática, escuta, fala e tom, e frases. A contagem começa nesta versão.
+- **Retenção:** % de acertos nos cartões maduros (os que só voltam depois de 2 semanas ou mais), a partir de 10 respostas.
+- **Caminho por nível:** agora com verbos em estudo e tópicos de gramática dominados, além de kana, palavras e kanji.
+- **Teste de nivelamento** (Meu Mochi → Metas → Caminho por nível): 20 kana e 15 palavras; o que você acertar de primeira pode entrar na revisão como firme, só depois de você confirmar.
+- Fase 7 conferida: todos os itens já estavam entregues na 1.8.0 e 1.9.0 (Mochi, conquistas, desafio da semana, recomeço sem culpa e resumo).
+
 ## [1.10.0] - 2026-10-23
 
 Fase 6 (em parte): o app passa a organizar o dia e a perceber o que você não está fixando. Tudo no aparelho.

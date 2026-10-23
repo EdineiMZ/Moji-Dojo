@@ -157,13 +157,16 @@ Objetivo: o app decide o que estudar hoje e mede o que realmente ficou.
   - Feito (1.10.0): card **Sessão de hoje** na tela inicial, em quatro passos (revisar o que venceu, algo novo, ouvir, uma frase), marcados pelo que já foi feito hoje; cada passo leva à tela certa.
 - [x] **Limites e metas:** quantos itens novos por dia, revisões máximas, meta semanal. Evita acumular uma pilha desanimadora de revisões. *(P)*
   - Feito em parte (1.8.0): **meta diária de respostas** (5, 10, 20 ou 40) e **meta semanal de dias** (4 de 7). Depois (1.9.0): **limites por dia** de itens novos (5, 10, 20) e de respostas de revisão (30, 60, 100), em Meu Mochi → Metas. São limites macios: ao chegar neles o app avisa e deixa continuar se a pessoa quiser.
-- [ ] **Mistura de tipos de exercício** (intercalar kana, vocabulário, gramática) em vez de blocos longos do mesmo tipo. *(M)*
+- [x] **Mistura de tipos de exercício** (intercalar kana, vocabulário, gramática) em vez de blocos longos do mesmo tipo. *(M)*
+  - Feito (1.11.0): **Revisão mista** (rota `/mixed`, aberta pelo primeiro passo da Sessão de hoje quando há kana e outros tipos vencidos): kana, palavras e verbos vencidos intercalados em rodízio, 20 perguntas, cada resposta reagenda o cartão dela. Partículas ficam de fora por enquanto.
 - [x] **Itens "teimosos" (leeches):** detectar o que o aluno erra sempre e propor outra abordagem (mnemônico, exemplo novo, quebrar em partes). *(M)*
   - Feito (1.10.0): com 4 esquecimentos ou mais e ainda nas caixas 1 e 2, o item aparece no card **Itens teimosos** (kana, palavras, verbos e partículas) com uma outra abordagem por tipo, e volta mais cedo na revisão.
-- [ ] **Estatísticas por habilidade:** leitura, escrita, escuta, fala e vocabulário, com retenção real (% que continua lembrando após semanas). *(M)*
-- [~] **Metas por nível:** caminho N5 → N4 → N3 com marcos claros ("sabe 800 palavras e 40 pontos de gramática"). *(M)*
-  - Feito em parte (1.10.0): Meu Mochi → Metas → **Caminho por nível**, com marcos N5 (kana, palavras, kanji firmes) e N4 (kanji firmes). Faltam marcos de gramática e verbos.
-- [ ] **Teste de nivelamento** para quem já sabe parte do conteúdo e quer pular. *(M)*
+- [x] **Estatísticas por habilidade:** leitura, escrita, escuta, fala e vocabulário, com retenção real (% que continua lembrando após semanas). *(M)*
+  - Feito (1.11.0): Meu Mochi → Resumo → **Por habilidade** (kana e kanji, vocabulário, gramática, escuta, fala e tom, frases) e **Retenção**: % de acertos em cartões maduros (caixa 4 ou mais, ou seja, que só voltam depois de 2 semanas), mostrada a partir de 10 respostas. A contagem começa na 1.10/1.11, não há histórico anterior. Escrita (desenho) ainda não tem contagem própria.
+- [x] **Metas por nível:** caminho N5 → N4 → N3 com marcos claros ("sabe 800 palavras e 40 pontos de gramática"). *(M)*
+  - Feito em parte (1.10.0): Meu Mochi → Metas → **Caminho por nível**, com marcos N5 (kana, palavras, kanji firmes) e N4 (kanji firmes). Depois (1.11.0): marcos de **verbos** com a conjugação em estudo e de **tópicos de gramática dominados** (mini-teste).
+- [x] **Teste de nivelamento** para quem já sabe parte do conteúdo e quer pular. *(M)*
+  - Feito (1.11.0): 20 kana e 15 palavras; o que for acertado de primeira pode entrar na revisão como firme (caixa 3, primeira revisão em uma semana), só depois de confirmar. Não pula lições da trilha nem cobre kanji, verbos e gramática. Botão em Meu Mochi → Metas → Caminho por nível.
 - [x] **Lembretes** no horário que o aluno escolher, sem insistir demais. *(P)*
   - Feito (1.8.0): lembretes **locais** (sem servidor) em Ajustes → Lembretes: horário, dias, aviso da noite quando a sequência está em risco, horário de silêncio e teste. Quem passa dias sem abrir recebe menos avisos, nunca cobrança. Precisa de permissão de notificação (Android 13+).
 

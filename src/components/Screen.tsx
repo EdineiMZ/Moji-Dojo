@@ -38,17 +38,19 @@ export function Screen({ children, scroll = true, scrollEnabled = true, contentS
   }, []);
 
   const padding: ViewStyle = {
-    paddingTop: insets.top + spacing.lg,
+    // O topo seguro fica fora da área que rola (ver abaixo): o conteúdo para sob a barra de status em vez de passar por trás.
+    paddingTop: scroll ? spacing.lg : insets.top + spacing.lg,
     // Com o teclado aberto, sobra espaço no fim para dar para rolar o campo para cima dele.
     paddingBottom: insets.bottom + spacing.xl + keyboardHeight,
     paddingHorizontal: spacing.lg,
   };
 
   return (
-    <LinearGradient colors={colors.backgroundGradient} style={styles.fill}>
+    <LinearGradient colors={colors.backgroundGradient} style={[styles.fill, scroll && { paddingTop: insets.top }]}>
       {scroll ? (
         <ScrollView
           ref={scrollRef}
+          style={styles.fill}
           scrollEnabled={scrollEnabled}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"

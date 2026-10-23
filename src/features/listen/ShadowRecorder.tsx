@@ -113,12 +113,12 @@ export function ShadowRecorder({ say }: ShadowRecorderProps) {
           {seconds} s (para sozinho em {MAX_SECONDS} s)
         </AppText>
       ) : null}
+      {recording ? (
+        <Button label="⏹ Parar" onPress={() => void finish()} />
+      ) : (
+        <Button label={uri ? '🎙 Gravar de novo' : '🎙 Gravar'} variant="soft" onPress={() => void start()} />
+      )}
       <View style={styles.row}>
-        {recording ? (
-          <Button label="⏹ Parar" style={styles.flex} onPress={() => void finish()} />
-        ) : (
-          <Button label={uri ? '🎙 Gravar de novo' : '🎙 Gravar'} variant="soft" style={styles.flex} onPress={() => void start()} />
-        )}
         <Button label="🔊 Modelo" variant="soft" style={styles.flex} onPress={() => speakJapanese(say, SPEECH_RATES[speed])} />
         <Button label="▶ Minha voz" variant="soft" style={styles.flex} disabled={!uri || recording} onPress={playMine} />
       </View>

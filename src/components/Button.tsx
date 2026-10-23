@@ -28,6 +28,11 @@ export function Button({ label, onPress, variant = 'primary', disabled = false, 
     opacity: motion ? 1 : 1 - 0.15 * pressed.value,
   }));
 
+  // O Pressable é quem entra na fileira ou na coluna: flex, largura e alinhamento têm de ir nele, senão botões lado a lado
+  // não dividem a largura e estouram a tela.
+  const { flex, flexGrow, flexShrink, flexBasis, alignSelf, width, minWidth, maxWidth, ...visual } = StyleSheet.flatten(style) ?? {};
+  const layout: ViewStyle = { flex, flexGrow, flexShrink, flexBasis, alignSelf, width, minWidth, maxWidth };
+
   const palette = {
     primary: { bg: colors.primary, fg: colors.onPrimary, border: 'transparent' },
     soft: { bg: colors.lilacSoft, fg: colors.ink, border: 'transparent' },
@@ -49,16 +54,19 @@ export function Button({ label, onPress, variant = 'primary', disabled = false, 
       }}
       onPressIn={() => setPressed(1)}
       onPressOut={() => setPressed(0)}
+      style={layout}
     >
       <Animated.View
         style={[
           styles.button,
           { backgroundColor: palette.bg, borderColor: palette.border, opacity: disabled ? 0.45 : 1 },
           animated,
-          style,
+          visual,
         ]}
       >
-        <AppText style={{ fontFamily: fonts.bold, fontSize: fontSizes.body, color: palette.fg }}>{label}</AppText>
+        <AppText center style={{ fontFamily: fonts.bold, fontSize: fontSizes.body, color: palette.fg }}>
+          {label}
+        </AppText>
       </Animated.View>
     </Pressable>
   );

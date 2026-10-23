@@ -1,6 +1,7 @@
 import * as Speech from 'expo-speech';
 import { create } from 'zustand';
 import { useSettingsStore } from '@/store';
+import { playRecording, recordingFor, stopRecording } from './nativeAudio';
 import { japaneseVoices, pickJapaneseVoice, speechText, type VoiceInfo, type VoiceStatus } from './voices';
 
 interface VoiceState {
@@ -61,9 +62,15 @@ export function ensureVoiceChecked(): void {
   void useVoiceStore.getState().check();
 }
 
-/** Lê um texto em japonês com a voz do Android (a japonesa, se existir). */
+/** Lê um texto em japonês: gravação de falante nativo quando a palavra tem, senão a voz do Android (a japonesa, se existir). */
 export function speakJapanese(text: string, rate = 0.9): void {
   const { voice } = useVoiceStore.getState();
   Speech.stop();
+  // Palavra gravada por um falante nativo: toca a gravação (mais natural que a voz do aparelho).
+  if (useSettingsStore.getState().nativeAudio) {
+    const recording = recordingFor(text);
+    if (recording && playRecording(recording, rate)) return;
+  }
+  stopRecording();
   Speech.speak(speechText(text), { language: 'ja-JP', rate, ...(voice ? { voice: voice.identifier } : {}) });
 }

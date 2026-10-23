@@ -37,6 +37,8 @@ export function FeedbackSettingsCard() {
   const hapticsEnabled = useSettingsStore((s) => s.hapticsEnabled);
   const setSoundEnabled = useSettingsStore((s) => s.setSoundEnabled);
   const setHapticsEnabled = useSettingsStore((s) => s.setHapticsEnabled);
+  const nativeAudio = useSettingsStore((s) => s.nativeAudio);
+  const setNativeAudio = useSettingsStore((s) => s.setNativeAudio);
 
   return (
     <Card enterIndex={1}>
@@ -52,6 +54,12 @@ export function FeedbackSettingsCard() {
         description="Um toque leve ao acertar, errar, trocar de aba e digitar nas teclas do simulador."
         value={hapticsEnabled}
         onChange={setHapticsEnabled}
+      />
+      <SwitchRow
+        label="Gravações de falantes nativos"
+        description="Nas palavras que têm gravação, toca a voz de uma pessoa em vez da voz do aparelho. Desligado: sempre a voz do aparelho."
+        value={nativeAudio}
+        onChange={setNativeAudio}
       />
     </Card>
   );

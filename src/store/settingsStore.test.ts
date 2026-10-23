@@ -30,6 +30,7 @@ describe('settingsStore', () => {
       furiganaMode: 'always',
       typingInput: 'pad',
       voiceId: null,
+      nativeAudio: true,
       reminders: DEFAULT_REMINDERS,
       limits: { newPerDay: 0, reviewsPerDay: 0 },
     });

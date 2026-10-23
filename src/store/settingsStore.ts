@@ -32,6 +32,8 @@ export interface SettingsData {
   typingInput: TypingInput;
   /** Voz japonesa escolhida (identificador do Android); null = a melhor disponível. */
   voiceId: string | null;
+  /** Usa gravações de falantes nativos nas palavras que as têm (senão, sempre a voz do aparelho). */
+  nativeAudio: boolean;
   /** Lembretes de estudo (notificações locais). */
   reminders: ReminderSettings;
   /** Limites por dia de itens novos e de revisões (0 = sem limite). */
@@ -47,6 +49,7 @@ export interface SettingsActions {
   setShowKanji: (value: boolean) => void;
   setFuriganaMode: (value: ReadingAid) => void;
   setTypingInput: (value: TypingInput) => void;
+  setNativeAudio: (value: boolean) => void;
   setVoiceId: (value: string | null) => void;
   /** Muda só os campos passados dos lembretes. */
   setReminders: (change: Partial<ReminderSettings>) => void;
@@ -67,6 +70,7 @@ export const DEFAULT_SETTINGS: SettingsData = {
   furiganaMode: 'always',
   typingInput: 'pad',
   voiceId: null,
+  nativeAudio: true,
   reminders: DEFAULT_REMINDERS,
   limits: DEFAULT_LIMITS,
 };
@@ -89,6 +93,7 @@ export function createSettingsStore(storage: StateStorage) {
         setFuriganaMode: (value) => set({ furiganaMode: value }),
         setTypingInput: (value) => set({ typingInput: value }),
         setVoiceId: (value) => set({ voiceId: value }),
+        setNativeAudio: (value) => set({ nativeAudio: value }),
         setReminders: (change) => set((s) => ({ reminders: { ...s.reminders, ...change } })),
         setLimits: (change) => set((s) => ({ limits: sanitizeLimits({ ...s.limits, ...change }) })),
       }),
@@ -96,7 +101,7 @@ export function createSettingsStore(storage: StateStorage) {
         name: SETTINGS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, reminders, limits }) => ({
+        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, nativeAudio, reminders, limits }) => ({
           writeInReview,
           speechSpeed,
           hapticsEnabled,
@@ -106,6 +111,7 @@ export function createSettingsStore(storage: StateStorage) {
           furiganaMode,
           typingInput,
           voiceId,
+          nativeAudio,
           reminders,
           limits,
         }),

@@ -89,6 +89,14 @@
 A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado vêm do protótipo
 `Nihongo Dojo.html` (a especificação do projeto), já presentes em `src/data/`.
 
+## Áudio nativo das palavras (Lingua Libre)
+
+- `assets/audio/words/*.mp3` e `src/content/wordAudio.ts` (gerados por `scripts/audio/convert.mjs`, a partir da coleta de
+  `scripts/audio/collect.mjs`): **360 gravações** de falantes nativos do Lingua Libre (Wikimedia Commons), só com licença
+  **CC0, CC BY 4.0 ou CC BY-SA 4.0**. Cada gravação guarda o falante, a licença e a página de origem em `wordAudio.ts`.
+- Foram convertidas para mp3 mono (22 kHz, 40 kbps), o que é uma adaptação: com CC BY-SA, o áudio do app segue a mesma licença.
+- Crédito em **Ajustes → Sobre**. Cobertura: cerca de metade das palavras do vocabulário; as outras usam a voz do aparelho.
+
 ## Antes de publicar
 
 1. **Confirmar a licença das listas do Tanos** (https://www.tanos.co.uk/jlpt/) e se ela permite o uso e a

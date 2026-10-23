@@ -1,5 +1,9 @@
 import Constants from 'expo-constants';
 import { AppText, Card } from '@/components';
+import { WORD_RECORDINGS } from '@/content/wordAudio';
+
+const RECORDINGS = Object.values(WORD_RECORDINGS);
+const SPEAKERS = [...new Set(RECORDINGS.map((r) => r.speaker))].sort((a, b) => a.localeCompare(b));
 
 /** Versão do app e os créditos exigidos pela licença dos dados de traços. */
 export function AboutCard() {
@@ -21,6 +25,10 @@ export function AboutCard() {
         Frases de exemplo da gramática (tópicos 11 a 30) e do Banco de frases: Tatoeba (tatoeba.org), licença CC BY 2.0
         FR, com a escrita em kana e o romaji feitos para este app. Os textos explicativos e as falas dos diálogos são
         originais e não foram revisados por um falante.
+      </AppText>
+      <AppText variant="caption" color="muted">
+        Áudio das palavras: {RECORDINGS.length} gravações de falantes nativos do Lingua Libre (Wikimedia Commons), licenças CC0,
+        CC BY 4.0 e CC BY-SA 4.0. Falantes: {SPEAKERS.join(', ')}. A página de cada gravação está em src/content/wordAudio.ts.
       </AppText>
     </Card>
   );

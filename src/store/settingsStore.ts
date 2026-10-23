@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
+import { DEFAULT_LIMITS, sanitizeLimits, type Limits } from '@/features/limits/limits';
 import { DEFAULT_REMINDERS, type ReminderSettings } from '@/features/reminders/plan';
 
 export type SpeechSpeed = 'normal' | 'slow';
@@ -33,6 +34,8 @@ export interface SettingsData {
   voiceId: string | null;
   /** Lembretes de estudo (notificações locais). */
   reminders: ReminderSettings;
+  /** Limites por dia de itens novos e de revisões (0 = sem limite). */
+  limits: Limits;
 }
 
 export interface SettingsActions {
@@ -47,6 +50,7 @@ export interface SettingsActions {
   setVoiceId: (value: string | null) => void;
   /** Muda só os campos passados dos lembretes. */
   setReminders: (change: Partial<ReminderSettings>) => void;
+  setLimits: (change: Partial<Limits>) => void;
 }
 
 export type SettingsState = SettingsData & SettingsActions;
@@ -64,6 +68,7 @@ export const DEFAULT_SETTINGS: SettingsData = {
   typingInput: 'pad',
   voiceId: null,
   reminders: DEFAULT_REMINDERS,
+  limits: DEFAULT_LIMITS,
 };
 
 /**
@@ -85,12 +90,13 @@ export function createSettingsStore(storage: StateStorage) {
         setTypingInput: (value) => set({ typingInput: value }),
         setVoiceId: (value) => set({ voiceId: value }),
         setReminders: (change) => set((s) => ({ reminders: { ...s.reminders, ...change } })),
+        setLimits: (change) => set((s) => ({ limits: sanitizeLimits({ ...s.limits, ...change }) })),
       }),
       {
         name: SETTINGS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, reminders }) => ({
+        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, reminders, limits }) => ({
           writeInReview,
           speechSpeed,
           hapticsEnabled,
@@ -101,6 +107,7 @@ export function createSettingsStore(storage: StateStorage) {
           typingInput,
           voiceId,
           reminders,
+          limits,
         }),
       },
     ),

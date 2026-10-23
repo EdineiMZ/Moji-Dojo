@@ -31,6 +31,7 @@ describe('settingsStore', () => {
       typingInput: 'pad',
       voiceId: null,
       reminders: DEFAULT_REMINDERS,
+      limits: { newPerDay: 0, reviewsPerDay: 0 },
     });
     expect(createSettingsStore(storage).getState().writeInReview).toBe(false);
   });

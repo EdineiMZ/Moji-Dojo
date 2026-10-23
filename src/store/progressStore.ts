@@ -197,7 +197,7 @@ export function createProgressStore(storage: StateStorage) {
             return {
               stats: { ...s.stats, [char]: ok ? { ...prev, c: prev.c + 1 } : { ...prev, w: prev.w + 1 } },
               days,
-              journey: trackAnswer(s, days, now, { ok, area: 'kana', ref: `srs:${char}` }),
+              journey: trackAnswer(s, days, now, { ok, area: 'kana', ref: `srs:${char}`, review: true }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               ...(reschedule ? { srs: { ...s.srs, [char]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
@@ -245,7 +245,7 @@ export function createProgressStore(storage: StateStorage) {
             const days = markDay(s.days, new Date(now));
             return {
               days,
-              journey: trackAnswer(s, days, now, { ok, area: 'vocab', ref: `vocab:${cardKey}`, ...groupOf(cardKey) }),
+              journey: trackAnswer(s, days, now, { ok, area: 'vocab', ref: `vocab:${cardKey}`, review: true, ...groupOf(cardKey) }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               ...(entry ? { vocab: { ...s.vocab, [cardKey]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
@@ -254,12 +254,16 @@ export function createProgressStore(storage: StateStorage) {
         learnVerbs: (verbIds, now = Date.now()) =>
           set((s) => {
             const conj: Record<string, SrsEntry> = { ...s.conj };
+            const before = learnedVerbIds(s.conj);
+            let fresh = 0;
             for (const id of verbIds) {
               const verb = findVerb(id);
               if (!verb) continue;
+              if (!before.has(id)) fresh++;
               for (const key of verbCardKeys(verb)) if (!conj[key]) conj[key] = { b: 1, due: now };
             }
-            return { conj, days: markDay(s.days, new Date(now)) };
+            const days = markDay(s.days, new Date(now));
+            return { conj, days, journey: trackNewWords(s, days, now, fresh) };
           }),
 
         unlockConjForms: (now = Date.now()) =>
@@ -313,7 +317,7 @@ export function createProgressStore(storage: StateStorage) {
             const days = markDay(s.days, new Date(now));
             return {
               days,
-              journey: trackAnswer(s, days, now, { ok, area: 'particle', ref: `particle:${particle}` }),
+              journey: trackAnswer(s, days, now, { ok, area: 'particle', ref: `particle:${particle}`, review: true }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               particles: { ...s.particles, [particle]: answerReview(entry, ok, !firstTry, now) },
             };
@@ -325,7 +329,7 @@ export function createProgressStore(storage: StateStorage) {
             const days = markDay(s.days, new Date(now));
             return {
               days,
-              journey: trackAnswer(s, days, now, { ok, area: 'conj', ref: `conj:${cardKey}` }),
+              journey: trackAnswer(s, days, now, { ok, area: 'conj', ref: `conj:${cardKey}`, review: true }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               ...(entry ? { conj: { ...s.conj, [cardKey]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
@@ -393,7 +397,7 @@ export function createProgressStore(storage: StateStorage) {
             return {
               myPhrases: { ...s.myPhrases, [id]: { ...phrase, b: next.b, due: next.due } },
               days,
-              journey: trackAnswer(s, days, now, { ok, area: 'phrase', ref: `phrase:${id}` }),
+              journey: trackAnswer(s, days, now, { ok, area: 'phrase', ref: `phrase:${id}`, review: true }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
             };
           }),

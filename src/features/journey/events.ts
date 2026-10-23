@@ -119,6 +119,8 @@ export interface AnswerEvent {
   area: Area;
   /** Grupo do vocabulário da palavra (para o desafio da semana). */
   group?: string;
+  /** A resposta é de um cartão de revisão espaçada (conta para o limite de revisões do dia). */
+  review?: boolean;
 }
 
 /** Uma resposta numa pergunta de qualquer área. */
@@ -128,6 +130,7 @@ export function onAnswer(state: JourneyState, ctx: EventContext, event: AnswerEv
   next = { ...next, counters: bump(next.counters, 'answers') };
   next = countDay(next, 'answers');
   if (event.ok) next = { ...next, counters: bump(next.counters, 'correct') };
+  if (event.review) next = countDay(next, 'reviews');
 
   if (event.area === 'dictation' || event.area === 'understand') next = countDay(next, 'listen');
   if (event.area === 'dictation') next = { ...next, counters: bump(next.counters, 'dictations') };

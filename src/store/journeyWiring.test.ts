@@ -129,4 +129,18 @@ describe('a jornada ligada ao progresso', () => {
     expect(store.getState().days).toEqual(['2026-10-21']);
     expect(store.getState().journey.counters.sessions).toBe(1);
   });
+
+  it('respostas de revisão e verbos novos contam para os limites do dia; lição e drill, não', () => {
+    const store = createProgressStore(memoryStorage());
+    store.getState().learnWords(['学校'], at(21));
+    store.getState().learnVerbs(['食べる', '飲む'], at(21));
+    store.getState().recordVocabAnswer('学校|jm', true, true, at(21));
+    store.getState().recordReviewAnswer('あ', true, true, false, at(21));
+    store.getState().recordAnswer('い', true, at(21));
+    store.getState().recordDrill(true, 'drill', at(21));
+    const counts = store.getState().journey.today.counts;
+    expect(counts.newWords).toBe(3);
+    expect(counts.reviews).toBe(2);
+    expect(counts.answers).toBe(4);
+  });
 });

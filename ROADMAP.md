@@ -149,7 +149,7 @@ Objetivo: o app decide o que estudar hoje e mede o que realmente ficou.
 - [ ] **Algoritmo de revisão melhor:** trocar as caixas fixas (1, 3, 7, 14, 30 e 60 dias) por um modelo que ajusta o intervalo à dificuldade de cada item (como o FSRS, de código aberto). Mantém a importação do progresso antigo. *(G)*
 - [ ] **Sessão diária guiada** de 15 a 20 minutos: revisões, 1 conteúdo novo, 1 exercício de escuta, 1 frase para produzir. Tem começo, meio e fim. *(M)*
 - [x] **Limites e metas:** quantos itens novos por dia, revisões máximas, meta semanal. Evita acumular uma pilha desanimadora de revisões. *(P)*
-  - Feito em parte (1.8.0): **meta diária de respostas** (5, 10, 20 ou 40) e **meta semanal de dias** (4 de 7). Faltam limites de itens novos e de revisões por dia.
+  - Feito em parte (1.8.0): **meta diária de respostas** (5, 10, 20 ou 40) e **meta semanal de dias** (4 de 7). Depois (1.9.0): **limites por dia** de itens novos (5, 10, 20) e de respostas de revisão (30, 60, 100), em Meu Mochi → Metas. São limites macios: ao chegar neles o app avisa e deixa continuar se a pessoa quiser.
 - [ ] **Mistura de tipos de exercício** (intercalar kana, vocabulário, gramática) em vez de blocos longos do mesmo tipo. *(M)*
 - [ ] **Itens "teimosos" (leeches):** detectar o que o aluno erra sempre e propor outra abordagem (mnemônico, exemplo novo, quebrar em partes). *(M)*
 - [ ] **Estatísticas por habilidade:** leitura, escrita, escuta, fala e vocabulário, com retenção real (% que continua lembrando após semanas). *(M)*
@@ -163,7 +163,7 @@ Objetivo: o app decide o que estudar hoje e mede o que realmente ficou.
 Objetivo: dar vontade de voltar, sem pressão tóxica.
 
 - [x] **Mochi que acompanha o progresso:** muda de humor com a constância, ganha acessórios ao atingir marcos. *(M)*
-  - Feito em parte (1.8.0): **45 itens** (acessórios na cabeça, no rosto e no pescoço, fundos e cores), vestidos em todas as telas, com **armário, loja** (pétalas), itens de temporada e roupa de época automática. Mood por constância ainda não.
+  - Feito em parte (1.8.0): **45 itens** (acessórios na cabeça, no rosto e no pescoço, fundos e cores), vestidos em todas as telas, com **armário, loja** (pétalas), itens de temporada e roupa de época automática. Depois (1.9.0): o **humor do Mochi** acompanha a constância (festa com 7+ dias seguidos, feliz depois de estudar, tranquilo antes, um pouco de saudade depois de 4 dias sem estudar), com uma frase na tela Meu Mochi, sem cobrança.
 - [x] **Conquistas** ligadas a hábitos bons (7 dias seguidos, 100 palavras, primeira frase própria). *(P)*
   - Feito (1.8.0): **42 conquistas** (algumas escondidas) com pétalas e 15 itens exclusivos, estante com progresso, e **níveis** com título (Broto a Mestre do Dojo).
 - [x] **Desafio da semana:** pequena meta temática (por exemplo, vocabulário de comida). *(P)*

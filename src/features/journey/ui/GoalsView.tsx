@@ -1,12 +1,13 @@
 import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, Card, ChipRow, PressableScale, ProgressBar } from '@/components';
 import { useNow } from '@/hooks/useNow';
-import { useProgressStore } from '@/store';
+import { useProgressStore, useSettingsStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { DAILY_GOALS } from '../journey';
 import { ALL_MISSIONS_BONUS, challengeFor, MISSION_PETALS, missionsFor, WEEKLY_DAYS_GOAL, WEEKLY_PETALS } from '../missions';
 import { formatDay } from '@/features/streak/days';
 import { buildContext } from '../track';
+import { limitLabel, NEW_OPTIONS, REVIEW_OPTIONS } from '@/features/limits/limits';
 import { roll, weekChestReady } from '../events';
 import { weekDays } from '../week';
 
@@ -19,6 +20,8 @@ export function GoalsView() {
   const state = useProgressStore((s) => s);
   const claim = useProgressStore((s) => s.claimWeekChest);
   const updateJourney = useProgressStore((s) => s.updateJourney);
+  const limits = useSettingsStore((s) => s.limits);
+  const setLimits = useSettingsStore((s) => s.setLimits);
   const date = new Date(now);
   // O dia e a semana de hoje: se o aluno ainda não fez nada hoje, os contadores guardados são de outro dia e valem zero.
   const journey = roll(state.journey, date);
@@ -123,6 +126,32 @@ export function GoalsView() {
       </Card>
 
       <Card enterIndex={4}>
+        <AppText variant="title">Limites por dia</AppText>
+        <AppText color="muted">
+          Para a pilha de estudo não virar um peso. Ao chegar no limite o app avisa, e você ainda pode continuar se quiser.
+        </AppText>
+        <AppText variant="caption" color="muted">
+          PALAVRAS E VERBOS NOVOS POR DIA
+        </AppText>
+        <ChipRow
+          options={NEW_OPTIONS.map((n) => ({ value: String(n), label: limitLabel(n, 'novos') }))}
+          value={String(limits.newPerDay)}
+          onChange={(v) => setLimits({ newPerDay: Number(v) })}
+        />
+        <AppText variant="caption" color="muted">
+          RESPOSTAS DE REVISÃO POR DIA
+        </AppText>
+        <ChipRow
+          options={REVIEW_OPTIONS.map((n) => ({ value: String(n), label: limitLabel(n, 'respostas') }))}
+          value={String(limits.reviewsPerDay)}
+          onChange={(v) => setLimits({ reviewsPerDay: Number(v) })}
+        />
+        <AppText variant="caption" color="muted">
+          Hoje: {journey.today.counts.newWords ?? 0} novos e {journey.today.counts.reviews ?? 0} respostas de revisão.
+        </AppText>
+      </Card>
+
+      <Card enterIndex={5}>
         <AppText variant="title">Dias de descanso</AppText>
         <AppText color="muted">
           Em um dia de descanso, não estudar não quebra a sua sequência (e ele também não conta como dia estudado). Bom para

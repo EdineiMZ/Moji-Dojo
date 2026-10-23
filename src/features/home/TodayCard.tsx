@@ -5,6 +5,8 @@ import { SCRIPT_NAMES } from '@/features/catalog';
 import { formatReviewTime } from '@/features/review/format';
 import { plural } from '@/lib/plural';
 import { fonts, radii, spacing, useTheme } from '@/theme';
+import { batchWithin } from '@/features/limits/limits';
+import { useRoom } from '@/features/limits/useRoom';
 import { REVIEW_BATCH, type TodaySummary } from './summary';
 
 interface TodayCardProps {
@@ -17,6 +19,8 @@ export function TodayCard({ summary, now }: TodayCardProps) {
   const router = useRouter();
   const { colors } = useTheme();
   const { dueCount, learnedCount, streak, nextLesson, upcoming } = summary;
+  const { reviewsLeft } = useRoom();
+  const reviewBatch = batchWithin(REVIEW_BATCH, reviewsLeft);
 
   const heading = dueCount
     ? `${plural(dueCount, 'revisão esperando', 'revisões esperando')} você`
@@ -59,8 +63,13 @@ export function TodayCard({ summary, now }: TodayCardProps) {
       ) : null}
 
       <View style={styles.actions}>
-        {dueCount ? (
-          <Button label={`Revisar agora (${Math.min(dueCount, REVIEW_BATCH)})`} onPress={() => router.push('/review')} />
+        {dueCount && reviewBatch === 0 ? (
+          <>
+            <AppText color="muted">Você chegou ao limite de revisões de hoje. Descansar também ajuda a memória!</AppText>
+            <Button label="Revisar mais mesmo assim" variant="soft" onPress={() => router.push({ pathname: '/review', params: { all: '1' } })} />
+          </>
+        ) : dueCount ? (
+          <Button label={`Revisar agora (${Math.min(dueCount, reviewBatch)})`} onPress={() => router.push('/review')} />
         ) : null}
         {nextLesson ? (
           <Button

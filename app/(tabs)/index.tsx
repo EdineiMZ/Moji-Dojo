@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { AppText, Mascot, Screen, PressableScale } from '@/components';
 import { JourneyCard } from '@/features/journey/ui/JourneyCard';
+import { useMochiMood } from '@/features/journey/useMochiMood';
 import { PetalsBadge } from '@/features/journey/ui/PetalsBadge';
 import { ProgressCard } from '@/features/home/ProgressCard';
 import { buildTodaySummary, scriptProgress } from '@/features/home/summary';
@@ -22,6 +23,7 @@ export default function HomeScreen() {
   const days = useProgressStore((s) => s.days);
   const stats = useProgressStore((s) => s.stats);
   const history = useProgressStore((s) => s.history);
+  const felt = useMochiMood();
 
   const summary = useMemo(() => buildTodaySummary({ srs, lessons, days }, now), [srs, lessons, days, now]);
   const progress = useMemo(() => scriptProgress(srs), [srs]);
@@ -49,7 +51,7 @@ export default function HomeScreen() {
           </View>
         </View>
         <PressableScale accessibilityRole="button" accessibilityLabel="Meu Mochi" onPress={() => router.push('/mochi')}>
-          <Mascot mood={summary.dueCount ? 'neutral' : 'happy'} size={96} />
+          <Mascot mood={felt.mood} size={96} />
         </PressableScale>
         <PressableScale
           accessibilityRole="button"

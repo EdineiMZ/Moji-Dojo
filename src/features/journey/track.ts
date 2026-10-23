@@ -65,6 +65,7 @@ export interface AnswerTrack {
   group?: string;
   /** Referência para a lista de erros recentes, p.ex. "vocab:学校|jm". */
   ref?: string;
+  review?: boolean;
 }
 
 export function trackAnswer(slice: TrackSlice, days: readonly string[], now: number, event: AnswerTrack): JourneyState {

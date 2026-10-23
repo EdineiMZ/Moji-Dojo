@@ -7,6 +7,8 @@ import { useProgressStore } from '@/store';
 import { fonts, spacing } from '@/theme';
 import { cardKeysFor, CONJ_REVIEW_BATCH, conjCounts, dueCards, newVerbs, NEW_VERBS_BATCH } from './cards';
 import { ConjugationReview } from './ConjugationReview';
+import { batchWithin } from '@/features/limits/limits';
+import { useRoom } from '@/features/limits/useRoom';
 import { VerbCard } from './VerbCard';
 import type { Verb } from './verbs';
 
@@ -50,6 +52,11 @@ export function ConjugationView() {
   const now = useNow();
   const [mode, setMode] = useState<Mode>({ kind: 'home' });
   const [typed, setTyped] = useState(false);
+  const { newLeft, reviewsLeft } = useRoom();
+  const [pastNew, setPastNew] = useState(false);
+  const [pastReviews, setPastReviews] = useState(false);
+  const newBatch = batchWithin(NEW_VERBS_BATCH, pastNew ? Infinity : newLeft);
+  const reviewBatch = batchWithin(CONJ_REVIEW_BATCH, pastReviews ? Infinity : reviewsLeft);
 
   // Verbos aprendidos antes das formas extras existirem ganham os cartões novos aos poucos.
   useEffect(() => unlockConjForms(), [unlockConjForms]);
@@ -104,8 +111,16 @@ export function ConjugationView() {
           <Mascot mood={due > 0 ? 'neutral' : 'happy'} size={72} />
         </View>
 
-        {due > 0 ? (
-          <Button label={`Revisar agora (${Math.min(due, CONJ_REVIEW_BATCH)})`} onPress={() => setMode({ kind: 'review', typed })} />
+        {due > 0 && reviewBatch === 0 ? (
+          <>
+            <AppText color="muted">Você chegou ao limite de revisões de hoje. Descansar também ajuda a memória!</AppText>
+            <Button label="Revisar mais mesmo assim" variant="soft" onPress={() => setPastReviews(true)} />
+          </>
+        ) : due > 0 ? (
+          <Button
+            label={`Revisar agora (${Math.min(due, reviewBatch)})`}
+            onPress={() => setMode({ kind: 'review', typed, keys: dueCards(conj, Date.now()).slice(0, reviewBatch) })}
+          />
         ) : (
           <AppText color="muted">
             {counts.learned > 0 ? 'Nenhuma revisão de conjugação pendente.' : 'Comece aprendendo os primeiros verbos.'}
@@ -128,11 +143,16 @@ export function ConjugationView() {
           </AppText>
         ) : null}
 
-        {remaining.length > 0 ? (
+        {remaining.length > 0 && newBatch === 0 ? (
+          <>
+            <AppText color="muted">Você chegou ao limite de itens novos de hoje. Volte amanhã com a cabeça descansada.</AppText>
+            <Button label="Aprender mais mesmo assim" variant="soft" onPress={() => setPastNew(true)} />
+          </>
+        ) : remaining.length > 0 ? (
           <Button
-            label={`Aprender ${Math.min(NEW_VERBS_BATCH, remaining.length)} verbos novos`}
+            label={`Aprender ${Math.min(newBatch, remaining.length)} verbos novos`}
             variant={due > 0 ? 'soft' : 'primary'}
-            onPress={() => setMode({ kind: 'learn', verbs: remaining.slice(0, NEW_VERBS_BATCH) })}
+            onPress={() => setMode({ kind: 'learn', verbs: remaining.slice(0, newBatch) })}
           />
         ) : (
           <AppText color="muted">Você já aprendeu a conjugar todos os verbos disponíveis.</AppText>

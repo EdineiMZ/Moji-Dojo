@@ -4,23 +4,28 @@ import type { MochiOutfit } from '@/components/mascot/MochiArt';
 import { useProgressStore } from '@/store';
 import { spacing } from '@/theme';
 import { outfit as outfitOf } from '../journey';
+import { useMochiMood } from '../useMochiMood';
 import { levelProgress, titleFor } from '../levels';
 
 interface MochiHeaderProps {
   /** Itens em prévia (loja), por cima do que o aluno veste. */
   preview?: MochiOutfit | null;
-  mood?: 'neutral' | 'happy';
+  mood?: 'neutral' | 'happy' | 'sad' | 'cheer';
 }
 
 /** O Mochi grande com a roupa atual (ou a prévia), o saldo de pétalas, o nível e a barra de experiência. */
-export function MochiHeader({ preview, mood = 'happy' }: MochiHeaderProps) {
+export function MochiHeader({ preview, mood }: MochiHeaderProps) {
   const journey = useProgressStore((s) => s.journey);
+  const felt = useMochiMood();
   const worn: MochiOutfit = { ...outfitOf(journey, new Date()), ...(preview ?? {}) };
   const level = levelProgress(journey.xp);
 
   return (
     <Card enterIndex={0} style={styles.card}>
-      <Mascot mood={mood} size={190} outfit={worn} />
+      <Mascot mood={mood ?? felt.mood} size={190} outfit={worn} />
+      <AppText color="muted" center>
+        {felt.line}
+      </AppText>
       {preview ? (
         <AppText variant="caption" color="muted">
           Prévia: ainda não é seu

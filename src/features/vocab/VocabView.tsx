@@ -8,6 +8,8 @@ import { useProgressStore } from '@/store';
 import { spacing } from '@/theme';
 import { cardKeysFor, dueCards, newWords, NEW_WORDS_BATCH, vocabCounts, VOCAB_REVIEW_BATCH } from './cards';
 import { VocabReview } from './VocabReview';
+import { batchWithin } from '@/features/limits/limits';
+import { useRoom } from '@/features/limits/useRoom';
 import { WordCard } from './WordCard';
 import { situationWordIds, SITUATIONS, sortWords, STUDY_ORDERS, type StudyOrder } from './order';
 
@@ -33,6 +35,12 @@ export function VocabView() {
   useEffect(() => unlockVocabReadings(), [unlockVocabReadings]);
   const [group, setGroup] = useState(ALL);
   const [order, setOrder] = useState<StudyOrder>('book');
+  const { newLeft, reviewsLeft } = useRoom();
+  // O aluno pode passar do limite do dia se quiser: o limite avisa, não proíbe.
+  const [pastNew, setPastNew] = useState(false);
+  const [pastReviews, setPastReviews] = useState(false);
+  const newBatch = batchWithin(NEW_WORDS_BATCH, pastNew ? Infinity : newLeft);
+  const reviewBatch = batchWithin(VOCAB_REVIEW_BATCH, pastReviews ? Infinity : reviewsLeft);
   const [situation, setSituation] = useState(ALL);
 
   const counts = vocabCounts(vocab, now);
@@ -103,8 +111,16 @@ export function VocabView() {
         <Mascot mood={due > 0 ? 'neutral' : 'happy'} size={72} />
       </View>
 
-      {due > 0 ? (
-        <Button label={`Revisar agora (${Math.min(due, VOCAB_REVIEW_BATCH)})`} onPress={() => setMode({ kind: 'review' })} />
+      {due > 0 && reviewBatch === 0 ? (
+        <>
+          <AppText color="muted">Você chegou ao limite de revisões de hoje. Descansar também ajuda a memória!</AppText>
+          <Button label="Revisar mais mesmo assim" variant="soft" onPress={() => setPastReviews(true)} />
+        </>
+      ) : due > 0 ? (
+        <Button
+          label={`Revisar agora (${Math.min(due, reviewBatch)})`}
+          onPress={() => setMode({ kind: 'review', keys: dueCards(vocab, Date.now()).slice(0, reviewBatch) })}
+        />
       ) : (
         <AppText color="muted">
           {counts.learned > 0 ? 'Nenhuma revisão de vocabulário pendente.' : 'Comece aprendendo as primeiras palavras.'}
@@ -130,11 +146,18 @@ export function VocabView() {
             ORDEM
           </AppText>
           <ChipRow options={STUDY_ORDERS} value={order} onChange={setOrder} />
-          <Button
-            label={`Aprender ${Math.min(NEW_WORDS_BATCH, remaining.length)} palavras novas`}
-            variant={due > 0 ? 'soft' : 'primary'}
-            onPress={() => setMode({ kind: 'learn', words: remaining.slice(0, NEW_WORDS_BATCH) })}
-          />
+          {newBatch === 0 ? (
+            <>
+              <AppText color="muted">Você chegou ao limite de palavras novas de hoje. Volte amanhã com a cabeça descansada.</AppText>
+              <Button label="Aprender mais mesmo assim" variant="soft" onPress={() => setPastNew(true)} />
+            </>
+          ) : (
+            <Button
+              label={`Aprender ${Math.min(newBatch, remaining.length)} palavras novas`}
+              variant={due > 0 ? 'soft' : 'primary'}
+              onPress={() => setMode({ kind: 'learn', words: remaining.slice(0, newBatch) })}
+            />
+          )}
         </>
       ) : (
         <AppText color="muted">

@@ -3,6 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, Mascot } from '@/components';
 import { findItem } from '@/features/catalog';
 import { REVIEW_BATCH, REVIEW_LIGHT_BATCH } from '@/features/home/summary';
+import { batchWithin } from '@/features/limits/limits';
+import { currentRoom } from '@/features/limits/useRoom';
 import { resultMood } from '@/features/lessons/resultCopy';
 import { buildReviewQuestions, type QuizResult } from '@/features/quiz/quiz';
 import { QuizView } from '@/features/quiz/QuizView';
@@ -25,6 +27,8 @@ interface ReviewSessionProps {
   extra: boolean;
   /** Revisão leve (para quem volta de uma pausa): só uma parte dos vencidos, sem a pilha toda. */
   light?: boolean;
+  /** Ignora o limite de revisões do dia (a pessoa pediu para continuar). */
+  unlimited?: boolean;
   onExit: () => void;
   /** Pétalas (80% ou mais) e confete (100%) cobrem a tela toda, por isso ficam no pai. */
   onCelebrate: (celebration: ReviewCelebration) => void;
@@ -40,7 +44,7 @@ interface Outcome extends QuizResult {
 }
 
 /** Revisão espaçada: o quiz com os caracteres vencidos (ou os mais fracos) e a tela de resultado. */
-export function ReviewSession({ extra, light = false, onExit, onCelebrate, onDrawingChange, onActiveChange }: ReviewSessionProps) {
+export function ReviewSession({ extra, light = false, unlimited = false, onExit, onCelebrate, onDrawingChange, onActiveChange }: ReviewSessionProps) {
   const [attempt, setAttempt] = useState(0);
   const [outcome, setOutcome] = useState<Outcome | null>(null);
 
@@ -66,6 +70,7 @@ export function ReviewSession({ extra, light = false, onExit, onCelebrate, onDra
         key={attempt}
         extra={extra}
         light={light}
+        unlimited={unlimited}
         onExit={onExit}
         onDone={finish}
         onDrawingChange={onDrawingChange}
@@ -99,13 +104,14 @@ export function ReviewSession({ extra, light = false, onExit, onCelebrate, onDra
 interface ReviewRunProps {
   extra: boolean;
   light: boolean;
+  unlimited: boolean;
   onExit: () => void;
   onDone: (result: QuizResult) => void;
   onDrawingChange?: (drawing: boolean) => void;
   onActiveChange?: (active: boolean) => void;
 }
 
-function ReviewRun({ extra, light, onExit, onDone, onDrawingChange, onActiveChange }: ReviewRunProps) {
+function ReviewRun({ extra, light, unlimited, onExit, onDone, onDrawingChange, onActiveChange }: ReviewRunProps) {
   const recordReviewAnswer = useProgressStore((s) => s.recordReviewAnswer);
   // Os caracteres e o sorteio dos tipos de pergunta são feitos uma vez, ao abrir:
   // responder (ou mudar o ajuste) não altera a sessão em andamento.
@@ -114,7 +120,7 @@ function ReviewRun({ extra, light, onExit, onDone, onDrawingChange, onActiveChan
     const { srs } = useProgressStore.getState();
     const chars = extra
       ? pickExtraReviewChars(srs, isKnown)
-      : dueChars(srs, Date.now(), isKnown).slice(0, light ? REVIEW_LIGHT_BATCH : REVIEW_BATCH);
+      : dueChars(srs, Date.now(), isKnown).slice(0, batchWithin(light ? REVIEW_LIGHT_BATCH : REVIEW_BATCH, unlimited ? Infinity : currentRoom().reviewsLeft));
     return buildReviewQuestions(chars, Math.random, { write: writeEnabled });
   });
 

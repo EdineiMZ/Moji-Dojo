@@ -68,7 +68,7 @@ export function ComprehensionView() {
         questions={session.questions}
         title="Compreensão"
         onAnswer={(question, correct, firstTry) => {
-          recordDrill(correct);
+          recordDrill(correct, 'understand');
           if (!correct && firstTry && question.item.script === 'pair' && question.item.explain && !missed.current.includes(question.item.explain)) {
             missed.current.push(question.item.explain);
           }

@@ -10,7 +10,7 @@ import {
 } from 'expo-audio';
 import { AppText, Button } from '@/components';
 import { speakJapanese } from '@/features/speech/voiceStore';
-import { useSettingsStore } from '@/store';
+import { useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { radii, spacing, useTheme } from '@/theme';
 import { MAX_LEVELS, waveformBars } from './waveform';
@@ -37,6 +37,7 @@ export function ShadowRecorder({ say }: ShadowRecorderProps) {
   const [uri, setUri] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const player = useAudioPlayer(uri);
+  const recordRecording = useProgressStore((s) => s.recordRecording);
 
   const recording = state.isRecording;
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -54,6 +55,7 @@ export function ShadowRecorder({ say }: ShadowRecorderProps) {
       if (recorder.getStatus().isRecording) await recorder.stop();
       await setAudioModeAsync({ allowsRecording: false, playsInSilentMode: true });
       setUri(recorder.uri);
+      recordRecording();
     } catch {
       setError('Não foi possível parar a gravação.');
     }

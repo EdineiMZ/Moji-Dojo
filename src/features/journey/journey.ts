@@ -40,6 +40,16 @@ export interface WeekState {
   /** Acertos no desafio temático da semana. */
   challenge: number;
   challengeClaimed: boolean;
+  /** O aviso de "baú pronto" já foi dado nesta semana. */
+  notified: boolean;
+}
+
+/** Oferta de salvar a sequência: os dias perdidos e o tamanho da sequência que se perderia. */
+export interface RescueOffer {
+  /** O dia em que a oferta foi feita; ela vale só nesse dia. */
+  day: string;
+  missed: string[];
+  broken: number;
 }
 
 export interface JourneyState {
@@ -65,6 +75,8 @@ export interface JourneyState {
   misses: string[];
   /** Quando foi o último resgate de sequência. */
   lastRescueAt: number | null;
+  /** Oferta de resgate aberta (null se não há). */
+  rescue: RescueOffer | null;
   /** Dias da semana (0 = domingo) em que não estudar não quebra a sequência. */
   restWeekdays: number[];
   /** Quantas respostas por dia o aluno quer fazer. */
@@ -78,7 +90,7 @@ export const DAILY_GOALS: readonly number[] = [5, 10, 20, 40];
 export const DEFAULT_DAILY_GOAL = 10;
 
 export const emptyDay = (day = ''): DayState => ({ day, earned: 0, opened: false, lessons: [], counts: {}, claimed: [], goalDone: false });
-export const emptyWeek = (key = ''): WeekState => ({ key, claimed: false, challenge: 0, challengeClaimed: false });
+export const emptyWeek = (key = ''): WeekState => ({ key, claimed: false, challenge: 0, challengeClaimed: false, notified: false });
 
 export const emptyJourney = (): JourneyState => ({
   petals: 0,
@@ -97,6 +109,7 @@ export const emptyJourney = (): JourneyState => ({
   weeksWon: 0,
   misses: [],
   lastRescueAt: null,
+  rescue: null,
   restWeekdays: [],
   dailyGoal: DEFAULT_DAILY_GOAL,
   toasts: [],
@@ -170,14 +183,23 @@ export function sanitizeJourney(raw: unknown): JourneyState {
       claimed: week.claimed === true,
       challenge: count(week.challenge),
       challengeClaimed: week.challengeClaimed === true,
+      notified: week.notified === true,
     },
     weeksWon: count(raw.weeksWon),
     misses: strings(raw.misses, MAX_MISSES),
     lastRescueAt: isCount(raw.lastRescueAt) ? raw.lastRescueAt : null,
+    rescue: sanitizeRescue(raw.rescue),
     restWeekdays: [...new Set(Array.isArray(raw.restWeekdays) ? raw.restWeekdays.filter((d): d is number => Number.isInteger(d) && d >= 0 && d <= 6) : [])].sort(),
     dailyGoal: DAILY_GOALS.includes(goal) ? goal : DEFAULT_DAILY_GOAL,
     toasts: toasts.slice(-MAX_TOASTS),
   };
+}
+
+function sanitizeRescue(raw: unknown): RescueOffer | null {
+  if (!isRecord(raw) || typeof raw.day !== 'string') return null;
+  const missed = strings(raw.missed, 3);
+  if (missed.length === 0 || !isCount(raw.broken)) return null;
+  return { day: raw.day, missed, broken: Math.floor(raw.broken) };
 }
 
 // --- avisos ---

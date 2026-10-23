@@ -71,7 +71,7 @@ export function BankView() {
         key={session.attempt}
         items={shown.map(toTranslationItem)}
         title="Banco de frases"
-        onResult={(_item, ok) => recordDrill(ok)}
+        onResult={(_item, ok) => recordDrill(ok, 'translate')}
         onExit={exit}
         again={again}
       />
@@ -80,7 +80,7 @@ export function BankView() {
         key={session.attempt}
         items={shown.map(toTarget)}
         title="Banco de frases"
-        onResult={(_item, ok) => recordDrill(ok)}
+        onResult={(_item, ok) => recordDrill(ok, 'translate')}
         onExit={exit}
         again={again}
       />

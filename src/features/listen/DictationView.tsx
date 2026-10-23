@@ -35,7 +35,7 @@ export function DictationView() {
         key={session.attempt}
         items={session.items}
         title={session.kind === 'words' ? 'Ditado de palavras' : 'Ditado de frases'}
-        onResult={(_item, ok) => recordDrill(ok)}
+        onResult={(_item, ok) => recordDrill(ok, 'dictation')}
         onExit={() => setSession(null)}
         again={{ label: 'Outro ditado', onPress: () => start(session.kind) }}
       />

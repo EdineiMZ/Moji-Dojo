@@ -8,12 +8,22 @@ import { checkPhrase, newPhraseId, type MyPhrase, type MyPhrases, type PhrasePro
 import { cardKeysFor as verbCardKeys, extraKeysFor as verbExtraKeys, EXTRA_PER_DAY, learnedVerbIds } from '@/features/conjugation/cards';
 import { findVerb } from '@/features/conjugation/verbs';
 import { isParticleCard } from '@/features/cloze/particles';
-import { cardKeysFor, learnedWordIds as learnedVocabIds, READINGS_PER_DAY, readingKeysFor } from '@/features/vocab/cards';
+import { cardKeysFor, learnedWordIds as learnedVocabIds, parseCardKey as parseVocabKey, READINGS_PER_DAY, readingKeysFor } from '@/features/vocab/cards';
 import { findWord } from '@/content';
+import { claimWeekChest as claimChest } from '@/features/journey/events';
+import { applyRescue, declineRescue as declineOffer, rescuePassed, resolveRescue } from '@/features/journey/rescue';
+import { trackAnswer, trackDialog, trackLesson, trackNewWords, trackOpen, trackPhrase, trackRecording, trackSession, trackTouch, buildContext } from '@/features/journey/track';
+import type { Area } from '@/features/journey/events';
 import { buyItem, dismissToast, emptyJourney, equipItem, sanitizeJourney, unequipSlot, type BuyError, type JourneyState } from '@/features/journey/journey';
 import type { Slot } from '@/features/journey/items';
 
 const DAY_MS = 86_400_000;
+
+/** O grupo do vocabulário de um cartão ("palavra|direção"), para o desafio da semana. */
+const groupOf = (cardKey: string): { group?: string } => {
+  const group = parseVocabKey(cardKey)?.word.group;
+  return group ? { group } : {};
+};
 
 /** Tamanho máximo da dica de memória de uma palavra. */
 export const MAX_NOTE_LENGTH = 200;
@@ -23,7 +33,7 @@ export type ShadowRating = 'ok' | 'mid' | 'bad';
 
 export interface ProgressActions {
   /** Conclui a lição: entra na trilha, e os caracteres entram na revisão. */
-  completeLesson: (lessonId: string, chars: readonly string[], skipped?: boolean, now?: number) => void;
+  completeLesson: (lessonId: string, chars: readonly string[], skipped?: boolean, now?: number, result?: { first: number; total: number }) => void;
   /** Conta um acerto/erro de qualquer quiz e marca o dia como estudado. */
   recordAnswer: (char: string, ok: boolean, now?: number) => void;
   /** Resposta numa revisão: além das estatísticas, reagenda o caractere. */
@@ -65,7 +75,7 @@ export interface ProgressActions {
   /** Resposta numa revisão de conjugação (chave = "verbo|forma"): reagenda e marca o dia. */
   recordConjAnswer: (cardKey: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Exercício solto (lacunas): conta no histórico do dia e marca o dia, sem agendar revisão. */
-  recordDrill: (ok: boolean, now?: number) => void;
+  recordDrill: (ok: boolean, area?: Area, now?: number) => void;
   /** Mini-teste de um tópico de gramática aprovado: o tópico fica "dominado" e o dia é marcado. */
   masterTopic: (topicId: string, now?: number) => void;
   /**
@@ -78,6 +88,20 @@ export interface ProgressActions {
   removeMyPhrase: (id: string) => void;
   /** Resposta numa revisão de frase própria: reagenda e marca o dia. */
   recordMyPhraseAnswer: (id: string, ok: boolean, firstTry: boolean, now?: number) => void;
+  /** O app foi aberto: marca o dia, dá o bônus diário e, se for o caso, oferece salvar a sequência. */
+  openApp: (now?: number) => void;
+  /** Uma sessão longa (revisão do dia) terminou com `first` acertos de primeira em `total`. */
+  recordSession: (first: number, total: number, now?: number) => void;
+  /** A pessoa gravou a própria voz. */
+  recordRecording: (now?: number) => void;
+  /** Uma cena de diálogo terminou (perfeita = sem erro). */
+  recordDialogDone: (perfect: boolean, now?: number) => void;
+  /** Abre o baú da semana, se a meta foi batida. */
+  claimWeekChest: (now?: number) => void;
+  /** Termina a revisão de resgate: com nota suficiente os dias perdidos viram estudados. */
+  finishRescue: (first: number, total: number, now?: number) => void;
+  /** Recusa o resgate: a sequência recomeça. */
+  declineRescue: () => void;
   /** Marca o dia como estudado (ex.: ao conferir uma escrita). */
   markStudied: (now?: number) => void;
   /**
@@ -138,26 +162,29 @@ export function createProgressStore(storage: StateStorage) {
         mastered: {},
         myPhrases: {},
 
-        completeLesson: (lessonId, chars, skipped = false, now = Date.now()) =>
+        completeLesson: (lessonId, chars, skipped = false, now = Date.now(), result) =>
           set((s) => {
             let srs = learnItems(s.srs, chars, now);
             if (skipped) srs = boostSkippedItems(srs, chars, now);
             const newlyLearned = chars.filter((c) => !s.srs[c]).length;
-            return {
-              srs,
-              lessons: { ...s.lessons, [lessonId]: true },
-              days: markDay(s.days, new Date(now)),
-              history: addActivity(s.history, new Date(now), { learned: newlyLearned }),
-            };
+            const days = markDay(s.days, new Date(now));
+            const lessons: Readonly<Record<string, true>> = { ...s.lessons, [lessonId]: true };
+            // Sem a nota (chamadas antigas), a lição conta como feita sem recompensa de pétalas.
+            const journey = result
+              ? trackLesson({ ...s, lessons }, days, now, { lessonId, first: result.first, total: result.total, skipped })
+              : trackTouch({ ...s, lessons }, days, now);
+            return { srs, lessons, days, history: addActivity(s.history, new Date(now), { learned: newlyLearned }), journey };
           }),
 
         recordAnswer: (char, ok, now = Date.now()) =>
           set((s) => {
             const prev = s.stats[char] ?? { c: 0, w: 0 };
+            const days = markDay(s.days, new Date(now));
             return {
               stats: { ...s.stats, [char]: ok ? { ...prev, c: prev.c + 1 } : { ...prev, w: prev.w + 1 } },
-              days: markDay(s.days, new Date(now)),
+              days,
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
+              journey: trackAnswer(s, days, now, { ok, area: 'kana', ref: `srs:${char}` }),
             };
           }),
 
@@ -166,9 +193,11 @@ export function createProgressStore(storage: StateStorage) {
             const prev = s.stats[char] ?? { c: 0, w: 0 };
             const entry = s.srs[char];
             const reschedule = entry !== undefined && shouldApplyReviewAnswer(extra, ok, firstTry);
+            const days = markDay(s.days, new Date(now));
             return {
               stats: { ...s.stats, [char]: ok ? { ...prev, c: prev.c + 1 } : { ...prev, w: prev.w + 1 } },
-              days: markDay(s.days, new Date(now)),
+              days,
+              journey: trackAnswer(s, days, now, { ok, area: 'kana', ref: `srs:${char}` }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               ...(reschedule ? { srs: { ...s.srs, [char]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
@@ -183,12 +212,16 @@ export function createProgressStore(storage: StateStorage) {
         learnWords: (wordIds, now = Date.now()) =>
           set((s) => {
             const vocab: Record<string, SrsEntry> = { ...s.vocab };
+            const before = learnedVocabIds(s.vocab);
+            let fresh = 0;
             for (const id of wordIds) {
               const word = findWord(id);
               if (!word) continue;
+              if (!before.has(id)) fresh++;
               for (const key of cardKeysFor(word)) if (!vocab[key]) vocab[key] = { b: 1, due: now };
             }
-            return { vocab, days: markDay(s.days, new Date(now)) };
+            const days = markDay(s.days, new Date(now));
+            return { vocab, days, journey: trackNewWords({ ...s, vocab }, days, now, fresh) };
           }),
 
         unlockVocabReadings: (now = Date.now()) =>
@@ -209,8 +242,10 @@ export function createProgressStore(storage: StateStorage) {
         recordVocabAnswer: (cardKey, ok, firstTry, now = Date.now()) =>
           set((s) => {
             const entry = s.vocab[cardKey];
+            const days = markDay(s.days, new Date(now));
             return {
-              days: markDay(s.days, new Date(now)),
+              days,
+              journey: trackAnswer(s, days, now, { ok, area: 'vocab', ref: `vocab:${cardKey}`, ...groupOf(cardKey) }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               ...(entry ? { vocab: { ...s.vocab, [cardKey]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
@@ -275,8 +310,10 @@ export function createProgressStore(storage: StateStorage) {
           set((s) => {
             if (!isParticleCard(particle)) return s;
             const entry = s.particles[particle] ?? { b: 1, due: now };
+            const days = markDay(s.days, new Date(now));
             return {
-              days: markDay(s.days, new Date(now)),
+              days,
+              journey: trackAnswer(s, days, now, { ok, area: 'particle', ref: `particle:${particle}` }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               particles: { ...s.particles, [particle]: answerReview(entry, ok, !firstTry, now) },
             };
@@ -285,24 +322,31 @@ export function createProgressStore(storage: StateStorage) {
         recordConjAnswer: (cardKey, ok, firstTry, now = Date.now()) =>
           set((s) => {
             const entry = s.conj[cardKey];
+            const days = markDay(s.days, new Date(now));
             return {
-              days: markDay(s.days, new Date(now)),
+              days,
+              journey: trackAnswer(s, days, now, { ok, area: 'conj', ref: `conj:${cardKey}` }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               ...(entry ? { conj: { ...s.conj, [cardKey]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
           }),
 
-        recordDrill: (ok, now = Date.now()) =>
-          set((s) => ({
-            days: markDay(s.days, new Date(now)),
-            history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
-          })),
+        recordDrill: (ok, area = 'drill', now = Date.now()) =>
+          set((s) => {
+            const days = markDay(s.days, new Date(now));
+            return {
+              days,
+              history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
+              journey: trackAnswer(s, days, now, { ok, area }),
+            };
+          }),
 
         masterTopic: (topicId, now = Date.now()) =>
-          set((s) => ({
-            mastered: s.mastered[topicId] ? s.mastered : { ...s.mastered, [topicId]: now },
-            days: markDay(s.days, new Date(now)),
-          })),
+          set((s) => {
+            const mastered = s.mastered[topicId] ? s.mastered : { ...s.mastered, [topicId]: now };
+            const days = markDay(s.days, new Date(now));
+            return { mastered, days, journey: trackTouch({ ...s, mastered }, days, now) };
+          }),
 
         addMyPhrase: (jp, pt, now = Date.now()) => {
           let outcome: { id: string } | { error: PhraseProblem } = { error: 'empty-jp' };
@@ -315,7 +359,9 @@ export function createProgressStore(storage: StateStorage) {
             const id = newPhraseId(s.myPhrases, now);
             const phrase: MyPhrase = { jp: jp.trim(), pt: pt.trim(), at: now, b: 1, due: now };
             outcome = { id };
-            return { myPhrases: { ...s.myPhrases, [id]: phrase }, days: markDay(s.days, new Date(now)) };
+            const myPhrases = { ...s.myPhrases, [id]: phrase };
+            const days = markDay(s.days, new Date(now));
+            return { myPhrases, days, journey: trackPhrase({ ...s, myPhrases }, days, now) };
           });
           return outcome;
         },
@@ -343,12 +389,53 @@ export function createProgressStore(storage: StateStorage) {
             const phrase = s.myPhrases[id];
             if (!phrase) return {};
             const next = answerReview({ b: phrase.b, due: phrase.due }, ok, !firstTry, now);
+            const days = markDay(s.days, new Date(now));
             return {
               myPhrases: { ...s.myPhrases, [id]: { ...phrase, b: next.b, due: next.due } },
-              days: markDay(s.days, new Date(now)),
+              days,
+              journey: trackAnswer(s, days, now, { ok, area: 'phrase', ref: `phrase:${id}` }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
             };
           }),
+
+        openApp: (now = Date.now()) =>
+          set((s) => {
+            const days = markDay(s.days, new Date(now));
+            return { days, journey: trackOpen(s, s.days, days, now) };
+          }),
+
+        recordSession: (first, total, now = Date.now()) =>
+          set((s) => {
+            const days = markDay(s.days, new Date(now));
+            return { days, journey: trackSession(s, days, now, first, total) };
+          }),
+
+        recordRecording: (now = Date.now()) =>
+          set((s) => {
+            const days = markDay(s.days, new Date(now));
+            return { days, journey: trackRecording(s, days, now) };
+          }),
+
+        recordDialogDone: (perfect, now = Date.now()) =>
+          set((s) => {
+            const days = markDay(s.days, new Date(now));
+            return { days, journey: trackDialog(s, days, now, perfect) };
+          }),
+
+        claimWeekChest: (now = Date.now()) =>
+          set((s) => ({ journey: claimChest(s.journey, buildContext(s, s.days, now)) })),
+
+        finishRescue: (first, total, now = Date.now()) =>
+          set((s) => {
+            const offer = s.journey.rescue;
+            if (!offer) return s;
+            const passed = rescuePassed(first, total);
+            const days = passed ? applyRescue(markDay(s.days, new Date(now)), offer) : markDay(s.days, new Date(now));
+            const resolved = resolveRescue(s.journey, passed, new Date(now));
+            return { days, journey: trackTouch({ ...s, journey: resolved }, days, now) };
+          }),
+
+        declineRescue: () => set((s) => ({ journey: declineOffer(s.journey) })),
 
         markStudied: (now = Date.now()) => set((s) => ({ days: markDay(s.days, new Date(now)) })),
 

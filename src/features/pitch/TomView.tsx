@@ -92,7 +92,7 @@ export function TomView() {
         questions={session.questions}
         title="Tom das palavras"
         onAnswer={(question, correct, firstTry) => {
-          recordDrill(correct);
+          recordDrill(correct, 'tone');
           if (!correct && firstTry && question.item.script === 'pair' && question.item.explain && !missed.current.includes(question.item.explain)) {
             missed.current.push(question.item.explain);
           }

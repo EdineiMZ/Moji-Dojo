@@ -100,7 +100,7 @@ export function TranslateView() {
         questions={session.questions}
         title="Entender"
         onAnswer={(question, correct, firstTry) => {
-          recordDrill(correct);
+          recordDrill(correct, 'translate');
           if (!correct && firstTry && question.item.script === 'pair' && question.item.explain) {
             if (!missed.current.includes(question.item.explain)) missed.current.push(question.item.explain);
           }
@@ -120,7 +120,7 @@ export function TranslateView() {
         key={session.attempt}
         items={session.items}
         title="Entender"
-        onResult={(_item, ok) => recordDrill(ok)}
+        onResult={(_item, ok) => recordDrill(ok, 'translate')}
         onExit={leave}
         again={again}
       />
@@ -133,7 +133,7 @@ export function TranslateView() {
         key={session.attempt}
         items={session.items.map(toTarget)}
         title="Escrever"
-        onResult={(_item, ok) => recordDrill(ok)}
+        onResult={(_item, ok) => recordDrill(ok, 'translate')}
         onExit={leave}
         again={again}
       />

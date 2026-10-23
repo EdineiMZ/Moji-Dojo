@@ -47,6 +47,7 @@ export function ReviewSession({ extra, onExit, onCelebrate, onDrawingChange, onA
     const remaining = extra ? 0 : dueChars(srs, Date.now(), isKnown).length;
     const pct = result.total ? Math.round((result.first / result.total) * 100) : 0;
     setOutcome({ ...result, remaining });
+    if (!extra && result.total > 0) useProgressStore.getState().recordSession(result.first, result.total);
     if (pct >= REVIEW_GOOD_PCT) feedbackComplete(result.first === result.total);
     onCelebrate({ petals: pct >= REVIEW_GOOD_PCT, confetti: result.total > 0 && result.first === result.total });
   };

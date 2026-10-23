@@ -8,6 +8,7 @@ import { useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { remainingLoadingMs } from '@/lib/loading';
+import { useProgressStore } from '@/store';
 import { playSfx, preloadSfx } from '@/lib/sfx';
 import { fontAssets, ThemeProvider, useTheme } from '@/theme';
 
@@ -58,6 +59,8 @@ export default function RootLayout() {
       SplashScreen.hideAsync();
       preloadSfx();
       playSfx('open');
+      // Abrir o app conta como dia de estudo e dá o bônus diário (e oferece salvar a sequência, se for o caso).
+      useProgressStore.getState().openApp();
     }
   }, [fontsLoaded, fontError]);
 

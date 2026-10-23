@@ -81,6 +81,7 @@ const Narration = ({ text }: { text: string }) => (
 
 function SceneSession({ scene, onExit, onRestart }: { scene: DialogScene; onExit: () => void; onRestart: () => void }) {
   const recordDrill = useProgressStore((s) => s.recordDrill);
+  const recordDialogDone = useProgressStore((s) => s.recordDialogDone);
   const speed = useSettingsStore((s) => s.speechSpeed);
   const romajiMode = useSettingsStore((s) => s.romajiMode);
   const [help, setHelp] = useState<OptionHelp>(romajiMode === 'always' ? 'romaji' : 'none');
@@ -113,7 +114,7 @@ function SceneSession({ scene, onExit, onRestart }: { scene: DialogScene; onExit
       <TypingSession
         items={writeTargets(scene)}
         title={`${scene.title}: suas falas`}
-        onResult={(_item, ok) => recordDrill(ok)}
+        onResult={(_item, ok) => recordDrill(ok, 'dialog')}
         onExit={() => setWriting(false)}
       />
     );
@@ -125,7 +126,7 @@ function SceneSession({ scene, onExit, onRestart }: { scene: DialogScene; onExit
     if (attempt.solved) return;
     if (option.ok) {
       feedbackCorrect();
-      recordDrill(attempt.tried.length === 0);
+      recordDrill(attempt.tried.length === 0, 'dialog');
       speakJapanese(option.jp.replace(/ /g, ''), SPEECH_RATES[speed]);
       setAttempts({ ...attempts, [current]: { ...attempt, solved: true } });
     } else {
@@ -139,6 +140,7 @@ function SceneSession({ scene, onExit, onRestart }: { scene: DialogScene; onExit
     if (next < 0) {
       const first = firstTryCount();
       if ((first / turns.length) * 100 >= REVIEW_GOOD_PCT) feedbackComplete(first === turns.length);
+      recordDialogDone(first === turns.length);
     }
     setCurrent(next);
   };

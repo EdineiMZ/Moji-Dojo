@@ -48,7 +48,7 @@ export function SpeakView() {
     } else {
       feedbackWrong();
     }
-    recordDrill(isGood(judged.verdict));
+    recordDrill(isGood(judged.verdict), 'speak');
   });
   useSpeechRecognitionEvent('end', () => setStage((s) => (s === 'listening' ? 'ready' : s)));
   useSpeechRecognitionEvent('error', (event) => {

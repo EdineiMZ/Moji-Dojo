@@ -51,7 +51,7 @@ export function TestStep({ script, lesson, skipped, onReview, onNext, onExit, on
     const passed = lessonPassed(result.first, result.total, skipped);
     let next: Lesson | null = null;
     if (passed) {
-      completeLesson(lesson.id, lesson.items, skipped);
+      completeLesson(lesson.id, lesson.items, skipped, Date.now(), { first: result.first, total: result.total });
       feedbackComplete(result.first === result.total);
       const nextIndex = nextLessonIndex(script, useProgressStore.getState().lessons);
       next = LESSONS[script][nextIndex] ?? null;

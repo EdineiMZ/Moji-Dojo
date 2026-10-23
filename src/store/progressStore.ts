@@ -31,6 +31,8 @@ export interface ProgressActions {
   learnVerbs: (verbIds: readonly string[], now?: number) => void;
   /** Resposta numa revisão de conjugação (chave = "verbo|forma"): reagenda e marca o dia. */
   recordConjAnswer: (cardKey: string, ok: boolean, firstTry: boolean, now?: number) => void;
+  /** Exercício solto (lacunas): conta no histórico do dia e marca o dia, sem agendar revisão. */
+  recordDrill: (ok: boolean, now?: number) => void;
   /** Marca o dia como estudado (ex.: ao conferir uma escrita). */
   markStudied: (now?: number) => void;
   /**
@@ -159,6 +161,12 @@ export function createProgressStore(storage: StateStorage) {
               ...(entry ? { conj: { ...s.conj, [cardKey]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
           }),
+
+        recordDrill: (ok, now = Date.now()) =>
+          set((s) => ({
+            days: markDay(s.days, new Date(now)),
+            history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
+          })),
 
         markStudied: (now = Date.now()) => set((s) => ({ days: markDay(s.days, new Date(now)) })),
 

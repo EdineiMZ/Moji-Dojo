@@ -23,6 +23,10 @@ export interface PairItem {
   reading?: string;
   /** Cartão de revisão a que a pergunta pertence, quando o item não basta para saber (ex.: verbo + forma). */
   key?: string;
+  /** Frase mostrada como explicação depois da resposta, no lugar de "palavra = rótulo". */
+  explain?: string;
+  /** Dica mostrada só quando a pessoa erra. */
+  hint?: string;
 }
 
 /** O que uma pergunta pode ter como resposta: um caractere estudado ou uma palavra de par difícil. */

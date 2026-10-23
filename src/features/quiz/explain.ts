@@ -6,6 +6,7 @@ import type { QuizItem } from './quiz';
 /** Resposta certa em uma linha: "か = ka · かさ guarda-chuva" ou "水 = água · on スイ · kun みず". */
 export function explainItem(item: QuizItem): string {
   if (item.script === 'pair') {
+    if (item.explain) return item.explain;
     const shown = item.reading && item.reading !== item.char ? `${item.char} (${item.reading})` : item.char;
     return `${shown} = ${item.label}`;
   }
@@ -18,7 +19,7 @@ export function explainItem(item: QuizItem): string {
 
 /** Dica de memorização do caractere, se existir. */
 export const mnemonicFor = (item: QuizItem): string | undefined =>
-  item.script === 'pair' ? undefined : (KANA_MNEMONICS[item.char] ?? KANJI_HINTS[item.char]);
+  item.script === 'pair' ? item.hint : (KANA_MNEMONICS[item.char] ?? KANJI_HINTS[item.char]);
 
 export interface Feedback {
   correct: boolean;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AppText, Screen, SegmentedControl, SwapView } from '@/components';
+import { ClozeView } from '@/features/cloze/ClozeView';
 import { ConjugationView } from '@/features/conjugation/ConjugationView';
 import { BuildView } from '@/features/phrases/BuildView';
 import { ALL_TOPICS } from '@/features/phrases/build';
@@ -9,12 +10,13 @@ import { VocabView } from '@/features/vocab/VocabView';
 import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 
-type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'build' | 'travel';
+type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'build' | 'travel';
 
 const VIEWS = [
   { value: 'vocab' as const, label: 'Palavras' },
   { value: 'grammar' as const, label: 'Gramática' },
   { value: 'conjugate' as const, label: 'Conjugar' },
+  { value: 'cloze' as const, label: 'Lacunas' },
   { value: 'build' as const, label: 'Montar' },
   { value: 'travel' as const, label: 'Viagem' },
 ];
@@ -40,6 +42,7 @@ export default function PhrasesScreen() {
           />
         ) : null}
         {view === 'conjugate' ? <ConjugationView /> : null}
+        {view === 'cloze' ? <ClozeView /> : null}
         {view === 'build' ? <BuildView key={topic} topic={topic} onTopicChange={setTopic} /> : null}
         {view === 'travel' ? <TravelView /> : null}
       </SwapView>

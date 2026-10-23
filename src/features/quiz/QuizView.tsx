@@ -22,7 +22,8 @@ import {
 } from '@/components';
 import { pronunciationText } from '@/features/catalog';
 import { speakJapanese } from '@/features/speech/voiceStore';
-import { isPassing, type WritingScore } from '@/features/writing/score';
+import { useProgressStore } from '@/store';
+import { isPassing, writePassScore, type WritingScore } from '@/features/writing/score';
 import { useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { feedbackCorrect, feedbackWrong } from '@/lib/feedback';
@@ -164,7 +165,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
   /** Desenho conferido: a nota decide (70% ou mais); ordem e direção dos traços são só feedback. */
   const submitWriting = (score: WritingScore) => {
     if (answered) return;
-    settle(resolveQuestion(quiz, isPassing(score)), '', score);
+    settle(resolveQuestion(quiz, isPassing(score, writePassScore(useProgressStore.getState().srs[current.item.char]?.b))), '', score);
   };
 
   const toChar = current.direction === 'r2k' || isAudio;

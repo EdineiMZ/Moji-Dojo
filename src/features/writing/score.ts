@@ -43,7 +43,19 @@ export interface ScoreTuning {
   okStrokeDistance: number;
 }
 
-export const isPassing = (score: WritingScore): boolean => score.pct >= WRITE_PASS_SCORE;
+/** Nota mínima para quem está começando um caractere: desenhar de memória é difícil, então a régua sobe aos poucos. */
+export const WRITE_PASS_FIRST = 50;
+
+/**
+ * Nota mínima para acertar o desenho de um caractere, pela caixa dele na revisão (1 a 6; sem caixa = ainda não estudado).
+ * Começa em 50% e sobe 5 pontos por caixa até os 70% de quem já domina. Errar derruba a caixa e a régua volta a ser mais branda.
+ */
+export const writePassScore = (box?: number): number => {
+  const level = Math.max(1, Math.min(box ?? 1, 5));
+  return Math.min(WRITE_PASS_SCORE, WRITE_PASS_FIRST + (level - 1) * 5);
+};
+
+export const isPassing = (score: WritingScore, need: number = WRITE_PASS_SCORE): boolean => score.pct >= need;
 
 /**
  * Confere o desenho com o modelo, traço a traço (geometria, não pixels):

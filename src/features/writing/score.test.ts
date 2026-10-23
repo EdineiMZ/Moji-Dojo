@@ -2,7 +2,7 @@ import { STROKES } from '@/data/strokes';
 import { ALL_ITEMS } from '@/features/catalog';
 import { flattenPath, type Point } from '@/features/strokes/svgPath';
 import { isWritable } from './model';
-import { isPassing, scoreWriting, strokeLabel, WRITE_PASS_SCORE } from './score';
+import { isPassing, scoreWriting, strokeLabel, WRITE_PASS_SCORE, writePassScore } from './score';
 
 const model = (char: string) => {
   const m = STROKES[char];
@@ -147,5 +147,11 @@ describe('strokeLabel', () => {
     expect(strokeLabel('order', 2)).toBe('3 ↕ ordem');
     expect(strokeLabel('miss', 3)).toBe('4 faltou');
     expect(strokeLabel('bad', 4)).toBe('5 ✗');
+  });
+});
+
+describe('régua do desenho por caixa', () => {
+  it('começa em 50% e sobe até 70%', () => {
+    expect([undefined, 1, 2, 3, 4, 5, 6].map((b) => writePassScore(b))).toEqual([50, 50, 55, 60, 65, 70, 70]);
   });
 });

@@ -7,7 +7,8 @@ import { speakJapanese } from '@/features/speech/voiceStore';
 import type { Point } from '@/features/strokes/svgPath';
 import { DrawingPad } from '@/features/writing/DrawingPad';
 import { strokeModel } from '@/features/writing/model';
-import { scoreWriting, WRITE_PASS_SCORE, type WritingScore } from '@/features/writing/score';
+import { useProgressStore } from '@/store';
+import { scoreWriting, writePassScore, type WritingScore } from '@/features/writing/score';
 import { ScoreResult } from '@/features/writing/ScoreResult';
 import { spacing } from '@/theme';
 
@@ -30,6 +31,7 @@ export function WriteQuestion({ item, score, onCheck, onDrawingChange }: WriteQu
   const [strokes, setStrokes] = useState<Point[][]>([]);
   const [notice, setNotice] = useState<string | null>(null);
   const model = strokeModel(item.char);
+  const need = writePassScore(useProgressStore((s) => s.srs[item.char]?.b));
   const locked = score !== null;
   const size = Math.min(width - spacing.lg * 4, MAX_PAD);
 
@@ -96,7 +98,7 @@ export function WriteQuestion({ item, score, onCheck, onDrawingChange }: WriteQu
             </AppText>
           ) : (
             <AppText variant="caption" color="muted" center>
-              Para acertar: {WRITE_PASS_SCORE}% de semelhança ou mais. Tamanho e posição não importam.
+              Para acertar: {need}% de semelhança ou mais (sobe conforme você pratica este caractere). Tamanho e posição não importam.
             </AppText>
           )}
         </>

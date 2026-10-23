@@ -24,3 +24,15 @@ describe('exemplos das lições', () => {
     }
   });
 });
+
+describe('dicas dos kanji', () => {
+  it('todo kanji tem dica (do protótipo ou as extras) e as extras não repetem as do protótipo', () => {
+    const { ALL_KANJI } = require('@/content/kanji') as typeof import('@/content/kanji');
+    const { KANJI_HINTS } = require('@/data/hints') as typeof import('@/data/hints');
+    const { KANJI_HINTS_EXTRA } = require('@/content/kanjiHints') as typeof import('@/content/kanjiHints');
+    const missing = ALL_KANJI.filter((k) => !KANJI_HINTS[k.char] && !KANJI_HINTS_EXTRA[k.char]).map((k) => k.char);
+    expect(missing).toEqual([]);
+    expect(Object.keys(KANJI_HINTS_EXTRA).filter((c) => KANJI_HINTS[c])).toEqual([]);
+    expect(Object.values(KANJI_HINTS_EXTRA).every((h) => h.length > 12)).toBe(true);
+  });
+});

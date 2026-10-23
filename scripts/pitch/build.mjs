@@ -7,6 +7,9 @@ const SOURCE = 'https://raw.githubusercontent.com/mifunetoshiro/kanjium/master/d
 
 const n5 = readFileSync(new URL('../../src/content/n5.ts', import.meta.url), 'utf8');
 const words = [...n5.matchAll(/jp: "([^"]+)", reading: "([^"]+)"/g)].map((m) => ({ jp: m[1], reading: m[2] }));
+// Também as palavras de exemplo dos kanji (日本語, 東京...), que entram no vocabulário vindas de src/data/examples.ts.
+const examples = readFileSync(new URL('../../src/data/examples.ts', import.meta.url), 'utf8');
+words.push(...[...examples.matchAll(/word: "([^"]+)", reading: "([^"]+)"/g)].map((m) => ({ jp: m[1], reading: m[2] })));
 
 const res = await fetch(SOURCE);
 if (!res.ok) throw new Error(`${res.status} ${SOURCE}`);

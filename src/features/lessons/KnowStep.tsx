@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import { AppText, Bold, Button, Card, StrokeAnimation, PressableScale } from '@/components';
+import { KANJI_HINTS_EXTRA } from '@/content/kanjiHints';
 import { kanaExampleFor, kanjiExampleFor } from './examples';
 import { KANA_MNEMONICS, KANJI_HINTS } from '@/data/hints';
 import { STROKES } from '@/data/strokes';
@@ -31,7 +32,7 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
   const item = getItem(char);
   const strokes = STROKES[char];
   const glyphSize = Math.min(width - spacing.lg * 4, MAX_GLYPH);
-  const mnemonic = KANA_MNEMONICS[char] ?? KANJI_HINTS[char];
+  const mnemonic = KANA_MNEMONICS[char] ?? KANJI_HINTS[char] ?? KANJI_HINTS_EXTRA[char];
   const isLast = pos === items.length - 1;
   const strokeCount = strokes?.p.length ?? 0;
 

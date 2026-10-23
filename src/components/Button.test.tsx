@@ -30,3 +30,12 @@ describe('Button em fileira', () => {
     expect(outer.flex).toBeUndefined();
   });
 });
+
+describe('rótulo falado do botão', () => {
+  const { spokenLabel } = require('./Button') as typeof import('./Button');
+  it('tira o emoji do começo e nomeia o botão só de emoji', () => {
+    expect(spokenLabel('🔊 Ouvir')).toBe('Ouvir');
+    expect(spokenLabel('🔊')).toBe('Ouvir');
+    expect(spokenLabel('Começar')).toBe('Começar');
+  });
+});

@@ -5,6 +5,12 @@ import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { SPRING, useMotionEnabled } from './motion';
 import { AppText } from './AppText';
 
+/** O que o leitor de tela fala: sem o emoji do começo ("🔊 Ouvir" vira "Ouvir"; só "🔊" vira "Ouvir"). */
+export const spokenLabel = (label: string): string => {
+  const text = label.replace(/^[\p{Extended_Pictographic}️\s]+/u, '').trim();
+  return text || (label.includes('🔊') ? 'Ouvir' : label);
+};
+
 export type ButtonVariant = 'primary' | 'soft' | 'ghost';
 
 interface ButtonProps {
@@ -46,6 +52,7 @@ export function Button({ label, onPress, variant = 'primary', disabled = false, 
   return (
     <Pressable
       accessibilityRole="button"
+      accessibilityLabel={spokenLabel(label)}
       accessibilityState={{ disabled }}
       disabled={disabled}
       onPress={() => {

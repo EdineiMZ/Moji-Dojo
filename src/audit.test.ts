@@ -10,6 +10,7 @@ import { strokeModel } from '@/features/writing/model';
 import { examplesFor } from '@/features/vocab/wordInfo';
 import { findVerb } from '@/features/conjugation/verbs';
 import { ALL_ITEMS } from '@/features/catalog';
+import { fromTwins } from '@/features/vocab/twins';
 import { LESSONS } from '@/content/lessons';
 
 it('audit', () => {
@@ -20,7 +21,7 @@ it('audit', () => {
   out.push(`sem tom ${noPitch.length}`);
   const noAudio = VOCAB.filter((w) => !WORD_RECORDINGS[w.jp]);
   out.push(`sem áudio nativo ${noAudio.length}`);
-  const noSentence = VOCAB.filter((w) => examplesFor(w.id).length === 0);
+  const noSentence = VOCAB.filter((w) => !fromTwins(w, (x) => (examplesFor(x.id).length ? 1 : undefined)));
   out.push(`sem frase no banco ${noSentence.length}: ${noSentence.slice(0, 20).map((w) => w.jp).join(' ')}`);
   const emptyMeaning = VOCAB.filter((w) => !w.meaning || w.meaning.length < 2 || /\?|TODO/.test(w.meaning));
   out.push(`significado vazio/suspeito ${emptyMeaning.length}: ${emptyMeaning.map((w) => w.jp).join(' ')}`);

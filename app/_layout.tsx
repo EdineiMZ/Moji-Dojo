@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Stack } from 'expo-router';
+import { Stack, type ErrorBoundaryProps } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { ErrorScreen } from '@/components/ErrorScreen';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { ToastHost } from '@/features/journey/ui/ToastHost';
 import { useReminderSync } from '@/features/reminders/useReminderSync';
@@ -15,6 +16,11 @@ import { playSfx, preloadSfx } from '@/lib/sfx';
 import { fontAssets, ThemeProvider, useTheme } from '@/theme';
 
 SplashScreen.preventAutoHideAsync();
+
+/** O expo-router mostra isto no lugar de uma tela quebrada. */
+export function ErrorBoundary({ retry }: ErrorBoundaryProps) {
+  return <ErrorScreen retry={retry} />;
+}
 
 /** Quando o app começou a abrir; o carregamento das fontes conta para o tempo da tela de carregamento. */
 const APP_START = Date.now();

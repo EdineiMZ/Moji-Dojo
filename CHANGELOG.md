@@ -2,6 +2,18 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.12.0] - 2026-10-23
+
+Foco em viagem e dia a dia: como a frase se monta, montar frases, e frases e diálogos prontos. Tudo no aparelho.
+
+- **151 frases novas** de viagem e de dia a dia (de 37 para 188), em 15 categorias: Apresentação, Dia a dia, Aeroporto, Direções, Conbini, Dinheiro, Saúde, Telefone e internet e Atrações são novas, e Básico, Transporte, Restaurante, Compras e Hotel ganharam mais. Cada uma tem romaji, tradução e "Palavra por palavra", e entram em Ouvir → Repetir e em Traduzir. Escritas por IA, a revisar por um falante.
+- **9 diálogos novos** (de 4 para 13): imigração, táxi, conbini, pedindo o caminho, farmácia, comprando roupa, conhecendo alguém, bar japonês e problema no quarto. As respostas erradas explicam o porquê.
+- **Estrutura da frase** (Frases → Estrutura): o mapa da frase japonesa (blocos "palavra + partícula", verbo no fim), as frases de viagem abertas em blocos coloridos pelo papel de cada um, e um treino "Qual é o papel?".
+- **Frases-modelo** (Frases → Modelos): 13 moldes com uma lacuna ([coisa] を ください, [lugar] は どこ ですか, alergias, de onde você veio, como pagar...) para montar muitas frases trocando só uma palavra, com um desafio de escolher a frase certa.
+- **Montar com frases de viagem:** uma segunda fileira de tópicos com as categorias de viagem (147 exercícios).
+- A aba Frases agora tem as seções em três grupos (Palavras, Gramática, Frases).
+- Corrigido o "Palavra por palavra" de uma frase do original que estava sem o は.
+
 ## [1.11.2] - 2026-10-23
 
 Fecha o que a validação geral (1.11.1) deixou aberto.

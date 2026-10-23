@@ -147,6 +147,17 @@ Objetivo: ler textos reais e ganhar vocabulário em contexto.
 - [x] **Katakana de palavras estrangeiras:** treinar com palavras de origem inglesa (コーヒー, ホテル) para ligar a escrita ao som. *(P)*
   - Feito (1.9.0): Frases → **Katakana**, com as palavras do vocabulário escritas só em katakana: escolher o romaji (as erradas são os tropeços típicos, シ/ツ, ソ/ン, ー e ッ) ou o significado.
 
+### Foco: estrutura da frase, viagem e dia a dia (1.12.0)
+
+Pedido do aluno: aprender como a frase se monta, montar frases e ter frases e diálogos para a viagem e para o dia a dia.
+
+- [x] **Mais frases de viagem e de dia a dia:** de 37 para 188, em 15 categorias (Básico, Apresentação, Dia a dia, Aeroporto, Direções, Transporte, Restaurante, Compras, Conbini, Hotel, Dinheiro, Saúde, Telefone e internet, Atrações, Ajuda). Todas com romaji, tradução e "Palavra por palavra"; entram também em Ouvir → Repetir e em Traduzir. Fonte: `scripts/travel/phrases.mjs` (`npm run build-travel`). **Escritas por IA, a revisar por um falante.**
+- [x] **Mais diálogos:** de 4 para 13 cenas (imigração, táxi, conbini, pedindo o caminho, farmácia, comprando roupa, conhecendo alguém, bar japonês, problema no quarto), cada uma com respostas erradas que explicam o porquê. As falas do aluno vêm das frases de viagem; as do atendente são escritas por IA, a revisar.
+- [x] **Montar com frases de viagem:** Frases → Montar ganhou uma segunda fileira com as categorias de viagem (147 exercícios, blocos tirados do "Palavra por palavra", sem japonês novo).
+- [x] **Estrutura da frase** (Frases → Estrutura): o mapa da frase (blocos "palavra + partícula", verbo no fim), as frases de viagem abertas em blocos coloridos pelo papel (tema, objeto, lugar, alvo, fim da frase...) e um treino "Qual é o papel?".
+- [x] **Frases-modelo** (Frases → Modelos): 13 moldes com uma lacuna ([coisa] を ください, [lugar] は どこ ですか, [comida] の アレルギーが あります...) e um desafio de escolher a frase certa para uma tradução.
+- [ ] **Para depois:** mais moldes (horas, datas, pedidos mais longos), diálogos com a fala do atendente também para escolher e vozes diferentes por papel, textos de leitura sobre cardápios e placas reais.
+
 ### Fase 6: motor de aprendizado e plano diário
 
 Objetivo: o app decide o que estudar hoje e mede o que realmente ficou.

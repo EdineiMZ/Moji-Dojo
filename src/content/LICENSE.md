@@ -115,6 +115,14 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
   componentes de cada kanji no KanjiVG (CC BY-SA 3.0). São imagens para lembrar a forma, não a origem histórica do caractere.
   **Escritas por IA, a revisar por um falante.**
 
+## Frases de viagem, diálogos, moldes e estrutura (1.12.0)
+
+- `scripts/travel/phrases.mjs` → `src/content/travelExtra.ts`: 151 frases de viagem e de dia a dia **escritas por IA** (japonês de uso corrente, tradução em português e "palavra por palavra"). **A revisar por um falante.**
+- `scripts/dialogs/scenes.mjs` → `src/content/dialogs.ts`: 9 cenas novas. As falas do aluno são frases de Viagem; as do atendente e os motivos das respostas erradas são **escritos por IA, a revisar por um falante.**
+- `src/features/frames/frames.ts`: moldes de frase e as listas de palavras de cada um, **escritos por IA, a revisar.**
+- `src/features/structure/`: as descrições dos papéis (tema, objeto...) e a frase de exemplo do mapa (わたしは きのう えきで ともだちに ほんを あげました) são **escritas por IA, a revisar.**
+- Nada disso vem de fonte externa: não há licença de terceiros a creditar, mas também não há revisão humana ainda.
+
 ## Antes de publicar
 
 1. **Confirmar a licença das listas do Tanos** (https://www.tanos.co.uk/jlpt/) e se ela permite o uso e a

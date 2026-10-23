@@ -7,6 +7,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { LoadingScreen } from '@/components/LoadingScreen';
+import { ToastHost } from '@/features/journey/ui/ToastHost';
 import { remainingLoadingMs } from '@/lib/loading';
 import { useProgressStore } from '@/store';
 import { playSfx, preloadSfx } from '@/lib/sfx';
@@ -46,6 +47,7 @@ function ThemedStack() {
         <Stack.Screen name="lesson/[id]" />
         <Stack.Screen name="review" />
         <Stack.Screen name="settings" />
+        <Stack.Screen name="mochi" />
       </Stack>
     </>
   );
@@ -71,6 +73,7 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <ThemeProvider>
           <ThemedStack />
+          <ToastHost />
           <LoadingGate />
         </ThemeProvider>
       </SafeAreaProvider>

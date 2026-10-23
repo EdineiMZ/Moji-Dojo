@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { BackLink, AppText, Screen } from '@/components';
+import { BackLink, AppText, Button, Card, Screen } from '@/components';
 import { BackupCard } from '@/features/backup/BackupCard';
 import { ExportCard } from '@/features/backup/ExportCard';
 import { AboutCard } from '@/features/progress/AboutCard';
@@ -21,6 +21,11 @@ export default function SettingsScreen() {
         <BackLink label="← Voltar" onPress={goBack} />
         <AppText variant="headline">Ajustes</AppText>
       </View>
+      <Card enterIndex={0}>
+        <AppText variant="title">Meu Mochi</AppText>
+        <AppText color="muted">Vista o Mochi com os itens que você ganhou e compre novos com pétalas.</AppText>
+        <Button label="Abrir o armário e a loja" onPress={() => router.push('/mochi')} />
+      </Card>
       <VoiceStatusCard />
       <ReviewSettingsCard />
       <DisplaySettingsCard />

@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { AppText, Mascot, Screen, PressableScale } from '@/components';
+import { PetalsBadge } from '@/features/journey/ui/PetalsBadge';
 import { ProgressCard } from '@/features/home/ProgressCard';
 import { buildTodaySummary, scriptProgress } from '@/features/home/summary';
 import { TodayCard } from '@/features/home/TodayCard';
@@ -42,8 +43,13 @@ export default function HomeScreen() {
           <AppText variant="caption" color="muted">
             もじどうじょう
           </AppText>
+          <View style={styles.badge}>
+            <PetalsBadge onPress={() => router.push('/mochi')} />
+          </View>
         </View>
-        <Mascot mood={summary.dueCount ? 'neutral' : 'happy'} size={96} />
+        <PressableScale accessibilityRole="button" accessibilityLabel="Meu Mochi" onPress={() => router.push('/mochi')}>
+          <Mascot mood={summary.dueCount ? 'neutral' : 'happy'} size={96} />
+        </PressableScale>
         <PressableScale
           accessibilityRole="button"
           accessibilityLabel="Ajustes"
@@ -69,6 +75,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  badge: { alignSelf: 'flex-start', marginTop: spacing.xs },
   flex: { flex: 1 },
   header: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
   gear: { alignSelf: 'flex-start', padding: spacing.xs },

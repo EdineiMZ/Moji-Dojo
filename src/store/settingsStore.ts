@@ -9,6 +9,9 @@ export const SPEECH_RATES: Readonly<Record<SpeechSpeed, number>> = { normal: 0.9
 /** Quando mostrar um apoio de leitura: sempre, só ao tocar na frase, ou nunca. */
 export type ReadingAid = 'always' | 'tap' | 'never';
 
+/** Teclado para digitar em japonês nos exercícios: o do app (flick) ou o do celular. */
+export type TypingInput = 'pad' | 'system';
+
 export interface SettingsData {
   /** Nas revisões, algumas perguntas pedem para desenhar o símbolo. */
   writeInReview: boolean;
@@ -23,6 +26,8 @@ export interface SettingsData {
   showKanji: boolean;
   /** Furigana (a leitura pequena sobre o kanji), quando os kanji estão à mostra. */
   furiganaMode: ReadingAid;
+  /** Teclado usado nos exercícios de digitar frases. */
+  typingInput: TypingInput;
 }
 
 export interface SettingsActions {
@@ -33,6 +38,7 @@ export interface SettingsActions {
   setRomajiMode: (value: ReadingAid) => void;
   setShowKanji: (value: boolean) => void;
   setFuriganaMode: (value: ReadingAid) => void;
+  setTypingInput: (value: TypingInput) => void;
 }
 
 export type SettingsState = SettingsData & SettingsActions;
@@ -47,6 +53,7 @@ export const DEFAULT_SETTINGS: SettingsData = {
   romajiMode: 'always',
   showKanji: false,
   furiganaMode: 'always',
+  typingInput: 'pad',
 };
 
 /**
@@ -65,12 +72,13 @@ export function createSettingsStore(storage: StateStorage) {
         setRomajiMode: (value) => set({ romajiMode: value }),
         setShowKanji: (value) => set({ showKanji: value }),
         setFuriganaMode: (value) => set({ furiganaMode: value }),
+        setTypingInput: (value) => set({ typingInput: value }),
       }),
       {
         name: SETTINGS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode }) => ({
+        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput }) => ({
           writeInReview,
           speechSpeed,
           hapticsEnabled,
@@ -78,6 +86,7 @@ export function createSettingsStore(storage: StateStorage) {
           romajiMode,
           showKanji,
           furiganaMode,
+          typingInput,
         }),
       },
     ),

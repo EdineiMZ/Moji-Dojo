@@ -27,6 +27,7 @@ describe('settingsStore', () => {
       romajiMode: 'always',
       showKanji: false,
       furiganaMode: 'always',
+      typingInput: 'pad',
     });
     expect(createSettingsStore(storage).getState().writeInReview).toBe(false);
   });

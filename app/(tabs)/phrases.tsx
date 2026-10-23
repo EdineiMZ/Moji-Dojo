@@ -7,11 +7,12 @@ import { BuildView } from '@/features/phrases/BuildView';
 import { ALL_TOPICS } from '@/features/phrases/build';
 import { GrammarView } from '@/features/phrases/GrammarView';
 import { TravelView } from '@/features/phrases/TravelView';
+import { TranslateView } from '@/features/translate/TranslateView';
 import { VocabView } from '@/features/vocab/VocabView';
 import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 
-type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'build' | 'travel';
+type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'build' | 'travel';
 
 const VIEWS = [
   { value: 'vocab' as const, label: 'Palavras' },
@@ -19,6 +20,7 @@ const VIEWS = [
   { value: 'conjugate' as const, label: 'Conjugar' },
   { value: 'cloze' as const, label: 'Lacunas' },
   { value: 'count' as const, label: 'Contar' },
+  { value: 'translate' as const, label: 'Traduzir' },
   { value: 'build' as const, label: 'Montar' },
   { value: 'travel' as const, label: 'Viagem' },
 ];
@@ -32,7 +34,7 @@ export default function PhrasesScreen() {
       <AppText variant="headline">Frases</AppText>
       <VoiceWarning />
       <SpeedControl />
-      {/* Sete seções não cabem lado a lado em um celular: os chips rolam na horizontal. */}
+      {/* Muitas seções não cabem lado a lado em um celular: os chips rolam na horizontal. */}
       <ChipRow options={VIEWS} value={view} onChange={setView} />
       <SwapView viewKey={view}>
         {view === 'vocab' ? <VocabView /> : null}
@@ -47,6 +49,7 @@ export default function PhrasesScreen() {
         {view === 'conjugate' ? <ConjugationView /> : null}
         {view === 'cloze' ? <ClozeView /> : null}
         {view === 'count' ? <CountingView /> : null}
+        {view === 'translate' ? <TranslateView /> : null}
         {view === 'build' ? <BuildView key={topic} topic={topic} onTopicChange={setTopic} /> : null}
         {view === 'travel' ? <TravelView /> : null}
       </SwapView>

@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, Card, PressableScale } from '@/components';
-import { FLICK_KEYS, SIMULATOR_WORDS } from '@/data/keyboard';
+import { SIMULATOR_WORDS } from '@/data/keyboard';
 import { feedbackCorrect } from '@/lib/feedback';
 import { useProgressStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
-import { applyMod, howTo, simulatorProgress } from './flick';
-import { FlickKeyButton } from './FlickKeyButton';
-
-/** O teclado de flick real tem 3 colunas x 4 linhas: あ か さ / た な は / ま や ら / 小゛゜ わ 、。?! */
-const COLUMNS = 3;
+import { howTo, simulatorProgress } from './flick';
+import { FlickPad } from './FlickPad';
 
 /** Simulador do teclado de flick: digite a palavra com as 12 teclas, com dica de qual tecla e direção usar. */
 export function SimulatorView() {
@@ -18,8 +15,6 @@ export function SimulatorView() {
   const [wordIndex, setWordIndex] = useState(0);
   const [buffer, setBuffer] = useState('');
   const [hint, setHint] = useState(true);
-  // Largura real da área do teclado: medida na tela, em vez de estimada pelas margens (que já errou a conta).
-  const [boardWidth, setBoardWidth] = useState(0);
 
   const word = SIMULATOR_WORDS[wordIndex % SIMULATOR_WORDS.length];
   const target = word?.word ?? '';
@@ -27,10 +22,7 @@ export function SimulatorView() {
   const plan = progress.next ? howTo(progress.next) : null;
   const typed = [...buffer];
 
-  const keySize = Math.floor(boardWidth / COLUMNS);
-
-  const update = (next: string) => {
-    setBuffer(next);
+  const onType = (next: string) => {
     if (next === target && buffer !== target) {
       markStudied();
       feedbackCorrect();
@@ -90,42 +82,7 @@ export function SimulatorView() {
         </AppText>
       </View>
 
-      <View onLayout={(e) => setBoardWidth(e.nativeEvent.layout.width)}>
-        {keySize > 0 ? (
-          <>
-            {/* Largura de exatamente 3 teclas: a grade nunca quebra em outro número de colunas. */}
-            <View style={[styles.keys, { width: keySize * COLUMNS }]}>
-              {FLICK_KEYS.map((keyData) => (
-                <FlickKeyButton
-                  key={keyData.label}
-                  keyData={keyData}
-                  size={keySize}
-                  hinted={hint && plan?.key === keyData.label}
-                  onInput={(char) => update(buffer + char)}
-                  onMod={() => update(applyMod(buffer))}
-                />
-              ))}
-            </View>
-            <View style={[styles.actions, { width: keySize * COLUMNS }]}>
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Apagar"
-                onPress={() => setBuffer([...buffer].slice(0, -1).join(''))}
-                style={[styles.actionKey, { backgroundColor: colors.lilacSoft, borderColor: colors.line }]}
-              >
-                <AppText style={{ fontFamily: fonts.bold, fontSize: 22 }}>⌫</AppText>
-              </PressableScale>
-              <PressableScale
-                accessibilityRole="button"
-                onPress={() => setBuffer('')}
-                style={[styles.actionKey, { backgroundColor: colors.lilacSoft, borderColor: colors.line }]}
-              >
-                <AppText style={{ fontFamily: fonts.bold }}>Limpar</AppText>
-              </PressableScale>
-            </View>
-          </>
-        ) : null}
-      </View>
+      <FlickPad value={buffer} onChange={setBuffer} onType={onType} hintedKey={hint ? (plan?.key ?? null) : null} />
 
       {progress.done ? <Button label="Próxima palavra" onPress={nextWord} /> : <Button label="Pular" variant="ghost" onPress={nextWord} />}
       <AppText variant="caption" color="muted">
@@ -146,7 +103,4 @@ const styles = StyleSheet.create({
   },
   typed: { fontFamily: fonts.bold, fontSize: 28, lineHeight: 36 },
   status: { minHeight: 24, borderRadius: radii.md, paddingHorizontal: spacing.sm, justifyContent: 'center' },
-  keys: { alignSelf: 'center', flexDirection: 'row', flexWrap: 'wrap' },
-  actions: { alignSelf: 'center', flexDirection: 'row', gap: spacing.sm, paddingHorizontal: 3, marginTop: spacing.sm },
-  actionKey: { flex: 1, minHeight: 48, borderRadius: radii.md, borderWidth: 1.5, alignItems: 'center', justifyContent: 'center' },
 });

@@ -92,8 +92,10 @@ Objetivo: transformar "li sobre は e が" em "uso は e が sem pensar".
 Objetivo: sair de reconhecer para **produzir**.
 
 - [ ] **Montar evoluído:** além de blocos prontos, escolher entre várias respostas válidas, com feedback do que mudou o sentido. Já aceita mais de uma ordem; ampliar a variedade. *(M)*
-- [ ] **Traduzir digitando:** do português para o japonês usando o teclado de flick do app ou o do celular, com correção tolerante (kana ou kanji, espaços, pontuação). *(G)*
-- [ ] **Traduzir do japonês:** mostrar uma frase e pedir o sentido, com opções e depois resposta livre. *(M)*
+- [x] **Traduzir digitando:** do português para o japonês usando o teclado de flick do app ou o do celular, com correção tolerante (kana ou kanji, espaços, pontuação). *(G)*
+  - Feito: sub-aba **Traduzir → Escrever**. Teclado do app (flick) ou do celular, à escolha. A conferência ignora espaços, pontuação, largura e hiragana/katakana, aceita kana ou kanji e as outras ordens do Montar, e mostra o que sobrou na digitação. Frases: ~130, da gramática, do Montar e de Viagem.
+- [x] **Traduzir do japonês:** mostrar uma frase e pedir o sentido, com opções e depois resposta livre. *(M)*
+  - Feito: **Traduzir → Entender (opções)** e **Entender (livre)**. No modo livre a pessoa escreve o que entendeu (opcional), vê a tradução e diz se acertou, porque português livre não dá para corrigir sozinho.
 - [ ] **Banco de frases com tradução:** frases de um corpus aberto (seção 6), filtradas pelo vocabulário que o aluno já conhece. Cada frase nova pode virar cartão. *(G)*
 - [ ] **Minhas frases:** o aluno escreve frases próprias sobre a sua vida (eu moro em..., eu gosto de...). O app guarda e revisa. *(M)*
 - [ ] **Diálogos curtos com escolhas:** cenas de restaurante, estação, hotel, loja. Em cada turno, o aluno escolhe ou monta a resposta. *(G)*

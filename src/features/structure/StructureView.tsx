@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { AppText, Bold, Button, Card, ChipRow, PetalRain, PressableScale } from '@/components';
+import { AppText, Bold, Button, Card, ChipRow, PetalRain } from '@/components';
 import { ALL_TRAVEL } from '@/content/travel';
 import type { TravelPhrase } from '@/data/types';
 import { OptionButton, type OptionState } from '@/features/quiz/OptionButton';
@@ -10,8 +10,9 @@ import { speakJapanese } from '@/features/speech/voiceStore';
 import { feedbackComplete, feedbackCorrect, feedbackWrong } from '@/lib/feedback';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
-import { fonts, radii, spacing, useTheme, type Palette } from '@/theme';
+import { fonts, radii, spacing, useTheme } from '@/theme';
 import { anatomizePhrase, ROLES, type Block, type BlockRole } from './anatomy';
+import { BlockRow, tintOf } from './BlockRow';
 
 type Mode = 'explore' | 'train';
 
@@ -19,31 +20,6 @@ const MODES = [
   { value: 'explore' as const, label: 'Ver por dentro' },
   { value: 'train' as const, label: 'Qual é o papel?' },
 ];
-
-/** A cor de fundo de cada papel: as partículas que marcam "quem/o quê" num tom, "onde/quando" em outro, e o fim da frase em destaque. */
-const tintOf = (role: BlockRole, colors: Palette): string => {
-  switch (role) {
-    case 'topic':
-    case 'subject':
-      return colors.primarySoft;
-    case 'object':
-      return colors.skySoft;
-    case 'target':
-    case 'place':
-    case 'direction':
-    case 'from':
-    case 'until':
-      return colors.lilacSoft;
-    case 'possessor':
-    case 'with':
-    case 'also':
-      return colors.okSoft;
-    case 'predicate':
-      return colors.primary;
-    default:
-      return colors.surface;
-  }
-};
 
 /** O esqueleto da frase japonesa, para o aluno ter o mapa na cabeça antes de ver os exemplos. */
 function SkeletonCard() {
@@ -93,25 +69,7 @@ function SentenceBlocks({ phrase, blocks }: { phrase: TravelPhrase; blocks: read
   const block = picked === null ? null : blocks[picked];
   return (
     <Card style={styles.sentence}>
-      <View style={styles.blocks}>
-        {blocks.map((b, i) => (
-          <PressableScale
-            key={`${i}-${b.text}`}
-            accessibilityRole="button"
-            accessibilityLabel={`${b.text}: ${ROLES[b.role].label}`}
-            onPress={() => setPicked(i)}
-            style={[
-              styles.block,
-              { backgroundColor: tintOf(b.role, colors), borderColor: picked === i ? colors.ink : colors.line, borderWidth: picked === i ? 2 : 1.5 },
-            ]}
-          >
-            <AppText style={[styles.blockText, b.role === 'predicate' && { color: colors.onPrimary }]}>{b.text}</AppText>
-            <AppText variant="caption" style={{ color: b.role === 'predicate' ? colors.onPrimary : colors.muted }}>
-              {ROLES[b.role].label.split(' ')[0]}
-            </AppText>
-          </PressableScale>
-        ))}
-      </View>
+      <BlockRow blocks={blocks} selected={picked} onPick={setPicked} />
       <RomajiLine text={phrase.romaji} />
       <AppText color="muted">{phrase.pt}</AppText>
       {block ? (
@@ -187,7 +145,6 @@ function buildRound(): RoleQuestion[] {
 }
 
 function TrainView() {
-  const { colors } = useTheme();
   const recordDrill = useProgressStore((s) => s.recordDrill);
   const [questions, setQuestions] = useState(buildRound);
   const [step, setStep] = useState(0);
@@ -247,19 +204,7 @@ function TrainView() {
       </AppText>
       <Card>
         <AppText color="muted">{question.phrase.pt}</AppText>
-        <View style={styles.blocks}>
-          {question.blocks.map((b, i) => (
-            <View
-              key={`${i}-${b.text}`}
-              style={[
-                styles.block,
-                { borderColor: i === question.at ? colors.ink : colors.line, borderWidth: i === question.at ? 2 : 1.5, backgroundColor: colors.surface },
-              ]}
-            >
-              <AppText style={styles.blockText}>{b.text}</AppText>
-            </View>
-          ))}
-        </View>
+        <BlockRow blocks={question.blocks} selected={question.at} labels={false} />
         <AppText>
           Qual é o papel de <Bold>{block.text}</Bold> na frase?
         </AppText>

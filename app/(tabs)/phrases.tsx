@@ -9,6 +9,7 @@ import { BuildHub } from '@/features/phrases/BuildHub';
 import { ALL_TOPICS } from '@/features/phrases/build';
 import { GrammarView } from '@/features/phrases/GrammarView';
 import { TravelView } from '@/features/phrases/TravelView';
+import { FramesView } from '@/features/frames/FramesView';
 import { StructureView } from '@/features/structure/StructureView';
 import { ReadView } from '@/features/reading/ReadView';
 import { LoanwordsView } from '@/features/katakana/LoanwordsView';
@@ -18,7 +19,7 @@ import { VocabView } from '@/features/vocab/VocabView';
 import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 
-type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure';
+type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure' | 'frames';
 
 type Section = 'words' | 'grammar' | 'sentences';
 
@@ -48,6 +49,7 @@ const SECTIONS: readonly { value: Section; label: string; views: readonly { valu
     value: 'sentences',
     label: 'Frases',
     views: [
+      { value: 'frames', label: 'Modelos' },
       { value: 'translate', label: 'Traduzir' },
       { value: 'build', label: 'Montar' },
       { value: 'bank', label: 'Banco' },
@@ -91,6 +93,7 @@ export default function PhrasesScreen() {
         {view === 'kata' ? <LoanwordsView /> : null}
         {view === 'read' ? <ReadView /> : null}
         {view === 'structure' ? <StructureView /> : null}
+        {view === 'frames' ? <FramesView /> : null}
         {view === 'translate' ? <TranslateView /> : null}
         {view === 'bank' ? <BankView /> : null}
         {view === 'dialog' ? <DialogView /> : null}

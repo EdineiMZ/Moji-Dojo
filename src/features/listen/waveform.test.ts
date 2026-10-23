@@ -25,7 +25,8 @@ describe('waveformBars', () => {
     const levels = [-60, -60, -10, -60, -60, -60, -60, -60];
     const bars = waveformBars(levels, 4);
     expect(bars).toHaveLength(4);
-    expect(bars[0]).toBeCloseTo(levelHeight(-10));
-    expect(bars.slice(1)).toEqual([0, 0, 0]);
+    // As leituras 2 e 3 formam a segunda barra.
+    expect(bars[1]).toBeCloseTo(levelHeight(-10));
+    expect([bars[0], bars[2], bars[3]]).toEqual([0, 0, 0]);
   });
 });

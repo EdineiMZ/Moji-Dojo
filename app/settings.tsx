@@ -1,8 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { BackLink, AppText, Button, Card, Screen } from '@/components';
+import { BackLink, AppText, Button, Card, Collapsible, Screen } from '@/components';
 import { BackupCard } from '@/features/backup/BackupCard';
 import { ExportCard } from '@/features/backup/ExportCard';
+import { ProfileCard } from '@/features/profile/ProfileCard';
 import { RemindersCard } from '@/features/reminders/RemindersCard';
 import { AboutCard } from '@/features/progress/AboutCard';
 import { DisplaySettingsCard } from '@/features/progress/DisplaySettingsCard';
@@ -12,6 +13,9 @@ import { ReviewSettingsCard } from '@/features/review/ReviewSettingsCard';
 import { VoiceStatusCard } from '@/features/speech/VoiceStatusCard';
 import { spacing } from '@/theme';
 
+/**
+ * Ajustes em poucas partes: o que quase todo mundo mexe (perfil, lembretes) fica à vista; o resto, em seções que abrem com um toque.
+ */
 export default function SettingsScreen() {
   const router = useRouter();
   const goBack = () => (router.canGoBack() ? router.back() : router.replace('/'));
@@ -22,22 +26,32 @@ export default function SettingsScreen() {
         <BackLink label="← Voltar" onPress={goBack} />
         <AppText variant="headline">Ajustes</AppText>
       </View>
-      <Card enterIndex={0}>
+      <ProfileCard />
+      <RemindersCard />
+      <Card enterIndex={2}>
         <AppText variant="title">Meu Mochi</AppText>
         <AppText color="muted">Vista o Mochi com os itens que você ganhou e compre novos com pétalas.</AppText>
         <Button label="Abrir o armário e a loja" onPress={() => router.push('/mochi')} />
       </Card>
-      <RemindersCard />
-      <VoiceStatusCard />
-      <ReviewSettingsCard />
-      <DisplaySettingsCard />
-      <FeedbackSettingsCard />
-      <ExportCard />
-      <BackupCard />
-      <ResetCard />
+
+      <Collapsible title="Estudo e exibição" hint="Voz japonesa, revisão, romaji e furigana">
+        <VoiceStatusCard />
+        <ReviewSettingsCard />
+        <DisplaySettingsCard />
+      </Collapsible>
+      <Collapsible title="Sons e vibração" hint="Efeitos sonoros, vibração e gravações de falantes nativos">
+        <FeedbackSettingsCard />
+      </Collapsible>
+      <Collapsible title="Seus dados" hint="Exportar, fazer backup e zerar o progresso">
+        <ExportCard />
+        <BackupCard />
+        <ResetCard />
+      </Collapsible>
       <AboutCard />
     </Screen>
   );
 }
 
-const styles = StyleSheet.create({ header: { gap: spacing.sm } });
+const styles = StyleSheet.create({
+  header: { gap: spacing.xs },
+});

@@ -1,10 +1,11 @@
 import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { AppText, Card, PressableScale } from '@/components';
+import { AppText, Card, PressableScale, ProgressBar } from '@/components';
 import { dueCards as conjDue } from '@/features/conjugation/cards';
 import { dueCards as vocabDue } from '@/features/vocab/cards';
-import { useProgressStore } from '@/store';
+import { minutesLeft, minutesOf } from '@/features/profile/studyTimer';
+import { useProgressStore, useSettingsStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { dailyPlan } from './dailyPlan';
 
@@ -13,6 +14,8 @@ export function DailyPlanCard({ dueKana, now }: { dueKana: number; now: number }
   const router = useRouter();
   const { colors } = useTheme();
   const counts = useProgressStore((s) => s.journey.today.counts);
+  const goalMinutes = useSettingsStore((s) => s.profile.goalMinutes);
+  const seconds = counts.seconds ?? 0;
   const vocab = useProgressStore((s) => s.vocab);
   const conj = useProgressStore((s) => s.conj);
   const particles = useProgressStore((s) => s.particles);
@@ -27,6 +30,14 @@ export function DailyPlanCard({ dueKana, now }: { dueKana: number; now: number }
   return (
     <Card>
       <AppText variant="title">Sessão de hoje</AppText>
+      {goalMinutes > 0 ? (
+        <View style={styles.goal}>
+          <ProgressBar value={Math.min(1, seconds / (goalMinutes * 60))} />
+          <AppText variant="caption" color="muted">
+            {minutesLeft(goalMinutes, seconds) === 0 ? `Meta de ${goalMinutes} min batida!` : `${minutesOf(seconds)} de ${goalMinutes} min · faltam ${minutesLeft(goalMinutes, seconds)}`}
+          </AppText>
+        </View>
+      ) : null}
       <AppText color="muted">
         {done === steps.length ? 'Sessão completa. O resto do dia é bônus.' : `${done} de ${steps.length} passos · uns 15 a 20 minutos`}
       </AppText>
@@ -55,6 +66,7 @@ export function DailyPlanCard({ dueKana, now }: { dueKana: number; now: number }
 
 const styles = StyleSheet.create({
   list: { gap: spacing.xs },
+  goal: { gap: spacing.xs },
   flex: { flex: 1 },
   step: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, borderWidth: 1.5, borderRadius: radii.md, paddingVertical: spacing.sm, paddingHorizontal: spacing.md },
 });

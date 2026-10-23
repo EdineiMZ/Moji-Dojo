@@ -14,7 +14,7 @@ import { EvolutionCard } from '@/features/stats/EvolutionCard';
 import { accuracy, activityStrip, bestStreak, dailyAnswers, evolution } from '@/features/stats/metrics';
 import { StatsCard } from '@/features/stats/StatsCard';
 import { useNow } from '@/hooks/useNow';
-import { useProgressStore } from '@/store';
+import { useProgressStore, useSettingsStore } from '@/store';
 import { spacing } from '@/theme';
 
 export default function HomeScreen() {
@@ -26,6 +26,7 @@ export default function HomeScreen() {
   const stats = useProgressStore((s) => s.stats);
   const history = useProgressStore((s) => s.history);
   const felt = useMochiMood();
+  const username = useSettingsStore((s) => s.profile.username);
 
   const summary = useMemo(() => buildTodaySummary({ srs, lessons, days }, now), [srs, lessons, days, now]);
   const progress = useMemo(() => scriptProgress(srs), [srs]);
@@ -44,9 +45,9 @@ export default function HomeScreen() {
     <Screen>
       <View style={styles.header}>
         <View style={styles.flex}>
-          <AppText variant="headline">Moji Dojo</AppText>
+          <AppText variant="headline">{username ? `Olá, ${username}!` : 'Moji Dojo'}</AppText>
           <AppText variant="caption" color="muted">
-            もじどうじょう
+            {username ? 'もじどうじょう · Moji Dojo' : 'もじどうじょう'}
           </AppText>
           <View style={styles.badge}>
             <PetalsBadge onPress={() => router.push('/mochi')} />

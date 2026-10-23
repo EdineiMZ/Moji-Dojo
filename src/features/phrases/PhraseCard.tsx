@@ -4,6 +4,7 @@ import { AppText, Button, Card } from '@/components';
 import type { TravelPhrase } from '@/data/types';
 import { ShadowRecorder } from '@/features/listen/ShadowRecorder';
 import { speakJapanese } from '@/features/speech/voiceStore';
+import { ConfidenceNote } from '@/features/confidence/ConfidenceNote';
 import { RomajiLine } from './RomajiLine';
 import { useSettingsStore } from '@/store';
 import type { ShadowRating } from '@/store/progressStore';
@@ -40,6 +41,7 @@ export function PhraseCard({ phrase, breakdown = false, rating, enterIndex }: Ph
       <AppText style={styles.jp}>{phrase.jp}</AppText>
       <RomajiLine text={phrase.romaji} />
       <AppText>{phrase.pt}</AppText>
+      <ConfidenceNote jp={phrase.jp} />
 
       <View style={styles.row}>
         <Button label="🔊 Ouvir" onPress={() => speakJapanese(phrase.jp, SPEECH_RATES[speed])} style={styles.small} />

@@ -866,9 +866,9 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "にもつは どこで うけとりますか",
-        "romaji": "nimotsu wa doko de uketorimasu ka",
-        "pt": "Onde retiro a bagagem?",
+        "jp": "にもつは どこで うけとれますか",
+        "romaji": "nimotsu wa doko de uketoremasu ka",
+        "pt": "Onde posso retirar a bagagem?",
         "breakdown": [
           {
             "part": "にもつ",
@@ -887,8 +887,8 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
             "meaning": "em"
           },
           {
-            "part": "うけとります",
-            "meaning": "retiro"
+            "part": "うけとれます",
+            "meaning": "consigo retirar"
           },
           {
             "part": "か",
@@ -897,18 +897,10 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "わたしの にもつが みつかりません",
-        "romaji": "watashi no nimotsu ga mitsukarimasen",
+        "jp": "にもつが みつかりません",
+        "romaji": "nimotsu ga mitsukarimasen",
         "pt": "Não encontro a minha bagagem",
         "breakdown": [
-          {
-            "part": "わたし",
-            "meaning": "eu"
-          },
-          {
-            "part": "の",
-            "meaning": "de (minha)"
-          },
           {
             "part": "にもつ",
             "meaning": "bagagem"
@@ -1335,7 +1327,7 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
       {
         "jp": "アイシーカードに チャージ したい です",
         "romaji": "aishīkādo ni chāji shitai desu",
-        "pt": "Quero carregar o meu cartão IC",
+        "pt": "Quero carregar o meu cartão IC (faça nas máquinas de bilhete)",
         "breakdown": [
           {
             "part": "アイシーカード",
@@ -2499,21 +2491,21 @@ export const TRAVEL_EXTRA: readonly TravelCategory[] = [
         ]
       },
       {
-        "jp": "もう いちにち とまりたい です",
-        "romaji": "mō ichinichi tomaritai desu",
-        "pt": "Quero ficar mais um dia",
+        "jp": "もう いっぱく したい です",
+        "romaji": "mō ippaku shitai desu",
+        "pt": "Quero ficar mais uma noite",
         "breakdown": [
           {
             "part": "もう",
             "meaning": "mais"
           },
           {
-            "part": "いちにち",
-            "meaning": "um dia"
+            "part": "いっぱく",
+            "meaning": "uma noite de hospedagem"
           },
           {
-            "part": "とまりたい",
-            "meaning": "quero me hospedar"
+            "part": "したい",
+            "meaning": "quero fazer"
           },
           {
             "part": "です",

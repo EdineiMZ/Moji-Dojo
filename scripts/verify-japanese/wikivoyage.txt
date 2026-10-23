@@ -1,0 +1,60 @@
+Konnichiwa. | こんにちは。
+O-genki desu ka? | お元気ですか？
+Hai, genki desu. | はい、元気です。
+Hajimemashite. Dōzo yoroshiku onegaishimasu. | 始めまして。どうぞ宜しくお願いします。
+Onegai shimasu. | お願いします。
+Dōzo. | どうぞ。
+Arigatō gozaimasu. | ありがとうございます。
+Dō itashimashite. | どういたしまして。
+Sumimasen. | すみません。
+Gomen nasai. | ごめんなさい。
+Sayōnara. | さようなら。
+Nihongo ga (yoku) hanasemasen. | 日本語が（よく）話せません。
+Nihongo ga hanasemasu ka? | 日本語が話せますか？
+Eigo ga hanasemasu ka? | 英語が話せますか？
+Yukkuri hanashite kudasai. | ゆっくり話してください。
+Mō ichido itte kudasai. | もう一度言ってください。
+Tasukete! | 助けて！
+Ohayō gozaimasu. | お早うございます。
+Kombanwa. | こんばんは。
+Oyasuminasai. | お休みなさい。
+Wakarimasen. | 分かりません。
+Otearai/toire wa doko desu ka? | お手洗い・トイレはどこですか？
+Ikura desu ka? | いくらですか？
+_____ made ikura desu ka? | _____ までいくらですか?
+Kono densha/basu wa doko yuki desu ka? | この電車・バスはどこ行きですか?
+Kono densha/basu wa _____ ni tomarimasu ka? | この電車・バスは _____ に止まりますか?
+Koko kara tooi desu ka? | ここから遠いですか?
+Chizu de sashite kudasai. | 地図で指して下さい。
+Hidari e magatte kudasai. | 左へ曲がってください。
+Migi e magatte kudasai. | 右へ曲がってください。
+_____ made onegaishimasu. | _____までお願いします。
+Aiteru heya arimasu ka? | 空いてる部屋ありますか?
+Heya o mite mo ii desu ka? | 部屋を見てもいいですか?
+Motto [shizuka na] heya arimasu ka? | もっと[静かな]部屋ありますか?
+Chōshoku/yūshoku wa nanji desu ka? | 朝食・夕食は何時ですか？
+Chekku auto desu. | チェックアウトです。
+Kurejitto kaado wa tsukaemasu ka? | クレジットカードは使えますか？
+Okane wa doko de ryōgae dekimasu ka? | お金はどこで両替できますか？
+ATM wa doko ni arimasuka? | ATM はどこにありますか？
+Fukuro o moraemasu ka? | 袋を貰えますか？
+Fukuro o kudasai | 袋をください
+Irimasen. | 要りません。
+Irasshaimase | いらっしゃいませ！
+Hitori / futari desu | 一人・二人です。
+Menyū o kudasai | メニューを下さい。
+O-susume wa arimasu ka? | お勧めはありますか？
+Bejitarian desu | ベジタリアンです。
+Butaniku wa dame desu | 豚肉はだめです。
+Itadakimasu | いただきます。
+Gochisōsama deshita | ご馳走さまでした。
+O-kanjo onegaishimasu / Kaikei onegaishimasu | お勘定お願いします。 / 会計お願いします。
+Biiru ippai / nihai kudasai | ビール一杯・二杯下さい。
+Mō hitotsu kudasai | もう一つください。
+Tasukete! | 助けて！
+Kinkyū desu | 緊急です。
+Michi ni mayotte imasu | 道に迷っています。
+Kyūkyūsha o yonde kudasai | 救急車を呼んで下さい。
+Byōki desu | 病気です。
+Yakkyoku wa doko desu ka? | 薬局はどこですか？
+Chotto omachi kudasai | ちょっとお待ちください。

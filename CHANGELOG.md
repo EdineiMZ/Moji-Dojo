@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.14.1] - 2026-10-23
+
+Conferência do japonês do app em fontes abertas, com um selo de confirmação em cada frase e algumas correções.
+
+- **Conferência em várias fontes:** as frases de viagem, as falas do atendente e os moldes (escritos por IA) foram comparados com 249 mil frases de falantes do Tatoeba (escritas em kana e com kanji, pelas grafias do JMdict), com o guia de frases da Wikivoyage e com o dicionário JMdict (todas as palavras e 59 dos 62 pares kanji + leitura dos textos de placas e cardápios conferem; os 3 restantes são um nome próprio, um composto e uma conjugação, corretos).
+- **Selo em cada frase:** sob a frase aparece "✓ Frase confirmada em exemplos de falantes" (com a fonte), "◐ Construção confirmada" (só o fecho da frase aparece nas fontes) ou "Ainda sem confirmação em fontes: revisão de um falante pendente". 148 das 188 frases de viagem e 98 dos 107 moldes têm algum selo. "Sem confirmação" não quer dizer errada, e sim que nenhuma fonte aberta tinha a frase.
+- **Correções:** "Onde retiro a bagagem?" passou para a forma de possibilidade (にもつは どこで うけとれますか), "Não encontro a minha bagagem" perdeu o わたしの a mais, "Quero ficar mais um dia" virou "mais uma noite" (もう いっぱく したい です), e a fala do atendente do conbini ficou mais natural (ふくろは ごりよう ですか, おはしは おつけ しますか, ポイントカードは おもち ですか) e a pergunta da imigração também (たいざい します).
+- O relatório completo, com a lista do que ainda espera um falante, está em `docs/verificacao-japones.md`.
+
 ## [1.14.0] - 2026-10-23
 
 Loja, baús e raridades: ganhar pétalas ficou mais difícil, o baú diário de verdade, 66 itens novos e um Mochi com mais vida.

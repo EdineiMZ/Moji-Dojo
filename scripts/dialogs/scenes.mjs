@@ -97,7 +97,7 @@ export const SCENES = [
         ],
       },
       { narrator: 'Você escolheu e foi ao caixa.' },
-      { staff: 'ふくろ~は いります~か', pt: 'Precisa de sacola?' },
+      { staff: 'ふくろ~は ごりよう です~か', pt: 'Vai querer sacola?' },
       {
         you: [
           ['ふくろは いりません', true],
@@ -227,7 +227,7 @@ export const SCENES = [
           ['おしごとは なん ですか', false, 'Isso é perguntar a profissão dele. Ele quer saber a sua razão de estar no Japão.'],
         ],
       },
-      { staff: 'どのくらい います~か', pt: 'Quanto tempo vai ficar?' },
+      { staff: 'どのくらい たいざい します~か', pt: 'Quanto tempo vai ficar?' },
       {
         you: [
           ['いっしゅうかん ほど います', true],
@@ -246,7 +246,7 @@ export const SCENES = [
       { narrator: 'Você passou pela imigração e agora procura a sua mala.' },
       {
         you: [
-          ['にもつは どこで うけとりますか', true],
+          ['にもつは どこで うけとれますか', true],
           ['りょうがえは どこで できますか', false, 'Câmbio é útil, mas primeiro você precisa pegar a mala.'],
           ['タクシーを よんで ください', false, 'O táxi vem depois de pegar a bagagem.'],
         ],
@@ -301,7 +301,7 @@ export const SCENES = [
     intro: 'Você compra uma refeição pronta numa loja de conveniência, aberta a qualquer hora.',
     turns: [
       { narrator: 'Você leva uma marmita ao caixa.' },
-      { staff: 'いらっしゃいませ ふくろ~は いります~か', pt: 'Bem-vindo! Precisa de sacola?' },
+      { staff: 'いらっしゃいませ ふくろ~は ごりよう です~か', pt: 'Bem-vindo! Vai querer sacola?' },
       {
         you: [
           ['ふくろは いりません', true],
@@ -317,7 +317,7 @@ export const SCENES = [
           ['わかりません', false, 'A pergunta é simples: esquentar ou não. Você sabe o que quer.'],
         ],
       },
-      { staff: 'おはし~は いります~か', pt: 'Precisa de pauzinhos (hashi)?' },
+      { staff: 'おはし~は おつけ します~か', pt: 'Quer que eu coloque pauzinhos (hashi)?' },
       {
         you: [
           ['おはしを ください', true],
@@ -325,7 +325,7 @@ export const SCENES = [
           ['ごちそうさまでした', false, 'Esse se diz depois de comer, e você ainda não comeu.'],
         ],
       },
-      { staff: 'ポイントカード~は ありますか', pt: 'Tem cartão de pontos?' },
+      { staff: 'ポイントカード~は おもち です~か', pt: 'Tem cartão de pontos?' },
       {
         you: [
           ['ポイントカードは ありません', true],
@@ -659,7 +659,7 @@ export const SCENES = [
       { narrator: 'Por fim, você pergunta se ainda é possível ficar mais um dia.' },
       {
         you: [
-          ['もう いちにち とまりたい です', true],
+          ['もう いっぱく したい です', true],
           ['もう いちど おねがいします', false, 'Isso pede para repetir a frase, não para ficar mais um dia.'],
           ['また あした', false, 'É uma despedida, não um pedido.'],
         ],

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, Card, ChipRow, PetalRain } from '@/components';
+import { ConfidenceNote } from '@/features/confidence/ConfidenceNote';
 import { RomajiLine } from '@/features/phrases/RomajiLine';
 import { OptionButton, type OptionState } from '@/features/quiz/OptionButton';
 import { shuffle } from '@/features/quiz/quiz';
@@ -62,6 +63,7 @@ function MakeView() {
           <AppText variant="caption" color="muted">
             {word.jp} = {word.pt}
           </AppText>
+          <ConfidenceNote jp={filled.jp} />
         </View>
         <Button label="🔊 Ouvir" variant="soft" onPress={() => speakJapanese(spoken(filled.jp), SPEECH_RATES[speed])} />
       </Card>

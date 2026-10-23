@@ -325,9 +325,9 @@ export const DIALOG_SCENES: readonly DialogScene[] = [
       },
       {
         "kind": "staff",
-        "jp": "ふくろは いりますか",
-        "romaji": "fukuro wa irimasu ka",
-        "pt": "Precisa de sacola?"
+        "jp": "ふくろは ごりよう ですか",
+        "romaji": "fukuro wa goriyō desu ka",
+        "pt": "Vai querer sacola?"
       },
       {
         "kind": "you",
@@ -748,8 +748,8 @@ export const DIALOG_SCENES: readonly DialogScene[] = [
       },
       {
         "kind": "staff",
-        "jp": "どのくらい いますか",
-        "romaji": "donokurai imasu ka",
+        "jp": "どのくらい たいざい しますか",
+        "romaji": "donokurai taizai shimasu ka",
         "pt": "Quanto tempo vai ficar?"
       },
       {
@@ -816,9 +816,9 @@ export const DIALOG_SCENES: readonly DialogScene[] = [
         "kind": "you",
         "options": [
           {
-            "jp": "にもつは どこで うけとりますか",
-            "romaji": "nimotsu wa doko de uketorimasu ka",
-            "pt": "Onde retiro a bagagem?",
+            "jp": "にもつは どこで うけとれますか",
+            "romaji": "nimotsu wa doko de uketoremasu ka",
+            "pt": "Onde posso retirar a bagagem?",
             "ok": true
           },
           {
@@ -983,9 +983,9 @@ export const DIALOG_SCENES: readonly DialogScene[] = [
       },
       {
         "kind": "staff",
-        "jp": "いらっしゃいませ ふくろは いりますか",
-        "romaji": "irasshaimase fukuro wa irimasu ka",
-        "pt": "Bem-vindo! Precisa de sacola?"
+        "jp": "いらっしゃいませ ふくろは ごりよう ですか",
+        "romaji": "irasshaimase fukuro wa goriyō desu ka",
+        "pt": "Bem-vindo! Vai querer sacola?"
       },
       {
         "kind": "you",
@@ -1045,9 +1045,9 @@ export const DIALOG_SCENES: readonly DialogScene[] = [
       },
       {
         "kind": "staff",
-        "jp": "おはしは いりますか",
-        "romaji": "ohashi wa irimasu ka",
-        "pt": "Precisa de pauzinhos (hashi)?"
+        "jp": "おはしは おつけ しますか",
+        "romaji": "ohashi wa otsuke shimasu ka",
+        "pt": "Quer que eu coloque pauzinhos (hashi)?"
       },
       {
         "kind": "you",
@@ -1076,8 +1076,8 @@ export const DIALOG_SCENES: readonly DialogScene[] = [
       },
       {
         "kind": "staff",
-        "jp": "ポイントカードは ありますか",
-        "romaji": "pointokādo wa arimasuka",
+        "jp": "ポイントカードは おもち ですか",
+        "romaji": "pointokādo wa omochi desu ka",
         "pt": "Tem cartão de pontos?"
       },
       {
@@ -2185,9 +2185,9 @@ export const DIALOG_SCENES: readonly DialogScene[] = [
         "kind": "you",
         "options": [
           {
-            "jp": "もう いちにち とまりたい です",
-            "romaji": "mō ichinichi tomaritai desu",
-            "pt": "Quero ficar mais um dia",
+            "jp": "もう いっぱく したい です",
+            "romaji": "mō ippaku shitai desu",
+            "pt": "Quero ficar mais uma noite",
             "ok": true
           },
           {

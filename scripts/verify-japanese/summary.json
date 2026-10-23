@@ -1,0 +1,14 @@
+{
+ "viagem-original:frase": 22,
+ "viagem-original:sem-evidencia": 8,
+ "viagem-original:padrao": 7,
+ "viagem-ia:frase": 80,
+ "viagem-ia:padrao": 39,
+ "viagem-ia:sem-evidencia": 32,
+ "atendente-ia:sem-evidencia": 13,
+ "atendente-ia:frase": 15,
+ "atendente-ia:padrao": 5,
+ "molde-ia:frase": 45,
+ "molde-ia:padrao": 53,
+ "molde-ia:sem-evidencia": 9
+}

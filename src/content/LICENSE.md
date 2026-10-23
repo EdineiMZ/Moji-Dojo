@@ -131,6 +131,10 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
 
 - `src/components/mascot/artWear.tsx` e `artScenes.tsx`: os 66 desenhos novos (acessórios, fundos, cores e peles) são **originais**, feitos em SVG para este app. Não há licença de terceiros a creditar.
 
+## Conferência do japonês (1.14.1)
+
+- `scripts/verify-japanese/` e `src/content/confirmed.ts`: as frases do app foram comparadas com o **Tatoeba** (CC BY 2.0 FR; os números das frases estão em `confirmed.ts`, para crédito), com o **JMdict** (EDRDG, CC BY-SA 4.0) e com o guia de frases da **Wikivoyage** em inglês (CC BY-SA 4.0; `wikivoyage.txt` guarda só a romanização, para comparar). Nenhum texto dessas fontes é exibido no app além do número de referência. O selo diz o que foi confirmado; a revisão por um falante continua pendente para o resto.
+
 ## Antes de publicar
 
 1. **Confirmar a licença das listas do Tanos** (https://www.tanos.co.uk/jlpt/) e se ela permite o uso e a

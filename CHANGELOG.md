@@ -2,6 +2,18 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.5.0] - 2026-10-23
+
+Fase 3 do [ROADMAP](ROADMAP.md): montar e produzir frases. A aba Frases agora tem doze seções.
+
+- **Leitura ajustável:** romaji e furigana sempre, só ao toque ou nunca (Ajustes → Leitura das frases), e frases da gramática escritas com kanji.
+- **Traduzir:** do japonês (escolhendo entre quatro opções ou em resposta livre) e do português para o japonês, digitando com o teclado de flick do app ou o do celular. A conferência aceita kana ou kanji e ignora espaços e pontuação.
+- **Minhas frases:** escreva frases sobre a sua vida; o app guarda, edita e revisa com repetição espaçada, pedindo para escrever de memória. Entram no backup.
+- **Montar evoluído:** ao errar, "O que mudou" explica a causa (partícula trocada, final do verbo, bloco que sobra ou falta, ordem) e lista as outras ordens que valem. Novo modo "Qual está certa?" com frases parecidas e a explicação de cada erro.
+- **Banco de frases:** cerca de 1.600 frases reais do Tatoeba (CC BY 2.0 FR) com tradução, filtradas pelas palavras que você já aprendeu (que eu sei ler, uma palavra nova, qualquer uma). Dá para ouvir, praticar e salvar em Minhas frases.
+- **Diálogos:** quatro cenas (restaurante, loja, estação, hotel) em que você escolhe a fala certa em cada turno, com o motivo de cada erro, e no fim escreve as suas falas de memória.
+- **Pendências para publicar:** o corte das frases em palavras é automático e pode errar; as falas do atendente, os motivos dos diálogos e as explicações do Montar foram escritos por IA e precisam de revisão por um falante.
+
 ## [1.4.0] - 2026-10-23
 
 Fase 2 do [ROADMAP](ROADMAP.md): gramática ativa. A aba Frases agora tem sete seções (os chips rolam na horizontal).

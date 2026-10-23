@@ -132,6 +132,35 @@ export const FRAMES: readonly Frame[] = [
     words: [w('にほん', 'Japão', 'do Japão'), w('ラーメン', 'lámen', 'de lámen'), w('すし', 'sushi', 'de sushi'), w('コーヒー', 'café', 'de café'), w('えいが', 'filmes', 'de filmes'), w('おんがく', 'música', 'de música'), w('りょこう', 'viajar', 'de viajar'), w('さかな', 'peixe', 'de peixe')],
   },
   {
+    id: 'ne',
+    title: '[adjetivo] ですね',
+    use: 'Puxar conversa comentando algo: o tempo, a comida, os preços.',
+    after: [{ jp: 'ですね' }],
+    ptTemplate: 'Está {pt}, né?',
+    slotLabel: 'Como está?',
+    words: [w('あつい', 'quente (calor)'), w('さむい', 'frio'), w('おいしい', 'gostoso'), w('すごい', 'incrível'), w('たかい', 'caro'), w('やすい', 'barato'), w('おおきい', 'grande'), w('きれい', 'bonito')],
+  },
+  {
+    id: 'kara-kimashita',
+    title: '[país] から きました',
+    use: 'Dizer de onde você veio.',
+    slotParticle: 'から',
+    after: [{ jp: 'きました' }],
+    ptTemplate: 'Eu vim {the}',
+    slotLabel: 'De que país?',
+    words: [w('ブラジル', 'Brasil', 'do Brasil'), w('ポルトガル', 'Portugal', 'de Portugal'), w('アメリカ', 'Estados Unidos', 'dos Estados Unidos'), w('カナダ', 'Canadá', 'do Canadá'), w('フランス', 'França', 'da França'), w('スペイン', 'Espanha', 'da Espanha'), w('ドイツ', 'Alemanha', 'da Alemanha'), w('イギリス', 'Inglaterra', 'da Inglaterra')],
+  },
+  {
+    id: 'harau',
+    title: '[meio] で はらえますか',
+    use: 'Perguntar se dá para pagar de um jeito.',
+    slotParticle: 'で',
+    after: [{ jp: 'はらえます' }, { jp: 'か', particle: true }],
+    ptTemplate: 'Posso pagar com {pt}?',
+    slotLabel: 'Pagar com o quê?',
+    words: [w('カード', 'cartão'), w('クレジットカード', 'cartão de crédito'), w('げんきん', 'dinheiro vivo'), w('アイシーカード', 'cartão IC'), w('スマホ', 'o celular'), w('デビットカード', 'cartão de débito')],
+  },
+  {
     id: 'te-kudasai',
     title: '[verbo na forma て] ください',
     use: 'Pedir uma ação, com educação.',
@@ -153,13 +182,15 @@ export interface FilledFrame {
 
 const AUX = new Set(['です', 'ですか', 'ください']);
 
-const romajiOfWord = (jp: string): string =>
-  jp === 'ですか'
-    ? 'desu ka'
-    : jp
-        .split(' ')
-        .map((part) => kanaToRomaji(part))
-        .join(' ');
+/** Romaji de uma peça: a pergunta (か) e o ね que fecham a frase se escrevem à parte ("arimasu ka", "desu ne"). */
+const romajiOfWord = (jp: string): string => {
+  const ending = /(す)([かね])$/.exec(jp);
+  if (jp.length > 1 && ending) return `${romajiOfWord(jp.slice(0, -1))} ${ending[2] === 'か' ? 'ka' : 'ne'}`;
+  return jp
+    .split(' ')
+    .map((part) => kanaToRomaji(part))
+    .join(' ');
+};
 
 /** Monta a frase: palavra da lacuna + partícula colada, depois as peças do molde. */
 export function fillFrame(frame: Frame, word: SlotWord): FilledFrame {

@@ -10,6 +10,7 @@ import { spacing } from '@/theme';
 import { roll, weekChestReady } from '../events';
 import { missionsFor, WEEKLY_DAYS_GOAL } from '../missions';
 import { buildContext } from '../track';
+import { useChestUi } from '../chestUi';
 
 /**
  * O que a jornada põe na tela inicial: a oferta de salvar a sequência, as boas-vindas de quem volta de uma pausa e o
@@ -20,7 +21,8 @@ export function JourneyCard() {
   const now = useNow();
   const state = useProgressStore((s) => s);
   const declineRescue = useProgressStore((s) => s.declineRescue);
-  const claim = useProgressStore((s) => s.claimWeekChest);
+  const requestChest = useChestUi((s) => s.request);
+  const dailyChest = useProgressStore((s) => s.journey.today.chest === 'ready');
   const updateJourney = useProgressStore((s) => s.updateJourney);
   const reminders = useSettingsStore((s) => s.reminders);
   const setReminders = useSettingsStore((s) => s.setReminders);
@@ -99,7 +101,8 @@ export function JourneyCard() {
         <AppText>
           Missões: <Bold>{claimed}</Bold> de {missions.length} · Semana: <Bold>{ctx.weekDays}</Bold> de {WEEKLY_DAYS_GOAL} dias
         </AppText>
-        {chest ? <Button label="🎁 Abrir o baú da semana" onPress={() => claim()} /> : null}
+        {chest ? <Button label="🎁 Abrir o baú da semana" onPress={() => requestChest('weekly')} /> : null}
+        {dailyChest ? <Button label="🎁 Abrir o baú do dia" onPress={() => requestChest('daily')} /> : null}
         <Button label="Ver metas e conquistas" variant="soft" onPress={() => router.push({ pathname: '/mochi', params: { tab: 'goals' } })} />
       </Card>
     </>

@@ -10,6 +10,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ErrorScreen } from '@/components/ErrorScreen';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { StudyTimer } from '@/features/profile/useStudyTimer';
+import { ChestHost } from '@/features/journey/ui/ChestHost';
 import { ToastHost } from '@/features/journey/ui/ToastHost';
 import { useReminderSync } from '@/features/reminders/useReminderSync';
 import { remainingLoadingMs } from '@/lib/loading';
@@ -94,6 +95,7 @@ export default function RootLayout() {
           <StudyTimer>
             <ThemedStack />
             <ToastHost />
+            <ChestHost />
             <LoadingGate />
           </StudyTimer>
         </ThemeProvider>

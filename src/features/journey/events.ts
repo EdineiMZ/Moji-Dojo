@@ -3,7 +3,7 @@ import { countSkill } from './skills';
 import { newlyEarned, type AchievementContext } from './achievements';
 import { answerXp, lessonReward, roomToday, sessionReward } from './economy';
 import { rollLoot, type Loot, type Rng } from './loot';
-import { findItem, ITEMS } from './items';
+import { ITEMS } from './items';
 import {
   addPetals,
   bump,

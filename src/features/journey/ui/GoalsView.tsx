@@ -7,6 +7,7 @@ import { DAILY_GOALS } from '../journey';
 import { ALL_MISSIONS_BONUS, challengeFor, MISSION_PETALS, missionsFor, WEEKLY_DAYS_GOAL, WEEKLY_PETALS } from '../missions';
 import { formatDay } from '@/features/streak/days';
 import { buildContext } from '../track';
+import { useChestUi } from '../chestUi';
 import { limitLabel, NEW_OPTIONS, REVIEW_OPTIONS } from '@/features/limits/limits';
 import { roll, weekChestReady } from '../events';
 import { weekDays } from '../week';
@@ -19,7 +20,7 @@ export function GoalsView() {
   const { colors } = useTheme();
   const now = useNow();
   const state = useProgressStore((s) => s);
-  const claim = useProgressStore((s) => s.claimWeekChest);
+  const requestChest = useChestUi((s) => s.request);
   const updateJourney = useProgressStore((s) => s.updateJourney);
   const limits = useSettingsStore((s) => s.limits);
   const setLimits = useSettingsStore((s) => s.setLimits);
@@ -107,7 +108,7 @@ export function GoalsView() {
         {journey.week.claimed ? (
           <AppText color="ok">Baú desta semana já aberto ✓</AppText>
         ) : chestReady ? (
-          <Button label="🎁 Abrir o baú da semana" onPress={() => claim()} />
+          <Button label="🎁 Abrir o baú da semana" onPress={() => requestChest('weekly')} />
         ) : null}
       </Card>
 

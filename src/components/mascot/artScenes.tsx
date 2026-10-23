@@ -1,5 +1,5 @@
 import { ClipPath, Circle, Defs, Ellipse, G, Path, Polygon, Rect } from 'react-native-svg';
-import { LINE, star, stroke, type Art } from './artKit';
+import { LINE, star, type Art } from './artKit';
 
 const W = 200;
 const H = 190;

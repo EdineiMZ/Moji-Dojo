@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable } from 'react-native';
 import Animated, {
+  type SharedValue,
   cancelAnimation,
   Easing,
   useAnimatedStyle,
@@ -71,6 +72,31 @@ function useBlink(enabled: boolean, motion: boolean): boolean {
     };
   }, [enabled, motion]);
   return closed;
+}
+
+interface TrickValues {
+  tapLift: SharedValue<number>;
+  spin: SharedValue<number>;
+  tapSquash: SharedValue<number>;
+}
+
+/** A gracinha do toque: pula, gira, se espreme ou balança. Fica fora do componente porque mexe nos valores animados. */
+function playTrick(trick: number, v: TrickValues): void {
+  cancelAnimation(v.tapLift);
+  cancelAnimation(v.spin);
+  cancelAnimation(v.tapSquash);
+  if (trick === 0) {
+    v.tapLift.value = withSequence(withTiming(-20, { duration: 200, easing: Easing.out(Easing.quad) }), withSpring(0, { damping: 6, stiffness: 140 }));
+  } else if (trick === 1) {
+    v.spin.value = 0;
+    v.spin.value = withTiming(360, { duration: 520, easing: Easing.inOut(Easing.quad) }, () => {
+      v.spin.value = 0;
+    });
+  } else if (trick === 2) {
+    v.tapSquash.value = withSequence(withTiming(0.82, { duration: 120 }), withSpring(1, { damping: 4, stiffness: 180 }));
+  } else {
+    v.spin.value = withSequence(withTiming(-12, { duration: 90 }), withTiming(12, { duration: 140 }), withTiming(-8, { duration: 120 }), withTiming(0, { duration: 100 }));
+  }
 }
 
 /**
@@ -169,22 +195,7 @@ export function Mascot({ mood = 'neutral', size = 160, outfit, interactive = fal
     if (flashTimer.current) clearTimeout(flashTimer.current);
     flashTimer.current = setTimeout(() => setFlash(null), 1600);
     if (!motion) return;
-    const trick = Math.floor(Math.random() * 4);
-    cancelAnimation(tapLift);
-    cancelAnimation(spin);
-    cancelAnimation(tapSquash);
-    if (trick === 0) {
-      tapLift.value = withSequence(withTiming(-20, { duration: 200, easing: Easing.out(Easing.quad) }), withSpring(0, { damping: 6, stiffness: 140 }));
-    } else if (trick === 1) {
-      spin.value = 0;
-      spin.value = withTiming(360, { duration: 520, easing: Easing.inOut(Easing.quad) }, () => {
-        spin.value = 0;
-      });
-    } else if (trick === 2) {
-      tapSquash.value = withSequence(withTiming(0.82, { duration: 120 }), withSpring(1, { damping: 4, stiffness: 180 }));
-    } else {
-      spin.value = withSequence(withTiming(-12, { duration: 90 }), withTiming(12, { duration: 140 }), withTiming(-8, { duration: 120 }), withTiming(0, { duration: 100 }));
-    }
+    playTrick(Math.floor(Math.random() * 4), { tapLift, spin, tapSquash });
   }, [motion, tapLift, spin, tapSquash]);
 
   const animated = useAnimatedStyle(() => ({

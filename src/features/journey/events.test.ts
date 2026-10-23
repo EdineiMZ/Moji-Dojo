@@ -1,4 +1,4 @@
-import { answerXp, DAILY_CAP, lessonReward, roomToday, sessionReward } from './economy';
+import { DAILY_CAP, lessonReward, sessionReward } from './economy';
 import {
   claimWeekChest,
   claimWeekChestWithLoot,

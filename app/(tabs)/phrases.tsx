@@ -9,6 +9,7 @@ import { BuildHub } from '@/features/phrases/BuildHub';
 import { ALL_TOPICS } from '@/features/phrases/build';
 import { GrammarView } from '@/features/phrases/GrammarView';
 import { TravelView } from '@/features/phrases/TravelView';
+import { StructureView } from '@/features/structure/StructureView';
 import { ReadView } from '@/features/reading/ReadView';
 import { LoanwordsView } from '@/features/katakana/LoanwordsView';
 import { MyPhrasesView } from '@/features/myphrases/MyPhrasesView';
@@ -17,7 +18,7 @@ import { VocabView } from '@/features/vocab/VocabView';
 import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 
-type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read';
+type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure';
 
 type Section = 'words' | 'grammar' | 'sentences';
 
@@ -36,6 +37,7 @@ const SECTIONS: readonly { value: Section; label: string; views: readonly { valu
     value: 'grammar',
     label: 'Gramática',
     views: [
+      { value: 'structure', label: 'Estrutura' },
       { value: 'grammar', label: 'Gramática' },
       { value: 'conjugate', label: 'Conjugar' },
       { value: 'cloze', label: 'Lacunas' },
@@ -88,6 +90,7 @@ export default function PhrasesScreen() {
         {view === 'count' ? <CountingView /> : null}
         {view === 'kata' ? <LoanwordsView /> : null}
         {view === 'read' ? <ReadView /> : null}
+        {view === 'structure' ? <StructureView /> : null}
         {view === 'translate' ? <TranslateView /> : null}
         {view === 'bank' ? <BankView /> : null}
         {view === 'dialog' ? <DialogView /> : null}

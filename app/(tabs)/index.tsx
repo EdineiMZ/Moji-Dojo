@@ -5,6 +5,7 @@ import { AppText, Mascot, Screen, PressableScale } from '@/components';
 import { JourneyCard } from '@/features/journey/ui/JourneyCard';
 import { useMochiMood } from '@/features/journey/useMochiMood';
 import { PetalsBadge } from '@/features/journey/ui/PetalsBadge';
+import { DailyPlanCard } from '@/features/home/DailyPlanCard';
 import { ProgressCard } from '@/features/home/ProgressCard';
 import { buildTodaySummary, scriptProgress } from '@/features/home/summary';
 import { TodayCard } from '@/features/home/TodayCard';
@@ -65,6 +66,7 @@ export default function HomeScreen() {
         </PressableScale>
       </View>
       <TodayCard summary={summary} now={now} />
+      <DailyPlanCard dueKana={summary.dueCount} now={now} />
       <JourneyCard />
       <StatsCard
         streak={summary.streak}

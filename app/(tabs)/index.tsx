@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { AppText, Mascot, Screen, PressableScale } from '@/components';
+import { JourneyCard } from '@/features/journey/ui/JourneyCard';
 import { PetalsBadge } from '@/features/journey/ui/PetalsBadge';
 import { ProgressCard } from '@/features/home/ProgressCard';
 import { buildTodaySummary, scriptProgress } from '@/features/home/summary';
@@ -61,6 +62,7 @@ export default function HomeScreen() {
         </PressableScale>
       </View>
       <TodayCard summary={summary} now={now} />
+      <JourneyCard />
       <StatsCard
         streak={summary.streak}
         bestStreak={metrics.best}

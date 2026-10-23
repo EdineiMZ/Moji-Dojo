@@ -48,6 +48,7 @@ function ThemedStack() {
         <Stack.Screen name="review" />
         <Stack.Screen name="settings" />
         <Stack.Screen name="mochi" />
+        <Stack.Screen name="rescue" />
       </Stack>
     </>
   );

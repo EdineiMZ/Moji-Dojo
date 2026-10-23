@@ -81,6 +81,8 @@ export interface JourneyState {
   restWeekdays: number[];
   /** Quantas respostas por dia o aluno quer fazer. */
   dailyGoal: number;
+  /** Dias de pausa antes da última abertura (0 = sem boas-vindas pendentes). Some quando a pessoa dispensa o aviso. */
+  welcome: number;
   toasts: Toast[];
 }
 
@@ -112,6 +114,7 @@ export const emptyJourney = (): JourneyState => ({
   rescue: null,
   restWeekdays: [],
   dailyGoal: DEFAULT_DAILY_GOAL,
+  welcome: 0,
   toasts: [],
 });
 
@@ -191,6 +194,7 @@ export function sanitizeJourney(raw: unknown): JourneyState {
     rescue: sanitizeRescue(raw.rescue),
     restWeekdays: [...new Set(Array.isArray(raw.restWeekdays) ? raw.restWeekdays.filter((d): d is number => Number.isInteger(d) && d >= 0 && d <= 6) : [])].sort(),
     dailyGoal: DAILY_GOALS.includes(goal) ? goal : DEFAULT_DAILY_GOAL,
+    welcome: count(raw.welcome),
     toasts: toasts.slice(-MAX_TOASTS),
   };
 }

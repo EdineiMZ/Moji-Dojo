@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { AppText, BackLink, ChipRow, Screen } from '@/components';
 import type { MochiOutfit } from '@/components/mascot/MochiArt';
 import { AchievementsView } from '@/features/journey/ui/AchievementsView';
@@ -24,7 +24,9 @@ const TABS = [
 /** Meu Mochi: o Mochi, o armário, a loja, as conquistas, as metas e o resumo do estudo. */
 export default function MochiScreen() {
   const router = useRouter();
-  const [tab, setTab] = useState<Tab>('wardrobe');
+  const params = useLocalSearchParams<{ tab?: string }>();
+  const first = TABS.find((t) => t.value === params.tab)?.value ?? 'wardrobe';
+  const [tab, setTab] = useState<Tab>(first);
   const [preview, setPreview] = useState<MochiOutfit | null>(null);
   const goBack = () => (router.canGoBack() ? router.back() : router.replace('/'));
 

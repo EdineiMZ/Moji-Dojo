@@ -8,6 +8,9 @@ import { streakDays } from '@/features/streak/days';
 /** Quantos caracteres entram numa sessão de revisão. */
 export const REVIEW_BATCH = 30;
 
+/** A revisão leve de quem volta de uma pausa: só uma parte da pilha. */
+export const REVIEW_LIGHT_BATCH = 10;
+
 export interface TodaySummary {
   /** Revisões vencidas agora. */
   dueCount: number;

@@ -9,7 +9,8 @@ import { spacing } from '@/theme';
 
 export default function ReviewScreen() {
   const router = useRouter();
-  const { extra } = useLocalSearchParams<{ extra?: string }>();
+  const { extra, light } = useLocalSearchParams<{ extra?: string; light?: string }>();
+  const isLight = light === '1';
   const isExtra = extra === '1';
   const [drawing, setDrawing] = useState(false);
   const [active, setActive] = useState(false);
@@ -34,8 +35,9 @@ export default function ReviewScreen() {
         </View>
         {/* A chave reinicia a sessão se a tela for reaberta no outro modo. */}
         <ReviewSession
-          key={String(isExtra)}
+          key={`${isExtra}-${isLight}`}
           extra={isExtra}
+          light={isLight}
           onExit={goBack}
           onCelebrate={setCelebration}
           onDrawingChange={setDrawing}

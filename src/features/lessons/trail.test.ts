@@ -1,4 +1,4 @@
-import { LESSONS } from '@/data/lessons';
+import { LESSONS } from '@/content/lessons';
 import {
   findLesson,
   lessonHasWriting,

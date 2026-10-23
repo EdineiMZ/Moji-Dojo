@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { AppText, ProgressBar, Screen, SegmentedControl } from '@/components';
-import { LESSONS } from '@/data/lessons';
+import { LESSONS } from '@/content/lessons';
 import type { Script } from '@/data/types';
 import { SCRIPT_NAMES, SCRIPT_ORDER } from '@/features/catalog';
 import { LessonRow } from '@/features/lessons/LessonRow';

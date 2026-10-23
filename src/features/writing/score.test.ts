@@ -35,8 +35,8 @@ const hand = (strokes: Point[][], amp: number): Point[][] => {
 const writable = ALL_ITEMS.filter((it) => isWritable(it.char)).map((it) => it.char);
 
 describe('quais itens têm modelo de escrita', () => {
-  it('245 itens: 143 kana de um símbolo e 102 kanji; as combinações ficam de fora', () => {
-    expect(writable).toHaveLength(245);
+  it('427 itens: 143 kana de um símbolo e 284 kanji; as combinações ficam de fora', () => {
+    expect(writable).toHaveLength(427);
     expect(isWritable('か')).toBe(true);
     expect(isWritable('水')).toBe(true);
     expect(isWritable('きゃ')).toBe(false);
@@ -54,12 +54,12 @@ describe('scoreWriting: acertos', () => {
     expect(isPassing(score)).toBe(true);
   });
 
-  it('todos os 245 itens, desenhados sobre o modelo, passam com folga', () => {
+  it('todos os 427 itens, desenhados sobre o modelo, passam com folga', () => {
     const low = writable.filter((c) => scoreWriting(model(c), perfect(c)).pct < 95);
     expect(low).toEqual([]);
   });
 
-  it('todos os 245 itens, com mão razoável (erro 3), ainda passam no corte do modo write', () => {
+  it('todos os 427 itens, com mão razoável (erro 3), ainda passam no corte do modo write', () => {
     const failed = writable
       .map((c) => [c, scoreWriting(model(c), hand(perfect(c), 3)).pct] as const)
       .filter(([, pct]) => pct < WRITE_PASS_SCORE);

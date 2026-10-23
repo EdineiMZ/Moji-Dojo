@@ -30,10 +30,10 @@ const manyRuns = (chars: readonly string[], write: boolean, runs = 30): Question
   Array.from({ length: runs }, (_, i) => buildReviewQuestions(chars, seeded(i + 1), { write })).flat();
 
 describe('buildReviewQuestions: modo write', () => {
-  it('há 245 itens com traços e 84 sem (66 combinações como きゃ + 18 sons estrangeiros como ファ)', () => {
-    expect(writable).toHaveLength(245);
+  it('há 427 itens com traços e 84 sem (66 combinações como きゃ + 18 sons estrangeiros como ファ)', () => {
+    expect(writable).toHaveLength(427);
     expect(combos).toHaveLength(84);
-    expect(writable.length + combos.length).toBe(ALL_ITEMS.length); // 329 itens no total
+    expect(writable.length + combos.length).toBe(ALL_ITEMS.length); // 511 itens no total
   });
 
   it('cerca de 20% das perguntas dos itens com traços viram write', () => {

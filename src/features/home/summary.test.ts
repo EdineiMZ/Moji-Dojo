@@ -1,4 +1,4 @@
-import { LESSONS } from '@/data/lessons';
+import { LESSONS } from '@/content/lessons';
 import { formatReviewTime } from '@/features/review/format';
 import { DAY_MS } from '@/features/review/srs';
 import { emptyProgress, type ProgressSnapshot } from '@/features/progress/types';
@@ -76,7 +76,7 @@ describe('scriptProgress', () => {
     });
     expect(p.hira).toMatchObject({ total: 104, learned: 2, firm: 1 });
     expect(p.kata).toMatchObject({ total: 123, learned: 1, firm: 1 });
-    expect(p.kanji).toMatchObject({ total: 102, learned: 1, firm: 0 });
+    expect(p.kanji).toMatchObject({ total: 284, learned: 1, firm: 0 });
   });
 });
 

@@ -1,4 +1,4 @@
-import { LESSONS } from '@/data/lessons';
+import { LESSONS } from '@/content/lessons';
 import { findItem } from '@/features/catalog';
 import type { CharStats, ProgressSnapshot } from '@/features/progress/types';
 import { LAST_BOX, type SrsEntry } from '@/features/review/srs';

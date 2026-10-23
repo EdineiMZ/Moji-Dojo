@@ -1,4 +1,4 @@
-import { LESSONS } from '@/data/lessons';
+import { LESSONS } from '@/content/lessons';
 import { STROKES } from '@/data/strokes';
 import type { Lesson, Script } from '@/data/types';
 import { isSingleChar, SCRIPT_ORDER } from '@/features/catalog';

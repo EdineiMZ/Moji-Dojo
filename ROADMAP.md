@@ -59,11 +59,13 @@ Objetivo: saber o que as palavras *significam* e reconhecê-las ao ouvir e ler.
   - Feito: japonês → significado, significado → japonês, ouvir → palavra escrita (só kana) e **leitura** (palavra com kanji → como se lê, 4 opções). Para quem já tinha palavras aprendidas, os cartões de leitura chegam 6 por dia.
 - [x] **Palavra ligada ao kanji:** ao estudar um kanji, mostrar as palavras que o usam; ao aprender uma palavra, destacar os kanji que a formam. *(M)*
 - [x] **Cada palavra com:** leitura, significado em português, classe (substantivo, verbo, adjetivo), uma frase de exemplo com tradução e áudio. *(M)*
-  - Feito: leitura, significado, romaji (quando a fonte traz), kanji da palavra, áudio, **tom** (gráfico), **classe** dos verbos (com o grupo) e dos adjetivos (い ou な) e até 2 **frases de exemplo** reais do Tatoeba (mais de 200 palavras têm). Substantivos e o resto ficam sem classe, porque a lista não diz e chutar seria inventar.
-- [ ] **Palavras mais úteis primeiro:** ordenar por frequência e por situações reais (restaurante, transporte, compras, apresentação). *(P)*
+  - Feito: leitura, significado, romaji (quando a fonte traz), kanji da palavra, áudio, **tom** (gráfico), **classe** dos verbos (com o grupo) e dos adjetivos (い ou な) e até 2 **frases de exemplo** reais do Tatoeba (mais de 200 palavras têm). Depois (1.9.0): a **classe de 829 das 837 palavras** (substantivo, pronome, advérbio, numeral...) vem do JMdict.
+- [x] **Palavras mais úteis primeiro:** ordenar por frequência e por situações reais (restaurante, transporte, compras, apresentação). *(P)*
+  - Feito (1.9.0): em Palavras, a **ordem** pode ser a do livro ou **as mais usadas primeiro** (frequência medida em ~243 mil frases do Tatoeba), e dá para filtrar por **situação de viagem** (apresentação, restaurante, compras, transporte, hotel, ajuda e saúde), com a lista de palavras escolhida à mão entre as do vocabulário.
 - [x] **Mnemônicos e notas:** campo para o aluno escrever a própria dica de memória em cada palavra. *(P)*
   - Feito: no cartão de cada palavra, **Escrever uma dica de memória** (até 200 letras, `progress.wordNotes`, também no backup).
-- [ ] **Expandir kanji:** completar o N5 e avançar para o N4, com as mesmas lições de traços, leituras e exemplos. *(G)*
+- [x] **Expandir kanji:** completar o N5 e avançar para o N4, com as mesmas lições de traços, leituras e exemplos. *(G)*
+  - Feito (1.9.0): de 102 para **284 kanji** (o N5 fica completo com 魚, e entram os 181 do N4), com leituras do KANJIDIC2, ordem dos traços do KanjiVG, 35 lições novas na trilha e o modo de escrita, tudo conferido por teste (os 427 itens com traços passam no corte do desenho). **Significados em português escritos por IA, a revisar.**
 
 ### Antes de publicar (pendência registrada)
 

@@ -1,4 +1,4 @@
-import { LESSONS } from '@/data/lessons';
+import { LESSONS } from '@/content/lessons';
 import { bestStreak } from '@/features/stats/metrics';
 import { formatDay, streakDays } from '@/features/streak/days';
 import { learnedWordIds } from '@/features/vocab/cards';

@@ -1,5 +1,5 @@
 import { wordsWithKanji, type VocabWord } from '@/content';
-import { KANJI } from '@/data/kanji';
+import { ALL_KANJI as KANJI } from '@/content/kanji';
 
 /** Quantas palavras aparecem na lição de um kanji. */
 export const KANJI_WORDS_LIMIT = 3;

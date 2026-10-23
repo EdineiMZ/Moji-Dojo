@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Button } from '@/components';
-import { LESSONS } from '@/data/lessons';
+import { LESSONS } from '@/content/lessons';
 import type { Lesson, Script } from '@/data/types';
 import { buildLessonQuestions, type QuizResult } from '@/features/quiz/quiz';
 import { QuizView } from '@/features/quiz/QuizView';

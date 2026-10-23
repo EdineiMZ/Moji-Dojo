@@ -70,6 +70,20 @@
   mas a voz é enviada a esse serviço. Antes de publicar: incluir isso numa política de privacidade e conferir as regras da
   loja para o uso do microfone e do reconhecimento de fala.
 
+## Classe gramatical, frequência e kanji novos (`wordClass.ts`, `frequency.ts`, `kanjiExtra.ts`)
+
+- **Classe gramatical das palavras** (`wordClass.ts`, `npm run build-pos`): vem do **JMdict** (EDRDG, **CC BY-SA 4.0**,
+  https://www.edrdg.org/jmdict/j_jmdict.html). Para cada palavra do vocabulário, a entrada mais comum com a mesma escrita e leitura.
+- **Frequência** (`frequency.ts`, `npm run build-frequency`): em quantas das ~243 mil frases curtas do **Tatoeba** (CC BY 2.0 FR)
+  cada palavra aparece. Só os números ficam no app, não as frases.
+- **Kanji novos** (`kanjiExtra.ts`, `npm run build-kanji`): o último kanji do N5 (魚) e os **181 do N4**, pela lista antiga do JLPT
+  no campo `jlpt` do **KANJIDIC2** (EDRDG, CC BY-SA 4.0), de onde também vêm as leituras on e kun. A ordem dos traços vem do
+  **KanjiVG** (CC BY-SA 3.0, ver `src/data/strokes/LICENSE.md`). Os **significados em português e a divisão em categorias foram escritos
+  por IA para este app** (`scripts/kanji/pt.json`) e **precisam de revisão por um falante**.
+- **Situações de viagem** (`src/features/vocab/order.ts`): a escolha de quais palavras do vocabulário servem em cada situação é uma
+  curadoria feita para este app (nenhuma palavra nova).
+- **Pendência:** todas essas fontes são CC BY-SA, então o item 4 de "Antes de publicar" (licença do projeto) vale para elas.
+
 ## Vocabulário da especificação (HTML)
 
 A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado vêm do protótipo

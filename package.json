@@ -55,6 +55,7 @@
     "build-pitch": "node scripts/pitch/build.mjs",
     "build-pos": "node scripts/pos/run.mjs",
     "build-frequency": "node scripts/frequency/run.mjs",
+    "build-kanji": "node scripts/kanji/build.mjs",
     "version:show": "node scripts/version.mjs show",
     "version:bump": "node scripts/version.mjs bump",
     "version:sync": "node scripts/version.mjs sync",

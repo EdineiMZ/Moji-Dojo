@@ -1,5 +1,5 @@
 import { KANA } from '@/data/kana';
-import { KANJI } from '@/data/kanji';
+import { ALL_KANJI as KANJI } from '@/content/kanji';
 import type { Script } from '@/data/types';
 
 /** Um caractere estudável (kana ou kanji), no formato que o quiz e as lições usam. */

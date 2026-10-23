@@ -10,10 +10,14 @@ const { parseAnnotation } = require('../grammar-n5/romaji.cjs');
 const travelSource = readFileSync(new URL('../../src/data/travel.ts', import.meta.url), 'utf8');
 const travelList = travelSource.match(/\[\n([\s\S]*)\n\];/)?.[1];
 if (!travelList) throw new Error('não achei a lista em src/data/travel.ts');
-const TRAVEL = new Map(
+// As frases escritas depois (src/content/travelExtra.ts) são JSON depois do "=": lê também.
+const extraSource = readFileSync(new URL('../../src/content/travelExtra.ts', import.meta.url), 'utf8');
+const extraList = JSON.parse(extraSource.slice(extraSource.indexOf('= [') + 2, extraSource.lastIndexOf(';')));
+const TRAVEL = new Map([
   // eslint-disable-next-line no-eval
-  eval(`[${travelList.replace(/,\s*$/, '')}]`).flatMap((category) => category.phrases.map((p) => [p.jp, p])),
-);
+  ...eval(`[${travelList.replace(/,\s*$/, '')}]`),
+  ...extraList,
+].flatMap((category) => category.phrases.map((p) => [p.jp, p])));
 
 function optionOf([jp, ok, why]) {
   const phrase = TRAVEL.get(jp);

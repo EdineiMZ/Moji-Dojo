@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, ChipRow } from '@/components';
-import { TRAVEL_CATEGORIES } from '@/data/travel';
+import { ALL_TRAVEL as TRAVEL_CATEGORIES } from '@/content/travel';
 import { spacing } from '@/theme';
 import { PhraseCard } from './PhraseCard';
 

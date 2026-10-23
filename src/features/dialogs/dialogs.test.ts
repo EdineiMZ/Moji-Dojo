@@ -1,5 +1,5 @@
 import { DIALOG_SCENES } from '@/content/dialogs';
-import { TRAVEL_CATEGORIES } from '@/data/travel';
+import { ALL_TRAVEL as TRAVEL_CATEGORIES } from '@/content/travel';
 import { checkAnswer } from '@/features/translate/check';
 import { correctOption, findScene, isYouTurn, nextYouIndex, optionLabel, shuffledOptions, visibleCount, writeTargets, youTurns } from './dialogs';
 

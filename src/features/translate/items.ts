@@ -1,5 +1,5 @@
 import { ALL_EXERCISES, ALL_GRAMMAR } from '@/content/grammar';
-import { TRAVEL_CATEGORIES } from '@/data/travel';
+import { ALL_TRAVEL as TRAVEL_CATEGORIES } from '@/content/travel';
 import { shuffle, type PairItem, type Question, type Rng } from '@/features/quiz/quiz';
 import { normalizeJapanese } from './check';
 

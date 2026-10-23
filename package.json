@@ -49,6 +49,7 @@
     "generate-sounds": "node scripts/generate-sounds.mjs",
     "build-n5": "node scripts/build-n5.mjs",
     "build-grammar": "node scripts/grammar-n5/build.mjs",
+    "build-travel": "node scripts/travel/build.mjs",
     "verify-grammar": "node scripts/grammar-n5/verify.mjs",
     "collect-sentences": "node scripts/sentence-bank/collect.mjs",
     "build-sentences": "node scripts/sentence-bank/build.mjs",

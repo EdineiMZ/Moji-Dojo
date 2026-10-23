@@ -2,7 +2,7 @@
   "expo": {
     "name": "Moji Dojo",
     "slug": "moji-dojo",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -19,7 +19,7 @@
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE"
       ],
-      "versionCode": 10600
+      "versionCode": 10700
     },
     "plugins": [
       "expo-router",
@@ -30,7 +30,9 @@
         {
           "microphonePermission": "O Moji Dojo usa o microfone para conferir a frase que você diz em japonês.",
           "speechRecognitionPermission": "O Moji Dojo usa o reconhecimento de fala para conferir a frase que você diz em japonês.",
-          "androidSpeechServicePackages": ["com.google.android.googlequicksearchbox"]
+          "androidSpeechServicePackages": [
+            "com.google.android.googlequicksearchbox"
+          ]
         }
       ],
       [

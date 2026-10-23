@@ -2,6 +2,19 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.7.0] - 2026-10-23
+
+Fecha a Fase 4 do [ROADMAP](ROADMAP.md) (escuta e fala) no que é possível hoje, corrige o layout e completa itens abertos do vocabulário e da gramática.
+
+- **Layout:** o conteúdo das telas não passa mais por trás da barra de status ao rolar; botões em fileira (como Gravar / Modelo / Minha voz) agora dividem a largura em vez de estourar a tela, em todo o app; os chips que rolam na horizontal mostram uma seta e uma névoa na borda quando há mais para ver.
+- **Tom das palavras:** o cartão da palavra mostra o gráfico do tom (alto e baixo por mora, e a partícula depois), com dados do Kanjium para 538 palavras do N5. Em Ouvir → Tom: explicação, pares que só o tom separa (はし, あめ...) e um quiz de onde o tom cai.
+- **Falar:** em Ouvir → Falar, você diz a frase em japonês e o reconhecimento de fala do Android confere (resultado aproximado, como guia). Pede microfone e a voz vai ao serviço de reconhecimento do aparelho.
+- **Diálogos:** novo modo **Só ouvir**, em que a fala do atendente toca sozinha e o texto fica escondido até você tocar.
+- **Voz japonesa:** em Ajustes dá para escolher e testar entre as vozes do aparelho; a automática prefere a de melhor qualidade.
+- **Palavras:** cada cartão mostra a classe (verbo com o grupo, adjetivo い ou な) e até 2 frases de exemplo do Tatoeba; dá para escrever a sua dica de memória (entra no backup); palavras com kanji ganham o cartão de **leitura** (kanji → como se lê), 6 por dia para quem já tinha palavras aprendidas.
+- **Gramática:** novo tópico 39, a partícula が (39 tópicos no total).
+- **Pendências:** o áudio de falantes nativos ficou de fora (as fontes abertas cobrem pouco e pedem checar a licença de cada gravação). O tom, o reconhecimento de fala, a gravação e os ajustes de layout ainda precisam ser testados no aparelho. Os dados do Kanjium (CC BY-SA 4.0) entram na lista de licenças a validar antes de publicar.
+
 ## [1.6.0] - 2026-10-23
 
 Fecha as pendências da Fase 2 e abre a Fase 4 do [ROADMAP](ROADMAP.md): escuta e fala.

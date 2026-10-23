@@ -146,23 +146,30 @@ Objetivo: o app decide o que estudar hoje e mede o que realmente ficou.
 
 - [ ] **Algoritmo de revisão melhor:** trocar as caixas fixas (1, 3, 7, 14, 30 e 60 dias) por um modelo que ajusta o intervalo à dificuldade de cada item (como o FSRS, de código aberto). Mantém a importação do progresso antigo. *(G)*
 - [ ] **Sessão diária guiada** de 15 a 20 minutos: revisões, 1 conteúdo novo, 1 exercício de escuta, 1 frase para produzir. Tem começo, meio e fim. *(M)*
-- [ ] **Limites e metas:** quantos itens novos por dia, revisões máximas, meta semanal. Evita acumular uma pilha desanimadora de revisões. *(P)*
+- [x] **Limites e metas:** quantos itens novos por dia, revisões máximas, meta semanal. Evita acumular uma pilha desanimadora de revisões. *(P)*
+  - Feito em parte (1.8.0): **meta diária de respostas** (5, 10, 20 ou 40) e **meta semanal de dias** (4 de 7). Faltam limites de itens novos e de revisões por dia.
 - [ ] **Mistura de tipos de exercício** (intercalar kana, vocabulário, gramática) em vez de blocos longos do mesmo tipo. *(M)*
 - [ ] **Itens "teimosos" (leeches):** detectar o que o aluno erra sempre e propor outra abordagem (mnemônico, exemplo novo, quebrar em partes). *(M)*
 - [ ] **Estatísticas por habilidade:** leitura, escrita, escuta, fala e vocabulário, com retenção real (% que continua lembrando após semanas). *(M)*
 - [ ] **Metas por nível:** caminho N5 → N4 → N3 com marcos claros ("sabe 800 palavras e 40 pontos de gramática"). *(M)*
 - [ ] **Teste de nivelamento** para quem já sabe parte do conteúdo e quer pular. *(M)*
-- [ ] **Lembretes** no horário que o aluno escolher, sem insistir demais. *(P)*
+- [x] **Lembretes** no horário que o aluno escolher, sem insistir demais. *(P)*
+  - Feito (1.8.0): lembretes **locais** (sem servidor) em Ajustes → Lembretes: horário, dias, aviso da noite quando a sequência está em risco, horário de silêncio e teste. Quem passa dias sem abrir recebe menos avisos, nunca cobrança. Precisa de permissão de notificação (Android 13+).
 
 ### Fase 7: motivação e vínculo com o Mochi
 
 Objetivo: dar vontade de voltar, sem pressão tóxica.
 
-- [ ] **Mochi que acompanha o progresso:** muda de humor com a constância, ganha acessórios ao atingir marcos. *(M)*
-- [ ] **Conquistas** ligadas a hábitos bons (7 dias seguidos, 100 palavras, primeira frase própria). *(P)*
-- [ ] **Desafio da semana:** pequena meta temática (por exemplo, vocabulário de comida). *(P)*
-- [ ] **Recomeço sem culpa:** depois de uma pausa, o app reduz a pilha de revisões e ajuda a retomar. *(M)*
-- [ ] **Resumo semanal** do que foi aprendido e do que precisa de atenção. *(P)*
+- [x] **Mochi que acompanha o progresso:** muda de humor com a constância, ganha acessórios ao atingir marcos. *(M)*
+  - Feito em parte (1.8.0): **45 itens** (acessórios na cabeça, no rosto e no pescoço, fundos e cores), vestidos em todas as telas, com **armário, loja** (pétalas), itens de temporada e roupa de época automática. Mood por constância ainda não.
+- [x] **Conquistas** ligadas a hábitos bons (7 dias seguidos, 100 palavras, primeira frase própria). *(P)*
+  - Feito (1.8.0): **42 conquistas** (algumas escondidas) com pétalas e 15 itens exclusivos, estante com progresso, e **níveis** com título (Broto a Mestre do Dojo).
+- [x] **Desafio da semana:** pequena meta temática (por exemplo, vocabulário de comida). *(P)*
+  - Feito (1.8.0): um grupo de vocabulário por semana (30 acertos); mais as **missões do dia** (3) e o **baú da semana**.
+- [x] **Recomeço sem culpa:** depois de uma pausa, o app reduz a pilha de revisões e ajuda a retomar. *(M)*
+  - Feito (1.8.0): boas-vindas e **revisão leve** (10 itens) para quem volta depois de 4 dias ou mais, e **salvar a sequência** com uma revisão de 25 perguntas (70% mantém), uma vez por semana. Dias de descanso não quebram a sequência.
+- [x] **Resumo semanal** do que foi aprendido e do que precisa de atenção. *(P)*
+  - Feito (1.8.0): Meu Mochi → Resumo, com calendário, recorde, retrospectiva da semana e do mês e texto para compartilhar.
 
 ### Fase 8: fora do app (onde a fluência acontece de verdade)
 

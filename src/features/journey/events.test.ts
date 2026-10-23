@@ -109,7 +109,7 @@ describe('abrir o app', () => {
     const first = onOpen(emptyJourney(), ctx({ streak: 2 }));
     expect(first.petals).toBe(7);
     expect(first.today.opened).toBe(true);
-    expect(first.toasts.some((t) => t.title === 'Bom te ver!')).toBe(true);
+    expect(first.toasts.some((t) => t.title === 'Baú do dia 🎁')).toBe(true);
     expect(onOpen(first, ctx({ streak: 2 })).petals).toBe(7);
   });
 

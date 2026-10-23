@@ -2,6 +2,22 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.8.0] - 2026-10-23
+
+Mochi, pétalas e hábito: a parte do app que ajuda a voltar todo dia. Tudo funciona no aparelho, sem servidor.
+
+- **Meu Mochi** (toque no Mochi da tela inicial ou em Ajustes): o Mochi grande com a roupa atual, nível e pontos; armário, loja, conquistas, metas e resumo.
+- **45 itens para o Mochi:** chapéus, óculos, máscaras, cachecóis, fundos e cores. 24 na loja, 16 só por conquista ou baú, e 5 de temporada (fim de ano, Setsubun, sakura, Tanabata e abóbora), que só se compram na época. O Mochi aparece vestido em todas as telas, e a roupa de época pode ser vestida sozinha.
+- **Pétalas:** ganhas ao abrir o app (baú do dia), concluir lições (quanto mais perfeita e quanto mais lições perfeitas seguidas, mais), revisões, missões, desafios e conquistas. Há um teto diário para lição e revisão, e repetir a mesma lição vale metade.
+- **Sequência:** abrir o app ou estudar conta como dia. Quem perde de 1 a 3 dias de uma sequência de 3 ou mais pode **salvá-la** com uma revisão de 25 perguntas sobre o que errou há pouco: com 70% a sequência continua (uma vez por semana). Dias de descanso escolhidos não quebram a sequência, e o recorde fica guardado.
+- **Metas:** meta diária de respostas (5 a 40), três missões por dia, meta semanal de 4 dias com baú (e um item em semanas alternadas), e um desafio temático por semana.
+- **Conquistas e níveis:** 42 conquistas (algumas escondidas) com pétalas e, em 15 delas, um item exclusivo; níveis com título, de Broto a Mestre do Dojo, com pétalas de presente a cada nível.
+- **Resumo:** calendário de estudo, recorde, retrospectiva da semana e do mês, e texto para compartilhar (só números).
+- **Recomeço sem culpa:** depois de 4 dias ou mais sem estudar, o app recebe você com uma revisão leve de 10 itens.
+- **Lembretes:** notificações locais em Ajustes → Lembretes, com horário, dias da semana, aviso da noite se a sequência está em risco, horário de silêncio e um teste. Quem passa dias sem abrir recebe menos avisos, nunca cobrança.
+- **Backup:** o código MDJ1 leva a jornada (pétalas, itens, conquistas, metas); códigos antigos continuam valendo.
+- **Pendências:** os desenhos dos itens, o visual das telas e as notificações precisam ser conferidos no aparelho (permissão de notificação no Android 13+, e celulares que cortam alarmes em segundo plano). Push remoto (com servidor) ficou de fora.
+
 ## [1.7.0] - 2026-10-23
 
 Fecha a Fase 4 do [ROADMAP](ROADMAP.md) (escuta e fala) no que é possível hoje, corrige o layout e completa itens abertos do vocabulário e da gramática.

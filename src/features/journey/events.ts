@@ -108,7 +108,7 @@ export function onOpen(state: JourneyState, ctx: EventContext): JourneyState {
     next = { ...next, today: { ...next.today, opened: true } };
     const earned = earnCapped(next, openBonus(ctx.streak));
     next = earned.state;
-    if (earned.given > 0) next = pushToast(next, 'petals', 'Bom te ver!', `+${plural(earned.given, 'pétala', 'pétalas')} por abrir o app hoje.`);
+    if (earned.given > 0) next = pushToast(next, 'petals', 'Baú do dia 🎁', `+${plural(earned.given, 'pétala', 'pétalas')} por abrir o app hoje.`);
     if ((ctx.daysAway ?? 0) >= 4) next = { ...next, welcome: ctx.daysAway ?? 0, counters: bump(next.counters, 'comebacks') };
   }
   return settle(next, ctx, false);

@@ -19,21 +19,44 @@ import { VoiceWarning } from '@/features/speech/VoiceWarning';
 
 type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read';
 
-const VIEWS = [
-  { value: 'vocab' as const, label: 'Palavras' },
-  { value: 'grammar' as const, label: 'Gramática' },
-  { value: 'conjugate' as const, label: 'Conjugar' },
-  { value: 'cloze' as const, label: 'Lacunas' },
-  { value: 'count' as const, label: 'Contar' },
-  { value: 'translate' as const, label: 'Traduzir' },
-  { value: 'bank' as const, label: 'Banco' },
-  { value: 'dialog' as const, label: 'Diálogos' },
-  { value: 'mine' as const, label: 'Minhas frases' },
-  { value: 'build' as const, label: 'Montar' },
-  { value: 'travel' as const, label: 'Viagem' },
-  { value: 'kata' as const, label: 'Katakana' },
-  { value: 'read' as const, label: 'Leitura' },
+type Section = 'words' | 'grammar' | 'sentences';
+
+/** As 13 seções em três grupos: cabem em duas fileiras curtas em vez de uma fileira longa de chips. */
+const SECTIONS: readonly { value: Section; label: string; views: readonly { value: PhrasesView; label: string }[] }[] = [
+  {
+    value: 'words',
+    label: 'Palavras',
+    views: [
+      { value: 'vocab', label: 'Palavras' },
+      { value: 'kata', label: 'Katakana' },
+      { value: 'read', label: 'Leitura' },
+    ],
+  },
+  {
+    value: 'grammar',
+    label: 'Gramática',
+    views: [
+      { value: 'grammar', label: 'Gramática' },
+      { value: 'conjugate', label: 'Conjugar' },
+      { value: 'cloze', label: 'Lacunas' },
+      { value: 'count', label: 'Contar' },
+    ],
+  },
+  {
+    value: 'sentences',
+    label: 'Frases',
+    views: [
+      { value: 'translate', label: 'Traduzir' },
+      { value: 'build', label: 'Montar' },
+      { value: 'bank', label: 'Banco' },
+      { value: 'dialog', label: 'Diálogos' },
+      { value: 'travel', label: 'Viagem' },
+      { value: 'mine', label: 'Minhas frases' },
+    ],
+  },
 ];
+
+const sectionOf = (view: PhrasesView): Section => SECTIONS.find((s) => s.views.some((v) => v.value === view))?.value ?? 'words';
 
 export default function PhrasesScreen() {
   const [view, setView] = useState<PhrasesView>('vocab');
@@ -44,8 +67,12 @@ export default function PhrasesScreen() {
       <AppText variant="headline">Frases</AppText>
       <VoiceWarning />
       <SpeedControl />
-      {/* Muitas seções não cabem lado a lado em um celular: os chips rolam na horizontal. */}
-      <ChipRow options={VIEWS} value={view} onChange={setView} />
+      <ChipRow
+        options={SECTIONS.map((g) => ({ value: g.value, label: g.label }))}
+        value={sectionOf(view)}
+        onChange={(section) => setView(SECTIONS.find((g) => g.value === section)?.views[0]?.value ?? 'vocab')}
+      />
+      <ChipRow options={SECTIONS.find((g) => g.value === sectionOf(view))?.views ?? []} value={view} onChange={setView} />
       <SwapView viewKey={view}>
         {view === 'vocab' ? <VocabView /> : null}
         {view === 'grammar' ? (

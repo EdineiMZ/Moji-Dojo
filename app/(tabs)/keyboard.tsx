@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AppText, Screen, SegmentedControl, SwapView } from '@/components';
+import { AppText, ChipRow, Screen, SwapView } from '@/components';
 import { ChallengeView } from '@/features/keyboard/ChallengeView';
 import { GuideView } from '@/features/keyboard/GuideView';
 import { SpeedView } from '@/features/speed/SpeedView';
@@ -20,7 +20,7 @@ export default function KeyboardScreen() {
   return (
     <Screen>
       <AppText variant="headline">Teclado</AppText>
-      <SegmentedControl options={VIEWS} value={view} onChange={setView} />
+      <ChipRow options={VIEWS} value={view} onChange={setView} />
       <SwapView viewKey={view}>
         {view === 'guide' ? <GuideView onPractice={() => setView('simulator')} /> : null}
         {view === 'simulator' ? <SimulatorView /> : null}

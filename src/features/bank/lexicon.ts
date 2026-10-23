@@ -196,3 +196,41 @@ export function spacedReading(tokens: readonly Token[]): string {
 export function wordsUsed(tokens: readonly Token[]): string[] {
   return [...new Set(tokens.flatMap((t) => (t.entry.id ? [t.entry.id] : [])))];
 }
+
+/**
+ * Como `segment`, mas aceita trechos desconhecidos (cada letra fora do léxico custa mais que uma palavra): serve para contar
+ * as palavras do vocabulário em textos de verdade, onde também há palavras que o app não ensina. Devolve só os trechos
+ * reconhecidos.
+ */
+export function segmentLoose(text: string, lex: Lexicon = getLexicon()): Token[] {
+  const chars = [...text];
+  const n = chars.length;
+  const MAX = 12;
+  const UNKNOWN_COST = 4;
+  const best: number[] = Array<number>(n + 1).fill(Infinity);
+  const back: ({ from: number; entry: LexEntry | null } | null)[] = Array<{ from: number; entry: LexEntry | null } | null>(n + 1).fill(null);
+  best[0] = 0;
+  for (let i = 0; i < n; i++) {
+    const here = best[i] as number;
+    if (here + UNKNOWN_COST < (best[i + 1] as number)) {
+      best[i + 1] = here + UNKNOWN_COST;
+      back[i + 1] = { from: i, entry: null };
+    }
+    for (let len = 1; len <= Math.min(MAX, n - i); len++) {
+      const entries = lex.get(chars.slice(i, i + len).join(''));
+      if (!entries) continue;
+      const cost = entries[0]?.role === 'punct' ? 0 : 1;
+      if (here + cost < (best[i + len] as number)) {
+        best[i + len] = here + cost;
+        back[i + len] = { from: i, entry: entries[0] as LexEntry };
+      }
+    }
+  }
+  const tokens: Token[] = [];
+  for (let at = n; at > 0; ) {
+    const step = back[at] as { from: number; entry: LexEntry | null };
+    if (step.entry) tokens.unshift({ surface: chars.slice(step.from, at).join(''), entry: step.entry });
+    at = step.from;
+  }
+  return tokens;
+}

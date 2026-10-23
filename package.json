@@ -53,6 +53,8 @@
     "build-sentences": "node scripts/sentence-bank/build.mjs",
     "build-dialogs": "node scripts/dialogs/build.mjs",
     "build-pitch": "node scripts/pitch/build.mjs",
+    "build-pos": "node scripts/pos/run.mjs",
+    "build-frequency": "node scripts/frequency/run.mjs",
     "version:show": "node scripts/version.mjs show",
     "version:bump": "node scripts/version.mjs bump",
     "version:sync": "node scripts/version.mjs sync",

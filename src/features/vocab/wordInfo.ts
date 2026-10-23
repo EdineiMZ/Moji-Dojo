@@ -1,17 +1,21 @@
 import type { VocabWord } from '@/content';
 import { SENTENCE_BANK, type BankSentence } from '@/content/sentenceBank';
+import { WORD_CLASS } from '@/content/wordClass';
 import { findVerb, GROUP_LABELS } from '@/features/conjugation/verbs';
 
 /** Adjetivos que terminam em い mas são do tipo な (きれい, きらい). */
 const NA_ENDING_IN_I: ReadonlySet<string> = new Set(['きれい', 'きらい', 'だいきらい', 'ゆうめい']);
 
 /**
- * A classe da palavra, quando a lista dá para saber com segurança: verbo (com o grupo de conjugação) e adjetivo (い ou な).
- * Para as outras palavras a fonte não diz a classe, então devolve null em vez de chutar.
+ * A classe da palavra (substantivo, verbo, adjetivo い ou な, advérbio, pronome...), vinda do JMdict. Verbos mostram também o
+ * grupo de conjugação. Sem a classe na fonte, usa o que a lista dá para saber com segurança (verbo e adjetivo) e, no
+ * resto, devolve null em vez de chutar.
  */
 export function wordClass(word: VocabWord): string | null {
+  const labels = WORD_CLASS[`${word.jp}|${word.reading}`];
   const verb = findVerb(word.id);
   if (verb) return `verbo · ${GROUP_LABELS[verb.spec.group]}`;
+  if (labels && labels.length > 0) return labels.join(' · ');
   if (word.group === 'Verbos') return 'verbo';
   if (word.group === 'Adjetivos') {
     const isI = word.reading.endsWith('い') && !NA_ENDING_IN_I.has(word.reading);

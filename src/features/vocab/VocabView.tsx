@@ -9,6 +9,7 @@ import { spacing } from '@/theme';
 import { cardKeysFor, dueCards, newWords, NEW_WORDS_BATCH, vocabCounts, VOCAB_REVIEW_BATCH } from './cards';
 import { VocabReview } from './VocabReview';
 import { WordCard } from './WordCard';
+import { situationWordIds, SITUATIONS, sortWords, STUDY_ORDERS, type StudyOrder } from './order';
 
 const ALL = 'Todas';
 
@@ -31,6 +32,8 @@ export function VocabView() {
   // Palavras aprendidas antes dos cartões de leitura existirem ganham os novos aos poucos.
   useEffect(() => unlockVocabReadings(), [unlockVocabReadings]);
   const [group, setGroup] = useState(ALL);
+  const [order, setOrder] = useState<StudyOrder>('book');
+  const [situation, setSituation] = useState(ALL);
 
   const counts = vocabCounts(vocab, now);
   // Só os assuntos que ainda têm palavras novas, com quantas faltam.
@@ -78,7 +81,15 @@ export function VocabView() {
   }
 
   const due = dueCards(vocab, now).length;
-  const remaining = newWords(vocab, selected === ALL ? undefined : selected);
+  const inSituation = situation === ALL ? null : situationWordIds(situation);
+  const remaining = sortWords(
+    newWords(vocab, selected === ALL ? undefined : selected).filter((w) => !inSituation || inSituation.has(w.id)),
+    order,
+  );
+  const situationOptions = [
+    { value: ALL, label: 'Qualquer situação' },
+    ...SITUATIONS.map((s) => ({ value: s.id, label: `${s.label} (${newWords(vocab).filter((w) => situationWordIds(s.id).has(w.id)).length})` })),
+  ];
   return (
     <Card enterIndex={0}>
       <View style={styles.head}>
@@ -111,6 +122,14 @@ export function VocabView() {
             ESCOLHA O ASSUNTO
           </AppText>
           <ChipRow options={options} value={selected} onChange={setGroup} />
+          <AppText variant="caption" color="muted">
+            SITUAÇÃO DE VIAGEM
+          </AppText>
+          <ChipRow options={situationOptions} value={situation} onChange={setSituation} />
+          <AppText variant="caption" color="muted">
+            ORDEM
+          </AppText>
+          <ChipRow options={STUDY_ORDERS} value={order} onChange={setOrder} />
           <Button
             label={`Aprender ${Math.min(NEW_WORDS_BATCH, remaining.length)} palavras novas`}
             variant={due > 0 ? 'soft' : 'primary'}

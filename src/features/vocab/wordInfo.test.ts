@@ -25,8 +25,18 @@ describe('classe da palavra', () => {
     expect(wordClass(word('静か'))).toBe('adjetivo な');
   });
 
-  it('palavras de classe incerta ficam sem classe, em vez de um palpite', () => {
-    expect(wordClass(word('学校'))).toBeNull();
+  it('as outras classes vêm do JMdict: substantivo, pronome, advérbio, numeral', () => {
+    expect(wordClass(word('学校'))).toBe('substantivo');
+    expect(wordClass(word('私'))).toBe('pronome');
+    expect(wordClass(word('ここ'))).toBe('pronome');
+    expect(wordClass(word('三'))).toBe('numeral');
+    expect(wordClass(word('いつも'))).toContain('advérbio');
+  });
+
+  it('quase todas as palavras têm classe, e nenhuma classe vazia', () => {
+    const withClass = VOCAB.filter((w) => wordClass(w) !== null);
+    expect(withClass.length / VOCAB.length).toBeGreaterThan(0.85);
+    for (const w of withClass) expect((wordClass(w) ?? '').length).toBeGreaterThan(3);
   });
 });
 

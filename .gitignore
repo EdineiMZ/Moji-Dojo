@@ -19,3 +19,8 @@ coverage/
 # Material de teste local (print do aparelho e backup de progresso)
 /*.jpg
 /exemplo de código backup*.txt
+
+# Áudio coletado (os WAV originais não entram no repositório)
+scripts/audio/raw/
+scripts/audio/meta.json
+scripts/pos/words.json

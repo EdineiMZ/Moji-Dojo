@@ -412,6 +412,8 @@ export const TOPICS = [
     examples: [
       { id: 11009755, ja: '食べながら話しちゃダメだよ。', furi: '[食|た]べながら[話|はな]しちゃダメだよ。', kana: 'たべながら はなしちゃ ダメ だ~よ', pt: 'Não fale enquanto estiver comendo.' },
       { id: 82874, ja: '母は微笑みながら言いました。', furi: '[母|はは]は[微笑|ほほ|え]みながら[言|い]いました。', kana: 'はは~は ほほえみながら いいました', pt: 'A minha mãe disse isso com um sorriso.' },
+      { id: 151284, ja: '私達は歩きながら歌を歌った。', furi: '[私|わたし][達|たち]は[歩|ある]きながら[歌|うた]を[歌|うた]った。', kana: 'わたしたち~は あるきながら うた~を うたった', pt: 'Cantávamos enquanto caminhávamos.' },
+      { id: 88812, ja: '彼女は手紙を読みながら泣いた。', furi: '[彼女|かの|じょ]は[手紙|て|がみ]を[読|よ]みながら[泣|な]いた。', kana: 'かのじょ~は てがみ~を よみながら ないた', pt: 'Ela chorava enquanto lia a carta.' },
     ],
   },
   {
@@ -483,6 +485,7 @@ export const TOPICS = [
     examples: [
       { id: 3449190, ja: '願いは一つだけ。', furi: '[願|ねが]いは[一|ひと]つだけ。', kana: 'ねがい~は ひとつ だけ', pt: 'Só tenho um desejo.' },
       { id: 205799, ja: 'それだけで結構です。', furi: 'それだけで[結構|けっ|こう]です。', kana: 'それ だけ~で けっこう|です', pt: 'Isso é tudo.' },
+      { id: 433715, ja: 'それだけです。', kana: 'それ だけ|です', pt: 'Isso é tudo.' },
     ],
   },
   {
@@ -523,6 +526,58 @@ export const TOPICS = [
       { id: 1507527, ja: '私が行きます。', furi: '[私|わたし]が[行|い]きます。', kana: 'わたし~が いきます', pt: 'Eu vou.' },
       { id: 11003497, ja: '家の門の前に猫がいます。', furi: '[家|いえ]の[門|もん]の[前|まえ]に[猫|ねこ]がいます。', kana: 'いえ~の もん~の まえ~に ねこ~が います', pt: 'Há um gato na frente do portão.' },
       { id: 3553343, ja: '他に何がありますか。', furi: '[他|ほか]に[何|なに]がありますか。', kana: 'ほか~に なに~が あります~か', pt: 'O que mais você tem?' },
+    ],
+  },
+  {
+    id: 'g40',
+    title: 'Forma simples: dicionário, ない e た',
+    body: [
+      'Até aqui os verbos apareceram na forma **educada** (ます). Entre amigos, em família e em textos, o japonês usa a forma **simples**, que é a que aparece no dicionário e nas frases de Tatoeba. São três formas:',
+      {
+        table: [
+          ['#forma', '#educada', '#simples', '#como sai'],
+          ['#presente', '__たべます__', '__たべる__', 'dicionário (a forma que você já viu em まえに)'],
+          ['#negativa', '__たべません__', '__たべない__', 'a forma ない (veja Conjugar)'],
+          ['#passado', '__たべました__', '__たべた__', 'a forma た (veja Conjugar)'],
+        ],
+      },
+      'O sentido é o mesmo; muda o grau de formalidade. Com quem você não conhece, use ます. A forma simples vem também dentro de frases maiores: __いく まえに__ (antes de ir), __たべた あとで__ (depois de comer).',
+      'O **です** não entra no verbo simples: __たべる__ já fecha a frase. Para substantivos e adjetivos な a forma simples de です é **だ**.',
+    ],
+    pattern: '[verbo] る / ない / た (sem ます)',
+    hint: 'Simples: dicionário (る), ない (negativo) e た (passado), sem ます nem です.',
+    examples: [
+      { id: 468677, ja: '雪が降る。', furi: '[雪|ゆき]が[降|ふ]る。', kana: 'ゆき~が ふる', pt: 'Está nevando.' },
+      { id: 670057, ja: '風が吹く。', furi: '[風|かぜ]が[吹|ふ]く。', kana: 'かぜ~が ふく', pt: 'O vento sopra.' },
+      { id: 155138, ja: '私は知らない。', furi: '[私|わたし]は[知|し]らない。', kana: 'わたし~は しらない', pt: 'Não sei.' },
+      { id: 110803, ja: '彼はまだ来ない。', furi: '[彼|かれ]はまだ[来|こ]ない。', kana: 'かれ~は まだ こない', pt: 'Ainda não veio.' },
+      { id: 13563699, ja: '私は食べた。', furi: '[私|わたし]は[食|た]べた。', kana: 'わたし~は たべた', pt: 'Eu comi.' },
+      { id: 102805, ja: '彼は走った。', furi: '[彼|かれ]は[走|はし]った。', kana: 'かれ~は はしった', pt: 'Ele correu.' },
+    ],
+  },
+  {
+    id: 'g41',
+    title: 'Dar e receber: あげる, もらう, くれる',
+    body: [
+      'Há três verbos, e a escolha depende de **quem dá** e **quem recebe**:',
+      {
+        table: [
+          ['#verbo', '#quer dizer', '#partículas'],
+          ['__あげる__', 'dar (eu dou, ou alguém dá a outra pessoa)', 'quem recebe + __に__, o que se dá + __を__'],
+          ['__もらう__', 'receber (eu recebo)', 'de quem + __に__ ou __から__, o que + __を__'],
+          ['__くれる__', 'dar para mim (ou para o meu grupo)', 'quem dá + __が__ ou __は__, eu + __に__, o que + __を__'],
+        ],
+      },
+      'Em português "dar" serve para tudo; em japonês, se a coisa vem **para você**, o verbo é **くれる**, e não あげる. Na forma educada: __あげます__, __もらいます__, __くれます__.',
+    ],
+    pattern: '[quem recebe] に [coisa] を あげる · [de quem] から [coisa] を もらう · [quem dá] は わたし に [coisa] を くれる',
+    hint: 'Eu dou: あげる. Eu recebo: もらう. Alguém me dá: くれる.',
+    examples: [
+      { id: 152773, ja: '私は妹に辞書をあげた。', furi: '[私|わたし]は[妹|いもうと]に[辞書|じ|しょ]をあげた。', kana: 'わたし~は いもうと~に じしょ~を あげた', pt: 'Eu dei um dicionário à minha irmã.' },
+      { id: 119074, ja: '彼に本をあげたの。', furi: '[彼|かれ]に[本|ほん]をあげたの。', kana: 'かれ~に ほん~を あげた~の', pt: 'Eu dei o livro a ele.' },
+      { id: 95543, ja: '彼女から手紙をもらった。', furi: '[彼女|かの|じょ]から[手紙|て|がみ]をもらった。', kana: 'かのじょ~から てがみ~を もらった', pt: 'Recebi uma carta dela.' },
+      { id: 10744345, ja: 'お父さんにもらったの。', furi: 'お[父|とう]さんにもらったの。', kana: 'おとうさん~に もらった~の', pt: 'Eu ganhei isso do meu pai.' },
+      { id: 106065, ja: '彼は私に時計をくれた。', furi: '[彼|かれ]は[私|わたし]に[時計|と|けい]をくれた。', kana: 'かれ~は わたし~に とけい~を くれた', pt: 'Ele me deu um relógio.' },
     ],
   },
 ];

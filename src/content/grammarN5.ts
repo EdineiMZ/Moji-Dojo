@@ -3596,6 +3596,80 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
         ],
         "romaji": "haha wa hohoeminagara iimashita",
         "pt": "A minha mãe disse isso com um sorriso."
+      },
+      {
+        "jp": "わたしたちは あるきながら うたを うたった",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "達",
+            "reading": "たち"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "歩",
+            "reading": "ある"
+          },
+          {
+            "text": "きながら"
+          },
+          {
+            "text": "歌",
+            "reading": "うた"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "歌",
+            "reading": "うた"
+          },
+          {
+            "text": "った。"
+          }
+        ],
+        "romaji": "watashitachi wa arukinagara uta o utatta",
+        "pt": "Cantávamos enquanto caminhávamos."
+      },
+      {
+        "jp": "かのじょは てがみを よみながら ないた",
+        "ruby": [
+          {
+            "text": "彼女",
+            "reading": "かのじょ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "手紙",
+            "reading": "てがみ"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "読",
+            "reading": "よ"
+          },
+          {
+            "text": "みながら"
+          },
+          {
+            "text": "泣",
+            "reading": "な"
+          },
+          {
+            "text": "いた。"
+          }
+        ],
+        "romaji": "kanojo wa tegami o yominagara naita",
+        "pt": "Ela chorava enquanto lia a carta."
       }
     ]
   },
@@ -4222,6 +4296,11 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
         ],
         "romaji": "sore dake de kekkō desu",
         "pt": "Isso é tudo."
+      },
+      {
+        "jp": "それ だけです",
+        "romaji": "sore dake desu",
+        "pt": "Isso é tudo."
       }
     ]
   },
@@ -4584,6 +4663,535 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
         ],
         "romaji": "hoka ni nani ga arimasu ka",
         "pt": "O que mais você tem?"
+      }
+    ]
+  },
+  {
+    "id": "g40",
+    "title": "Forma simples: dicionário, ない e た",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Até aqui os verbos apareceram na forma "
+          },
+          {
+            "text": "educada",
+            "bold": true
+          },
+          {
+            "text": " (ます). Entre amigos, em família e em textos, o japonês usa a forma "
+          },
+          {
+            "text": "simples",
+            "bold": true
+          },
+          {
+            "text": ", que é a que aparece no dicionário e nas frases de Tatoeba. São três formas:"
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "forma",
+              "header": true
+            },
+            {
+              "text": "educada",
+              "header": true
+            },
+            {
+              "text": "simples",
+              "header": true
+            },
+            {
+              "text": "como sai",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "presente",
+              "header": true
+            },
+            {
+              "text": "たべます",
+              "ja": true
+            },
+            {
+              "text": "たべる",
+              "ja": true
+            },
+            {
+              "text": "dicionário (a forma que você já viu em まえに)"
+            }
+          ],
+          [
+            {
+              "text": "negativa",
+              "header": true
+            },
+            {
+              "text": "たべません",
+              "ja": true
+            },
+            {
+              "text": "たべない",
+              "ja": true
+            },
+            {
+              "text": "a forma ない (veja Conjugar)"
+            }
+          ],
+          [
+            {
+              "text": "passado",
+              "header": true
+            },
+            {
+              "text": "たべました",
+              "ja": true
+            },
+            {
+              "text": "たべた",
+              "ja": true
+            },
+            {
+              "text": "a forma た (veja Conjugar)"
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O sentido é o mesmo; muda o grau de formalidade. Com quem você não conhece, use ます. A forma simples vem também dentro de frases maiores: "
+          },
+          {
+            "text": "いく まえに",
+            "ja": true
+          },
+          {
+            "text": " (antes de ir), "
+          },
+          {
+            "text": "たべた あとで",
+            "ja": true
+          },
+          {
+            "text": " (depois de comer)."
+          }
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O "
+          },
+          {
+            "text": "です",
+            "bold": true
+          },
+          {
+            "text": " não entra no verbo simples: "
+          },
+          {
+            "text": "たべる",
+            "ja": true
+          },
+          {
+            "text": " já fecha a frase. Para substantivos e adjetivos な a forma simples de です é "
+          },
+          {
+            "text": "だ",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo] る / ない / た (sem ます)",
+    "examples": [
+      {
+        "jp": "ゆきが ふる",
+        "ruby": [
+          {
+            "text": "雪",
+            "reading": "ゆき"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "降",
+            "reading": "ふ"
+          },
+          {
+            "text": "る。"
+          }
+        ],
+        "romaji": "yuki ga furu",
+        "pt": "Está nevando."
+      },
+      {
+        "jp": "かぜが ふく",
+        "ruby": [
+          {
+            "text": "風",
+            "reading": "かぜ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "吹",
+            "reading": "ふ"
+          },
+          {
+            "text": "く。"
+          }
+        ],
+        "romaji": "kaze ga fuku",
+        "pt": "O vento sopra."
+      },
+      {
+        "jp": "わたしは しらない",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "知",
+            "reading": "し"
+          },
+          {
+            "text": "らない。"
+          }
+        ],
+        "romaji": "watashi wa shiranai",
+        "pt": "Não sei."
+      },
+      {
+        "jp": "かれは まだ こない",
+        "ruby": [
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "はまだ"
+          },
+          {
+            "text": "来",
+            "reading": "こ"
+          },
+          {
+            "text": "ない。"
+          }
+        ],
+        "romaji": "kare wa mada konai",
+        "pt": "Ainda não veio."
+      },
+      {
+        "jp": "わたしは たべた",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "食",
+            "reading": "た"
+          },
+          {
+            "text": "べた。"
+          }
+        ],
+        "romaji": "watashi wa tabeta",
+        "pt": "Eu comi."
+      },
+      {
+        "jp": "かれは はしった",
+        "ruby": [
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "走",
+            "reading": "はし"
+          },
+          {
+            "text": "った。"
+          }
+        ],
+        "romaji": "kare wa hashitta",
+        "pt": "Ele correu."
+      }
+    ]
+  },
+  {
+    "id": "g41",
+    "title": "Dar e receber: あげる, もらう, くれる",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Há três verbos, e a escolha depende de "
+          },
+          {
+            "text": "quem dá",
+            "bold": true
+          },
+          {
+            "text": " e "
+          },
+          {
+            "text": "quem recebe",
+            "bold": true
+          },
+          {
+            "text": ":"
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "verbo",
+              "header": true
+            },
+            {
+              "text": "quer dizer",
+              "header": true
+            },
+            {
+              "text": "partículas",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "あげる",
+              "ja": true
+            },
+            {
+              "text": "dar (eu dou, ou alguém dá a outra pessoa)"
+            },
+            {
+              "text": "quem recebe + に, o que se dá + を",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "もらう",
+              "ja": true
+            },
+            {
+              "text": "receber (eu recebo)"
+            },
+            {
+              "text": "de quem + に ou から, o que + を",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "くれる",
+              "ja": true
+            },
+            {
+              "text": "dar para mim (ou para o meu grupo)"
+            },
+            {
+              "text": "quem dá + が ou は, eu + に, o que + を",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Em português \"dar\" serve para tudo; em japonês, se a coisa vem "
+          },
+          {
+            "text": "para você",
+            "bold": true
+          },
+          {
+            "text": ", o verbo é "
+          },
+          {
+            "text": "くれる",
+            "bold": true
+          },
+          {
+            "text": ", e não あげる. Na forma educada: "
+          },
+          {
+            "text": "あげます",
+            "ja": true
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "もらいます",
+            "ja": true
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "くれます",
+            "ja": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "pattern": "[quem recebe] に [coisa] を あげる · [de quem] から [coisa] を もらう · [quem dá] は わたし に [coisa] を くれる",
+    "examples": [
+      {
+        "jp": "わたしは いもうとに じしょを あげた",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "妹",
+            "reading": "いもうと"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "辞書",
+            "reading": "じしょ"
+          },
+          {
+            "text": "をあげた。"
+          }
+        ],
+        "romaji": "watashi wa imōto ni jisho o ageta",
+        "pt": "Eu dei um dicionário à minha irmã."
+      },
+      {
+        "jp": "かれに ほんを あげたの",
+        "ruby": [
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "本",
+            "reading": "ほん"
+          },
+          {
+            "text": "をあげたの。"
+          }
+        ],
+        "romaji": "kare ni hon o ageta no",
+        "pt": "Eu dei o livro a ele."
+      },
+      {
+        "jp": "かのじょから てがみを もらった",
+        "ruby": [
+          {
+            "text": "彼女",
+            "reading": "かのじょ"
+          },
+          {
+            "text": "から"
+          },
+          {
+            "text": "手紙",
+            "reading": "てがみ"
+          },
+          {
+            "text": "をもらった。"
+          }
+        ],
+        "romaji": "kanojo kara tegami o moratta",
+        "pt": "Recebi uma carta dela."
+      },
+      {
+        "jp": "おとうさんに もらったの",
+        "ruby": [
+          {
+            "text": "お"
+          },
+          {
+            "text": "父",
+            "reading": "とう"
+          },
+          {
+            "text": "さんにもらったの。"
+          }
+        ],
+        "romaji": "otōsan ni moratta no",
+        "pt": "Eu ganhei isso do meu pai."
+      },
+      {
+        "jp": "かれは わたしに とけいを くれた",
+        "ruby": [
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "時計",
+            "reading": "とけい"
+          },
+          {
+            "text": "をくれた。"
+          }
+        ],
+        "romaji": "kare wa watashi ni tokei o kureta",
+        "pt": "Ele me deu um relógio."
       }
     ]
   }
@@ -5692,6 +6300,42 @@ export const BUILD_N5: readonly BuildExercise[] = [
     "hint": "Ao mesmo tempo: radical do verbo (sem ます) + ながら."
   },
   {
+    "topic": "g33",
+    "pt": "Cantávamos enquanto caminhávamos.",
+    "answer": [
+      "わたしたち",
+      "は",
+      "あるきながら",
+      "うた",
+      "を",
+      "うたった"
+    ],
+    "extra": [
+      "も",
+      "の"
+    ],
+    "romaji": "watashitachi wa arukinagara uta o utatta",
+    "hint": "Ao mesmo tempo: radical do verbo (sem ます) + ながら."
+  },
+  {
+    "topic": "g33",
+    "pt": "Ela chorava enquanto lia a carta.",
+    "answer": [
+      "かのじょ",
+      "は",
+      "てがみ",
+      "を",
+      "よみながら",
+      "ないた"
+    ],
+    "extra": [
+      "も",
+      "の"
+    ],
+    "romaji": "kanojo wa tegami o yominagara naita",
+    "hint": "Ao mesmo tempo: radical do verbo (sem ます) + ながら."
+  },
+  {
     "topic": "g34",
     "pt": "Você quer comer sushi hoje à noite?",
     "answer": [
@@ -5982,8 +6626,188 @@ export const BUILD_N5: readonly BuildExercise[] = [
     ],
     "romaji": "hoka ni nani ga arimasu ka",
     "hint": "が: sujeito novo, pergunta com だれ/なに e existência (あります, います)."
+  },
+  {
+    "topic": "g40",
+    "pt": "Está nevando.",
+    "answer": [
+      "ゆき",
+      "が",
+      "ふる"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "yuki ga furu",
+    "hint": "Simples: dicionário (る), ない (negativo) e た (passado), sem ます nem です."
+  },
+  {
+    "topic": "g40",
+    "pt": "O vento sopra.",
+    "answer": [
+      "かぜ",
+      "が",
+      "ふく"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "kaze ga fuku",
+    "hint": "Simples: dicionário (る), ない (negativo) e た (passado), sem ます nem です."
+  },
+  {
+    "topic": "g40",
+    "pt": "Não sei.",
+    "answer": [
+      "わたし",
+      "は",
+      "しらない"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "watashi wa shiranai",
+    "hint": "Simples: dicionário (る), ない (negativo) e た (passado), sem ます nem です."
+  },
+  {
+    "topic": "g40",
+    "pt": "Ainda não veio.",
+    "answer": [
+      "かれ",
+      "は",
+      "まだ",
+      "こない"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kare wa mada konai",
+    "hint": "Simples: dicionário (る), ない (negativo) e た (passado), sem ます nem です."
+  },
+  {
+    "topic": "g40",
+    "pt": "Eu comi.",
+    "answer": [
+      "わたし",
+      "は",
+      "たべた"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "watashi wa tabeta",
+    "hint": "Simples: dicionário (る), ない (negativo) e た (passado), sem ます nem です."
+  },
+  {
+    "topic": "g40",
+    "pt": "Ele correu.",
+    "answer": [
+      "かれ",
+      "は",
+      "はしった"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kare wa hashitta",
+    "hint": "Simples: dicionário (る), ない (negativo) e た (passado), sem ます nem です."
+  },
+  {
+    "topic": "g41",
+    "pt": "Eu dei um dicionário à minha irmã.",
+    "answer": [
+      "わたし",
+      "は",
+      "いもうと",
+      "に",
+      "じしょ",
+      "を",
+      "あげた"
+    ],
+    "extra": [
+      "も",
+      "の"
+    ],
+    "romaji": "watashi wa imōto ni jisho o ageta",
+    "hint": "Eu dou: あげる. Eu recebo: もらう. Alguém me dá: くれる."
+  },
+  {
+    "topic": "g41",
+    "pt": "Eu dei o livro a ele.",
+    "answer": [
+      "かれ",
+      "に",
+      "ほん",
+      "を",
+      "あげた",
+      "の"
+    ],
+    "extra": [
+      "で",
+      "は"
+    ],
+    "romaji": "kare ni hon o ageta no",
+    "hint": "Eu dou: あげる. Eu recebo: もらう. Alguém me dá: くれる."
+  },
+  {
+    "topic": "g41",
+    "pt": "Recebi uma carta dela.",
+    "answer": [
+      "かのじょ",
+      "から",
+      "てがみ",
+      "を",
+      "もらった"
+    ],
+    "extra": [
+      "まで",
+      "に"
+    ],
+    "romaji": "kanojo kara tegami o moratta",
+    "hint": "Eu dou: あげる. Eu recebo: もらう. Alguém me dá: くれる."
+  },
+  {
+    "topic": "g41",
+    "pt": "Eu ganhei isso do meu pai.",
+    "answer": [
+      "おとうさん",
+      "に",
+      "もらった",
+      "の"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "otōsan ni moratta no",
+    "hint": "Eu dou: あげる. Eu recebo: もらう. Alguém me dá: くれる."
+  },
+  {
+    "topic": "g41",
+    "pt": "Ele me deu um relógio.",
+    "answer": [
+      "かれ",
+      "は",
+      "わたし",
+      "に",
+      "とけい",
+      "を",
+      "くれた"
+    ],
+    "extra": [
+      "も",
+      "の"
+    ],
+    "romaji": "kare wa watashi ni tokei o kureta",
+    "hint": "Eu dou: あげる. Eu recebo: もらう. Alguém me dá: くれる."
   }
 ];
 
 /** Ids das frases do Tatoeba usadas nos exemplos (para o crédito). */
-export const GRAMMAR_N5_SENTENCE_IDS: readonly number[] = [9740661,1193930,12055984,10081492,1019460,10901764,11643291,184159,1216866,4002000,338057,2128256,170848,5748800,1039551,78718,11630865,11512358,123257,5955826,2006378,2349145,123791,5845217,4147428,2242416,10899008,2040852,741581,201956,201775,213581,10631584,442923,170842,140285,143813,5272,3552884,11776723,625254,157401,179732,12412206,2626290,10625858,10366825,9644550,354378,13254283,3347455,10194978,2672966,5323,11029605,10967392,9755700,9199895,1700213,187577,347338,8532899,432825,2412106,13218484,2969830,2701348,8733259,183436,149673,2139043,5390444,177906,9475751,125811,14007955,215019,232933,1799658,920509,873959,11065768,13201627,10617667,11017844,174334,169135,11009755,82874,171179,1299272,80265,158658,150453,8723018,5157,213984,10671567,140345,227047,173392,3449190,205799,890127,2552450,137130,11610218,7551823,1507527,11003497,3553343];
+export const GRAMMAR_N5_SENTENCE_IDS: readonly number[] = [9740661,1193930,12055984,10081492,1019460,10901764,11643291,184159,1216866,4002000,338057,2128256,170848,5748800,1039551,78718,11630865,11512358,123257,5955826,2006378,2349145,123791,5845217,4147428,2242416,10899008,2040852,741581,201956,201775,213581,10631584,442923,170842,140285,143813,5272,3552884,11776723,625254,157401,179732,12412206,2626290,10625858,10366825,9644550,354378,13254283,3347455,10194978,2672966,5323,11029605,10967392,9755700,9199895,1700213,187577,347338,8532899,432825,2412106,13218484,2969830,2701348,8733259,183436,149673,2139043,5390444,177906,9475751,125811,14007955,215019,232933,1799658,920509,873959,11065768,13201627,10617667,11017844,174334,169135,11009755,82874,151284,88812,171179,1299272,80265,158658,150453,8723018,5157,213984,10671567,140345,227047,173392,3449190,205799,433715,890127,2552450,137130,11610218,7551823,1507527,11003497,3553343,468677,670057,155138,110803,13563699,102805,152773,119074,95543,10744345,106065];

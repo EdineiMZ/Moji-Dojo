@@ -3,7 +3,7 @@
 // Depois: node scripts/audio/convert.mjs (comprime em mp3 e gera src/content/wordAudio.ts).
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 
-const UA = 'MojiDojo/1.0 (app pessoal de estudo de japones; coleta unica de audios do Lingua Libre)';
+const UA = 'MojiDojoStudyApp/1.0 (https://github.com/EdineiMZ/Moji-Dojo; one-time download of Lingua Libre word recordings for a study app)';
 const API = 'https://commons.wikimedia.org/w/api.php';
 
 const n5 = readFileSync(new URL('../../src/content/n5.ts', import.meta.url), 'utf8');

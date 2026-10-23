@@ -142,4 +142,14 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
     'は e が não são "o sujeito" e "o assunto" como em português: は apresenta o assunto, が aponta quem faz ou o que é novo. A pergunta com だれ ou なに leva が, e a resposta também.',
     'Com あります e います, o que existe leva が (ねこが います), e o lugar leva に.',
   ],
+  g40: [
+    'A forma simples não é "a fácil": ela soa íntima. Com quem você não conhece, com professores e com clientes, use ます.',
+    'Verbo simples não leva です (たべるです está errado). Só adjetivos い aceitam です (たかいです), e é um caso à parte.',
+    'Ao fazer ない e た, confira o grupo do verbo (たべない, mas のまない): treine em Conjugar.',
+  ],
+  g41: [
+    'Quando a coisa vem para você, o verbo é くれる, não あげる: "ele me deu" é かれは わたしに くれた.',
+    'Com もらう, quem deu leva に (ou から); com あげる, quem recebe leva に.',
+    'O "eu" costuma ficar oculto: てがみを もらった já quer dizer "EU recebi uma carta".',
+  ],
 };

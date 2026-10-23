@@ -54,7 +54,7 @@ export default function HomeScreen() {
           </View>
         </View>
         <PressableScale accessibilityRole="button" accessibilityLabel="Meu Mochi" onPress={() => router.push('/mochi')}>
-          <Mascot mood={felt.mood} size={96} />
+          <Mascot mood={felt.mood} size={96} interactive />
         </PressableScale>
         <PressableScale
           accessibilityRole="button"

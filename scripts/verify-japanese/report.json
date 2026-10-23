@@ -1,0 +1,4499 @@
+[
+ {
+  "src": "viagem-original",
+  "where": "Básico",
+  "jp": "こんにちは",
+  "pt": "Olá / boa tarde",
+  "tier": "atestada",
+  "match": {
+   "id": 778577,
+   "text": "今日は。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Básico",
+  "jp": "おはようございます",
+  "pt": "Bom dia",
+  "tier": "atestada",
+  "match": {
+   "id": 1576172,
+   "text": "おはようございます！",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Básico",
+  "jp": "こんばんは",
+  "pt": "Boa noite (ao encontrar alguém)",
+  "tier": "atestada",
+  "match": {
+   "id": 426900,
+   "text": "こんばんは。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Básico",
+  "jp": "ありがとうございます",
+  "pt": "Muito obrigado",
+  "tier": "atestada",
+  "match": {
+   "id": 4971,
+   "text": "ありがとうございます！",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Básico",
+  "jp": "すみません",
+  "pt": "Com licença / desculpe",
+  "tier": "atestada",
+  "match": {
+   "id": 8613880,
+   "text": "すみません...",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Básico",
+  "jp": "はい / いいえ",
+  "pt": "Sim / não",
+  "tier": "sem-par",
+  "match": {
+   "id": 8694881,
+   "text": "トムは家にいる？",
+   "score": 0.38,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Básico",
+  "jp": "わかりません",
+  "pt": "Não entendo",
+  "tier": "atestada",
+  "match": {
+   "id": 2270779,
+   "text": "わかりません。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Básico",
+  "jp": "ゆっくり おねがいします",
+  "pt": "Mais devagar, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 194123,
+   "text": "もう少しゆっくりお願いします。",
+   "score": 0.69,
+   "total": 3
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Básico",
+  "jp": "えいごは だいじょうぶですか",
+  "pt": "Tudo bem falar em inglês?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kara-kimashita",
+  "jp": "ブラジルから きました",
+  "pt": "Eu vim do Brasil",
+  "tier": "sem-par",
+  "match": {
+   "id": 772209,
+   "text": "私は文ではありません。 私はTatoebaから削除されるべきです。",
+   "score": 0.1,
+   "total": 4
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "おげんき ですか",
+  "pt": "Como vai? / Tudo bem?",
+  "tier": "atestada",
+  "match": {
+   "id": 400933,
+   "text": "お元気ですか。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "げんき です",
+  "pt": "Estou bem",
+  "tier": "atestada",
+  "match": {
+   "id": 3495032,
+   "text": "元気です。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "どういたしまして",
+  "pt": "De nada",
+  "tier": "atestada",
+  "match": {
+   "id": 201101,
+   "text": "どう致しまして。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "ごめんなさい",
+  "pt": "Desculpe (mais pessoal que すみません)",
+  "tier": "atestada",
+  "match": {
+   "id": 408300,
+   "text": "御免なさい。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "だいじょうぶ です",
+  "pt": "Tudo bem / Não precisa",
+  "tier": "atestada",
+  "match": {
+   "id": 2304911,
+   "text": "大丈夫です。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "わかりました",
+  "pt": "Entendi",
+  "tier": "atestada",
+  "match": {
+   "id": 5955914,
+   "text": "わかりました。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "ちょっと まって ください",
+  "pt": "Espere um pouco, por favor",
+  "tier": "atestada",
+  "match": {
+   "id": 202733,
+   "text": "ちょっと待って下さい。",
+   "score": 1,
+   "total": 8
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "もう いちど おねがいします",
+  "pt": "Mais uma vez, por favor",
+  "tier": "atestada",
+  "match": {
+   "id": 214165,
+   "text": "もう一度お願いします。",
+   "score": 1,
+   "total": 4
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "もう すこし ゆっくり はなして ください",
+  "pt": "Fale um pouco mais devagar, por favor",
+  "tier": "atestada",
+  "match": {
+   "id": 194120,
+   "text": "もう少しゆっくり話して下さい。",
+   "score": 1,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "えいごが わかりますか",
+  "pt": "Você entende inglês?",
+  "tier": "sem-par",
+  "match": {
+   "id": 4715132,
+   "text": "「すみません、英語が分かりますか？」「はい、少しだけ」",
+   "score": 0.45,
+   "total": 5
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "にほんごは すこし だけ はなせます",
+  "pt": "Só falo um pouco de japonês",
+  "tier": "sem-par",
+  "match": {
+   "id": 437319,
+   "text": "このゲームは基本的にキーボードとゲームパッドで動くようになっていますがコンフィグだけはマウスしか操作できません。",
+   "score": 0.15,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "これは にほんごで なん ですか",
+  "pt": "Como se diz isto em japonês?",
+  "tier": "sem-par",
+  "match": {
+   "id": 101447,
+   "text": "彼は日本語を話すことができる。",
+   "score": 0.47,
+   "total": 3
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "さようなら",
+  "pt": "Tchau (despedida)",
+  "tier": "atestada",
+  "match": {
+   "id": 426889,
+   "text": "さようなら！",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "また あした",
+  "pt": "Até amanhã",
+  "tier": "atestada",
+  "match": {
+   "id": 195390,
+   "text": "また明日。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Básico",
+  "jp": "おやすみなさい",
+  "pt": "Boa noite (para quem vai dormir)",
+  "tier": "atestada",
+  "match": {
+   "id": 426899,
+   "text": "おやすみなさい。",
+   "score": 1,
+   "total": 8
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Restaurante",
+  "jp": "ひとりです",
+  "pt": "Sou só eu (mesa para um)",
+  "tier": "sem-par",
+  "match": {
+   "id": 10157813,
+   "text": "一人旅です。",
+   "score": 0.71,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kudasai",
+  "jp": "メニューを ください",
+  "pt": "O cardápio, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 1643712,
+   "text": "ユーザー名とパスワードが正しく入力されていることを確認してください。",
+   "score": 0.2,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Restaurante",
+  "jp": "これを ください",
+  "pt": "Quero isto, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 217647,
+   "text": "これを三つください。",
+   "score": 0.7,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Restaurante",
+  "jp": "おすすめは なんですか",
+  "pt": "O que você recomenda?",
+  "tier": "atestada",
+  "match": {
+   "id": 227687,
+   "text": "おすすめは何ですか。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Restaurante",
+  "jp": "おみずを ください",
+  "pt": "Água, por favor",
+  "tier": "atestada",
+  "match": {
+   "id": 227004,
+   "text": "お水をください。",
+   "score": 1,
+   "total": 5
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Restaurante",
+  "jp": "いただきます",
+  "pt": "Dito antes de comer",
+  "tier": "atestada",
+  "match": {
+   "id": 915990,
+   "text": "頂きます。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Restaurante",
+  "jp": "ごちそうさまでした",
+  "pt": "Dito depois de comer",
+  "tier": "atestada",
+  "match": {
+   "id": 915163,
+   "text": "ご馳走様でした。",
+   "score": 1,
+   "total": 5
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Restaurante",
+  "jp": "おかいけい おねがいします",
+  "pt": "A conta, por favor",
+  "tier": "atestada",
+  "match": {
+   "id": 1014812,
+   "text": "お会計お願いします。",
+   "score": 1,
+   "total": 8
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "harau",
+  "jp": "カードで はらえますか",
+  "pt": "Posso pagar com cartão?",
+  "tier": "sem-par",
+  "match": {
+   "id": 8890724,
+   "text": "「ふん！帰りたいなら、勝手にすればいい！」ピーター・パンは拗ねて、どこかへ飛んで行ってしまいました。",
+   "score": 0.11,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "ふたり です",
+  "pt": "Somos dois",
+  "tier": "sem-par",
+  "match": {
+   "id": 11052267,
+   "text": "二人とも先生です。",
+   "score": 0.45,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "さんにん です",
+  "pt": "Somos três",
+  "tier": "sem-par",
+  "match": {
+   "id": 11467354,
+   "text": "3階に住んでます。",
+   "score": 0.6,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "これを ひとつ ください",
+  "pt": "Um destes, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 1785520,
+   "text": "西洋将棋盤の最初の升目に一粒、二升目に二粒、三升目に四粒の小麦を置き、この通りに最後の升目まで続けてゆけば、全部で１８４４京６７４４兆７３７億９５５万１６１５粒となる。これは大雪山の百倍の高さの山を作るのに充分な量である。",
+   "score": 0.04,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "これを ふたつ ください",
+  "pt": "Dois destes, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 1785520,
+   "text": "西洋将棋盤の最初の升目に一粒、二升目に二粒、三升目に四粒の小麦を置き、この通りに最後の升目まで続けてゆけば、全部で１８４４京６７４４兆７３７億９５５万１６１５粒となる。これは大雪山の百倍の高さの山を作るのに充分な量である。",
+   "score": 0.03,
+   "total": 1
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kudasai",
+  "jp": "ビールを ください",
+  "pt": "Cerveja, por favor",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kudasai",
+  "jp": "おちゃを ください",
+  "pt": "Chá, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 9081052,
+   "text": "お茶を下げてください。",
+   "score": 0.73,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "ちゅうもんを おねがいします",
+  "pt": "Quero fazer o pedido",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "なにが おいしい ですか",
+  "pt": "O que é gostoso aqui?",
+  "tier": "atestada",
+  "match": {
+   "id": 188145,
+   "text": "何がおいしいですか。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "これは なん ですか",
+  "pt": "O que é isto?",
+  "tier": "atestada",
+  "match": {
+   "id": 4621452,
+   "text": "これは何ですか？",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "からくない のは ありますか",
+  "pt": "Tem algo que não seja picante?",
+  "tier": "sem-par",
+  "match": {
+   "id": 222325,
+   "text": "この橋の長さはどのくらいありますか。",
+   "score": 0.37,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "ベジタリアンの りょうりは ありますか",
+  "pt": "Tem pratos vegetarianos?",
+  "tier": "sem-par",
+  "match": {
+   "id": 475434,
+   "text": "すべての人間は、生まれながらにして自由であり、かつ、尊厳と権利とについて平等である。人間は、理性と良心とを授けられており、互いに同胞の精神をもって行動しなければならない。",
+   "score": 0.09,
+   "total": 2
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "tabemasen",
+  "jp": "さかなが たべられません",
+  "pt": "Não posso comer peixe",
+  "tier": "sem-par",
+  "match": {
+   "id": 2104111,
+   "text": "彼は日本語の勉強をしたことがないので、ひらがなさえ書けません。",
+   "score": 0.15,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "ぶたにくは たべられません",
+  "pt": "Não como carne de porco",
+  "tier": "sem-par",
+  "match": {
+   "id": 10903695,
+   "text": "私は豚肉が食べられません。",
+   "score": 0.69,
+   "total": 2
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arerugi",
+  "jp": "えびの アレルギーが あります",
+  "pt": "Tenho alergia a camarão",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "みずを もう いっぱい ください",
+  "pt": "Mais um copo de água, por favor",
+  "tier": "atestada",
+  "match": {
+   "id": 143794,
+   "text": "お水をもう一杯ください。",
+   "score": 0.93,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "おかわりを ください",
+  "pt": "Mais um (refil), por favor",
+  "tier": "parecida",
+  "match": {
+   "id": 143796,
+   "text": "水のお代わりを下さい。",
+   "score": 0.75,
+   "total": 4
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "ここで たべます",
+  "pt": "Vou comer aqui",
+  "tier": "atestada",
+  "match": {
+   "id": 224546,
+   "text": "ここで食べます。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "おもちかえりで おねがいします",
+  "pt": "Para levar, por favor",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "おいしかった です",
+  "pt": "Estava delicioso",
+  "tier": "atestada",
+  "match": {
+   "id": 11643291,
+   "text": "美味しかったです。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Restaurante",
+  "jp": "わりかんで おねがいします",
+  "pt": "Dividir a conta, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 236366,
+   "text": "「帰り次第、こちらからお電話させましょうか」「お願いします」",
+   "score": 0.34,
+   "total": 2
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kudasai",
+  "jp": "レシートを ください",
+  "pt": "O recibo, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 164201,
+   "text": "私のコーヒーには砂糖を入れないでください。",
+   "score": 0.35,
+   "total": 3
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Compras",
+  "jp": "これは いくらですか",
+  "pt": "Quanto custa isto?",
+  "tier": "atestada",
+  "match": {
+   "id": 432825,
+   "text": "これはいくらですか。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Compras",
+  "jp": "みてる だけです",
+  "pt": "Só estou olhando",
+  "tier": "atestada",
+  "match": {
+   "id": 2413229,
+   "text": "見てるだけです。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Compras",
+  "jp": "ふくろは いりません",
+  "pt": "Não preciso de sacola",
+  "tier": "sem-par",
+  "match": {
+   "id": 769311,
+   "text": "いろはにほへと ちりぬるを わかよたれそ つねならむ うゐのおくやま けふこえて あさきゆめみし ゑひもせすん",
+   "score": 0.1,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Compras",
+  "jp": "もっと やすいのは ありますか",
+  "pt": "Tem algum mais barato?",
+  "tier": "atestada",
+  "match": {
+   "id": 2135770,
+   "text": "もっと安いのはありますか。",
+   "score": 1,
+   "total": 6
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Compras",
+  "jp": "これを みせて ください",
+  "pt": "Pode me mostrar isto?",
+  "tier": "atestada",
+  "match": {
+   "id": 217661,
+   "text": "これを見せてください。",
+   "score": 1,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Compras",
+  "jp": "ためして も いい ですか",
+  "pt": "Posso experimentar?",
+  "tier": "sem-par",
+  "match": {
+   "id": 6565658,
+   "text": "私が日本人でない初めての友達ですか？",
+   "score": 0.25,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Compras",
+  "jp": "もっと おおきい のは ありますか",
+  "pt": "Tem um maior?",
+  "tier": "sem-par",
+  "match": {
+   "id": 597724,
+   "text": "この文は文法的には何の間違いもありませんが、実際には使われない文だと私は思います。",
+   "score": 0.12,
+   "total": 3
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Compras",
+  "jp": "もっと ちいさい のは ありますか",
+  "pt": "Tem um menor?",
+  "tier": "sem-par",
+  "match": {
+   "id": 597724,
+   "text": "この文は文法的には何の間違いもありませんが、実際には使われない文だと私は思います。",
+   "score": 0.12,
+   "total": 2
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arimasu",
+  "jp": "ほかの いろは ありますか",
+  "pt": "Tem outra cor?",
+  "tier": "sem-par",
+  "match": {
+   "id": 1681454,
+   "text": "「血の通った」とか、日本語の表現は面白いものがいろいろあります。",
+   "score": 0.2,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Compras",
+  "jp": "ぜんぶで いくら ですか",
+  "pt": "Quanto fica tudo?",
+  "tier": "sem-par",
+  "match": {
+   "id": 178986,
+   "text": "使った金額は全部で幾らですか？",
+   "score": 0.53,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Compras",
+  "jp": "めんぜいに なりますか",
+  "pt": "Dá para fazer com isenção de imposto (tax-free)?",
+  "tier": "sem-par",
+  "match": {
+   "id": 607700,
+   "text": "私たちは皆さんを愛しているから、そしてサイトを改善するために、タトエバの管理を行っています。わかりましたか？私たちは君たちを愛してるね？",
+   "score": 0.09,
+   "total": 6
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Compras",
+  "jp": "カードは つかえますか",
+  "pt": "Aceita cartão?",
+  "tier": "sem-par",
+  "match": {
+   "id": 74857,
+   "text": "ディスプレイはモニタともいい、コンピュータなどの機器から出力される静止画または動画の映像信号を表示する機器である。",
+   "score": 0.07,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Compras",
+  "jp": "げんきんで はらいます",
+  "pt": "Pago em dinheiro",
+  "tier": "parecida",
+  "match": {
+   "id": 202153,
+   "text": "では、現金で支払います。",
+   "score": 0.77,
+   "total": 5
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kudasai",
+  "jp": "ふくろを ください",
+  "pt": "Uma sacola, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 78519,
+   "text": "落石が道路をふさいだ。",
+   "score": 0.31,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Compras",
+  "jp": "プレゼント です",
+  "pt": "É um presente",
+  "tier": "sem-par",
+  "match": {
+   "id": 118058,
+   "text": "彼の演説は最初のところが少し理解できたが、残りはちんぷんかんぷんだった。",
+   "score": 0.1,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Compras",
+  "jp": "つつんで ください",
+  "pt": "Embrulhe, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 176088,
+   "text": "警察を呼んで下さい。",
+   "score": 0.58,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Compras",
+  "jp": "なんじまで あいて いますか",
+  "pt": "Até que horas está aberto?",
+  "tier": "atestada",
+  "match": {
+   "id": 1171888,
+   "text": "何時まで開いてますか。",
+   "score": 0.92,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Transporte",
+  "jp": "えきは どこですか",
+  "pt": "Onde fica a estação?",
+  "tier": "atestada",
+  "match": {
+   "id": 188894,
+   "text": "駅はどこですか。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Transporte",
+  "jp": "この でんしゃは しんじゅくに いきますか",
+  "pt": "Este trem vai para Shinjuku?",
+  "tier": "sem-par",
+  "match": {
+   "id": 1785520,
+   "text": "西洋将棋盤の最初の升目に一粒、二升目に二粒、三升目に四粒の小麦を置き、この通りに最後の升目まで続けてゆけば、全部で１８４４京６７４４兆７３７億９５５万１６１５粒となる。これは大雪山の百倍の高さの山を作るのに充分な量である。",
+   "score": 0.06,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Transporte",
+  "jp": "きっぷは どこで かえますか",
+  "pt": "Onde compro o bilhete?",
+  "tier": "atestada",
+  "match": {
+   "id": 2533670,
+   "text": "切符はどこで買えますか。",
+   "score": 1,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Transporte",
+  "jp": "つぎの えきは なんですか",
+  "pt": "Qual é a próxima estação?",
+  "tier": "sem-par",
+  "match": {
+   "id": 11936320,
+   "text": "日本では、家の中に入る時は靴を脱ぎます。",
+   "score": 0.13,
+   "total": 4
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Transporte",
+  "jp": "ここまで おねがいします",
+  "pt": "Até aqui, por favor (no táxi, mostrando o endereço)",
+  "tier": "sem-par",
+  "match": {
+   "id": 9975043,
+   "text": "大きな声で、お願いします。",
+   "score": 0.64,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "made",
+  "jp": "しんじゅくまで いくら ですか",
+  "pt": "Quanto custa até Shinjuku?",
+  "tier": "sem-par",
+  "match": {
+   "id": 193948,
+   "text": "もし、きちんと食べなかったら永久に太ったままですよ、とブラウン夫人はベスに警告しました。",
+   "score": 0.15,
+   "total": 4
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Transporte",
+  "jp": "なんばんせん ですか",
+  "pt": "Qual é a plataforma?",
+  "tier": "sem-par",
+  "match": {
+   "id": 4519395,
+   "text": "太陽に一番近い惑星は何ですか。",
+   "score": 0.32,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Transporte",
+  "jp": "のりかえは どこ ですか",
+  "pt": "Onde faço a baldeação?",
+  "tier": "sem-par",
+  "match": {
+   "id": 9073662,
+   "text": "最寄りの駅はどこですか？",
+   "score": 0.67,
+   "total": 9
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Transporte",
+  "jp": "しゅうでんは なんじ ですか",
+  "pt": "Que horas é o último trem?",
+  "tier": "atestada",
+  "match": {
+   "id": 2869237,
+   "text": "終電は何時ですか？",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Transporte",
+  "jp": "アイシーカードに チャージ したい です",
+  "pt": "Quero carregar o meu cartão IC",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Transporte",
+  "jp": "この バスは えきに とまりますか",
+  "pt": "Este ônibus para na estação?",
+  "tier": "sem-par",
+  "match": {
+   "id": 3433099,
+   "text": "タトエバではすべての文が対等な立場にあり、すべての文が自然であることが求められています。そのため、例えば英語の文をフランス語に訳す場合、そのフランス語の文は、フランス語のできる英語学習者の役に立つような正確な訳であると同時に、世界中のフランス語学習者が暗誦するに足るような模範的な文でもある必要があります。",
+   "score": 0.05,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Transporte",
+  "jp": "タクシーを よんで ください",
+  "pt": "Chame um táxi, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 930174,
+   "text": "ページの下を読んでください。",
+   "score": 0.64,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Transporte",
+  "jp": "ここで とめて ください",
+  "pt": "Pare aqui, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 12157804,
+   "text": "そこで起こったことを説明してください。",
+   "score": 0.45,
+   "total": 6
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Transporte",
+  "jp": "ここで おります",
+  "pt": "Vou descer aqui",
+  "tier": "atestada",
+  "match": {
+   "id": 224558,
+   "text": "ここで降ります。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Hotel",
+  "jp": "チェックイン おねがいします",
+  "pt": "Check-in, por favor",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Hotel",
+  "jp": "よやくして います",
+  "pt": "Tenho reserva",
+  "tier": "sem-par",
+  "match": {
+   "id": 77233,
+   "text": "六時半に予約しています。",
+   "score": 0.57,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Hotel",
+  "jp": "にもつを あずかって もらえますか",
+  "pt": "Pode guardar minha bagagem?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Hotel",
+  "jp": "ワイファイの パスワードは なんですか",
+  "pt": "Qual é a senha do Wi-Fi?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Hotel",
+  "jp": "チェックアウトは なんじ ですか",
+  "pt": "Que horas é o check-out?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Hotel",
+  "jp": "あさごはんは なんじから ですか",
+  "pt": "A partir de que horas é o café da manhã?",
+  "tier": "sem-par",
+  "match": {
+   "id": 519674,
+   "text": "５０歳を過ぎてから新しい言語を習うのはそんなに簡単ではない。",
+   "score": 0.16,
+   "total": 4
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Hotel",
+  "jp": "カギを なくしました",
+  "pt": "Perdi a chave",
+  "tier": "sem-par",
+  "match": {
+   "id": 157265,
+   "text": "鍵をなくしてしまった。",
+   "score": 0.73,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Hotel",
+  "jp": "タオルを もう ひとつ ください",
+  "pt": "Mais uma toalha, por favor",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Hotel",
+  "jp": "エアコンが こわれて います",
+  "pt": "O ar-condicionado está quebrado",
+  "tier": "sem-par",
+  "match": {
+   "id": 935421,
+   "text": "天気が良ければ、私たちは明日田園地帯へ旅行に行きます。",
+   "score": 0.15,
+   "total": 3
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Hotel",
+  "jp": "おゆが でません",
+  "pt": "Não sai água quente",
+  "tier": "atestada",
+  "match": {
+   "id": 226801,
+   "text": "お湯が出ません。",
+   "score": 1,
+   "total": 5
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Hotel",
+  "jp": "へやを かえて もらえますか",
+  "pt": "Pode trocar de quarto?",
+  "tier": "sem-par",
+  "match": {
+   "id": 769311,
+   "text": "いろはにほへと ちりぬるを わかよたれそ つねならむ うゐのおくやま けふこえて あさきゆめみし ゑひもせすん",
+   "score": 0.13,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Hotel",
+  "jp": "となりが うるさい です",
+  "pt": "O vizinho do lado está barulhento",
+  "tier": "sem-par",
+  "match": {
+   "id": 88849,
+   "text": "彼女は若そうに見えるが、実際はあなたより年上です。",
+   "score": 0.2,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Hotel",
+  "jp": "もう いちにち とまりたい です",
+  "pt": "Quero ficar mais um dia",
+  "tier": "sem-par",
+  "match": {
+   "id": 223087,
+   "text": "このような場合、大人はすぐに叱るのではなく、子供たちの精神的成長を見守りながら、忍耐強く待つべきである。",
+   "score": 0.15,
+   "total": 5
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Hotel",
+  "jp": "タクシーを よんで もらえますか",
+  "pt": "Pode chamar um táxi para mim?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Ajuda",
+  "jp": "トイレは どこですか",
+  "pt": "Onde fica o banheiro?",
+  "tier": "sem-par",
+  "match": {
+   "id": 173437,
+   "text": "航空券はどこで受け取ればいいですか？",
+   "score": 0.3,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Ajuda",
+  "jp": "みちに まよいました",
+  "pt": "Estou perdido",
+  "tier": "sem-par",
+  "match": {
+   "id": 123603,
+   "text": "道に迷ってしまいました。",
+   "score": 0.69,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "te-kudasai",
+  "jp": "たすけて ください",
+  "pt": "Me ajude, por favor",
+  "tier": "atestada",
+  "match": {
+   "id": 1039551,
+   "text": "助けてください。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Ajuda",
+  "jp": "びょういんは どこですか",
+  "pt": "Onde fica o hospital?",
+  "tier": "atestada",
+  "match": {
+   "id": 2466329,
+   "text": "病院は何処ですか？",
+   "score": 1,
+   "total": 5
+  }
+ },
+ {
+  "src": "viagem-original",
+  "where": "Ajuda",
+  "jp": "けいさつを よんで ください",
+  "pt": "Chame a polícia, por favor",
+  "tier": "atestada",
+  "match": {
+   "id": 176088,
+   "text": "警察を呼んで下さい。",
+   "score": 1,
+   "total": 3
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "hajimete",
+  "jp": "はじめまして",
+  "pt": "Muito prazer.",
+  "tier": "atestada",
+  "match": {
+   "id": 2196363,
+   "text": "初めまして。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Apresentação",
+  "jp": "わたしの なまえは ジョアン です",
+  "pt": "Meu nome é João (troque pelo seu)",
+  "tier": "sem-par",
+  "match": {
+   "id": 347864,
+   "text": "そして私がまだ支持を得られていない皆さんにも申し上げたい。今夜は皆さんの票を得られなかったかもしれませんが、私には、皆さんの声も聞こえています。私は、皆さんの助けが必要なのです。私はみなさんの大統領にも、なるつもりです。",
+   "score": 0.09,
+   "total": 3
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Apresentação",
+  "jp": "よろしく おねがいします",
+  "pt": "Prazer / Conto com você",
+  "tier": "atestada",
+  "match": {
+   "id": 13117658,
+   "text": "宜しくお願いします。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Apresentação",
+  "jp": "ブラジルじん です",
+  "pt": "Sou brasileiro(a)",
+  "tier": "sem-par",
+  "match": {
+   "id": 769549,
+   "text": "例文を削除するにはどうしたら良いですか？",
+   "score": 0.22,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Apresentação",
+  "jp": "りょこうで きました",
+  "pt": "Vim a passeio",
+  "tier": "sem-par",
+  "match": {
+   "id": 1331035,
+   "text": "旅行で記念メダルを買いました。",
+   "score": 0.53,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Apresentação",
+  "jp": "にほんは はじめて です",
+  "pt": "É a minha primeira vez no Japão",
+  "tier": "parecida",
+  "match": {
+   "id": 122452,
+   "text": "日本は初めてですか。",
+   "score": 0.91,
+   "total": 4
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "suki",
+  "jp": "にほんが すき です",
+  "pt": "Eu gosto do Japão",
+  "tier": "sem-par",
+  "match": {
+   "id": 778160,
+   "text": "日本語がとても好きです。",
+   "score": 0.67,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Apresentação",
+  "jp": "おしごとは なん ですか",
+  "pt": "Qual é o seu trabalho?",
+  "tier": "atestada",
+  "match": {
+   "id": 227125,
+   "text": "お仕事は何ですか。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Apresentação",
+  "jp": "しゅみは なん ですか",
+  "pt": "Qual é o seu hobby?",
+  "tier": "atestada",
+  "match": {
+   "id": 148465,
+   "text": "趣味は何ですか。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dia a dia",
+  "jp": "きょうは いい てんき ですね",
+  "pt": "Hoje o tempo está bom, né?",
+  "tier": "atestada",
+  "match": {
+   "id": 348669,
+   "text": "今日はいい天気ですね。",
+   "score": 1,
+   "total": 5
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ne",
+  "jp": "あつい ですね",
+  "pt": "Está quente (calor), né?",
+  "tier": "sem-par",
+  "match": {
+   "id": 200674,
+   "text": "とても暑いですね。",
+   "score": 0.67,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ne",
+  "jp": "さむい ですね",
+  "pt": "Está frio, né?",
+  "tier": "sem-par",
+  "match": {
+   "id": 171742,
+   "text": "今日はとても寒いですね。",
+   "score": 0.46,
+   "total": 6
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ne",
+  "jp": "すごい ですね",
+  "pt": "Está incrível, né?",
+  "tier": "atestada",
+  "match": {
+   "id": 214726,
+   "text": "すごいですね。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dia a dia",
+  "jp": "ほんとう ですか",
+  "pt": "É mesmo?",
+  "tier": "atestada",
+  "match": {
+   "id": 1585501,
+   "text": "本当ですか。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ne",
+  "jp": "おいしい ですね",
+  "pt": "Está gostoso, né?",
+  "tier": "parecida",
+  "match": {
+   "id": 80191,
+   "text": "面白いですね。",
+   "score": 0.75,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dia a dia",
+  "jp": "おなかが すきました",
+  "pt": "Estou com fome",
+  "tier": "atestada",
+  "match": {
+   "id": 9101657,
+   "text": "お腹が空きました。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dia a dia",
+  "jp": "のどが かわきました",
+  "pt": "Estou com sede",
+  "tier": "atestada",
+  "match": {
+   "id": 198563,
+   "text": "喉が渇きました。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dia a dia",
+  "jp": "つかれました",
+  "pt": "Estou cansado(a)",
+  "tier": "atestada",
+  "match": {
+   "id": 85882,
+   "text": "疲れました。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dia a dia",
+  "jp": "ねむい です",
+  "pt": "Estou com sono",
+  "tier": "parecida",
+  "match": {
+   "id": 81007,
+   "text": "眠いですか？",
+   "score": 0.83,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dia a dia",
+  "jp": "いま なんじ ですか",
+  "pt": "Que horas são agora?",
+  "tier": "atestada",
+  "match": {
+   "id": 2412106,
+   "text": "いま何時ですか？",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dia a dia",
+  "jp": "あしたは ひま ですか",
+  "pt": "Você está livre amanhã?",
+  "tier": "sem-par",
+  "match": {
+   "id": 231540,
+   "text": "あなたは明日お暇ですか。",
+   "score": 0.62,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dia a dia",
+  "jp": "いっしょに いきませんか",
+  "pt": "Quer ir junto?",
+  "tier": "parecida",
+  "match": {
+   "id": 200189,
+   "text": "トムといっしょに行きませんか。",
+   "score": 0.79,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dia a dia",
+  "jp": "また あいましょう",
+  "pt": "Vamos nos encontrar de novo",
+  "tier": "atestada",
+  "match": {
+   "id": 195462,
+   "text": "また会いましょう。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dia a dia",
+  "jp": "たのしかった です",
+  "pt": "Foi divertido",
+  "tier": "parecida",
+  "match": {
+   "id": 184159,
+   "text": "楽しかったですか。",
+   "score": 0.89,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dia a dia",
+  "jp": "これは わたしの です",
+  "pt": "Isto é meu",
+  "tier": "atestada",
+  "match": {
+   "id": 11132492,
+   "text": "これは私のです。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Aeroporto",
+  "jp": "パスポートを どうぞ",
+  "pt": "Aqui está o meu passaporte",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Aeroporto",
+  "jp": "りょこうの もくてきは かんこう です",
+  "pt": "O motivo da viagem é turismo",
+  "tier": "parecida",
+  "match": {
+   "id": 78160,
+   "text": "旅行の目的は何ですか。",
+   "score": 0.75,
+   "total": 5
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Aeroporto",
+  "jp": "いっしゅうかん ほど います",
+  "pt": "Vou ficar cerca de uma semana",
+  "tier": "sem-par",
+  "match": {
+   "id": 4891,
+   "text": "一週間でどれほどのことが学べるか、自分でもびっくりするはずだよ！",
+   "score": 0.28,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Aeroporto",
+  "jp": "ホテルは とうきょう です",
+  "pt": "O hotel é em Tóquio",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Aeroporto",
+  "jp": "にもつは どこで うけとりますか",
+  "pt": "Onde retiro a bagagem?",
+  "tier": "sem-par",
+  "match": {
+   "id": 772969,
+   "text": "日本では交通がとても便利だけど、物価があまり安くないと思うんだ。",
+   "score": 0.18,
+   "total": 4
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Aeroporto",
+  "jp": "わたしの にもつが みつかりません",
+  "pt": "Não encontro a minha bagagem",
+  "tier": "sem-par",
+  "match": {
+   "id": 347864,
+   "text": "そして私がまだ支持を得られていない皆さんにも申し上げたい。今夜は皆さんの票を得られなかったかもしれませんが、私には、皆さんの声も聞こえています。私は、皆さんの助けが必要なのです。私はみなさんの大統領にも、なるつもりです。",
+   "score": 0.08,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Aeroporto",
+  "jp": "ゲートは どこ ですか",
+  "pt": "Onde fica o portão de embarque?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Aeroporto",
+  "jp": "りょうがえは どこで できますか",
+  "pt": "Onde posso trocar dinheiro?",
+  "tier": "sem-par",
+  "match": {
+   "id": 10792403,
+   "text": "日本円からドルへの両替はどこでできますか？",
+   "score": 0.56,
+   "total": 3
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Aeroporto",
+  "jp": "リムジンバスは どこから のれますか",
+  "pt": "De onde sai o ônibus do aeroporto?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Direções",
+  "jp": "みぎに まがって ください",
+  "pt": "Vire à direita, por favor",
+  "tier": "atestada",
+  "match": {
+   "id": 2349244,
+   "text": "右に曲がってください。",
+   "score": 1,
+   "total": 5
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Direções",
+  "jp": "ひだりに まがって ください",
+  "pt": "Vire à esquerda, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 889747,
+   "text": "あの人、酔うと人が変わってさ、くどくど話しだすから、あまり一緒に飲みたくないんだ。",
+   "score": 0.17,
+   "total": 4
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Direções",
+  "jp": "まっすぐ いって ください",
+  "pt": "Siga em frente, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 195363,
+   "text": "まっすぐ前を見てください。",
+   "score": 0.69,
+   "total": 4
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Direções",
+  "jp": "ちかくに えきは ありますか",
+  "pt": "Tem uma estação por perto?",
+  "tier": "parecida",
+  "match": {
+   "id": 481097,
+   "text": "この近くに駅はありますか。",
+   "score": 0.86,
+   "total": 7
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Direções",
+  "jp": "ここから とおい ですか",
+  "pt": "É longe daqui?",
+  "tier": "parecida",
+  "match": {
+   "id": 3360017,
+   "text": "まだここからは遠いですか？",
+   "score": 0.77,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Direções",
+  "jp": "あるいて なんぷん ですか",
+  "pt": "Quantos minutos a pé?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Direções",
+  "jp": "ちずに かいて もらえますか",
+  "pt": "Pode desenhar no mapa para mim?",
+  "tier": "sem-par",
+  "match": {
+   "id": 2513932,
+   "text": "ここの人たちは舌が肥えていますから、安くてもまずい店はすぐにつぶれてしまうんですよ。",
+   "score": 0.14,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Direções",
+  "jp": "いま どこ ですか",
+  "pt": "Onde estamos agora?",
+  "tier": "sem-par",
+  "match": {
+   "id": 4865666,
+   "text": "今どこにいるんですか？",
+   "score": 0.64,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Direções",
+  "jp": "この じゅうしょは どこ ですか",
+  "pt": "Onde fica este endereço?",
+  "tier": "sem-par",
+  "match": {
+   "id": 200856,
+   "text": "ところで、君の住所はどこですか。",
+   "score": 0.72,
+   "total": 8
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Direções",
+  "jp": "あの たてものは なん ですか",
+  "pt": "O que é aquele prédio?",
+  "tier": "atestada",
+  "match": {
+   "id": 4024248,
+   "text": "あの建物は何ですか？",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Conbini",
+  "jp": "あたためて ください",
+  "pt": "Pode esquentar, por favor?",
+  "tier": "sem-par",
+  "match": {
+   "id": 2008022,
+   "text": "後で私に説明して下さい。",
+   "score": 0.47,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kudasai",
+  "jp": "おはしを ください",
+  "pt": "Hashi (pauzinhos), por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 10778202,
+   "text": "もう一度お話を聞かせてください。",
+   "score": 0.44,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Conbini",
+  "jp": "スプーンを ください",
+  "pt": "Pode dar uma colher?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Conbini",
+  "jp": "ストローを ください",
+  "pt": "Pode dar um canudo?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Conbini",
+  "jp": "レシートは いりません",
+  "pt": "Não preciso do recibo",
+  "tier": "sem-par",
+  "match": {
+   "id": 74857,
+   "text": "ディスプレイはモニタともいい、コンピュータなどの機器から出力される静止画または動画の映像信号を表示する機器である。",
+   "score": 0.09,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Conbini",
+  "jp": "ポイントカードは ありません",
+  "pt": "Não tenho cartão de pontos",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "doko",
+  "jp": "エーティーエムは どこ ですか",
+  "pt": "Onde fica o caixa eletrônico?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dinheiro",
+  "jp": "りょうがえを したい です",
+  "pt": "Quero trocar dinheiro",
+  "tier": "sem-par",
+  "match": {
+   "id": 1585236,
+   "text": "可能であれば、その著者の名前を知りたいのですが。",
+   "score": 0.31,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dinheiro",
+  "jp": "この カードで おろせますか",
+  "pt": "Dá para sacar com este cartão?",
+  "tier": "sem-par",
+  "match": {
+   "id": 10908534,
+   "text": "ケニアのファッション業界で独自の市場を切り開くことに成功した、ナイロビを拠点とするファッションデザイナーは、多くの小事業主が「高品質の製品を手頃な価格で」手に入れられることに満足していると述べた。",
+   "score": 0.06,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dinheiro",
+  "jp": "こまかい おかねは ありますか",
+  "pt": "Tem trocado?",
+  "tier": "sem-par",
+  "match": {
+   "id": 10137819,
+   "text": "この翻訳は誤解を招く恐れがあります。",
+   "score": 0.32,
+   "total": 7
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dinheiro",
+  "jp": "クレジットカードは つかえますか",
+  "pt": "Aceita cartão de crédito?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dinheiro",
+  "jp": "いくら ですか",
+  "pt": "Quanto é?",
+  "tier": "atestada",
+  "match": {
+   "id": 5332,
+   "text": "いくらですか？",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dinheiro",
+  "jp": "たかい です",
+  "pt": "É caro",
+  "tier": "parecida",
+  "match": {
+   "id": 13130047,
+   "text": "高いですね。",
+   "score": 0.83,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Dinheiro",
+  "jp": "やすい です",
+  "pt": "É barato",
+  "tier": "sem-par",
+  "match": {
+   "id": 182711,
+   "text": "休みたいですか。",
+   "score": 0.63,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Saúde",
+  "jp": "あたまが いたい です",
+  "pt": "Estou com dor de cabeça",
+  "tier": "atestada",
+  "match": {
+   "id": 842643,
+   "text": "頭が痛いです。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Saúde",
+  "jp": "おなかが いたい です",
+  "pt": "Estou com dor de barriga",
+  "tier": "atestada",
+  "match": {
+   "id": 10008425,
+   "text": "お腹が痛いです。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Saúde",
+  "jp": "のどが いたい です",
+  "pt": "Estou com dor de garganta",
+  "tier": "atestada",
+  "match": {
+   "id": 198561,
+   "text": "のどが痛いです。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Saúde",
+  "jp": "ここが いたい です",
+  "pt": "Dói aqui",
+  "tier": "atestada",
+  "match": {
+   "id": 224714,
+   "text": "ここが痛いです。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Saúde",
+  "jp": "ねつが あります",
+  "pt": "Estou com febre",
+  "tier": "parecida",
+  "match": {
+   "id": 85582,
+   "text": "微熱があります。",
+   "score": 0.88,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Saúde",
+  "jp": "かぜを ひきました",
+  "pt": "Peguei um resfriado",
+  "tier": "atestada",
+  "match": {
+   "id": 83951,
+   "text": "風邪をひきました。",
+   "score": 1,
+   "total": 6
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Saúde",
+  "jp": "きぶんが わるい です",
+  "pt": "Estou me sentindo mal",
+  "tier": "atestada",
+  "match": {
+   "id": 752231,
+   "text": "気分が悪いです。",
+   "score": 1,
+   "total": 8
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "doko",
+  "jp": "やっきょくは どこ ですか",
+  "pt": "Onde fica a farmácia?",
+  "tier": "sem-par",
+  "match": {
+   "id": 224774,
+   "text": "ここから一番近い薬局はどこですか。",
+   "score": 0.5,
+   "total": 3
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arimasu",
+  "jp": "くすりは ありますか",
+  "pt": "Tem remédio?",
+  "tier": "sem-par",
+  "match": {
+   "id": 179318,
+   "text": "空席はありますか。",
+   "score": 0.7,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikitai",
+  "jp": "びょういんに いきたい です",
+  "pt": "Quero ir ao hospital",
+  "tier": "sem-par",
+  "match": {
+   "id": 1995607,
+   "text": "今日は私の友達の一人の誕生日です。",
+   "score": 0.27,
+   "total": 3
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Saúde",
+  "jp": "きゅうきゅうしゃを よんで ください",
+  "pt": "Chame uma ambulância, por favor",
+  "tier": "atestada",
+  "match": {
+   "id": 182412,
+   "text": "救急車を呼んでください。",
+   "score": 1,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Saúde",
+  "jp": "アレルギーが あります",
+  "pt": "Tenho alergia",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Telefone e internet",
+  "jp": "ワイファイは つかえますか",
+  "pt": "Dá para usar o Wi-Fi?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Telefone e internet",
+  "jp": "ネットが つながりません",
+  "pt": "A internet não conecta",
+  "tier": "sem-par",
+  "match": {
+   "id": 237185,
+   "text": "「ありがとう。もう一つケーキをいただきます」と内気な青年は言った。",
+   "score": 0.15,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Telefone e internet",
+  "jp": "スマホの でんちが きれました",
+  "pt": "A bateria do celular acabou",
+  "tier": "sem-par",
+  "match": {
+   "id": 13987192,
+   "text": "エスペラントの最初の本が1887年7月26日に出版されたことを記念し、毎年世界中で「エスペラントの日」が祝われています。",
+   "score": 0.12,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Telefone e internet",
+  "jp": "ここで じゅうでん できますか",
+  "pt": "Posso carregar o celular aqui?",
+  "tier": "sem-par",
+  "match": {
+   "id": 78164,
+   "text": "旅行の準備はできていますか。",
+   "score": 0.47,
+   "total": 10
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Telefone e internet",
+  "jp": "スマホを おとしました",
+  "pt": "Deixei cair / perdi o meu celular",
+  "tier": "sem-par",
+  "match": {
+   "id": 2907531,
+   "text": "心臓発作を起こしたことはありますか。",
+   "score": 0.25,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikura",
+  "jp": "にゅうじょうりょうは いくら ですか",
+  "pt": "Quanto custa a entrada?",
+  "tier": "atestada",
+  "match": {
+   "id": 2416571,
+   "text": "入場料はいくらですか？",
+   "score": 1,
+   "total": 5
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Atrações",
+  "jp": "おとな ひとり おねがいします",
+  "pt": "Um adulto, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 890033,
+   "text": "隣に引っ越してきた田中です。よろしくお願いします。",
+   "score": 0.33,
+   "total": 2
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Atrações",
+  "jp": "しゃしんを とって も いい ですか",
+  "pt": "Posso tirar fotos?",
+  "tier": "parecida",
+  "match": {
+   "id": 233227,
+   "text": "あなたの写真を撮ってもいいですか。",
+   "score": 0.78,
+   "total": 6
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Atrações",
+  "jp": "しゃしんを とって もらえますか",
+  "pt": "Pode tirar uma foto minha?",
+  "tier": "atestada",
+  "match": {
+   "id": 8625320,
+   "text": "写真を撮ってもらえますか？",
+   "score": 1,
+   "total": 1
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Atrações",
+  "jp": "なんじまで ですか",
+  "pt": "Até que horas?",
+  "tier": "sem-par",
+  "match": {
+   "id": 1171888,
+   "text": "何時まで開いてますか。",
+   "score": 0.64,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "doko",
+  "jp": "いりぐちは どこ ですか",
+  "pt": "Onde fica a entrada?",
+  "tier": "atestada",
+  "match": {
+   "id": 1458159,
+   "text": "入り口はどこですか？",
+   "score": 1,
+   "total": 2
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "doko",
+  "jp": "でぐちは どこ ですか",
+  "pt": "Onde fica a saída?",
+  "tier": "atestada",
+  "match": {
+   "id": 3549611,
+   "text": "出口はどこですか？",
+   "score": 1,
+   "total": 5
+  }
+ },
+ {
+  "src": "viagem-ia",
+  "where": "Atrações",
+  "jp": "おみやげを さがして います",
+  "pt": "Estou procurando lembrancinhas",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "izakaya",
+  "jp": "いらっしゃいませ なんめいさま ですか",
+  "pt": "Bem-vindos! Quantas pessoas?",
+  "tier": "sem-par",
+  "match": {
+   "id": 4291746,
+   "text": "電車の中で目の前におっぱいが見えても触ってはいけません。触ると痴漢として通報され，逮捕されるからです。",
+   "score": 0.16,
+   "total": 1
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "restaurante",
+  "jp": "こちらへ どうぞ おのみものは いかが ですか",
+  "pt": "Por aqui, por favor. Aceita algo para beber?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "restaurante",
+  "jp": "ごちゅうもんは おきまり ですか",
+  "pt": "Já decidiu o pedido?",
+  "tier": "atestada",
+  "match": {
+   "id": 217064,
+   "text": "ご注文はお決まりですか？",
+   "score": 1,
+   "total": 1
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "compras",
+  "jp": "いらっしゃいませ なにか おさがし ですか",
+  "pt": "Bem-vindo! Está procurando algo?",
+  "tier": "sem-par",
+  "match": {
+   "id": 4291746,
+   "text": "電車の中で目の前におっぱいが見えても触ってはいけません。触ると痴漢として通報され，逮捕されるからです。",
+   "score": 0.14,
+   "total": 1
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "compras",
+  "jp": "せんごひゃくえん です",
+  "pt": "São 1.500 ienes.",
+  "tier": "sem-par",
+  "match": {
+   "id": 3433099,
+   "text": "タトエバではすべての文が対等な立場にあり、すべての文が自然であることが求められています。そのため、例えば英語の文をフランス語に訳す場合、そのフランス語の文は、フランス語のできる英語学習者の役に立つような正確な訳であると同時に、世界中のフランス語学習者が暗誦するに足るような模範的な文でもある必要があります。",
+   "score": 0.04,
+   "total": 1
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "compras",
+  "jp": "ふくろは いりますか",
+  "pt": "Precisa de sacola?",
+  "tier": "sem-par",
+  "match": {
+   "id": 769311,
+   "text": "いろはにほへと ちりぬるを わかよたれそ つねならむ うゐのおくやま けふこえて あさきゆめみし ゑひもせすん",
+   "score": 0.08,
+   "total": 3
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "estacao",
+  "jp": "きっぷは あそこの きかいで かえます",
+  "pt": "Os bilhetes se compram naquela máquina ali.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "estacao",
+  "jp": "はい しんじゅくに いきます",
+  "pt": "Sim, vai para Shinjuku.",
+  "tier": "sem-par",
+  "match": {
+   "id": 4292617,
+   "text": "休日は、甥っ子の面倒を見たり、友人と食事に行ったりして過ごしています。",
+   "score": 0.21,
+   "total": 9
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "hotel",
+  "jp": "いらっしゃいませ",
+  "pt": "Bem-vindo!",
+  "tier": "atestada",
+  "match": {
+   "id": 13252518,
+   "text": "いらっしゃいませ！",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "hotel",
+  "jp": "ごよやくは ありますか",
+  "pt": "Você tem reserva?",
+  "tier": "sem-par",
+  "match": {
+   "id": 76332,
+   "text": "英語には８つの主な品詞があります：　名詞、動詞、形容詞、副詞、代名詞、前置詞、接続詞そして感嘆詞。",
+   "score": 0.12,
+   "total": 3
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "aeroporto",
+  "jp": "パスポートを おねがいします",
+  "pt": "O seu passaporte, por favor.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "aeroporto",
+  "jp": "りょこうの もくてきは なん ですか",
+  "pt": "Qual é o motivo da viagem?",
+  "tier": "atestada",
+  "match": {
+   "id": 78160,
+   "text": "旅行の目的は何ですか。",
+   "score": 1,
+   "total": 5
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "aeroporto",
+  "jp": "どのくらい いますか",
+  "pt": "Quanto tempo vai ficar?",
+  "tier": "sem-par",
+  "match": {
+   "id": 200409,
+   "text": "どのくらい滞在しますか。",
+   "score": 0.69,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "doko",
+  "jp": "ホテルは どこ ですか",
+  "pt": "Onde fica o hotel?",
+  "tier": "sem-par",
+  "match": {
+   "id": 475434,
+   "text": "すべての人間は、生まれながらにして自由であり、かつ、尊厳と権利とについて平等である。人間は、理性と良心とを授けられており、互いに同胞の精神をもって行動しなければならない。",
+   "score": 0.05,
+   "total": 1
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "taxi",
+  "jp": "どちらまで ですか",
+  "pt": "Para onde vai?",
+  "tier": "parecida",
+  "match": {
+   "id": 1326963,
+   "text": "どちらさまですか？",
+   "score": 0.75,
+   "total": 10
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "taxi",
+  "jp": "せんはっぴゃくえん です",
+  "pt": "São 1.800 ienes.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "conbini",
+  "jp": "いらっしゃいませ ふくろは いりますか",
+  "pt": "Bem-vindo! Precisa de sacola?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "conbini",
+  "jp": "あたためますか",
+  "pt": "Quer que eu esquente?",
+  "tier": "sem-par",
+  "match": {
+   "id": 80352,
+   "text": "明日雨が降りますか。",
+   "score": 0.55,
+   "total": 10
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "conbini",
+  "jp": "おはしは いりますか",
+  "pt": "Precisa de pauzinhos (hashi)?",
+  "tier": "sem-par",
+  "match": {
+   "id": 229654,
+   "text": "あの花はいい香りがしますよ。",
+   "score": 0.4,
+   "total": 10
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "conbini",
+  "jp": "ポイントカードは ありますか",
+  "pt": "Tem cartão de pontos?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "michi",
+  "jp": "はい なん ですか",
+  "pt": "Sim, o que foi?",
+  "tier": "sem-par",
+  "match": {
+   "id": 11917872,
+   "text": "星座は何ですか？",
+   "score": 0.67,
+   "total": 10
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "michi",
+  "jp": "あそこの かどを みぎに まがって ください",
+  "pt": "Vire à direita naquela esquina.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "michi",
+  "jp": "ごふん ぐらい です",
+  "pt": "Uns cinco minutos.",
+  "tier": "sem-par",
+  "match": {
+   "id": 208726,
+   "text": "その水は５分かそのぐらいで沸騰します。",
+   "score": 0.36,
+   "total": 1
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "yakkyoku",
+  "jp": "どう しましたか",
+  "pt": "O que aconteceu? / O que está sentindo?",
+  "tier": "sem-par",
+  "match": {
+   "id": 13189781,
+   "text": "どこで生まれましたか？",
+   "score": 0.6,
+   "total": 10
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "yakkyoku",
+  "jp": "ねつは ありますか",
+  "pt": "Tem febre?",
+  "tier": "atestada",
+  "match": {
+   "id": 121893,
+   "text": "熱はありますか。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "yakkyoku",
+  "jp": "アレルギーは ありますか",
+  "pt": "Tem alguma alergia?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "hajimete",
+  "jp": "どちらから きましたか",
+  "pt": "De onde você veio?",
+  "tier": "sem-par",
+  "match": {
+   "id": 10008446,
+   "text": "そちらからの手紙は昨日届きました。",
+   "score": 0.37,
+   "total": 10
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "hajimete",
+  "jp": "にほんは はじめて ですか",
+  "pt": "É a sua primeira vez no Japão?",
+  "tier": "atestada",
+  "match": {
+   "id": 122452,
+   "text": "日本は初めてですか。",
+   "score": 1,
+   "total": 4
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "hajimete",
+  "jp": "にほんは どう ですか",
+  "pt": "O que está achando do Japão?",
+  "tier": "sem-par",
+  "match": {
+   "id": 122321,
+   "text": "日本航空のカウンターはどこですか。",
+   "score": 0.42,
+   "total": 10
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "hotel-problema",
+  "jp": "どう されましたか",
+  "pt": "O que houve?",
+  "tier": "sem-par",
+  "match": {
+   "id": 10588666,
+   "text": "今日はどうされましたか。",
+   "score": 0.67,
+   "total": 10
+  }
+ },
+ {
+  "src": "atendente-ia",
+  "where": "hotel-problema",
+  "jp": "もうしわけ ございません",
+  "pt": "Sinto muito.",
+  "tier": "atestada",
+  "match": {
+   "id": 1483682,
+   "text": "申し訳ございません。",
+   "score": 1,
+   "total": 9
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kudasai",
+  "jp": "みずを ください",
+  "pt": "Água, por favor",
+  "tier": "atestada",
+  "match": {
+   "id": 143718,
+   "text": "水をください。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kudasai",
+  "jp": "コーヒーを ください",
+  "pt": "Café, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 538228,
+   "text": "赤丸で囲んだファイルをテキスト・エデイターで開いてください。",
+   "score": 0.22,
+   "total": 3
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kudasai",
+  "jp": "タオルを ください",
+  "pt": "Uma toalha, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 125672,
+   "text": "痛みを抑える薬を何かください。",
+   "score": 0.42,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kudasai",
+  "jp": "ちずを ください",
+  "pt": "Um mapa, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 168306,
+   "text": "市内地図をください。",
+   "score": 0.7,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "doko",
+  "jp": "トイレは どこ ですか",
+  "pt": "Onde fica o banheiro?",
+  "tier": "sem-par",
+  "match": {
+   "id": 173437,
+   "text": "航空券はどこで受け取ればいいですか？",
+   "score": 0.3,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "doko",
+  "jp": "えきは どこ ですか",
+  "pt": "Onde fica a estação?",
+  "tier": "atestada",
+  "match": {
+   "id": 188894,
+   "text": "駅はどこですか。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "doko",
+  "jp": "びょういんは どこ ですか",
+  "pt": "Onde fica o hospital?",
+  "tier": "atestada",
+  "match": {
+   "id": 2466329,
+   "text": "病院は何処ですか？",
+   "score": 1,
+   "total": 5
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "doko",
+  "jp": "ぎんこうは どこ ですか",
+  "pt": "Onde fica o banco?",
+  "tier": "sem-par",
+  "match": {
+   "id": 2790210,
+   "text": "ここから一番近い銀行はどこですか？",
+   "score": 0.48,
+   "total": 7
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "doko",
+  "jp": "コンビニは どこ ですか",
+  "pt": "Onde fica o conbini?",
+  "tier": "sem-par",
+  "match": {
+   "id": 172124,
+   "text": "今度の日曜日はどうですか。",
+   "score": 0.53,
+   "total": 6
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "doko",
+  "jp": "バスていは どこ ですか",
+  "pt": "Onde fica o ponto de ônibus?",
+  "tier": "sem-par",
+  "match": {
+   "id": 190112,
+   "text": "一番近いバス停はどこですか。",
+   "score": 0.59,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "doko",
+  "jp": "くうこうは どこ ですか",
+  "pt": "Onde fica o aeroporto?",
+  "tier": "atestada",
+  "match": {
+   "id": 1345606,
+   "text": "空港はどこですか？",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikura",
+  "jp": "これは いくら ですか",
+  "pt": "Quanto custa isto?",
+  "tier": "atestada",
+  "match": {
+   "id": 432825,
+   "text": "これはいくらですか。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikura",
+  "jp": "あれは いくら ですか",
+  "pt": "Quanto custa aquilo?",
+  "tier": "sem-par",
+  "match": {
+   "id": 236606,
+   "text": "「これらはあなたの車ですか」「はい、そうです」",
+   "score": 0.3,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikura",
+  "jp": "それは いくら ですか",
+  "pt": "Quanto custa isso?",
+  "tier": "atestada",
+  "match": {
+   "id": 1531858,
+   "text": "それはいくらですか。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikura",
+  "jp": "ビールは いくら ですか",
+  "pt": "Quanto custa a cerveja?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikura",
+  "jp": "おみやげは いくら ですか",
+  "pt": "Quanto custa a lembrança?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikura",
+  "jp": "きっぷは いくら ですか",
+  "pt": "Quanto custa o bilhete?",
+  "tier": "sem-par",
+  "match": {
+   "id": 2416586,
+   "text": "セゴビアまでの切符はいくらですか？",
+   "score": 0.59,
+   "total": 1
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikura",
+  "jp": "ランチは いくら ですか",
+  "pt": "Quanto custa o almoço?",
+  "tier": "sem-par",
+  "match": {
+   "id": 13190464,
+   "text": "バス賃はいくらですか？",
+   "score": 0.73,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikitai",
+  "jp": "えきに いきたい です",
+  "pt": "Quero ir à estação",
+  "tier": "sem-par",
+  "match": {
+   "id": 123732,
+   "text": "動物園に行きたいんです。",
+   "score": 0.57,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikitai",
+  "jp": "ホテルに いきたい です",
+  "pt": "Quero ir ao hotel",
+  "tier": "sem-par",
+  "match": {
+   "id": 74813,
+   "text": "痴漢は本当に女の敵。絶対に許さないです。",
+   "score": 0.26,
+   "total": 5
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikitai",
+  "jp": "くうこうに いきたい です",
+  "pt": "Quero ir ao aeroporto",
+  "tier": "sem-par",
+  "match": {
+   "id": 224222,
+   "text": "ここ東京にはずいぶんたくさんの人がいるんですね。",
+   "score": 0.3,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikitai",
+  "jp": "とうきょうに いきたい です",
+  "pt": "Quero ir a Tóquio",
+  "tier": "sem-par",
+  "match": {
+   "id": 228777,
+   "text": "いつまで東京にご滞在ですか。",
+   "score": 0.5,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikitai",
+  "jp": "しんじゅくに いきたい です",
+  "pt": "Quero ir a Shinjuku",
+  "tier": "sem-par",
+  "match": {
+   "id": 126976,
+   "text": "地球は365日で太陽の周りを一周する。",
+   "score": 0.2,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikitai",
+  "jp": "きょうとに いきたい です",
+  "pt": "Quero ir a Quioto",
+  "tier": "sem-par",
+  "match": {
+   "id": 164623,
+   "text": "私には京都に住んでいる叔父がいます。",
+   "score": 0.38,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikitai",
+  "jp": "ぎんこうに いきたい です",
+  "pt": "Quero ir ao banco",
+  "tier": "sem-par",
+  "match": {
+   "id": 4922135,
+   "text": "ゲームで最高得点を取ったので、次のレベルに進む事ができる。",
+   "score": 0.15,
+   "total": 8
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ikitai",
+  "jp": "トイレに いきたい です",
+  "pt": "Quero ir ao banheiro",
+  "tier": "sem-par",
+  "match": {
+   "id": 897054,
+   "text": "それは随分昔に起きたことです。",
+   "score": 0.33,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "made",
+  "jp": "とうきょうまで いくら ですか",
+  "pt": "Quanto custa até Tóquio?",
+  "tier": "sem-par",
+  "match": {
+   "id": 75499,
+   "text": "これから火葬場へ移動しますので、小川様と君は車へ。",
+   "score": 0.16,
+   "total": 8
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "made",
+  "jp": "しぶやまで いくら ですか",
+  "pt": "Quanto custa até Shibuya?",
+  "tier": "sem-par",
+  "match": {
+   "id": 2513932,
+   "text": "ここの人たちは舌が肥えていますから、安くてもまずい店はすぐにつぶれてしまうんですよ。",
+   "score": 0.14,
+   "total": 3
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "made",
+  "jp": "きょうとまで いくら ですか",
+  "pt": "Quanto custa até Quioto?",
+  "tier": "sem-par",
+  "match": {
+   "id": 75499,
+   "text": "これから火葬場へ移動しますので、小川様と君は車へ。",
+   "score": 0.13,
+   "total": 8
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "made",
+  "jp": "くうこうまで いくら ですか",
+  "pt": "Quanto custa até o aeroporto?",
+  "tier": "sem-par",
+  "match": {
+   "id": 179332,
+   "text": "空港までどれくらい距離がありますか。",
+   "score": 0.5,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "made",
+  "jp": "ホテルまで いくら ですか",
+  "pt": "Quanto custa até o hotel?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "made",
+  "jp": "えきまで いくら ですか",
+  "pt": "Quanto custa até a estação?",
+  "tier": "sem-par",
+  "match": {
+   "id": 188856,
+   "text": "駅までどのくらいありますか。",
+   "score": 0.57,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arimasu",
+  "jp": "ちずは ありますか",
+  "pt": "Tem mapa?",
+  "tier": "sem-par",
+  "match": {
+   "id": 9701212,
+   "text": "地図はどこにありますか？",
+   "score": 0.73,
+   "total": 5
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arimasu",
+  "jp": "ワイファイは ありますか",
+  "pt": "Tem Wi-Fi?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arimasu",
+  "jp": "えいごの メニューは ありますか",
+  "pt": "Tem cardápio em inglês?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arimasu",
+  "jp": "おおきい のは ありますか",
+  "pt": "Tem um maior?",
+  "tier": "sem-par",
+  "match": {
+   "id": 3960180,
+   "text": "銀河系は、お互いの重力によって引きつけ合っている星や塵そしてガスの塊です。",
+   "score": 0.15,
+   "total": 9
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arimasu",
+  "jp": "ちいさい のは ありますか",
+  "pt": "Tem um menor?",
+  "tier": "sem-par",
+  "match": {
+   "id": 194094,
+   "text": "もう少し小さいのはありますか。",
+   "score": 0.69,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arimasu",
+  "jp": "やすい のは ありますか",
+  "pt": "Tem um mais barato?",
+  "tier": "parecida",
+  "match": {
+   "id": 2135770,
+   "text": "もっと安いのはありますか。",
+   "score": 0.77,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arimasu",
+  "jp": "トイレは ありますか",
+  "pt": "Tem banheiro?",
+  "tier": "sem-par",
+  "match": {
+   "id": 76329,
+   "text": "遠距離恋愛をしたことはありますか。",
+   "score": 0.35,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arerugi",
+  "jp": "かにの アレルギーが あります",
+  "pt": "Tenho alergia a caranguejo",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arerugi",
+  "jp": "たまごの アレルギーが あります",
+  "pt": "Tenho alergia a ovo",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arerugi",
+  "jp": "ぎゅうにゅうの アレルギーが あります",
+  "pt": "Tenho alergia a leite",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arerugi",
+  "jp": "そばの アレルギーが あります",
+  "pt": "Tenho alergia a soba (macarrão de trigo-sarraceno)",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arerugi",
+  "jp": "ピーナッツの アレルギーが あります",
+  "pt": "Tenho alergia a amendoim",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arerugi",
+  "jp": "こむぎの アレルギーが あります",
+  "pt": "Tenho alergia a trigo",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "arerugi",
+  "jp": "さかなの アレルギーが あります",
+  "pt": "Tenho alergia a peixe",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "tabemasen",
+  "jp": "ぶたにくが たべられません",
+  "pt": "Não posso comer carne de porco",
+  "tier": "parecida",
+  "match": {
+   "id": 10903695,
+   "text": "私は豚肉が食べられません。",
+   "score": 0.75,
+   "total": 2
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "tabemasen",
+  "jp": "ぎゅうにくが たべられません",
+  "pt": "Não posso comer carne de vaca",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "tabemasen",
+  "jp": "えびが たべられません",
+  "pt": "Não posso comer camarão",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "tabemasen",
+  "jp": "たまごが たべられません",
+  "pt": "Não posso comer ovo",
+  "tier": "sem-par",
+  "match": {
+   "id": 2104111,
+   "text": "彼は日本語の勉強をしたことがないので、ひらがなさえ書けません。",
+   "score": 0.18,
+   "total": 3
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "tabemasen",
+  "jp": "にくが たべられません",
+  "pt": "Não posso comer carne",
+  "tier": "sem-par",
+  "match": {
+   "id": 10903695,
+   "text": "私は豚肉が食べられません。",
+   "score": 0.63,
+   "total": 3
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "suki",
+  "jp": "ラーメンが すき です",
+  "pt": "Eu gosto de lámen",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "suki",
+  "jp": "すしが すき です",
+  "pt": "Eu gosto de sushi",
+  "tier": "atestada",
+  "match": {
+   "id": 882485,
+   "text": "寿司が好きです。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "suki",
+  "jp": "コーヒーが すき です",
+  "pt": "Eu gosto de café",
+  "tier": "sem-par",
+  "match": {
+   "id": 217238,
+   "text": "コンピューターは、非常に複雑な仕事を瞬時にすることができる。",
+   "score": 0.14,
+   "total": 3
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "suki",
+  "jp": "えいがが すき です",
+  "pt": "Eu gosto de filmes",
+  "tier": "parecida",
+  "match": {
+   "id": 189305,
+   "text": "映画は好きですか。",
+   "score": 0.78,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "suki",
+  "jp": "おんがくが すき です",
+  "pt": "Eu gosto de música",
+  "tier": "atestada",
+  "match": {
+   "id": 13254283,
+   "text": "音楽が好きです。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "suki",
+  "jp": "りょこうが すき です",
+  "pt": "Eu gosto de viajar",
+  "tier": "atestada",
+  "match": {
+   "id": 961432,
+   "text": "旅行が好きです。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "suki",
+  "jp": "さかなが すき です",
+  "pt": "Eu gosto de peixe",
+  "tier": "sem-par",
+  "match": {
+   "id": 108418,
+   "text": "彼は魚が好きでない。",
+   "score": 0.58,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ne",
+  "jp": "たかい ですね",
+  "pt": "Está caro, né?",
+  "tier": "atestada",
+  "match": {
+   "id": 13130047,
+   "text": "高いですね。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ne",
+  "jp": "やすい ですね",
+  "pt": "Está barato, né?",
+  "tier": "sem-par",
+  "match": {
+   "id": 140547,
+   "text": "早く治るといいですね。",
+   "score": 0.42,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ne",
+  "jp": "おおきい ですね",
+  "pt": "Está grande, né?",
+  "tier": "sem-par",
+  "match": {
+   "id": 226893,
+   "text": "お宅の犬は大きいですね。",
+   "score": 0.5,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "ne",
+  "jp": "きれい ですね",
+  "pt": "Está bonito, né?",
+  "tier": "atestada",
+  "match": {
+   "id": 13231307,
+   "text": "きれいですね。",
+   "score": 1,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kara-kimashita",
+  "jp": "ポルトガルから きました",
+  "pt": "Eu vim de Portugal",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kara-kimashita",
+  "jp": "アメリカから きました",
+  "pt": "Eu vim dos Estados Unidos",
+  "tier": "sem-par",
+  "match": {
+   "id": 769311,
+   "text": "いろはにほへと ちりぬるを わかよたれそ つねならむ うゐのおくやま けふこえて あさきゆめみし ゑひもせすん",
+   "score": 0.1,
+   "total": 7
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kara-kimashita",
+  "jp": "カナダから きました",
+  "pt": "Eu vim do Canadá",
+  "tier": "sem-par",
+  "match": {
+   "id": 10718896,
+   "text": "叔父さんから、素敵なプレゼントをいただきました。",
+   "score": 0.26,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kara-kimashita",
+  "jp": "フランスから きました",
+  "pt": "Eu vim da França",
+  "tier": "sem-par",
+  "match": {
+   "id": 193948,
+   "text": "もし、きちんと食べなかったら永久に太ったままですよ、とブラウン夫人はベスに警告しました。",
+   "score": 0.15,
+   "total": 3
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kara-kimashita",
+  "jp": "スペインから きました",
+  "pt": "Eu vim da Espanha",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kara-kimashita",
+  "jp": "ドイツから きました",
+  "pt": "Eu vim da Alemanha",
+  "tier": "sem-par",
+  "match": {
+   "id": 11608525,
+   "text": "動物園への行き方を教えてもらえませんか？",
+   "score": 0.21,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "kara-kimashita",
+  "jp": "イギリスから きました",
+  "pt": "Eu vim da Inglaterra",
+  "tier": "sem-par",
+  "match": {
+   "id": 77618,
+   "text": "鈴木さんは、私の知る限り、まだハワイから帰ってきていない。",
+   "score": 0.16,
+   "total": 4
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "harau",
+  "jp": "クレジットカードで はらえますか",
+  "pt": "Posso pagar com cartão de crédito?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "harau",
+  "jp": "げんきんで はらえますか",
+  "pt": "Posso pagar com dinheiro vivo?",
+  "tier": "sem-par",
+  "match": {
+   "id": 347864,
+   "text": "そして私がまだ支持を得られていない皆さんにも申し上げたい。今夜は皆さんの票を得られなかったかもしれませんが、私には、皆さんの声も聞こえています。私は、皆さんの助けが必要なのです。私はみなさんの大統領にも、なるつもりです。",
+   "score": 0.06,
+   "total": 2
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "harau",
+  "jp": "アイシーカードで はらえますか",
+  "pt": "Posso pagar com cartão IC?",
+  "tier": "sem-par",
+  "match": {
+   "id": 74857,
+   "text": "ディスプレイはモニタともいい、コンピュータなどの機器から出力される静止画または動画の映像信号を表示する機器である。",
+   "score": 0.09,
+   "total": 1
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "harau",
+  "jp": "スマホで はらえますか",
+  "pt": "Posso pagar com o celular?",
+  "tier": "sem-par",
+  "match": {
+   "id": 3071312,
+   "text": "すみません、駅はどちらの方向ですか？",
+   "score": 0.32,
+   "total": 5
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "harau",
+  "jp": "デビットカードで はらえますか",
+  "pt": "Posso pagar com cartão de débito?",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "te-kudasai",
+  "jp": "まって ください",
+  "pt": "Espere, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 146794,
+   "text": "少し待って下さい。",
+   "score": 0.7,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "te-kudasai",
+  "jp": "みせて ください",
+  "pt": "Mostre-me, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 229635,
+   "text": "あれを見せてください。",
+   "score": 0.7,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "te-kudasai",
+  "jp": "おしえて ください",
+  "pt": "Me ensine, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 234310,
+   "text": "あとで教えて下さい。",
+   "score": 0.73,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "te-kudasai",
+  "jp": "よんで ください",
+  "pt": "Chame, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 190738,
+   "text": "医者を呼んで下さい。",
+   "score": 0.64,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "te-kudasai",
+  "jp": "とめて ください",
+  "pt": "Pare, por favor",
+  "tier": "parecida",
+  "match": {
+   "id": 1487577,
+   "text": "書き留めてください。",
+   "score": 0.78,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "te-kudasai",
+  "jp": "かいて ください",
+  "pt": "Escreva, por favor",
+  "tier": "sem-par",
+  "match": {
+   "id": 1284072,
+   "text": "中に入れてください。",
+   "score": 0.7,
+   "total": 10
+  }
+ },
+ {
+  "src": "molde-ia",
+  "where": "te-kudasai",
+  "jp": "いって ください",
+  "pt": "Diga, por favor",
+  "tier": "parecida",
+  "match": {
+   "id": 9101656,
+   "text": "入ってください！",
+   "score": 0.88,
+   "total": 10
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "eu-e-a-escola",
+  "jp": "わたしは学生です。",
+  "pt": "Eu sou estudante.",
+  "tier": "sem-par",
+  "match": {
+   "id": 157843,
+   "text": "私は学生です。",
+   "score": 0.6,
+   "total": 10
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "eu-e-a-escola",
+  "jp": "わたしの学校は大きいです。",
+  "pt": "Minha escola é grande.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "eu-e-a-escola",
+  "jp": "先生はやさしいです。",
+  "pt": "O professor é gentil.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "eu-e-a-escola",
+  "jp": "毎日、学校へ行きます。",
+  "pt": "Todos os dias eu vou à escola.",
+  "tier": "sem-par",
+  "match": {
+   "id": 10961076,
+   "text": "毎日、学校へ行きます。",
+   "score": 0.31,
+   "total": 2
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "cafe-da-manha",
+  "jp": "七時に起きます。",
+  "pt": "Eu acordo às sete.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "cafe-da-manha",
+  "jp": "朝、パンを食べます。",
+  "pt": "De manhã, eu como pão.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "cafe-da-manha",
+  "jp": "それから、水を飲みます。",
+  "pt": "Depois, eu bebo água.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "cafe-da-manha",
+  "jp": "コーヒーも好きです。",
+  "pt": "Também gosto de café.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "meu-dia",
+  "jp": "毎日、日本語を勉強します。",
+  "pt": "Todos os dias eu estudo japonês.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "meu-dia",
+  "jp": "日本語はおもしろいです。",
+  "pt": "O japonês é divertido.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "chuva",
+  "jp": "夜、テレビを見ます。",
+  "pt": "À noite, eu vejo televisão.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "meu-dia",
+  "jp": "十時に寝ます。",
+  "pt": "Eu durmo às dez.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "domingo",
+  "jp": "今日は日曜日です。",
+  "pt": "Hoje é domingo.",
+  "tier": "sem-par",
+  "match": {
+   "id": 171533,
+   "text": "今日は土曜日です。",
+   "score": 0.3,
+   "total": 10
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "domingo",
+  "jp": "学校は休みです。",
+  "pt": "A escola está de folga.",
+  "tier": "sem-par",
+  "match": {
+   "id": 80440,
+   "text": "明日は学校が休みです。",
+   "score": 0.29,
+   "total": 2
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "domingo",
+  "jp": "今日は天気がいいです。",
+  "pt": "Hoje o tempo está bom.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "domingo",
+  "jp": "明日も休みです。",
+  "pt": "Amanhã também é folga.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "chuva",
+  "jp": "今日は雨です。",
+  "pt": "Hoje é dia de chuva.",
+  "tier": "sem-par",
+  "match": {
+   "id": 171703,
+   "text": "今日は雨降りです。",
+   "score": 0.3,
+   "total": 2
+  }
+ },
+ {
+  "src": "leitura-texto",
+  "where": "chuva",
+  "jp": "雨ですから、うちにいます。",
+  "pt": "Como está chovendo, eu fico em casa.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "cardapio",
+  "jp": "ラーメン 八百円",
+  "pt": "Lámen: 800 ienes.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "cardapio",
+  "jp": "ごはん 三百円",
+  "pt": "Arroz: 300 ienes.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "cardapio",
+  "jp": "お水をください。",
+  "pt": "Água, por favor. (o que você diz ao pedir)",
+  "tier": "parecida",
+  "match": {
+   "id": 227004,
+   "text": "お水をください。",
+   "score": 0.75,
+   "total": 5
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "aviso-estacao",
+  "jp": "ここでたばこをすわないでください。",
+  "pt": "Não fume aqui.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "aviso-estacao",
+  "jp": "次の電車は十時です。",
+  "pt": "O próximo trem é às dez.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "aviso-estacao",
+  "jp": "この電車は東京へ行きます。",
+  "pt": "Este trem vai para Tóquio.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "biblioteca",
+  "jp": "図書館は九時から五時までです。",
+  "pt": "A biblioteca abre das nove às cinco.",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "biblioteca",
+  "jp": "日曜日はお休みです。",
+  "pt": "No domingo está fechada.",
+  "tier": "sem-par",
+  "match": {
+   "id": 9679071,
+   "text": "月曜日はお休みです。",
+   "score": 0.42,
+   "total": 1
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "biblioteca",
+  "jp": "トイレはどこですか。",
+  "pt": "Onde fica o banheiro? (o que você pergunta)",
+  "tier": "sem-par",
+  "match": {
+   "id": 173437,
+   "text": "航空券はどこで受け取ればいいですか？",
+   "score": 0.3,
+   "total": 10
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "placas-estacao",
+  "jp": "出口",
+  "pt": "Saída",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "placas-estacao",
+  "jp": "入口",
+  "pt": "Entrada",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "placas-estacao",
+  "jp": "乗り換え",
+  "pt": "Baldeação (trocar de linha)",
+  "tier": "sem-par",
+  "match": {
+   "id": 146179,
+   "text": "乗り換えは必要ですか。",
+   "score": 0.17,
+   "total": 2
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "placas-estacao",
+  "jp": "切符売り場",
+  "pt": "Bilheteria",
+  "tier": "sem-par",
+  "match": {
+   "id": 1771142,
+   "text": "切符売り場はどこですか？",
+   "score": 0.08,
+   "total": 2
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "placas-estacao",
+  "jp": "改札口",
+  "pt": "Catraca (portão de acesso aos trens)",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "placas-estacao",
+  "jp": "次は新宿",
+  "pt": "A próxima é Shinjuku (aviso no trem)",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "placas-estacao",
+  "jp": "急行",
+  "pt": "Expresso (para em poucas estações)",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "placas-estacao",
+  "jp": "各駅停車",
+  "pt": "Local (para em todas as estações)",
+  "tier": "sem-par",
+  "match": {
+   "id": 10939731,
+   "text": "この電車は各駅停車だよ。",
+   "score": 0,
+   "total": 2
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "avisos-proibicoes",
+  "jp": "禁煙",
+  "pt": "Proibido fumar",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "avisos-proibicoes",
+  "jp": "立入禁止",
+  "pt": "Entrada proibida",
+  "tier": "sem-par",
+  "match": {
+   "id": 236132,
+   "text": "立ち入り禁止。",
+   "score": 0,
+   "total": 6
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "avisos-proibicoes",
+  "jp": "撮影禁止",
+  "pt": "Proibido fotografar",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "avisos-proibicoes",
+  "jp": "非常口",
+  "pt": "Saída de emergência",
+  "tier": "sem-par",
+  "match": {
+   "id": 10759967,
+   "text": "こちらが非常口になります。",
+   "score": 0,
+   "total": 2
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "avisos-proibicoes",
+  "jp": "危険",
+  "pt": "Perigo",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "avisos-proibicoes",
+  "jp": "注意",
+  "pt": "Atenção, cuidado",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "avisos-proibicoes",
+  "jp": "工事中",
+  "pt": "Em obras",
+  "tier": "sem-par",
+  "match": {
+   "id": 236210,
+   "text": "「道路工事中」",
+   "score": 0,
+   "total": 1
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "avisos-proibicoes",
+  "jp": "土足厳禁",
+  "pt": "Proibido entrar com o calçado da rua",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "horarios-loja",
+  "jp": "営業中",
+  "pt": "Aberto",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "horarios-loja",
+  "jp": "準備中",
+  "pt": "Em preparação (ainda fechado)",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "horarios-loja",
+  "jp": "営業時間 10:00〜20:00",
+  "pt": "Horário de funcionamento: das 10h às 20h",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "horarios-loja",
+  "jp": "定休日 水曜日",
+  "pt": "Dia de folga da loja: quarta-feira",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "horarios-loja",
+  "jp": "本日休業",
+  "pt": "Fechado hoje",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "horarios-loja",
+  "jp": "現金のみ",
+  "pt": "Só dinheiro vivo",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "cardapio-real",
+  "jp": "ラーメン 800円",
+  "pt": "Lámen: 800 ienes",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "cardapio-real",
+  "jp": "餃子 5個 500円",
+  "pt": "Guioza, 5 peças: 500 ienes",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "cardapio-real",
+  "jp": "大盛り +100円",
+  "pt": "Porção grande: mais 100 ienes",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "cardapio-real",
+  "jp": "生ビール",
+  "pt": "Chope",
+  "tier": "sem-par",
+  "match": {
+   "id": 11220515,
+   "text": "誕生日ケーキの作り方、知ってる？",
+   "score": 0.16,
+   "total": 7
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "cardapio-real",
+  "jp": "ライス おかわり自由",
+  "pt": "Arroz à vontade (pode repetir)",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "cardapio-real",
+  "jp": "食券機",
+  "pt": "Máquina de tickets de refeição (você paga antes de sentar)",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "precos-impostos",
+  "jp": "税込 1,100円",
+  "pt": "Com imposto: 1.100 ienes",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "precos-impostos",
+  "jp": "税別 1,000円",
+  "pt": "Sem imposto: 1.000 ienes (o imposto é somado no caixa)",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "precos-impostos",
+  "jp": "免税",
+  "pt": "Isento de imposto (tax-free, para turistas)",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "precos-impostos",
+  "jp": "割引",
+  "pt": "Desconto",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "precos-impostos",
+  "jp": "半額",
+  "pt": "Metade do preço",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "banho-onsen",
+  "jp": "男",
+  "pt": "Homens",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "banho-onsen",
+  "jp": "女",
+  "pt": "Mulheres",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "banho-onsen",
+  "jp": "男湯",
+  "pt": "Banho masculino",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "banho-onsen",
+  "jp": "女湯",
+  "pt": "Banho feminino",
+  "tier": "nao-confere",
+  "match": null
+ },
+ {
+  "src": "leitura-dia",
+  "where": "banho-onsen",
+  "jp": "脱衣所",
+  "pt": "Vestiário",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "banho-onsen",
+  "jp": "入れ墨・タトゥーお断り",
+  "pt": "Não aceitamos tatuagens",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "regras-transporte",
+  "jp": "優先席",
+  "pt": "Assento preferencial",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "regras-transporte",
+  "jp": "女性専用車両",
+  "pt": "Vagão exclusivo para mulheres",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "regras-transporte",
+  "jp": "携帯電話はマナーモードに",
+  "pt": "Ponha o celular no modo silencioso",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "regras-transporte",
+  "jp": "駆け込み乗車はおやめください",
+  "pt": "Por favor, não corra para entrar quando as portas estiverem fechando",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "conbini-supermercado",
+  "jp": "賞味期限",
+  "pt": "Validade (melhor consumir até)",
+  "tier": "sem-par",
+  "match": {
+   "id": 4899980,
+   "text": "彼女は賞味期限切れの牛乳を飲んだ。",
+   "score": 0,
+   "total": 1
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "conbini-supermercado",
+  "jp": "お弁当",
+  "pt": "Marmita (refeição pronta)",
+  "tier": "sem-par",
+  "match": {
+   "id": 196233,
+   "text": "ポットにコーヒー入れておいたから、お弁当と一緒に持っていってね。",
+   "score": 0.03,
+   "total": 1
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "conbini-supermercado",
+  "jp": "温めますか",
+  "pt": "Quer que esquente? (o atendente pergunta)",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ },
+ {
+  "src": "leitura-dia",
+  "where": "conbini-supermercado",
+  "jp": "レジ袋 有料",
+  "pt": "Sacola do caixa é paga",
+  "tier": "sem-par",
+  "match": {
+   "total": 0
+  }
+ }
+]

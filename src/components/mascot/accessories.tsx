@@ -5,41 +5,11 @@ import { Circle, Ellipse, G, Path, Polygon, Rect } from 'react-native-svg';
  * Os acessórios do Mochi, desenhados no mesmo espaço do corpo (viewBox 200 × 190) e com o mesmo traço escuro. Cada item é
  * uma função sem estado que devolve só as formas; a ordem das camadas é decidida por quem desenha o Mochi.
  */
-export const LINE = '#4A3B5C';
+import { Art, Bow, Flower, LINE, star, stroke } from './artKit';
+import { BACK_MORE, SKIN, TINTS_MORE } from './artScenes';
+import { FACE_MORE, HEAD_MORE, NECK_MORE } from './artWear';
 
-type Art = () => ReactElement;
-
-const stroke = { stroke: LINE, strokeWidth: 3.5, strokeLinejoin: 'round' as const, strokeLinecap: 'round' as const };
-
-/** Estrela de 4 pontas centrada em (x, y). */
-const star = (x: number, y: number, r: number) =>
-  `M${x} ${y - r} Q${x} ${y} ${x + r} ${y} Q${x} ${y} ${x} ${y + r} Q${x} ${y} ${x - r} ${y} Q${x} ${y} ${x} ${y - r} Z`;
-
-/** Flor de cinco pétalas centrada em (x, y). */
-function Flower({ x, y, r, petal, center = '#FFD166' }: { x: number; y: number; r: number; petal: string; center?: string }) {
-  const points = Array.from({ length: 5 }, (_, i) => {
-    const a = (i * 72 - 90) * (Math.PI / 180);
-    return { cx: x + Math.cos(a) * r * 0.9, cy: y + Math.sin(a) * r * 0.9 };
-  });
-  return (
-    <G>
-      {points.map((p, i) => (
-        <Circle key={i} cx={p.cx} cy={p.cy} r={r * 0.62} fill={petal} stroke={LINE} strokeWidth={2} />
-      ))}
-      <Circle cx={x} cy={y} r={r * 0.4} fill={center} stroke={LINE} strokeWidth={2} />
-    </G>
-  );
-}
-
-function Bow({ x, y, scale = 1, color }: { x: number; y: number; scale?: number; color: string }) {
-  return (
-    <G transform={`translate(${x} ${y}) scale(${scale})`}>
-      <Path d="M0 0 L-22 -12 L-22 12 Z" fill={color} {...stroke} />
-      <Path d="M0 0 L22 -12 L22 12 Z" fill={color} {...stroke} />
-      <Circle cx={0} cy={0} r={5} fill={color} {...stroke} />
-    </G>
-  );
-}
+export { LINE };
 
 // ---------------------------------------------------------------- cabeça
 const HEAD: Record<string, Art> = {
@@ -375,14 +345,24 @@ export const TINTS: Readonly<Record<string, { body: string; pink: string }>> = {
   'cor-ceu': { body: '#DDEBFF', pink: '#9CC4F5' },
   'cor-lavanda': { body: '#EBE1FF', pink: '#C7B0F5' },
   'cor-ouro': { body: '#FFEBA8', pink: '#F5B94B' },
+  ...TINTS_MORE,
 };
 
-export const hasArt = (slot: 'head' | 'face' | 'neck' | 'back', id: string): boolean =>
-  ({ head: HEAD, face: FACE, neck: NECK, back: BACK })[slot][id] !== undefined;
+export type ArtSlot = 'head' | 'face' | 'neck' | 'back' | 'skin';
+
+const ART: Record<ArtSlot, Record<string, Art>> = {
+  head: { ...HEAD, ...HEAD_MORE },
+  face: { ...FACE, ...FACE_MORE },
+  neck: { ...NECK, ...NECK_MORE },
+  back: { ...BACK, ...BACK_MORE },
+  skin: SKIN,
+};
+
+export const hasArt = (slot: ArtSlot, id: string): boolean => ART[slot][id] !== undefined;
 
 /** Desenha o item, ou null se não há desenho para ele (o app nunca quebra por um id desconhecido). */
-export function accessoryArt(slot: 'head' | 'face' | 'neck' | 'back', id: string | undefined): ReactElement | null {
+export function accessoryArt(slot: ArtSlot, id: string | undefined): ReactElement | null {
   if (!id) return null;
-  const art = ({ head: HEAD, face: FACE, neck: NECK, back: BACK })[slot][id];
+  const art = ART[slot][id];
   return art ? art() : null;
 }

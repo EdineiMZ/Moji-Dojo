@@ -1,7 +1,7 @@
 import renderer from 'react-test-renderer';
 import { ITEMS, SLOTS } from '@/features/journey/items';
 import { hasArt, TINTS } from './accessories';
-import { MochiArt, type MochiOutfit } from './MochiArt';
+import { MochiArt, MOODS, type MochiOutfit } from './MochiArt';
 
 describe('arte dos acessórios', () => {
   it('todo item do catálogo tem desenho (ou, se é uma cor, uma paleta)', () => {
@@ -18,7 +18,7 @@ describe('arte dos acessórios', () => {
 
   it('o Mochi renderiza com cada item vestido, em todos os humores, sem quebrar', () => {
     for (const item of ITEMS) {
-      for (const mood of ['neutral', 'happy', 'sad', 'cheer'] as const) {
+      for (const mood of MOODS) {
         const outfit: MochiOutfit = { [item.slot]: item.id };
         let tree!: renderer.ReactTestRenderer;
         renderer.act(() => {

@@ -12,7 +12,8 @@ import { findVerb } from '@/features/conjugation/verbs';
 import { isParticleCard } from '@/features/cloze/particles';
 import { cardKeysFor, learnedWordIds as learnedVocabIds, parseCardKey as parseVocabKey, READINGS_PER_DAY, readingKeysFor } from '@/features/vocab/cards';
 import { findWord } from '@/content';
-import { claimWeekChest as claimChest, onStudyTime } from '@/features/journey/events';
+import { askedWeekToday, claimWeekChestWithLoot, onStudyTime, openDailyChest as openChest } from '@/features/journey/events';
+import type { Loot, Rng } from '@/features/journey/loot';
 import { applyRescue, declineRescue as declineOffer, rescuePassed, resolveRescue } from '@/features/journey/rescue';
 import { trackAnswer, trackDialog, trackLesson, trackNewWords, trackOpen, trackPhrase, trackRecording, trackSession, trackTouch, buildContext } from '@/features/journey/track';
 import type { Area } from '@/features/journey/events';
@@ -102,8 +103,12 @@ export interface ProgressActions {
   recordRecording: (now?: number) => void;
   /** Uma cena de diálogo terminou (perfeita = sem erro). */
   recordDialogDone: (perfect: boolean, now?: number) => void;
-  /** Abre o baú da semana, se a meta foi batida. */
-  claimWeekChest: (now?: number) => void;
+  /** Abre o baú da semana, se a meta foi batida. Devolve o que saiu (null se não havia baú). */
+  claimWeekChest: (now?: number, rng?: Rng) => Loot | null;
+  /** Abre o baú do dia, se estiver pronto. Devolve o que saiu (null se não havia baú). */
+  openDailyChest: (now?: number, rng?: Rng) => Loot | null;
+  /** Marca que o aviso do baú da semana já foi mostrado hoje. */
+  askWeekChest: () => void;
   /** Termina a revisão de resgate: com nota suficiente os dias perdidos viram estudados. */
   finishRescue: (first: number, total: number, now?: number) => void;
   /** Recusa o resgate: a sequência recomeça. */
@@ -440,8 +445,27 @@ export function createProgressStore(storage: StateStorage) {
             return { days, journey: trackDialog(s, days, now, perfect) };
           }),
 
-        claimWeekChest: (now = Date.now()) =>
-          set((s) => ({ journey: claimChest(s.journey, buildContext(s, s.days, now)) })),
+        claimWeekChest: (now = Date.now(), rng) => {
+          let loot: Loot | null = null;
+          set((s) => {
+            const result = claimWeekChestWithLoot(s.journey, buildContext(s, s.days, now), rng);
+            loot = result.loot;
+            return { journey: result.state };
+          });
+          return loot;
+        },
+
+        openDailyChest: (now = Date.now(), rng) => {
+          let loot: Loot | null = null;
+          set((s) => {
+            const result = openChest(s.journey, buildContext(s, s.days, now), rng);
+            loot = result.loot;
+            return { journey: result.state };
+          });
+          return loot;
+        },
+
+        askWeekChest: () => set((s) => ({ journey: askedWeekToday(s.journey) })),
 
         finishRescue: (first, total, now = Date.now()) =>
           set((s) => {

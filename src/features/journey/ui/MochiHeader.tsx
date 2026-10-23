@@ -22,7 +22,7 @@ export function MochiHeader({ preview, mood }: MochiHeaderProps) {
 
   return (
     <Card enterIndex={0} style={styles.card}>
-      <Mascot mood={mood ?? felt.mood} size={190} outfit={worn} />
+      <Mascot mood={mood ?? felt.mood} size={190} outfit={worn} interactive={!preview} />
       <AppText color="muted" center>
         {felt.line}
       </AppText>

@@ -1,7 +1,10 @@
-import { DAILY_CAP, lessonReward, openBonus, sessionReward } from './economy';
+import { answerXp, DAILY_CAP, lessonReward, roomToday, sessionReward } from './economy';
 import {
   claimWeekChest,
+  claimWeekChestWithLoot,
   clearMiss,
+  dailyChestReady,
+  openDailyChest,
   onAnswer,
   onDialogDone,
   onLesson,
@@ -17,7 +20,7 @@ import {
 } from './events';
 import { addPetals, emptyJourney, MAX_MISSES } from './journey';
 import { levelOf, levelProgress, titleFor, xpForLevel } from './levels';
-import { challengeFor, CHALLENGE_GROUPS, MISSIONS, missionsFor } from './missions';
+import { ALL_MISSIONS_BONUS, challengeFor, CHALLENGE_GROUPS, MISSION_PETALS, MISSIONS, missionsFor } from './missions';
 import { daysStudiedInWeek, mondayOf, weekDays, weekIndex, weekKey } from './week';
 
 // Quarta-feira, 21/10/2026, meio-dia.
@@ -55,34 +58,32 @@ describe('semana', () => {
 });
 
 describe('economia', () => {
-  it('o bônus de abrir é 5 mais a sequência, até 10', () => {
-    expect(openBonus(0)).toBe(5);
-    expect(openBonus(3)).toBe(8);
-    expect(openBonus(50)).toBe(15);
-  });
-
-  it('lição: base 10 mais a nota; a fila de perfeitas aumenta o ganho; erro zera a fila', () => {
-    expect(lessonReward(10, 10, 0, false)).toMatchObject({ petals: 20, perfect: true, perfectRun: 1 });
-    expect(lessonReward(10, 10, 1, false).petals).toBe(22);
-    expect(lessonReward(10, 10, 5, false).petals).toBe(30);
-    expect(lessonReward(10, 10, 30, false).petals).toBe(30);
-    expect(lessonReward(9, 10, 4, false)).toMatchObject({ petals: 16, perfect: false, perfectRun: 0 });
-    expect(lessonReward(7, 10, 0, false).petals).toBe(13);
-    expect(lessonReward(6, 10, 0, false).petals).toBe(10);
+  it('lição: base 6 mais a nota; a fila de perfeitas aumenta o ganho; erro zera a fila', () => {
+    expect(lessonReward(10, 10, 0, false)).toMatchObject({ petals: 11, perfect: true, perfectRun: 1 });
+    expect(lessonReward(10, 10, 1, false).petals).toBe(12);
+    expect(lessonReward(10, 10, 5, false).petals).toBe(16);
+    expect(lessonReward(10, 10, 30, false).petals).toBe(16);
+    expect(lessonReward(9, 10, 4, false)).toMatchObject({ petals: 9, perfect: false, perfectRun: 0 });
+    expect(lessonReward(7, 10, 0, false).petals).toBe(7);
+    expect(lessonReward(6, 10, 0, false).petals).toBe(6);
   });
 
   it('repetir a lição no dia vale metade e não aumenta a fila', () => {
     const repeat = lessonReward(10, 10, 3, true);
-    expect(repeat.petals).toBe(10);
+    expect(repeat.petals).toBe(5);
     expect(repeat.perfectRun).toBe(3);
   });
 
-  it('revisão: 5 de base e 8 / 5 / 2 pela nota', () => {
-    expect(sessionReward(20, 20).petals).toBe(13);
-    expect(sessionReward(18, 20).petals).toBe(10);
-    expect(sessionReward(15, 20).petals).toBe(7);
-    expect(sessionReward(10, 20).petals).toBe(5);
+  it('revisão: 3 de base e 4 / 2 / 1 pela nota', () => {
+    expect(sessionReward(20, 20).petals).toBe(7);
+    expect(sessionReward(18, 20).petals).toBe(5);
+    expect(sessionReward(15, 20).petals).toBe(4);
+    expect(sessionReward(10, 20).petals).toBe(3);
     expect(sessionReward(0, 0).petals).toBe(0);
+  });
+
+  it('o teto diário caiu de 150 para 60: ganhar pétalas não pode ser fácil demais', () => {
+    expect(DAILY_CAP).toBe(60);
   });
 });
 
@@ -104,21 +105,47 @@ describe('níveis', () => {
   });
 });
 
-describe('abrir o app', () => {
-  it('dá o bônus uma vez por dia e avisa', () => {
+describe('abrir o app e o baú do dia', () => {
+  it('o primeiro abrir do dia deixa o baú pronto, sem dar pétalas ainda, e não repete no mesmo dia', () => {
     const first = onOpen(emptyJourney(), ctx({ streak: 2 }));
-    expect(first.petals).toBe(7);
+    expect(first.petals).toBe(0);
     expect(first.today.opened).toBe(true);
-    expect(first.toasts.some((t) => t.title === 'Baú do dia 🎁')).toBe(true);
-    expect(onOpen(first, ctx({ streak: 2 })).petals).toBe(7);
+    expect(first.today.chest).toBe('ready');
+    expect(dailyChestReady(first)).toBe(true);
+    const again = onOpen({ ...first, today: { ...first.today, chest: 'opened' } }, ctx({ streak: 2 }));
+    expect(again.today.chest).toBe('opened');
   });
 
-  it('no dia seguinte dá de novo, e uma pausa longa vira "de volta ao dojo"', () => {
+  it('abrir o baú entrega as pétalas (e às vezes um item) uma vez só', () => {
+    const ready = onOpen(emptyJourney(), ctx({ streak: 2 }));
+    const { state, loot } = openDailyChest(ready, ctx({ streak: 2 }), () => 0);
+    expect(loot).not.toBeNull();
+    expect(state.today.chest).toBe('opened');
+    expect(state.petals).toBe(loot!.petals);
+    expect(state.counters.chests).toBe(1);
+    const second = openDailyChest(state, ctx({ streak: 2 }), () => 0);
+    expect(second.loot).toBeNull();
+    expect(second.state.petals).toBe(state.petals);
+  });
+
+  it('sem baú pronto não há o que abrir', () => {
+    expect(openDailyChest(emptyJourney(), ctx(), () => 0).loot).toBeNull();
+  });
+
+  it('no dia seguinte o baú volta, e uma pausa longa vira "de volta ao dojo"', () => {
     const day1 = onOpen(emptyJourney(), ctx());
     const tomorrow = new Date(2026, 9, 28, 12);
     const back = onOpen(day1, ctx({ now: tomorrow, daysAway: 6 }));
-    expect(back.petals).toBeGreaterThan(day1.petals);
+    expect(back.today.chest).toBe('ready');
     expect(back.achievements.comeback).toBeDefined();
+  });
+
+  it('sem item por vários dias, a sorte acumulada garante um item raro ou melhor', () => {
+    let state: ReturnType<typeof emptyJourney> = { ...onOpen(emptyJourney(), ctx()), counters: { chestDry: 6 } };
+    const { state: next, loot } = openDailyChest(state, ctx(), () => 0);
+    expect(loot?.itemId).not.toBeNull();
+    expect(next.counters.chestDry).toBe(0);
+    state = next;
   });
 });
 
@@ -131,14 +158,14 @@ describe('lições', () => {
     expect(state.xp).toBeGreaterThanOrEqual(30);
     expect(state.achievements['lessons-1']).toBeDefined();
     expect(state.achievements['perfect-1']).toBeDefined();
-    expect(state.petals).toBeGreaterThanOrEqual(20);
+    expect(state.petals).toBeGreaterThanOrEqual(11);
   });
 
   it('repetir a mesma lição no dia vale metade e não conta de novo', () => {
     const first = onLesson(emptyJourney(), ctx(), { lessonId: 'hira:L0', first: 10, total: 10 });
     const again = onLesson(first, ctx(), { lessonId: 'hira:L0', first: 10, total: 10 });
     expect(again.counters.lessons).toBe(1);
-    expect(again.today.earned - first.today.earned).toBe(10);
+    expect(again.today.earned - first.today.earned).toBe(5);
   });
 
   it('errar quebra a fila de perfeitas, e a melhor fila fica guardada', () => {
@@ -237,7 +264,7 @@ describe('missões do dia', () => {
     state = onNewWords(state, ctx(), 0);
     expect(state.today.claimed.sort()).toEqual(today.map((m) => m.id).sort());
     expect(state.toasts.some((t) => t.title === 'Todas as missões!')).toBe(true);
-    expect(state.petals).toBeGreaterThanOrEqual(3 * 10 + 20);
+    expect(state.petals).toBeGreaterThanOrEqual(3 * MISSION_PETALS + ALL_MISSIONS_BONUS);
     const petals = state.petals;
     expect(onNewWords(state, ctx(), 0).petals).toBe(petals);
   });
@@ -255,7 +282,7 @@ describe('sessão, frase, gravação e diálogo', () => {
     const state = onSession(emptyJourney(), ctx(), { first: 20, total: 20 });
     expect(state.today.counts.sessions).toBe(1);
     expect(state.today.counts.perfect).toBe(1);
-    expect(state.petals).toBeGreaterThanOrEqual(13);
+    expect(state.petals).toBeGreaterThanOrEqual(7);
   });
 
   it('frase própria, gravação e diálogo perfeito alimentam conquistas', () => {
@@ -271,24 +298,23 @@ describe('sessão, frase, gravação e diálogo', () => {
 });
 
 describe('baú da semana', () => {
-  it('só abre com os dias da meta, uma vez; o primeiro dá o laço e a partir daí itens em semanas alternadas', () => {
+  it('só abre com os dias da meta, uma vez, e sempre traz um item exclusivo (o primeiro é o laço)', () => {
     const base = roll(emptyJourney(), NOW);
     expect(weekChestReady(base, { weekDays: 3 })).toBe(false);
     expect(claimWeekChest(base, ctx({ weekDays: 3 })).weeksWon).toBe(0);
+    expect(claimWeekChestWithLoot(base, ctx({ weekDays: 3 })).loot).toBeNull();
 
-    const first = claimWeekChest(base, ctx({ weekDays: 4 }));
+    const { state: first, loot } = claimWeekChestWithLoot(base, ctx({ weekDays: 4 }), () => 0.5);
     expect(first.weeksWon).toBe(1);
     expect(first.owned).toContain('laco-semana');
-    expect(first.petals).toBeGreaterThanOrEqual(40);
+    expect(loot?.itemId).toBe('laco-semana');
+    expect(first.petals).toBeGreaterThanOrEqual(25);
     expect(claimWeekChest(first, ctx({ weekDays: 5 })).weeksWon).toBe(1);
 
-    const nextWeek = new Date(2026, 9, 28, 12);
-    const second = claimWeekChest(first, ctx({ now: nextWeek, weekDays: 4 }));
-    expect(second.weeksWon).toBe(2);
-    expect(second.owned.length).toBe(2);
-    const third = claimWeekChest(second, ctx({ now: new Date(2026, 10, 4, 12), weekDays: 4 }));
-    expect(third.weeksWon).toBe(3);
-    expect(third.owned.length).toBe(2);
+    const second = claimWeekChestWithLoot(first, ctx({ now: new Date(2026, 9, 28, 12), weekDays: 4 }), () => 0.5);
+    expect(second.state.weeksWon).toBe(2);
+    expect(second.state.owned.length).toBe(2);
+    expect(second.loot?.itemId).not.toBeNull();
   });
 
   it('avisa que o baú está pronto uma vez só', () => {

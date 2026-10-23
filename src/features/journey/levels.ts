@@ -35,4 +35,4 @@ export function titleFor(level: number): string {
 }
 
 /** Pétalas de presente ao subir de nível. */
-export const levelUpPetals = (level: number): number => 20 + 5 * Math.min(level, 20);
+export const levelUpPetals = (level: number): number => 10 + 2 * Math.min(level, 20);

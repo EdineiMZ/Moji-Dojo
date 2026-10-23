@@ -23,10 +23,10 @@ export const MISSIONS: readonly Mission[] = [
   { id: 'vocab', title: 'Revise 15 cartões de vocabulário', counter: 'vocab', goal: 15 },
 ];
 
-export const MISSION_PETALS = 10;
+export const MISSION_PETALS = 6;
 export const MISSION_XP = 15;
 /** Bônus por resgatar as 3 missões do dia. */
-export const ALL_MISSIONS_BONUS = 20;
+export const ALL_MISSIONS_BONUS = 12;
 export const MISSIONS_PER_DAY = 3;
 
 export const findMission = (id: string): Mission | undefined => MISSIONS.find((m) => m.id === id);
@@ -82,7 +82,7 @@ export const CHALLENGE_GROUPS: readonly string[] = [
 ];
 
 export const CHALLENGE_GOAL = 30;
-export const CHALLENGE_PETALS = 40;
+export const CHALLENGE_PETALS = 25;
 export const CHALLENGE_XP = 30;
 
 export const challengeFor = (date: Date): Challenge => ({
@@ -95,4 +95,5 @@ export const challengeFor = (date: Date): Challenge => ({
 
 /** Dias de estudo na semana para abrir o baú. */
 export const WEEKLY_DAYS_GOAL = 4;
+/** Pétalas do baú da semana: agora vêm do sorteio (src/features/journey/loot.ts); este número só aparece no texto. */
 export const WEEKLY_PETALS = 40;

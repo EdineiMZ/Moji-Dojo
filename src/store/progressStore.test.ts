@@ -235,7 +235,7 @@ describe('jornada no progresso', () => {
     expect(store.getState().buyJourneyItem('boina')).toBe('poor');
     store.getState().updateJourney((j) => ({ ...j, petals: 500 }));
     expect(store.getState().buyJourneyItem('boina', Date.now())).toBeNull();
-    expect(store.getState().journey.petals).toBe(400);
+    expect(store.getState().journey.petals).toBe(250);
     expect(store.getState().journey.equipped.head).toBe('boina');
     store.getState().unequipJourneySlot('head');
     expect(store.getState().journey.equipped).toEqual({});

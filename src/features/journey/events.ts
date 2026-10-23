@@ -1,7 +1,8 @@
 import { formatDay } from '@/features/streak/days';
 import { countSkill } from './skills';
 import { newlyEarned, type AchievementContext } from './achievements';
-import { answerXp, lessonReward, roomToday, sessionReward, openBonus } from './economy';
+import { answerXp, lessonReward, roomToday, sessionReward } from './economy';
+import { rollLoot, type Loot, type Rng } from './loot';
 import { findItem, ITEMS } from './items';
 import {
   addPetals,
@@ -23,7 +24,6 @@ import {
   MISSION_XP,
   missionsFor,
   WEEKLY_DAYS_GOAL,
-  WEEKLY_PETALS,
 } from './missions';
 import { weekKey } from './week';
 
@@ -102,18 +102,45 @@ const countDay = (state: JourneyState, key: string, by = 1): JourneyState => ({
 
 // --- eventos ---
 
-/** O app foi aberto: bônus do dia (uma vez) e a volta depois de uma pausa. */
+/** O app foi aberto: o baú do dia fica pronto (uma vez por dia) e, depois de uma pausa, vem a boas-vindas. */
 export function onOpen(state: JourneyState, ctx: EventContext): JourneyState {
   let next = roll(state, ctx.now);
   if (!next.today.opened) {
-    next = { ...next, today: { ...next.today, opened: true } };
-    const earned = earnCapped(next, openBonus(ctx.streak));
-    next = earned.state;
-    if (earned.given > 0) next = pushToast(next, 'petals', 'Baú do dia 🎁', `+${plural(earned.given, 'pétala', 'pétalas')} por abrir o app hoje.`);
+    next = { ...next, today: { ...next.today, opened: true, chest: 'ready' } };
     if ((ctx.daysAway ?? 0) >= 4) next = { ...next, welcome: ctx.daysAway ?? 0, counters: bump(next.counters, 'comebacks') };
   }
   return settle(next, ctx, false);
 }
+
+/** Aplica o sorteio de um baú: pétalas, o item (se veio) e a experiência. Não mexe no estado do baú (quem chama marca como aberto). */
+function applyLoot(state: JourneyState, loot: Loot): JourneyState {
+  let next = addPetals(state, loot.petals);
+  if (loot.itemId) next = grantItem(next, loot.itemId, false);
+  next = { ...next, counters: bump(next.counters, 'chests') };
+  if (loot.itemId) next = { ...next, counters: bump(next.counters, 'chestItems') };
+  return gainXp(next, loot.kind === 'weekly' ? 40 : 10);
+}
+
+/** Dias seguidos do baú do dia sem item (zera quando vem um): a "sorte acumulada". */
+const dryDaily = (state: JourneyState): number => state.counters.chestDry ?? 0;
+
+/** O baú do dia está pronto para abrir? */
+export const dailyChestReady = (state: JourneyState): boolean => state.today.chest === 'ready';
+
+/** Abre o baú do dia: sorteia o conteúdo e entrega. Devolve o estado novo e o que saiu (null se não havia baú pronto). */
+export function openDailyChest(state: JourneyState, ctx: EventContext, rng: Rng = Math.random): { state: JourneyState; loot: Loot | null } {
+  let next = roll(state, ctx.now);
+  if (next.today.chest !== 'ready') return { state: next, loot: null };
+  const loot = rollLoot('daily', { owned: next.owned, dryDaily: dryDaily(next), streak: ctx.streak }, rng);
+  next = { ...next, today: { ...next.today, chest: 'opened' } };
+  next = applyLoot(next, loot);
+  const dry = loot.itemId ? 0 : dryDaily(next) + 1;
+  next = { ...next, counters: { ...next.counters, chestDry: dry } };
+  return { state: settle(next, ctx, false), loot };
+}
+
+/** O aviso do baú da semana já foi mostrado hoje (para não repetir a cada abertura do dia). */
+export const askedWeekToday = (state: JourneyState): JourneyState => (state.today.weekAsked ? state : { ...state, today: { ...state.today, weekAsked: true } });
 
 export interface AnswerEvent {
   ok: boolean;
@@ -248,31 +275,19 @@ export const clearMiss = (state: JourneyState, ref: string): JourneyState =>
 export const weekChestReady = (state: JourneyState, ctx: Pick<EventContext, 'weekDays'>): boolean =>
   ctx.weekDays >= WEEKLY_DAYS_GOAL && !state.week.claimed;
 
-/** Escolhe o item do baú: primeiro o laço da semana; depois, em semanas alternadas, um item barato da loja que falta. */
-function chestItem(state: JourneyState, wonSoFar: number): string | null {
-  if (!state.owned.includes('laco-semana')) return 'laco-semana';
-  if (wonSoFar % 2 !== 0) return null;
-  const cheap = ITEMS.find((i) => i.source.kind === 'shop' && i.source.price <= 150 && !state.owned.includes(i.id));
-  return cheap?.id ?? null;
+/** Abre o baú da semana, se a meta de dias foi batida: sempre pétalas e um item exclusivo (o laço da semana, na primeira vez). */
+export function claimWeekChestWithLoot(state: JourneyState, ctx: EventContext, rng: Rng = Math.random): { state: JourneyState; loot: Loot | null } {
+  let next = roll(state, ctx.now);
+  if (!weekChestReady(next, ctx)) return { state: next, loot: null };
+  let loot = rollLoot('weekly', { owned: next.owned, dryDaily: 0, streak: ctx.streak }, rng);
+  if (!next.owned.includes('laco-semana')) loot = { ...loot, itemId: 'laco-semana', rarity: loot.rarity };
+  next = { ...next, week: { ...next.week, claimed: true }, weeksWon: next.weeksWon + 1 };
+  next = applyLoot(next, loot);
+  return { state: settle(next, ctx, false), loot };
 }
 
-/** Abre o baú da semana: pétalas e, às vezes, um item. */
-export function claimWeekChest(state: JourneyState, ctx: EventContext): JourneyState {
-  let next = roll(state, ctx.now);
-  if (!weekChestReady(next, ctx)) return next;
-  const won = next.weeksWon + 1;
-  next = { ...next, week: { ...next.week, claimed: true }, weeksWon: won };
-  next = addPetals(next, WEEKLY_PETALS);
-  const itemId = chestItem(next, won);
-  let text = `+${WEEKLY_PETALS} pétalas.`;
-  if (itemId) {
-    next = grantItem(next, itemId, false);
-    text += ` E um item novo: ${findItem(itemId)?.name ?? itemId}.`;
-  }
-  next = gainXp(next, 40);
-  next = pushToast(next, 'week', 'Baú da semana!', text);
-  return settle(next, ctx, false);
-}
+/** Abre o baú da semana (só o estado novo). */
+export const claimWeekChest = (state: JourneyState, ctx: EventContext, rng: Rng = Math.random): JourneyState => claimWeekChestWithLoot(state, ctx, rng).state;
 
 // --- fechamento de cada evento ---
 

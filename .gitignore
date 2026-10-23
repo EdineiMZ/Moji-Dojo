@@ -24,3 +24,4 @@ coverage/
 scripts/audio/raw/
 scripts/audio/meta.json
 scripts/pos/words.json
+scripts/verify-japanese/cache.json

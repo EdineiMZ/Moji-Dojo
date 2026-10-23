@@ -20,8 +20,12 @@ export interface DayState {
   day: string;
   /** Pétalas de lição e revisão ganhas hoje (conta para o teto diário). */
   earned: number;
-  /** O bônus de abrir o app hoje já foi dado. */
+  /** O app já foi aberto hoje (o primeiro abre o baú do dia). */
   opened: boolean;
+  /** O baú do dia: pronto para abrir (aparece ao abrir o app) ou já aberto. */
+  chest: 'none' | 'ready' | 'opened';
+  /** O aviso do baú da semana já foi mostrado hoje (aparece uma vez por dia enquanto estiver pronto). */
+  weekAsked: boolean;
   /** Lições já concluídas hoje (a repetição vale metade). */
   lessons: string[];
   /** Contadores do dia, para as missões. */
@@ -91,7 +95,7 @@ export const MAX_MISSES = 80;
 export const DAILY_GOALS: readonly number[] = [5, 10, 20, 40];
 export const DEFAULT_DAILY_GOAL = 10;
 
-export const emptyDay = (day = ''): DayState => ({ day, earned: 0, opened: false, lessons: [], counts: {}, claimed: [], goalDone: false });
+export const emptyDay = (day = ''): DayState => ({ day, earned: 0, opened: false, chest: 'none', weekAsked: false, lessons: [], counts: {}, claimed: [], goalDone: false });
 export const emptyWeek = (key = ''): WeekState => ({ key, claimed: false, challenge: 0, challengeClaimed: false, notified: false });
 
 export const emptyJourney = (): JourneyState => ({
@@ -176,6 +180,8 @@ export function sanitizeJourney(raw: unknown): JourneyState {
       day: typeof today.day === 'string' ? today.day : '',
       earned: count(today.earned),
       opened: today.opened === true,
+      chest: today.chest === 'ready' || today.chest === 'opened' ? today.chest : 'none',
+      weekAsked: today.weekAsked === true,
       lessons: strings(today.lessons, 200),
       counts: numberMap(today.counts),
       claimed: strings(today.claimed, 20),

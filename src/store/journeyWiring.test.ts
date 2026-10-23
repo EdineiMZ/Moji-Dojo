@@ -13,14 +13,22 @@ const memoryStorage = () => {
 const at = (day: number, hour = 12) => new Date(2026, 9, day, hour).getTime();
 
 describe('a jornada ligada ao progresso', () => {
-  it('abrir o app marca o dia, dá o bônus e não repete no mesmo dia', () => {
+  it('abrir o app marca o dia e deixa o baú do dia pronto, que se abre uma vez só', () => {
     const store = createProgressStore(memoryStorage());
     store.getState().openApp(at(21));
     expect(store.getState().days).toEqual(['2026-10-21']);
+    expect(store.getState().journey.petals).toBe(0);
+    expect(store.getState().journey.today.chest).toBe('ready');
+
+    const loot = store.getState().openDailyChest(at(21), () => 0);
+    expect(loot).not.toBeNull();
     const petals = store.getState().journey.petals;
-    expect(petals).toBeGreaterThan(0);
+    expect(petals).toBe(loot?.petals);
+    expect(store.getState().journey.today.chest).toBe('opened');
+
     store.getState().openApp(at(21, 18));
     expect(store.getState().journey.petals).toBe(petals);
+    expect(store.getState().openDailyChest(at(21, 18), () => 0)).toBeNull();
   });
 
   it('concluir uma lição com a nota paga pétalas e conta a conquista; sem nota só conta o dia', () => {

@@ -2,13 +2,26 @@ import { buyable, findItem, howToGet, inSeason, ITEMS, priceOf } from './items';
 import { addPetals, buyItem, dismissToast, emptyJourney, equipItem, grantItem, outfit, pushToast, sanitizeJourney, unequipSlot } from './journey';
 
 describe('catálogo de itens', () => {
-  it('tem ids únicos e o tamanho prometido: 20+ na loja e 15+ de recompensa', () => {
+  it('tem ids únicos e o tamanho prometido: 50+ na loja, 30+ de recompensa e 20+ só nos baús', () => {
     expect(new Set(ITEMS.map((i) => i.id)).size).toBe(ITEMS.length);
     const shopKinds = ITEMS.filter((i) => i.source.kind === 'shop');
     const rewards = ITEMS.filter((i) => i.source.kind === 'achievement' || i.source.kind === 'weekly');
-    expect(shopKinds.filter((i) => i.slot !== 'tint').length).toBe(20);
-    expect(rewards.length).toBeGreaterThanOrEqual(15);
+    expect(shopKinds.length).toBeGreaterThanOrEqual(50);
+    expect(rewards.length).toBeGreaterThanOrEqual(30);
+    expect(ITEMS.filter((i) => i.source.kind === 'loot').length).toBeGreaterThanOrEqual(20);
     expect(ITEMS.filter((i) => i.source.kind === 'season').length).toBeGreaterThanOrEqual(5);
+  });
+
+  it('há itens de todas as raridades, e os lendários só saem de baú ou de conquista difícil', () => {
+    for (const rarity of ['common', 'rare', 'epic', 'legendary'] as const) expect(ITEMS.some((i) => i.rarity === rarity)).toBe(true);
+    for (const item of ITEMS.filter((i) => i.rarity === 'legendary')) expect(['loot', 'achievement']).toContain(item.source.kind);
+    expect(ITEMS.filter((i) => i.source.kind === 'shop').every((i) => i.rarity !== 'legendary')).toBe(true);
+  });
+
+  it('itens comprados custam caro: o mais barato 150 pétalas e nenhum passa de 1000', () => {
+    const prices = ITEMS.map(priceOf).filter((p): p is number => p !== null);
+    expect(Math.min(...prices)).toBeGreaterThanOrEqual(150);
+    expect(Math.max(...prices)).toBeLessThanOrEqual(1000);
   });
 
   it('todo item tem nome, descrição e preço positivo quando se compra', () => {
@@ -48,7 +61,7 @@ describe('comprar e vestir', () => {
   it('compra desconta as pétalas e o item novo já é vestido se o espaço está vazio', () => {
     const result = buyItem(rich, 'boina', june);
     expect(result.ok).toBe(true);
-    expect(result.state.petals).toBe(900);
+    expect(result.state.petals).toBe(750);
     expect(result.state.owned).toEqual(['boina']);
     expect(result.state.equipped.head).toBe('boina');
     expect(result.state.counters.purchases).toBe(1);

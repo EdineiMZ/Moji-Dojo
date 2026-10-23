@@ -12,7 +12,7 @@ import { findVerb } from '@/features/conjugation/verbs';
 import { isParticleCard } from '@/features/cloze/particles';
 import { cardKeysFor, learnedWordIds as learnedVocabIds, parseCardKey as parseVocabKey, READINGS_PER_DAY, readingKeysFor } from '@/features/vocab/cards';
 import { findWord } from '@/content';
-import { claimWeekChest as claimChest } from '@/features/journey/events';
+import { claimWeekChest as claimChest, onStudyTime } from '@/features/journey/events';
 import { applyRescue, declineRescue as declineOffer, rescuePassed, resolveRescue } from '@/features/journey/rescue';
 import { trackAnswer, trackDialog, trackLesson, trackNewWords, trackOpen, trackPhrase, trackRecording, trackSession, trackTouch, buildContext } from '@/features/journey/track';
 import type { Area } from '@/features/journey/events';
@@ -92,6 +92,8 @@ export interface ProgressActions {
   removeMyPhrase: (id: string) => void;
   /** Resposta numa revisão de frase própria: reagenda e marca o dia. */
   recordMyPhraseAnswer: (id: string, ok: boolean, firstTry: boolean, now?: number) => void;
+  /** Soma segundos de uso ativo ao dia de hoje (para a meta de minutos). */
+  recordStudyTime: (seconds: number, now?: number) => void;
   /** O app foi aberto: marca o dia, dá o bônus diário e, se for o caso, oferece salvar a sequência. */
   openApp: (now?: number) => void;
   /** Uma sessão longa (revisão do dia) terminou com `first` acertos de primeira em `total`. */
@@ -411,6 +413,8 @@ export function createProgressStore(storage: StateStorage) {
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
             };
           }),
+
+        recordStudyTime: (seconds, now = Date.now()) => set((s) => ({ journey: onStudyTime(s.journey, new Date(now), seconds) })),
 
         openApp: (now = Date.now()) =>
           set((s) => {

@@ -13,6 +13,10 @@ export interface PlanSource {
   vocab: SrsState;
   conj: SrsState;
   restWeekdays: readonly number[];
+  /** Perfil e uso de hoje, para os lembretes com meta de minutos. */
+  profile?: { username: string; goalMinutes: number };
+  secondsToday?: number;
+  newToday?: number;
 }
 
 const DAY_MS = 86_400_000;
@@ -42,5 +46,14 @@ export function planInputFrom(source: PlanSource, settings: ReminderSettings, no
     streak: streakDays(source.days, now, source.restWeekdays),
     dueCount: totalDue(source, now.getTime()),
     daysAway: daysSinceLastStudy(source.days, now),
+    ...(source.profile
+      ? {
+          username: source.profile.username,
+          goalMinutes: source.profile.goalMinutes,
+          secondsToday: source.secondsToday ?? 0,
+          newToday: source.newToday ?? 0,
+          restWeekdays: source.restWeekdays,
+        }
+      : {}),
   };
 }

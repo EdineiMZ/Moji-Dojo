@@ -1,6 +1,7 @@
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import { Text, type ColorValue } from 'react-native';
 import { hapticLight } from '@/lib/haptics';
+import { useSettingsStore } from '@/store';
 import { fonts, useTheme } from '@/theme';
 
 /** Ícone da aba: um caractere japonês, combinando com o tema do app. */
@@ -23,6 +24,9 @@ const TABS = [
 
 export default function TabsLayout() {
   const { colors } = useTheme();
+  // Na primeira vez (e depois desta atualização), a introdução vem antes de tudo.
+  const onboarded = useSettingsStore((s) => s.profile.onboarded);
+  if (!onboarded) return <Redirect href="/welcome" />;
   return (
     <Tabs
       screenListeners={{ tabPress: () => hapticLight() }}

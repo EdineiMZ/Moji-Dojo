@@ -33,6 +33,7 @@ describe('settingsStore', () => {
       nativeAudio: true,
       reminders: DEFAULT_REMINDERS,
       limits: { newPerDay: 0, reviewsPerDay: 0 },
+      profile: { username: '', onboarded: false, goalMinutes: 15 },
     });
     expect(createSettingsStore(storage).getState().writeInReview).toBe(false);
   });

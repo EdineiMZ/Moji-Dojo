@@ -77,3 +77,36 @@ export function seedOf(date: Date): number {
 }
 
 export const pick = <T>(list: readonly T[], seed: number): T => list[Math.abs(seed) % list.length] as T;
+
+/** Começa a frase com o nome ("Ana, você...") ou, sem nome, com a primeira letra maiúscula ("Você..."). */
+export function say(name: string, sentence: string): string {
+  if (name) return `${name}, ${sentence}`;
+  return sentence.charAt(0).toUpperCase() + sentence.slice(1);
+}
+
+/** Lembrete do horário escolhido, ligado à meta de minutos do dia. */
+export const GOAL_DAILY_MESSAGES: readonly ((goal: number, name: string) => ReminderText)[] = [
+  (goal, name) => ({ title: `Seus ${goal} minutos de hoje`, body: say(name, `hoje a meta é de ${goal} minutos de japonês. Vamos começar?`) }),
+  (goal, name) => ({ title: 'Hora de treinar 🌸', body: say(name, `${goal} minutinhos de japonês e o dia está ganho.`) }),
+  (goal, name) => ({ title: 'O dojo está aberto', body: say(name, `reserve ${goal} minutos para o japonês hoje. Pouco tempo, muita diferença.`) }),
+];
+
+/** Incentivo a aprender algo novo (no lugar de só revisar). */
+export const NEW_THING_MESSAGES: readonly ((name: string) => ReminderText)[] = [
+  (name) => ({ title: 'Não esqueça de aprender algo novo hoje!', body: say(name, 'uma lição ou cinco palavras novas já fazem a diferença.') }),
+  (name) => ({ title: 'Algo novo hoje?', body: say(name, 'a trilha tem uma lição esperando por você.') }),
+  (name) => ({ title: 'Uma palavra nova, só uma', body: say(name, 'aprenda uma palavra nova hoje: leva menos de um minuto.') }),
+];
+
+/** Aviso da noite de hoje, quando a meta de minutos ainda não foi batida: usa o que falta. */
+export const GOAL_EVENING_TODAY: readonly ((goal: number, left: number, name: string) => ReminderText)[] = [
+  (goal, left, name) => ({ title: 'Falta pouco 🌙', body: say(name, `você ainda não completou seus ${goal} minutos hoje! Faltam ${left} min.`) }),
+  (goal, left, name) => ({ title: 'Ainda dá tempo', body: say(name, `faltam só ${left} min para a meta de ${goal} minutos de hoje.`) }),
+  (goal, left, name) => ({ title: 'Última chamada do dojo', body: say(name, `a meta de ${goal} minutos ainda está aberta: faltam ${left} min.`) }),
+];
+
+/** Aviso da noite de amanhã (não se sabe ainda quanto será estudado): geral. */
+export const GOAL_EVENING_GENERIC: readonly ((goal: number, name: string) => ReminderText)[] = [
+  (goal, name) => ({ title: 'Não esqueça dos seus minutos', body: say(name, `lembre de separar ${goal} minutos para o japonês hoje.`) }),
+  (goal, name) => ({ title: 'Meta de hoje', body: say(name, `${goal} minutos de japonês ainda esperam por você. Dá tempo!`) }),
+];

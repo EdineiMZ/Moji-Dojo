@@ -216,6 +216,10 @@ export const onNewWords = (state: JourneyState, ctx: EventContext, count: number
   settle(countDay(roll(state, ctx.now), 'newWords', count), ctx, true);
 
 /** Uma frase própria foi escrita. */
+/** Segundos de uso ativo do app somados ao dia de hoje (a meta de minutos por dia). Não marca o dia como estudado. */
+export const onStudyTime = (state: JourneyState, now: Date, seconds: number): JourneyState =>
+  seconds > 0 ? countDay(roll(state, now), 'seconds', Math.round(seconds)) : state;
+
 export const onPhrase = (state: JourneyState, ctx: EventContext): JourneyState => settle(countDay(roll(state, ctx.now), 'phrases'), ctx, true);
 
 /** Uma gravação da própria voz foi feita. */

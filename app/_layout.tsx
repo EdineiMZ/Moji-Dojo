@@ -9,6 +9,7 @@ import { useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ErrorScreen } from '@/components/ErrorScreen';
 import { LoadingScreen } from '@/components/LoadingScreen';
+import { StudyTimer } from '@/features/profile/useStudyTimer';
 import { ToastHost } from '@/features/journey/ui/ToastHost';
 import { useReminderSync } from '@/features/reminders/useReminderSync';
 import { remainingLoadingMs } from '@/lib/loading';
@@ -61,6 +62,7 @@ function ThemedStack() {
         <Stack.Screen name="review" />
         <Stack.Screen name="mixed" />
         <Stack.Screen name="placement" />
+        <Stack.Screen name="welcome" options={{ gestureEnabled: false, animation: 'fade' }} />
         <Stack.Screen name="settings" />
         <Stack.Screen name="mochi" />
         <Stack.Screen name="rescue" />
@@ -89,9 +91,11 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <ThemeProvider>
-          <ThemedStack />
-          <ToastHost />
-          <LoadingGate />
+          <StudyTimer>
+            <ThemedStack />
+            <ToastHost />
+            <LoadingGate />
+          </StudyTimer>
         </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

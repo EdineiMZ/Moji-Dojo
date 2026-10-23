@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
 import { DEFAULT_LIMITS, sanitizeLimits, type Limits } from '@/features/limits/limits';
+import { DEFAULT_PROFILE, sanitizeProfile, type Profile } from '@/features/profile/profile';
 import { DEFAULT_REMINDERS, type ReminderSettings } from '@/features/reminders/plan';
 
 export type SpeechSpeed = 'normal' | 'slow';
@@ -38,6 +39,8 @@ export interface SettingsData {
   reminders: ReminderSettings;
   /** Limites por dia de itens novos e de revisões (0 = sem limite). */
   limits: Limits;
+  /** Nome, introdução feita e meta de minutos por dia. */
+  profile: Profile;
 }
 
 export interface SettingsActions {
@@ -54,6 +57,7 @@ export interface SettingsActions {
   /** Muda só os campos passados dos lembretes. */
   setReminders: (change: Partial<ReminderSettings>) => void;
   setLimits: (change: Partial<Limits>) => void;
+  setProfile: (change: Partial<Profile>) => void;
 }
 
 export type SettingsState = SettingsData & SettingsActions;
@@ -73,6 +77,7 @@ export const DEFAULT_SETTINGS: SettingsData = {
   nativeAudio: true,
   reminders: DEFAULT_REMINDERS,
   limits: DEFAULT_LIMITS,
+  profile: DEFAULT_PROFILE,
 };
 
 /**
@@ -96,12 +101,13 @@ export function createSettingsStore(storage: StateStorage) {
         setNativeAudio: (value) => set({ nativeAudio: value }),
         setReminders: (change) => set((s) => ({ reminders: { ...s.reminders, ...change } })),
         setLimits: (change) => set((s) => ({ limits: sanitizeLimits({ ...s.limits, ...change }) })),
+        setProfile: (change) => set((s) => ({ profile: sanitizeProfile({ ...s.profile, ...change }) })),
       }),
       {
         name: SETTINGS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, nativeAudio, reminders, limits }) => ({
+        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, nativeAudio, reminders, limits, profile }) => ({
           writeInReview,
           speechSpeed,
           hapticsEnabled,
@@ -114,6 +120,7 @@ export function createSettingsStore(storage: StateStorage) {
           nativeAudio,
           reminders,
           limits,
+          profile,
         }),
       },
     ),

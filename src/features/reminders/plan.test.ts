@@ -168,3 +168,48 @@ describe('textos', () => {
     for (const m of all) expect(`${m.title} ${m.body}`).not.toMatch(bad);
   });
 });
+
+describe('lembretes com meta de minutos (perfil)', () => {
+  const rich = (extra: Partial<PlanInput> = {}, settings: Partial<typeof DEFAULT_REMINDERS> = {}) =>
+    planReminders(input({ goalMinutes: 20, username: 'Ana', secondsToday: 0, newToday: 0, restWeekdays: [], ...extra }, { hour: 19, risk: true, ...settings }));
+
+  it('hoje, sem ter usado o app: o lembrete do horário e o aviso da noite com a meta', () => {
+    const today = rich({ studiedToday: false, daysAway: 1 }).filter((p) => p.at.getDate() === NOW.getDate());
+    expect(today.map((p) => p.kind)).toEqual(['daily', 'goal']);
+    expect(`${today[1]?.title} ${today[1]?.body}`).toMatch(/20/);
+  });
+
+  it('o aviso da noite diz quanto falta quando já usou parte do tempo', () => {
+    const plan = rich({ studiedToday: true, daysAway: 0, secondsToday: 7 * 60 });
+    const goal = plan.find((p) => p.kind === 'goal' && p.at.getDate() === NOW.getDate());
+    expect(goal?.body).toContain('13');
+  });
+
+  it('meta batida: nada mais hoje, e amanhã continua normal', () => {
+    const plan = rich({ studiedToday: true, daysAway: 0, secondsToday: 20 * 60 });
+    expect(plan.filter((p) => p.at.getDate() === NOW.getDate())).toEqual([]);
+    expect(plan.some((p) => p.at.getDate() === NOW.getDate() + 1)).toBe(true);
+  });
+
+  it('dia de folga não recebe lembrete', () => {
+    // Quinta-feira = 4.
+    const plan = rich({ restWeekdays: [4] });
+    expect(plan.some((p) => p.at.getDay() === 4)).toBe(false);
+    expect(plan.some((p) => p.at.getDay() === 5)).toBe(true);
+  });
+
+  it('o nome entra nos textos e sem nome o texto começa com maiúscula', () => {
+    expect(rich({}).filter((p) => p.kind === 'goal').some((p) => p.body.startsWith('Ana, '))).toBe(true);
+    const anon = rich({ username: '' }).filter((p) => p.kind === 'goal');
+    expect(anon.length).toBeGreaterThan(0);
+    expect(anon.every((p) => /^[A-ZÁÉÍÓÚÂÊÔÃÕÇ]/.test(p.body))).toBe(true);
+  });
+
+  it('sem o perfil o plano é o de antes (nenhum aviso de meta)', () => {
+    expect(planReminders(input({ studiedToday: false })).some((p) => p.kind === 'goal')).toBe(false);
+  });
+
+  it('há dias com a mensagem de aprender algo novo', () => {
+    expect(rich({}).some((p) => /algo novo|palavra nova/i.test(p.title))).toBe(true);
+  });
+});

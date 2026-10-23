@@ -1,4 +1,18 @@
-import { COMEBACK_MESSAGES, DAILY_MESSAGES, DUE_MESSAGES, pick, RISK_MESSAGES, seedOf, STREAK_MESSAGES, type ReminderText } from './messages';
+import { minutesLeft } from '@/features/profile/studyTimer';
+import {
+  COMEBACK_MESSAGES,
+  DAILY_MESSAGES,
+  DUE_MESSAGES,
+  GOAL_DAILY_MESSAGES,
+  GOAL_EVENING_GENERIC,
+  GOAL_EVENING_TODAY,
+  NEW_THING_MESSAGES,
+  pick,
+  RISK_MESSAGES,
+  seedOf,
+  STREAK_MESSAGES,
+  type ReminderText,
+} from './messages';
 
 /** As preferências de lembrete (ficam nos Ajustes; não vão para o backup). */
 export interface ReminderSettings {
@@ -46,11 +60,19 @@ export interface PlanInput {
   dueCount: number;
   /** Dias desde o último estudo (0 se estudou hoje). */
   daysAway: number;
+  /** Perfil: nome, meta de minutos por dia e o quanto já foi usado hoje. Sem `goalMinutes`, o plano é o simples de antes. */
+  username?: string;
+  goalMinutes?: number;
+  secondsToday?: number;
+  /** Itens novos aprendidos hoje. */
+  newToday?: number;
+  /** Dias de folga (0 = domingo): sem lembrete nesses dias. */
+  restWeekdays?: readonly number[];
 }
 
 export interface PlannedReminder {
   at: Date;
-  kind: 'daily' | 'risk';
+  kind: 'daily' | 'risk' | 'goal';
   title: string;
   body: string;
 }
@@ -83,6 +105,18 @@ export function dayAllowed(gap: number): boolean {
 function dailyText(input: PlanInput, offset: number, gap: number, date: Date): ReminderText {
   const seed = seedOf(date);
   if (gap >= 3) return pick(COMEBACK_MESSAGES, seed);
+  const name = input.username ?? '';
+  const goal = input.goalMinutes ?? 0;
+  if (input.goalMinutes !== undefined) {
+    // Já usou o app hoje mas não chegou à meta: diz quanto falta.
+    if (offset === 0 && goal > 0 && (input.secondsToday ?? 0) > 0) {
+      return pick(GOAL_EVENING_TODAY, seed)(goal, minutesLeft(goal, input.secondsToday ?? 0), name);
+    }
+    // Com perfil: gira entre a meta de minutos, "algo novo" e os textos de sempre. Hoje, se já fez algo novo, pula esse.
+    const turn = Math.abs(seed) % 3;
+    if (turn === 0 && goal > 0) return pick(GOAL_DAILY_MESSAGES, seed)(goal, name);
+    if (turn === 1 && !(offset === 0 && (input.newToday ?? 0) > 0)) return pick(NEW_THING_MESSAGES, seed)(name);
+  }
   if (offset === 0 && input.dueCount > 0 && seed % 2 === 0) return pick(DUE_MESSAGES, seed)(input.dueCount);
   if (input.streak >= MIN_STREAK_FOR_RISK && offset <= 1 && seed % 3 === 0) return pick(STREAK_MESSAGES, seed)(input.streak);
   return pick(DAILY_MESSAGES, seed);
@@ -102,10 +136,16 @@ export function planReminders(input: PlanInput): PlannedReminder[] {
     const day = atTime(now, offset, 0, 0);
     // Dias sem estudo até esse dia, se a pessoa não voltar: hoje já estudado zera a contagem.
     const gap = input.studiedToday ? offset : input.daysAway + offset;
-    const studiedThatDay = offset === 0 && input.studiedToday;
+    const rich = input.goalMinutes !== undefined;
+    const goal = input.goalMinutes ?? 0;
+    const seconds = input.secondsToday ?? 0;
+    const goalDone = rich && goal > 0 && offset === 0 && seconds >= goal * 60;
+    // Com meta de minutos, "já estudou" só vale quando a meta foi batida; sem meta, basta ter estudado.
+    const studiedThatDay = offset === 0 && (rich && goal > 0 ? goalDone : input.studiedToday);
+    const isRest = (input.restWeekdays ?? []).includes(day.getDay());
 
     let dailyAt: Date | null = null;
-    if (settings.weekdays.includes(day.getDay()) && !studiedThatDay && dayAllowed(gap)) {
+    if (settings.weekdays.includes(day.getDay()) && !isRest && !studiedThatDay && dayAllowed(gap)) {
       let hour = settings.hour;
       let minute = settings.minute;
       if (inQuiet(hour, minute, settings.quietFrom, settings.quietTo)) {
@@ -120,13 +160,20 @@ export function planReminders(input: PlanInput): PlannedReminder[] {
       }
     }
 
-    // Aviso da noite: só hoje e amanhã (mais longe, ele seria ruído), para sequência em risco. Vem pelo menos 2 horas depois
+    // Aviso da noite: só hoje e amanhã (mais longe, ele seria ruído). É um por dia: a sequência em risco (3 dias ou mais, ainda
+    // sem estudar) tem prioridade; senão, com meta de minutos, o aviso da meta ("faltam X minutos"). Vem pelo menos 2 horas depois
     // do lembrete diário, para não parecer o mesmo aviso repetido.
-    if (settings.risk && offset <= 1 && !studiedThatDay && input.streak >= MIN_STREAK_FOR_RISK && gap <= 1) {
+    const riskNow = settings.risk && offset <= 1 && !studiedThatDay && input.streak >= MIN_STREAK_FOR_RISK && gap <= 1;
+    const goalNow = settings.risk && rich && goal > 0 && offset <= 1 && !studiedThatDay && !isRest && gap <= 2 && settings.weekdays.includes(day.getDay());
+    if (riskNow || goalNow) {
       let at = atTime(now, offset, RISK_HOUR, RISK_MINUTE);
       if (dailyAt && at.getTime() - dailyAt.getTime() < 2 * 3_600_000) at = new Date(dailyAt.getTime() + 2 * 3_600_000);
       if (at.getTime() > now.getTime() + 60_000 && at.getDate() === day.getDate() && !inQuiet(at.getHours(), at.getMinutes(), settings.quietFrom, settings.quietTo)) {
-        plan.push({ at, kind: 'risk', ...pick(RISK_MESSAGES, seedOf(at))(input.streak) });
+        const seed = seedOf(at);
+        const name = input.username ?? '';
+        if (riskNow) plan.push({ at, kind: 'risk', ...pick(RISK_MESSAGES, seed)(input.streak) });
+        else if (offset === 0) plan.push({ at, kind: 'goal', ...pick(GOAL_EVENING_TODAY, seed + 1)(goal, minutesLeft(goal, seconds), name) });
+        else plan.push({ at, kind: 'goal', ...pick(GOAL_EVENING_GENERIC, seed + 1)(goal, name) });
       }
     }
   }

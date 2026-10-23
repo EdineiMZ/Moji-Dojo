@@ -2,6 +2,19 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.6.0] - 2026-10-23
+
+Fecha as pendências da Fase 2 e abre a Fase 4 do [ROADMAP](ROADMAP.md): escuta e fala.
+
+- **Conjugar:** agora dá para **digitar** a forma (kanji ou kana) além de escolher, e entram as formas **ませんでした, たい, ている e ましょう**. Para os verbos que você já aprendeu, os cartões novos chegam aos poucos (6 por dia), sem encher a revisão de uma vez.
+- **Revisão por partícula:** em Lacunas, cada uma das 12 partículas é um cartão com revisão espaçada (entra no backup).
+- **Gramática de 30 para 38 tópicos:** 〜まえに, 〜てから e あとで, 〜ながら, 〜に いきます, frequência (いつも, よく, ときどき, あまり, ぜんぜん), 〜ましょうか, だけ e なにか/だれか, com frases do Tatoeba conferidas na fonte e notas de erros comuns.
+- **Ditado:** em Ouvir, ouça uma palavra ou frase e escreva. A conferência aceita kana ou kanji e mostra o que sobrou ou faltou; o sentido só aparece depois.
+- **Compreensão:** a frase toca sem texto e você escolhe o que ela quer dizer; a velocidade lenta ou normal vem do controle do topo.
+- **Gravar e comparar:** em Ouvir → Repetir, grave a sua voz, veja a onda (ritmo e pausas, não pronúncia) e ouça o modelo e a sua voz em seguida. Pede a permissão do microfone; a gravação não sai do aparelho.
+- **Ouvir:** as seções viraram chips que rolam na horizontal (são cinco).
+- **Pendências:** os novos tópicos, notas e a conferência de cada tópico foram escritos por IA e precisam de revisão por um falante. Gravar e comparar ainda não foi testado no aparelho.
+
 ## [1.5.0] - 2026-10-23
 
 Fase 3 do [ROADMAP](ROADMAP.md): montar e produzir frases. A aba Frases agora tem doze seções.

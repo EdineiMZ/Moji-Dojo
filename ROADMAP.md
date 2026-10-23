@@ -97,7 +97,8 @@ Objetivo: sair de reconhecer para **produzir**.
 - [x] **Traduzir do japonês:** mostrar uma frase e pedir o sentido, com opções e depois resposta livre. *(M)*
   - Feito: **Traduzir → Entender (opções)** e **Entender (livre)**. No modo livre a pessoa escreve o que entendeu (opcional), vê a tradução e diz se acertou, porque português livre não dá para corrigir sozinho.
 - [ ] **Banco de frases com tradução:** frases de um corpus aberto (seção 6), filtradas pelo vocabulário que o aluno já conhece. Cada frase nova pode virar cartão. *(G)*
-- [ ] **Minhas frases:** o aluno escreve frases próprias sobre a sua vida (eu moro em..., eu gosto de...). O app guarda e revisa. *(M)*
+- [x] **Minhas frases:** o aluno escreve frases próprias sobre a sua vida (eu moro em..., eu gosto de...). O app guarda e revisa. *(M)*
+  - Feito: sub-aba **Minhas frases**. Escreve o japonês (teclado do app ou do celular) e o sentido em português, com ideias do que escrever; salva, edita, apaga e ouve. A revisão é espaçada e pede para escrever de memória, com a mesma conferência tolerante (`progress.myPhrases`, também no backup, até 300 frases). O app **não corrige** o japonês escrito pela pessoa: só confere se ela lembra.
 - [ ] **Diálogos curtos com escolhas:** cenas de restaurante, estação, hotel, loja. Em cada turno, o aluno escolhe ou monta a resposta. *(G)*
 - [x] **Furigana e romaji ajustáveis:** mostrar, ocultar ou só ao toque, por nível de confiança. *(P)*
   - Feito: Ajustes → Leitura das frases. Romaji (sempre, ao tocar, nunca), escrever com kanji (liga a escrita normal nas frases da gramática, 76 delas) e furigana (sempre, ao tocar, nunca), com prévia. Vale para os exemplos da gramática, as frases de Viagem e as palavras. O furigana vem do Tatoeba e é conferido por `npm run verify-grammar`.

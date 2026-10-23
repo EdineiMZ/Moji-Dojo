@@ -4,6 +4,7 @@ import { emptyProgress, type ProgressSnapshot } from '@/features/progress/types'
 import { answerReview, boostSkippedItems, learnItems, shouldApplyReviewAnswer, type SrsEntry, type SrsState } from '@/features/review/srs';
 import { addActivity, type ActivityHistory } from '@/features/stats/metrics';
 import { markDay } from '@/features/streak/days';
+import { checkPhrase, newPhraseId, type MyPhrase, type MyPhrases, type PhraseProblem } from '@/features/myphrases/phrases';
 import { cardKeysFor as verbCardKeys } from '@/features/conjugation/cards';
 import { findVerb } from '@/features/conjugation/verbs';
 import { cardKeysFor } from '@/features/vocab/cards';
@@ -35,6 +36,16 @@ export interface ProgressActions {
   recordDrill: (ok: boolean, now?: number) => void;
   /** Mini-teste de um tópico de gramática aprovado: o tópico fica "dominado" e o dia é marcado. */
   masterTopic: (topicId: string, now?: number) => void;
+  /**
+   * Salva uma frase própria (japonês + o que quer dizer). Devolve o id, ou o motivo de não ter salvo.
+   * Entra na revisão já vencida.
+   */
+  addMyPhrase: (jp: string, pt: string, now?: number) => { id: string } | { error: PhraseProblem };
+  /** Troca o texto de uma frase própria (a revisão continua como estava). */
+  updateMyPhrase: (id: string, jp: string, pt: string) => PhraseProblem | null;
+  removeMyPhrase: (id: string) => void;
+  /** Resposta numa revisão de frase própria: reagenda e marca o dia. */
+  recordMyPhraseAnswer: (id: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Marca o dia como estudado (ex.: ao conferir uma escrita). */
   markStudied: (now?: number) => void;
   /**
@@ -61,6 +72,8 @@ export interface ProgressExtras {
   conj: SrsState;
   /** Tópicos de gramática dominados (mini-teste aprovado), pelo id, com o momento da aprovação. */
   mastered: Readonly<Record<string, number>>;
+  /** Frases escritas pelo próprio aluno, pelo id. */
+  myPhrases: MyPhrases;
 }
 
 export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions;
@@ -82,6 +95,7 @@ export function createProgressStore(storage: StateStorage) {
         vocab: {},
         conj: {},
         mastered: {},
+        myPhrases: {},
 
         completeLesson: (lessonId, chars, skipped = false, now = Date.now()) =>
           set((s) => {
@@ -179,6 +193,52 @@ export function createProgressStore(storage: StateStorage) {
             days: markDay(s.days, new Date(now)),
           })),
 
+        addMyPhrase: (jp, pt, now = Date.now()) => {
+          let outcome: { id: string } | { error: PhraseProblem } = { error: 'empty-jp' };
+          set((s) => {
+            const error = checkPhrase(jp, pt, s.myPhrases);
+            if (error) {
+              outcome = { error };
+              return {};
+            }
+            const id = newPhraseId(s.myPhrases, now);
+            const phrase: MyPhrase = { jp: jp.trim(), pt: pt.trim(), at: now, b: 1, due: now };
+            outcome = { id };
+            return { myPhrases: { ...s.myPhrases, [id]: phrase }, days: markDay(s.days, new Date(now)) };
+          });
+          return outcome;
+        },
+
+        updateMyPhrase: (id, jp, pt) => {
+          let problem: PhraseProblem | null = null;
+          set((s) => {
+            const current = s.myPhrases[id];
+            if (!current) return {};
+            problem = checkPhrase(jp, pt, s.myPhrases, id);
+            if (problem) return {};
+            return { myPhrases: { ...s.myPhrases, [id]: { ...current, jp: jp.trim(), pt: pt.trim() } } };
+          });
+          return problem;
+        },
+
+        removeMyPhrase: (id) =>
+          set((s) => {
+            const { [id]: _removed, ...rest } = s.myPhrases;
+            return { myPhrases: rest };
+          }),
+
+        recordMyPhraseAnswer: (id, ok, firstTry, now = Date.now()) =>
+          set((s) => {
+            const phrase = s.myPhrases[id];
+            if (!phrase) return {};
+            const next = answerReview({ b: phrase.b, due: phrase.due }, ok, !firstTry, now);
+            return {
+              myPhrases: { ...s.myPhrases, [id]: { ...phrase, b: next.b, due: next.due } },
+              days: markDay(s.days, new Date(now)),
+              history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
+            };
+          }),
+
         markStudied: (now = Date.now()) => set((s) => ({ days: markDay(s.days, new Date(now)) })),
 
         replaceProgress: (snapshot, extras) =>
@@ -189,17 +249,17 @@ export function createProgressStore(storage: StateStorage) {
             stats: snapshot.stats,
             days: snapshot.days,
             history: extras?.history ?? {},
-            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, mastered: extras.mastered } : {}),
+            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, mastered: extras.mastered, myPhrases: extras.myPhrases } : {}),
           }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, mastered: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, mastered: {}, myPhrases: {} }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, mastered }) => ({
+        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, mastered, myPhrases }) => ({
           srs,
           lessons,
           stats,
@@ -210,6 +270,7 @@ export function createProgressStore(storage: StateStorage) {
           vocab,
           conj,
           mastered,
+          myPhrases,
         }),
       },
     ),

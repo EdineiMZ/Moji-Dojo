@@ -2,7 +2,7 @@ import { plural } from '@/lib/plural';
 import type { ProgressCounts } from './backup';
 
 /** Linhas do resumo mostrado antes de confirmar a importação ("2 lições concluídas", ...). */
-export function describeCounts(counts: ProgressCounts & { words?: number }): string[] {
+export function describeCounts(counts: ProgressCounts & { words?: number; phrases?: number }): string[] {
   const lines = [
     plural(counts.lessons, 'lição concluída', 'lições concluídas'),
     plural(counts.reviews, 'caractere na revisão', 'caracteres na revisão'),
@@ -10,6 +10,7 @@ export function describeCounts(counts: ProgressCounts & { words?: number }): str
     plural(counts.days, 'dia de estudo', 'dias de estudo'),
   ];
   if (counts.words) lines.push(plural(counts.words, 'palavra de vocabulário', 'palavras de vocabulário'));
+  if (counts.phrases) lines.push(plural(counts.phrases, 'frase própria', 'frases próprias'));
   return lines;
 }
 

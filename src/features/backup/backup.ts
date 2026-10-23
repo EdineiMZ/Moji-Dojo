@@ -4,6 +4,7 @@ import type { CharStats, ProgressSnapshot } from '@/features/progress/types';
 import { LAST_BOX, type SrsEntry } from '@/features/review/srs';
 import { MAX_HISTORY_DAYS, type DayActivity } from '@/features/stats/metrics';
 import { ALL_GRAMMAR } from '@/content/grammar';
+import { MAX_MY_PHRASES, MAX_PHRASE_LENGTH, type MyPhrase } from '@/features/myphrases/phrases';
 import { parseCardKey as parseVerbKey } from '@/features/conjugation/cards';
 import { learnedWordIds, parseCardKey } from '@/features/vocab/cards';
 import type { ProgressExtras, ShadowRating } from '@/store/progressStore';
@@ -41,6 +42,8 @@ export interface BackupSummary extends ProgressCounts {
   ignored: number;
   /** Palavras de vocabulário no backup (só nos códigos do app). */
   words?: number;
+  /** Frases próprias no backup (só nos códigos do app). */
+  phrases?: number;
 }
 
 export const summarizeProgress = (p: ProgressSnapshot): ProgressCounts => ({
@@ -207,7 +210,28 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
     mastered[topic] = at;
   }
 
-  return { value: { history: recent, shadow, challenges, vocab, conj, mastered }, ignored };
+  const myPhrases: Record<string, MyPhrase> = {};
+  for (const [id, v] of Object.entries(recordField(root, 'myPhrases'))) {
+    const valid =
+      id.length > 0 && id.length <= 40 && isRecord(v) &&
+      typeof v.jp === 'string' && v.jp.trim().length > 0 && v.jp.length <= MAX_PHRASE_LENGTH &&
+      typeof v.pt === 'string' && v.pt.trim().length > 0 && v.pt.length <= MAX_PHRASE_LENGTH &&
+      isCount(v.at) && isCount(v.b) && isCount(v.due);
+    if (!valid || Object.keys(myPhrases).length >= MAX_MY_PHRASES) {
+      ignored++;
+      continue;
+    }
+    const phrase = v as Record<string, unknown>;
+    myPhrases[id] = {
+      jp: (phrase.jp as string).trim(),
+      pt: (phrase.pt as string).trim(),
+      at: phrase.at as number,
+      b: Math.min(Math.max(Math.round(phrase.b as number), 1), LAST_BOX),
+      due: phrase.due as number,
+    };
+  }
+
+  return { value: { history: recent, shadow, challenges, vocab, conj, mastered, myPhrases }, ignored };
 }
 
 /**
@@ -271,7 +295,7 @@ export function parseBackup(code: string): BackupParseResult {
     return {
       ok: true,
       snapshot,
-      summary: { ...counts, ignored: ignored + extras.ignored, words: learnedWordIds(extras.value.vocab).size },
+      summary: { ...counts, ignored: ignored + extras.ignored, words: learnedWordIds(extras.value.vocab).size, phrases: Object.keys(extras.value.myPhrases).length },
       source,
       extras: extras.value,
     };
@@ -322,6 +346,7 @@ export function exportBackup(progress: ProgressSnapshot & ProgressExtras, now: D
     vocab: progress.vocab,
     conj: progress.conj,
     mastered: progress.mastered,
+    myPhrases: progress.myPhrases,
   };
   return APP_BACKUP_PREFIX + btoa(encodeUtf8(JSON.stringify(payload)));
 }

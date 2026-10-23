@@ -55,6 +55,15 @@
   erradas:** texto próprio, escrito para este app por um assistente de IA, com frases fixas de atendimento.
 - **Pendência:** as falas do atendente e as explicações **não foram revisadas por um falante**. Revisar junto com o resto.
 
+## Tom das palavras (`pitch.ts`, gerado em `scripts/pitch/`)
+
+- **Origem:** projeto **Kanjium** (https://github.com/mifunetoshiro/kanjium), arquivo `data/source_files/raw/accents.txt`.
+  O projeto declara a licença **CC BY-SA 4.0** (exige crédito e que os dados derivados fiquem sob a mesma licença) e diz que
+  a maior parte dos dados vem do EDRDG (EDICT/KANJIDIC), usados conforme a licença do grupo.
+- **Alterações feitas neste projeto:** só as 538 palavras do vocabulário N5 que têm acento na fonte (`npm run build-pitch`).
+- **Pendência:** confirmar a cadeia de licenças (Kanjium → EDRDG → fontes originais do acento) antes de publicar. O
+  CC BY-SA é o mesmo do KanjiVG, então a escolha da licença do projeto (item 4 de "Antes de publicar") já precisa dele.
+
 ## Vocabulário da especificação (HTML)
 
 A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado vêm do protótipo

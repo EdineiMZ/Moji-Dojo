@@ -6,6 +6,8 @@ import { useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { fonts, spacing } from '@/theme';
 import { RomajiLine } from '@/features/phrases/RomajiLine';
+import { PitchGraph } from '@/features/pitch/PitchGraph';
+import { accentOf, moras } from '@/features/pitch/pitch';
 import { kanjiBreakdown } from './kanjiWords';
 
 interface WordCardProps {
@@ -18,6 +20,7 @@ export function WordCard({ word, enterIndex }: WordCardProps) {
   const speed = useSettingsStore((s) => s.speechSpeed);
   const breakdown = kanjiBreakdown(word);
   const showReading = word.reading !== word.jp;
+  const accent = accentOf(word);
 
   return (
     <Card {...(enterIndex === undefined ? {} : { enterIndex })}>
@@ -25,6 +28,7 @@ export function WordCard({ word, enterIndex }: WordCardProps) {
       {showReading ? <AppText color="muted">{word.reading}</AppText> : null}
       {word.romaji ? <RomajiLine text={word.romaji} /> : null}
       <AppText variant="title">{word.meaning}</AppText>
+      {accent !== undefined && moras(word.reading).length >= 2 ? <PitchGraph reading={word.reading} accent={accent} caption /> : null}
       {breakdown.length > 0 ? (
         <View style={styles.kanji}>
           <AppText variant="caption" color="muted">

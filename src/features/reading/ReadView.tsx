@@ -104,6 +104,11 @@ function Line({ line, known, furigana, onPick, picked }: LineProps) {
 function WordPanel({ picked, onClose }: { picked: Picked; onClose: () => void }) {
   const speed = useSettingsStore((s) => s.speechSpeed);
   const { piece } = picked;
+  const vocab = useProgressStore((s) => s.vocab);
+  const learnWords = useProgressStore((s) => s.learnWords);
+  const setWordNote = useProgressStore((s) => s.setWordNote);
+  const notes = useProgressStore((s) => s.wordNotes);
+  const word = piece.kind === 'token' && piece.token.entry.id ? findWord(piece.token.entry.id) : undefined;
   // Pedaço de uma frase real: só explica (leitura e significado), sem "aprender".
   if (piece.kind === 'part') {
     const { part } = piece;
@@ -124,11 +129,6 @@ function WordPanel({ picked, onClose }: { picked: Picked; onClose: () => void })
       </Card>
     );
   }
-  const vocab = useProgressStore((s) => s.vocab);
-  const learnWords = useProgressStore((s) => s.learnWords);
-  const setWordNote = useProgressStore((s) => s.setWordNote);
-  const notes = useProgressStore((s) => s.wordNotes);
-  const word = piece.token.entry.id ? findWord(piece.token.entry.id) : undefined;
   if (!word) return null;
   const learned = learnedWordIds(vocab).has(word.id);
   const cls = wordClass(word);

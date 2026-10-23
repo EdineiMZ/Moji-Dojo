@@ -9,13 +9,17 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useMotionEnabled } from '../motion';
-import { MochiArt, type MascotMood } from './MochiArt';
+import { outfit as outfitOf } from '@/features/journey/journey';
+import { useProgressStore } from '@/store';
+import { MochiArt, type MascotMood, type MochiOutfit } from './MochiArt';
 
 export type { MascotMood };
 
 interface MascotProps {
   mood?: MascotMood;
   size?: number;
+  /** Roupa a mostrar (a prévia da loja e do armário). Sem isto, usa o que o aluno está vestindo. */
+  outfit?: MochiOutfit;
 }
 
 const MOOD_LABEL: Record<MascotMood, string> = {
@@ -30,7 +34,11 @@ const MOOD_LABEL: Record<MascotMood, string> = {
  * neutro respira, feliz dá um pulinho, triste balança a cabeça, comemorando pula sem parar.
  * Com "reduzir movimento" o desenho fica parado.
  */
-export function Mascot({ mood = 'neutral', size = 160 }: MascotProps) {
+export function Mascot({ mood = 'neutral', size = 160, outfit }: MascotProps) {
+  const equipped = useProgressStore((s) => s.journey.equipped);
+  const owned = useProgressStore((s) => s.journey.owned);
+  const seasonalAuto = useProgressStore((s) => s.journey.seasonalAuto);
+  const worn = outfit ?? outfitOf({ equipped, owned, seasonalAuto }, new Date());
   const motion = useMotionEnabled();
   const lift = useSharedValue(0);
   const tilt = useSharedValue(0);
@@ -90,7 +98,7 @@ export function Mascot({ mood = 'neutral', size = 160 }: MascotProps) {
 
   return (
     <Animated.View accessible accessibilityRole="image" accessibilityLabel={MOOD_LABEL[mood]} style={animated}>
-      <MochiArt mood={mood} size={size} />
+      <MochiArt mood={mood} size={size} outfit={worn} />
     </Animated.View>
   );
 }

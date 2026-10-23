@@ -285,7 +285,7 @@ export const bump = (counters: Readonly<Record<string, number>>, key: string, by
  * O que o Mochi veste agora: o que o aluno equipou e, com a opção ligada, um item de temporada que ele tem e que está
  * na época, no lugar de um espaço vazio.
  */
-export function outfit(state: JourneyState, date: Date): Partial<Record<Slot, string>> {
+export function outfit(state: Pick<JourneyState, 'equipped' | 'owned' | 'seasonalAuto'>, date: Date): Partial<Record<Slot, string>> {
   const worn = { ...state.equipped };
   if (!state.seasonalAuto) return worn;
   for (const id of state.owned) {

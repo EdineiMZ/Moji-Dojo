@@ -1,4 +1,5 @@
 import Svg, { Circle, Ellipse, G, Path, Polygon } from 'react-native-svg';
+import { accessoryArt, TINTS } from './accessories';
 
 export type MascotMood = 'neutral' | 'happy' | 'sad' | 'cheer';
 
@@ -57,22 +58,30 @@ function Mouth({ mood }: { mood: MascotMood }) {
 }
 
 /** Desenho do Mochi (gatinho). viewBox 200 x 190. */
-export function MochiArt({ mood, size }: { mood: MascotMood; size: number }) {
+/** O que o Mochi veste: o id do item de cada espaço (cabeça, rosto, pescoço, fundo e cor). */
+export type MochiOutfit = Partial<Record<'head' | 'face' | 'neck' | 'back' | 'tint', string>>;
+
+/** Abaixo deste tamanho o fundo não aparece (viraria só um quadrado colorido atrás de um Mochi pequeno). */
+const MIN_BACKDROP_SIZE = 110;
+
+export function MochiArt({ mood, size, outfit = {} }: { mood: MascotMood; size: number; outfit?: MochiOutfit }) {
   const armsUp = mood === 'cheer';
+  const tint = (outfit.tint ? TINTS[outfit.tint] : undefined) ?? { body: BODY, pink: PINK };
   return (
     <Svg width={size} height={size * 0.95} viewBox="0 0 200 190">
+      {size >= MIN_BACKDROP_SIZE ? accessoryArt('back', outfit.back) : null}
       {/* orelhas */}
-      <G stroke={LINE} strokeWidth={4} strokeLinejoin="round" fill={BODY}>
+      <G stroke={LINE} strokeWidth={4} strokeLinejoin="round" fill={tint.body}>
         <Polygon points="46,86 52,32 94,58" />
         <Polygon points="154,86 148,32 106,58" />
       </G>
-      <G fill={PINK}>
+      <G fill={tint.pink}>
         <Polygon points="58,72 59,48 79,60" />
         <Polygon points="142,72 141,48 121,60" />
       </G>
 
       {/* pezinhos (atrás do corpo) */}
-      <G fill={BODY} stroke={LINE} strokeWidth={4}>
+      <G fill={tint.body} stroke={LINE} strokeWidth={4}>
         <Ellipse cx={72} cy={170} rx={21} ry={11} />
         <Ellipse cx={128} cy={170} rx={21} ry={11} />
       </G>
@@ -80,14 +89,15 @@ export function MochiArt({ mood, size }: { mood: MascotMood; size: number }) {
       {/* corpo de mochi */}
       <Path
         d="M30 118 C30 74 62 50 100 50 C138 50 170 74 170 118 C170 150 148 172 100 172 C52 172 30 150 30 118 Z"
-        fill={BODY}
+        fill={tint.body}
         stroke={LINE}
         strokeWidth={4}
         strokeLinejoin="round"
       />
+      {accessoryArt('neck', outfit.neck)}
 
       {/* bracinhos */}
-      <G fill={BODY} stroke={LINE} strokeWidth={4}>
+      <G fill={tint.body} stroke={LINE} strokeWidth={4}>
         {armsUp ? (
           <>
             <Ellipse cx={28} cy={92} rx={10} ry={17} rotation={-35} origin="28,92" />
@@ -113,6 +123,9 @@ export function MochiArt({ mood, size }: { mood: MascotMood; size: number }) {
         <Path d="M164 120 L146 122" />
         <Path d="M164 130 L146 128" />
       </G>
+
+      {accessoryArt('face', outfit.face)}
+      {accessoryArt('head', outfit.head)}
 
       {mood === 'sad' && (
         <Path d="M82 126 Q78 136 82 142 Q88 138 86 130 Z" fill={TEAR} stroke={LINE} strokeWidth={2} />

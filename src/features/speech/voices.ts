@@ -46,16 +46,34 @@ export function voiceLabel(voice: VoiceInfo, index: number): string {
   return `Voz ${index + 1}${traits.length > 0 ? ` (${traits.join(', ')})` : ''}`;
 }
 
-/** Texto enviado à voz: uma barra entre alternativas ("はい / いいえ") vira pausa, como no protótipo. */
-const SINGLE_KANA = /^[ぁ-ゖァ-ヶ]$/u;
+/** Letras que a voz de fato fala: sem espaços e sem pontuação. */
+const SPOKEN = /[^\s、。，．,.!?！？…・「」『』()（）\[\]~〜～ー]/gu;
+
+/** Quantas letras a voz vai falar (o traço ー não conta: prolonga a anterior). */
+export const spokenLength = (text: string): number => (text.match(SPOKEN) ?? []).length;
+
+/** Um texto assim curto é onde a voz japonesa do Android costuma ficar muda. */
+export const MIN_SPOKEN_LENGTH = 3;
 
 /**
- * Texto enviado à voz. Uma barra entre alternativas ("はい / いいえ") vira pausa, como no protótipo. Um kana sozinho ("あ", "い")
- * é dito duas vezes ("あ、あ"): a voz japonesa do Android costuma ficar muda com um único caractere, e com dois ela fala (a
- * pausa deixa claro que é o mesmo som repetido, não uma vogal longa).
+ * Texto enviado à voz. Tira o que não se fala (parênteses e o que vem de apoio, como "はし (箸)"), faz de uma barra entre
+ * alternativas ("はい / いいえ") uma pausa, e repete o que é curto demais: a voz japonesa do Android costuma ficar muda com
+ * um ou dois caracteres ("あ", "いえ", "箸"), e repetido com uma pausa ("いえ、いえ") ela fala. Sempre chegam à voz pelo menos três letras.
+ *
+ * `strong` é a segunda tentativa, quando a primeira não saiu: repete também os de três e quatro letras e fecha com ponto.
  */
-export const speechText = (text: string): string => {
-  const clean = text.trim();
-  if (SINGLE_KANA.test(clean)) return `${clean}、${clean}`;
-  return text.replace(/\s*\/\s*/g, '。');
+export const speechText = (text: string, strong = false): string => {
+  const clean = text
+    .replace(/[(（][^)）]*[)）]/g, ' ')
+    .replace(/\s*\/\s*/g, '。')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const length = spokenLength(clean);
+  if (length === 0) return clean;
+  if (length < MIN_SPOKEN_LENGTH) {
+    // repete até a voz receber pelo menos três letras: "あ" vira "あ、あ、あ" e "いえ", "いえ、いえ"
+    return Array.from({ length: Math.ceil(MIN_SPOKEN_LENGTH / length) }, () => clean).join('、');
+  }
+  if (strong && length <= 4) return `${clean}、${clean}。`;
+  return strong ? `${clean}。` : clean;
 };

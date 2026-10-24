@@ -1,4 +1,4 @@
-import { isJapaneseLanguage, japaneseVoices, pickJapaneseVoice, speechText, voiceLabel, type VoiceInfo } from './voices';
+import { isJapaneseLanguage, japaneseVoices, pickJapaneseVoice, speechText, spokenLength, voiceLabel, type VoiceInfo } from './voices';
 
 const voice = (language: string, id = language): VoiceInfo => ({ identifier: id, name: id, language });
 
@@ -25,14 +25,33 @@ describe('pickJapaneseVoice', () => {
 });
 
 describe('speechText', () => {
-  it('um kana sozinho é repetido, porque a voz do Android fica muda com um caractere só', () => {
-    expect(speechText('あ')).toBe('あ、あ');
-    expect(speechText('ン')).toBe('ン、ン');
-    expect(speechText(' い ')).toBe('い、い');
-    // duas letras ou mais já saem normalmente
-    expect(speechText('あい')).toBe('あい');
-    expect(speechText('きゃ')).toBe('きゃ');
-    expect(speechText('日')).toBe('日');
+  it('um ou dois caracteres são repetidos com pausa, até somar três, porque a voz do Android fica muda com textos tão curtos', () => {
+    expect(speechText('あ')).toBe('あ、あ、あ');
+    expect(speechText('ン')).toBe('ン、ン、ン');
+    expect(speechText(' い ')).toBe('い、い、い');
+    expect(speechText('あい')).toBe('あい、あい');
+    expect(speechText('いえ')).toBe('いえ、いえ');
+    expect(speechText('日')).toBe('日、日、日');
+    expect(speechText('箸')).toBe('箸、箸、箸');
+  });
+
+  it('três letras ou mais saem normalmente; o traço longo não conta como letra', () => {
+    expect(speechText('ふじさん')).toBe('ふじさん');
+    expect(speechText('きゃ')).toBe('きゃ、きゃ');
+    expect(speechText('ビール')).toBe('ビール、ビール');
+    expect(speechText('らーめん')).toBe('らーめん');
+  });
+
+  it('a segunda tentativa reforça: repete até quatro letras e fecha com ponto', () => {
+    expect(speechText('ふじさん', true)).toBe('ふじさん、ふじさん。');
+    expect(speechText('ありがとうございます', true)).toBe('ありがとうございます。');
+    expect(speechText('あ', true)).toBe('あ、あ、あ');
+  });
+
+  it('o apoio entre parênteses não é falado', () => {
+    expect(speechText('はし (箸)')).toBe('はし、はし');
+    expect(speechText('ふじさん (富士山)')).toBe('ふじさん');
+    expect(speechText('あめ（雨）')).toBe('あめ、あめ');
   });
 
   it('uma barra entre alternativas vira pausa', () => {
@@ -42,6 +61,11 @@ describe('speechText', () => {
 
   it('texto sem barra não muda', () => {
     expect(speechText('ありがとうございます')).toBe('ありがとうございます');
+  });
+
+  it('sem nada para falar, devolve o texto limpo', () => {
+    expect(speechText('  ')).toBe('');
+    expect(spokenLength('。、 ')).toBe(0);
   });
 });
 

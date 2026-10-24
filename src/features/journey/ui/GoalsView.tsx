@@ -4,7 +4,7 @@ import { useNow } from '@/hooks/useNow';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { DAILY_GOALS } from '../journey';
-import { ALL_MISSIONS_BONUS, challengeFor, MISSION_PETALS, missionsFor, WEEKLY_DAYS_GOAL, WEEKLY_PETALS } from '../missions';
+import { ALL_MISSIONS_BONUS, challengeFor, DIFFICULTY_LABELS, missionsFor, rewardOf, WEEKLY_DAYS_GOAL, WEEKLY_PETALS } from '../missions';
 import { formatDay } from '@/features/streak/days';
 import { buildContext } from '../track';
 import { useChestUi } from '../chestUi';
@@ -64,16 +64,19 @@ export function GoalsView() {
                 {claimed ? '✅ ' : ''}
                 {m.title}
               </AppText>
+              <AppText variant="caption" color="muted">
+                {DIFFICULTY_LABELS[m.difficulty]} · 🌸 {rewardOf(m).petals}
+              </AppText>
               <ProgressBar value={m.goal > 0 ? got / m.goal : 0} height={8} />
               <AppText variant="caption" color="muted">
                 {got} de {m.goal}
-                {claimed ? ` · +${MISSION_PETALS} 🌸` : ''}
+                {claimed ? ` · +${rewardOf(m).petals} 🌸` : ''}
               </AppText>
             </View>
           );
         })}
         <AppText variant="caption" color="muted">
-          Cada missão rende 🌸 {MISSION_PETALS}; as três juntas dão mais 🌸 {ALL_MISSIONS_BONUS}. Elas se resgatam sozinhas.
+          Todo dia vêm três: uma fácil, uma média e uma difícil, que rendem mais pétalas. As três juntas dão mais 🌸 {ALL_MISSIONS_BONUS}. Elas se resgatam sozinhas e mudam de um dia para o outro.
         </AppText>
       </Card>
 

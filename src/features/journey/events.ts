@@ -20,9 +20,8 @@ import {
   challengeFor,
   CHALLENGE_XP,
   findMission,
-  MISSION_PETALS,
-  MISSION_XP,
   missionsFor,
+  rewardOf,
   WEEKLY_DAYS_GOAL,
 } from './missions';
 import { weekKey } from './week';
@@ -100,6 +99,31 @@ const countDay = (state: JourneyState, key: string, by = 1): JourneyState => ({
   today: { ...state.today, counts: bump(state.today.counts, key, by) },
 });
 
+const setDay = (state: JourneyState, key: string, value: number): JourneyState => ({
+  ...state,
+  today: { ...state.today, counts: { ...state.today.counts, [key]: value } },
+});
+
+/** As áreas de estudo para a missão "treine N áreas diferentes". */
+const AREA_GROUP: Readonly<Record<Area, string>> = {
+  kana: 'kana',
+  vocab: 'vocab',
+  conj: 'grammar',
+  particle: 'grammar',
+  drill: 'grammar',
+  phrase: 'phrases',
+  translate: 'phrases',
+  dialog: 'phrases',
+  dictation: 'listen',
+  understand: 'listen',
+  speak: 'speak',
+  tone: 'tone',
+};
+
+/** Respostas do dia para a missão de desempenho, e a porcentagem de acerto que ela pede. */
+const ACCURACY_MISSION_ANSWERS = 30;
+const ACCURACY_MISSION_PCT = 85;
+
 // --- eventos ---
 
 /** O app foi aberto: o baú do dia fica pronto (uma vez por dia) e, depois de uma pausa, vem a boas-vindas. */
@@ -160,7 +184,20 @@ export function onAnswer(state: JourneyState, ctx: EventContext, event: AnswerEv
   next = { ...next, counters: bump(next.counters, 'answers') };
   next = countDay(next, 'answers');
   if (event.ok) next = { ...next, counters: bump(next.counters, 'correct') };
+  if (event.ok) next = countDay(next, 'correctDay');
   if (event.review) next = countDay(next, 'reviews');
+
+  // Missões de desempenho: sequência de acertos, áreas diferentes e porcentagem de acerto do dia.
+  const run = event.ok ? (next.today.counts.run ?? 0) + 1 : 0;
+  next = setDay(next, 'run', run);
+  if (run > (next.today.counts.bestRun ?? 0)) next = setDay(next, 'bestRun', run);
+  const areaKey = `area:${AREA_GROUP[event.area]}`;
+  if (!next.today.counts[areaKey]) {
+    next = setDay(next, areaKey, 1);
+    next = setDay(next, 'areas', Object.keys(next.today.counts).filter((k) => k.startsWith('area:')).length);
+  }
+  const answersToday = next.today.counts.answers ?? 0;
+  if (answersToday >= ACCURACY_MISSION_ANSWERS && ((next.today.counts.correctDay ?? 0) * 100) / answersToday >= ACCURACY_MISSION_PCT) next = setDay(next, 'acc85', 1);
   next = { ...next, counters: countSkill(next.counters, event) };
 
   if (event.area === 'dictation' || event.area === 'understand') next = countDay(next, 'listen');
@@ -223,7 +260,13 @@ export function onLesson(state: JourneyState, ctx: EventContext, event: LessonEv
 export interface SessionEvent {
   first: number;
   total: number;
+  /** Quanto durou a revisão, em segundos (para a missão de ritmo). */
+  seconds?: number;
 }
+
+/** Revisões com menos perguntas do que isto não valem para as missões de desempenho. */
+const PERFORMANCE_MIN_QUESTIONS = 10;
+const FAST_SESSION_SECONDS = 300;
 
 /** A revisão do dia (ou outra sessão longa) foi concluída. */
 export function onSession(state: JourneyState, ctx: EventContext, event: SessionEvent): JourneyState {
@@ -232,6 +275,11 @@ export function onSession(state: JourneyState, ctx: EventContext, event: Session
   next = { ...next, counters: bump(next.counters, 'sessions') };
   next = countDay(next, 'sessions');
   if (reward.perfect) next = countDay(next, 'perfect');
+  if (event.total >= PERFORMANCE_MIN_QUESTIONS) {
+    const pct = (event.first * 100) / event.total;
+    if (pct >= 90) next = countDay(next, 'sessions90');
+    if (pct >= 80 && event.seconds !== undefined && event.seconds <= FAST_SESSION_SECONDS) next = countDay(next, 'fastSessions');
+  }
   const earned = earnCapped(next, reward.petals);
   next = gainXp(earned.state, reward.xp);
   if (earned.given > 0) next = pushToast(next, 'petals', 'Revisão concluída', `+${plural(earned.given, 'pétala', 'pétalas')}${reward.perfect ? ' · revisão perfeita' : ''}`);
@@ -246,6 +294,10 @@ export const onNewWords = (state: JourneyState, ctx: EventContext, count: number
 /** Segundos de uso ativo do app somados ao dia de hoje (a meta de minutos por dia). Não marca o dia como estudado. */
 export const onStudyTime = (state: JourneyState, now: Date, seconds: number): JourneyState =>
   seconds > 0 ? countDay(roll(state, now), 'seconds', Math.round(seconds)) : state;
+
+/** Frases do Explorar folheadas (conta para a missão de explorar). */
+export const onExplored = (state: JourneyState, ctx: EventContext, count: number): JourneyState =>
+  count > 0 ? settle(countDay(roll(state, ctx.now), 'explored', count), ctx, true) : state;
 
 export const onPhrase = (state: JourneyState, ctx: EventContext): JourneyState => settle(countDay(roll(state, ctx.now), 'phrases'), ctx, true);
 
@@ -329,9 +381,10 @@ export function settle(state: JourneyState, ctx: EventContext, studied: boolean)
     if (next.today.claimed.includes(mission.id)) continue;
     if ((next.today.counts[mission.counter] ?? 0) < mission.goal) continue;
     next = { ...next, today: { ...next.today, claimed: [...next.today.claimed, mission.id] } };
-    next = addPetals(next, MISSION_PETALS);
-    next = gainXp(next, MISSION_XP);
-    next = pushToast(next, 'mission', 'Missão cumprida', `${findMission(mission.id)?.title ?? mission.title}. +${MISSION_PETALS} pétalas.`);
+    const reward = rewardOf(mission);
+    next = addPetals(next, reward.petals);
+    next = gainXp(next, reward.xp);
+    next = pushToast(next, 'mission', 'Missão cumprida', `${findMission(mission.id)?.title ?? mission.title}. +${reward.petals} pétalas.`);
     if (missions.every((m) => next.today.claimed.includes(m.id))) {
       next = addPetals(next, ALL_MISSIONS_BONUS);
       next = pushToast(next, 'mission', 'Todas as missões!', `Bônus de +${ALL_MISSIONS_BONUS} pétalas.`);

@@ -12,10 +12,10 @@ import { findVerb } from '@/features/conjugation/verbs';
 import { isParticleCard } from '@/features/cloze/particles';
 import { cardKeysFor, learnedWordIds as learnedVocabIds, parseCardKey as parseVocabKey, READINGS_PER_DAY, readingKeysFor } from '@/features/vocab/cards';
 import { findWord } from '@/content';
-import { askedWeekToday, claimWeekChestWithLoot, onStudyTime, openDailyChest as openChest } from '@/features/journey/events';
+import { askedWeekToday, claimWeekChestWithLoot, openDailyChest as openChest } from '@/features/journey/events';
 import type { Loot, Rng } from '@/features/journey/loot';
 import { applyRescue, declineRescue as declineOffer, rescuePassed, resolveRescue } from '@/features/journey/rescue';
-import { trackAnswer, trackDialog, trackLesson, trackNewWords, trackOpen, trackPhrase, trackRecording, trackSession, trackTouch, buildContext } from '@/features/journey/track';
+import { trackAnswer, trackDialog, trackExplored, trackLesson, trackNewWords, trackOpen, trackPhrase, trackRecording, trackSession, trackStudyTime, trackTouch, buildContext } from '@/features/journey/track';
 import type { Area } from '@/features/journey/events';
 import { buyItem, dismissToast, emptyJourney, equipItem, sanitizeJourney, unequipSlot, type BuyError, type JourneyState } from '@/features/journey/journey';
 import type { Slot } from '@/features/journey/items';
@@ -95,10 +95,12 @@ export interface ProgressActions {
   recordMyPhraseAnswer: (id: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Soma segundos de uso ativo ao dia de hoje (para a meta de minutos). */
   recordStudyTime: (seconds: number, now?: number) => void;
+  /** Frases do Explorar folheadas (missão de explorar). */
+  recordExplored: (count: number, now?: number) => void;
   /** O app foi aberto: marca o dia, dá o bônus diário e, se for o caso, oferece salvar a sequência. */
   openApp: (now?: number) => void;
   /** Uma sessão longa (revisão do dia) terminou com `first` acertos de primeira em `total`. */
-  recordSession: (first: number, total: number, now?: number) => void;
+  recordSession: (first: number, total: number, now?: number, seconds?: number) => void;
   /** A pessoa gravou a própria voz. */
   recordRecording: (now?: number) => void;
   /** Uma cena de diálogo terminou (perfeita = sem erro). */
@@ -419,7 +421,13 @@ export function createProgressStore(storage: StateStorage) {
             };
           }),
 
-        recordStudyTime: (seconds, now = Date.now()) => set((s) => ({ journey: onStudyTime(s.journey, new Date(now), seconds) })),
+        recordStudyTime: (seconds, now = Date.now()) => set((s) => ({ journey: trackStudyTime(s, s.days, now, seconds) })),
+
+        recordExplored: (count, now = Date.now()) =>
+          set((s) => {
+            const days = markDay(s.days, new Date(now));
+            return { days, journey: trackExplored(s, days, now, count) };
+          }),
 
         openApp: (now = Date.now()) =>
           set((s) => {
@@ -427,10 +435,10 @@ export function createProgressStore(storage: StateStorage) {
             return { days, journey: trackOpen(s, s.days, days, now) };
           }),
 
-        recordSession: (first, total, now = Date.now()) =>
+        recordSession: (first, total, now = Date.now(), seconds) =>
           set((s) => {
             const days = markDay(s.days, new Date(now));
-            return { days, journey: trackSession(s, days, now, first, total) };
+            return { days, journey: trackSession(s, days, now, first, total, seconds) };
           }),
 
         recordRecording: (now = Date.now()) =>

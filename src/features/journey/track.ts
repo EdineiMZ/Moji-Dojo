@@ -6,7 +6,10 @@ import type { SrsState } from '@/features/review/srs';
 import { daysStudiedInWeek } from './week';
 import {
   onAnswer,
+  clearMiss,
   onDialogDone,
+  onExplored,
+  onStudyTime,
   onLesson,
   onNewWords,
   onOpen,
@@ -73,14 +76,27 @@ export function trackAnswer(slice: TrackSlice, days: readonly string[], now: num
   const { ref, ...answer } = event;
   let journey = onAnswer(slice.journey, buildContext(slice, days, now), answer);
   if (ref && !event.ok) journey = recordMiss(journey, ref);
+  // Acertar um item que estava na lista de erros o tira dela e conta para a missão "acerte itens que errou".
+  if (ref && event.ok && journey.misses.includes(ref)) {
+    journey = clearMiss(journey, ref);
+    journey = { ...journey, today: { ...journey.today, counts: { ...journey.today.counts, rescued: (journey.today.counts.rescued ?? 0) + 1 } } };
+    journey = settle(journey, buildContext(slice, days, now), true);
+  }
   return journey;
 }
 
 export const trackLesson = (slice: TrackSlice, days: readonly string[], now: number, event: Parameters<typeof onLesson>[2]): JourneyState =>
   applyEvent(slice, days, now, (j, c) => onLesson(j, c, event));
 
-export const trackSession = (slice: TrackSlice, days: readonly string[], now: number, first: number, total: number): JourneyState =>
-  applyEvent(slice, days, now, (j, c) => onSession(j, c, { first, total }));
+export const trackSession = (slice: TrackSlice, days: readonly string[], now: number, first: number, total: number, seconds?: number): JourneyState =>
+  applyEvent(slice, days, now, (j, c) => onSession(j, c, { first, total, ...(seconds !== undefined ? { seconds } : {}) }));
+
+/** Tempo de uso ativo: soma ao dia e já resgata as missões de tempo. Não marca o dia como estudado. */
+export const trackStudyTime = (slice: TrackSlice, days: readonly string[], now: number, seconds: number): JourneyState =>
+  applyEvent(slice, days, now, (j, c) => settle(onStudyTime(j, c.now, seconds), c, false));
+
+export const trackExplored = (slice: TrackSlice, days: readonly string[], now: number, count: number): JourneyState =>
+  applyEvent(slice, days, now, (j, c) => onExplored(j, c, count));
 
 export const trackNewWords = (slice: TrackSlice, days: readonly string[], now: number, count: number): JourneyState =>
   applyEvent(slice, days, now, (j, c) => onNewWords(j, c, count));

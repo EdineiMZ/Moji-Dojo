@@ -2,6 +2,16 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.16.0] - 2026-10-24
+
+Sons que não tocavam, missões novas (com dificuldade e desempenho) e a validação das frases do Explorar com modelos abertos.
+
+- **Áudio mudo corrigido na raiz:** a voz do Android calava com textos de uma ou duas letras (vogais, あい, いえ, kanji sozinho). Agora toda fala chega com pelo menos três letras (repetida com pausa, como "あ、あ、あ"), o apoio entre parênteses não é falado, e a fala não é mais cortada na mesma hora em que outra começa. Se a voz der erro ou terminar sem começar, o app tenta de novo (texto reforçado e depois sem a voz escolhida). Um teste confere os mais de 1.300 textos que o app fala (sons, kana, kanji, palavras).
+- **Diagnóstico de som (Ajustes → Voz japonesa):** toca 8 textos de teste (do mais curto à frase), em velocidade normal e devagar, direto na voz do aparelho, e mostra quais saíram, com o tempo de cada um, mais as últimas falas do app. Se algo ainda ficar mudo, a captura dessa lista mostra por quê.
+- **Missões do dia, agora 24 (eram 10):** todo dia vêm uma **fácil, uma média e uma difícil** (4, 6 e 9 pétalas), sem repetir as de ontem. Novas: revisão com 90% de acerto, revisão em até 5 minutos com 80%, 8 ou 15 acertos seguidos, 85% de acerto em 30 respostas, treinar 3 ou 5 áreas diferentes, acertar itens que você tinha errado, estudar 10, 20 ou 30 minutos, folhear 20 frases do Explorar e 20 exercícios de gramática. As de tempo e desempenho se resgatam sozinhas.
+- **Itens errados saem da lista de erros** quando você os acerta (contam para a missão de "itens que errou").
+- **Validação das traduções (`docs/validacao-traducoes.md`):** LaBSE (nota de margem) e NLLB-200, rodando no computador, apontaram traduções desencontradas no banco do Explorar: 1.475 frases (5%) saíram, ficaram 28.525. Nas frases escritas por IA (viagem, atendente, moldes) o teste não serve (frases curtas em kana), então valem a conferência do 1.14.1 e a revisão por um falante.
+
 ## [1.15.0] - 2026-10-24
 
 Explorar frases: 30 mil frases de falantes, com tradução em português, para buscar uma palavra em uso. Tudo no aparelho, sem servidor.

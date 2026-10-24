@@ -62,15 +62,103 @@ export function ensureVoiceChecked(): void {
   void useVoiceStore.getState().check();
 }
 
+/** Uma tentativa de fala: a voz do aparelho (ou não) e o texto, no jeito normal ou reforçado. */
+interface Attempt {
+  withVoice: boolean;
+  strong: boolean;
+}
+
+/**
+ * As tentativas, em ordem. Se a fala der erro ou terminar sem ter começado (a voz japonesa do Android às vezes "toca" em
+ * silêncio), tenta de novo: reforçando o texto, depois sem a voz escolhida (uma voz online sem internet não fala nada).
+ */
+const ATTEMPTS: readonly Attempt[] = [
+  { withVoice: true, strong: false },
+  { withVoice: true, strong: true },
+  { withVoice: false, strong: true },
+];
+
+/** Uma fala que terminou antes disto (ms) não chegou a ser dita. */
+const TOO_SHORT_MS = 90;
+
+export interface SpeechLogEntry {
+  text: string;
+  /** Qual tentativa (1 a 3) acabou valendo, ou 0 se nenhuma saiu. */
+  attempt: number;
+  note: string;
+}
+
+const LOG_SIZE = 20;
+let speechLog: SpeechLogEntry[] = [];
+/** As últimas falas e o que aconteceu com cada uma (para o diagnóstico nos Ajustes). */
+export const recentSpeech = (): readonly SpeechLogEntry[] => speechLog;
+const remember = (entry: SpeechLogEntry) => {
+  speechLog = [entry, ...speechLog].slice(0, LOG_SIZE);
+};
+
+let speaking = false;
+let request = 0;
+let lastSpokenAt = 0;
+
+function speakAttempt(text: string, rate: number, step: number, id: number): void {
+  const attempt = ATTEMPTS[step];
+  if (!attempt || id !== request) return;
+  const { voice } = useVoiceStore.getState();
+  let started = false;
+  const begin = Date.now();
+  const retry = (why: string) => {
+    if (id !== request) return;
+    speaking = false;
+    if (step + 1 < ATTEMPTS.length) {
+      remember({ text, attempt: step + 1, note: `repetiu: ${why}` });
+      speakAttempt(text, rate, step + 1, id);
+    } else {
+      remember({ text, attempt: 0, note: `não saiu (${why})` });
+    }
+  };
+  Speech.speak(speechText(text, attempt.strong), {
+    language: 'ja-JP',
+    rate,
+    ...(attempt.withVoice && voice ? { voice: voice.identifier } : {}),
+    onStart: () => {
+      started = true;
+      speaking = true;
+    },
+    onDone: () => {
+      if (id !== request) return;
+      speaking = false;
+      if (!started) retry('terminou sem começar');
+      else if (Date.now() - begin < TOO_SHORT_MS) retry('terminou rápido demais');
+      else remember({ text, attempt: step + 1, note: `ok em ${Date.now() - begin} ms` });
+    },
+    onStopped: () => {
+      speaking = false;
+    },
+    onError: (error) => retry(error?.message ?? 'erro da voz'),
+  });
+}
+
 /** Lê um texto em japonês: gravação de falante nativo quando a palavra tem, senão a voz do Android (a japonesa, se existir). */
 export function speakJapanese(text: string, rate = 0.9): void {
-  const { voice } = useVoiceStore.getState();
-  Speech.stop();
+  const id = ++request;
   // Palavra gravada por um falante nativo: toca a gravação (mais natural que a voz do aparelho).
   if (useSettingsStore.getState().nativeAudio) {
     const recording = recordingFor(text);
-    if (recording && playRecording(recording, rate)) return;
+    if (recording) {
+      if (speaking) Speech.stop();
+      speaking = false;
+      if (playRecording(recording, rate)) return;
+    }
   }
   stopRecording();
-  Speech.speak(speechText(text), { language: 'ja-JP', rate, ...(voice ? { voice: voice.identifier } : {}) });
+  // Parar a fala e começar outra no mesmo instante faz alguns Android descartarem a nova: dá um respiro quando havia fala.
+  const busy = speaking || Date.now() - lastSpokenAt < 600;
+  lastSpokenAt = Date.now();
+  if (busy) {
+    speaking = false;
+    void Speech.stop();
+    setTimeout(() => speakAttempt(text, rate, 0, id), 80);
+    return;
+  }
+  speakAttempt(text, rate, 0, id);
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, Mascot } from '@/components';
 import { findItem } from '@/features/catalog';
@@ -47,13 +47,18 @@ interface Outcome extends QuizResult {
 export function ReviewSession({ extra, light = false, unlimited = false, onExit, onCelebrate, onDrawingChange, onActiveChange }: ReviewSessionProps) {
   const [attempt, setAttempt] = useState(0);
   const [outcome, setOutcome] = useState<Outcome | null>(null);
+  /** Quando a rodada começou, para a missão de ritmo (revisão rápida). */
+  const startedAt = useRef(0);
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, [attempt]);
 
   const finish = (result: QuizResult) => {
     const { srs } = useProgressStore.getState();
     const remaining = extra ? 0 : dueChars(srs, Date.now(), isKnown).length;
     const pct = result.total ? Math.round((result.first / result.total) * 100) : 0;
     setOutcome({ ...result, remaining });
-    if (!extra && result.total > 0) useProgressStore.getState().recordSession(result.first, result.total);
+    if (!extra && result.total > 0) useProgressStore.getState().recordSession(result.first, result.total, Date.now(), Math.round((Date.now() - startedAt.current) / 1000));
     if (pct >= REVIEW_GOOD_PCT) feedbackComplete(result.first === result.total);
     onCelebrate({ petals: pct >= REVIEW_GOOD_PCT, confetti: result.total > 0 && result.first === result.total });
   };

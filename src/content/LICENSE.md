@@ -50,7 +50,7 @@
 
 ## Explorar frases (`assets/sentences.db`, gerado em `scripts/example-sentences/`)
 
-- **Origem:** 30 mil frases do **Tatoeba** (https://tatoeba.org), sob **CC BY 2.0 FR**, tiradas do dump público de frases em
+- **Origem:** 28 mil frases do **Tatoeba** (https://tatoeba.org), sob **CC BY 2.0 FR**, tiradas do dump público de frases em
   japonês e em português. Cada frase mostra o número no Tatoeba (`https://tatoeba.org/sentences/show/<id>`) como crédito; os autores
   estão nas páginas do Tatoeba.
 - **Traduções:** a ligação do Tatoeba entre uma frase em japonês e uma em português é direta ou pelo inglês (japonês → inglês →
@@ -63,6 +63,11 @@
   O romaji é gerado por regra a partir do kana.
 - **Pendência:** a lista de temas excluídos é curta e a filtragem é automática; nada foi lido frase por frase, e as leituras e as
   traduções livres **não foram revisadas por um falante**.
+
+## Validação das traduções (`scripts/validate-translations/`, 1.16.0)
+
+- **LaBSE** (`sentence-transformers/LaBSE`, Apache-2.0) e **NLLB-200 distilled 600M** (`facebook/nllb-200-distilled-600M`, **CC-BY-NC 4.0**, "para pesquisa") rodaram **só no computador**, para apontar traduções que não batem. Nenhum texto nem modelo deles vai no app. Por causa da licença do NLLB, esse passo é só para conferência pessoal e não deve virar parte de um produto comercial.
+- 1.475 frases do Explorar foram tiradas por terem nota de margem baixa (`removed-ids.json`). Relatório e limites em `docs/validacao-traducoes.md`.
 
 ## Diálogos (`dialogs.ts`, gerado em `scripts/dialogs/`)
 

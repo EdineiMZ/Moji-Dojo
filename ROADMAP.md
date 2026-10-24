@@ -222,6 +222,12 @@ Objetivo: dar vontade de voltar, sem pressão tóxica.
 - [x] **Banco de 30 mil frases de falantes para folhear e buscar, tudo no aparelho.** *(G)*
   - Feito (1.15.0): em Frases → Explorar, 30 mil frases do Tatoeba com tradução em português (diretas ou pelo inglês), no nível do vocabulário do app, com furigana, romaji e voz. Busca por palavra (kanji, kana ou katakana, até conjugada) ou por um trecho em português, "Sortear frases" e "Salvar nas minhas frases". O banco é um SQLite de 9 MB empacotado no app (`assets/sentences.db`, gerado por `scripts/example-sentences/build.mjs`); não há servidor. Fonte e limites em `src/content/LICENSE.md`. Falta: revisão por um falante das leituras e das traduções livres.
 
+### Extra: áudio, missões e validação (1.16.0)
+
+- [x] **Áudio que não toca:** toda fala chega à voz com pelo menos 3 letras, repete se a voz falhar, e há um diagnóstico de som nos Ajustes. Falta confirmar no aparelho; se algo ainda ficar mudo, o próximo passo é gravações de falante nativo para os kana e as palavras curtas. *(M)*
+- [x] **Missões mais variadas:** 24 missões em 3 dificuldades (desempenho, ritmo, variedade, itens errados, tempo). Falta: missões em cadeia, peso pelas áreas em que você está mais fraco e missões por horário. *(M)*
+- [x] **Validar traduções online:** LaBSE + NLLB-200 no computador (`scripts/validate-translations/`), relatório em `docs/validacao-traducoes.md`. Tirou 5% das frases do Explorar; não serve para as frases curtas em kana. *(M)*
+
 ### Fase 8: fora do app (onde a fluência acontece de verdade)
 
 O app prepara, mas a fluência vem de **usar** o japonês. Esta fase é mais um guia do que código.

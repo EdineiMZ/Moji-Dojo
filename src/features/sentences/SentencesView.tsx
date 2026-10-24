@@ -17,7 +17,7 @@ const MODES = [
 const DATABASE = 'sentences-v1.db';
 
 /**
- * Explorar frases: 30 mil frases de falantes do Tatoeba com tradução em português, escolhidas para o nível do app.
+ * Explorar frases: 28 mil frases de falantes do Tatoeba com tradução em português, escolhidas para o nível do app.
  * O banco vem dentro do app (nada de servidor); a busca é por palavra, em japonês ou em português.
  */
 export function SentencesView() {
@@ -35,6 +35,7 @@ function Explorer() {
   const inputRef = useRef<TextInput>(null);
   const myPhrases = useProgressStore((s) => s.myPhrases);
   const addMyPhrase = useProgressStore((s) => s.addMyPhrase);
+  const recordExplored = useProgressStore((s) => s.recordExplored);
 
   const [mode, setMode] = useState<SearchMode>('jp');
   const [text, setText] = useState('');
@@ -53,6 +54,7 @@ function Explorer() {
       const found = await searchSentences(db, mode, text, page);
       if (cancelled) return;
       setRows((current) => (page === 0 ? found : [...current, ...found]));
+      recordExplored(found.length);
       setMore(found.length === PAGE_SIZE);
       setSearched(true);
     }, 250);
@@ -60,7 +62,7 @@ function Explorer() {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [db, mode, text, page]);
+  }, [db, mode, text, page, recordExplored]);
 
   const change = (next: string) => {
     setText(next);
@@ -79,7 +81,9 @@ function Explorer() {
     setMore(false);
     setSearched(false);
     setNotice(null);
-    setRows(await randomSentences(db));
+    const drawn = await randomSentences(db);
+    setRows(drawn);
+    recordExplored(drawn.length);
   };
 
   const isMine = (row: SentenceRow): boolean =>

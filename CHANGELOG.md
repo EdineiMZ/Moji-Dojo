@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [1.15.0] - 2026-10-24
+
+Explorar frases: 30 mil frases de falantes, com tradução em português, para buscar uma palavra em uso. Tudo no aparelho, sem servidor.
+
+- **Nova tela Frases → Explorar:** busca por uma palavra em japonês (em kanji, hiragana ou katakana, e também conjugada) ou por um trecho em português, e o botão "Sortear frases" para folhear. As frases vêm das mais curtas para as mais longas, com furigana, romaji, voz e a opção "Salvar nas minhas frases" (entram na revisão).
+- **De onde vêm:** frases do Tatoeba (CC BY 2.0 FR), escolhidas para o seu nível: só com palavras do vocabulário do app, no máximo uma palavra nova (avisada na frase), sem números, nomes de pessoas e alguns temas. Cada frase mostra o número no Tatoeba. Algumas traduções são livres, porque o Tatoeba as liga pelo inglês.
+- **Como funciona:** um banco SQLite de 9 MB vai dentro do app (`assets/sentences.db`, gerado no computador por `scripts/example-sentences/build.mjs`). O APK ficou maior por isso.
+- **Limites:** as leituras (furigana) são automáticas e podem errar; nada disso foi revisado por um falante. Detalhes em `src/content/LICENSE.md`.
+
 ## [1.14.1] - 2026-10-23
 
 Conferência do japonês do app em fontes abertas, com um selo de confirmação em cada frase e algumas correções.

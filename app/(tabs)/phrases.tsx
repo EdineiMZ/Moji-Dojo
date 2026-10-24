@@ -10,6 +10,7 @@ import { ALL_TOPICS } from '@/features/phrases/build';
 import { GrammarView } from '@/features/phrases/GrammarView';
 import { TravelView } from '@/features/phrases/TravelView';
 import { FramesView } from '@/features/frames/FramesView';
+import { SentencesView } from '@/features/sentences/SentencesView';
 import { StructureView } from '@/features/structure/StructureView';
 import { ReadView } from '@/features/reading/ReadView';
 import { LoanwordsView } from '@/features/katakana/LoanwordsView';
@@ -19,7 +20,7 @@ import { VocabView } from '@/features/vocab/VocabView';
 import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 
-type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure' | 'frames';
+type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure' | 'frames' | 'explore';
 
 type Section = 'words' | 'grammar' | 'sentences';
 
@@ -55,6 +56,7 @@ const SECTIONS: readonly { value: Section; label: string; views: readonly { valu
       { value: 'bank', label: 'Banco' },
       { value: 'dialog', label: 'Diálogos' },
       { value: 'travel', label: 'Viagem' },
+      { value: 'explore', label: 'Explorar' },
       { value: 'mine', label: 'Minhas frases' },
     ],
   },
@@ -97,6 +99,7 @@ export default function PhrasesScreen() {
         {view === 'translate' ? <TranslateView /> : null}
         {view === 'bank' ? <BankView /> : null}
         {view === 'dialog' ? <DialogView /> : null}
+        {view === 'explore' ? <SentencesView /> : null}
         {view === 'mine' ? <MyPhrasesView /> : null}
         {view === 'build' ? <BuildHub topic={topic} onTopicChange={setTopic} /> : null}
         {view === 'travel' ? <TravelView /> : null}

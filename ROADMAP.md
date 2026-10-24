@@ -217,6 +217,11 @@ Objetivo: dar vontade de voltar, sem pressão tóxica.
 - [x] **Resumo semanal** do que foi aprendido e do que precisa de atenção. *(P)*
   - Feito (1.8.0): Meu Mochi → Resumo, com calendário, recorde, retrospectiva da semana e do mês e texto para compartilhar.
 
+### Extra: Explorar frases (1.15.0)
+
+- [x] **Banco de 30 mil frases de falantes para folhear e buscar, tudo no aparelho.** *(G)*
+  - Feito (1.15.0): em Frases → Explorar, 30 mil frases do Tatoeba com tradução em português (diretas ou pelo inglês), no nível do vocabulário do app, com furigana, romaji e voz. Busca por palavra (kanji, kana ou katakana, até conjugada) ou por um trecho em português, "Sortear frases" e "Salvar nas minhas frases". O banco é um SQLite de 9 MB empacotado no app (`assets/sentences.db`, gerado por `scripts/example-sentences/build.mjs`); não há servidor. Fonte e limites em `src/content/LICENSE.md`. Falta: revisão por um falante das leituras e das traduções livres.
+
 ### Fase 8: fora do app (onde a fluência acontece de verdade)
 
 O app prepara, mas a fluência vem de **usar** o japonês. Esta fase é mais um guia do que código.

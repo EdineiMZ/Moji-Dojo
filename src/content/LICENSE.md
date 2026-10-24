@@ -48,6 +48,22 @@
 - **Pendência:** o corte em palavras é automático e pode errar (palavras só em kana com mais de um sentido). A lista
   "palavras que a frase usa" (que decide o filtro "frases que eu sei ler") não foi revisada por um falante.
 
+## Explorar frases (`assets/sentences.db`, gerado em `scripts/example-sentences/`)
+
+- **Origem:** 30 mil frases do **Tatoeba** (https://tatoeba.org), sob **CC BY 2.0 FR**, tiradas do dump público de frases em
+  japonês e em português. Cada frase mostra o número no Tatoeba (`https://tatoeba.org/sentences/show/<id>`) como crédito; os autores
+  estão nas páginas do Tatoeba.
+- **Traduções:** a ligação do Tatoeba entre uma frase em japonês e uma em português é direta ou pelo inglês (japonês → inglês →
+  português). As indiretas podem ser **livres**, e o aviso está na tela. Quando há mais de uma tradução, fica a mais curta.
+- **Filtros (feitos no computador):** 4 a 32 caracteres, sem números nem letras latinas, sem nomes de pessoas, sem uma lista curta
+  de temas (violência, sexo, palavrões, religião, bebida, cigarro), sem repetidas, só com palavras do vocabulário do app
+  (N5 + palavras dos kanji + lista N4 do *open-anki-jlpt-decks*, MIT), com no máximo 1 palavra fora dele (marcada como "palavra nova").
+- **Leitura (furigana e kana):** gerada pelo analisador **kuromoji** (Apache-2.0, dicionário IPADIC) e pelas leituras do JMdict
+  (EDRDG, CC BY-SA 4.0). **É automática e pode errar** (por exemplo, a leitura de números e de palavras com mais de uma leitura).
+  O romaji é gerado por regra a partir do kana.
+- **Pendência:** a lista de temas excluídos é curta e a filtragem é automática; nada foi lido frase por frase, e as leituras e as
+  traduções livres **não foram revisadas por um falante**.
+
 ## Diálogos (`dialogs.ts`, gerado em `scripts/dialogs/`)
 
 - **Falas do aluno:** frases de Viagem, vindas do protótipo HTML. Nada novo.

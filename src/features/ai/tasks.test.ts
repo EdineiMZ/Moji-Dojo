@@ -1,5 +1,6 @@
 import { createAiStore, MAX_DIARY } from './aiStore';
-import { cleanGenerated, parseDiaryReview, parseExplanation, parseTextExplanation, parseGenerated, parsePhraseFix, PHRASE_TOPICS, unknownParts } from './tasks';
+import { CONTEXT_MESSAGES, findScenario, SCENARIOS, transcript } from './scenarios';
+import { cleanGenerated, parseChatReply, parseDiaryReview, parseExplanation, parseTextExplanation, parseGenerated, parsePhraseFix, PHRASE_TOPICS, unknownParts } from './tasks';
 
 describe('parsePhraseFix', () => {
   it('aceita a correção completa e limita as listas', () => {
@@ -117,5 +118,49 @@ describe('diário guardado', () => {
     expect(createAiStore(storage).getState().diary).toHaveLength(MAX_DIARY);
     store.getState().clearAll();
     expect(store.getState().diary).toEqual([]);
+  });
+});
+
+describe('parseChatReply', () => {
+  const base = { reply: { jp: 'いらっしゃいませ。', pt: 'Bem-vindo.' } };
+
+  it('lê a resposta, a correção e até 3 sugestões', () => {
+    const r = parseChatReply({
+      ...base,
+      feedback: { ok: false, corrected: 'ふたりです。', pt: 'Somos duas pessoas.', note: 'Faltou です.' },
+      suggestions: [1, 2, 3, 4].map((n) => ({ jp: `はい${n}`, pt: 'sim' })),
+    });
+    expect(r?.jp).toBe('いらっしゃいませ。');
+    expect(r?.feedback).toEqual({ ok: false, corrected: 'ふたりです。', pt: 'Somos duas pessoas.', note: 'Faltou です.' });
+    expect(r?.suggestions).toHaveLength(3);
+  });
+
+  it('sem feedback assume que estava certo, e exige a fala da IA com tradução', () => {
+    expect(parseChatReply(base)?.feedback.ok).toBe(true);
+    expect(parseChatReply({ reply: { jp: 'x', pt: '' } })).toBeNull();
+    expect(parseChatReply({})).toBeNull();
+  });
+});
+
+describe('cenas de conversa', () => {
+  it('todas têm a fala de abertura em japonês e o papel da IA', () => {
+    expect(SCENARIOS.length).toBeGreaterThanOrEqual(5);
+    expect(new Set(SCENARIOS.map((s) => s.id)).size).toBe(SCENARIOS.length);
+    for (const s of SCENARIOS) {
+      expect(s.openingJp).toMatch(/[぀-ヿ一-鿿]/);
+      expect(s.openingPt.length).toBeGreaterThan(3);
+      expect(s.role.length).toBeGreaterThan(20);
+    }
+    expect(findScenario('hotel')?.title).toBe('Hotel');
+    expect(findScenario('nada')).toBeUndefined();
+  });
+
+  it('manda à IA só as últimas falas, marcadas por quem falou', () => {
+    const history = Array.from({ length: 14 }, (_, i) => ({ role: i % 2 === 0 ? ('ai' as const) : ('me' as const), jp: `fala${i}` }));
+    const lines = transcript(history).split('\n');
+    expect(lines).toHaveLength(CONTEXT_MESSAGES);
+    expect(lines[0]).toBe('Você: fala4');
+    expect(lines[1]).toBe('Aluno: fala5');
+    expect(transcript([{ role: 'me', jp: '<b>oi</b>' }])).toBe('Aluno: boi/b');
   });
 });

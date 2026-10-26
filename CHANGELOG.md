@@ -2,6 +2,17 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.2.0] - 2026-10-26
+
+Conversa por texto com a IA (Frases → ✨ IA → Conversa). Precisa da chave cadastrada em Ajustes; sem ela, o resto do app não muda.
+
+- **6 cenas:** restaurante, loja, estação de trem, hotel, conhecer alguém e bate-papo com amigo. A primeira fala é do app (sem gastar a IA); depois a IA faz o personagem em japonês simples (N5), com no máximo uma pergunta por vez.
+- **Você digita, ela fala:** a resposta é lida pela voz japonesa do aparelho (dá para desligar), com botão para ouvir de novo e tradução sob demanda. Você responde com o teclado do app (flick) ou o do celular.
+- **Correção a cada frase sua:** se havia o que melhorar, aparece "Melhor:" com a versão corrigida e uma explicação curta em português.
+- **Ideias de resposta:** três sugestões curtas, com tradução, para quem trava; um toque preenche o campo.
+- **Resumo:** ao terminar, as frases corrigidas aparecem para salvar em Minhas frases (entram na revisão). Máximo de 12 falas por conversa, para controlar o custo.
+- Se a IA falhar (sem internet, limite, chave), a sua fala volta para o campo para tentar de novo.
+
 ## [2.1.0] - 2026-10-26
 
 Mais recursos de IA em Frases → ✨ IA: explicar qualquer texto japonês e um diário corrigido. Só aparecem com a IA ligada e a chave cadastrada em Ajustes.

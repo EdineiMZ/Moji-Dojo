@@ -10,10 +10,11 @@ import { SPEECH_RATES } from '@/store/settingsStore';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { AiDisclaimer } from './AiParts';
 import { AiError } from './client';
+import { ConversationView } from './ConversationView';
 import { explainText, MAX_DIARY_LENGTH, MAX_DIARY_LINES, MAX_TEXT_LENGTH, reviewDiary, type DiaryReview, type TextExplanation } from './tasks';
 import { useAiReady } from './useAi';
 
-type Tab = 'explain' | 'diary';
+type Tab = 'chat' | 'explain' | 'diary';
 
 const errorText = (error: unknown): string => (error instanceof AiError ? error.message : 'Não consegui falar com a IA agora.');
 
@@ -21,14 +22,14 @@ const errorText = (error: unknown): string => (error instanceof AiError ? error.
 export function AiStudioView() {
   const router = useRouter();
   const ready = useAiReady();
-  const [tab, setTab] = useState<Tab>('explain');
+  const [tab, setTab] = useState<Tab>('chat');
 
   if (!ready) {
     return (
       <Card enterIndex={0}>
         <AppText variant="title">Estudar com IA</AppText>
         <AppText color="muted">
-          Explique falas de anime e mensagens em japonês, e escreva um diário corrigido. Cadastre a sua chave de API em Ajustes para usar. O resto do app não precisa dela.
+          Converse com a IA em japonês, explique falas de anime e mensagens, e escreva um diário corrigido. Cadastre a sua chave de API em Ajustes para usar. O resto do app não precisa dela.
         </AppText>
         <Button label="Abrir Ajustes" variant="soft" onPress={() => router.push('/settings')} />
       </Card>
@@ -39,13 +40,14 @@ export function AiStudioView() {
     <View style={styles.root}>
       <SegmentedControl
         options={[
-          { value: 'explain' as const, label: 'Explicar texto' },
+          { value: 'chat' as const, label: 'Conversa' },
+          { value: 'explain' as const, label: 'Explicar' },
           { value: 'diary' as const, label: 'Diário' },
         ]}
         value={tab}
         onChange={setTab}
       />
-      {tab === 'explain' ? <ExplainTextCard /> : <DiaryCard />}
+      {tab === 'chat' ? <ConversationView /> : tab === 'explain' ? <ExplainTextCard /> : <DiaryCard />}
     </View>
   );
 }

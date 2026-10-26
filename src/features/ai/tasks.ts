@@ -1,5 +1,6 @@
 import { segmentLoose } from '@/features/bank/lexicon';
 import { howTo } from '@/features/keyboard/flick';
+import { transcript, type ChatMessage, type Scenario } from './scenarios';
 import { ask } from './useAi';
 
 /** Texto da pessoa vai entre marcas, para a IA tratá-lo como dado e não como ordem. */
@@ -296,5 +297,57 @@ export function reviewDiary(lines: readonly string[]): Promise<DiaryReview> {
     maxTokens: 1500,
     parse: parseDiaryReview,
     cacheKey: `diary:${clean.join('|')}`,
+  });
+}
+
+// ─── 6. Conversa por texto ───────────────────────────────────────────────
+
+export interface ChatReply {
+  jp: string;
+  pt: string;
+  /** Sobre a última fala do aluno. */
+  feedback: { ok: boolean; corrected: string; pt: string; note: string };
+  /** Ideias do que responder, curtas e no nível do aluno. */
+  suggestions: readonly { jp: string; pt: string }[];
+}
+
+const chatSystem = (scenario: Scenario): string => `${TEACHER}
+Você faz um treino de conversa. ${scenario.role}
+REGRAS: fale só em japonês na sua fala (reply.jp), de 1 a 2 frases curtas, com vocabulário e gramática N5 (です/ます, partículas básicas), kanji simples ou hiragana. Faça no máximo uma pergunta por vez e deixe a conversa andar. Fique no personagem; se o aluno escrever algo que não é japonês, responda com gentileza em japonês simples e avise na observação. ${HONESTY}
+Também avalie a ÚLTIMA fala do aluno: feedback.ok é true se estava correta e natural; senão feedback.corrected traz a versão corrigida e feedback.note explica em português, em uma ou duas frases. Seja gentil.
+Responda SOMENTE com JSON:
+{"reply": {"jp": string, "pt": string}, "feedback": {"ok": boolean, "corrected": string, "pt": string, "note": string}, "suggestions": [{"jp": string, "pt": string}]}
+- reply.pt: tradução da sua fala em português. feedback.pt: tradução em português da versão corrigida.
+- suggestions: 3 ideias de resposta para o aluno, curtas e simples (jp em hiragana ou kanji N5, com tradução).`;
+
+export function parseChatReply(json: unknown): ChatReply | null {
+  if (!isRecord(json) || !isRecord(json.reply)) return null;
+  const jp = text(json.reply.jp, 300);
+  const pt = text(json.reply.pt, 300);
+  if (!jp || !pt) return null;
+  const fb = isRecord(json.feedback) ? json.feedback : {};
+  const feedback = { ok: fb.ok !== false, corrected: text(fb.corrected, 200), pt: text(fb.pt, 200), note: text(fb.note, 400) };
+  const suggestions = (Array.isArray(json.suggestions) ? json.suggestions : [])
+    .filter(isRecord)
+    .map((x) => ({ jp: text(x.jp, 80), pt: text(x.pt, 120) }))
+    .filter((x) => x.jp)
+    .slice(0, 3);
+  return { jp, pt, feedback, suggestions };
+}
+
+export const MAX_CHAT_INPUT = 150;
+
+/** Um turno da conversa: manda a fala do aluno (com o histórico) e recebe a resposta da IA e a correção. */
+export function chatTurn(scenario: Scenario, history: readonly ChatMessage[], message: string): Promise<ChatReply> {
+  const clean = quoted(message).slice(0, MAX_CHAT_INPUT);
+  return ask({
+    system: chatSystem(scenario),
+    user: `Conversa até agora:
+${transcript(history)}
+
+Última fala do aluno: <aluno>${clean}</aluno>`,
+    maxTokens: 900,
+    parse: parseChatReply,
+    // Sem cache: cada turno é único.
   });
 }

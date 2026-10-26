@@ -228,15 +228,60 @@ Objetivo: dar vontade de voltar, sem pressão tóxica.
 - [x] **Missões mais variadas:** 24 missões em 3 dificuldades (desempenho, ritmo, variedade, itens errados, tempo). Falta: missões em cadeia, peso pelas áreas em que você está mais fraco e missões por horário. *(M)*
 - [x] **Validar traduções online:** LaBSE + NLLB-200 no computador (`scripts/validate-translations/`), relatório em `docs/validacao-traducoes.md`. Tirou 5% das frases do Explorar; não serve para as frases curtas em kana. *(M)*
 
+### Fase 9: simulador de teclado 2.0 (2.0.0)
+
+Objetivo: digitar japonês de verdade, com conteúdo ilimitado e treino do que cada pessoa mais erra. Tudo offline.
+
+- [x] **Fonte de conteúdo automática:** o simulador sorteia leituras do vocabulário, frases do app (gramática, Montar, viagem), Minhas frases e frases da IA, só as que o teclado de flick consegue digitar. De 14 palavras fixas para milhares de itens. *(M)*
+- [x] **Níveis de dificuldade:** 6 níveis (primeiras fileiras, todas as fileiras, ゛゜, letras pequenas, palavras longas, frases); cada um libera depois de 8 itens no anterior. *(M)*
+- [x] **Modo frase:** frases inteiras com a tradução embaixo, com ou sem dica de tecla. *(P)*
+- [x] **Barra de sugestões simulada (Conversão):** digite a leitura e escolha o kanji ou o katakana certo, com as palavras de mesma leitura entre as opções, como no Gboard. *(M)*
+- [x] **Mapa de calor por tecla:** erros e tempo médio por tecla (Desempenho). *(M)*
+- [~] **Revisão espaçada por tecla e direção:** feita em parte, no modo **Pontos fracos**, que escolhe itens com as letras em que você mais erra. Falta agendar a volta de cada letra como cartão da revisão. *(M)*
+- [~] **Métricas:** letras por minuto (média e recorde) e precisão por tecla, no simulador. Falta levar para Meu Mochi → Por habilidade e criar uma meta diária de digitação. *(P)*
+- [x] **Digitação livre:** escreva o que quiser e veja o romaji e as palavras que o vocabulário conhece com aquela leitura. *(P)*
+- [~] **Mais variedade:** pares confusos (シ/ツ, ソ/ン) já aparecem nas frases e na conversão; faltam séries dirigidas de pontuação e números. *(P)*
+
+### Fase 10: IA opcional (2.0.0)
+
+Objetivo: usar IA para o que o app não consegue sozinho (corrigir, explicar, criar conteúdo sob medida), **sem nunca depender dela**. Regras: a pessoa cadastra a própria chave (Gemini ou Claude) em Ajustes → IA; a chave fica no armazenamento seguro do aparelho e **fora do backup**; a IA gera só texto (o áudio continua sendo a voz do aparelho); sem chave ou sem internet o app funciona como sempre; todo conteúdo gerado é marcado como "gerado por IA, pode errar" e nada entra no conteúdo base nem na revisão sem a pessoa salvar.
+
+**Infraestrutura**
+
+- [x] **Provedores:** Gemini e Claude, por `fetch` direto (modelos baratos por padrão, campo de modelo livre). *(M)*
+- [x] **Chave segura:** `expo-secure-store`, fora do backup `MDJ1:` (um teste garante). *(P)*
+- [x] **Cache e limite diário:** respostas repetidas não gastam a IA; limite de pedidos por dia e contagem de tokens à vista. *(P)*
+- [x] **Erros claros:** chave recusada, limite, sem internet, tempo esgotado, resposta fora do formato, tudo em português. *(P)*
+- [ ] **Mais provedores:** OpenAI/GPT e modelos locais, cada um é só um adaptador novo em `providers.ts`. *(P)*
+- [ ] **Fila offline:** guardar pedidos feitos sem internet e enviar quando voltar. *(M)*
+
+**Funcionalidades**
+
+| # | Funcionalidade | Estado |
+| --- | --- | --- |
+| 1 | **Corrigir minhas frases** | [~] Feito em Minhas frases (correção, versão mais natural e o porquê, com "usar a frase corrigida"). Falta em Traduzir → Entender (livre) e no diário. |
+| 2 | **Botão "Por quê?"** | [~] Feito nos erros dos quizzes de alternativas, nos exercícios de escrita e, com campo de dúvida livre, em cada tópico de gramática. Falta no Montar, nas Lacunas e na Conjugação. |
+| 3 | **Frases sob medida para o simulador** | [x] Simulador → IA: tema à escolha, frases em hiragana validadas para o teclado de flick, usando o vocabulário que você já aprendeu e avisando de palavra fora dele; ficam guardadas para treinar offline. Falta salvar em Minhas frases com um toque. |
+| 4 | **Conversa por texto (roleplay)** | [ ] Cena à escolha; a IA responde em japonês no seu nível, você digita no teclado do app, a resposta é falada pela voz do aparelho. Corrige no fim. |
+| 5 | **Explicar qualquer texto japonês colado** | [ ] Leitura, tradução, quebra por palavra e gramática, com botão para virar cartão. Ideal para falas de anime. |
+| 6 | **Diário curto** | [ ] 2 a 3 frases por dia, corrigidas pela IA; as corrigidas entram na revisão. (Une-se ao "Diário em japonês" da Fase 8.) |
+| 7 | **Textos graduados sob medida** | [ ] Historinhas com seus temas e só com palavras que você conhece, com tradução por frase. |
+| 8 | **Mnemônico para itens teimosos** | [ ] A IA escreve a dica de memória em português para o kana, kanji ou palavra que você sempre esquece. |
+| 9 | **Feedback de fala em texto** | [ ] A IA compara o que o reconhecimento de fala entendeu com a frase-alvo e explica o provável erro, sem gerar áudio. |
+| 10 | **Diálogos novos** | [ ] Gerador de cenas além das 13 atuais, com respostas erradas que explicam o porquê. |
+| 11 | **Treinador de registro** | [ ] Reescreve a mesma frase em casual, educado e formal e explica quando usar cada uma. |
+| 12 | **Resumo semanal do coach** | [ ] Lê só as estatísticas agregadas (retenção, habilidades, teimosos) e sugere o foco da semana. Nenhum conteúdo pessoal sai do aparelho. |
+| 13 | **Simulado estilo JLPT** | [ ] Questões de gramática e vocabulário por nível, com gabarito comentado. |
+
 ### Fase 8: fora do app (onde a fluência acontece de verdade)
 
 O app prepara, mas a fluência vem de **usar** o japonês. Esta fase é mais um guia do que código.
 
 - [ ] **Guia de imersão por nível:** que tipo de áudio, vídeo e leitura consumir a cada nível, e como usar legendas em japonês. *(P)*
 - [ ] **Hábito de conversa:** como encontrar tutor ou parceiro de intercâmbio, e um roteiro de apresentação e perguntas para a primeira conversa. *(P)*
-- [ ] **Diário em japonês:** uma frase por dia, guardada no app e revisada depois. *(M)*
+- [ ] **Diário em japonês:** uma frase por dia, guardada no app e revisada depois. *(M)* Ver também a Fase 10 (item 6), com correção por IA.
 - [ ] **Exportar cartões** (por exemplo, para Anki) para quem quiser continuar em outra ferramenta. *(M)*
-- [ ] **Conversa com o Mochi (experimental):** treino de conversa com um modelo de linguagem. Exige internet, tem custo e pode errar o japonês, então só entra como opcional, com aviso claro e revisão do conteúdo. *(G)*
+- [ ] **Conversa com o Mochi (experimental)** (agora planejada na Fase 10, item 4): treino de conversa com um modelo de linguagem. Exige internet, tem custo e pode errar o japonês, então só entra como opcional, com aviso claro e revisão do conteúdo. *(G)*
 
 ## 5. Ordem sugerida
 

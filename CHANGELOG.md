@@ -2,6 +2,23 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.0.0] - 2026-10-26
+
+Simulador de teclado completo e IA opcional: você cadastra a sua chave (Gemini ou Claude) e a IA ajuda a corrigir, explicar e criar frases. A IA só gera texto; o áudio continua sendo a voz do aparelho. Sem chave ou sem internet, tudo continua funcionando.
+
+- **Simulador de teclado refeito (Teclado → Simulador):** em vez de 14 palavras fixas, milhares de itens tirados do vocabulário, das frases do app, das suas frases e das da IA, só com o que o teclado de flick consegue digitar.
+  - **Níveis:** 6 níveis, das primeiras fileiras até frases inteiras; cada um libera depois de 8 itens no anterior.
+  - **Pontos fracos:** escolhe itens com as letras em que você mais erra.
+  - **Conversão:** digite a leitura e escolha o kanji ou o katakana na barra de sugestões simulada (com as palavras de mesma leitura entre as opções).
+  - **Livre:** escreva o que quiser e veja o romaji e as palavras conhecidas.
+  - **Desempenho:** mapa de calor por tecla (erros e tempo médio), letras por minuto, média e recorde. Entra no backup (campo opcional `typing`; códigos antigos continuam valendo).
+- **IA opcional (Ajustes → Inteligência artificial):** provedor Gemini ou Claude, chave guardada no armazenamento seguro do Android e **fora do backup**, modelo editável (padrão barato), limite de pedidos por dia, uso do dia à vista e teste de conexão. Erros em português (chave recusada, limite, sem internet, resposta fora do formato). Respostas repetidas vêm do cache e não gastam a IA.
+- **Corrigir minhas frases:** em Frases → Minhas frases, "Corrigir com IA" mostra a correção, uma forma mais natural e o porquê, e deixa usar a frase corrigida.
+- **Por quê?:** nos erros dos quizzes e dos exercícios de escrita, e em cada tópico de gramática (com campo para a sua dúvida).
+- **Frases com IA no simulador:** escolha um tema (viagem, dia a dia, trabalho, comida, família, anime), a IA cria 6 frases em hiragana com as palavras que você já aprendeu, avisa de palavra fora do vocabulário e as frases ficam guardadas para treinar offline.
+- **Cuidados:** todo texto da IA vem marcado como "gerado por IA, pode errar", nada entra na revisão sem você salvar, e a IA não foi revisada por um falante nativo.
+- **Roadmap:** novas Fase 9 (simulador) e Fase 10 (IA) com todas as melhorias planejadas.
+
 ## [1.16.0] - 2026-10-24
 
 Sons que não tocavam, missões novas (com dificuldade e desempenho) e a validação das frases do Explorar com modelos abertos.

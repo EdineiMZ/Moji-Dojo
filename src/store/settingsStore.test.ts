@@ -1,3 +1,4 @@
+import { DEFAULT_AI, EMPTY_USAGE } from '@/features/ai/settings';
 import { DEFAULT_REMINDERS } from '@/features/reminders/plan';
 import { createProgressStore } from './progressStore';
 import { createSettingsStore, SETTINGS_STORAGE_KEY, SPEECH_RATES } from './settingsStore';
@@ -34,6 +35,8 @@ describe('settingsStore', () => {
       reminders: DEFAULT_REMINDERS,
       limits: { newPerDay: 0, reviewsPerDay: 0 },
       profile: { username: '', onboarded: false, goalMinutes: 15 },
+      ai: DEFAULT_AI,
+      aiUsage: EMPTY_USAGE,
     });
     expect(createSettingsStore(storage).getState().writeInReview).toBe(false);
   });

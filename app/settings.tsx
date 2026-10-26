@@ -1,6 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { BackLink, AppText, Button, Card, Collapsible, Screen } from '@/components';
+import { AiSettingsCard } from '@/features/ai/AiSettingsCard';
 import { BackupCard } from '@/features/backup/BackupCard';
 import { ExportCard } from '@/features/backup/ExportCard';
 import { ProfileCard } from '@/features/profile/ProfileCard';
@@ -38,6 +39,9 @@ export default function SettingsScreen() {
         <VoiceStatusCard />
         <ReviewSettingsCard />
         <DisplaySettingsCard />
+      </Collapsible>
+      <Collapsible title="Inteligência artificial" hint="Opcional: chave de API do Gemini ou do Claude">
+        <AiSettingsCard />
       </Collapsible>
       <Collapsible title="Sons e vibração" hint="Efeitos sonoros, vibração e gravações de falantes nativos">
         <FeedbackSettingsCard />

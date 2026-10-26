@@ -201,7 +201,7 @@ describe('persistência', () => {
     first.getState().recordAnswer('あ', true);
 
     const saved = JSON.parse(storage.data.get(PROGRESS_STORAGE_KEY) ?? '{}');
-    expect(Object.keys(saved.state).sort()).toEqual(['challenges', 'conj', 'days', 'history', 'journey', 'lessons', 'mastered', 'myPhrases', 'particles', 'shadow', 'srs', 'stats', 'vocab', 'wordNotes']);
+    expect(Object.keys(saved.state).sort()).toEqual(['challenges', 'conj', 'days', 'history', 'journey', 'lessons', 'mastered', 'myPhrases', 'particles', 'shadow', 'srs', 'stats', 'typing', 'vocab', 'wordNotes']);
 
     const second = createProgressStore(storage);
     expect(second.persist.hasHydrated()).toBe(true);

@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
+import { DEFAULT_AI, EMPTY_USAGE, addUsage, sanitizeAi, sanitizeUsage, type AiSettings, type AiUsage } from '@/features/ai/settings';
 import { DEFAULT_LIMITS, sanitizeLimits, type Limits } from '@/features/limits/limits';
 import { DEFAULT_PROFILE, sanitizeProfile, type Profile } from '@/features/profile/profile';
 import { DEFAULT_REMINDERS, type ReminderSettings } from '@/features/reminders/plan';
@@ -41,6 +42,10 @@ export interface SettingsData {
   limits: Limits;
   /** Nome, introdução feita e meta de minutos por dia. */
   profile: Profile;
+  /** IA opcional: provedor, modelo e limite diário. A chave fica fora (armazenamento seguro). */
+  ai: AiSettings;
+  /** Pedidos à IA de hoje. */
+  aiUsage: AiUsage;
 }
 
 export interface SettingsActions {
@@ -58,6 +63,9 @@ export interface SettingsActions {
   setReminders: (change: Partial<ReminderSettings>) => void;
   setLimits: (change: Partial<Limits>) => void;
   setProfile: (change: Partial<Profile>) => void;
+  setAi: (change: Partial<AiSettings>) => void;
+  /** Soma um pedido à IA ao uso do dia. */
+  recordAiUsage: (tokensIn: number, tokensOut: number, now?: number) => void;
 }
 
 export type SettingsState = SettingsData & SettingsActions;
@@ -78,6 +86,8 @@ export const DEFAULT_SETTINGS: SettingsData = {
   reminders: DEFAULT_REMINDERS,
   limits: DEFAULT_LIMITS,
   profile: DEFAULT_PROFILE,
+  ai: DEFAULT_AI,
+  aiUsage: EMPTY_USAGE,
 };
 
 /**
@@ -102,12 +112,19 @@ export function createSettingsStore(storage: StateStorage) {
         setReminders: (change) => set((s) => ({ reminders: { ...s.reminders, ...change } })),
         setLimits: (change) => set((s) => ({ limits: sanitizeLimits({ ...s.limits, ...change }) })),
         setProfile: (change) => set((s) => ({ profile: sanitizeProfile({ ...s.profile, ...change }) })),
+        setAi: (change) => set((s) => ({ ai: sanitizeAi({ ...s.ai, ...change, models: { ...s.ai.models, ...change.models } }) })),
+        recordAiUsage: (tokensIn, tokensOut, now = Date.now()) => set((s) => ({ aiUsage: addUsage(s.aiUsage, now, tokensIn, tokensOut) })),
       }),
       {
         name: SETTINGS_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, nativeAudio, reminders, limits, profile }) => ({
+        // O que vem do disco passa pela leitura segura: estado salvo por uma versão antiga ganha os campos novos.
+        merge: (persisted, current) => {
+          const saved = (persisted ?? {}) as Partial<SettingsState>;
+          return { ...current, ...saved, ai: sanitizeAi(saved.ai), aiUsage: sanitizeUsage(saved.aiUsage) };
+        },
+        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
           writeInReview,
           speechSpeed,
           hapticsEnabled,
@@ -121,6 +138,8 @@ export function createSettingsStore(storage: StateStorage) {
           reminders,
           limits,
           profile,
+          ai,
+          aiUsage,
         }),
       },
     ),

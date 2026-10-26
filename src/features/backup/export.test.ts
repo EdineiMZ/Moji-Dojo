@@ -1,4 +1,5 @@
 import { emptyJourney, sanitizeJourney } from '@/features/journey/journey';
+import { EMPTY_TYPING } from '@/features/keyboard/typingStats';
 import { createProgressStore, type ProgressState } from '@/store/progressStore';
 import { APP_BACKUP_PREFIX, APP_BACKUP_VERSION, exportBackup, parseBackup } from './backup';
 
@@ -27,6 +28,7 @@ const progress = {
   journey: sanitizeJourney({ petals: 42, xp: 120, owned: ['boina', 'sininho'], equipped: { head: 'boina' }, achievements: { 'streak-7': 1_800_000_000_000 } }),
   wordNotes: { 学校: 'がっこう = escola; 学 (estudar) + 校 (escola)' },
   mastered: { g4: 1_800_000_400_000 },
+  typing: { keys: { か: { ok: 3, bad: 1, ms: 900 } }, levelDone: { '1': 4 }, chars: 20, ms: 8000, best: 210 },
   myPhrases: { m1: { jp: 'わたしは ブラジルに すんでいます', pt: 'Eu moro no Brasil.', at: 1_800_000_500_000, b: 2, due: 1_800_000_600_000 } },
 };
 
@@ -42,7 +44,7 @@ describe('exportBackup', () => {
     if (!result.ok) throw new Error(`esperava sucesso, veio ${result.error}`);
     expect(result.source).toBe('app');
     expect(result.snapshot).toEqual({ srs: progress.srs, lessons: progress.lessons, stats: progress.stats, days: progress.days });
-    expect(result.extras).toEqual({ history: progress.history, shadow: progress.shadow, challenges: progress.challenges, vocab: progress.vocab, conj: progress.conj, particles: progress.particles, wordNotes: progress.wordNotes, journey: progress.journey, mastered: progress.mastered, myPhrases: progress.myPhrases });
+    expect(result.extras).toEqual({ history: progress.history, shadow: progress.shadow, challenges: progress.challenges, vocab: progress.vocab, conj: progress.conj, particles: progress.particles, wordNotes: progress.wordNotes, journey: progress.journey, mastered: progress.mastered, myPhrases: progress.myPhrases, typing: progress.typing });
     expect(result.summary).toEqual({ lessons: 1, reviews: 2, characters: 2, days: 2, ignored: 0, words: 1, phrases: 1 });
   });
 
@@ -76,7 +78,7 @@ describe('exportBackup', () => {
 
     const b = createProgressStore(memoryStorage());
     b.getState().replaceProgress(parsed.snapshot, parsed.extras);
-    const keep = ({ srs, lessons, stats, days, history, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases }: ProgressState) => ({ srs, lessons, stats, days, history, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases });
+    const keep = ({ srs, lessons, stats, days, history, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases, typing }: ProgressState) => ({ srs, lessons, stats, days, history, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases, typing });
     expect(keep(b.getState())).toEqual(keep(a.getState()));
   });
 });
@@ -117,6 +119,7 @@ describe('parseBackup: backup do app (MDJ1)', () => {
       journey: emptyJourney(),
       mastered: {},
       myPhrases: {},
+      typing: EMPTY_TYPING,
     });
     expect(result.summary.ignored).toBe(5);
   });
@@ -160,7 +163,7 @@ describe('replaceProgress com extras', () => {
     store.getState().rateShadow('antiga', 'bad', NOW.getTime());
     store.getState().replaceProgress(
       { srs: {}, lessons: {}, stats: {}, days: [] },
-      { history: progress.history, shadow: progress.shadow, challenges: progress.challenges, vocab: progress.vocab, conj: progress.conj, particles: progress.particles, wordNotes: progress.wordNotes, journey: progress.journey, mastered: progress.mastered, myPhrases: progress.myPhrases },
+      { history: progress.history, shadow: progress.shadow, challenges: progress.challenges, vocab: progress.vocab, conj: progress.conj, particles: progress.particles, wordNotes: progress.wordNotes, journey: progress.journey, mastered: progress.mastered, myPhrases: progress.myPhrases, typing: progress.typing },
     );
     expect(store.getState().shadow).toEqual(progress.shadow);
     expect(store.getState().challenges).toEqual(progress.challenges);

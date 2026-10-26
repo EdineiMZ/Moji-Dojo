@@ -19,6 +19,7 @@ import { trackAnswer, trackDialog, trackExplored, trackLesson, trackNewWords, tr
 import type { Area } from '@/features/journey/events';
 import { buyItem, dismissToast, emptyJourney, equipItem, sanitizeJourney, unequipSlot, type BuyError, type JourneyState } from '@/features/journey/journey';
 import type { Slot } from '@/features/journey/items';
+import { EMPTY_TYPING, recordItem, recordKey, sanitizeTyping, type TypingKeyEvent, type TypingProgress } from '@/features/keyboard/typingStats';
 
 const DAY_MS = 86_400_000;
 
@@ -117,6 +118,8 @@ export interface ProgressActions {
   declineRescue: () => void;
   /** Marca o dia como estudado (ex.: ao conferir uma escrita). */
   markStudied: (now?: number) => void;
+  /** Guarda o treino de digitação: as letras tentadas e, se o item foi concluído, quanto levou. */
+  recordTyping: (keys: readonly TypingKeyEvent[], item?: { level: number; chars: number; ms: number }, now?: number) => void;
   /**
    * Substitui todo o progresso (importação de backup). Com `extras` (backup do próprio app), troca também
    * histórico, autoavaliação e desafios; sem eles (backup do protótipo), só o histórico é zerado.
@@ -149,6 +152,8 @@ export interface ProgressExtras {
   mastered: Readonly<Record<string, number>>;
   /** Frases escritas pelo próprio aluno, pelo id. */
   myPhrases: MyPhrases;
+  /** Treino de digitação no teclado de flick: desempenho por letra, níveis e recorde. */
+  typing: TypingProgress;
 }
 
 export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions;
@@ -174,6 +179,7 @@ export function createProgressStore(storage: StateStorage) {
         journey: emptyJourney(),
         mastered: {},
         myPhrases: {},
+        typing: EMPTY_TYPING,
 
         completeLesson: (lessonId, chars, skipped = false, now = Date.now(), result) =>
           set((s) => {
@@ -489,6 +495,14 @@ export function createProgressStore(storage: StateStorage) {
 
         markStudied: (now = Date.now()) => set((s) => ({ days: markDay(s.days, new Date(now)) })),
 
+        recordTyping: (keys, item, now = Date.now()) =>
+          set((s) => {
+            let typing = s.typing;
+            for (const k of keys) typing = recordKey(typing, k.char, k.ok, k.ms);
+            if (item) typing = recordItem(typing, item.level, item.chars, item.ms);
+            return { typing, days: markDay(s.days, new Date(now)) };
+          }),
+
         replaceProgress: (snapshot, extras) =>
           // O histórico do progresso antigo não vale para o importado; o backup do protótipo não traz histórico.
           set({
@@ -497,10 +511,10 @@ export function createProgressStore(storage: StateStorage) {
             stats: snapshot.stats,
             days: snapshot.days,
             history: extras?.history ?? {},
-            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, particles: extras.particles, wordNotes: extras.wordNotes, journey: extras.journey, mastered: extras.mastered, myPhrases: extras.myPhrases } : {}),
+            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, particles: extras.particles, wordNotes: extras.wordNotes, journey: extras.journey, mastered: extras.mastered, myPhrases: extras.myPhrases, typing: extras.typing } : {}),
           }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, journey: emptyJourney(), mastered: {}, myPhrases: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, journey: emptyJourney(), mastered: {}, myPhrases: {}, typing: EMPTY_TYPING }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
@@ -509,10 +523,10 @@ export function createProgressStore(storage: StateStorage) {
         // O que vem do disco passa pela leitura segura: estado salvo por uma versão antiga ganha os campos novos.
         merge: (persisted, current) => {
           const saved = (persisted ?? {}) as Partial<ProgressState> & { journey?: unknown };
-          return { ...current, ...saved, journey: sanitizeJourney(saved.journey) };
+          return { ...current, ...saved, journey: sanitizeJourney(saved.journey), typing: sanitizeTyping((saved as { typing?: unknown }).typing) };
         },
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, wordNotes, journey, mastered, myPhrases }) => ({
+        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, wordNotes, journey, mastered, myPhrases, typing }) => ({
           srs,
           lessons,
           stats,
@@ -527,6 +541,7 @@ export function createProgressStore(storage: StateStorage) {
           journey,
           mastered,
           myPhrases,
+          typing,
         }),
       },
     ),

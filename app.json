@@ -65,7 +65,8 @@
         }
       ],
       "expo-status-bar",
-      "expo-asset"
+      "expo-asset",
+      "expo-secure-store"
     ],
     "scheme": "mojidojo",
     "platforms": [

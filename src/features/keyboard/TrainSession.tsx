@@ -23,8 +23,8 @@ import { useTypingTracker } from './useTypingTracker';
 const SOURCE_LABEL: Readonly<Record<PracticeItem['source'], string>> = { word: '', phrase: '', mine: 'sua frase', ai: 'gerada por IA' };
 
 interface TrainSessionProps {
-  /** `level`: segue os níveis; `weak`: foca nas letras em que a pessoa mais erra. */
-  mode: 'level' | 'weak';
+  /** `level`: segue os níveis; `weak`: foca nas letras em que a pessoa mais erra; `ai`: só as frases geradas pela IA. */
+  mode: 'level' | 'weak' | 'ai';
   extras: readonly ExtraPhrase[];
 }
 
@@ -40,9 +40,9 @@ export function TrainSession({ mode, extras }: TrainSessionProps) {
 
   const pool = useMemo(() => buildPracticePool(extras), [extras]);
   const weak = useMemo(() => new Set(weakChars(typing, 6)), [typing]);
-  const source = useMemo(() => (mode === 'weak' ? pool : itemsOfLevel(pool, level)), [pool, mode, level]);
+  const source = useMemo(() => (mode === 'level' ? itemsOfLevel(pool, level) : mode === 'ai' ? pool.filter((i) => i.source === 'ai') : pool), [pool, mode, level]);
   const [item, setItem] = useState<PracticeItem | null>(() => pickPractice(source, Math.random, mode === 'weak' ? { weak } : {}));
-  const tracker = useTypingTracker(mode === 'weak' ? 0 : level);
+  const tracker = useTypingTracker(mode === 'level' ? level : 0);
 
   const next = (from: readonly PracticeItem[] = source, previous?: string) => {
     tracker.begin();
@@ -102,6 +102,8 @@ export function TrainSession({ mode, extras }: TrainSessionProps) {
           </AppText>
           {note ? <AppText variant="caption" color="bad">{note}</AppText> : null}
         </>
+      ) : mode === 'ai' ? (
+        <AppText color="muted">Treine com as frases que a IA criou. Elas ficam guardadas no aparelho e funcionam sem internet.</AppText>
       ) : weak.size > 0 ? (
         <AppText color="muted">
           Letras em que você mais erra: <Bold>{[...weak].join(' ')}</Bold>. Os itens abaixo usam essas letras.

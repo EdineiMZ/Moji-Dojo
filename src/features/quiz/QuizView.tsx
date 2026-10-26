@@ -20,6 +20,7 @@ import {
   useMotionEnabled,
   type MascotMood,
 } from '@/components';
+import { AiExplain } from '@/features/ai/AiParts';
 import { pronunciationText } from '@/features/catalog';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { isPassing, writePassScore, type WritingScore } from '@/features/writing/score';
@@ -255,6 +256,9 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
             <AppText variant="caption" color="muted">
               Para lembrar: {answered.feedback.hint}
             </AppText>
+          ) : null}
+          {!answered.correct && !isWrite ? (
+            <AiExplain context={`Exercício de japonês para brasileiros. Apareceu "${current.item.char}". ${answered.feedback.text}. A pessoa escolheu "${answered.chosen}" e errou.`} />
           ) : null}
         </Animated.View>
       ) : null}

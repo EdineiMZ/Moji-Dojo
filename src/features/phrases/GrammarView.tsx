@@ -4,6 +4,7 @@ import Animated, { FadeIn, FadeOut, LinearTransition } from 'react-native-reanim
 import { AppText, Button, Card, PressableScale, ProgressBar, ReduceMotion, RichText } from '@/components';
 import { ALL_GRAMMAR } from '@/content/grammar';
 import { GENERAL_PITFALLS, TOPIC_PITFALLS } from '@/content/pitfalls';
+import { AiExplain } from '@/features/ai/AiParts';
 import { TopicTest } from '@/features/grammar-test/TopicTest';
 import { useProgressStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
@@ -126,6 +127,11 @@ export function GrammarView({ onPractice }: GrammarViewProps) {
                     ))}
                   </View>
                 ) : null}
+                <AiExplain
+                  allowQuestion
+                  label="💡 Perguntar à IA sobre este tópico"
+                  context={`Tópico de gramática N5: ${topic.title}.${topic.pattern ? ` Padrão: ${topic.pattern}.` : ''} Exemplos: ${topic.examples.slice(0, 3).map((e) => `${e.jp} (${e.pt})`).join('; ')}.`}
+                />
                 {canPractice ? <Button label="Praticar este tópico" onPress={() => onPractice(topic.id)} /> : null}
                 <Button
                   label={isMastered ? 'Refazer o mini-teste' : 'Fazer o mini-teste'}

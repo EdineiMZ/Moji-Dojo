@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { AppText, Button, Card, Mascot, useScrollIntoView } from '@/components';
+import { AiCorrection } from '@/features/ai/AiParts';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { JapaneseInput } from '@/features/translate/JapaneseInput';
 import { TypingSession, type TypingTarget } from '@/features/translate/TypingSession';
@@ -176,6 +177,8 @@ export function MyPhrasesView() {
           onSubmit={save}
         />
 
+        <AiCorrection jp={jp} pt={pt} onUse={(corrected) => { setJp(corrected); setMessage(null); }} />
+
         {message ? (
           <AppText color={message.ok ? 'ok' : 'bad'} accessibilityLiveRegion="polite">
             {message.text}
@@ -184,8 +187,8 @@ export function MyPhrasesView() {
         <Button label={editing ? 'Salvar a mudança' : 'Salvar a frase'} onPress={save} />
         {editing ? <Button label="Cancelar" variant="ghost" onPress={reset} /> : null}
         <AppText variant="caption" color="muted">
-          O app não corrige o japonês que você escreve aqui: ele só confere se você lembra da frase na revisão. Se puder,
-          peça para alguém que fala japonês olhar as suas frases. Cabem até {MAX_MY_PHRASES}.
+          O app confere só se você lembra da frase na revisão; quem corrige o japonês é a IA (se você cadastrou a chave em Ajustes) ou alguém que fala japonês. A IA
+          também erra. Cabem até {MAX_MY_PHRASES}.
         </AppText>
       </Card>
 

@@ -5,6 +5,7 @@ import { resultMood } from '@/features/lessons/resultCopy';
 import { ResultCard } from '@/features/quiz/ResultCard';
 import { REVIEW_GOOD_PCT } from '@/features/review/session';
 import { speakJapanese } from '@/features/speech/voiceStore';
+import { AiExplain } from '@/features/ai/AiParts';
 import { feedbackComplete, feedbackCorrect, feedbackWrong } from '@/lib/feedback';
 import { useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
@@ -251,6 +252,9 @@ export function TypingSession({ items, title, onResult, onExit, again }: TypingS
             <AppText variant="caption" color="muted">
               Para lembrar: {item.hint}
             </AppText>
+          ) : null}
+          {stage !== 'right' ? (
+            <AiExplain context={`Exercício de escrita em japonês. Pedido: "${item.prompt}". Resposta certa: ${item.answer.replace(/ /g, '')}.${text ? ` A pessoa escreveu: ${text}.` : ''}${item.hint ? ` Regra do tópico: ${item.hint}.` : ''}`} />
           ) : null}
           <View style={styles.row}>
             <Button

@@ -185,3 +185,116 @@ export function generatePhrases({ topic, known, seed }: PhraseRequest): Promise<
     // Sem cache: cada pedido deve trazer frases novas.
   });
 }
+
+// ─── 4. Explicar um texto em japonês ─────────────────────────────────────
+
+export interface TextWord {
+  word: string;
+  reading: string;
+  meaning: string;
+}
+
+export interface TextExplanation {
+  translation: string;
+  /** Leitura em hiragana do texto todo. */
+  reading: string;
+  words: readonly TextWord[];
+  grammar: readonly { point: string; explanation: string }[];
+  /** Observação sobre tom, gíria ou registro (vazio se não há). */
+  note: string;
+}
+
+export const MAX_TEXT_LENGTH = 300;
+
+const EXPLAIN_TEXT_SYSTEM = `${TEACHER}
+O aluno colou um texto em japonês (por exemplo, uma fala de anime ou uma mensagem) e quer entendê-lo. ${HONESTY}
+Se uma parte for gíria, dialeto ou você não tiver certeza da leitura ou do sentido, diga isso na observação em vez de chutar.
+Responda SOMENTE com JSON:
+{"translation": string, "reading": string, "words": [{"word": string, "reading": string, "meaning": string}], "grammar": [{"point": string, "explanation": string}], "note": string}
+- translation: tradução natural para o português do Brasil.
+- reading: o texto todo em hiragana.
+- words: as palavras importantes (até 10), na forma do dicionário, com leitura em hiragana e significado em português.
+- grammar: até 4 pontos de gramática, cada um com uma explicação curta em português.
+- note: observação curta ou "".`;
+
+export function parseTextExplanation(json: unknown): TextExplanation | null {
+  if (!isRecord(json)) return null;
+  const translation = text(json.translation, 600);
+  if (!translation) return null;
+  const words = (Array.isArray(json.words) ? json.words : [])
+    .filter(isRecord)
+    .map((w) => ({ word: text(w.word, 40), reading: text(w.reading, 60), meaning: text(w.meaning, 120) }))
+    .filter((w) => w.word && w.meaning)
+    .slice(0, 10);
+  const grammar = (Array.isArray(json.grammar) ? json.grammar : [])
+    .filter(isRecord)
+    .map((g) => ({ point: text(g.point, 80), explanation: text(g.explanation, 400) }))
+    .filter((g) => g.point && g.explanation)
+    .slice(0, 4);
+  return { translation, reading: text(json.reading, 600), words, grammar, note: text(json.note, 400) };
+}
+
+/** Explica um texto japonês colado: tradução, leitura, palavras e gramática. */
+export function explainText(source: string): Promise<TextExplanation> {
+  const clean = quoted(source).slice(0, MAX_TEXT_LENGTH);
+  return ask({
+    system: EXPLAIN_TEXT_SYSTEM,
+    user: `Texto: <aluno>${clean}</aluno>`,
+    maxTokens: 1800,
+    parse: parseTextExplanation,
+    cacheKey: `text:${clean}`,
+  });
+}
+
+// ─── 5. Diário ───────────────────────────────────────────────────────────
+
+export interface DiaryItem {
+  original: string;
+  ok: boolean;
+  corrected: string;
+  /** Tradução da frase corrigida. */
+  pt: string;
+  note: string;
+}
+
+export interface DiaryReview {
+  items: readonly DiaryItem[];
+  /** Um comentário geral e animador, com o que melhorar. */
+  summary: string;
+}
+
+export const MAX_DIARY_LINES = 3;
+export const MAX_DIARY_LENGTH = 120;
+
+const DIARY_SYSTEM = `${TEACHER}
+O aluno escreveu um diário curto em japonês (uma frase por linha). Corrija cada frase, na ordem. ${HONESTY}
+Seja gentil: aponte primeiro o que está certo. Mantenha o sentido que o aluno quis dar e o nível dele.
+Responda SOMENTE com JSON: {"items": [{"original": string, "ok": boolean, "corrected": string, "pt": string, "note": string}], "summary": string}
+- ok: true se a frase está correta e natural.
+- corrected: a frase corrigida (igual à original se ok). Hiragana e kanji simples do N5.
+- pt: tradução em português da frase corrigida.
+- note: explicação curta em português do que mudou ("" se ok).
+- summary: 1 a 2 frases em português com um elogio e uma sugestão.`;
+
+export function parseDiaryReview(json: unknown): DiaryReview | null {
+  if (!isRecord(json) || !Array.isArray(json.items)) return null;
+  const items = json.items
+    .filter(isRecord)
+    .map((i) => ({ original: text(i.original, 200), ok: i.ok === true, corrected: text(i.corrected, 200), pt: text(i.pt, 200), note: text(i.note, 400) }))
+    .filter((i) => i.corrected)
+    .slice(0, MAX_DIARY_LINES);
+  if (items.length === 0) return null;
+  return { items, summary: text(json.summary, 500) };
+}
+
+/** Corrige as frases do diário de hoje. */
+export function reviewDiary(lines: readonly string[]): Promise<DiaryReview> {
+  const clean = lines.map((l) => quoted(l).slice(0, MAX_DIARY_LENGTH)).filter((l) => l.length > 0).slice(0, MAX_DIARY_LINES);
+  return ask({
+    system: DIARY_SYSTEM,
+    user: clean.map((l, i) => `Frase ${i + 1}: <aluno>${l}</aluno>`).join('\n'),
+    maxTokens: 1500,
+    parse: parseDiaryReview,
+    cacheKey: `diary:${clean.join('|')}`,
+  });
+}

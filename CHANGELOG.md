@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.1.0] - 2026-10-26
+
+Mais recursos de IA em Frases → ✨ IA: explicar qualquer texto japonês e um diário corrigido. Só aparecem com a IA ligada e a chave cadastrada em Ajustes.
+
+- **Explicar texto:** cole uma fala de anime, uma mensagem ou uma frase. A IA devolve a tradução, a leitura em hiragana, as palavras importantes (com leitura e significado), os pontos de gramática e uma observação quando há gíria ou dúvida. Tem áudio e "Salvar a frase" (vai para Minhas frases, na revisão).
+- **Diário:** escreva de 1 a 3 frases sobre o seu dia (com o teclado do app ou o do celular). A IA corrige cada uma, explica o que mudou, traduz e dá um comentário geral. Dá para ouvir e salvar as corrigidas em Minhas frases. Os diários anteriores ficam guardados no aparelho (fora do backup).
+- **Frases da IA do simulador:** cada frase guardada ganhou "Salvar em Minhas frases".
+- **Roadmap:** itens 3, 5 e 6 da Fase 10 marcados como feitos; falta receber o texto pelo compartilhar do Android.
+
 ## [2.0.0] - 2026-10-26
 
 Simulador de teclado completo e IA opcional: você cadastra a sua chave (Gemini ou Claude) e a IA ajuda a corrigir, explicar e criar frases. A IA só gera texto; o áudio continua sendo a voz do aparelho. Sem chave ou sem internet, tudo continua funcionando.

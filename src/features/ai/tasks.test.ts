@@ -1,4 +1,5 @@
-import { cleanGenerated, parseExplanation, parseGenerated, parsePhraseFix, PHRASE_TOPICS, unknownParts } from './tasks';
+import { createAiStore, MAX_DIARY } from './aiStore';
+import { cleanGenerated, parseDiaryReview, parseExplanation, parseTextExplanation, parseGenerated, parsePhraseFix, PHRASE_TOPICS, unknownParts } from './tasks';
 
 describe('parsePhraseFix', () => {
   it('aceita a correção completa e limita as listas', () => {
@@ -72,5 +73,49 @@ describe('frases geradas', () => {
   it('há temas para escolher', () => {
     expect(PHRASE_TOPICS.length).toBeGreaterThanOrEqual(5);
     expect(new Set(PHRASE_TOPICS.map((t) => t.value)).size).toBe(PHRASE_TOPICS.length);
+  });
+});
+
+describe('parseTextExplanation', () => {
+  it('lê tradução, palavras e gramática, descartando o que está incompleto', () => {
+    const r = parseTextExplanation({
+      translation: 'Vamos comer juntos.',
+      reading: 'いっしょにたべましょう',
+      words: [{ word: '食べる', reading: 'たべる', meaning: 'comer' }, { word: '', meaning: 'x' }, { word: '一緒', reading: 'いっしょ', meaning: '' }],
+      grammar: [{ point: '〜ましょう', explanation: 'Convite.' }, { point: 'x', explanation: '' }],
+      note: '',
+    });
+    expect(r?.words).toEqual([{ word: '食べる', reading: 'たべる', meaning: 'comer' }]);
+    expect(r?.grammar).toHaveLength(1);
+  });
+
+  it('exige a tradução', () => {
+    expect(parseTextExplanation({ translation: '' })).toBeNull();
+    expect(parseTextExplanation('x')).toBeNull();
+  });
+});
+
+describe('parseDiaryReview', () => {
+  it('limita a 3 frases e recusa quando não há nenhuma corrigida', () => {
+    const item = (n: number) => ({ original: `o${n}`, ok: n % 2 === 0, corrected: `c${n}`, pt: 'p', note: '' });
+    const r = parseDiaryReview({ items: [1, 2, 3, 4, 5].map(item), summary: 'Muito bem!' });
+    expect(r?.items).toHaveLength(3);
+    expect(r?.items[1]?.ok).toBe(true);
+    expect(parseDiaryReview({ items: [{ original: 'a', corrected: '' }] })).toBeNull();
+    expect(parseDiaryReview({})).toBeNull();
+  });
+});
+
+describe('diário guardado', () => {
+  it('guarda os mais novos primeiro, até o limite, e sobrevive a reabrir', () => {
+    const data = new Map<string, string>();
+    const storage = { getItem: (k: string) => data.get(k) ?? null, setItem: (k: string, v: string) => void data.set(k, v), removeItem: (k: string) => void data.delete(k) };
+    const store = createAiStore(storage);
+    for (let i = 0; i < MAX_DIARY + 5; i++) store.getState().addDiary({ id: `d${i}`, at: i, items: [], summary: '' });
+    expect(store.getState().diary).toHaveLength(MAX_DIARY);
+    expect(store.getState().diary[0]?.id).toBe(`d${MAX_DIARY + 4}`);
+    expect(createAiStore(storage).getState().diary).toHaveLength(MAX_DIARY);
+    store.getState().clearAll();
+    expect(store.getState().diary).toEqual([]);
   });
 });

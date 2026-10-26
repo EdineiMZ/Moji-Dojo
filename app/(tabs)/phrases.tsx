@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AppText, ChipRow, Screen, SwapView } from '@/components';
+import { AiStudioView } from '@/features/ai/AiStudioView';
 import { BankView } from '@/features/bank/BankView';
 import { ClozeView } from '@/features/cloze/ClozeView';
 import { DialogView } from '@/features/dialogs/DialogView';
@@ -19,8 +20,9 @@ import { TranslateView } from '@/features/translate/TranslateView';
 import { VocabView } from '@/features/vocab/VocabView';
 import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
+import { useSettingsStore } from '@/store';
 
-type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure' | 'frames' | 'explore';
+type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure' | 'frames' | 'explore' | 'ai';
 
 type Section = 'words' | 'grammar' | 'sentences';
 
@@ -58,6 +60,7 @@ const SECTIONS: readonly { value: Section; label: string; views: readonly { valu
       { value: 'travel', label: 'Viagem' },
       { value: 'explore', label: 'Explorar' },
       { value: 'mine', label: 'Minhas frases' },
+      { value: 'ai', label: '✨ IA' },
     ],
   },
 ];
@@ -67,6 +70,8 @@ const sectionOf = (view: PhrasesView): Section => SECTIONS.find((s) => s.views.s
 export default function PhrasesScreen() {
   const [view, setView] = useState<PhrasesView>('vocab');
   const [topic, setTopic] = useState(ALL_TOPICS);
+  const aiEnabled = useSettingsStore((s) => s.ai.enabled);
+  const sections = SECTIONS.map((g) => ({ ...g, views: aiEnabled ? g.views : g.views.filter((v) => v.value !== 'ai') }));
 
   return (
     <Screen>
@@ -76,9 +81,9 @@ export default function PhrasesScreen() {
       <ChipRow
         options={SECTIONS.map((g) => ({ value: g.value, label: g.label }))}
         value={sectionOf(view)}
-        onChange={(section) => setView(SECTIONS.find((g) => g.value === section)?.views[0]?.value ?? 'vocab')}
+        onChange={(section) => setView(sections.find((g) => g.value === section)?.views[0]?.value ?? 'vocab')}
       />
-      <ChipRow options={SECTIONS.find((g) => g.value === sectionOf(view))?.views ?? []} value={view} onChange={setView} />
+      <ChipRow options={sections.find((g) => g.value === sectionOf(view))?.views ?? []} value={view} onChange={setView} />
       <SwapView viewKey={view}>
         {view === 'vocab' ? <VocabView /> : null}
         {view === 'grammar' ? (
@@ -101,6 +106,7 @@ export default function PhrasesScreen() {
         {view === 'dialog' ? <DialogView /> : null}
         {view === 'explore' ? <SentencesView /> : null}
         {view === 'mine' ? <MyPhrasesView /> : null}
+        {view === 'ai' ? <AiStudioView /> : null}
         {view === 'build' ? <BuildHub topic={topic} onTopicChange={setTopic} /> : null}
         {view === 'travel' ? <TravelView /> : null}
       </SwapView>

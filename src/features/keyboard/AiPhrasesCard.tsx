@@ -9,6 +9,7 @@ import { generatePhrases, PHRASE_COUNT, PHRASE_TOPICS } from '@/features/ai/task
 import { useAiReady } from '@/features/ai/useAi';
 import { learnedWordIds } from '@/features/vocab/cards';
 import { useAiStore, useProgressStore } from '@/store';
+import { PROBLEM_MESSAGES } from '@/features/myphrases/phrases';
 import { spacing } from '@/theme';
 import { typeable } from './practice';
 
@@ -23,6 +24,7 @@ export function AiPhrasesCard() {
   const saved = useAiStore((s) => s.phrases);
   const addPhrases = useAiStore((s) => s.addPhrases);
   const removePhrase = useAiStore((s) => s.removePhrase);
+  const addMyPhrase = useProgressStore((s) => s.addMyPhrase);
   const [topic, setTopic] = useState(PHRASE_TOPICS[0]?.value ?? 'travel');
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<{ text: string; ok: boolean } | null>(null);
@@ -87,9 +89,22 @@ export function AiPhrasesCard() {
                   Palavra fora do seu vocabulário: {p.unknown.join(', ')}
                 </AppText>
               ) : null}
-              <AppText variant="caption" color="bad" onPress={() => removePhrase(p.id)} accessibilityRole="button">
-                Remover
-              </AppText>
+              <View style={{ flexDirection: 'row', gap: spacing.md }}>
+                <AppText
+                  variant="caption"
+                  color="primary"
+                  accessibilityRole="button"
+                  onPress={() => {
+                    const result = addMyPhrase(p.jp, p.pt);
+                    setMessage('error' in result ? { text: PROBLEM_MESSAGES[result.error], ok: false } : { text: 'Salva em Minhas frases.', ok: true });
+                  }}
+                >
+                  Salvar em Minhas frases
+                </AppText>
+                <AppText variant="caption" color="bad" onPress={() => removePhrase(p.id)} accessibilityRole="button">
+                  Remover
+                </AppText>
+              </View>
             </View>
           ))}
           {saved.length > 5 ? (

@@ -261,10 +261,10 @@ Objetivo: usar IA para o que o app não consegue sozinho (corrigir, explicar, cr
 | --- | --- | --- |
 | 1 | **Corrigir minhas frases** | [~] Feito em Minhas frases (correção, versão mais natural e o porquê, com "usar a frase corrigida"). Falta em Traduzir → Entender (livre) e no diário. |
 | 2 | **Botão "Por quê?"** | [~] Feito nos erros dos quizzes de alternativas, nos exercícios de escrita e, com campo de dúvida livre, em cada tópico de gramática. Falta no Montar, nas Lacunas e na Conjugação. |
-| 3 | **Frases sob medida para o simulador** | [x] Simulador → IA: tema à escolha, frases em hiragana validadas para o teclado de flick, usando o vocabulário que você já aprendeu e avisando de palavra fora dele; ficam guardadas para treinar offline. Falta salvar em Minhas frases com um toque. |
+| 3 | **Frases sob medida para o simulador** | [x] Simulador → IA: tema à escolha, frases em hiragana validadas para o teclado de flick, usando o vocabulário que você já aprendeu e avisando de palavra fora dele; ficam guardadas para treinar offline. Cada frase guardada tem "Salvar em Minhas frases". |
 | 4 | **Conversa por texto (roleplay)** | [ ] Cena à escolha; a IA responde em japonês no seu nível, você digita no teclado do app, a resposta é falada pela voz do aparelho. Corrige no fim. |
-| 5 | **Explicar qualquer texto japonês colado** | [ ] Leitura, tradução, quebra por palavra e gramática, com botão para virar cartão. Ideal para falas de anime. |
-| 6 | **Diário curto** | [ ] 2 a 3 frases por dia, corrigidas pela IA; as corrigidas entram na revisão. (Une-se ao "Diário em japonês" da Fase 8.) |
+| 5 | **Explicar qualquer texto japonês colado** | [x] Frases → ✨ IA → Explicar texto: tradução, leitura, palavras e gramática, com áudio e "Salvar a frase" (vira cartão em Minhas frases). Falta receber o texto direto pelo compartilhar do Android. |
+| 6 | **Diário curto** | [x] Frases → ✨ IA → Diário: de 1 a 3 frases por dia, corrigidas com o porquê, tradução e áudio; "Salvar" leva a corrigida para Minhas frases (revisão). Os diários anteriores ficam guardados. (Cumpre o "Diário em japonês" da Fase 8.) |
 | 7 | **Textos graduados sob medida** | [ ] Historinhas com seus temas e só com palavras que você conhece, com tradução por frase. |
 | 8 | **Mnemônico para itens teimosos** | [ ] A IA escreve a dica de memória em português para o kana, kanji ou palavra que você sempre esquece. |
 | 9 | **Feedback de fala em texto** | [ ] A IA compara o que o reconhecimento de fala entendeu com a frase-alvo e explica o provável erro, sem gerar áudio. |

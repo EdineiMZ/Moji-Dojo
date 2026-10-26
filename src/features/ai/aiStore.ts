@@ -20,15 +20,26 @@ export interface AiPhrase {
   unknown: readonly string[];
 }
 
+/** Um dia do diário: as frases escritas, já corrigidas pela IA. */
+export interface DiaryEntry {
+  id: string;
+  at: number;
+  items: readonly { original: string; ok: boolean; corrected: string; pt: string; note: string }[];
+  summary: string;
+}
+
+export const MAX_DIARY = 60;
 export const MAX_CACHE = 120;
 export const MAX_AI_PHRASES = 200;
 
 export interface AiStoreState {
   cache: Readonly<Record<string, CacheEntry>>;
   phrases: readonly AiPhrase[];
+  diary: readonly DiaryEntry[];
   putCache: (key: string, value: unknown, now?: number) => void;
   addPhrases: (phrases: readonly AiPhrase[]) => void;
   removePhrase: (id: string) => void;
+  addDiary: (entry: DiaryEntry) => void;
   clearAll: () => void;
 }
 
@@ -63,16 +74,18 @@ export function createAiStore(storage: StateStorage) {
       (set) => ({
         cache: {},
         phrases: [],
+        diary: [],
         putCache: (key, value, now = Date.now()) => set((s) => ({ cache: trimCache({ ...s.cache, [key]: { at: now, value } }) })),
         addPhrases: (added) => set((s) => ({ phrases: mergePhrases(s.phrases, added) })),
         removePhrase: (id) => set((s) => ({ phrases: s.phrases.filter((p) => p.id !== id) })),
-        clearAll: () => set({ cache: {}, phrases: [] }),
+        addDiary: (entry) => set((s) => ({ diary: [entry, ...s.diary].slice(0, MAX_DIARY) })),
+        clearAll: () => set({ cache: {}, phrases: [], diary: [] }),
       }),
       {
         name: AI_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ cache, phrases }) => ({ cache, phrases }),
+        partialize: ({ cache, phrases, diary }) => ({ cache, phrases, diary }),
       },
     ),
   );

@@ -2,6 +2,16 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.3.0] - 2026-10-26
+
+Quatro novidades de IA (todas opcionais, com a chave cadastrada em Ajustes) e mais lugares com o "Por quê?".
+
+- **Dica de memória para itens teimosos:** no card Itens teimosos, "Dica de memória (IA)" cria uma imagem ou historinha para o kana, a palavra, a forma de verbo ou a partícula que você esquece sempre, mais um treino diferente de repetir. Nas palavras, "Usar como minha dica" guarda o texto na nota de memória da palavra.
+- **Por quê? e avaliação em mais telas:** no Montar, a IA explica por que a frase certa é a certa. Em Traduzir → Entender (livre), "A IA avalia o que você escreveu" diz se o seu português bate com o sentido (certo, quase ou outro), o que fecha a lacuna de não dar para corrigir português livre. As Lacunas, a Conjugação e o Contar já tinham o "Por quê?" pelos quizzes.
+- **Registro (Frases → ✨ IA → Registro):** escreva uma frase em português ou em japonês e veja a mesma ideia em casual, educado e formal, com leitura, áudio, quando usar cada uma e a diferença principal.
+- **Leitura sob medida (Frases → ✨ IA → Leitura):** escolha um tema e o tamanho (4 ou 7 frases) e a IA escreve um texto de leitura N5 com as palavras que você já aprendeu. Tem leitura em hiragana, tradução sob demanda, áudio de cada frase e do texto todo, "Salvar a frase" e o aviso de quantas frases só usam palavras do app. Os textos ficam guardados (até 20) para ler sem internet.
+- As abas da área IA viraram uma fileira de chips: Conversa, Explicar, Diário, Registro e Leitura.
+
 ## [2.2.0] - 2026-10-26
 
 Conversa por texto com a IA (Frases → ✨ IA → Conversa). Precisa da chave cadastrada em Ajustes; sem ela, o resto do app não muda.

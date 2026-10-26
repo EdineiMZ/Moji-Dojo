@@ -1,3 +1,4 @@
+import { AiExplain } from '@/features/ai/AiParts';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, Card, PressableScale } from '@/components';
@@ -168,6 +169,9 @@ export function BuildView({ topic }: BuildViewProps) {
               </AppText>
             ) : null}
             <AppText variant="caption">{exercise.hint}</AppText>
+            {checked === 'bad' ? (
+              <AiExplain context={`Exercício de montar uma frase em japonês. Pedido: "${exercise.pt}". Frase certa: ${exercise.answer.join('')}. A pessoa montou: ${built.join('') || '(nada)'}. Regra: ${exercise.hint}`} />
+            ) : null}
           </View>
         ) : null}
 

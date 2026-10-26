@@ -28,6 +28,16 @@ export interface DiaryEntry {
   summary: string;
 }
 
+/** Um texto de leitura criado pela IA. */
+export interface StoredStory {
+  id: string;
+  at: number;
+  topic: string;
+  title: string;
+  sentences: readonly { jp: string; reading: string; pt: string }[];
+}
+
+export const MAX_STORIES = 20;
 export const MAX_DIARY = 60;
 export const MAX_CACHE = 120;
 export const MAX_AI_PHRASES = 200;
@@ -36,10 +46,13 @@ export interface AiStoreState {
   cache: Readonly<Record<string, CacheEntry>>;
   phrases: readonly AiPhrase[];
   diary: readonly DiaryEntry[];
+  stories: readonly StoredStory[];
   putCache: (key: string, value: unknown, now?: number) => void;
   addPhrases: (phrases: readonly AiPhrase[]) => void;
   removePhrase: (id: string) => void;
   addDiary: (entry: DiaryEntry) => void;
+  addStory: (story: StoredStory) => void;
+  removeStory: (id: string) => void;
   clearAll: () => void;
 }
 
@@ -75,17 +88,20 @@ export function createAiStore(storage: StateStorage) {
         cache: {},
         phrases: [],
         diary: [],
+        stories: [],
         putCache: (key, value, now = Date.now()) => set((s) => ({ cache: trimCache({ ...s.cache, [key]: { at: now, value } }) })),
         addPhrases: (added) => set((s) => ({ phrases: mergePhrases(s.phrases, added) })),
         removePhrase: (id) => set((s) => ({ phrases: s.phrases.filter((p) => p.id !== id) })),
         addDiary: (entry) => set((s) => ({ diary: [entry, ...s.diary].slice(0, MAX_DIARY) })),
-        clearAll: () => set({ cache: {}, phrases: [], diary: [] }),
+        addStory: (story) => set((s) => ({ stories: [story, ...s.stories].slice(0, MAX_STORIES) })),
+        removeStory: (id) => set((s) => ({ stories: s.stories.filter((x) => x.id !== id) })),
+        clearAll: () => set({ cache: {}, phrases: [], diary: [], stories: [] }),
       }),
       {
         name: AI_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ cache, phrases, diary }) => ({ cache, phrases, diary }),
+        partialize: ({ cache, phrases, diary, stories }) => ({ cache, phrases, diary, stories }),
       },
     ),
   );

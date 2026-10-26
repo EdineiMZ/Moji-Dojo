@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { AppText, Bold, Button, Card, SegmentedControl, useScrollIntoView } from '@/components';
+import { AppText, Bold, Button, Card, ChipRow, useScrollIntoView } from '@/components';
 import { PROBLEM_MESSAGES } from '@/features/myphrases/phrases';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { JapaneseInput } from '@/features/translate/JapaneseInput';
@@ -12,9 +12,10 @@ import { AiDisclaimer } from './AiParts';
 import { AiError } from './client';
 import { ConversationView } from './ConversationView';
 import { explainText, MAX_DIARY_LENGTH, MAX_DIARY_LINES, MAX_TEXT_LENGTH, reviewDiary, type DiaryReview, type TextExplanation } from './tasks';
+import { RegisterCard, StoryCard } from './StudyExtras';
 import { useAiReady } from './useAi';
 
-type Tab = 'chat' | 'explain' | 'diary';
+type Tab = 'chat' | 'explain' | 'diary' | 'register' | 'story';
 
 const errorText = (error: unknown): string => (error instanceof AiError ? error.message : 'Não consegui falar com a IA agora.');
 
@@ -29,7 +30,7 @@ export function AiStudioView() {
       <Card enterIndex={0}>
         <AppText variant="title">Estudar com IA</AppText>
         <AppText color="muted">
-          Converse com a IA em japonês, explique falas de anime e mensagens, e escreva um diário corrigido. Cadastre a sua chave de API em Ajustes para usar. O resto do app não precisa dela.
+          Converse com a IA em japonês, explique falas de anime, escreva um diário corrigido, compare registros e leia textos feitos para você. Cadastre a sua chave de API em Ajustes para usar. O resto do app não precisa dela.
         </AppText>
         <Button label="Abrir Ajustes" variant="soft" onPress={() => router.push('/settings')} />
       </Card>
@@ -38,16 +39,22 @@ export function AiStudioView() {
 
   return (
     <View style={styles.root}>
-      <SegmentedControl
+      <ChipRow
         options={[
           { value: 'chat' as const, label: 'Conversa' },
           { value: 'explain' as const, label: 'Explicar' },
           { value: 'diary' as const, label: 'Diário' },
+          { value: 'register' as const, label: 'Registro' },
+          { value: 'story' as const, label: 'Leitura' },
         ]}
         value={tab}
         onChange={setTab}
       />
-      {tab === 'chat' ? <ConversationView /> : tab === 'explain' ? <ExplainTextCard /> : <DiaryCard />}
+      {tab === 'chat' ? <ConversationView /> : null}
+      {tab === 'explain' ? <ExplainTextCard /> : null}
+      {tab === 'diary' ? <DiaryCard /> : null}
+      {tab === 'register' ? <RegisterCard /> : null}
+      {tab === 'story' ? <StoryCard /> : null}
     </View>
   );
 }

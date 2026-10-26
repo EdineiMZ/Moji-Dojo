@@ -10,6 +10,8 @@ export interface Leech {
   /** O que aparece para o aluno ("あ (a)", "学校 · escola", "食べる · forma て"). */
   label: string;
   lapses: number;
+  /** Id da palavra, nos itens de vocabulário (para guardar a dica de memória). */
+  id?: string;
   /** Outra abordagem para esse item. */
   tip: string;
 }
@@ -31,14 +33,14 @@ interface Sources {
 /** Os itens que o aluno esquece sempre (4 esquecimentos ou mais e ainda nas primeiras caixas), os mais esquecidos primeiro. */
 export function findLeeches({ srs, vocab, conj, particles }: Sources): Leech[] {
   const out: Leech[] = [];
-  const add = (area: LeechArea, label: string, lapses: number) => out.push({ area, label, lapses, tip: TIPS[area] });
+  const add = (area: LeechArea, label: string, lapses: number, id?: string) => out.push({ area, label, lapses, tip: TIPS[area], ...(id ? { id } : {}) });
   for (const [char, entry] of Object.entries(srs)) {
     const item = findItem(char);
     if (item && isLeech(entry)) add('kana', `${char} (${item.label})`, entry.l ?? 0);
   }
   for (const [key, entry] of Object.entries(vocab)) {
     const card = parseWordKey(key);
-    if (card && isLeech(entry)) add('vocab', `${card.word.jp} · ${card.word.meaning}`, entry.l ?? 0);
+    if (card && isLeech(entry)) add('vocab', `${card.word.jp} · ${card.word.meaning}`, entry.l ?? 0, card.word.id);
   }
   for (const [key, entry] of Object.entries(conj)) {
     const card = parseVerbKey(key);

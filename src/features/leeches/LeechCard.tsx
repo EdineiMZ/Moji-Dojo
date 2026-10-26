@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { View } from 'react-native';
 import { AppText, Card } from '@/components';
+import { MnemonicButton } from '@/features/ai/MnemonicButton';
 import { useProgressStore } from '@/store';
 import { spacing } from '@/theme';
 import { findLeeches } from './leeches';
@@ -31,6 +32,7 @@ export function LeechCard() {
             <AppText variant="caption" color="muted">
               {l.tip}
             </AppText>
+            <MnemonicButton area={l.area} label={l.label} {...(l.id ? { wordId: l.id } : {})} />
           </View>
         ))}
       </View>

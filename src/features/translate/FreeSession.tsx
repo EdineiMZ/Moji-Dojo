@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { AppText, Button, Card, Mascot, PetalRain, ProgressBar, useScrollIntoView } from '@/components';
+import { AiMeaningCheck } from '@/features/ai/AiParts';
 import { resultMood } from '@/features/lessons/resultCopy';
 import { ResultCard } from '@/features/quiz/ResultCard';
 import { REVIEW_GOOD_PCT } from '@/features/review/session';
@@ -142,6 +143,7 @@ export function FreeSession({ items, title, onResult, onExit, again }: FreeSessi
               Para lembrar: {item.hint}
             </AppText>
           ) : null}
+          {text.trim() ? <AiMeaningCheck jp={item.jp.replace(/ /g, '')} reference={item.pt} answer={text.trim()} /> : null}
           <AppText>Você entendeu?</AppText>
           <View style={styles.row}>
             <Button label="Errei" variant="soft" style={styles.flex} onPress={() => rate(false)} />

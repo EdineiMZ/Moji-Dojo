@@ -4,6 +4,7 @@ import { AppText, Bold, Button } from '@/components';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { AiError } from './client';
 import { correctPhrase, explainWhy, type Explanation, type PhraseFix } from './tasks';
+import { judgeMeaning, type MeaningJudgement } from './tasksMore';
 import { useAiReady } from './useAi';
 
 const errorText = (error: unknown): string => (error instanceof AiError ? error.message : 'Não consegui falar com a IA agora.');
@@ -151,6 +152,58 @@ export function AiExplain({ context, allowQuestion = false, label = '💡 Por qu
               <Bold>Dica:</Bold> {answer.tip}
             </AppText>
           ) : null}
+          <AiDisclaimer />
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
+const VERDICT_TEXT: Readonly<Record<MeaningJudgement['verdict'], string>> = { ok: 'Sentido certo!', close: 'Quase.', wrong: 'O sentido é outro.' };
+
+interface AiMeaningCheckProps {
+  jp: string;
+  reference: string;
+  answer: string;
+}
+
+/** Na tela "Entender (livre)": a IA diz se o português que a pessoa escreveu bate com o sentido da frase. */
+export function AiMeaningCheck({ jp, reference, answer }: AiMeaningCheckProps) {
+  const { colors } = useTheme();
+  const ready = useAiReady();
+  const [busy, setBusy] = useState(false);
+  const [verdict, setVerdict] = useState<MeaningJudgement | null>(null);
+  const [error, setError] = useState('');
+
+  if (!ready) return null;
+
+  const run = async () => {
+    setBusy(true);
+    setError('');
+    try {
+      setVerdict(await judgeMeaning(jp, reference, answer));
+    } catch (e) {
+      setVerdict(null);
+      setError(errorText(e));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const tone = verdict?.verdict === 'ok' ? colors.okSoft : verdict?.verdict === 'wrong' ? colors.badSoft : colors.skySoft;
+  return (
+    <View style={styles.root}>
+      <Button label={busy ? 'Avaliando...' : '✨ A IA avalia o que você escreveu'} variant="soft" onPress={run} disabled={busy} />
+      {error ? (
+        <AppText color="bad" accessibilityLiveRegion="polite">
+          {error}
+        </AppText>
+      ) : null}
+      {verdict ? (
+        <View style={[styles.result, { backgroundColor: tone }]} accessibilityLiveRegion="polite">
+          <AppText>
+            <Bold>{VERDICT_TEXT[verdict.verdict]}</Bold> {verdict.note}
+          </AppText>
           <AiDisclaimer />
         </View>
       ) : null}

@@ -259,17 +259,17 @@ Objetivo: usar IA para o que o app não consegue sozinho (corrigir, explicar, cr
 
 | # | Funcionalidade | Estado |
 | --- | --- | --- |
-| 1 | **Corrigir minhas frases** | [~] Feito em Minhas frases (correção, versão mais natural e o porquê, com "usar a frase corrigida"). Falta em Traduzir → Entender (livre) e no diário. |
-| 2 | **Botão "Por quê?"** | [~] Feito nos erros dos quizzes de alternativas, nos exercícios de escrita e, com campo de dúvida livre, em cada tópico de gramática. Falta no Montar, nas Lacunas e na Conjugação. |
+| 1 | **Corrigir minhas frases** | [~] Feito em Minhas frases (correção, versão mais natural e o porquê, com "usar a frase corrigida"). Também em Traduzir → Entender (livre), onde a IA avalia o português que você escreveu, e no diário. |
+| 2 | **Botão "Por quê?"** | [~] Feito nos erros dos quizzes de alternativas, nos exercícios de escrita e, com campo de dúvida livre, em cada tópico de gramática. Também no Montar e, pelo quiz, nas Lacunas, na Conjugação, no Contar e em outros. |
 | 3 | **Frases sob medida para o simulador** | [x] Simulador → IA: tema à escolha, frases em hiragana validadas para o teclado de flick, usando o vocabulário que você já aprendeu e avisando de palavra fora dele; ficam guardadas para treinar offline. Cada frase guardada tem "Salvar em Minhas frases". |
 | 4 | **Conversa por texto (roleplay)** | [x] Frases → ✨ IA → Conversa: 6 cenas (restaurante, loja, estação, hotel, conhecer alguém, bate-papo), a IA responde em japonês simples, a voz do aparelho fala, você digita no teclado do app ou do celular. Cada frase sua é corrigida na hora, há ideias de resposta, tradução sob demanda e um resumo final para salvar as corrigidas. Limite de 12 falas por conversa. Falta: cenas escolhidas pelo aluno e reconhecimento de fala como entrada. |
 | 5 | **Explicar qualquer texto japonês colado** | [x] Frases → ✨ IA → Explicar texto: tradução, leitura, palavras e gramática, com áudio e "Salvar a frase" (vira cartão em Minhas frases). Falta receber o texto direto pelo compartilhar do Android. |
 | 6 | **Diário curto** | [x] Frases → ✨ IA → Diário: de 1 a 3 frases por dia, corrigidas com o porquê, tradução e áudio; "Salvar" leva a corrigida para Minhas frases (revisão). Os diários anteriores ficam guardados. (Cumpre o "Diário em japonês" da Fase 8.) |
-| 7 | **Textos graduados sob medida** | [ ] Historinhas com seus temas e só com palavras que você conhece, com tradução por frase. |
-| 8 | **Mnemônico para itens teimosos** | [ ] A IA escreve a dica de memória em português para o kana, kanji ou palavra que você sempre esquece. |
+| 7 | **Textos graduados sob medida** | [x] Frases → ✨ IA → Leitura: tema e tamanho à escolha (4 ou 7 frases), com as palavras que você já aprendeu, leitura em hiragana, tradução sob demanda, áudio, "Salvar a frase" e aviso de quantas frases só usam palavras do app. Ficam guardados (até 20). Falta o toque na palavra com dicionário, como nos textos fixos. |
+| 8 | **Mnemônico para itens teimosos** | [x] No card Itens teimosos, "Dica de memória (IA)" cria a dica e um treino diferente; nas palavras, "Usar como minha dica" guarda na nota da palavra. |
 | 9 | **Feedback de fala em texto** | [ ] A IA compara o que o reconhecimento de fala entendeu com a frase-alvo e explica o provável erro, sem gerar áudio. |
 | 10 | **Diálogos novos** | [ ] Gerador de cenas além das 13 atuais, com respostas erradas que explicam o porquê. |
-| 11 | **Treinador de registro** | [ ] Reescreve a mesma frase em casual, educado e formal e explica quando usar cada uma. |
+| 11 | **Treinador de registro** | [x] Frases → ✨ IA → Registro: a frase em casual, educado e formal, com leitura, áudio, quando usar cada uma e a diferença principal. |
 | 12 | **Resumo semanal do coach** | [ ] Lê só as estatísticas agregadas (retenção, habilidades, teimosos) e sugere o foco da semana. Nenhum conteúdo pessoal sai do aparelho. |
 | 13 | **Simulado estilo JLPT** | [ ] Questões de gramática e vocabulário por nível, com gabarito comentado. |
 

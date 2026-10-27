@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { AppText, Bold, Button, Card, ChipRow, SegmentedControl, useScrollIntoView } from '@/components';
-import { findWord } from '@/content';
 import { PROBLEM_MESSAGES } from '@/features/myphrases/phrases';
 import { speakJapanese } from '@/features/speech/voiceStore';
-import { learnedWordIds } from '@/features/vocab/cards';
 import { useAiStore, useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { AiDisclaimer } from './AiParts';
 import { AiError } from './client';
+import { runJob } from './jobs';
+import { QueueOffer } from './QueueParts';
+import type { JobSpec } from './queue';
 import { PHRASE_TOPICS } from './tasks';
 import {
-  generateStory,
   knownShare,
   MAX_REGISTER_INPUT,
   REGISTER_LABELS,
@@ -119,9 +119,7 @@ export function RegisterCard() {
 /** Textos de leitura sob medida: tema à escolha, com o vocabulário que você já aprendeu. */
 export function StoryCard() {
   const { colors } = useTheme();
-  const vocab = useProgressStore((s) => s.vocab);
   const stories = useAiStore((s) => s.stories);
-  const addStory = useAiStore((s) => s.addStory);
   const removeStory = useAiStore((s) => s.removeStory);
   const save = useSave();
   const [topic, setTopic] = useState(PHRASE_TOPICS[0]?.value ?? 'travel');
@@ -129,24 +127,19 @@ export function StoryCard() {
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<Message | null>(null);
   const [openId, setOpenId] = useState<string | null>(stories[0]?.id ?? null);
+  const [failure, setFailure] = useState<{ spec: JobSpec; error: unknown } | null>(null);
 
   const generate = async () => {
-    const chosen = PHRASE_TOPICS.find((t) => t.value === topic) ?? PHRASE_TOPICS[0];
-    if (!chosen) return;
+    const next: JobSpec = { kind: 'story', topic, length };
     setBusy(true);
     setMessage(null);
+    setFailure(null);
     try {
-      const known = [...learnedWordIds(vocab)].flatMap((id) => {
-        const word = findWord(id);
-        return word ? [word.jp] : [];
-      });
-      const now = Date.now();
-      const story = await generateStory({ topic: chosen, length, known, seed: now });
-      const id = `s${now.toString(36)}`;
-      addStory({ id, at: now, topic: chosen.label, title: story.title, sentences: story.sentences });
-      setOpenId(id);
+      const result = await runJob(next);
+      if (result.id) setOpenId(result.id);
     } catch (e) {
       setMessage({ text: errorText(e), ok: false });
+      setFailure({ spec: next, error: e });
     } finally {
       setBusy(false);
     }
@@ -171,6 +164,7 @@ export function StoryCard() {
           {message.text}
         </AppText>
       ) : null}
+      {failure ? <QueueOffer spec={failure.spec} error={failure.error} /> : null}
       <AiDisclaimer />
 
       {stories.map((story) => (

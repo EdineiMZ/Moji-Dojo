@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { AppText, Button, Card, ChipRow } from '@/components';
-import { findWord } from '@/content';
-import { learnedWordIds } from '@/features/vocab/cards';
-import { useAiStore, useProgressStore } from '@/store';
 import { AiDisclaimer } from './AiParts';
 import { AiError } from './client';
 import { PHRASE_TOPICS } from './tasks';
-import { generateScene } from './tasksPractice';
+import { runJob } from './jobs';
+import { QueueOffer } from './QueueParts';
+import type { JobSpec } from './queue';
 import { useAiReady } from './useAi';
 
 interface SceneGeneratorProps {
@@ -17,31 +16,24 @@ interface SceneGeneratorProps {
 /** "Criar cena com IA" dentro de Diálogos: uma cena nova de escolher a resposta, guardada para jogar sem internet. */
 export function SceneGenerator({ onCreated }: SceneGeneratorProps) {
   const ready = useAiReady();
-  const vocab = useProgressStore((s) => s.vocab);
-  const addScene = useAiStore((s) => s.addScene);
   const [topic, setTopic] = useState(PHRASE_TOPICS[0]?.value ?? 'travel');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [failure, setFailure] = useState<{ spec: JobSpec; error: unknown } | null>(null);
 
   if (!ready) return null;
 
   const create = async () => {
-    const chosen = PHRASE_TOPICS.find((t) => t.value === topic) ?? PHRASE_TOPICS[0];
-    if (!chosen) return;
+    const next: JobSpec = { kind: 'scene', topic };
     setBusy(true);
     setError('');
+    setFailure(null);
     try {
-      const known = [...learnedWordIds(vocab)].flatMap((id) => {
-        const word = findWord(id);
-        return word ? [word.jp] : [];
-      });
-      const now = Date.now();
-      const scene = await generateScene({ topic: chosen, known, seed: now });
-      const id = `ia${now.toString(36)}`;
-      addScene({ id, title: scene.title, place: chosen.label, intro: scene.intro, turns: scene.turns });
-      onCreated(id);
+      const result = await runJob(next);
+      if (result.id) onCreated(result.id);
     } catch (e) {
       setError(e instanceof AiError ? e.message : 'Não consegui falar com a IA agora.');
+      setFailure({ spec: next, error: e });
     } finally {
       setBusy(false);
     }
@@ -60,6 +52,7 @@ export function SceneGenerator({ onCreated }: SceneGeneratorProps) {
           {error}
         </AppText>
       ) : null}
+      {failure ? <QueueOffer spec={failure.spec} error={failure.error} /> : null}
       <AiDisclaimer />
     </Card>
   );

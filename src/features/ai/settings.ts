@@ -16,7 +16,7 @@ export const LIMIT_OPTIONS: readonly number[] = [10, 30, 60, 0];
 export const DEFAULT_AI: AiSettings = {
   enabled: true,
   provider: 'gemini',
-  models: { gemini: PROVIDERS.gemini.defaultModel, claude: PROVIDERS.claude.defaultModel },
+  models: { gemini: PROVIDERS.gemini.defaultModel, claude: PROVIDERS.claude.defaultModel, openai: PROVIDERS.openai.defaultModel },
   dailyLimit: 30,
 };
 
@@ -36,7 +36,7 @@ export function sanitizeAi(raw: unknown): AiSettings {
   return {
     enabled: typeof r.enabled === 'boolean' ? r.enabled : DEFAULT_AI.enabled,
     provider,
-    models: { gemini: model('gemini'), claude: model('claude') },
+    models: { gemini: model('gemini'), claude: model('claude'), openai: model('openai') },
     dailyLimit: typeof r.dailyLimit === 'number' && LIMIT_OPTIONS.includes(r.dailyLimit) ? r.dailyLimit : DEFAULT_AI.dailyLimit,
   };
 }

@@ -12,7 +12,7 @@ import { ask } from './useAi';
 
 type Status = { kind: 'idle' } | { kind: 'busy' } | { kind: 'ok'; text: string } | { kind: 'error'; text: string };
 
-/** Ajustes → IA: liga o recurso, escolhe o provedor (Gemini ou Claude), guarda a chave com segurança e testa a conexão. */
+/** Ajustes → IA: liga o recurso, escolhe o provedor (Gemini, Claude ou GPT), guarda a chave com segurança e testa a conexão. */
 export function AiSettingsCard() {
   const { colors } = useTheme();
   const ai = useSettingsStore((s) => s.ai);

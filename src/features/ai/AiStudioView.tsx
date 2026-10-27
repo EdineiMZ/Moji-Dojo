@@ -13,6 +13,7 @@ import { AiError } from './client';
 import { ConversationView } from './ConversationView';
 import { ExamView } from './ExamView';
 import { explainText, MAX_DIARY_LENGTH, MAX_DIARY_LINES, MAX_TEXT_LENGTH, reviewDiary, type DiaryReview, type TextExplanation } from './tasks';
+import { QueueBar } from './QueueParts';
 import { RegisterCard, StoryCard } from './StudyExtras';
 import { useAiReady } from './useAi';
 
@@ -52,6 +53,7 @@ export function AiStudioView() {
         value={tab}
         onChange={setTab}
       />
+      <QueueBar />
       {tab === 'chat' ? <ConversationView /> : null}
       {tab === 'explain' ? <ExplainTextCard /> : null}
       {tab === 'diary' ? <DiaryCard /> : null}

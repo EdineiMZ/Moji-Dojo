@@ -15,12 +15,14 @@ import {
   EXAM_LEVELS,
   EXAM_SECTIONS,
   EXAM_SIZES,
-  generateExam,
   shuffleQuestion,
   type ExamLevel,
   type ExamQuestion,
   type ExamSection,
 } from './tasksPractice';
+import { runJob } from './jobs';
+import { QueueOffer } from './QueueParts';
+import type { JobSpec } from './queue';
 import { useAiReady } from './useAi';
 
 const sectionLabel = (section: ExamSection): string => EXAM_SECTIONS.find((s) => s.value === section)?.label ?? section;
@@ -44,25 +46,26 @@ export function ExamView() {
 function ExamPicker({ onStart }: { onStart: (exam: StoredExam) => void }) {
   const ready = useAiReady();
   const exams = useAiStore((s) => s.exams);
-  const addExam = useAiStore((s) => s.addExam);
   const removeExam = useAiStore((s) => s.removeExam);
   const [level, setLevel] = useState<ExamLevel>('N5');
   const [section, setSection] = useState<ExamSection>('grammar');
   const [size, setSize] = useState(5);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [failure, setFailure] = useState<{ spec: JobSpec; error: unknown } | null>(null);
 
   const create = async () => {
+    const next: JobSpec = { kind: 'exam', level, section, count: size };
     setBusy(true);
     setError('');
+    setFailure(null);
     try {
-      const now = Date.now();
-      const questions = await generateExam({ level, section, count: size, seed: now });
-      const exam: StoredExam = { id: `x${now.toString(36)}`, at: now, level, section, questions, best: null };
-      addExam(exam);
-      onStart(exam);
+      const result = await runJob(next);
+      const made = useAiStore.getState().exams.find((x) => x.id === result.id);
+      if (made) onStart(made);
     } catch (e) {
       setError(e instanceof AiError ? e.message : 'Não consegui falar com a IA agora.');
+      setFailure({ spec: next, error: e });
     } finally {
       setBusy(false);
     }
@@ -94,6 +97,7 @@ function ExamPicker({ onStart }: { onStart: (exam: StoredExam) => void }) {
               {error}
             </AppText>
           ) : null}
+          {failure ? <QueueOffer spec={failure.spec} error={failure.error} /> : null}
           <AiDisclaimer />
         </Card>
       ) : null}

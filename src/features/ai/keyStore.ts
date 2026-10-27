@@ -49,7 +49,7 @@ interface KeyState {
 /** Só diz se há chave; a chave em si é lida do armazenamento seguro na hora de usar. */
 export const useAiKeys = create<KeyState>((set) => ({
   loaded: false,
-  has: { gemini: false, claude: false },
+  has: { gemini: false, claude: false, openai: false },
   refresh: async () => {
     const entries = await Promise.all(PROVIDER_IDS.map(async (p) => [p, (await readKey(p)) !== null] as const));
     set({ loaded: true, has: Object.fromEntries(entries) as Record<AiProvider, boolean> });

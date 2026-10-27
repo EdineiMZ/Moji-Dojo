@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
 import type { DialogScene } from '@/content/dialogs';
+import { MAX_QUEUE, sameSpec, type JobSpec, type QueuedJob } from './queue';
 import type { ExamLevel, ExamQuestion, ExamSection } from './tasksPractice';
 
 /** Uma resposta guardada, para não gastar a IA de novo com o mesmo pedido. */
@@ -64,6 +65,8 @@ export interface AiStoreState {
   stories: readonly StoredStory[];
   scenes: readonly DialogScene[];
   exams: readonly StoredExam[];
+  /** Pedidos feitos sem internet, para fazer quando ela voltar. */
+  queue: readonly QueuedJob[];
   putCache: (key: string, value: unknown, now?: number) => void;
   addPhrases: (phrases: readonly AiPhrase[]) => void;
   removePhrase: (id: string) => void;
@@ -76,6 +79,9 @@ export interface AiStoreState {
   removeExam: (id: string) => void;
   /** Guarda a nota se for a melhor até agora. */
   recordExamScore: (id: string, score: number) => void;
+  /** Guarda o pedido na fila (sem repetir pedido igual); false se a fila está cheia. */
+  enqueue: (spec: JobSpec, now?: number) => boolean;
+  dequeue: (id: string) => void;
   clearAll: () => void;
 }
 
@@ -107,13 +113,14 @@ export function mergePhrases(current: readonly AiPhrase[], added: readonly AiPhr
 export function createAiStore(storage: StateStorage) {
   return create<AiStoreState>()(
     persist(
-      (set) => ({
+      (set, get) => ({
         cache: {},
         phrases: [],
         diary: [],
         stories: [],
         scenes: [],
         exams: [],
+        queue: [],
         putCache: (key, value, now = Date.now()) => set((s) => ({ cache: trimCache({ ...s.cache, [key]: { at: now, value } }) })),
         addPhrases: (added) => set((s) => ({ phrases: mergePhrases(s.phrases, added) })),
         removePhrase: (id) => set((s) => ({ phrases: s.phrases.filter((p) => p.id !== id) })),
@@ -126,13 +133,21 @@ export function createAiStore(storage: StateStorage) {
         removeExam: (id) => set((s) => ({ exams: s.exams.filter((x) => x.id !== id) })),
         recordExamScore: (id, score) =>
           set((s) => ({ exams: s.exams.map((x) => (x.id === id ? { ...x, best: Math.max(x.best ?? 0, score) } : x)) })),
-        clearAll: () => set({ cache: {}, phrases: [], diary: [], stories: [], scenes: [], exams: [] }),
+        enqueue: (spec, now = Date.now()) => {
+          const { queue } = get();
+          if (queue.some((j) => sameSpec(j.spec, spec))) return true;
+          if (queue.length >= MAX_QUEUE) return false;
+          set({ queue: [...queue, { id: `q${now.toString(36)}${queue.length}`, at: now, spec }] });
+          return true;
+        },
+        dequeue: (id) => set((s) => ({ queue: s.queue.filter((j) => j.id !== id) })),
+        clearAll: () => set({ cache: {}, phrases: [], diary: [], stories: [], scenes: [], exams: [], queue: [] }),
       }),
       {
         name: AI_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ cache, phrases, diary, stories, scenes, exams }) => ({ cache, phrases, diary, stories, scenes, exams }),
+        partialize: ({ cache, phrases, diary, stories, scenes, exams, queue }) => ({ cache, phrases, diary, stories, scenes, exams, queue }),
       },
     ),
   );

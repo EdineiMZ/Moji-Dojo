@@ -12,6 +12,7 @@ import { LoadingScreen } from '@/components/LoadingScreen';
 import { StudyTimer } from '@/features/profile/useStudyTimer';
 import { ChestHost } from '@/features/journey/ui/ChestHost';
 import { ToastHost } from '@/features/journey/ui/ToastHost';
+import { useAiQueueSync } from '@/features/ai/useAiQueueSync';
 import { useReminderSync } from '@/features/reminders/useReminderSync';
 import { remainingLoadingMs } from '@/lib/loading';
 import { useProgressStore } from '@/store';
@@ -75,6 +76,7 @@ function ThemedStack() {
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts(fontAssets);
   useReminderSync();
+  useAiQueueSync();
 
   useEffect(() => {
     if (fontsLoaded || fontError) {

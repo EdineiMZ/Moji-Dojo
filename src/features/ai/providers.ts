@@ -1,5 +1,5 @@
 /** Provedores de IA que o aluno pode usar com a própria chave. */
-export type AiProvider = 'gemini' | 'claude';
+export type AiProvider = 'gemini' | 'claude' | 'openai';
 
 export interface ProviderInfo {
   id: AiProvider;
@@ -27,9 +27,16 @@ export const PROVIDERS: Readonly<Record<AiProvider, ProviderInfo>> = {
     models: ['claude-haiku-5-5', 'claude-sonnet-5-5'],
     keyUrl: 'https://platform.anthropic.com/settings/keys',
   },
+  openai: {
+    id: 'openai',
+    label: 'GPT (OpenAI)',
+    defaultModel: 'gpt-4.1-mini',
+    models: ['gpt-4.1-mini', 'gpt-4.1'],
+    keyUrl: 'https://platform.openai.com/api-keys',
+  },
 };
 
-export const PROVIDER_IDS: readonly AiProvider[] = ['gemini', 'claude'];
+export const PROVIDER_IDS: readonly AiProvider[] = ['gemini', 'claude', 'openai'];
 
 export interface AiRequest {
   /** Instruções fixas (quem a IA é e o formato da resposta). */
@@ -56,6 +63,22 @@ export function buildHttpRequest(provider: AiProvider, key: string, model: strin
         systemInstruction: { parts: [{ text: request.system }] },
         contents: [{ role: 'user', parts: [{ text: request.user }] }],
         generationConfig: { responseMimeType: 'application/json', maxOutputTokens: request.maxTokens },
+      }),
+    };
+  }
+  if (provider === 'openai') {
+    return {
+      url: 'https://api.openai.com/v1/chat/completions',
+      headers: { 'content-type': 'application/json', authorization: `Bearer ${key}` },
+      body: JSON.stringify({
+        model,
+        // O modo JSON da OpenAI exige a palavra JSON nas mensagens: as instruções do app sempre a trazem.
+        response_format: { type: 'json_object' },
+        max_completion_tokens: request.maxTokens,
+        messages: [
+          { role: 'system', content: request.system },
+          { role: 'user', content: request.user },
+        ],
       }),
     };
   }
@@ -93,6 +116,14 @@ export function parseHttpReply(provider: AiProvider, json: unknown): AiReply | n
     if (!text) return null;
     const usage = isRecord(json.usageMetadata) ? json.usageMetadata : {};
     return { text, tokensIn: num(usage.promptTokenCount), tokensOut: num(usage.candidatesTokenCount) };
+  }
+  if (provider === 'openai') {
+    const choices = Array.isArray(json.choices) ? json.choices : [];
+    const first = choices[0];
+    const content = isRecord(first) && isRecord(first.message) ? first.message.content : undefined;
+    if (typeof content !== 'string' || !content) return null;
+    const usage = isRecord(json.usage) ? json.usage : {};
+    return { text: content, tokensIn: num(usage.prompt_tokens), tokensOut: num(usage.completion_tokens) };
   }
   const blocks = Array.isArray(json.content) ? json.content : [];
   // Blocos de pensamento vêm junto: só o texto interessa.

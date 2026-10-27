@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { AppText, Bold, Button, Card, ChipRow } from '@/components';
-import { findWord } from '@/content';
 import { AiDisclaimer } from '@/features/ai/AiParts';
 import { AiError } from '@/features/ai/client';
-import { generatePhrases, PHRASE_COUNT, PHRASE_TOPICS } from '@/features/ai/tasks';
+import { runJob } from '@/features/ai/jobs';
+import { QueueOffer } from '@/features/ai/QueueParts';
+import type { JobSpec } from '@/features/ai/queue';
+import { PHRASE_COUNT, PHRASE_TOPICS } from '@/features/ai/tasks';
 import { useAiReady } from '@/features/ai/useAi';
-import { learnedWordIds } from '@/features/vocab/cards';
 import { useAiStore, useProgressStore } from '@/store';
 import { PROBLEM_MESSAGES } from '@/features/myphrases/phrases';
 import { spacing } from '@/theme';
-import { typeable } from './practice';
 
 /**
  * Pede à IA frases novas para digitar, sobre um tema. As frases voltam em hiragana, validadas para o teclado de flick, e
@@ -20,31 +20,24 @@ import { typeable } from './practice';
 export function AiPhrasesCard() {
   const router = useRouter();
   const ready = useAiReady();
-  const vocab = useProgressStore((s) => s.vocab);
   const saved = useAiStore((s) => s.phrases);
-  const addPhrases = useAiStore((s) => s.addPhrases);
   const removePhrase = useAiStore((s) => s.removePhrase);
   const addMyPhrase = useProgressStore((s) => s.addMyPhrase);
   const [topic, setTopic] = useState(PHRASE_TOPICS[0]?.value ?? 'travel');
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<{ text: string; ok: boolean } | null>(null);
+  const [failure, setFailure] = useState<{ spec: JobSpec; error: unknown } | null>(null);
 
   const generate = async () => {
-    const chosen = PHRASE_TOPICS.find((t) => t.value === topic) ?? PHRASE_TOPICS[0];
-    if (!chosen) return;
+    const next: JobSpec = { kind: 'phrases', topic };
     setBusy(true);
     setMessage(null);
+    setFailure(null);
     try {
-      const known = [...learnedWordIds(vocab)].flatMap((id) => {
-        const reading = findWord(id)?.reading;
-        return reading && typeable(reading) ? [reading] : [];
-      });
-      const now = Date.now();
-      const phrases = await generatePhrases({ topic: chosen, known, seed: now });
-      addPhrases(phrases.map((p, i) => ({ id: `ai${now.toString(36)}${i}`, jp: p.jp, pt: p.pt, topic: chosen.label, at: now, unknown: p.unknown })));
-      setMessage({ text: `${phrases.length} frase${phrases.length === 1 ? '' : 's'} nova${phrases.length === 1 ? '' : 's'}. Já estão no treino abaixo.`, ok: true });
+      setMessage({ text: (await runJob(next)).text, ok: true });
     } catch (error) {
       setMessage({ text: error instanceof AiError ? error.message : 'Não consegui falar com a IA agora.', ok: false });
+      setFailure({ spec: next, error });
     } finally {
       setBusy(false);
     }
@@ -73,6 +66,7 @@ export function AiPhrasesCard() {
           {message.text}
         </AppText>
       ) : null}
+      {failure ? <QueueOffer spec={failure.spec} error={failure.error} /> : null}
       <AiDisclaimer />
       {saved.length > 0 ? (
         <View style={{ gap: spacing.xs }}>

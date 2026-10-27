@@ -268,10 +268,10 @@ Objetivo: usar IA para o que o app não consegue sozinho (corrigir, explicar, cr
 | 7 | **Textos graduados sob medida** | [x] Frases → ✨ IA → Leitura: tema e tamanho à escolha (4 ou 7 frases), com as palavras que você já aprendeu, leitura em hiragana, tradução sob demanda, áudio, "Salvar a frase" e aviso de quantas frases só usam palavras do app. Ficam guardados (até 20). Falta o toque na palavra com dicionário, como nos textos fixos. |
 | 8 | **Mnemônico para itens teimosos** | [x] No card Itens teimosos, "Dica de memória (IA)" cria a dica e um treino diferente; nas palavras, "Usar como minha dica" guarda na nota da palavra. |
 | 9 | **Feedback de fala em texto** | [ ] A IA compara o que o reconhecimento de fala entendeu com a frase-alvo e explica o provável erro, sem gerar áudio. |
-| 10 | **Diálogos novos** | [ ] Gerador de cenas além das 13 atuais, com respostas erradas que explicam o porquê. |
+| 10 | **Diálogos novos** | [x] Diálogos → ✨ Cena nova com IA: tema à escolha, cena no mesmo formato das fixas (atendente fala, você escolhe entre três respostas, as erradas explicam o porquê), em kana com romaji calculado. Ficam guardadas (até 12) e rodam sem internet. Falta: cenas escolhidas pelo aluno e variar a quantidade de turnos. |
 | 11 | **Treinador de registro** | [x] Frases → ✨ IA → Registro: a frase em casual, educado e formal, com leitura, áudio, quando usar cada uma e a diferença principal. |
 | 12 | **Resumo semanal do coach** | [ ] Lê só as estatísticas agregadas (retenção, habilidades, teimosos) e sugere o foco da semana. Nenhum conteúdo pessoal sai do aparelho. |
-| 13 | **Simulado estilo JLPT** | [ ] Questões de gramática e vocabulário por nível, com gabarito comentado. |
+| 13 | **Simulado estilo JLPT** | [x] Frases → ✨ IA → Simulado: N5 ou N4, vocabulário, gramática ou leitura, 5 ou 10 questões com gabarito comentado, nota e "Refazer"; ficam guardados (até 10) com a melhor nota. Questões em que a IA se contradiz são descartadas. Falta: seção de kanji/escrita, tempo de prova e histórico de notas no Meu Mochi. |
 
 ### Fase 8: fora do app (onde a fluência acontece de verdade)
 

@@ -2,6 +2,16 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.4.0] - 2026-10-27
+
+Dois recursos de IA (opcionais, com a chave cadastrada em Ajustes). Testados contra o Gemini de verdade com o `gemini-3.5-flash-lite` e o `gemini-3.5-flash`.
+
+- **Diálogos novos (aba Diálogos → ✨ Cena nova com IA):** escolha um tema e a IA monta uma cena no mesmo formato das fixas: o atendente fala, você escolhe a resposta certa entre três, e cada errada explica por que não serve ali. Tudo em kana com romaji calculado pelo app (partículas lidas como wa, e, o), sem kanji e sem pontuação. A cena só entra se tiver pelo menos 2 turnos seus, uma única resposta certa por turno e o porquê de cada errada. As cenas ficam guardadas (até 12) na lista, com "Apagar", e rodam sem internet; a cena nova abre na hora.
+- **Simulado estilo JLPT (Frases → ✨ IA → Simulado):** nível N5 ou N4, seção de vocabulário, gramática ou leitura, com 5 ou 10 questões de quatro alternativas, no formato do exame (leitura de kanji, lacuna ＿＿＿, texto curto com pergunta). Depois de cada resposta aparece o gabarito comentado (por que a certa serve e as outras não) e a tradução. No fim, nota, o que rever e "Refazer" (as alternativas são embaralhadas de novo). Os simulados ficam guardados (até 10) com a melhor nota, para refazer sem internet.
+- **Contra erro de gabarito da IA:** a IA precisa copiar o texto da alternativa certa, e a questão é descartada se a cópia não bater com a posição indicada; também saem as questões com alternativas repetidas ou vazias e as cujo comentário cita "alternativa 2" ou "a terceira opção" (as alternativas são embaralhadas, e a citação ficaria errada). Mesmo assim a IA pode errar: o aviso "Gerado por IA. Pode errar" aparece em tudo, e não é uma prova oficial.
+- Limite de saída maior nesses pedidos, para modelos que "pensam" antes de responder não terem a resposta cortada.
+- A aba de IA ganhou o chip "Simulado".
+
 ## [2.3.0] - 2026-10-26
 
 Quatro novidades de IA (todas opcionais, com a chave cadastrada em Ajustes) e mais lugares com o "Por quê?".

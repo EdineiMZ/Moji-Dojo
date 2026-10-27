@@ -9,8 +9,9 @@ import { ResultCard } from '@/features/quiz/ResultCard';
 import { REVIEW_GOOD_PCT } from '@/features/review/session';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { TypingSession } from '@/features/translate/TypingSession';
+import { SceneGenerator } from '@/features/ai/SceneGenerator';
 import { feedbackComplete, feedbackCorrect, feedbackWrong } from '@/lib/feedback';
-import { useProgressStore, useSettingsStore } from '@/store';
+import { useAiStore, useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import {
@@ -261,7 +262,9 @@ function SceneSession({ scene, onExit, onRestart }: { scene: DialogScene; onExit
 /** Diálogos curtos: cenas de restaurante, loja, estação e hotel. Em cada turno, escolher a resposta que cabe. */
 export function DialogView() {
   const [state, setState] = useState<{ id: string; attempt: number } | null>(null);
-  const scene = DIALOG_SCENES.find((s) => s.id === state?.id);
+  const aiScenes = useAiStore((s) => s.scenes);
+  const removeScene = useAiStore((s) => s.removeScene);
+  const scene = [...DIALOG_SCENES, ...aiScenes].find((s) => s.id === state?.id);
 
   if (state && scene) {
     return (
@@ -295,6 +298,21 @@ export function DialogView() {
           <Button label="Começar a cena" onPress={() => setState({ id: s.id, attempt: 1 })} />
         </Card>
       ))}
+      {aiScenes.map((s) => (
+        <Card key={s.id}>
+          <AppText variant="caption" color="muted">
+            CENA DA IA · {s.place.toUpperCase()}
+          </AppText>
+          <AppText variant="title">{s.title}</AppText>
+          <AppText color="muted">{s.intro}</AppText>
+          <AppText variant="caption" color="muted">
+            {youTurns(s).length} respostas suas. Gerada por IA: pode errar.
+          </AppText>
+          <Button label="Começar a cena" onPress={() => setState({ id: s.id, attempt: 1 })} />
+          <Button label="Apagar a cena" variant="ghost" onPress={() => removeScene(s.id)} />
+        </Card>
+      ))}
+      <SceneGenerator onCreated={(id) => setState({ id, attempt: 1 })} />
       <AppText variant="caption" color="muted">
         As suas falas são as frases da aba Viagem. As do atendente são frases fixas de atendimento escritas para o app e
         ainda precisam de revisão por quem fala japonês.

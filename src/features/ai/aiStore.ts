@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
+import type { DialogScene } from '@/content/dialogs';
+import type { ExamLevel, ExamQuestion, ExamSection } from './tasksPractice';
 
 /** Uma resposta guardada, para não gastar a IA de novo com o mesmo pedido. */
 export interface CacheEntry {
@@ -37,6 +39,19 @@ export interface StoredStory {
   sentences: readonly { jp: string; reading: string; pt: string }[];
 }
 
+/** Um simulado criado pela IA, guardado para refazer sem internet. */
+export interface StoredExam {
+  id: string;
+  at: number;
+  level: ExamLevel;
+  section: ExamSection;
+  questions: readonly ExamQuestion[];
+  /** Melhor nota (acertos), ou null se ainda não foi feito. */
+  best: number | null;
+}
+
+export const MAX_SCENES = 12;
+export const MAX_EXAMS = 10;
 export const MAX_STORIES = 20;
 export const MAX_DIARY = 60;
 export const MAX_CACHE = 120;
@@ -47,12 +62,20 @@ export interface AiStoreState {
   phrases: readonly AiPhrase[];
   diary: readonly DiaryEntry[];
   stories: readonly StoredStory[];
+  scenes: readonly DialogScene[];
+  exams: readonly StoredExam[];
   putCache: (key: string, value: unknown, now?: number) => void;
   addPhrases: (phrases: readonly AiPhrase[]) => void;
   removePhrase: (id: string) => void;
   addDiary: (entry: DiaryEntry) => void;
   addStory: (story: StoredStory) => void;
   removeStory: (id: string) => void;
+  addScene: (scene: DialogScene) => void;
+  removeScene: (id: string) => void;
+  addExam: (exam: StoredExam) => void;
+  removeExam: (id: string) => void;
+  /** Guarda a nota se for a melhor até agora. */
+  recordExamScore: (id: string, score: number) => void;
   clearAll: () => void;
 }
 
@@ -89,19 +112,27 @@ export function createAiStore(storage: StateStorage) {
         phrases: [],
         diary: [],
         stories: [],
+        scenes: [],
+        exams: [],
         putCache: (key, value, now = Date.now()) => set((s) => ({ cache: trimCache({ ...s.cache, [key]: { at: now, value } }) })),
         addPhrases: (added) => set((s) => ({ phrases: mergePhrases(s.phrases, added) })),
         removePhrase: (id) => set((s) => ({ phrases: s.phrases.filter((p) => p.id !== id) })),
         addDiary: (entry) => set((s) => ({ diary: [entry, ...s.diary].slice(0, MAX_DIARY) })),
         addStory: (story) => set((s) => ({ stories: [story, ...s.stories].slice(0, MAX_STORIES) })),
         removeStory: (id) => set((s) => ({ stories: s.stories.filter((x) => x.id !== id) })),
-        clearAll: () => set({ cache: {}, phrases: [], diary: [], stories: [] }),
+        addScene: (scene) => set((s) => ({ scenes: [scene, ...s.scenes].slice(0, MAX_SCENES) })),
+        removeScene: (id) => set((s) => ({ scenes: s.scenes.filter((x) => x.id !== id) })),
+        addExam: (exam) => set((s) => ({ exams: [exam, ...s.exams].slice(0, MAX_EXAMS) })),
+        removeExam: (id) => set((s) => ({ exams: s.exams.filter((x) => x.id !== id) })),
+        recordExamScore: (id, score) =>
+          set((s) => ({ exams: s.exams.map((x) => (x.id === id ? { ...x, best: Math.max(x.best ?? 0, score) } : x)) })),
+        clearAll: () => set({ cache: {}, phrases: [], diary: [], stories: [], scenes: [], exams: [] }),
       }),
       {
         name: AI_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ cache, phrases, diary, stories }) => ({ cache, phrases, diary, stories }),
+        partialize: ({ cache, phrases, diary, stories, scenes, exams }) => ({ cache, phrases, diary, stories, scenes, exams }),
       },
     ),
   );

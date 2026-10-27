@@ -588,4 +588,231 @@ export const TOPICS = [
       { id: 106065, ja: '彼は私に時計をくれた。', furi: '[彼|かれ]は[私|わたし]に[時計|と|けい]をくれた。', kana: 'かれ~は わたし~に とけい~を くれた', pt: 'Ele me deu um relógio.' },
     ],
   },
+  {
+    id: 'g42',
+    title: 'Dar a opinião: 〜と おもいます',
+    body: [
+      'Para dar uma opinião ou um palpite, coloque **と おもいます** depois de uma frase na **forma simples** (a que termina sem ます). O sentido é "eu acho que...".',
+      {
+        table: [
+          ['#tipo de palavra', '#antes do と', '#exemplo'],
+          ['#verbo', '__くる__ · __こない__', '__くると おもいます__ (acho que vem)'],
+          ['#adjetivo い', '__たかい__', '__たかいと おもいます__ (acho que é caro)'],
+          ['#adjetivo な ou substantivo', '__きれい__ + __だ__', '__きれいだと おもいます__ (acho que é bonito)'],
+        ],
+      },
+      'Com substantivos e adjetivos **な**, antes de **と** vai **だ**, e não **です**. Para perguntar a opinião de alguém, termine com **か**: __…と おもいますか__ (você acha que...?).',
+    ],
+    pattern: '[frase na forma simples] と おもいます',
+    hint: 'Forma simples (sem ます) + と おもいます. Com substantivo ou adjetivo な: だ + と.',
+    examples: [
+      { id: 10952563, ja: '綺麗だと思います。', furi: '[綺麗|き|れい]だと[思|おも]います。', kana: 'きれい|だ~と おもいます', pt: 'Eu acho que é bonito.' },
+      { id: 147673, ja: '出来ると思います。', furi: '[出来|で|き]ると[思|おも]います。', kana: 'できる~と おもいます', pt: 'Eu acho que posso.' },
+      { id: 78713, ja: '彼は来ないと思います。', furi: '[彼|かれ]は[来|こ]ないと[思|おも]います。', kana: 'かれ~は こない~と おもいます', pt: 'Eu acho que ele não virá.' },
+      { id: 146219, ja: '上手くいくと思いますか。', furi: '[上手|うま]くいくと[思|おも]いますか。', kana: 'うまくいく~と おもいます~か', pt: 'Você acha que vai funcionar?' },
+    ],
+  },
+  {
+    id: 'g43',
+    title: 'Palpite e confirmação: 〜でしょう',
+    body: [
+      'Depois da forma simples, **でしょう** quer dizer "deve ser", "provavelmente": é um palpite, menos firme do que afirmar com **です** ou **ます**. É muito usado na previsão do tempo.',
+      'Com **か** no fim, vira uma pergunta cuidadosa, tipo "será que...?": __ふるでしょうか__. Na conversa casual, **でしょ?** busca concordância, como o "né?" do português.',
+      'Para dizer "provavelmente", dá para reforçar com **たぶん** no começo da frase.',
+    ],
+    pattern: '[forma simples] でしょう · [forma simples] でしょうか',
+    hint: 'でしょう = deve ser, provavelmente. Com か: será que...?',
+    examples: [
+      { id: 11140871, ja: '明日は雨が降るでしょう。', furi: '[明日|あした]は[雨|あめ]が[降|ふ]るでしょう。', kana: 'あした~は あめ~が ふる|でしょう', pt: 'Vai chover amanhã.' },
+      { id: 464690, ja: 'たぶん雨が降るでしょう。', furi: 'たぶん[雨|あめ]が[降|ふ]るでしょう。', kana: 'たぶん あめ~が ふる|でしょう', pt: 'Provavelmente vai chover.' },
+      { id: 80453, ja: '明日は雨が降るでしょうか。', furi: '[明日|あした]は[雨|あめ]が[降|ふ]るでしょうか。', kana: 'あした~は あめ~が ふる|でしょう~か', pt: 'Amanhã chove?' },
+      { id: 146117, ja: '冗談でしょう。', furi: '[冗談|じょう|だん]でしょう。', kana: 'じょうだん|でしょう', pt: 'Você deve estar brincando!' },
+    ],
+  },
+  {
+    id: 'g44',
+    title: 'Planos e intenções: 〜つもりです',
+    body: [
+      'Para dizer o que você **pretende** fazer, use o verbo na **forma de dicionário** (る) e acrescente **つもりです**.',
+      {
+        table: [
+          ['#', '#forma', '#sentido'],
+          ['#pretendo', '__いく つもりです__', 'pretendo ir'],
+          ['#pretendo não', '__いかない つもりです__', 'pretendo não ir'],
+          ['#pretendia', '__いく つもりでした__', 'eu pretendia ir'],
+        ],
+      },
+      'É um plano que você mesmo decidiu. Para perguntar o plano de alguém, termine com **か**.',
+    ],
+    pattern: '[verbo na forma de dicionário] つもりです',
+    hint: 'Dicionário (る) + つもりです = pretendo. Com ない: pretendo não.',
+    examples: [
+      { id: 189334, ja: '映画に行くつもりです。', furi: '[映画|えい|が]に[行|い]くつもりです。', kana: 'えいが~に いく|つもり|です', pt: 'Vou ir ao cinema.' },
+      { id: 156072, ja: '手紙を書くつもりです。', furi: '[手紙|て|がみ]を[書|か]くつもりです。', kana: 'てがみ~を かく|つもり|です', pt: 'Vou escrever uma carta.' },
+      { id: 80261, ja: '明日彼に会うつもりです。', furi: '[明日|あした][彼|かれ]に[会|あ]うつもりです。', kana: 'あした かれ~に あう|つもり|です', pt: 'Eu vou encontrar ele amanhã.' },
+      { id: 12003468, ja: '2泊するつもりです。', furi: '[2|に][泊|はく]するつもりです。', kana: 'にはく する|つもり|です', pt: 'Vou ficar duas noites.' },
+    ],
+  },
+  {
+    id: 'g45',
+    title: 'Ter que: 〜なければなりません',
+    body: [
+      'Para dizer que é **preciso** ou que você **tem que** fazer algo, parta da forma **ない** do verbo, troque o último **い** por **ければ** e acrescente **なりません**.',
+      {
+        table: [
+          ['#dicionário', '#forma ない', '#tenho que'],
+          ['__いく__', '__いかない__', '__いかなければ なりません__'],
+          ['__たべる__', '__たべない__', '__たべなければ なりません__'],
+        ],
+      },
+      'Outro jeito muito comum é **なくては いけません**: __いかなくては いけません__. Os dois têm o mesmo sentido. Na conversa casual, o final vira **ならない** ou **いけない**.',
+    ],
+    pattern: '[verbo ない sem い] ければ なりません · [verbo ない sem い] くては いけません',
+    hint: 'いかない → いかなければ なりません (ou いかなくては いけません) = tenho que ir.',
+    examples: [
+      { id: 194208, ja: 'もう行かなければなりません。', furi: 'もう[行|い]かなければなりません。', kana: 'もう いかなければ|なりません', pt: 'Eu tenho que sair agora.' },
+      { id: 177310, ja: '君は行かなければならない。', furi: '[君|きみ]は[行|い]かなければならない。', kana: 'きみ~は いかなければ|ならない', pt: 'É necessário que você vá.' },
+      { id: 1116423, ja: 'もう行かなくてはいけません。', furi: 'もう[行|い]かなくてはいけません。', kana: 'もう いかなくては|いけません', pt: 'Tenho que ir agora.' },
+    ],
+  },
+  {
+    id: 'g46',
+    title: 'Dar um conselho: 〜た ほうが いいです',
+    body: [
+      'Para aconselhar ("é melhor...", "você deveria..."), use o verbo na **forma た** e acrescente **ほうが いいです**.',
+      'Para aconselhar a **não** fazer, use a forma **ない**: __ない ほうが いいです__.',
+      'Na conversa entre amigos o **です** some: __いった ほうが いい__. Com **よ** no fim a frase soa como um conselho amigável.',
+    ],
+    pattern: '[verbo na forma た] ほうが いいです · [verbo na forma ない] ほうが いいです',
+    hint: 'Forma た + ほうが いい = é melhor fazer. Forma ない + ほうが いい = é melhor não fazer.',
+    examples: [
+      { id: 3385048, ja: '捨てたほうがいいですよ。', furi: '[捨|す]てたほうがいいですよ。', kana: 'すてた ほう~が いい|です~よ', pt: 'Você deveria jogar fora.' },
+      { id: 11211436, ja: '寝た方がいいよ。', furi: '[寝|ね]た[方|ほう]がいいよ。', kana: 'ねた ほう~が いい~よ', pt: 'Você deveria ir dormir.' },
+      { id: 13177637, ja: '謝ったほうがいい。', furi: '[謝|あやま]ったほうがいい。', kana: 'あやまった ほう~が いい', pt: 'Você devia se desculpar.' },
+      { id: 11294943, ja: '行った方がいいよ。', furi: '[行|い]った[方|ほう]がいいよ。', kana: 'いった ほう~が いい~よ', pt: 'Você deveria ir.' },
+    ],
+  },
+  {
+    id: 'g47',
+    title: 'Não precisa: 〜なくても いいです',
+    body: [
+      'Para dizer que **não precisa** fazer algo, parta da forma **ない** e troque o último **い** por **くても**, seguido de **いいです**.',
+      {
+        table: [
+          ['#dicionário', '#forma ない', '#não precisa'],
+          ['__いく__', '__いかない__', '__いかなくても いいです__'],
+          ['__たべる__', '__たべない__', '__たべなくても いいです__'],
+        ],
+      },
+      'É o contrário de **なければ なりません** (tenho que). Para perguntar se não precisa, termine com **か**.',
+    ],
+    pattern: '[verbo ない sem い] くても いいです',
+    hint: 'いかない → いかなくても いいです = não precisa ir.',
+    examples: [
+      { id: 10767158, ja: '謝らなくてもいいですよ。', furi: '[謝|あやま]らなくてもいいですよ。', kana: 'あやまらなくても いい|です~よ', pt: 'Você não precisa pedir desculpas.' },
+      { id: 8969396, ja: '食べなくてもいいよ。', furi: '[食|た]べなくてもいいよ。', kana: 'たべなくても いい~よ', pt: 'Você não precisa comer.' },
+      { id: 8732421, ja: '行かなくてもいいよ。', furi: '[行|い]かなくてもいいよ。', kana: 'いかなくても いい~よ', pt: 'Você não tem que ir.' },
+      { id: 182548, ja: '急がなくてもいいよ。', furi: '[急|いそ]がなくてもいいよ。', kana: 'いそがなくても いい~よ', pt: 'Você não precisa se apressar.' },
+    ],
+  },
+  {
+    id: 'g48',
+    title: 'Demais: 〜すぎます',
+    body: [
+      'Para dizer que algo é **demais**, junte **すぎます** à raiz da palavra:',
+      {
+        table: [
+          ['#tipo', '#como fica', '#exemplo'],
+          ['#verbo', 'sem ます + __すぎます__', '__のみすぎます__ (bebo demais)'],
+          ['#adjetivo い', 'sem い + __すぎます__', '__ちいさすぎます__ (pequeno demais)'],
+          ['#adjetivo な', 'sem な + __すぎます__', '__しずかすぎます__ (quieto demais)'],
+        ],
+      },
+      'No passado, **すぎました**; na conversa casual, **すぎる**. Costuma indicar um exagero que incomoda.',
+    ],
+    pattern: '[raiz do verbo ou do adjetivo] すぎます',
+    hint: 'Verbo sem ます, ou adjetivo sem い/な, + すぎます = demais.',
+    examples: [
+      { id: 442055, ja: '小さすぎます。', furi: '[小|ちい]さすぎます。', kana: 'ちいさ|すぎます', pt: 'É pequeno demais.' },
+      { id: 8716645, ja: '遅すぎますか？', furi: '[遅|おそ]すぎますか？', kana: 'おそ|すぎます~か', pt: 'É tarde demais?' },
+      { id: 2459175, ja: '人が多過ぎました。', furi: '[人|ひと]が[多|おお][過|す]ぎました。', kana: 'ひと~が おお|すぎました', pt: 'Havia gente demais.' },
+      { id: 10134081, ja: 'まだ早すぎるよ。', furi: 'まだ[早|はや]すぎるよ。', kana: 'まだ はや|すぎる~よ', pt: 'Ainda é cedo demais.' },
+    ],
+  },
+  {
+    id: 'g49',
+    title: 'Fácil e difícil de fazer: 〜やすい, 〜にくい',
+    body: [
+      'Tire o **ます** do verbo e junte **やすい** (fácil de) ou **にくい** (difícil de). O resultado se comporta como um adjetivo **い**.',
+      {
+        table: [
+          ['#verbo', '#fácil', '#difícil'],
+          ['__つかいます__ (usar)', '__つかいやすい__', '__つかいにくい__'],
+          ['__はなします__ (falar)', '__はなしやすい__', '__はなしにくい__'],
+        ],
+      },
+      'Como adjetivo **い**, conjuga normalmente: __つかいやすかった__ (era fácil de usar). Não confunda com **やすい** de "barato" (安い): aqui ele vem colado ao verbo.',
+    ],
+    pattern: '[verbo sem ます] やすい · [verbo sem ます] にくい',
+    hint: 'Verbo sem ます + やすい (fácil de) ou にくい (difícil de).',
+    examples: [
+      { id: 8950340, ja: '使いやすいよ。', furi: '[使|つか]いやすいよ。', kana: 'つかい|やすい~よ', pt: 'É fácil de usar.' },
+      { id: 9963851, ja: 'とても使いやすいよ。', kana: 'とても つかい|やすい~よ', pt: 'É muito fácil de usar.' },
+      { id: 11532948, ja: '分かりやすいね。', furi: '[分|わ]かりやすいね。', kana: 'わかり|やすい~ね', pt: 'Isso é fácil de compreender.' },
+      { id: 9458223, ja: '話しにくい。', furi: '[話|はな]しにくい。', kana: 'はなし|にくい', pt: 'É difícil falar.' },
+      { id: 9101668, ja: '信じにくいです。', furi: '[信|しん]じにくいです。', kana: 'しんじ|にくい|です', pt: 'É difícil de acreditar.' },
+    ],
+  },
+  {
+    id: 'g50',
+    title: 'Experiência: 〜たことが あります',
+    body: [
+      'Para dizer que você **já fez** algo na vida (ou perguntar), use o verbo na **forma た** e acrescente **ことが あります**.',
+      {
+        table: [
+          ['#', '#forma', '#sentido'],
+          ['#já fiz', '__した ことが あります__', 'já fiz'],
+          ['#nunca fiz', '__した ことが ありません__', 'nunca fiz'],
+          ['#pergunta', '__した ことが ありますか__', 'você já fez?'],
+        ],
+      },
+      'A resposta curta é __はい、あります__ ou __いいえ、ありません__. Isto fala de **experiência de vida**, diferente do simples passado (__しました__ = fiz).',
+    ],
+    pattern: '[verbo na forma た] ことが あります',
+    hint: 'Forma た + ことが あります = já fiz (experiência). ありません = nunca.',
+    examples: [
+      { id: 79637, ja: '野球をしたことがありますか。', furi: '[野球|や|きゅう]をしたことがありますか。', kana: 'やきゅう~を した こと~が あります~か', pt: 'Você já jogou beisebol?' },
+      { id: 1533034, ja: '献血をしたことがありますか。', furi: '[献血|けん|けつ]をしたことがありますか。', kana: 'けんけつ~を した こと~が あります~か', pt: 'Você já doou sangue?' },
+      { id: 11726883, ja: 'ここに来たことがあるの？', furi: 'ここに[来|き]たことがあるの？', kana: 'ここ~に きた こと~が ある~の', pt: 'Você já esteve aqui antes?' },
+      { id: 9418654, ja: '海外に行ったことある？', furi: '[海外|かい|がい]に[行|い]ったことある？', kana: 'かいがい~に いった こと ある', pt: 'Você já viajou ao exterior?' },
+    ],
+  },
+  {
+    id: 'g51',
+    title: 'Contar coisas: os contadores',
+    body: [
+      'Em japonês o número vem com um **contador**, que muda conforme o tipo de coisa. A frase fica: **[coisa] を [número + contador] [verbo]**, sem partícula depois do número.',
+      {
+        table: [
+          ['#tipo', '#contador', '#1 · 2 · 3'],
+          ['#folhas, papéis, selos', '__まい__', '__いちまい__ · __にまい__ · __さんまい__'],
+          ['#livros e cadernos', '__さつ__', '__いっさつ__ · __にさつ__ · __さんさつ__'],
+          ['#bichos pequenos', '__ひき__', '__いっぴき__ · __にひき__ · __さんびき__'],
+          ['#pessoas', '__にん__', '__ひとり__ · __ふたり__ · __さんにん__'],
+          ['#copos e xícaras cheios', '__はい__', '__いっぱい__ · __にはい__ · __さんばい__'],
+          ['#coisas em geral', '__つ__', '__ひとつ__ · __ふたつ__ · __みっつ__'],
+        ],
+      },
+      'O som muda em alguns números (__いっぴき__, __さんびき__, __ひとり__, __ふたり__): é normal, e vale decorar os mais usados. Para perguntar "quantos?", troque o número por **なん**: __なんまい__, __なんにん__.',
+    ],
+    pattern: '[coisa] を [número+contador] [verbo]',
+    hint: 'Número + contador (まい, さつ, ひき, にん, はい, つ) vem antes do verbo, sem partícula.',
+    examples: [
+      { id: 164391, ja: '私に紙を一枚下さい。', furi: '[私|わたし]に[紙|かみ]を[一|いち][枚|まい][下|くだ]さい。', kana: 'わたし~に かみ~を いちまい ください', pt: 'Dê-me uma folha de papel.' },
+      { id: 2069336, ja: 'この本を一冊ください。', furi: 'この[本|ほん]を[一|いっ][冊|さつ]ください。', kana: 'この ほん~を いっさつ ください', pt: 'Por favor dê-me um exemplar deste livro.' },
+      { id: 143712, ja: '水を一杯下さい。', furi: '[水|みず]を[一杯|いっ|ぱい][下|くだ]さい。', kana: 'みず~を いっぱい ください', pt: 'Me dê um copo d\'água, por favor.' },
+      { id: 10846509, ja: 'うちには猫が三匹います。', furi: 'うちには[猫|ねこ]が[三|さん][匹|びき]います。', kana: 'うち~には ねこ~が さんびき います', pt: 'Eu tenho três gatos.' },
+      { id: 9159325, ja: '息子が二人います。', furi: '[息子|むす|こ]が[二人|ふた|り]います。', kana: 'むすこ~が ふたり います', pt: 'Eu tenho dois filhos.' },
+    ],
+  },
 ];

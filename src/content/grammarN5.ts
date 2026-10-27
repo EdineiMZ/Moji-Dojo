@@ -5348,6 +5348,2037 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
         "pt": "Ele me deu um relógio."
       }
     ]
+  },
+  {
+    "id": "g42",
+    "title": "Dar a opinião: 〜と おもいます",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para dar uma opinião ou um palpite, coloque "
+          },
+          {
+            "text": "と おもいます",
+            "bold": true
+          },
+          {
+            "text": " depois de uma frase na "
+          },
+          {
+            "text": "forma simples",
+            "bold": true
+          },
+          {
+            "text": " (a que termina sem ます). O sentido é \"eu acho que...\"."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "tipo de palavra",
+              "header": true
+            },
+            {
+              "text": "antes do と",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "verbo",
+              "header": true
+            },
+            {
+              "text": "くる · こない",
+              "ja": true
+            },
+            {
+              "text": "くると おもいます (acho que vem)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "adjetivo い",
+              "header": true
+            },
+            {
+              "text": "たかい",
+              "ja": true
+            },
+            {
+              "text": "たかいと おもいます (acho que é caro)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "adjetivo な ou substantivo",
+              "header": true
+            },
+            {
+              "text": "きれい + だ",
+              "ja": true
+            },
+            {
+              "text": "きれいだと おもいます (acho que é bonito)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com substantivos e adjetivos "
+          },
+          {
+            "text": "な",
+            "bold": true
+          },
+          {
+            "text": ", antes de "
+          },
+          {
+            "text": "と",
+            "bold": true
+          },
+          {
+            "text": " vai "
+          },
+          {
+            "text": "だ",
+            "bold": true
+          },
+          {
+            "text": ", e não "
+          },
+          {
+            "text": "です",
+            "bold": true
+          },
+          {
+            "text": ". Para perguntar a opinião de alguém, termine com "
+          },
+          {
+            "text": "か",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "…と おもいますか",
+            "ja": true
+          },
+          {
+            "text": " (você acha que...?)."
+          }
+        ]
+      }
+    ],
+    "pattern": "[frase na forma simples] と おもいます",
+    "examples": [
+      {
+        "jp": "きれいだと おもいます",
+        "ruby": [
+          {
+            "text": "綺麗",
+            "reading": "きれい"
+          },
+          {
+            "text": "だと"
+          },
+          {
+            "text": "思",
+            "reading": "おも"
+          },
+          {
+            "text": "います。"
+          }
+        ],
+        "romaji": "kirei da to omoimasu",
+        "pt": "Eu acho que é bonito."
+      },
+      {
+        "jp": "できると おもいます",
+        "ruby": [
+          {
+            "text": "出来",
+            "reading": "でき"
+          },
+          {
+            "text": "ると"
+          },
+          {
+            "text": "思",
+            "reading": "おも"
+          },
+          {
+            "text": "います。"
+          }
+        ],
+        "romaji": "dekiru to omoimasu",
+        "pt": "Eu acho que posso."
+      },
+      {
+        "jp": "かれは こないと おもいます",
+        "ruby": [
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "来",
+            "reading": "こ"
+          },
+          {
+            "text": "ないと"
+          },
+          {
+            "text": "思",
+            "reading": "おも"
+          },
+          {
+            "text": "います。"
+          }
+        ],
+        "romaji": "kare wa konai to omoimasu",
+        "pt": "Eu acho que ele não virá."
+      },
+      {
+        "jp": "うまくいくと おもいますか",
+        "ruby": [
+          {
+            "text": "上手",
+            "reading": "うま"
+          },
+          {
+            "text": "くいくと"
+          },
+          {
+            "text": "思",
+            "reading": "おも"
+          },
+          {
+            "text": "いますか。"
+          }
+        ],
+        "romaji": "umakuiku to omoimasu ka",
+        "pt": "Você acha que vai funcionar?"
+      }
+    ]
+  },
+  {
+    "id": "g43",
+    "title": "Palpite e confirmação: 〜でしょう",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Depois da forma simples, "
+          },
+          {
+            "text": "でしょう",
+            "bold": true
+          },
+          {
+            "text": " quer dizer \"deve ser\", \"provavelmente\": é um palpite, menos firme do que afirmar com "
+          },
+          {
+            "text": "です",
+            "bold": true
+          },
+          {
+            "text": " ou "
+          },
+          {
+            "text": "ます",
+            "bold": true
+          },
+          {
+            "text": ". É muito usado na previsão do tempo."
+          }
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com "
+          },
+          {
+            "text": "か",
+            "bold": true
+          },
+          {
+            "text": " no fim, vira uma pergunta cuidadosa, tipo \"será que...?\": "
+          },
+          {
+            "text": "ふるでしょうか",
+            "ja": true
+          },
+          {
+            "text": ". Na conversa casual, "
+          },
+          {
+            "text": "でしょ?",
+            "bold": true
+          },
+          {
+            "text": " busca concordância, como o \"né?\" do português."
+          }
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para dizer \"provavelmente\", dá para reforçar com "
+          },
+          {
+            "text": "たぶん",
+            "bold": true
+          },
+          {
+            "text": " no começo da frase."
+          }
+        ]
+      }
+    ],
+    "pattern": "[forma simples] でしょう · [forma simples] でしょうか",
+    "examples": [
+      {
+        "jp": "あしたは あめが ふるでしょう",
+        "ruby": [
+          {
+            "text": "明日",
+            "reading": "あした"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "雨",
+            "reading": "あめ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "降",
+            "reading": "ふ"
+          },
+          {
+            "text": "るでしょう。"
+          }
+        ],
+        "romaji": "ashita wa ame ga furu deshō",
+        "pt": "Vai chover amanhã."
+      },
+      {
+        "jp": "たぶん あめが ふるでしょう",
+        "ruby": [
+          {
+            "text": "たぶん"
+          },
+          {
+            "text": "雨",
+            "reading": "あめ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "降",
+            "reading": "ふ"
+          },
+          {
+            "text": "るでしょう。"
+          }
+        ],
+        "romaji": "tabun ame ga furu deshō",
+        "pt": "Provavelmente vai chover."
+      },
+      {
+        "jp": "あしたは あめが ふるでしょうか",
+        "ruby": [
+          {
+            "text": "明日",
+            "reading": "あした"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "雨",
+            "reading": "あめ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "降",
+            "reading": "ふ"
+          },
+          {
+            "text": "るでしょうか。"
+          }
+        ],
+        "romaji": "ashita wa ame ga furu deshō ka",
+        "pt": "Amanhã chove?"
+      },
+      {
+        "jp": "じょうだんでしょう",
+        "ruby": [
+          {
+            "text": "冗談",
+            "reading": "じょうだん"
+          },
+          {
+            "text": "でしょう。"
+          }
+        ],
+        "romaji": "jōdan deshō",
+        "pt": "Você deve estar brincando!"
+      }
+    ]
+  },
+  {
+    "id": "g44",
+    "title": "Planos e intenções: 〜つもりです",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para dizer o que você "
+          },
+          {
+            "text": "pretende",
+            "bold": true
+          },
+          {
+            "text": " fazer, use o verbo na "
+          },
+          {
+            "text": "forma de dicionário",
+            "bold": true
+          },
+          {
+            "text": " (る) e acrescente "
+          },
+          {
+            "text": "つもりです",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "",
+              "header": true
+            },
+            {
+              "text": "forma",
+              "header": true
+            },
+            {
+              "text": "sentido",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "pretendo",
+              "header": true
+            },
+            {
+              "text": "いく つもりです",
+              "ja": true
+            },
+            {
+              "text": "pretendo ir"
+            }
+          ],
+          [
+            {
+              "text": "pretendo não",
+              "header": true
+            },
+            {
+              "text": "いかない つもりです",
+              "ja": true
+            },
+            {
+              "text": "pretendo não ir"
+            }
+          ],
+          [
+            {
+              "text": "pretendia",
+              "header": true
+            },
+            {
+              "text": "いく つもりでした",
+              "ja": true
+            },
+            {
+              "text": "eu pretendia ir"
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "É um plano que você mesmo decidiu. Para perguntar o plano de alguém, termine com "
+          },
+          {
+            "text": "か",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo na forma de dicionário] つもりです",
+    "examples": [
+      {
+        "jp": "えいがに いくつもりです",
+        "ruby": [
+          {
+            "text": "映画",
+            "reading": "えいが"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "くつもりです。"
+          }
+        ],
+        "romaji": "eiga ni iku tsumori desu",
+        "pt": "Vou ir ao cinema."
+      },
+      {
+        "jp": "てがみを かくつもりです",
+        "ruby": [
+          {
+            "text": "手紙",
+            "reading": "てがみ"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "書",
+            "reading": "か"
+          },
+          {
+            "text": "くつもりです。"
+          }
+        ],
+        "romaji": "tegami o kaku tsumori desu",
+        "pt": "Vou escrever uma carta."
+      },
+      {
+        "jp": "あした かれに あうつもりです",
+        "ruby": [
+          {
+            "text": "明日",
+            "reading": "あした"
+          },
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "会",
+            "reading": "あ"
+          },
+          {
+            "text": "うつもりです。"
+          }
+        ],
+        "romaji": "ashita kare ni au tsumori desu",
+        "pt": "Eu vou encontrar ele amanhã."
+      },
+      {
+        "jp": "にはく するつもりです",
+        "ruby": [
+          {
+            "text": "2",
+            "reading": "に"
+          },
+          {
+            "text": "泊",
+            "reading": "はく"
+          },
+          {
+            "text": "するつもりです。"
+          }
+        ],
+        "romaji": "nihaku suru tsumori desu",
+        "pt": "Vou ficar duas noites."
+      }
+    ]
+  },
+  {
+    "id": "g45",
+    "title": "Ter que: 〜なければなりません",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para dizer que é "
+          },
+          {
+            "text": "preciso",
+            "bold": true
+          },
+          {
+            "text": " ou que você "
+          },
+          {
+            "text": "tem que",
+            "bold": true
+          },
+          {
+            "text": " fazer algo, parta da forma "
+          },
+          {
+            "text": "ない",
+            "bold": true
+          },
+          {
+            "text": " do verbo, troque o último "
+          },
+          {
+            "text": "い",
+            "bold": true
+          },
+          {
+            "text": " por "
+          },
+          {
+            "text": "ければ",
+            "bold": true
+          },
+          {
+            "text": " e acrescente "
+          },
+          {
+            "text": "なりません",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "dicionário",
+              "header": true
+            },
+            {
+              "text": "forma ない",
+              "header": true
+            },
+            {
+              "text": "tenho que",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "いく",
+              "ja": true
+            },
+            {
+              "text": "いかない",
+              "ja": true
+            },
+            {
+              "text": "いかなければ なりません",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "たべる",
+              "ja": true
+            },
+            {
+              "text": "たべない",
+              "ja": true
+            },
+            {
+              "text": "たべなければ なりません",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Outro jeito muito comum é "
+          },
+          {
+            "text": "なくては いけません",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "いかなくては いけません",
+            "ja": true
+          },
+          {
+            "text": ". Os dois têm o mesmo sentido. Na conversa casual, o final vira "
+          },
+          {
+            "text": "ならない",
+            "bold": true
+          },
+          {
+            "text": " ou "
+          },
+          {
+            "text": "いけない",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo ない sem い] ければ なりません · [verbo ない sem い] くては いけません",
+    "examples": [
+      {
+        "jp": "もう いかなければなりません",
+        "ruby": [
+          {
+            "text": "もう"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "かなければなりません。"
+          }
+        ],
+        "romaji": "mō ikanakereba narimasen",
+        "pt": "Eu tenho que sair agora."
+      },
+      {
+        "jp": "きみは いかなければならない",
+        "ruby": [
+          {
+            "text": "君",
+            "reading": "きみ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "かなければならない。"
+          }
+        ],
+        "romaji": "kimi wa ikanakereba naranai",
+        "pt": "É necessário que você vá."
+      },
+      {
+        "jp": "もう いかなくてはいけません",
+        "ruby": [
+          {
+            "text": "もう"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "かなくてはいけません。"
+          }
+        ],
+        "romaji": "mō ikanakuteha ikemasen",
+        "pt": "Tenho que ir agora."
+      }
+    ]
+  },
+  {
+    "id": "g46",
+    "title": "Dar um conselho: 〜た ほうが いいです",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para aconselhar (\"é melhor...\", \"você deveria...\"), use o verbo na "
+          },
+          {
+            "text": "forma た",
+            "bold": true
+          },
+          {
+            "text": " e acrescente "
+          },
+          {
+            "text": "ほうが いいです",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para aconselhar a "
+          },
+          {
+            "text": "não",
+            "bold": true
+          },
+          {
+            "text": " fazer, use a forma "
+          },
+          {
+            "text": "ない",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "ない ほうが いいです",
+            "ja": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Na conversa entre amigos o "
+          },
+          {
+            "text": "です",
+            "bold": true
+          },
+          {
+            "text": " some: "
+          },
+          {
+            "text": "いった ほうが いい",
+            "ja": true
+          },
+          {
+            "text": ". Com "
+          },
+          {
+            "text": "よ",
+            "bold": true
+          },
+          {
+            "text": " no fim a frase soa como um conselho amigável."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo na forma た] ほうが いいです · [verbo na forma ない] ほうが いいです",
+    "examples": [
+      {
+        "jp": "すてた ほうが いいですよ",
+        "ruby": [
+          {
+            "text": "捨",
+            "reading": "す"
+          },
+          {
+            "text": "てたほうがいいですよ。"
+          }
+        ],
+        "romaji": "suteta hō ga ii desu yo",
+        "pt": "Você deveria jogar fora."
+      },
+      {
+        "jp": "ねた ほうが いいよ",
+        "ruby": [
+          {
+            "text": "寝",
+            "reading": "ね"
+          },
+          {
+            "text": "た"
+          },
+          {
+            "text": "方",
+            "reading": "ほう"
+          },
+          {
+            "text": "がいいよ。"
+          }
+        ],
+        "romaji": "neta hō ga ii yo",
+        "pt": "Você deveria ir dormir."
+      },
+      {
+        "jp": "あやまった ほうが いい",
+        "ruby": [
+          {
+            "text": "謝",
+            "reading": "あやま"
+          },
+          {
+            "text": "ったほうがいい。"
+          }
+        ],
+        "romaji": "ayamatta hō ga ii",
+        "pt": "Você devia se desculpar."
+      },
+      {
+        "jp": "いった ほうが いいよ",
+        "ruby": [
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "った"
+          },
+          {
+            "text": "方",
+            "reading": "ほう"
+          },
+          {
+            "text": "がいいよ。"
+          }
+        ],
+        "romaji": "itta hō ga ii yo",
+        "pt": "Você deveria ir."
+      }
+    ]
+  },
+  {
+    "id": "g47",
+    "title": "Não precisa: 〜なくても いいです",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para dizer que "
+          },
+          {
+            "text": "não precisa",
+            "bold": true
+          },
+          {
+            "text": " fazer algo, parta da forma "
+          },
+          {
+            "text": "ない",
+            "bold": true
+          },
+          {
+            "text": " e troque o último "
+          },
+          {
+            "text": "い",
+            "bold": true
+          },
+          {
+            "text": " por "
+          },
+          {
+            "text": "くても",
+            "bold": true
+          },
+          {
+            "text": ", seguido de "
+          },
+          {
+            "text": "いいです",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "dicionário",
+              "header": true
+            },
+            {
+              "text": "forma ない",
+              "header": true
+            },
+            {
+              "text": "não precisa",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "いく",
+              "ja": true
+            },
+            {
+              "text": "いかない",
+              "ja": true
+            },
+            {
+              "text": "いかなくても いいです",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "たべる",
+              "ja": true
+            },
+            {
+              "text": "たべない",
+              "ja": true
+            },
+            {
+              "text": "たべなくても いいです",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "É o contrário de "
+          },
+          {
+            "text": "なければ なりません",
+            "bold": true
+          },
+          {
+            "text": " (tenho que). Para perguntar se não precisa, termine com "
+          },
+          {
+            "text": "か",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo ない sem い] くても いいです",
+    "examples": [
+      {
+        "jp": "あやまらなくても いいですよ",
+        "ruby": [
+          {
+            "text": "謝",
+            "reading": "あやま"
+          },
+          {
+            "text": "らなくてもいいですよ。"
+          }
+        ],
+        "romaji": "ayamaranakutemo ii desu yo",
+        "pt": "Você não precisa pedir desculpas."
+      },
+      {
+        "jp": "たべなくても いいよ",
+        "ruby": [
+          {
+            "text": "食",
+            "reading": "た"
+          },
+          {
+            "text": "べなくてもいいよ。"
+          }
+        ],
+        "romaji": "tabenakutemo ii yo",
+        "pt": "Você não precisa comer."
+      },
+      {
+        "jp": "いかなくても いいよ",
+        "ruby": [
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "かなくてもいいよ。"
+          }
+        ],
+        "romaji": "ikanakutemo ii yo",
+        "pt": "Você não tem que ir."
+      },
+      {
+        "jp": "いそがなくても いいよ",
+        "ruby": [
+          {
+            "text": "急",
+            "reading": "いそ"
+          },
+          {
+            "text": "がなくてもいいよ。"
+          }
+        ],
+        "romaji": "isoganakutemo ii yo",
+        "pt": "Você não precisa se apressar."
+      }
+    ]
+  },
+  {
+    "id": "g48",
+    "title": "Demais: 〜すぎます",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para dizer que algo é "
+          },
+          {
+            "text": "demais",
+            "bold": true
+          },
+          {
+            "text": ", junte "
+          },
+          {
+            "text": "すぎます",
+            "bold": true
+          },
+          {
+            "text": " à raiz da palavra:"
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "tipo",
+              "header": true
+            },
+            {
+              "text": "como fica",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "verbo",
+              "header": true
+            },
+            {
+              "text": "sem ます + すぎます",
+              "ja": true
+            },
+            {
+              "text": "のみすぎます (bebo demais)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "adjetivo い",
+              "header": true
+            },
+            {
+              "text": "sem い + すぎます",
+              "ja": true
+            },
+            {
+              "text": "ちいさすぎます (pequeno demais)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "adjetivo な",
+              "header": true
+            },
+            {
+              "text": "sem な + すぎます",
+              "ja": true
+            },
+            {
+              "text": "しずかすぎます (quieto demais)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "No passado, "
+          },
+          {
+            "text": "すぎました",
+            "bold": true
+          },
+          {
+            "text": "; na conversa casual, "
+          },
+          {
+            "text": "すぎる",
+            "bold": true
+          },
+          {
+            "text": ". Costuma indicar um exagero que incomoda."
+          }
+        ]
+      }
+    ],
+    "pattern": "[raiz do verbo ou do adjetivo] すぎます",
+    "examples": [
+      {
+        "jp": "ちいさすぎます",
+        "ruby": [
+          {
+            "text": "小",
+            "reading": "ちい"
+          },
+          {
+            "text": "さすぎます。"
+          }
+        ],
+        "romaji": "chiisa sugimasu",
+        "pt": "É pequeno demais."
+      },
+      {
+        "jp": "おそすぎますか",
+        "ruby": [
+          {
+            "text": "遅",
+            "reading": "おそ"
+          },
+          {
+            "text": "すぎますか？"
+          }
+        ],
+        "romaji": "oso sugimasu ka",
+        "pt": "É tarde demais?"
+      },
+      {
+        "jp": "ひとが おおすぎました",
+        "ruby": [
+          {
+            "text": "人",
+            "reading": "ひと"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "多",
+            "reading": "おお"
+          },
+          {
+            "text": "過",
+            "reading": "す"
+          },
+          {
+            "text": "ぎました。"
+          }
+        ],
+        "romaji": "hito ga ō sugimashita",
+        "pt": "Havia gente demais."
+      },
+      {
+        "jp": "まだ はやすぎるよ",
+        "ruby": [
+          {
+            "text": "まだ"
+          },
+          {
+            "text": "早",
+            "reading": "はや"
+          },
+          {
+            "text": "すぎるよ。"
+          }
+        ],
+        "romaji": "mada haya sugiru yo",
+        "pt": "Ainda é cedo demais."
+      }
+    ]
+  },
+  {
+    "id": "g49",
+    "title": "Fácil e difícil de fazer: 〜やすい, 〜にくい",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Tire o "
+          },
+          {
+            "text": "ます",
+            "bold": true
+          },
+          {
+            "text": " do verbo e junte "
+          },
+          {
+            "text": "やすい",
+            "bold": true
+          },
+          {
+            "text": " (fácil de) ou "
+          },
+          {
+            "text": "にくい",
+            "bold": true
+          },
+          {
+            "text": " (difícil de). O resultado se comporta como um adjetivo "
+          },
+          {
+            "text": "い",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "verbo",
+              "header": true
+            },
+            {
+              "text": "fácil",
+              "header": true
+            },
+            {
+              "text": "difícil",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "つかいます (usar)",
+              "ja": true
+            },
+            {
+              "text": "つかいやすい",
+              "ja": true
+            },
+            {
+              "text": "つかいにくい",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "はなします (falar)",
+              "ja": true
+            },
+            {
+              "text": "はなしやすい",
+              "ja": true
+            },
+            {
+              "text": "はなしにくい",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Como adjetivo "
+          },
+          {
+            "text": "い",
+            "bold": true
+          },
+          {
+            "text": ", conjuga normalmente: "
+          },
+          {
+            "text": "つかいやすかった",
+            "ja": true
+          },
+          {
+            "text": " (era fácil de usar). Não confunda com "
+          },
+          {
+            "text": "やすい",
+            "bold": true
+          },
+          {
+            "text": " de \"barato\" (安い): aqui ele vem colado ao verbo."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo sem ます] やすい · [verbo sem ます] にくい",
+    "examples": [
+      {
+        "jp": "つかいやすいよ",
+        "ruby": [
+          {
+            "text": "使",
+            "reading": "つか"
+          },
+          {
+            "text": "いやすいよ。"
+          }
+        ],
+        "romaji": "tsukai yasui yo",
+        "pt": "É fácil de usar."
+      },
+      {
+        "jp": "とても つかいやすいよ",
+        "romaji": "totemo tsukai yasui yo",
+        "pt": "É muito fácil de usar."
+      },
+      {
+        "jp": "わかりやすいね",
+        "ruby": [
+          {
+            "text": "分",
+            "reading": "わ"
+          },
+          {
+            "text": "かりやすいね。"
+          }
+        ],
+        "romaji": "wakari yasui ne",
+        "pt": "Isso é fácil de compreender."
+      },
+      {
+        "jp": "はなしにくい",
+        "ruby": [
+          {
+            "text": "話",
+            "reading": "はな"
+          },
+          {
+            "text": "しにくい。"
+          }
+        ],
+        "romaji": "hanashi nikui",
+        "pt": "É difícil falar."
+      },
+      {
+        "jp": "しんじにくいです",
+        "ruby": [
+          {
+            "text": "信",
+            "reading": "しん"
+          },
+          {
+            "text": "じにくいです。"
+          }
+        ],
+        "romaji": "shinji nikui desu",
+        "pt": "É difícil de acreditar."
+      }
+    ]
+  },
+  {
+    "id": "g50",
+    "title": "Experiência: 〜たことが あります",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para dizer que você "
+          },
+          {
+            "text": "já fez",
+            "bold": true
+          },
+          {
+            "text": " algo na vida (ou perguntar), use o verbo na "
+          },
+          {
+            "text": "forma た",
+            "bold": true
+          },
+          {
+            "text": " e acrescente "
+          },
+          {
+            "text": "ことが あります",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "",
+              "header": true
+            },
+            {
+              "text": "forma",
+              "header": true
+            },
+            {
+              "text": "sentido",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "já fiz",
+              "header": true
+            },
+            {
+              "text": "した ことが あります",
+              "ja": true
+            },
+            {
+              "text": "já fiz"
+            }
+          ],
+          [
+            {
+              "text": "nunca fiz",
+              "header": true
+            },
+            {
+              "text": "した ことが ありません",
+              "ja": true
+            },
+            {
+              "text": "nunca fiz"
+            }
+          ],
+          [
+            {
+              "text": "pergunta",
+              "header": true
+            },
+            {
+              "text": "した ことが ありますか",
+              "ja": true
+            },
+            {
+              "text": "você já fez?"
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "A resposta curta é "
+          },
+          {
+            "text": "はい、あります",
+            "ja": true
+          },
+          {
+            "text": " ou "
+          },
+          {
+            "text": "いいえ、ありません",
+            "ja": true
+          },
+          {
+            "text": ". Isto fala de "
+          },
+          {
+            "text": "experiência de vida",
+            "bold": true
+          },
+          {
+            "text": ", diferente do simples passado ("
+          },
+          {
+            "text": "しました",
+            "ja": true
+          },
+          {
+            "text": " = fiz)."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo na forma た] ことが あります",
+    "examples": [
+      {
+        "jp": "やきゅうを した ことが ありますか",
+        "ruby": [
+          {
+            "text": "野球",
+            "reading": "やきゅう"
+          },
+          {
+            "text": "をしたことがありますか。"
+          }
+        ],
+        "romaji": "yakyū o shita koto ga arimasu ka",
+        "pt": "Você já jogou beisebol?"
+      },
+      {
+        "jp": "けんけつを した ことが ありますか",
+        "ruby": [
+          {
+            "text": "献血",
+            "reading": "けんけつ"
+          },
+          {
+            "text": "をしたことがありますか。"
+          }
+        ],
+        "romaji": "kenketsu o shita koto ga arimasu ka",
+        "pt": "Você já doou sangue?"
+      },
+      {
+        "jp": "ここに きた ことが あるの",
+        "ruby": [
+          {
+            "text": "ここに"
+          },
+          {
+            "text": "来",
+            "reading": "き"
+          },
+          {
+            "text": "たことがあるの？"
+          }
+        ],
+        "romaji": "koko ni kita koto ga aru no",
+        "pt": "Você já esteve aqui antes?"
+      },
+      {
+        "jp": "かいがいに いった こと ある",
+        "ruby": [
+          {
+            "text": "海外",
+            "reading": "かいがい"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "ったことある？"
+          }
+        ],
+        "romaji": "kaigai ni itta koto aru",
+        "pt": "Você já viajou ao exterior?"
+      }
+    ]
+  },
+  {
+    "id": "g51",
+    "title": "Contar coisas: os contadores",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Em japonês o número vem com um "
+          },
+          {
+            "text": "contador",
+            "bold": true
+          },
+          {
+            "text": ", que muda conforme o tipo de coisa. A frase fica: "
+          },
+          {
+            "text": "[coisa] を [número + contador] [verbo]",
+            "bold": true
+          },
+          {
+            "text": ", sem partícula depois do número."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "tipo",
+              "header": true
+            },
+            {
+              "text": "contador",
+              "header": true
+            },
+            {
+              "text": "1 · 2 · 3",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "folhas, papéis, selos",
+              "header": true
+            },
+            {
+              "text": "まい",
+              "ja": true
+            },
+            {
+              "text": "いちまい · にまい · さんまい",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "livros e cadernos",
+              "header": true
+            },
+            {
+              "text": "さつ",
+              "ja": true
+            },
+            {
+              "text": "いっさつ · にさつ · さんさつ",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "bichos pequenos",
+              "header": true
+            },
+            {
+              "text": "ひき",
+              "ja": true
+            },
+            {
+              "text": "いっぴき · にひき · さんびき",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "pessoas",
+              "header": true
+            },
+            {
+              "text": "にん",
+              "ja": true
+            },
+            {
+              "text": "ひとり · ふたり · さんにん",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "copos e xícaras cheios",
+              "header": true
+            },
+            {
+              "text": "はい",
+              "ja": true
+            },
+            {
+              "text": "いっぱい · にはい · さんばい",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "coisas em geral",
+              "header": true
+            },
+            {
+              "text": "つ",
+              "ja": true
+            },
+            {
+              "text": "ひとつ · ふたつ · みっつ",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O som muda em alguns números ("
+          },
+          {
+            "text": "いっぴき",
+            "ja": true
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "さんびき",
+            "ja": true
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "ひとり",
+            "ja": true
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "ふたり",
+            "ja": true
+          },
+          {
+            "text": "): é normal, e vale decorar os mais usados. Para perguntar \"quantos?\", troque o número por "
+          },
+          {
+            "text": "なん",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "なんまい",
+            "ja": true
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "なんにん",
+            "ja": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "pattern": "[coisa] を [número+contador] [verbo]",
+    "examples": [
+      {
+        "jp": "わたしに かみを いちまい ください",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "紙",
+            "reading": "かみ"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "一",
+            "reading": "いち"
+          },
+          {
+            "text": "枚",
+            "reading": "まい"
+          },
+          {
+            "text": "下",
+            "reading": "くだ"
+          },
+          {
+            "text": "さい。"
+          }
+        ],
+        "romaji": "watashi ni kami o ichimai kudasai",
+        "pt": "Dê-me uma folha de papel."
+      },
+      {
+        "jp": "この ほんを いっさつ ください",
+        "ruby": [
+          {
+            "text": "この"
+          },
+          {
+            "text": "本",
+            "reading": "ほん"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "一",
+            "reading": "いっ"
+          },
+          {
+            "text": "冊",
+            "reading": "さつ"
+          },
+          {
+            "text": "ください。"
+          }
+        ],
+        "romaji": "kono hon o issatsu kudasai",
+        "pt": "Por favor dê-me um exemplar deste livro."
+      },
+      {
+        "jp": "みずを いっぱい ください",
+        "ruby": [
+          {
+            "text": "水",
+            "reading": "みず"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "一杯",
+            "reading": "いっぱい"
+          },
+          {
+            "text": "下",
+            "reading": "くだ"
+          },
+          {
+            "text": "さい。"
+          }
+        ],
+        "romaji": "mizu o ippai kudasai",
+        "pt": "Me dê um copo d'água, por favor."
+      },
+      {
+        "jp": "うちには ねこが さんびき います",
+        "ruby": [
+          {
+            "text": "うちには"
+          },
+          {
+            "text": "猫",
+            "reading": "ねこ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "三",
+            "reading": "さん"
+          },
+          {
+            "text": "匹",
+            "reading": "びき"
+          },
+          {
+            "text": "います。"
+          }
+        ],
+        "romaji": "uchi niwa neko ga sanbiki imasu",
+        "pt": "Eu tenho três gatos."
+      },
+      {
+        "jp": "むすこが ふたり います",
+        "ruby": [
+          {
+            "text": "息子",
+            "reading": "むすこ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "二人",
+            "reading": "ふたり"
+          },
+          {
+            "text": "います。"
+          }
+        ],
+        "romaji": "musuko ga futari imasu",
+        "pt": "Eu tenho dois filhos."
+      }
+    ]
   }
 ];
 
@@ -7080,8 +9111,514 @@ export const BUILD_N5: readonly BuildExercise[] = [
     ],
     "romaji": "kare wa watashi ni tokei o kureta",
     "hint": "Eu dou: あげる. Eu recebo: もらう. Alguém me dá: くれる."
+  },
+  {
+    "topic": "g42",
+    "pt": "Eu acho que é bonito.",
+    "answer": [
+      "きれいだ",
+      "と",
+      "おもいます"
+    ],
+    "extra": [
+      "も",
+      "に"
+    ],
+    "romaji": "kirei da to omoimasu",
+    "hint": "Forma simples (sem ます) + と おもいます. Com substantivo ou adjetivo な: だ + と."
+  },
+  {
+    "topic": "g42",
+    "pt": "Eu acho que posso.",
+    "answer": [
+      "できる",
+      "と",
+      "おもいます"
+    ],
+    "extra": [
+      "も",
+      "に"
+    ],
+    "romaji": "dekiru to omoimasu",
+    "hint": "Forma simples (sem ます) + と おもいます. Com substantivo ou adjetivo な: だ + と."
+  },
+  {
+    "topic": "g42",
+    "pt": "Eu acho que ele não virá.",
+    "answer": [
+      "かれ",
+      "は",
+      "こない",
+      "と",
+      "おもいます"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kare wa konai to omoimasu",
+    "hint": "Forma simples (sem ます) + と おもいます. Com substantivo ou adjetivo な: だ + と."
+  },
+  {
+    "topic": "g42",
+    "pt": "Você acha que vai funcionar?",
+    "answer": [
+      "うまくいく",
+      "と",
+      "おもいます",
+      "か"
+    ],
+    "extra": [
+      "も",
+      "に"
+    ],
+    "romaji": "umakuiku to omoimasu ka",
+    "hint": "Forma simples (sem ます) + と おもいます. Com substantivo ou adjetivo な: だ + と."
+  },
+  {
+    "topic": "g43",
+    "pt": "Vai chover amanhã.",
+    "answer": [
+      "あした",
+      "は",
+      "あめ",
+      "が",
+      "ふるでしょう"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "ashita wa ame ga furu deshō",
+    "hint": "でしょう = deve ser, provavelmente. Com か: será que...?"
+  },
+  {
+    "topic": "g43",
+    "pt": "Provavelmente vai chover.",
+    "answer": [
+      "たぶん",
+      "あめ",
+      "が",
+      "ふるでしょう"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "tabun ame ga furu deshō",
+    "hint": "でしょう = deve ser, provavelmente. Com か: será que...?"
+  },
+  {
+    "topic": "g43",
+    "pt": "Amanhã chove?",
+    "answer": [
+      "あした",
+      "は",
+      "あめ",
+      "が",
+      "ふるでしょう",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "ashita wa ame ga furu deshō ka",
+    "hint": "でしょう = deve ser, provavelmente. Com か: será que...?"
+  },
+  {
+    "topic": "g44",
+    "pt": "Vou ir ao cinema.",
+    "answer": [
+      "えいが",
+      "に",
+      "いくつもりです"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "eiga ni iku tsumori desu",
+    "hint": "Dicionário (る) + つもりです = pretendo. Com ない: pretendo não."
+  },
+  {
+    "topic": "g44",
+    "pt": "Vou escrever uma carta.",
+    "answer": [
+      "てがみ",
+      "を",
+      "かくつもりです"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "tegami o kaku tsumori desu",
+    "hint": "Dicionário (る) + つもりです = pretendo. Com ない: pretendo não."
+  },
+  {
+    "topic": "g44",
+    "pt": "Eu vou encontrar ele amanhã.",
+    "answer": [
+      "あした",
+      "かれ",
+      "に",
+      "あうつもりです"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "ashita kare ni au tsumori desu",
+    "hint": "Dicionário (る) + つもりです = pretendo. Com ない: pretendo não."
+  },
+  {
+    "topic": "g45",
+    "pt": "É necessário que você vá.",
+    "answer": [
+      "きみ",
+      "は",
+      "いかなければならない"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kimi wa ikanakereba naranai",
+    "hint": "いかない → いかなければ なりません (ou いかなくては いけません) = tenho que ir."
+  },
+  {
+    "topic": "g46",
+    "pt": "Você deveria jogar fora.",
+    "answer": [
+      "すてた",
+      "ほう",
+      "が",
+      "いいです",
+      "よ"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "suteta hō ga ii desu yo",
+    "hint": "Forma た + ほうが いい = é melhor fazer. Forma ない + ほうが いい = é melhor não fazer."
+  },
+  {
+    "topic": "g46",
+    "pt": "Você deveria ir dormir.",
+    "answer": [
+      "ねた",
+      "ほう",
+      "が",
+      "いい",
+      "よ"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "neta hō ga ii yo",
+    "hint": "Forma た + ほうが いい = é melhor fazer. Forma ない + ほうが いい = é melhor não fazer."
+  },
+  {
+    "topic": "g46",
+    "pt": "Você devia se desculpar.",
+    "answer": [
+      "あやまった",
+      "ほう",
+      "が",
+      "いい"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "ayamatta hō ga ii",
+    "hint": "Forma た + ほうが いい = é melhor fazer. Forma ない + ほうが いい = é melhor não fazer."
+  },
+  {
+    "topic": "g46",
+    "pt": "Você deveria ir.",
+    "answer": [
+      "いった",
+      "ほう",
+      "が",
+      "いい",
+      "よ"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "itta hō ga ii yo",
+    "hint": "Forma た + ほうが いい = é melhor fazer. Forma ない + ほうが いい = é melhor não fazer."
+  },
+  {
+    "topic": "g47",
+    "pt": "Você não precisa pedir desculpas.",
+    "answer": [
+      "あやまらなくても",
+      "いいです",
+      "よ"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "ayamaranakutemo ii desu yo",
+    "hint": "いかない → いかなくても いいです = não precisa ir."
+  },
+  {
+    "topic": "g47",
+    "pt": "Você não precisa comer.",
+    "answer": [
+      "たべなくても",
+      "いい",
+      "よ"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "tabenakutemo ii yo",
+    "hint": "いかない → いかなくても いいです = não precisa ir."
+  },
+  {
+    "topic": "g47",
+    "pt": "Você não tem que ir.",
+    "answer": [
+      "いかなくても",
+      "いい",
+      "よ"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "ikanakutemo ii yo",
+    "hint": "いかない → いかなくても いいです = não precisa ir."
+  },
+  {
+    "topic": "g47",
+    "pt": "Você não precisa se apressar.",
+    "answer": [
+      "いそがなくても",
+      "いい",
+      "よ"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "isoganakutemo ii yo",
+    "hint": "いかない → いかなくても いいです = não precisa ir."
+  },
+  {
+    "topic": "g48",
+    "pt": "Havia gente demais.",
+    "answer": [
+      "ひと",
+      "が",
+      "おおすぎました"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "hito ga ō sugimashita",
+    "hint": "Verbo sem ます, ou adjetivo sem い/な, + すぎます = demais."
+  },
+  {
+    "topic": "g48",
+    "pt": "Ainda é cedo demais.",
+    "answer": [
+      "まだ",
+      "はやすぎる",
+      "よ"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "mada haya sugiru yo",
+    "hint": "Verbo sem ます, ou adjetivo sem い/な, + すぎます = demais."
+  },
+  {
+    "topic": "g49",
+    "pt": "É muito fácil de usar.",
+    "answer": [
+      "とても",
+      "つかいやすい",
+      "よ"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "totemo tsukai yasui yo",
+    "hint": "Verbo sem ます + やすい (fácil de) ou にくい (difícil de)."
+  },
+  {
+    "topic": "g50",
+    "pt": "Você já jogou beisebol?",
+    "answer": [
+      "やきゅう",
+      "を",
+      "した",
+      "こと",
+      "が",
+      "あります",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "yakyū o shita koto ga arimasu ka",
+    "hint": "Forma た + ことが あります = já fiz (experiência). ありません = nunca."
+  },
+  {
+    "topic": "g50",
+    "pt": "Você já doou sangue?",
+    "answer": [
+      "けんけつ",
+      "を",
+      "した",
+      "こと",
+      "が",
+      "あります",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "kenketsu o shita koto ga arimasu ka",
+    "hint": "Forma た + ことが あります = já fiz (experiência). ありません = nunca."
+  },
+  {
+    "topic": "g50",
+    "pt": "Você já esteve aqui antes?",
+    "answer": [
+      "ここ",
+      "に",
+      "きた",
+      "こと",
+      "が",
+      "ある",
+      "の"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "koko ni kita koto ga aru no",
+    "hint": "Forma た + ことが あります = já fiz (experiência). ありません = nunca."
+  },
+  {
+    "topic": "g50",
+    "pt": "Você já viajou ao exterior?",
+    "answer": [
+      "かいがい",
+      "に",
+      "いった",
+      "こと",
+      "ある"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "kaigai ni itta koto aru",
+    "hint": "Forma た + ことが あります = já fiz (experiência). ありません = nunca."
+  },
+  {
+    "topic": "g51",
+    "pt": "Dê-me uma folha de papel.",
+    "answer": [
+      "わたし",
+      "に",
+      "かみ",
+      "を",
+      "いちまい",
+      "ください"
+    ],
+    "extra": [
+      "で",
+      "は"
+    ],
+    "romaji": "watashi ni kami o ichimai kudasai",
+    "hint": "Número + contador (まい, さつ, ひき, にん, はい, つ) vem antes do verbo, sem partícula."
+  },
+  {
+    "topic": "g51",
+    "pt": "Por favor dê-me um exemplar deste livro.",
+    "answer": [
+      "この",
+      "ほん",
+      "を",
+      "いっさつ",
+      "ください"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "kono hon o issatsu kudasai",
+    "hint": "Número + contador (まい, さつ, ひき, にん, はい, つ) vem antes do verbo, sem partícula."
+  },
+  {
+    "topic": "g51",
+    "pt": "Me dê um copo d'água, por favor.",
+    "answer": [
+      "みず",
+      "を",
+      "いっぱい",
+      "ください"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "mizu o ippai kudasai",
+    "hint": "Número + contador (まい, さつ, ひき, にん, はい, つ) vem antes do verbo, sem partícula."
+  },
+  {
+    "topic": "g51",
+    "pt": "Eu tenho três gatos.",
+    "answer": [
+      "うち",
+      "には",
+      "ねこ",
+      "が",
+      "さんびき",
+      "います"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "uchi niwa neko ga sanbiki imasu",
+    "hint": "Número + contador (まい, さつ, ひき, にん, はい, つ) vem antes do verbo, sem partícula."
+  },
+  {
+    "topic": "g51",
+    "pt": "Eu tenho dois filhos.",
+    "answer": [
+      "むすこ",
+      "が",
+      "ふたり",
+      "います"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "musuko ga futari imasu",
+    "hint": "Número + contador (まい, さつ, ひき, にん, はい, つ) vem antes do verbo, sem partícula."
   }
 ];
 
 /** Ids das frases do Tatoeba usadas nos exemplos (para o crédito). */
-export const GRAMMAR_N5_SENTENCE_IDS: readonly number[] = [9740661,1193930,12055984,10081492,1019460,10901764,11643291,184159,1216866,4002000,338057,2128256,170848,5748800,1039551,78718,79930,152144,11630865,11512358,123257,5955826,79988,4975839,2006378,2349145,123791,5845217,168184,149270,4147428,2242416,10899008,2040852,741581,201956,201775,213581,10631584,442923,170842,140285,79634,126402,143813,5272,3552884,11776723,625254,157401,179732,12412206,2626290,10625858,10366825,9644550,354378,13254283,3347455,10194978,2672966,5323,11029605,10967392,9755700,9199895,1700213,187577,347338,8532899,432825,2412106,13218484,2969830,2701348,8733259,183436,149673,2139043,5390444,177906,9475751,125811,14007955,215019,232933,1799658,920509,873959,11065768,13201627,10617667,11017844,174334,169135,11009755,82874,151284,88812,171179,1299272,80265,158658,150453,8723018,5157,213984,10671567,140345,227047,173392,3449190,205799,433715,890127,2552450,137130,11610218,7551823,1507527,11003497,3553343,468677,670057,155138,110803,13563699,102805,152773,119074,95543,10744345,106065];
+export const GRAMMAR_N5_SENTENCE_IDS: readonly number[] = [9740661,1193930,12055984,10081492,1019460,10901764,11643291,184159,1216866,4002000,338057,2128256,170848,5748800,1039551,78718,79930,152144,11630865,11512358,123257,5955826,79988,4975839,2006378,2349145,123791,5845217,168184,149270,4147428,2242416,10899008,2040852,741581,201956,201775,213581,10631584,442923,170842,140285,79634,126402,143813,5272,3552884,11776723,625254,157401,179732,12412206,2626290,10625858,10366825,9644550,354378,13254283,3347455,10194978,2672966,5323,11029605,10967392,9755700,9199895,1700213,187577,347338,8532899,432825,2412106,13218484,2969830,2701348,8733259,183436,149673,2139043,5390444,177906,9475751,125811,14007955,215019,232933,1799658,920509,873959,11065768,13201627,10617667,11017844,174334,169135,11009755,82874,151284,88812,171179,1299272,80265,158658,150453,8723018,5157,213984,10671567,140345,227047,173392,3449190,205799,433715,890127,2552450,137130,11610218,7551823,1507527,11003497,3553343,468677,670057,155138,110803,13563699,102805,152773,119074,95543,10744345,106065,10952563,147673,78713,146219,11140871,464690,80453,146117,189334,156072,80261,12003468,194208,177310,1116423,3385048,11211436,13177637,11294943,10767158,8969396,8732421,182548,442055,8716645,2459175,10134081,8950340,9963851,11532948,9458223,9101668,79637,1533034,11726883,9418654,164391,2069336,143712,10846509,9159325];

@@ -152,4 +152,54 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
     'Com もらう, quem deu leva に (ou から); com あげる, quem recebe leva に.',
     'O "eu" costuma ficar oculto: てがみを もらった já quer dizer "EU recebi uma carta".',
   ],
+  g42: [
+    'Antes de と vai a forma simples, não a ます: くると おもいます, e não "きますと おもいます".',
+    'Com substantivo ou adjetivo な, use だ: きれいだと おもいます. "きれいですと" está errado.',
+    'Para "acho que não vem", o japonês nega o verbo de dentro: こないと おもいます, mais natural do que "くると おもいません".',
+  ],
+  g43: [
+    'でしょう não é o futuro do português ("será"): é um palpite. O futuro se diz com a forma ます (あした ふります).',
+    'Com か vira uma pergunta educada ("será que...?") e não afirma nada.',
+    'Não use para o que você mesmo decidiu: para planos use つもりです ou ます.',
+  ],
+  g44: [
+    'つもり pede o verbo na forma de dicionário, não em ます: いく つもりです. "いきます つもりです" está errado.',
+    'Para "pretendo não ir", o ない fica no verbo: いかない つもりです.',
+    'É um plano seu. Para algo marcado e certo, o natural é a forma ます (あした いきます).',
+  ],
+  g45: [
+    'Há um "não" dentro (なければ), mas o sentido é "tenho que": é uma dupla negação, como "se eu não for, não dá".',
+    'Para "não preciso", é outro padrão: なくても いいです (próximo tópicos de permissão e dispensa).',
+    'O verbo parte da forma ない sem o い final: いかない → いかなければ.',
+  ],
+  g46: [
+    'O verbo vai na forma た (e não em ます): いった ほうが いいです. "いきます ほうが" está errado.',
+    'Para "é melhor não", use a forma ない: いかない ほうが いいです.',
+    'É conselho, não ordem. Com quem está acima de você, prefira explicar o motivo.',
+  ],
+  g47: [
+    'Não confunda: いかなくても いいです = não precisa ir; いっても いいです = pode ir.',
+    'Parta da forma ない e troque o い final por くても: いかない → いかなくても.',
+    'Quer dizer "dispensado", não "proibido". Para proibir é outra construção (〜ては いけません).',
+  ],
+  g48: [
+    'すぎます vem colado à raiz: のみすぎます, ちいさすぎます. Não precisa de "muito" a mais.',
+    'Quase sempre indica um exagero ruim. Para elogiar ("muito bom"), use とても.',
+    'Com adjetivo な, tira-se o な: しずかすぎます.',
+  ],
+  g49: [
+    'Aqui やすい não é "barato" (安い): vem colado a um verbo sem ます. つかいやすい = fácil de usar.',
+    'Tire o ます antes de juntar: つかいます → つかい + やすい.',
+    'Os dois conjugam como adjetivos い: つかいやすかった, つかいにくくない.',
+  ],
+  g50: [
+    'O verbo vai na forma た: いった ことが あります. Com ます, essa construção não existe.',
+    'あります aqui não é "há" no sentido de existência: é "existe a experiência de ter feito".',
+    'Para "nunca fiz", mantenha o ことが: した ことが ありません.',
+  ],
+  g51: [
+    'Depois do número não vai partícula: ほんを さんさつ かいました (e não "さんさつを").',
+    'O contador depende da coisa: folha (まい), livro (さつ), bicho pequeno (ひき), pessoa (にん). Na dúvida, ひとつ, ふたつ servem para a maioria das coisas.',
+    'Pessoas têm exceção: ひとり e ふたり (nunca いちにん). A partir de três é さんにん.',
+  ],
 };

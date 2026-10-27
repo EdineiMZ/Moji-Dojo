@@ -14,9 +14,13 @@ export async function search(query, page = 1) {
     sort: 'words',
     page: String(page),
   });
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`${res.status} ${url}`);
-  return res.json();
+  // O servidor do Tatoeba falha de vez em quando (502, 504, 429): tenta de novo, esperando um pouco mais a cada vez.
+  for (let attempt = 1; ; attempt++) {
+    const res = await fetch(url);
+    if (res.ok) return res.json();
+    if (attempt >= 5 || (res.status < 500 && res.status !== 429)) throw new Error(`${res.status} ${url}`);
+    await new Promise((resolve) => setTimeout(resolve, 1500 * attempt));
+  }
 }
 
 /** Uma frase da busca em um formato simples; `null` se não tiver leitura ou tradução em português. */

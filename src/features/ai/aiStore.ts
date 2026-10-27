@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
 import type { DialogScene } from '@/content/dialogs';
+import type { CoachPlan } from './coach';
 import { MAX_QUEUE, sameSpec, type JobSpec, type QueuedJob } from './queue';
 import type { ExamLevel, ExamQuestion, ExamSection } from './tasksPractice';
 
@@ -51,6 +52,13 @@ export interface StoredExam {
   best: number | null;
 }
 
+/** O último plano do coach (um por vez: o da semana mais recente). */
+export interface StoredCoach {
+  weekKey: string;
+  at: number;
+  plan: CoachPlan;
+}
+
 export const MAX_SCENES = 12;
 export const MAX_EXAMS = 10;
 export const MAX_STORIES = 20;
@@ -67,6 +75,8 @@ export interface AiStoreState {
   exams: readonly StoredExam[];
   /** Pedidos feitos sem internet, para fazer quando ela voltar. */
   queue: readonly QueuedJob[];
+  coach: StoredCoach | null;
+  setCoach: (coach: StoredCoach | null) => void;
   putCache: (key: string, value: unknown, now?: number) => void;
   addPhrases: (phrases: readonly AiPhrase[]) => void;
   removePhrase: (id: string) => void;
@@ -121,6 +131,8 @@ export function createAiStore(storage: StateStorage) {
         scenes: [],
         exams: [],
         queue: [],
+        coach: null,
+        setCoach: (coach) => set({ coach }),
         putCache: (key, value, now = Date.now()) => set((s) => ({ cache: trimCache({ ...s.cache, [key]: { at: now, value } }) })),
         addPhrases: (added) => set((s) => ({ phrases: mergePhrases(s.phrases, added) })),
         removePhrase: (id) => set((s) => ({ phrases: s.phrases.filter((p) => p.id !== id) })),
@@ -141,13 +153,13 @@ export function createAiStore(storage: StateStorage) {
           return true;
         },
         dequeue: (id) => set((s) => ({ queue: s.queue.filter((j) => j.id !== id) })),
-        clearAll: () => set({ cache: {}, phrases: [], diary: [], stories: [], scenes: [], exams: [], queue: [] }),
+        clearAll: () => set({ cache: {}, phrases: [], diary: [], stories: [], scenes: [], exams: [], queue: [], coach: null }),
       }),
       {
         name: AI_STORAGE_KEY,
         version: 1,
         storage: createJSONStorage(() => storage),
-        partialize: ({ cache, phrases, diary, stories, scenes, exams, queue }) => ({ cache, phrases, diary, stories, scenes, exams, queue }),
+        partialize: ({ cache, phrases, diary, stories, scenes, exams, queue, coach }) => ({ cache, phrases, diary, stories, scenes, exams, queue, coach }),
       },
     ),
   );

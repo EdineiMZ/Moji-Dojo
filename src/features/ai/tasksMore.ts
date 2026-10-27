@@ -1,4 +1,4 @@
-import { HONESTY, isRecord, PHRASE_TOPICS, quoted, TEACHER, text, unknownParts } from './tasks';
+import { HONESTY, isRecord, parseExplanation, PHRASE_TOPICS, quoted, TEACHER, text, unknownParts } from './tasks';
 import { ask } from './useAi';
 
 // ─── Mnemônico para itens teimosos ───────────────────────────────────────
@@ -194,5 +194,25 @@ export function generateStory({ topic, length, known, seed }: StoryRequest): Pro
     user: `Tema: ${topic.prompt}.${sample ? `\nPalavras que o aluno já conhece: ${sample}.` : ''}\nVariação nº ${seed % 1000}.`,
     maxTokens: 2200,
     parse: parseStory,
+  });
+}
+
+// ─── Feedback de fala ────────────────────────────────────────────────────
+
+const SPEECH_SYSTEM = `${TEACHER}
+O aluno tentou dizer uma frase em japonês em voz alta e o reconhecimento de fala do Android escreveu outra coisa. Você NÃO ouviu o áudio: só compara o texto esperado com o texto que o reconhecedor escreveu. ${HONESTY}
+Aponte onde os dois textos diferem e o provável motivo: som difícil para brasileiros (vogais longas, っ, ん, らりるれろ, ふ, つ, じゃ/ちゃ), palavra colada ou separada, partícula, ou simples erro do reconhecedor (palavras parecidas, kanji diferente com o mesmo som). Seja claro quando for só o reconhecedor e não o aluno.
+Responda SOMENTE com JSON: {"explanation": string, "tip": string}
+- explanation: de 2 a 4 frases curtas em português, citando as partes que diferem.
+- tip: um exercício curto de pronúncia para a parte difícil (ou "").`;
+
+/** Compara a frase esperada com o que o reconhecimento de fala ouviu e explica o provável problema (sem áudio, só texto). */
+export function explainSpeech(expected: string, reading: string, heard: string) {
+  return ask({
+    system: SPEECH_SYSTEM,
+    user: `Frase esperada: ${quoted(expected)}\nLeitura: ${quoted(reading)}\nO reconhecedor escreveu: <aluno>${quoted(heard) || '(nada)'}</aluno>`,
+    maxTokens: 700,
+    parse: parseExplanation,
+    cacheKey: `speech:${quoted(expected)}|${quoted(heard)}`,
   });
 }

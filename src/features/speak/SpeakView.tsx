@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ExpoSpeechRecognitionModule, useSpeechRecognitionEvent } from 'expo-speech-recognition';
 import { AppText, Button, Card, Mascot, PetalRain } from '@/components';
+import { AiSpeechHelp } from '@/features/ai/AiParts';
 import { resultMood } from '@/features/lessons/resultCopy';
 import { ResultCard } from '@/features/quiz/ResultCard';
 import { REVIEW_GOOD_PCT } from '@/features/review/session';
@@ -201,6 +202,7 @@ export function SpeakView() {
               Ouça o modelo, tente de novo ou siga adiante.
             </AppText>
           ) : null}
+          {!ok ? <AiSpeechHelp expected={item.kanji ?? item.jp} reading={item.jp.replace(/ /g, '')} heard={result.heard} /> : null}
           <View style={styles.row}>
             {!ok ? <Button label="Tentar de novo" variant="soft" style={styles.flex} onPress={() => { setStage('ready'); setResult(null); }} /> : null}
             <Button label={index + 1 >= items.length ? 'Ver o resultado' : 'Continuar'} style={styles.flex} onPress={next} />

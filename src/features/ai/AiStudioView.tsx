@@ -10,6 +10,7 @@ import { SPEECH_RATES } from '@/store/settingsStore';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { AiDisclaimer } from './AiParts';
 import { AiError } from './client';
+import { CoachCard } from './CoachCard';
 import { ConversationView } from './ConversationView';
 import { ExamView } from './ExamView';
 import { explainText, MAX_DIARY_LENGTH, MAX_DIARY_LINES, MAX_TEXT_LENGTH, reviewDiary, type DiaryReview, type TextExplanation } from './tasks';
@@ -17,7 +18,7 @@ import { QueueBar } from './QueueParts';
 import { RegisterCard, StoryCard } from './StudyExtras';
 import { useAiReady } from './useAi';
 
-type Tab = 'chat' | 'explain' | 'diary' | 'register' | 'story' | 'exam';
+type Tab = 'chat' | 'explain' | 'diary' | 'register' | 'story' | 'exam' | 'coach';
 
 const errorText = (error: unknown): string => (error instanceof AiError ? error.message : 'Não consegui falar com a IA agora.');
 
@@ -32,7 +33,7 @@ export function AiStudioView() {
       <Card enterIndex={0}>
         <AppText variant="title">Estudar com IA</AppText>
         <AppText color="muted">
-          Converse com a IA em japonês, explique falas de anime, escreva um diário corrigido, compare registros, leia textos feitos para você e faça simulados estilo JLPT. Cadastre a sua chave de API em Ajustes para usar. O resto do app não precisa dela.
+          Converse com a IA em japonês, explique falas de anime, escreva um diário corrigido, compare registros, leia textos feitos para você faça simulados estilo JLPT e receba um plano semanal. Cadastre a sua chave de API em Ajustes para usar. O resto do app não precisa dela.
         </AppText>
         <Button label="Abrir Ajustes" variant="soft" onPress={() => router.push('/settings')} />
       </Card>
@@ -49,6 +50,7 @@ export function AiStudioView() {
           { value: 'register' as const, label: 'Registro' },
           { value: 'story' as const, label: 'Leitura' },
           { value: 'exam' as const, label: 'Simulado' },
+          { value: 'coach' as const, label: 'Coach' },
         ]}
         value={tab}
         onChange={setTab}
@@ -60,6 +62,7 @@ export function AiStudioView() {
       {tab === 'register' ? <RegisterCard /> : null}
       {tab === 'story' ? <StoryCard /> : null}
       {tab === 'exam' ? <ExamView /> : null}
+      {tab === 'coach' ? <CoachCard /> : null}
     </View>
   );
 }

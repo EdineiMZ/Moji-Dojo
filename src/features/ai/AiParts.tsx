@@ -4,7 +4,7 @@ import { AppText, Bold, Button } from '@/components';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { AiError } from './client';
 import { correctPhrase, explainWhy, type Explanation, type PhraseFix } from './tasks';
-import { judgeMeaning, type MeaningJudgement } from './tasksMore';
+import { explainSpeech, judgeMeaning, type MeaningJudgement } from './tasksMore';
 import { useAiReady } from './useAi';
 
 const errorText = (error: unknown): string => (error instanceof AiError ? error.message : 'Não consegui falar com a IA agora.');
@@ -216,3 +216,60 @@ const styles = StyleSheet.create({
   result: { borderRadius: radii.md, padding: spacing.md, gap: spacing.sm },
   input: { borderWidth: 1.5, borderRadius: radii.md, paddingHorizontal: spacing.md, minHeight: 48, fontFamily: fonts.regular, fontSize: fontSizes.body },
 });
+
+interface AiSpeechHelpProps {
+  expected: string;
+  reading: string;
+  heard: string;
+}
+
+/** Na tela Falar, quando não bateu: a IA compara o texto esperado com o que foi reconhecido e explica o provável motivo. */
+export function AiSpeechHelp({ expected, reading, heard }: AiSpeechHelpProps) {
+  const { colors } = useTheme();
+  const ready = useAiReady();
+  const [busy, setBusy] = useState(false);
+  const [answer, setAnswer] = useState<Explanation | null>(null);
+  const [error, setError] = useState('');
+  const [forHeard, setForHeard] = useState('');
+
+  if (!ready) return null;
+
+  const run = async () => {
+    setBusy(true);
+    setError('');
+    try {
+      setAnswer(await explainSpeech(expected, reading, heard));
+      setForHeard(heard);
+    } catch (e) {
+      setAnswer(null);
+      setError(errorText(e));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <View style={styles.root}>
+      <Button label={busy ? 'Comparando...' : '💡 Por que não bateu? (IA)'} variant="ghost" onPress={run} disabled={busy} />
+      {error ? (
+        <AppText color="bad" accessibilityLiveRegion="polite">
+          {error}
+        </AppText>
+      ) : null}
+      {answer && forHeard === heard ? (
+        <View style={[styles.result, { backgroundColor: colors.skySoft }]} accessibilityLiveRegion="polite">
+          <AppText>{answer.explanation}</AppText>
+          {answer.tip ? (
+            <AppText>
+              <Bold>Treino:</Bold> {answer.tip}
+            </AppText>
+          ) : null}
+          <AppText variant="caption" color="muted">
+            A IA não ouviu o seu áudio: ela só compara os dois textos.
+          </AppText>
+          <AiDisclaimer />
+        </View>
+      ) : null}
+    </View>
+  );
+}

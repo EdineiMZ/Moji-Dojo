@@ -167,7 +167,151 @@ export const FRAMES: readonly Frame[] = [
     after: [{ jp: 'ください' }],
     ptTemplate: '{pt}, por favor',
     slotLabel: 'O que você pede?',
-    words: [w('まって', 'Espere'), w('みせて', 'Mostre-me'), w('おしえて', 'Me ensine'), w('たすけて', 'Me ajude'), w('よんで', 'Chame'), w('とめて', 'Pare'), w('かいて', 'Escreva'), w('いって', 'Diga')],
+    words: [
+      w('まって', 'Espere'),
+      w('みせて', 'Mostre-me'),
+      w('おしえて', 'Me ensine'),
+      w('たすけて', 'Me ajude'),
+      w('よんで', 'Chame'),
+      w('とめて', 'Pare'),
+      w('かいて', 'Escreva'),
+      w('いって', 'Diga'),
+      w('ちょっと まって', 'Espere um pouco'),
+      w('ゆっくり はなして', 'Fale devagar'),
+      w('もう いちど いって', 'Diga mais uma vez'),
+      w('ここに かいて', 'Escreva aqui'),
+      w('これを みせて', 'Mostre-me isto'),
+      w('みちを おしえて', 'Me ensine o caminho'),
+      w('えいごで はなして', 'Fale em inglês'),
+      w('しゃしんを とって', 'Tire uma foto'),
+    ],
+  },
+  {
+    id: 'hitotsu',
+    title: '[coisa] を ひとつ ください',
+    use: 'Pedir uma unidade de algo: no restaurante, no conbini.',
+    slotParticle: 'を',
+    after: [{ jp: 'ひとつ' }, { jp: 'ください' }],
+    ptTemplate: 'Uma unidade de {pt}, por favor',
+    slotLabel: 'O que você quer?',
+    words: [w('ビール', 'cerveja'), w('コーヒー', 'café'), w('おちゃ', 'chá'), w('ラーメン', 'lámen'), w('おにぎり', 'onigiri'), w('ケーキ', 'bolo'), w('サンドイッチ', 'sanduíche'), w('これ', 'isto')],
+  },
+  {
+    id: 'mou-hitotsu',
+    title: '[coisa] を もう ひとつ ください',
+    use: 'Pedir mais um: outra bebida, outra porção.',
+    slotParticle: 'を',
+    after: [{ jp: 'もう' }, { jp: 'ひとつ' }, { jp: 'ください' }],
+    ptTemplate: 'Mais um(a) {pt}, por favor',
+    slotLabel: 'O que você quer de novo?',
+    words: [w('ビール', 'cerveja'), w('コーヒー', 'café'), w('おちゃ', 'chá'), w('みず', 'copo de água'), w('ごはん', 'arroz'), w('おはし', 'par de hashi'), w('おしぼり', 'toalhinha úmida'), w('これ', 'isto')],
+  },
+  {
+    id: 'te-mo-ii',
+    title: '[verbo na forma て] も いいですか',
+    use: 'Pedir permissão: fotos, sentar, tocar, usar algo.',
+    slotParticle: 'も',
+    after: [{ jp: 'いい' }, { jp: 'ですか' }],
+    ptTemplate: 'Posso {pt}?',
+    slotLabel: 'O que você quer fazer?',
+    words: [
+      w('しゃしんを とって', 'tirar uma foto'),
+      w('ここに すわって', 'sentar aqui'),
+      w('ここで たべて', 'comer aqui'),
+      w('ここで まって', 'esperar aqui'),
+      w('これを さわって', 'tocar nisto'),
+      w('まどを あけて', 'abrir a janela'),
+      w('でんわを つかって', 'usar o telefone'),
+      w('かばんを おいて', 'deixar a bolsa'),
+    ],
+  },
+  {
+    id: 'tai',
+    title: '[verbo] たい です',
+    use: 'Dizer o que você quer fazer (forma たい).',
+    after: [{ jp: 'です' }],
+    ptTemplate: 'Eu quero {pt}',
+    slotLabel: 'O que você quer fazer?',
+    words: [w('たべたい', 'comer'), w('のみたい', 'beber'), w('かいたい', 'comprar'), w('みたい', 'ver'), w('ねたい', 'dormir'), w('やすみたい', 'descansar'), w('かえりたい', 'voltar para casa'), w('あいたい', 'encontrar')],
+  },
+  {
+    id: 'naide',
+    title: '[verbo na forma ない] で ください',
+    use: 'Pedir para não fazer algo, como nos avisos (não toque, não fume).',
+    after: [{ jp: 'ください' }],
+    ptTemplate: 'Por favor, {pt}',
+    slotLabel: 'O que não fazer?',
+    words: [
+      w('さわらないで', 'não toque'),
+      w('はいらないで', 'não entre'),
+      w('すわらないで', 'não se sente'),
+      w('たばこを すわないで', 'não fume'),
+      w('しゃしんを とらないで', 'não tire fotos'),
+      w('はしらないで', 'não corra'),
+      w('おさないで', 'não empurre'),
+      w('わすれないで', 'não esqueça'),
+    ],
+  },
+  {
+    id: 'hora-ni',
+    title: '[hora] に あいましょう',
+    use: 'Combinar um horário de encontro.',
+    slotParticle: 'に',
+    after: [{ jp: 'あいましょう' }],
+    ptTemplate: 'Vamos nos encontrar {pt}',
+    slotLabel: 'A que horas?',
+    words: [w('いちじ', 'à 1 hora'), w('にじ', 'às 2 horas'), w('さんじ', 'às 3 horas'), w('よじ', 'às 4 horas'), w('ごじ', 'às 5 horas'), w('ろくじ', 'às 6 horas'), w('しちじ', 'às 7 horas'), w('はちじ', 'às 8 horas'), w('くじ', 'às 9 horas'), w('ごじはん', 'às 5 e meia')],
+  },
+  {
+    id: 'checkin',
+    title: 'チェックインは [hora] から です',
+    use: 'Perguntar ou confirmar o horário do check-in no hotel.',
+    before: [{ jp: 'チェックイン' }, { jp: 'は', particle: true }],
+    slotParticle: 'から',
+    after: [{ jp: 'です' }],
+    ptTemplate: 'O check-in é a partir {pt}',
+    slotLabel: 'A partir de que horas?',
+    words: [w('にじ', 'das 2 horas'), w('さんじ', 'das 3 horas'), w('よじ', 'das 4 horas'), w('ごじ', 'das 5 horas'), w('ろくじ', 'das 6 horas'), w('ごご さんじ', 'das 3 da tarde')],
+  },
+  {
+    id: 'checkout',
+    title: 'チェックアウトは [hora] まで です',
+    use: 'Perguntar ou confirmar o horário do check-out no hotel.',
+    before: [{ jp: 'チェックアウト' }, { jp: 'は', particle: true }],
+    slotParticle: 'まで',
+    after: [{ jp: 'です' }],
+    ptTemplate: 'O check-out é até {pt}',
+    slotLabel: 'Até que horas?',
+    words: [w('くじ', 'às 9 horas'), w('じゅうじ', 'às 10 horas'), w('じゅういちじ', 'às 11 horas'), w('じゅうにじ', 'às 12 horas'), w('じゅうじはん', 'às 10 e meia'), w('ごぜん じゅうじ', 'às 10 da manhã')],
+  },
+  {
+    id: 'quando-iku',
+    title: '[quando] いきます',
+    use: 'Dizer quando você vai a algum lugar.',
+    after: [{ jp: 'いきます' }],
+    ptTemplate: 'Eu vou {pt}',
+    slotLabel: 'Quando?',
+    words: [w('きょう', 'hoje'), w('あした', 'amanhã'), w('あさって', 'depois de amanhã'), w('らいしゅう', 'na semana que vem'), w('らいげつ', 'no mês que vem'), w('らいねん', 'no ano que vem')],
+  },
+  {
+    id: 'tsuki-ni',
+    title: '[mês] に にほんへ いきます',
+    use: 'Dizer em que mês você viaja ao Japão.',
+    slotParticle: 'に',
+    after: [{ jp: 'にほん' }, { jp: 'へ', particle: true }, { jp: 'いきます' }],
+    ptTemplate: 'Eu vou ao Japão em {pt}',
+    slotLabel: 'Em que mês?',
+    words: [w('いちがつ', 'janeiro'), w('にがつ', 'fevereiro'), w('さんがつ', 'março'), w('しがつ', 'abril'), w('ごがつ', 'maio'), w('ろくがつ', 'junho'), w('しちがつ', 'julho'), w('はちがつ', 'agosto'), w('くがつ', 'setembro'), w('じゅうがつ', 'outubro'), w('じゅういちがつ', 'novembro'), w('じゅうにがつ', 'dezembro')],
+  },
+  {
+    id: 'yasumi',
+    title: '[dia da semana] は やすみ ですか',
+    use: 'Perguntar se a loja ou atração fecha em certo dia.',
+    slotParticle: 'は',
+    after: [{ jp: 'やすみ' }, { jp: 'ですか' }],
+    ptTemplate: 'Fecha {the}?',
+    slotLabel: 'Que dia?',
+    words: [w('げつようび', 'segunda-feira', 'na segunda-feira'), w('かようび', 'terça-feira', 'na terça-feira'), w('すいようび', 'quarta-feira', 'na quarta-feira'), w('もくようび', 'quinta-feira', 'na quinta-feira'), w('きんようび', 'sexta-feira', 'na sexta-feira'), w('どようび', 'sábado', 'no sábado'), w('にちようび', 'domingo', 'no domingo')],
   },
 ];
 
@@ -188,9 +332,18 @@ const romajiOfWord = (jp: string): string => {
   if (jp.length > 1 && ending) return `${romajiOfWord(jp.slice(0, -1))} ${ending[2] === 'か' ? 'ka' : 'ne'}`;
   return jp
     .split(' ')
-    .map((part) => kanaToRomaji(part))
+    .map(partRomaji)
     .join(' ');
 };
+
+const ATTACHED_PARTICLES: ReadonlySet<string> = new Set(['は', 'へ', 'を']);
+
+/** Romaji de um pedaço sem espaços; は, へ e を colados no fim (しゃしんを) são partículas e se leem wa, e, o. */
+function partRomaji(part: string): string {
+  const last = part.at(-1) ?? '';
+  if (part.length > 1 && ATTACHED_PARTICLES.has(last)) return `${kanaToRomaji(part.slice(0, -1))} ${kanaToRomaji(last, { particle: true })}`;
+  return kanaToRomaji(part);
+}
 
 /** Monta a frase: palavra da lacuna + partícula colada, depois as peças do molde. */
 export function fillFrame(frame: Frame, word: SlotWord): FilledFrame {

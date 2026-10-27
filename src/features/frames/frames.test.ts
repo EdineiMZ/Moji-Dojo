@@ -10,7 +10,7 @@ describe('fábrica de frases', () => {
         const out = fillFrame(frame, word);
         expect(out.jp).not.toMatch(/ {2}|^ | $/);
         expect(out.jp).toMatch(/^[ぁ-んァ-ヶー ]+$/);
-        expect(out.romaji).toMatch(/^[a-zāīūēō ]+$/i);
+        expect(out.romaji).toMatch(/^[a-zāīūēō' ]+$/i);
         expect(out.pt).not.toMatch(/[{}]/);
       }
     }
@@ -40,5 +40,18 @@ describe('fábrica de frases', () => {
     expect(fillFrame(doko, doko.words[0]!).pt).toBe('Onde fica o banheiro?');
     const kudasai = FRAMES.find((f) => f.id === 'kudasai')!;
     expect(fillFrame(kudasai, kudasai.words[0]!).pt).toBe('Água, por favor');
+  });
+
+  it('os moldes novos (horas, datas, pedidos e permissão) montam a frase, o romaji e a tradução esperados', () => {
+    const make = (id: string, jp: string) => {
+      const frame = FRAMES.find((f) => f.id === id)!;
+      return fillFrame(frame, frame.words.find((x) => x.jp === jp)!);
+    };
+    expect(make('hora-ni', 'さんじ')).toMatchObject({ jp: 'さんじに あいましょう', romaji: 'sanji ni aimashō', pt: 'Vamos nos encontrar às 3 horas' });
+    expect(make('checkin', 'さんじ')).toMatchObject({ jp: 'チェックインは さんじから です', romaji: 'chekkuin wa sanji kara desu', pt: 'O check-in é a partir das 3 horas' });
+    expect(make('tsuki-ni', 'さんがつ')).toMatchObject({ jp: 'さんがつに にほんへ いきます', romaji: 'sangatsu ni nihon e ikimasu' });
+    expect(make('yasumi', 'にちようび')).toMatchObject({ jp: 'にちようびは やすみ ですか', pt: 'Fecha no domingo?' });
+    expect(make('te-mo-ii', 'しゃしんを とって')).toMatchObject({ jp: 'しゃしんを とっても いい ですか', romaji: 'shashin o totte mo ii desu ka', pt: 'Posso tirar uma foto?' });
+    expect(make('te-kudasai', 'ゆっくり はなして')).toMatchObject({ jp: 'ゆっくり はなして ください', pt: 'Fale devagar, por favor' });
   });
 });

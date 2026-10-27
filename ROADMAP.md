@@ -75,7 +75,7 @@ O app é de **uso pessoal e privado**, então as licenças de conteúdo ainda n�
 
 Objetivo: transformar "li sobre は e が" em "uso は e が sem pensar".
 
-- [~] **Completar o N5 gramatical** (cerca de 40 pontos): partículas, formas do verbo, adjetivos, pedidos, permissão, desejo, comparação, contadores. Hoje são 10 tópicos. *(G)*
+- [x] **Completar o N5 gramatical:** 51 tópicos (os 10 da especificação e 41 com frases reais do Tatoeba): partículas, formas do verbo, adjetivos, pedidos, permissão, desejo, comparação, opinião (〜と おもいます), probabilidade (〜でしょう), planos (〜つもり), obrigação (〜なければ なりません), conselho, dispensa, excesso (〜すぎる), fácil/difícil de, experiência (〜たことが ある) e contadores. Faltam o N4 (condicionais, passiva, causativa) e tópicos de contraste (けど, が) e de tempo (とき), por falta de frases curtas boas no Tatoeba. *(G)*
   - Feito (30 tópicos): +20 tópicos (11 a 30) com explicação própria e 80 frases reais do **Tatoeba** (CC BY 2.0 FR) conferidas na fonte (`npm run verify-grammar`): でした/ではありません, adjetivos い e な no negativo e no passado, 〜てください, 〜ています, 〜ないでください, 〜てもいい, 〜てはいけません, 〜ましょう/ませんか, がほしい, より, いちばん, すき/じょうず, から/まで, から (motivo), palavras interrogativas, もう/まだ, posições, になる, できる. Fonte e crédito em `src/content/LICENSE.md`. Os exemplos viraram 59 exercícios de Montar e de Lacunas (todos os tópicos novos, menos o 19, têm o botão Praticar). Falta: ~10 pontos (contadores, ～前に/～後で, ～ながら, forma simples...) e a revisão das explicações por um falante. Depois: **+8 tópicos (31 a 38)**, também com frases do Tatoeba conferidas: 〜まえに, 〜てから e あとで, 〜ながら, 〜に いきます, frequência (いつも, よく, ときどき, あまり, ぜんぜん), 〜ましょうか (oferecer), だけ e なにか/だれか. Total: 38 tópicos. Depois (1.9.0): **tópico 40 (forma simples: dicionário, ない e た)** e **41 (dar e receber: あげる, もらう, くれる)**, achados com uma busca nas 249 mil frases do Tatoeba e conferidos na fonte; 〜ながら ganhou 2 exemplos e だけ ganhou 1. Total: **41 tópicos**.
 - [~] **Exercícios de lacuna (cloze):** frases com um espaço para a partícula ou a forma correta, com explicação do erro. *(M)*
   - Feito: sub-aba **Lacunas** em Frases, com as frases do Montar (26) viradas em ~40 lacunas de partícula e de final da frase, tradução embaixo e a regra ao errar. Aceita as variações (に/へ, を/が). As frases do Tatoeba entraram nas lacunas (cerca de 100 no total, com から/まで/より também).
@@ -137,7 +137,7 @@ Objetivo: ler textos reais e ganhar vocabulário em contexto.
 - [x] **Furigana opcional** e destaque das palavras já aprendidas, para o aluno enxergar o quanto já entende. *(M)*
 - [x] **Leitura do dia a dia:** cardápios, placas, avisos e horários de trem, para treinar o que se encontra em viagem. *(M)*
   - Feito (1.9.0): cardápio, aviso e horário de estação e horário de biblioteca, com o lugar onde se vê cada um (escritos por IA, a revisar). Faltam mais exemplos (placas, preços em lojas).
-- [ ] **Câmera para ler (opcional):** apontar para um texto e ver as leituras. Depende de OCR no aparelho e deve ser avaliado com cuidado. *(G)*
+- [x] **Câmera para ler:** Frases → Palavras → 📷 Câmera. Fotografe ou escolha uma foto (com recorte), o app lê no aparelho (Google ML Kit, modelo japonês embutido, sem internet), mostra o texto para corrigir, deixa tocar cada palavra (leitura, significado, aprender), ouvir, e com a IA ligada traduz e explica o texto todo. Limites: texto vertical e letras muito decoradas saem piores. *(G)*
   - Avaliado e **não feito**: exige OCR de japonês no aparelho (módulo nativo e modelo grande) e não há como testar sem um celular conectado. Fica para quando houver aparelho de teste.
 
 ### Fase 5b: fluidez de leitura de kana
@@ -157,7 +157,7 @@ Pedido do aluno: aprender como a frase se monta, montar frases e ter frases e di
 - [x] **Estrutura da frase** (Frases → Estrutura): o mapa da frase (blocos "palavra + partícula", verbo no fim), as frases de viagem abertas em blocos coloridos pelo papel (tema, objeto, lugar, alvo, fim da frase...) e um treino "Qual é o papel?".
 - [x] **Frases-modelo** (Frases → Modelos): 13 moldes com uma lacuna ([coisa] を ください, [lugar] は どこ ですか, [comida] の アレルギーが あります...) e um desafio de escolher a frase certa para uma tradução.
 - [x] **Textos de leitura de placas, avisos e cardápios reais** (1.13.0): Frases → Leitura → Dia a dia ganhou 9 textos (placas da estação, avisos e proibições, horários de loja, cardápio de lámen, preços e impostos, banheiros e onsen, regras no transporte, conbini e supermercado). Usam kanji de verdade; cada pedaço da frase é tocável e mostra a leitura e o significado. Escritos por IA, a revisar por um falante.
-- [ ] **Para depois:** mais moldes (horas, datas, pedidos mais longos), diálogos com a fala do atendente também para escolher e vozes diferentes por papel.
+- [~] **Para depois:** os moldes novos entraram (horas, check-in e check-out, meses e datas, dias de folga, quantidade, permissão, 「quero」, proibição e pedidos mais longos, de 13 para 24). Falta diálogos com a fala do atendente também para escolher e vozes diferentes por papel (o VOICEVOX já permite).
 
 ### Perfil, introdução e lembretes (1.13.0)
 
@@ -242,6 +242,13 @@ Objetivo: digitar japonês de verdade, com conteúdo ilimitado e treino do que c
 - [x] **Digitação livre:** escreva o que quiser e veja o romaji e as palavras que o vocabulário conhece com aquela leitura. *(P)*
 - [~] **Mais variedade:** pares confusos (シ/ツ, ソ/ン) já aparecem nas frases e na conversão; faltam séries dirigidas de pontuação e números. *(P)*
 
+### Extra: cartões, voz de anime e câmera (2.6.0)
+
+- [x] **Flash cards:** Frases → Palavras → Cartões. Baralhos de palavras que você estuda, palavras novas, itens teimosos, kana, kanji, frases de viagem e Minhas frases; direção japonês → português, o contrário ou misturado; rodadas de 10, 20 ou 40; "repetir os que errei". As respostas dos cartões de vocabulário e de kana entram na revisão espaçada, com uma regra mais cuidadosa: acertar só conta se o cartão já estava vencido, errar sempre conta. *(M)*
+- [x] **Voz de anime (VOICEVOX):** Ajustes → "Voz de anime (VOICEVOX)". Motor VOICEVOX CORE dentro do aparelho (módulo Kotlin), personagem e tom à escolha, áudio em cache, queda automática para a voz do Android se algo falhar, e créditos em Ajustes. Fica de fora do git (binários e vozes: `npm run voicevox:setup`). Exige Android 8.0 (minSdk 26). *(G)*
+- [ ] **Voz por papel nos diálogos:** o atendente numa voz e você em outra. *(P)*
+- [ ] **Mais vozes:** hoje só o `0.vvm` (四国めたん, ずんだもん, 春日部つむぎ, 雨晴はう); dá para acrescentar outros arquivos no setup. *(P)*
+
 ### Fase 10: IA opcional (2.0.0)
 
 Objetivo: usar IA para o que o app não consegue sozinho (corrigir, explicar, criar conteúdo sob medida), **sem nunca depender dela**. Regras: a pessoa cadastra a própria chave (Gemini, Claude ou GPT) em Ajustes → IA; a chave fica no armazenamento seguro do aparelho e **fora do backup**; a IA gera só texto (o áudio continua sendo a voz do aparelho); sem chave ou sem internet o app funciona como sempre; todo conteúdo gerado é marcado como "gerado por IA, pode errar" e nada entra no conteúdo base nem na revisão sem a pessoa salvar.
@@ -279,9 +286,9 @@ O app prepara, mas a fluência vem de **usar** o japonês. Esta fase é mais um 
 
 - [ ] **Guia de imersão por nível:** que tipo de áudio, vídeo e leitura consumir a cada nível, e como usar legendas em japonês. *(P)*
 - [ ] **Hábito de conversa:** como encontrar tutor ou parceiro de intercâmbio, e um roteiro de apresentação e perguntas para a primeira conversa. *(P)*
-- [ ] **Diário em japonês:** uma frase por dia, guardada no app e revisada depois. *(M)* Ver também a Fase 10 (item 6), com correção por IA.
-- [ ] **Exportar cartões** (por exemplo, para Anki) para quem quiser continuar em outra ferramenta. *(M)*
-- [ ] **Conversa com o Mochi (experimental)** (agora planejada na Fase 10, item 4): treino de conversa com um modelo de linguagem. Exige internet, tem custo e pode errar o japonês, então só entra como opcional, com aviso claro e revisão do conteúdo. *(G)*
+- [x] **Diário em japonês:** feito com a IA (Fase 10, item 6): de 1 a 3 frases por dia, corrigidas, e os diários anteriores ficam guardados. *(M)*
+- [x] **Exportar cartões:** Frases → Palavras → Cartões → Exportar para o Anki gera um arquivo (texto com tabulação, com cabeçalhos do Anki) de palavras, kanji, frases de viagem e Minhas frases, com etiquetas. *(M)*
+- [x] **Conversa com o Mochi (experimental):** feita na Fase 10, item 4, com avisos claros e opcional.
 
 ## 5. Ordem sugerida
 

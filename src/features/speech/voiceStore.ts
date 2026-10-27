@@ -1,7 +1,8 @@
 import * as Speech from 'expo-speech';
 import { create } from 'zustand';
 import { useSettingsStore } from '@/store';
-import { playRecording, recordingFor, stopRecording } from './nativeAudio';
+import { playFile, playRecording, recordingFor, stopRecording } from './nativeAudio';
+import { synthesizeFile, voicevoxActive, warmUpVoicevox } from './voicevox';
 import { japaneseVoices, pickJapaneseVoice, speechText, type VoiceInfo, type VoiceStatus } from './voices';
 
 interface VoiceState {
@@ -60,6 +61,7 @@ export function ensureVoiceChecked(): void {
   if (started) return;
   started = true;
   void useVoiceStore.getState().check();
+  warmUpVoicevox();
 }
 
 /** Uma tentativa de fala: a voz do aparelho (ou não) e o texto, no jeito normal ou reforçado. */
@@ -138,18 +140,8 @@ function speakAttempt(text: string, rate: number, step: number, id: number): voi
   });
 }
 
-/** Lê um texto em japonês: gravação de falante nativo quando a palavra tem, senão a voz do Android (a japonesa, se existir). */
-export function speakJapanese(text: string, rate = 0.9): void {
-  const id = ++request;
-  // Palavra gravada por um falante nativo: toca a gravação (mais natural que a voz do aparelho).
-  if (useSettingsStore.getState().nativeAudio) {
-    const recording = recordingFor(text);
-    if (recording) {
-      if (speaking) Speech.stop();
-      speaking = false;
-      if (playRecording(recording, rate)) return;
-    }
-  }
+/** Fala com a voz do Android (a japonesa, se existir), com o respiro e as novas tentativas de sempre. */
+function speakSystem(text: string, rate: number, id: number): void {
   stopRecording();
   // Parar a fala e começar outra no mesmo instante faz alguns Android descartarem a nova: dá um respiro quando havia fala.
   const busy = speaking || Date.now() - lastSpokenAt < 600;
@@ -161,4 +153,44 @@ export function speakJapanese(text: string, rate = 0.9): void {
     return;
   }
   speakAttempt(text, rate, 0, id);
+}
+
+/** Fala com o VOICEVOX; se não der (módulo ausente, erro de síntese), cai na voz do Android. */
+async function speakVoicevox(text: string, rate: number, id: number): Promise<void> {
+  try {
+    const uri = await synthesizeFile(text, rate);
+    if (id !== request) return;
+    if (uri && playFile(uri)) {
+      remember({ text, attempt: 0, note: 'voz VOICEVOX' });
+      return;
+    }
+  } catch (error) {
+    remember({ text, attempt: 0, note: `VOICEVOX falhou: ${error instanceof Error ? error.message : 'erro'}` });
+  }
+  if (id === request) speakSystem(text, rate, id);
+}
+
+/**
+ * Lê um texto em japonês: gravação de falante nativo quando a palavra tem; senão a voz VOICEVOX (se escolhida e pronta);
+ * senão a voz do Android (a japonesa, se existir).
+ */
+export function speakJapanese(text: string, rate = 0.9): void {
+  const id = ++request;
+  // Palavra gravada por um falante nativo: toca a gravação (mais natural que qualquer voz sintética).
+  if (useSettingsStore.getState().nativeAudio) {
+    const recording = recordingFor(text);
+    if (recording) {
+      if (speaking) Speech.stop();
+      speaking = false;
+      if (playRecording(recording, rate)) return;
+    }
+  }
+  if (voicevoxActive()) {
+    if (speaking) void Speech.stop();
+    speaking = false;
+    stopRecording();
+    void speakVoicevox(text, rate, id);
+    return;
+  }
+  speakSystem(text, rate, id);
 }

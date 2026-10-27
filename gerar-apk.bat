@@ -48,6 +48,16 @@ if not exist node_modules (
   echo [1/4] Dependencias ja instaladas.
 )
 
+rem --- 1b. VOICEVOX (voz de anime): o AAR do motor e, se existirem, as vozes ---
+if not exist modules\voicevox\android\maven (
+  echo Preparando o VOICEVOX ^(AAR do motor^)...
+  call node scripts\voicevox\setup.mjs libs
+  if errorlevel 1 goto :erro
+)
+if not exist modules\voicevox\android\src\main\assets\voicevox (
+  echo [aviso] O motor do VOICEVOX nao esta incluido ^(rode: npm run voicevox:setup^). O app usara a voz do Android.
+)
+
 rem --- 2. Projeto Android nativo (gerado a partir do app.json) ---
 rem Daemons do Gradle de builds anteriores seguram arquivos de android\ e fazem o prebuild falhar (EBUSY).
 if exist android\gradlew.bat call android\gradlew.bat --stop >nul 2>nul

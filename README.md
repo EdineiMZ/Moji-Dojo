@@ -94,6 +94,13 @@ npm run version:sync             # depois de editar a versão no app.json à mã
 
 O `bump` abre a entrada do changelog com um texto provisório, que precisa ser escrito. Um teste falha se a versão, o `versionCode` e o changelog divergirem, e a regra de aumentar a versão a cada fase concluída está no `AGENTS.md`.
 
+## Voz de anime (VOICEVOX) e câmera
+
+Duas funções usam módulos nativos próprios (Kotlin, em `modules/`), então só existem no APK gerado com o `gerar-apk.bat` (não no Expo Go):
+
+- **VOICEVOX** (`modules/voicevox`): vozes de personagens, dentro do aparelho e sem internet. O AAR do motor é baixado sozinho pelo `gerar-apk.bat` (`npm run voicevox:libs`). Já o **ONNX Runtime e o dicionário** vêm de `npm run voicevox:setup`, que roda o downloader oficial e **pede que você aceite os termos de uso** no terminal. As **vozes (`.vvm`) não vão no APK**: cada pessoa baixa as que quiser em Ajustes → Voz de anime → Vozes para baixar (25 arquivos de 55 a 65 MB, direto da release oficial, depois de aceitar os termos no app). `npm run voicevox:catalog` atualiza a lista de vozes. O app exige Android 8.0 ou mais (minSdk 26) por causa do motor. Os créditos ("VOICEVOX:nome do personagem") aparecem em Ajustes.
+- **Câmera para ler** (`modules/textscan`): reconhecimento de texto japonês do Google ML Kit, com o modelo dentro do app.
+
 ## Estrutura de pastas
 
 ```

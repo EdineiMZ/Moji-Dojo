@@ -39,6 +39,24 @@ export function playRecording(rec: WordRecording, rate: number): boolean {
   }
 }
 
+/** Toca um arquivo de áudio gerado no aparelho (a voz VOICEVOX). Devolve false se falhar. */
+export function playFile(uri: string): boolean {
+  try {
+    if (!modeReady) {
+      modeReady = true;
+      setAudioModeAsync({ interruptionMode: 'duckOthers' }).catch(() => undefined);
+    }
+    if (!player) player = createAudioPlayer(uri);
+    else player.replace(uri);
+    // A velocidade já foi aplicada na síntese: aqui volta ao normal (uma gravação anterior pode ter desacelerado).
+    player.setPlaybackRate(1, 'high');
+    player.play();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function stopRecording(): void {
   try {
     player?.pause();

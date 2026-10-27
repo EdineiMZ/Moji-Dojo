@@ -2,7 +2,7 @@
   "expo": {
     "name": "Moji Dojo",
     "slug": "moji-dojo",
-    "version": "2.5.0",
+    "version": "2.7.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -20,11 +20,19 @@
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.SYSTEM_ALERT_WINDOW"
       ],
-      "versionCode": 20500
+      "versionCode": 20700
     },
     "plugins": [
       "expo-router",
       "expo-font",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 26
+          }
+        }
+      ],
       "expo-sqlite",
       [
         "expo-notifications",
@@ -66,7 +74,15 @@
       ],
       "expo-status-bar",
       "expo-asset",
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-sharing",
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "O Moji Dojo usa a câmera para você fotografar um texto em japonês e ver a leitura e o significado.",
+          "photosPermission": false
+        }
+      ]
     ],
     "scheme": "mojidojo",
     "platforms": [

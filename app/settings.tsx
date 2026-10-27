@@ -12,6 +12,7 @@ import { FeedbackSettingsCard } from '@/features/progress/FeedbackSettingsCard';
 import { ResetCard } from '@/features/progress/ResetCard';
 import { ReviewSettingsCard } from '@/features/review/ReviewSettingsCard';
 import { VoiceStatusCard } from '@/features/speech/VoiceStatusCard';
+import { VoicevoxCard } from '@/features/speech/VoicevoxCard';
 import { spacing } from '@/theme';
 
 /**
@@ -37,6 +38,7 @@ export default function SettingsScreen() {
 
       <Collapsible title="Estudo e exibição" hint="Voz japonesa, revisão, romaji e furigana">
         <VoiceStatusCard />
+        <VoicevoxCard />
         <ReviewSettingsCard />
         <DisplaySettingsCard />
       </Collapsible>

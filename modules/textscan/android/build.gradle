@@ -1,0 +1,20 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'expo.modules.textscan'
+version = '0.1.0'
+
+android {
+  namespace "expo.modules.textscan"
+  defaultConfig {
+    versionCode 1
+    versionName "0.1.0"
+  }
+}
+
+dependencies {
+  // Reconhecimento de texto do Google ML Kit com o modelo japonês dentro do app: funciona sem internet (cerca de 4 MB por arquitetura).
+  implementation "com.google.mlkit:text-recognition-japanese:16.0.1"
+}

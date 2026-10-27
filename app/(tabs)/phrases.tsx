@@ -4,6 +4,8 @@ import { AiStudioView } from '@/features/ai/AiStudioView';
 import { BankView } from '@/features/bank/BankView';
 import { ClozeView } from '@/features/cloze/ClozeView';
 import { DialogView } from '@/features/dialogs/DialogView';
+import { FlashcardsView } from '@/features/flashcards/FlashcardsView';
+import { ScanView } from '@/features/scan/ScanView';
 import { CountingView } from '@/features/counting/CountingView';
 import { ConjugationView } from '@/features/conjugation/ConjugationView';
 import { BuildHub } from '@/features/phrases/BuildHub';
@@ -22,7 +24,7 @@ import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 import { useSettingsStore } from '@/store';
 
-type PhrasesView = 'vocab' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure' | 'frames' | 'explore' | 'ai';
+type PhrasesView = 'vocab' | 'cards' | 'scan' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure' | 'frames' | 'explore' | 'ai';
 
 type Section = 'words' | 'grammar' | 'sentences';
 
@@ -33,8 +35,10 @@ const SECTIONS: readonly { value: Section; label: string; views: readonly { valu
     label: 'Palavras',
     views: [
       { value: 'vocab', label: 'Palavras' },
+      { value: 'cards', label: 'Cartões' },
       { value: 'kata', label: 'Katakana' },
       { value: 'read', label: 'Leitura' },
+      { value: 'scan', label: '📷 Câmera' },
     ],
   },
   {
@@ -86,6 +90,7 @@ export default function PhrasesScreen() {
       <ChipRow options={sections.find((g) => g.value === sectionOf(view))?.views ?? []} value={view} onChange={setView} />
       <SwapView viewKey={view}>
         {view === 'vocab' ? <VocabView /> : null}
+        {view === 'cards' ? <FlashcardsView /> : null}
         {view === 'grammar' ? (
           <GrammarView
             onPractice={(id) => {
@@ -99,6 +104,7 @@ export default function PhrasesScreen() {
         {view === 'count' ? <CountingView /> : null}
         {view === 'kata' ? <LoanwordsView /> : null}
         {view === 'read' ? <ReadView /> : null}
+        {view === 'scan' ? <ScanView /> : null}
         {view === 'structure' ? <StructureView /> : null}
         {view === 'frames' ? <FramesView /> : null}
         {view === 'translate' ? <TranslateView /> : null}

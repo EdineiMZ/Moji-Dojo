@@ -1,0 +1,35 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'expo.modules.voicevox'
+version = '0.1.0'
+
+android {
+  namespace "expo.modules.voicevox"
+  defaultConfig {
+    versionCode 1
+    versionName "0.1.0"
+  }
+}
+
+// O AAR do VOICEVOX CORE vem de um repositório Maven local, criado por `npm run voicevox:libs`. Ele precisa ficar visível
+// para todos os projetos (o :app resolve as dependências em runtime), então é registrado na raiz.
+def voicevoxMaven = file("${projectDir}/maven")
+repositories {
+  maven { url = uri(voicevoxMaven) }
+}
+rootProject.allprojects {
+  repositories {
+    maven { url = uri(voicevoxMaven) }
+  }
+}
+
+dependencies {
+  implementation "jp.hiroshiba.voicevoxcore:voicevoxcore-android:0.17.1"
+  // Usados pelas classes do VOICEVOX CORE (declarados como "runtime" no pom, mas o compilador os procura).
+  implementation "com.google.code.gson:gson:2.10.1"
+  implementation "jakarta.annotation:jakarta.annotation-api:2.1.1"
+  implementation "jakarta.validation:jakarta.validation-api:3.0.2"
+}

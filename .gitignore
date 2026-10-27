@@ -26,3 +26,11 @@ scripts/audio/meta.json
 scripts/pos/words.json
 scripts/verify-japanese/cache.json
 .playwright-mcp/
+
+# VOICEVOX (binários e vozes baixados por scripts/voicevox/setup.mjs; têm termos de uso próprios)
+/vendor/
+/modules/voicevox/android/maven/
+/modules/voicevox/android/src/main/assets/voicevox/
+/modules/voicevox/android/src/main/jniLibs/
+/modules/*/android/build/
+/modules/*/android/.cxx/

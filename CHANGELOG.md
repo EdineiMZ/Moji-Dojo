@@ -2,6 +2,29 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.7.0] - 2026-10-27
+
+As vozes do VOICEVOX deixam de ir dentro do APK: quem quer, baixa dentro do app.
+
+- **Baixar vozes pelo app:** Ajustes → "Voz de anime (VOICEVOX)" → "Vozes para baixar". São 25 arquivos de voz de fala (de 55 a 65 MB cada, com um ou mais personagens), baixados direto da release oficial do VOICEVOX no GitHub. Há barra de progresso, "Cancelar" e "Apagar"; o arquivo só é aceito se o tamanho bate com o esperado, e uma voz que não abre é descartada. Depois de baixada, funciona sem internet. O 0.vvm (ずんだもん, 四国めたん, 春日部つむぎ, 雨晴はう) vem sugerido.
+- **Termos de uso antes do primeiro download:** um resumo em português, o link para os termos completos e o botão "Li e aceito os termos". Sem o aceite, nenhum download começa (o aceite fica só no aparelho).
+- **APK bem menor:** o `setup` agora baixa só o ONNX Runtime e o dicionário (`npm run voicevox:setup`), sem o `.vvm`. As vozes ficam numa pasta própria do app e **sobrevivem às atualizações**.
+- **Sem recarregar o motor:** baixar ou apagar uma voz carrega ou descarrega só aquele arquivo; a lista de personagens se atualiza na hora.
+- Corrige o motivo de o VOICEVOX nunca ter tocado na 2.6.0: o APK saiu sem o ONNX Runtime, o dicionário e as vozes (o `setup` ainda não tinha sido rodado) e o app caía em silêncio na voz do Android. Agora o estado "nenhuma voz baixada" aparece na tela, com o caminho para baixar.
+- `npm run voicevox:catalog` regenera a lista de vozes (`voicevoxCatalog.ts`) a partir da tabela e da release oficiais. Não foi testado no aparelho.
+
+## [2.6.0] - 2026-10-27
+
+Voz de anime, câmera para ler, cartões, mais moldes e mais gramática. O app agora exige **Android 8.0 ou mais** (antes, 7.0), por causa do motor de voz.
+
+- **Voz de anime (VOICEVOX):** Ajustes → "Voz de anime (VOICEVOX)". O motor VOICEVOX CORE roda dentro do aparelho, sem internet, com personagem e tom à escolha (四国めたん, ずんだもん, 春日部つむぎ, 雨晴はう no `0.vvm`). Os áudios ficam em cache, e se algo falhar o app volta sozinho para a voz do Android. O crédito "VOICEVOX:nome do personagem" aparece em Ajustes. As gravações de falantes nativos continuam tendo prioridade nas palavras que as têm (desligue-as em Sons e vibração para ouvir só o VOICEVOX). As vozes não vão no git: `npm run voicevox:setup` baixa o ONNX Runtime, o dicionário e as vozes pelo downloader oficial, onde você aceita os termos de uso. Sem isso o app funciona como antes. Não foi testado no aparelho.
+- **Câmera para ler:** Frases → Palavras → 📷 Câmera. Fotografe (com recorte) ou escolha uma foto; o texto é lido no aparelho, sem internet (Google ML Kit, modelo japonês embutido). Você corrige o que veio errado, toca nas palavras para ver leitura e significado, ouve, e com a IA ligada traduz e explica o texto todo. Não foi testado no aparelho.
+- **Cartões (flash cards):** Frases → Palavras → Cartões. Baralhos de palavras que você estuda, palavras novas, itens teimosos, kana, kanji, frases de viagem e Minhas frases; direção japonês → português, o contrário ou misturado; rodadas de 10, 20 ou 40, com "repetir os que errei". As respostas entram na revisão espaçada de forma cuidadosa: acertar só conta se o cartão já estava vencido, errar sempre conta.
+- **Exportar para o Anki:** na mesma tela, gera um arquivo para importar no Anki (palavras, kanji, frases de viagem e Minhas frases), com cabeçalhos do Anki e etiquetas MojiDojo::....
+- **Mais moldes (de 13 para 24):** horas ("às 3 horas, vamos nos encontrar"), check-in e check-out, meses ("em março vou ao Japão"), quando ("amanhã, semana que vem"), dias de folga, uma unidade e "mais um", permissão ("posso tirar uma foto?"), "eu quero + verbo", proibição ("não toque") e mais pedidos com a forma て ("fale devagar", "me ensine o caminho").
+- **Gramática: 10 tópicos novos (de 41 para 51)** com frases reais do Tatoeba conferidas por script: 〜と おもいます, 〜でしょう, 〜つもりです, 〜なければ なりません, 〜た ほうが いい, 〜なくても いい, 〜すぎます, 〜やすい e 〜にくい, 〜たことが あります e os contadores. Cada um tem as notas de "erros comuns de quem fala português" e entra no Montar e nas Lacunas.
+- O romaji dos moldes agora lê は, へ e を colados no fim da palavra como partículas (wa, e, o).
+
 ## [2.5.0] - 2026-10-27
 
 Fecha a Fase 10: os itens que faltavam da IA, mais alguns extras. Tudo continua opcional e só funciona com a chave cadastrada em Ajustes.

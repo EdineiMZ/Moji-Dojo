@@ -85,6 +85,30 @@
 - **Pendência:** confirmar a cadeia de licenças (Kanjium → EDRDG → fontes originais do acento) antes de publicar. O
   CC BY-SA é o mesmo do KanjiVG, então a escolha da licença do projeto (item 4 de "Antes de publicar") já precisa dele.
 
+## Voz VOICEVOX (módulo `modules/voicevox`, opcional)
+
+- **VOICEVOX CORE** (https://github.com/VOICEVOX/voicevox_core, MIT) roda dentro do app Android pelo AAR oficial. Os binários, o
+  **ONNX Runtime** e o **dicionário do Open JTalk** **não ficam no git**: `npm run voicevox:setup` baixa tudo pelo downloader oficial,
+  que mostra os termos e pede o aceite.
+- **Vozes (`.vvm`):** **não vão no APK nem no git.** O app as baixa, a pedido da pessoa, da release oficial
+  (`https://github.com/VOICEVOX/voicevox_vvm/releases`, versão em `voicevoxCatalog.ts`), depois de mostrar um resumo dos termos e pedir o
+  aceite. A lista (arquivo → personagens → estilos → tamanho) vem da tabela do README oficial e é gerada por `npm run voicevox:catalog`.
+  Assim o projeto não redistribui nenhuma voz.
+- **Termos das vozes:** "VOICEVOX 音声モデル 利用規約" (`TERMS.txt` do repositório `voicevox_vvm`) permite uso comercial e não comercial e
+  embutir em aplicativos, **com o crédito** "VOICEVOX:<nome do personagem>", e proíbe engenharia reversa dos arquivos, prejudicar o autor
+  ou terceiros e atos contra a ordem pública. Cada personagem tem termos próprios, no mesmo arquivo (conferido em 2026-10-27, cruzando os 43
+  personagens do catálogo com os títulos do `TERMS.txt`: **42 têm seção própria** com o crédito `VOICEVOX:<nome>`, por exemplo 四国めたん,
+  ずんだもん e 春日部つむぎ, que pedem só o crédito e remetem aos termos do autor). **Exceção: 雨晴はう (arquivo `0.vvm`) não tem seção
+  no `TERMS.txt` da release 0.17.0.** O app mostra o mesmo crédito para ela, mas as condições específicas dessa personagem **não foram
+  confirmadas**: ler os termos do autor dela antes de divulgar áudio gerado com essa voz. **Quem usar outras vozes deve ler os termos do
+  personagem** (alguns têm restrições).
+- **Crédito no app:** Ajustes → Sobre e Ajustes → "Voz de anime (VOICEVOX)" mostram o crédito da voz em uso.
+
+## Câmera para ler (módulo `modules/textscan`)
+
+- **Google ML Kit** (`com.google.mlkit:text-recognition-japanese`), com o modelo japonês dentro do app: a imagem não sai do aparelho.
+  Os termos do ML Kit estão em https://developers.google.com/ml-kit/terms. Confira-os antes de publicar.
+
 ## Reconhecimento de fala (biblioteca)
 
 - **`expo-speech-recognition`** (MIT) usa o reconhecimento de fala do Android (serviço do Google). O app não guarda o áudio,

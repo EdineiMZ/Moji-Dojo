@@ -22,13 +22,22 @@ export function AboutCard() {
         falante. Uso pessoal: as licenças ainda precisam ser validadas antes de qualquer publicação.
       </AppText>
       <AppText variant="caption" color="muted">
-        Frases de exemplo da gramática (tópicos 11 a 30) e do Banco de frases: Tatoeba (tatoeba.org), licença CC BY 2.0
+        Frases de exemplo da gramática (tópicos 11 a 51) e do Banco de frases: Tatoeba (tatoeba.org), licença CC BY 2.0
         FR, com a escrita em kana e o romaji feitos para este app. Os textos explicativos e as falas dos diálogos são
         originais e não foram revisados por um falante.
       </AppText>
       <AppText variant="caption" color="muted">
         Áudio das palavras: {RECORDINGS.length} gravações de falantes nativos do Lingua Libre (Wikimedia Commons), licenças CC0,
         CC BY 4.0 e CC BY-SA 4.0. Falantes: {SPEAKERS.join(', ')}. A página de cada gravação está em src/content/wordAudio.ts.
+      </AppText>
+      <AppText variant="caption" color="muted">
+        Voz de anime (opcional): VOICEVOX (voicevox.hiroshiba.jp), com o dicionário do Open JTalk. As vozes são baixadas por quem
+        quiser, em Ajustes, da release oficial (github.com/VOICEVOX/voicevox_vvm). Cada voz usada tem o crédito
+        &ldquo;VOICEVOX:nome do personagem&rdquo;, por exemplo VOICEVOX:ずんだもん ou VOICEVOX:四国めたん. Os termos de uso das
+        vozes e de cada personagem estão no repositório oficial e são mostrados antes do primeiro download.
+      </AppText>
+      <AppText variant="caption" color="muted">
+        Câmera para ler: reconhecimento de texto do Google ML Kit, com o modelo japonês dentro do app (funciona sem internet).
       </AppText>
     </Card>
   );

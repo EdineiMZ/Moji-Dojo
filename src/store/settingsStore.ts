@@ -13,6 +13,12 @@ export const SPEECH_RATES: Readonly<Record<SpeechSpeed, number>> = { normal: 0.9
 /** Quando mostrar um apoio de leitura: sempre, só ao tocar na frase, ou nunca. */
 export type ReadingAid = 'always' | 'tap' | 'never';
 
+/** Motor da voz japonesa: a do Android (padrão) ou o VOICEVOX, que roda dentro do app. */
+export type VoiceEngine = 'system' | 'voicevox';
+
+/** Estilo padrão do VOICEVOX: ずんだもん (ノーマル). */
+export const DEFAULT_VOICEVOX_STYLE = 3;
+
 /** Teclado para digitar em japonês nos exercícios: o do app (flick) ou o do celular. */
 export type TypingInput = 'pad' | 'system';
 
@@ -34,6 +40,12 @@ export interface SettingsData {
   typingInput: TypingInput;
   /** Voz japonesa escolhida (identificador do Android); null = a melhor disponível. */
   voiceId: string | null;
+  /** Motor da voz: Android ou VOICEVOX (se o app foi gerado com as vozes). */
+  voiceEngine: VoiceEngine;
+  /** Estilo (personagem + tom) do VOICEVOX. */
+  voicevoxStyle: number;
+  /** A pessoa leu e aceitou os termos de uso das vozes do VOICEVOX (exigido antes de baixar qualquer voz). */
+  voicevoxTermsAccepted: boolean;
   /** Usa gravações de falantes nativos nas palavras que as têm (senão, sempre a voz do aparelho). */
   nativeAudio: boolean;
   /** Lembretes de estudo (notificações locais). */
@@ -57,6 +69,9 @@ export interface SettingsActions {
   setShowKanji: (value: boolean) => void;
   setFuriganaMode: (value: ReadingAid) => void;
   setTypingInput: (value: TypingInput) => void;
+  setVoiceEngine: (value: VoiceEngine) => void;
+  setVoicevoxStyle: (value: number) => void;
+  setVoicevoxTermsAccepted: (value: boolean) => void;
   setNativeAudio: (value: boolean) => void;
   setVoiceId: (value: string | null) => void;
   /** Muda só os campos passados dos lembretes. */
@@ -82,6 +97,9 @@ export const DEFAULT_SETTINGS: SettingsData = {
   furiganaMode: 'always',
   typingInput: 'pad',
   voiceId: null,
+  voiceEngine: 'system',
+  voicevoxStyle: DEFAULT_VOICEVOX_STYLE,
+  voicevoxTermsAccepted: false,
   nativeAudio: true,
   reminders: DEFAULT_REMINDERS,
   limits: DEFAULT_LIMITS,
@@ -108,6 +126,9 @@ export function createSettingsStore(storage: StateStorage) {
         setFuriganaMode: (value) => set({ furiganaMode: value }),
         setTypingInput: (value) => set({ typingInput: value }),
         setVoiceId: (value) => set({ voiceId: value }),
+        setVoiceEngine: (value) => set({ voiceEngine: value === 'voicevox' ? 'voicevox' : 'system' }),
+        setVoicevoxStyle: (value) => set({ voicevoxStyle: Number.isInteger(value) && value >= 0 ? value : DEFAULT_VOICEVOX_STYLE }),
+        setVoicevoxTermsAccepted: (value) => set({ voicevoxTermsAccepted: value === true }),
         setNativeAudio: (value) => set({ nativeAudio: value }),
         setReminders: (change) => set((s) => ({ reminders: { ...s.reminders, ...change } })),
         setLimits: (change) => set((s) => ({ limits: sanitizeLimits({ ...s.limits, ...change }) })),
@@ -122,9 +143,17 @@ export function createSettingsStore(storage: StateStorage) {
         // O que vem do disco passa pela leitura segura: estado salvo por uma versão antiga ganha os campos novos.
         merge: (persisted, current) => {
           const saved = (persisted ?? {}) as Partial<SettingsState>;
-          return { ...current, ...saved, ai: sanitizeAi(saved.ai), aiUsage: sanitizeUsage(saved.aiUsage) };
+          return {
+            ...current,
+            ...saved,
+            voiceEngine: saved.voiceEngine === 'voicevox' ? 'voicevox' : 'system',
+            voicevoxStyle: typeof saved.voicevoxStyle === 'number' && Number.isInteger(saved.voicevoxStyle) && saved.voicevoxStyle >= 0 ? saved.voicevoxStyle : DEFAULT_VOICEVOX_STYLE,
+            voicevoxTermsAccepted: saved.voicevoxTermsAccepted === true,
+            ai: sanitizeAi(saved.ai),
+            aiUsage: sanitizeUsage(saved.aiUsage),
+          };
         },
-        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
+        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxTermsAccepted, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
           writeInReview,
           speechSpeed,
           hapticsEnabled,
@@ -134,6 +163,9 @@ export function createSettingsStore(storage: StateStorage) {
           furiganaMode,
           typingInput,
           voiceId,
+          voiceEngine,
+          voicevoxStyle,
+          voicevoxTermsAccepted,
           nativeAudio,
           reminders,
           limits,

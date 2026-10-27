@@ -1,8 +1,8 @@
 # Fontes e licenças do vocabulário
 
-> **Status: uso pessoal e privado. As licenças abaixo NÃO foram validadas para publicação.**
-> Antes de distribuir o app (loja, APK para outras pessoas, repositório com os dados), siga a lista
-> "Antes de publicar" no fim deste arquivo.
+> **Status (2026-10-27):** a licença das listas do Tanos foi validada (CC BY) e o crédito do VOICEVOX foi conferido (exceto 雨晴はう,
+> sem seção nos termos oficiais). Seguem pendentes a **revisão do conteúdo escrito por IA por um falante** e a escolha da licença do
+> projeto. Siga a lista "Antes de publicar" no fim deste arquivo.
 
 ## Lista JLPT N5 (`n5.ts`, gerado em `scripts/vocab-n5/`)
 
@@ -12,8 +12,14 @@
 - **Origem dos dados:** segundo o próprio README desse projeto, os dados originais vieram de
   https://github.com/chyyran/jlpt-anki-decks, "baseados nos decks de tanos.co.uk" (listas JLPT de
   **Jonathan Waller**). O repositório `chyyran/jlpt-anki-decks` aparece no GitHub com licença
-  `NOASSERTION` (sem licença declarada), e **a licença original das listas do site Tanos não foi confirmada**
-  (o site não pôde ser acessado na verificação, em 2026-10-22).
+  `NOASSERTION` (sem licença declarada).
+- **Licença das listas do Tanos, VALIDADA em 2026-10-27:** o domínio `tanos.co.uk` não resolve mais, mas a Wayback Machine guarda a página
+  "Use my data! / Sharing and copyrights" (https://web.archive.org/web/20231128200421/https://www.tanos.co.uk/jlpt/sharing/, © Jonathan
+  Waller, atualizada em 12/10/2011). Ela diz, no original: *"Everything on this site (that I'm not selling), is licenced under Creative
+  Commons "BY". Basically this means... use anything here however you like (commercial or non-commercial), but credit my site."* As
+  listas de vocabulário são gratuitas (só o áudio "Grammar Plus" é vendido e não é usado aqui), então estão cobertas. **Obrigação:
+  creditar Jonathan Waller / tanos.co.uk**, o que está em Ajustes → Sobre e aqui. Limites: a página não diz a versão da CC BY, e a
+  confirmação vem de uma cópia arquivada, não do site ativo.
 - **Não existe lista oficial do JLPT** desde 2010: toda lista N5 é uma compilação não oficial.
 - **Alterações feitas neste projeto:** formas alternativas reduzidas à primeira; símbolos "～" e "(する)"
   removidos; palavras repetidas e itens que não são palavras (ex.: o sufixo `がる`) descartados;
@@ -91,7 +97,7 @@
   **ONNX Runtime** e o **dicionário do Open JTalk** **não ficam no git**: `npm run voicevox:setup` baixa tudo pelo downloader oficial,
   que mostra os termos e pede o aceite.
 - **Vozes (`.vvm`):** **não vão no APK nem no git.** O app as baixa, a pedido da pessoa, da release oficial
-  (`https://github.com/VOICEVOX/voicevox_vvm/releases`, versão em `voicevoxCatalog.ts`), depois de mostrar um resumo dos termos e pedir o
+  (`https://github.com/VOICEVOX/voicevox_vvm/releases`, versão em `voicevoxCatalog.ts`), mostrando, a cada download, os termos de cada personagem do arquivo (com o link de cada um) e pedindo o
   aceite. A lista (arquivo → personagens → estilos → tamanho) vem da tabela do README oficial e é gerada por `npm run voicevox:catalog`.
   Assim o projeto não redistribui nenhuma voz.
 - **Termos das vozes:** "VOICEVOX 音声モデル 利用規約" (`TERMS.txt` do repositório `voicevox_vvm`) permite uso comercial e não comercial e
@@ -99,9 +105,20 @@
   ou terceiros e atos contra a ordem pública. Cada personagem tem termos próprios, no mesmo arquivo (conferido em 2026-10-27, cruzando os 43
   personagens do catálogo com os títulos do `TERMS.txt`: **42 têm seção própria** com o crédito `VOICEVOX:<nome>`, por exemplo 四国めたん,
   ずんだもん e 春日部つむぎ, que pedem só o crédito e remetem aos termos do autor). **Exceção: 雨晴はう (arquivo `0.vvm`) não tem seção
-  no `TERMS.txt` da release 0.17.0.** O app mostra o mesmo crédito para ela, mas as condições específicas dessa personagem **não foram
-  confirmadas**: ler os termos do autor dela antes de divulgar áudio gerado com essa voz. **Quem usar outras vozes deve ler os termos do
-  personagem** (alguns têm restrições).
+  no `TERMS.txt` da release 0.17.0**, mas o site oficial do VOICEVOX aponta os termos dela (https://amehau.com/?page_id=225), lidos em
+  2026-10-27: uso comercial e não comercial dentro dos termos do VOICEVOX; o crédito do VOICEVOX é obrigatório (exemplo
+  `VOICEVOX:雨晴はう`; o crédito com o nome dela é bem-vindo, não exigido); proíbem conteúdo R18, modelos de troca de voz feitos com
+  áudio do VOICEVOX e uso contra a lei ou para enganar terceiros. O app só lê frases de estudo e mostra o crédito, o que se enquadra.
+  **Quem usar outras vozes deve ler os termos do personagem** (alguns têm restrições).
+- **Link dos termos de cada personagem:** o catálogo guarda o `policyUrl` que o site oficial publica na página de cada um, e a tela
+  de download mostra o botão "Termos" ao lado de cada voz. O link da 波音リツ é `http://`, como no `TERMS.txt` oficial.
+- **Nomes e descrições em português:** o nome romanizado vem do endereço oficial de cada personagem (`/product/<slug>/`) e a descrição
+  da voz é a frase japonesa que o site mostra ("優しく可愛い声"), **traduzida por IA** (`voicevoxText.ts`, a revisar por um falante), assim
+  como o nome dos 63 estilos de voz. 里石ユカ ainda não tem descrição no site.
+- **Amostras (preview):** "Ouvir amostra" toca a voz do aparelho quando ela já foi baixada; senão o app lê a página do personagem no
+  site oficial e toca a amostra de voz que o site publica ali (arquivo WAV), só quando a pessoa toca no botão, guardando-a no cache do
+  app. O app **não redistribui** as amostras (não vão no git nem no APK). Os termos do site sobre reutilizar as amostras **não foram
+  lidos**: se isso for um problema, basta trocar o botão por um link para a página do personagem.
 - **Crédito no app:** Ajustes → Sobre e Ajustes → "Voz de anime (VOICEVOX)" mostram o crédito da voz em uso.
 
 ## Câmera para ler (módulo `modules/textscan`)
@@ -182,9 +199,7 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
 
 ## Antes de publicar
 
-1. **Confirmar a licença das listas do Tanos** (https://www.tanos.co.uk/jlpt/) e se ela permite o uso e a
-   redistribuição neste app (e se exige crédito). Se não permitir, trocar a fonte (ex.: montar a lista a
-   partir do JMdict por frequência, com a licença do EDRDG abaixo) e refazer `n5.ts`.
+1. ~~Confirmar a licença das listas do Tanos~~ **Feito em 2026-10-27** (CC BY, com crédito; ver a seção da lista JLPT N5 acima).
 2. **Se usar dados do JMdict/KANJIDIC (EDRDG):** a licença é **CC BY-SA 4.0** e exige crédito, inclusive em
    apps (https://www.edrdg.org/edrdg/licence.html); os dados derivados ficam sob a mesma licença.
 3. **Revisar as traduções** com um falante (no mínimo uma amostra grande) e corrigir `scripts/vocab-n5/pt-*.txt`;

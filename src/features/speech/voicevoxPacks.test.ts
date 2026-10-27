@@ -1,6 +1,20 @@
 import { DEFAULT_VOICEVOX_STYLE } from '@/store/settingsStore';
-import { VOICE_PACKS } from './voicevoxCatalog';
-import { RECOMMENDED_PACK, formatSize, installedBytes, orderedPacks, packByFile, packForStyle, packUrl, requiredFreeBytes } from './voicevoxPacks';
+import { VOICE_PACKS, VOICE_SPEAKERS } from './voicevoxCatalog';
+import {
+  RECOMMENDED_PACK,
+  formatSize,
+  installedBytes,
+  orderedPacks,
+  packByFile,
+  packForStyle,
+  packSpeakers,
+  packStyleIds,
+  packUrl,
+  requiredFreeBytes,
+  speakerInfo,
+} from './voicevoxPacks';
+import { parseSampleUrl } from './voicevoxSample';
+import { STYLE_PT, VOICE_DESC_PT, romanName, speakerLabel, styleLabel } from './voicevoxText';
 
 describe('catálogo de vozes', () => {
   it('tem só arquivos de fala com nome válido, sem repetir', () => {
@@ -12,19 +26,87 @@ describe('catálogo de vozes', () => {
   it('cada arquivo tem tamanho, personagens e estilos', () => {
     for (const pack of VOICE_PACKS) {
       expect(pack.bytes).toBeGreaterThan(10 * 1048576);
-      expect(pack.speakers.length).toBeGreaterThan(0);
-      expect(pack.styles.length).toBeGreaterThan(0);
+      expect(packSpeakers(pack).length).toBeGreaterThan(0);
+      expect(packStyleIds(pack).length).toBeGreaterThan(0);
     }
   });
 
   it('nenhum estilo está em dois arquivos (assim cada voz sabe o que baixar)', () => {
-    const styles = VOICE_PACKS.flatMap((p) => p.styles);
+    const styles = VOICE_PACKS.flatMap(packStyleIds);
     expect(new Set(styles).size).toBe(styles.length);
   });
 
   it('o arquivo recomendado traz o estilo padrão do app (ずんだもん ノーマル)', () => {
     expect(packForStyle(DEFAULT_VOICEVOX_STYLE)?.file).toBe(RECOMMENDED_PACK);
-    expect(packByFile(RECOMMENDED_PACK)?.speakers).toContain('ずんだもん');
+    expect(packSpeakers(packByFile(RECOMMENDED_PACK)!)).toContain('ずんだもん');
+  });
+});
+
+describe('personagens do site oficial', () => {
+  const inPacks = new Set(VOICE_PACKS.flatMap(packSpeakers));
+
+  it('todo personagem de um arquivo tem a página do site, e vice-versa', () => {
+    for (const name of inPacks) expect(speakerInfo(name)).toBeDefined();
+    for (const s of VOICE_SPEAKERS) expect(inPacks.has(s.name)).toBe(true);
+  });
+
+  it('cada personagem tem endereço único e link de termos próprio', () => {
+    const slugs = VOICE_SPEAKERS.map((s) => s.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    for (const s of VOICE_SPEAKERS) {
+      expect(s.slug).toMatch(/^[a-z_0-9]+$/);
+      // Os termos são das páginas de cada autor; a de 波音リツ é http, como no TERMS.txt oficial.
+      expect(s.termsUrl).toMatch(/^https?:\/\//);
+    }
+  });
+
+  it('todo personagem tem a descrição em português (vazia só quando o site ainda não descreve)', () => {
+    for (const s of VOICE_SPEAKERS) {
+      expect(VOICE_DESC_PT).toHaveProperty(s.slug);
+      if (s.voiceJa.length > 1) expect(VOICE_DESC_PT[s.slug]?.length).toBeGreaterThan(5);
+    }
+  });
+
+  it('todo estilo de voz tem o nome em português', () => {
+    const names = new Set(VOICE_PACKS.flatMap((p) => p.voices.flatMap((v) => v.styles.map(([, name]) => name))));
+    const missing = [...names].filter((n) => !(n in STYLE_PT));
+    expect(missing).toEqual([]);
+  });
+});
+
+describe('nomes traduzidos', () => {
+  it('romaniza pelo endereço oficial, com as exceções', () => {
+    expect(romanName('kasukabe_tsumugi')).toBe('Kasukabe Tsumugi');
+    expect(romanName('zundamon')).toBe('Zundamon');
+    expect(romanName('number_seven')).toBe('No.7');
+    expect(romanName('mochikosan')).toBe('Mochiko-san');
+  });
+
+  it('mostra romaji e japonês, sem repetir nomes que já são em letras latinas', () => {
+    expect(speakerLabel('ずんだもん', 'zundamon')).toBe('Zundamon (ずんだもん)');
+    expect(speakerLabel('WhiteCUL', 'white_cul')).toBe('WhiteCUL');
+    expect(speakerLabel('No.7', 'number_seven')).toBe('No.7');
+  });
+
+  it('traduz o estilo e, sem tradução, devolve o original', () => {
+    expect(styleLabel('あまあま')).toBe('Doce');
+    expect(styleLabel('estilo-novo')).toBe('estilo-novo');
+  });
+});
+
+describe('amostra do site oficial', () => {
+  // Trecho no formato real da página (JSON dentro do HTML, com aspas escapadas).
+  const page = (talk: string) =>
+    `<astro-island props="{&quot;talkVoiceAudios&quot;:[1,[[0,{&quot;style&quot;:[0,&quot;ノーマル&quot;],&quot;urls&quot;:[1,[[0,&quot;${talk}&quot;],[0,&quot;/_astro/x-normal-002.B.wav&quot;]]]}]]],&quot;songVoiceAudios&quot;:[1,[[0,{&quot;urls&quot;:[1,[[0,&quot;/_astro/x-humming-001.C.wav&quot;]]]}]]]}">`;
+
+  it('lê o endereço da primeira amostra de fala e o completa com o site', () => {
+    expect(parseSampleUrl(page('/_astro/zundamon-normal-001.DlxPrwB-.wav'))).toBe('https://voicevox.hiroshiba.jp/_astro/zundamon-normal-001.DlxPrwB-.wav');
+  });
+
+  it('ignora a amostra de canto e devolve null quando a página mudou', () => {
+    expect(parseSampleUrl(page('/_astro/a.wav'))).not.toContain('humming');
+    expect(parseSampleUrl('<html>sem dados</html>')).toBeNull();
+    expect(parseSampleUrl('"talkVoiceAudios":[1,[]]')).toBeNull();
   });
 });
 

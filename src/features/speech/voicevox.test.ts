@@ -1,5 +1,5 @@
 import { DEFAULT_VOICEVOX_STYLE, createSettingsStore } from '@/store/settingsStore';
-import { creditFor, resolveStyle, speedScaleFor, type VoicevoxSpeaker } from './voicevox';
+import { creditFor, resolveStyle, speedScaleFor, useVoicevoxStore, type VoicevoxSpeaker } from './voicevox';
 
 const speakers: VoicevoxSpeaker[] = [
   { name: '四国めたん', styles: [{ id: 2, name: 'ノーマル' }, { id: 0, name: 'あまあま' }] },
@@ -61,13 +61,27 @@ describe('configurações da voz', () => {
     expect(store.getState().voicevoxStyle).toBe(8);
   });
 
-  it('o aceite dos termos das vozes começa desligado, só vale com true e fica salvo', () => {
-    const storage = memory();
-    const store = createSettingsStore(storage);
-    expect(store.getState().voicevoxTermsAccepted).toBe(false);
-    store.getState().setVoicevoxTermsAccepted('sim' as never);
-    expect(store.getState().voicevoxTermsAccepted).toBe(false);
-    store.getState().setVoicevoxTermsAccepted(true);
-    expect(createSettingsStore(storage).getState().voicevoxTermsAccepted).toBe(true);
+});
+
+describe('download de vozes', () => {
+  beforeEach(() => useVoicevoxStore.setState({ download: null, packError: '' }));
+
+  it('sem o aceite dos termos dos personagens, nada é baixado e a pessoa é avisada', async () => {
+    await useVoicevoxStore.getState().downloadPack('0.vvm', false);
+    const { download, packError } = useVoicevoxStore.getState();
+    expect(download).toBeNull();
+    expect(packError).toMatch(/termos/i);
+  });
+
+  it('com o aceite, não mostra erro de termos (e, sem o módulo nativo dos testes, não começa nada)', async () => {
+    await useVoicevoxStore.getState().downloadPack('0.vvm', true);
+    const { download, packError } = useVoicevoxStore.getState();
+    expect(download).toBeNull();
+    expect(packError).toBe('');
+  });
+
+  it('arquivo que não existe no catálogo é ignorado', async () => {
+    await useVoicevoxStore.getState().downloadPack('999.vvm', true);
+    expect(useVoicevoxStore.getState().packError).toBe('');
   });
 });

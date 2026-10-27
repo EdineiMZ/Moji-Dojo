@@ -5,6 +5,8 @@ import { SPEECH_RATES, type VoiceEngine } from '@/store/settingsStore';
 import { speakJapanese } from './voiceStore';
 import { VoicePacks } from './VoicePacks';
 import { creditFor, resolveStyle, useVoicevoxStore, warmUpVoicevox } from './voicevox';
+import { speakerInfo } from './voicevoxPacks';
+import { speakerLabel, styleLabel } from './voicevoxText';
 
 const SAMPLE = 'こんにちは。きょうも いっしょに がんばりましょう。';
 
@@ -69,7 +71,10 @@ export function VoicevoxCard() {
             PERSONAGEM
           </AppText>
           <ChipRow
-            options={speakers.map((s) => ({ value: s.name, label: s.name }))}
+            options={speakers.map((s) => {
+              const info = speakerInfo(s.name);
+              return { value: s.name, label: info ? speakerLabel(s.name, info.slug) : s.name };
+            })}
             value={speaker?.name ?? ''}
             onChange={(name) => {
               const next = speakers.find((s) => s.name === name);
@@ -82,7 +87,7 @@ export function VoicevoxCard() {
               <AppText variant="caption" color="muted">
                 TOM
               </AppText>
-              <ChipRow options={speaker.styles.map((st) => ({ value: String(st.id), label: st.name }))} value={String(active)} onChange={(id) => setStyle(Number(id))} />
+              <ChipRow options={speaker.styles.map((st) => ({ value: String(st.id), label: styleLabel(st.name) }))} value={String(active)} onChange={(id) => setStyle(Number(id))} />
             </>
           ) : null}
           <Button label="🔊 Ouvir esta voz" variant="soft" onPress={() => speakJapanese(SAMPLE, SPEECH_RATES[speed])} disabled={engine !== 'voicevox'} />
@@ -98,7 +103,7 @@ export function VoicevoxCard() {
       {status !== 'missing' ? <VoicePacks /> : null}
 
       <AppText variant="caption" color="muted">
-        <Bold>Créditos:</Bold> vozes do VOICEVOX (voicevox.hiroshiba.jp). {credit ? `Voz em uso: ${credit}. ` : ''}Cada personagem tem os seus termos; todos os incluídos pedem o crédito &ldquo;VOICEVOX:nome do personagem&rdquo;.
+        <Bold>Créditos:</Bold> vozes do VOICEVOX (voicevox.hiroshiba.jp). {credit ? `Voz em uso: ${credit}. ` : ''}Cada personagem tem os seus termos; todas as vozes pedem o crédito &ldquo;VOICEVOX:nome do personagem&rdquo;.
       </AppText>
     </Card>
   );

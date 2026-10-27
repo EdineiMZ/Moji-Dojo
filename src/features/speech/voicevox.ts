@@ -70,8 +70,11 @@ interface VoicevoxState {
   /** Carrega o motor e as vozes (a primeira vez leva alguns segundos). */
   prepare: () => Promise<void>;
   clearCache: () => Promise<void>;
-  /** Baixa um arquivo de voz da release oficial (exige o aceite dos termos) e o carrega. */
-  downloadPack: (file: string) => Promise<void>;
+  /**
+   * Baixa um arquivo de voz da release oficial e o carrega. `acceptedTerms` diz que a pessoa acabou de aceitar os termos dos
+   * personagens daquele arquivo (a tela pede isso a cada download); sem ele, nada é baixado.
+   */
+  downloadPack: (file: string, acceptedTerms: boolean) => Promise<void>;
   cancelDownload: () => void;
   removePack: (file: string) => Promise<void>;
 }
@@ -127,12 +130,11 @@ export const useVoicevoxStore = create<VoicevoxState>((set, get) => {
     clearCache: async () => {
       await native?.clearCache();
     },
-    downloadPack: async (file) => {
+    downloadPack: async (file, acceptedTerms) => {
       const pack = packByFile(file);
-      if (!native || !pack || get().download) return;
-      if (!useSettingsStore.getState().voicevoxTermsAccepted) {
-        return set({ packError: 'Aceite os termos de uso antes de baixar uma voz.' });
-      }
+      if (!pack || get().download) return;
+      if (!acceptedTerms) return set({ packError: 'Aceite os termos de uso dos personagens antes de baixar a voz.' });
+      if (!native) return;
       set({ packError: '', download: { file, progress: 0 } });
       cancelled = false;
       let part: { exists: boolean; delete: () => void } | null = null;
@@ -189,6 +191,12 @@ export async function synthesizeFile(text: string, rate: number): Promise<string
   if (!native) return null;
   const style = resolveStyle(useVoicevoxStore.getState().speakers, useSettingsStore.getState().voicevoxStyle);
   return native.synthesize(text, style, speedScaleFor(rate));
+}
+
+/** Sintetiza o texto com um estilo escolhido (não o dos Ajustes): usado para ouvir cada voz baixada antes de a escolher. */
+export async function synthesizeStyle(text: string, styleId: number, rate: number): Promise<string | null> {
+  if (!native) return null;
+  return native.synthesize(text, styleId, speedScaleFor(rate));
 }
 
 /** Prepara o VOICEVOX em segundo plano quando ele está escolhido (chamado ao abrir o app e ao trocar a voz). */

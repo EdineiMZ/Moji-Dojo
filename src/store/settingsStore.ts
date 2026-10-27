@@ -44,8 +44,6 @@ export interface SettingsData {
   voiceEngine: VoiceEngine;
   /** Estilo (personagem + tom) do VOICEVOX. */
   voicevoxStyle: number;
-  /** A pessoa leu e aceitou os termos de uso das vozes do VOICEVOX (exigido antes de baixar qualquer voz). */
-  voicevoxTermsAccepted: boolean;
   /** Usa gravações de falantes nativos nas palavras que as têm (senão, sempre a voz do aparelho). */
   nativeAudio: boolean;
   /** Lembretes de estudo (notificações locais). */
@@ -71,7 +69,6 @@ export interface SettingsActions {
   setTypingInput: (value: TypingInput) => void;
   setVoiceEngine: (value: VoiceEngine) => void;
   setVoicevoxStyle: (value: number) => void;
-  setVoicevoxTermsAccepted: (value: boolean) => void;
   setNativeAudio: (value: boolean) => void;
   setVoiceId: (value: string | null) => void;
   /** Muda só os campos passados dos lembretes. */
@@ -99,7 +96,6 @@ export const DEFAULT_SETTINGS: SettingsData = {
   voiceId: null,
   voiceEngine: 'system',
   voicevoxStyle: DEFAULT_VOICEVOX_STYLE,
-  voicevoxTermsAccepted: false,
   nativeAudio: true,
   reminders: DEFAULT_REMINDERS,
   limits: DEFAULT_LIMITS,
@@ -128,7 +124,6 @@ export function createSettingsStore(storage: StateStorage) {
         setVoiceId: (value) => set({ voiceId: value }),
         setVoiceEngine: (value) => set({ voiceEngine: value === 'voicevox' ? 'voicevox' : 'system' }),
         setVoicevoxStyle: (value) => set({ voicevoxStyle: Number.isInteger(value) && value >= 0 ? value : DEFAULT_VOICEVOX_STYLE }),
-        setVoicevoxTermsAccepted: (value) => set({ voicevoxTermsAccepted: value === true }),
         setNativeAudio: (value) => set({ nativeAudio: value }),
         setReminders: (change) => set((s) => ({ reminders: { ...s.reminders, ...change } })),
         setLimits: (change) => set((s) => ({ limits: sanitizeLimits({ ...s.limits, ...change }) })),
@@ -148,12 +143,11 @@ export function createSettingsStore(storage: StateStorage) {
             ...saved,
             voiceEngine: saved.voiceEngine === 'voicevox' ? 'voicevox' : 'system',
             voicevoxStyle: typeof saved.voicevoxStyle === 'number' && Number.isInteger(saved.voicevoxStyle) && saved.voicevoxStyle >= 0 ? saved.voicevoxStyle : DEFAULT_VOICEVOX_STYLE,
-            voicevoxTermsAccepted: saved.voicevoxTermsAccepted === true,
             ai: sanitizeAi(saved.ai),
             aiUsage: sanitizeUsage(saved.aiUsage),
           };
         },
-        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxTermsAccepted, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
+        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
           writeInReview,
           speechSpeed,
           hapticsEnabled,
@@ -165,7 +159,6 @@ export function createSettingsStore(storage: StateStorage) {
           voiceId,
           voiceEngine,
           voicevoxStyle,
-          voicevoxTermsAccepted,
           nativeAudio,
           reminders,
           limits,

@@ -2,6 +2,18 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.8.0] - 2026-10-27
+
+A lista de vozes do VOICEVOX ficou mais clara: nomes em letras latinas, descrição em português e amostra para ouvir antes de baixar.
+
+- **Nomes traduzidos:** cada personagem aparece como "Zundamon (ずんだもん)", com o nome romanizado a partir do endereço oficial dele no site do VOICEVOX. Os nomes que já são em letras latinas (WhiteCUL, Voidoll, No.7) não se repetem. Vale também para os chips de personagem do cartão de voz.
+- **Descrição de cada voz em português:** as 43 frases que o site oficial usa para descrever a voz ("優しく可愛い声" → "Voz gentil e fofa") foram traduzidas, e os 63 tons de voz também ("あまあま" → "Doce", "ささやき" → "Sussurro"), na lista de download e nos chips de tom. Tradução feita por IA, a revisar por um falante.
+- **Ouvir amostra:** cada personagem tem o botão "Ouvir amostra". Se a voz já foi baixada, o app a sintetiza no aparelho com uma frase de teste; senão, toca a amostra que o site oficial publica na página do personagem (precisa de internet; fica em cache e só é buscada quando você toca). Se o site mudar ou estiver fora do ar, o botão avisa em vez de falhar em silêncio.
+- **Aceite dos termos de cada personagem, a cada download:** ao tocar em "Baixar", a tela mostra um aviso com o resumo das regras, o link dos termos de **cada personagem do arquivo** (o `0.vvm` tem quatro) e o dos termos gerais; só o botão "Li e aceito os termos de ... e quero baixar" começa o download, e "Cancelar" volta atrás. O aceite vale para aquele download (apagar a voz e baixar de novo pede de novo). Isso substitui o aceite único que a 2.7.0 pedia na entrada da lista, e a regra também está no código: sem o aceite, `downloadPack` não baixa nada (um teste confere).
+- **Termos de cada personagem:** o botão "Termos" ao lado de cada voz abre a página de termos do próprio personagem, o endereço que o site oficial publica. Isso fechou a pendência da 雨晴はう, que não tem seção no arquivo geral de termos (ver `src/content/LICENSE.md`).
+- O catálogo de vozes (`npm run voicevox:catalog`) agora também lê as 43 páginas de personagem do site oficial, e testes travam que todo personagem tenha descrição e todo tom tenha tradução.
+- A tela Sobre deixa de dizer "uso pessoal: licenças a validar": a licença das listas do Tanos foi conferida (Creative Commons BY, com crédito). Continuam pendentes a revisão do conteúdo escrito por IA e a escolha da licença do projeto. Não foi testado no aparelho.
+
 ## [2.7.0] - 2026-10-27
 
 As vozes do VOICEVOX deixam de ir dentro do APK: quem quer, baixa dentro do app.

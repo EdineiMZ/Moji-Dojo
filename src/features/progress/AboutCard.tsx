@@ -18,8 +18,8 @@ export function AboutCard() {
       </AppText>
       <AppText variant="caption" color="muted">
         Vocabulário: lista JLPT N5 do projeto open-anki-jlpt-decks (MIT), baseada nas listas de Jonathan Waller
-        (tanos.co.uk). Os significados em português foram traduzidos para este app e não foram revisados por um
-        falante. Uso pessoal: as licenças ainda precisam ser validadas antes de qualquer publicação.
+        (tanos.co.uk, licença Creative Commons BY). Os significados em português foram traduzidos para este app e
+        não foram revisados por um falante.
       </AppText>
       <AppText variant="caption" color="muted">
         Frases de exemplo da gramática (tópicos 11 a 51) e do Banco de frases: Tatoeba (tatoeba.org), licença CC BY 2.0
@@ -34,7 +34,7 @@ export function AboutCard() {
         Voz de anime (opcional): VOICEVOX (voicevox.hiroshiba.jp), com o dicionário do Open JTalk. As vozes são baixadas por quem
         quiser, em Ajustes, da release oficial (github.com/VOICEVOX/voicevox_vvm). Cada voz usada tem o crédito
         &ldquo;VOICEVOX:nome do personagem&rdquo;, por exemplo VOICEVOX:ずんだもん ou VOICEVOX:四国めたん. Os termos de uso das
-        vozes e de cada personagem estão no repositório oficial e são mostrados antes do primeiro download.
+        vozes e de cada personagem estão no repositório oficial e são mostrados a cada download, antes de ele começar.
       </AppText>
       <AppText variant="caption" color="muted">
         Câmera para ler: reconhecimento de texto do Google ML Kit, com o modelo japonês dentro do app (funciona sem internet).

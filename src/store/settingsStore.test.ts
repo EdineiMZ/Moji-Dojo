@@ -33,7 +33,6 @@ describe('settingsStore', () => {
       voiceId: null,
       voiceEngine: 'system',
       voicevoxStyle: 3,
-      voicevoxTermsAccepted: false,
       nativeAudio: true,
       reminders: DEFAULT_REMINDERS,
       limits: { newPerDay: 0, reviewsPerDay: 0 },

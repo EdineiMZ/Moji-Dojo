@@ -128,7 +128,7 @@ export function generateScene({ topic, known, seed }: SceneRequest): Promise<Gen
 // ─── Simulado estilo JLPT ────────────────────────────────────────────────
 
 export type ExamLevel = 'N5' | 'N4';
-export type ExamSection = 'vocab' | 'grammar' | 'reading';
+export type ExamSection = 'vocab' | 'grammar' | 'reading' | 'kanji';
 
 export const EXAM_LEVELS: readonly { value: ExamLevel; label: string; hint: string }[] = [
   { value: 'N5', label: 'N5', hint: 'です/ます, partículas básicas, kanji simples' },
@@ -141,6 +141,12 @@ export const EXAM_SECTIONS: readonly { value: ExamSection; label: string; prompt
     label: 'Vocabulário',
     prompt:
       'vocabulário, em dois formatos (metade de cada): (1) leitura: o "prompt" é uma frase com a palavra em kanji entre 「」 seguida da pergunta, por exemplo "わたしは 「学生」 です。 「学生」の よみかたは？", e as 4 alternativas são leituras em hiragana parecidas entre si; (2) palavra certa: o "prompt" é uma frase com ＿＿＿ e as 4 alternativas são palavras que combinam em forma, mas só uma em sentido',
+  },
+  {
+    value: 'kanji',
+    label: 'Kanji',
+    prompt:
+      'kanji (só os mais comuns do N5), em dois formatos (metade de cada): (1) escrita: o "prompt" é uma frase com a palavra em hiragana entre 「」 seguida da pergunta, por exemplo "あした 「がっこう」 へ いきます。 「がっこう」の かんじは？", e as 4 alternativas são escritas em kanji parecidas ou com um kanji trocado; (2) leitura: o "prompt" traz a palavra em kanji entre 「」 e pergunta o seu よみかた, com 4 leituras em hiragana',
   },
   { value: 'grammar', label: 'Gramática', prompt: 'gramática: uma frase com ＿＿＿ para completar com a partícula, a forma do verbo ou a expressão certa' },
   {

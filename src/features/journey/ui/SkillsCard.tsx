@@ -1,13 +1,19 @@
 import { View } from 'react-native';
 import { AppText, Card, ProgressBar } from '@/components';
-import { useProgressStore } from '@/store';
+import { examAverage } from '@/features/ai/examStats';
+import { averageCpm } from '@/features/keyboard/typingStats';
+import { useAiStore, useProgressStore } from '@/store';
 import { spacing } from '@/theme';
 import { MIN_RETENTION_ANSWERS, retention, skillStats } from '../skills';
 
 /** Acertos por habilidade e a retenção real (acertos em cartões que só voltam depois de 2 semanas ou mais). */
 export function SkillsCard() {
   const counters = useProgressStore((s) => s.journey.counters);
+  const typing = useProgressStore((s) => s.typing);
+  const exams = useAiStore((s) => s.exams);
   const stats = skillStats(counters);
+  const cpm = averageCpm(typing);
+  const mock = examAverage(exams);
   const kept = retention(counters);
   return (
     <Card>
@@ -29,6 +35,22 @@ export function SkillsCard() {
           ? `Mede quanto você ainda lembra do que estudou há semanas. Aparece depois de ${MIN_RETENTION_ANSWERS} respostas em cartões antigos (${kept.answers} até agora).`
           : `Você acertou ${kept.pct}% dos cartões que voltaram depois de 2 semanas ou mais (${kept.answers} respostas).`}
       </AppText>
+      {cpm > 0 ? (
+        <>
+          <AppText variant="title">Digitação</AppText>
+          <AppText color="muted">
+            Média de {cpm} letras por minuto no simulador de teclado (recorde: {typing.best}).
+          </AppText>
+        </>
+      ) : null}
+      {mock ? (
+        <>
+          <AppText variant="title">Simulados</AppText>
+          <AppText color="muted">
+            {mock.attempts} tentativa{mock.attempts === 1 ? '' : 's'} nos simulados com IA, com média de {mock.pct}% de acertos (melhor: {mock.bestPct}%).
+          </AppText>
+        </>
+      ) : null}
     </Card>
   );
 }

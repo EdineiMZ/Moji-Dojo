@@ -50,6 +50,8 @@ export interface StoredExam {
   questions: readonly ExamQuestion[];
   /** Melhor nota (acertos), ou null se ainda não foi feito. */
   best: number | null;
+  /** Notas das últimas tentativas (acertos), da mais antiga à mais nova. */
+  scores?: readonly number[];
 }
 
 /** O último plano do coach (um por vez: o da semana mais recente). */
@@ -61,6 +63,7 @@ export interface StoredCoach {
 
 export const MAX_SCENES = 12;
 export const MAX_EXAMS = 10;
+export const MAX_SCORES = 20;
 export const MAX_STORIES = 20;
 export const MAX_DIARY = 60;
 export const MAX_CACHE = 120;
@@ -144,7 +147,7 @@ export function createAiStore(storage: StateStorage) {
         addExam: (exam) => set((s) => ({ exams: [exam, ...s.exams].slice(0, MAX_EXAMS) })),
         removeExam: (id) => set((s) => ({ exams: s.exams.filter((x) => x.id !== id) })),
         recordExamScore: (id, score) =>
-          set((s) => ({ exams: s.exams.map((x) => (x.id === id ? { ...x, best: Math.max(x.best ?? 0, score) } : x)) })),
+          set((s) => ({ exams: s.exams.map((x) => (x.id === id ? { ...x, best: Math.max(x.best ?? 0, score), scores: [...(x.scores ?? []), score].slice(-MAX_SCORES) } : x)) })),
         enqueue: (spec, now = Date.now()) => {
           const { queue } = get();
           if (queue.some((j) => sameSpec(j.spec, spec))) return true;

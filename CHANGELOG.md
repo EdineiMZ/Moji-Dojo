@@ -2,6 +2,19 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.5.0] - 2026-10-27
+
+Fecha a Fase 10: os itens que faltavam da IA, mais alguns extras. Tudo continua opcional e só funciona com a chave cadastrada em Ajustes.
+
+- **GPT (OpenAI) como terceiro provedor:** Ajustes → Inteligência artificial agora aceita Gemini, Claude ou GPT, cada um com a sua chave (fora do backup) e o campo de modelo livre. O padrão do GPT é `gpt-4.1-mini`; se a OpenAI mudar os nomes, troque no campo. Não foi testado com uma chave da OpenAI.
+- **Fila de pedidos sem internet:** quando um pedido de criação (frases do simulador, texto de leitura, cena de diálogo ou simulado) falha por falta de internet, aparece "Guardar o pedido para quando tiver internet". O app faz os pedidos da fila sozinho quando abre ou volta para a tela, ou pelo botão Fazer agora (Frases → ✨ IA). A fila guarda até 8 pedidos, não repete o mesmo e para na primeira falha passageira (sem internet, limite do dia, provedor fora do ar); pedidos que não têm como dar certo saem da fila.
+- **Coach da semana (Frases → ✨ IA → Coach):** mostra os seus números da semana (dias estudados, respostas, acertos, sequência, retenção, itens teimosos) e, se você pedir, a IA monta o foco e três passos para a próxima semana. Só contagens e porcentagens saem do aparelho: nenhuma frase, palavra ou nota sua é enviada (um teste garante).
+- **Feedback de fala (Falar):** quando uma frase não bate, "Por que não bateu? (IA)" compara o texto esperado com o que o reconhecimento de fala escreveu e explica o provável motivo, separando som difícil para brasileiros de simples erro do reconhecedor, com um treino curto. A IA não ouve o seu áudio, só compara textos.
+- **Toque na palavra nos textos da IA:** nas frases da Leitura sob medida, cada palavra do vocabulário do app é tocável: mostra leitura e significado, toca o áudio e deixa aprender a palavra.
+- **Cena de conversa inventada por você:** na Conversa, descreva a situação (por exemplo, pedir informação numa farmácia) e a IA faz o personagem. A descrição vai como dado seu, nunca como instrução.
+- **Simulado com seção de Kanji** (escrita e leitura dos kanji mais comuns do N5), além de Vocabulário, Gramática e Leitura.
+- **Meu Mochi → Por habilidade:** passa a mostrar a velocidade de digitação (média e recorde) e as notas dos simulados (tentativas, média e melhor nota).
+
 ## [2.4.0] - 2026-10-27
 
 Dois recursos de IA (opcionais, com a chave cadastrada em Ajustes). Testados contra o Gemini de verdade com o `gemini-3.5-flash-lite` e o `gemini-3.5-flash`.

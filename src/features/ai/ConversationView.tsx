@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { StyleSheet, Switch, View } from 'react-native';
+import { StyleSheet, Switch, TextInput, View } from 'react-native';
 import { AppText, Bold, Button, Card, PressableScale } from '@/components';
 import { PROBLEM_MESSAGES } from '@/features/myphrases/phrases';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { JapaneseInput } from '@/features/translate/JapaneseInput';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
-import { radii, spacing, useTheme } from '@/theme';
+import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { AiDisclaimer } from './AiParts';
 import { AiError } from './client';
-import { MAX_USER_TURNS, SCENARIOS, type ChatMessage, type Scenario } from './scenarios';
+import { customScenario, MAX_CUSTOM_SCENE, MAX_USER_TURNS, SCENARIOS, type ChatMessage, type Scenario } from './scenarios';
 import { chatTurn, MAX_CHAT_INPUT, type ChatReply } from './tasks';
 
 interface Line extends ChatMessage {
@@ -44,6 +44,8 @@ export function ConversationView() {
 }
 
 function Picker({ onPick }: { onPick: (s: Scenario) => void }) {
+  const { colors } = useTheme();
+  const [custom, setCustom] = useState('');
   return (
     <Card enterIndex={0}>
       <AppText variant="title">Conversa</AppText>
@@ -61,6 +63,17 @@ function Picker({ onPick }: { onPick: (s: Scenario) => void }) {
           </View>
         </PressableScale>
       ))}
+      <AppText variant="title">Ou invente a sua cena</AppText>
+      <AppText color="muted">Descreva a situação em português e a IA escolhe o personagem. Ex.: pedir informação numa farmácia.</AppText>
+      <TextInput
+        value={custom}
+        onChangeText={(t) => setCustom(t.slice(0, MAX_CUSTOM_SCENE))}
+        placeholder="Onde você está e com quem fala?"
+        placeholderTextColor={colors.muted}
+        accessibilityLabel="Descrição da sua cena de conversa"
+        style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+      />
+      <Button label="Começar a minha cena" variant="soft" onPress={() => onPick(customScenario(custom))} disabled={custom.trim().length < 5} />
       <AiDisclaimer />
     </Card>
   );
@@ -269,6 +282,7 @@ function Summary({ lines, scenario, onAgain, onLeave }: { lines: Line[]; scenari
 }
 
 const styles = StyleSheet.create({
+  input: { borderWidth: 1.5, borderRadius: radii.md, paddingHorizontal: spacing.md, paddingVertical: spacing.sm, fontFamily: fonts.regular, fontSize: fontSizes.body, minHeight: 52 },
   flex: { flex: 1, gap: 2 },
   row: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, flexWrap: 'wrap' },
   scenario: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, paddingVertical: spacing.sm, minHeight: 56 },

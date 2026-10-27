@@ -10,6 +10,7 @@ import { AiDisclaimer } from './AiParts';
 import { AiError } from './client';
 import { runJob } from './jobs';
 import { QueueOffer } from './QueueParts';
+import { TappableSentence } from './TappableSentence';
 import type { JobSpec } from './queue';
 import { PHRASE_TOPICS } from './tasks';
 import {
@@ -214,7 +215,7 @@ function StoryBlock({ story, open, tone, onToggle, onRemove, onSave }: StoryBloc
           </View>
           {story.sentences.map((s, i) => (
             <View key={i} style={styles.list}>
-              <AppText style={styles.jp}>{s.jp}</AppText>
+              <TappableSentence jp={s.jp} reading={s.reading} />
               {showReading && s.reading ? (
                 <AppText variant="caption" color="muted">
                   {s.reading}

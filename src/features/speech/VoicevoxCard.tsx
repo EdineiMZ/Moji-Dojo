@@ -18,7 +18,11 @@ const STATUS_TEXT = {
 /** Ajustes → voz de anime: "Minhas vozes" (escolher e ouvir o que já foi baixado) e "Baixar vozes" (o catálogo). */
 export function VoicevoxCard() {
   const style = useSettingsStore((s) => s.voicevoxStyle);
-  const { status, speakers, error, check } = useVoicevoxStore();
+  // Um seletor para cada campo: assinar a loja inteira redesenhava o cartão (e a lista de vozes) a cada mudança dela.
+  const status = useVoicevoxStore((s) => s.status);
+  const speakers = useVoicevoxStore((s) => s.speakers);
+  const error = useVoicevoxStore((s) => s.error);
+  const check = useVoicevoxStore((s) => s.check);
 
   useEffect(() => {
     void check();

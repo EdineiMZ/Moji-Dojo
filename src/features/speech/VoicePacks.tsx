@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Alert, Linking, StyleSheet, TextInput, View } from 'react-native';
 import { AppText, Bold, Button, ProgressBar } from '@/components';
 import { useSettingsStore } from '@/store';
@@ -85,19 +85,34 @@ function TermsPanel({ pack, warning, onAccept, onCancel }: { pack: VoicePack; wa
   );
 }
 
+/** A barra e a porcentagem do download em andamento: a única parte que muda a cada atualização do progresso. */
+function DownloadProgress() {
+  const progress = useVoicevoxStore((s) => s.download?.progress ?? 0);
+  return (
+    <>
+      <ProgressBar value={progress} height={8} />
+      <AppText variant="caption" color="muted">
+        Baixando... {Math.round(progress * 100)}%
+      </AppText>
+    </>
+  );
+}
+
 /** Um arquivo de voz: quem fala nele e o botão certo para o estado (baixar, baixando, baixada). */
-function PackRow({ pack }: { pack: VoicePack }) {
+const PackRow = memo(function PackRow({ pack }: { pack: VoicePack }) {
   const { colors } = useTheme();
   const [confirming, setConfirming] = useState(false);
   const installed = useVoicevoxStore((s) => s.installed.includes(pack.file));
-  const download = useVoicevoxStore((s) => s.download);
+  // Só o que esta linha usa: o progresso (várias vezes por segundo) fica em DownloadProgress, e as outras linhas não redesenham.
+  const mine = useVoicevoxStore((s) => s.download?.file === pack.file);
+  const busy = useVoicevoxStore((s) => s.download !== null);
+  const network = useVoicevoxStore((s) => s.network);
   const downloadPack = useVoicevoxStore((s) => s.downloadPack);
   const cancelDownload = useVoicevoxStore((s) => s.cancelDownload);
   const removePack = useVoicevoxStore((s) => s.removePack);
   const refreshNetwork = useVoicevoxStore((s) => s.refreshNetwork);
   const have = useVoicevoxStore((s) => s.partial[pack.file] ?? 0);
   const names = packSpeakers(pack).join(' · ');
-  const mine = download?.file === pack.file;
   const count = pack.voices.length;
 
   const confirmRemove = () =>
@@ -112,13 +127,12 @@ function PackRow({ pack }: { pack: VoicePack }) {
   };
 
   // O aviso de dados móveis vale para o que ainda falta baixar.
-  const warn = () => {
-    refreshNetwork();
-    return downloadWarning(useVoicevoxStore.getState().network, pack.bytes - have);
-  };
+  const warningFor = (kind: typeof network) => downloadWarning(kind, pack.bytes - have);
 
   const start = () => {
-    const warning = warn();
+    // A rede é lida ao tocar (não ao desenhar): mudar o estado durante a renderização é proibido no React.
+    refreshNetwork();
+    const warning = warningFor(useVoicevoxStore.getState().network);
     if (have > 0) {
       // Continuar um download que a pessoa já aceitou: não pede o aceite de novo, só confirma se for dados móveis.
       if (!warning) return void downloadPack(pack.file, true);
@@ -143,34 +157,27 @@ function PackRow({ pack }: { pack: VoicePack }) {
         {mine ? (
           <Button label="Cancelar" variant="ghost" onPress={cancelDownload} />
         ) : installed ? (
-          <Button label="Apagar" variant="ghost" onPress={confirmRemove} disabled={download !== null} />
+          <Button label="Apagar" variant="ghost" onPress={confirmRemove} disabled={busy} />
         ) : confirming ? null : (
-          <Button label={have > 0 ? `Continuar (${partialPercent(have, pack)}%)` : `Baixar ${formatSize(pack.bytes)}`} variant="soft" onPress={start} disabled={download !== null} />
+          <Button label={have > 0 ? `Continuar (${partialPercent(have, pack)}%)` : `Baixar ${formatSize(pack.bytes)}`} variant="soft" onPress={start} disabled={busy} />
         )}
       </View>
-      {confirming ? <TermsPanel pack={pack} warning={warn()} onAccept={accept} onCancel={() => setConfirming(false)} /> : null}
+      {confirming ? <TermsPanel pack={pack} warning={warningFor(network)} onAccept={accept} onCancel={() => setConfirming(false)} /> : null}
       {have > 0 && !installed && !mine && !confirming ? (
         <View style={styles.actions}>
           <AppText variant="caption" color="muted" style={styles.action}>
             Download interrompido: já vieram {formatSize(have)} de {formatSize(pack.bytes)}.
           </AppText>
-          <Button label="Descartar" variant="ghost" onPress={() => void removePack(pack.file)} disabled={download !== null} />
+          <Button label="Descartar" variant="ghost" onPress={() => void removePack(pack.file)} disabled={busy} />
         </View>
       ) : null}
-      {mine ? (
-        <>
-          <ProgressBar value={download.progress} height={8} />
-          <AppText variant="caption" color="muted" accessibilityLiveRegion="polite">
-            Baixando... {Math.round(download.progress * 100)}%
-          </AppText>
-        </>
-      ) : null}
+      {mine ? <DownloadProgress /> : null}
       {pack.voices.map((voice) => (
         <SpeakerLine key={voice.speaker} voice={voice} installed={installed} />
       ))}
     </View>
   );
-}
+});
 
 /**
  * Vozes do VOICEVOX para baixar (cada arquivo da release oficial traz um ou mais personagens). O APK leva só o motor. Ao

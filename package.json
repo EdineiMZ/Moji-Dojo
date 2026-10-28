@@ -1,6 +1,6 @@
 {
   "name": "moji-dojo",
-  "version": "2.13.1",
+  "version": "2.13.2",
   "main": "expo-router/entry",
   "dependencies": {
     "@expo-google-fonts/m-plus-rounded-1c": "^0.4.4",

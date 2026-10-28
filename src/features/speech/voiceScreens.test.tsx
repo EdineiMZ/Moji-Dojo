@@ -91,6 +91,17 @@ describe('lista de vozes para baixar', () => {
     expect(downloadPack).not.toHaveBeenCalled();
   });
 
+  it('abrir o aviso de termos não entra em laço quando quem assina a loja inteira também está na tela', () => {
+    // Travava o app: ler a rede durante a renderização mudava a loja, que redesenhava a lista, que lia a rede de novo...
+    function WholeStoreSubscriber() {
+      useVoicevoxStore();
+      return <VoicePacks />;
+    }
+    const tree = render(<WholeStoreSubscriber />);
+    press(tree, 'Baixar 57 MB');
+    expect(text(tree)).toContain('Antes de baixar, aceite os termos');
+  });
+
   it('só o "Li e aceito..." começa o download, e ele vale para aquele arquivo', () => {
     const tree = render(<VoicePacks />);
     press(tree, 'Baixar 57 MB');

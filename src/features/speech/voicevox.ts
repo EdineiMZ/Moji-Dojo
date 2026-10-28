@@ -156,8 +156,15 @@ export const useVoicevoxStore = create<VoicevoxState>((set, get) => {
       if (!native) return;
       const have = get().partial[file] ?? 0;
       set({ packError: '', download: { file, progress: Math.min(have / pack.bytes, 1) } });
+      // O módulo avisa umas 5 vezes por segundo; a tela só precisa de uma atualização por ponto percentual.
+      let lastPercent = -1;
       const progress = native.addListener('onDownloadProgress', (e) => {
-        if (e.file === file) set({ download: { file, progress: Math.min(e.bytes / pack.bytes, 1) } });
+        if (e.file !== file) return;
+        const fraction = Math.min(e.bytes / pack.bytes, 1);
+        const percent = Math.floor(fraction * 100);
+        if (percent === lastPercent) return;
+        lastPercent = percent;
+        set({ download: { file, progress: fraction } });
       });
       try {
         // Carregado só aqui: o módulo de arquivos não precisa existir nos testes nem no Expo Go sem o VOICEVOX.

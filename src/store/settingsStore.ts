@@ -4,6 +4,7 @@ import { DEFAULT_AI, EMPTY_USAGE, addUsage, sanitizeAi, sanitizeUsage, type AiSe
 import { DEFAULT_LIMITS, sanitizeLimits, type Limits } from '@/features/limits/limits';
 import { DEFAULT_PROFILE, sanitizeProfile, type Profile } from '@/features/profile/profile';
 import { DEFAULT_REMINDERS, type ReminderSettings } from '@/features/reminders/plan';
+import { DEFAULT_INTONATION, DEFAULT_PITCH, sanitizeFavorites, sanitizeIntonation, sanitizePitch, sanitizeStaffStyle } from '@/features/speech/voiceTuning';
 
 export type SpeechSpeed = 'normal' | 'slow';
 
@@ -44,6 +45,13 @@ export interface SettingsData {
   voiceEngine: VoiceEngine;
   /** Estilo (personagem + tom) do VOICEVOX. */
   voicevoxStyle: number;
+  /** Altura (`pitchScale`) e entonação (`intonationScale`) da voz VOICEVOX. */
+  voicevoxPitch: number;
+  voicevoxIntonation: number;
+  /** Voz do atendente nos diálogos (estilo do VOICEVOX); null = a mesma voz de sempre. */
+  voicevoxStaffStyle: number | null;
+  /** Personagens favoritos (slug), que aparecem primeiro nas listas. */
+  favoriteVoices: string[];
   /** Usa gravações de falantes nativos nas palavras que as têm (senão, sempre a voz do aparelho). */
   nativeAudio: boolean;
   /** Lembretes de estudo (notificações locais). */
@@ -69,6 +77,10 @@ export interface SettingsActions {
   setTypingInput: (value: TypingInput) => void;
   setVoiceEngine: (value: VoiceEngine) => void;
   setVoicevoxStyle: (value: number) => void;
+  setVoicevoxPitch: (value: number) => void;
+  setVoicevoxIntonation: (value: number) => void;
+  setVoicevoxStaffStyle: (value: number | null) => void;
+  setFavoriteVoices: (value: string[]) => void;
   setNativeAudio: (value: boolean) => void;
   setVoiceId: (value: string | null) => void;
   /** Muda só os campos passados dos lembretes. */
@@ -96,6 +108,10 @@ export const DEFAULT_SETTINGS: SettingsData = {
   voiceId: null,
   voiceEngine: 'system',
   voicevoxStyle: DEFAULT_VOICEVOX_STYLE,
+  voicevoxPitch: DEFAULT_PITCH,
+  voicevoxIntonation: DEFAULT_INTONATION,
+  voicevoxStaffStyle: null,
+  favoriteVoices: [],
   nativeAudio: true,
   reminders: DEFAULT_REMINDERS,
   limits: DEFAULT_LIMITS,
@@ -124,6 +140,10 @@ export function createSettingsStore(storage: StateStorage) {
         setVoiceId: (value) => set({ voiceId: value }),
         setVoiceEngine: (value) => set({ voiceEngine: value === 'voicevox' ? 'voicevox' : 'system' }),
         setVoicevoxStyle: (value) => set({ voicevoxStyle: Number.isInteger(value) && value >= 0 ? value : DEFAULT_VOICEVOX_STYLE }),
+        setVoicevoxPitch: (value) => set({ voicevoxPitch: sanitizePitch(value) }),
+        setVoicevoxIntonation: (value) => set({ voicevoxIntonation: sanitizeIntonation(value) }),
+        setVoicevoxStaffStyle: (value) => set({ voicevoxStaffStyle: sanitizeStaffStyle(value) }),
+        setFavoriteVoices: (value) => set({ favoriteVoices: sanitizeFavorites(value) }),
         setNativeAudio: (value) => set({ nativeAudio: value }),
         setReminders: (change) => set((s) => ({ reminders: { ...s.reminders, ...change } })),
         setLimits: (change) => set((s) => ({ limits: sanitizeLimits({ ...s.limits, ...change }) })),
@@ -143,11 +163,15 @@ export function createSettingsStore(storage: StateStorage) {
             ...saved,
             voiceEngine: saved.voiceEngine === 'voicevox' ? 'voicevox' : 'system',
             voicevoxStyle: typeof saved.voicevoxStyle === 'number' && Number.isInteger(saved.voicevoxStyle) && saved.voicevoxStyle >= 0 ? saved.voicevoxStyle : DEFAULT_VOICEVOX_STYLE,
+            voicevoxPitch: sanitizePitch(saved.voicevoxPitch),
+            voicevoxIntonation: sanitizeIntonation(saved.voicevoxIntonation),
+            voicevoxStaffStyle: sanitizeStaffStyle(saved.voicevoxStaffStyle),
+            favoriteVoices: sanitizeFavorites(saved.favoriteVoices),
             ai: sanitizeAi(saved.ai),
             aiUsage: sanitizeUsage(saved.aiUsage),
           };
         },
-        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
+        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
           writeInReview,
           speechSpeed,
           hapticsEnabled,
@@ -159,6 +183,10 @@ export function createSettingsStore(storage: StateStorage) {
           voiceId,
           voiceEngine,
           voicevoxStyle,
+          voicevoxPitch,
+          voicevoxIntonation,
+          voicevoxStaffStyle,
+          favoriteVoices,
           nativeAudio,
           reminders,
           limits,

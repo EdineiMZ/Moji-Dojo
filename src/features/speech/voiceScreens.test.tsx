@@ -155,15 +155,15 @@ describe('minhas vozes', () => {
     expect(all).toContain('57 MB');
   });
 
-  it('"Usar esta voz" escolhe o personagem e já liga o VOICEVOX, com o selo "Em uso"', () => {
+  it('"Usar" escolhe o personagem e já liga o VOICEVOX, com o selo "Em uso"', () => {
     useVoicevoxStore.setState({ installed: ['0.vvm'] });
     const tree = render(<MyVoices />);
-    expect(buttons(tree, 'Usar esta voz')).toHaveLength(4);
-    press(tree, 'Usar esta voz', 1); // Zundamon é o segundo do arquivo
+    expect(buttons(tree, 'Usar')).toHaveLength(4);
+    press(tree, 'Usar', 1); // Zundamon é o segundo do arquivo
     expect(useSettingsStore.getState().voiceEngine).toBe('voicevox');
     expect(useSettingsStore.getState().voicevoxStyle).toBe(3);
     expect(text(tree)).toContain('✓ Em uso');
-    expect(buttons(tree, 'Usar esta voz')).toHaveLength(3);
+    expect(buttons(tree, 'Usar')).toHaveLength(3);
   });
 
   it('"Voltar para a voz do Android" desliga o VOICEVOX', () => {
@@ -172,5 +172,30 @@ describe('minhas vozes', () => {
     const tree = render(<MyVoices />);
     press(tree, 'Voltar para a voz do Android');
     expect(useSettingsStore.getState().voiceEngine).toBe('system');
+  });
+
+  it('favoritar um personagem guarda o favorito e o filtro "Favoritas" mostra só ele', () => {
+    useVoicevoxStore.setState({ installed: ['0.vvm'] });
+    useSettingsStore.setState({ favoriteVoices: [] });
+    const tree = render(<MyVoices />);
+    const star = tree.root.findAll((n) => typeof n.props.onPress === 'function' && String(n.props.accessibilityLabel ?? '').startsWith('Favoritar ずんだもん'))[0]!;
+    renderer.act(() => star.props.onPress());
+    expect(useSettingsStore.getState().favoriteVoices).toEqual(['zundamon']);
+    press(tree, '★ Favoritas (1)');
+    expect(buttons(tree, 'Usar')).toHaveLength(1);
+  });
+
+  it('a altura, a entonação e a voz do atendente são escolhidas ali mesmo', () => {
+    useVoicevoxStore.setState({ installed: ['0.vvm'] });
+    useSettingsStore.setState({ voicevoxPitch: 0, voicevoxIntonation: 1, voicevoxStaffStyle: null });
+    const tree = render(<MyVoices />);
+    press(tree, 'Mais aguda');
+    press(tree, 'Expressiva');
+    expect(useSettingsStore.getState().voicevoxPitch).toBe(0.1);
+    expect(useSettingsStore.getState().voicevoxIntonation).toBe(1.3);
+    press(tree, 'Shikoku Metan (四国めたん)');
+    expect(useSettingsStore.getState().voicevoxStaffStyle).toBe(2);
+    press(tree, 'A mesma voz');
+    expect(useSettingsStore.getState().voicevoxStaffStyle).toBeNull();
   });
 });

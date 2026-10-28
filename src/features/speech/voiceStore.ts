@@ -156,9 +156,9 @@ function speakSystem(text: string, rate: number, id: number): void {
 }
 
 /** Fala com o VOICEVOX; se não der (módulo ausente, erro de síntese), cai na voz do Android. */
-async function speakVoicevox(text: string, rate: number, id: number): Promise<void> {
+async function speakVoicevox(text: string, rate: number, id: number, role: 'you' | 'staff'): Promise<void> {
   try {
-    const uri = await synthesizeFile(text, rate);
+    const uri = await synthesizeFile(text, rate, role);
     if (id !== request) return;
     if (uri && playFile(uri)) {
       remember({ text, attempt: 0, note: 'voz VOICEVOX' });
@@ -174,7 +174,7 @@ async function speakVoicevox(text: string, rate: number, id: number): Promise<vo
  * Lê um texto em japonês: gravação de falante nativo quando a palavra tem; senão a voz VOICEVOX (se escolhida e pronta);
  * senão a voz do Android (a japonesa, se existir).
  */
-export function speakJapanese(text: string, rate = 0.9): void {
+export function speakJapanese(text: string, rate = 0.9, role: 'you' | 'staff' = 'you'): void {
   const id = ++request;
   // Palavra gravada por um falante nativo: toca a gravação (mais natural que qualquer voz sintética).
   if (useSettingsStore.getState().nativeAudio) {
@@ -189,7 +189,7 @@ export function speakJapanese(text: string, rate = 0.9): void {
     if (speaking) void Speech.stop();
     speaking = false;
     stopRecording();
-    void speakVoicevox(text, rate, id);
+    void speakVoicevox(text, rate, id, role);
     return;
   }
   speakSystem(text, rate, id);

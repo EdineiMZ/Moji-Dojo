@@ -2,6 +2,16 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.10.0] - 2026-10-28
+
+Vozes de anime: mais controle e mais fácil de achar.
+
+- **Altura e entonação:** em Minhas vozes, três opções de altura (mais grave, normal, mais aguda) e três de entonação (suave, normal, expressiva). Valem para toda a fala em voz de anime; o áudio guardado antes é refeito.
+- **Voz do atendente nos diálogos:** escolha outro personagem para o atendente; a sua fala e as dos exercícios continuam na voz em uso.
+- **Buscar e favoritar:** busca por nome ou descrição (sem acento e sem maiúsculas) em Minhas vozes e na lista para baixar, estrela para favoritar (os favoritos vêm primeiro) e o filtro "Favoritas".
+- **Comparar as vozes:** toca a mesma frase (cumprimento, pergunta ou curta) com cada voz baixada, uma depois da outra, com "Parar".
+- **Botões:** "Usar" é secundário e "Ouvir" discreto, para não haver um botão rosa por personagem.
+
 ## [2.9.2] - 2026-10-28
 
 Contagem própria da escrita e integração contínua.

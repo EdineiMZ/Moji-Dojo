@@ -1,5 +1,5 @@
 import { DEFAULT_VOICEVOX_STYLE, createSettingsStore } from '@/store/settingsStore';
-import { creditFor, resolveStyle, speedScaleFor, useVoicevoxStore, type VoicevoxSpeaker } from './voicevox';
+import { creditFor, resolveStyle, speedScaleFor, styleForRole, useVoicevoxStore, type VoicevoxSpeaker } from './voicevox';
 
 const speakers: VoicevoxSpeaker[] = [
   { name: '四国めたん', styles: [{ id: 2, name: 'ノーマル' }, { id: 0, name: 'あまあま' }] },
@@ -83,5 +83,22 @@ describe('download de vozes', () => {
   it('arquivo que não existe no catálogo é ignorado', async () => {
     await useVoicevoxStore.getState().downloadPack('999.vvm', true);
     expect(useVoicevoxStore.getState().packError).toBe('');
+  });
+});
+
+describe('voz de cada papel', () => {
+  const speakers = [
+    { name: 'ずんだもん', styles: [{ id: 3, name: 'ノーマル' }] },
+    { name: '四国めたん', styles: [{ id: 2, name: 'ノーマル' }] },
+  ];
+
+  it('o atendente usa a voz própria se ela está baixada; você usa a sua', () => {
+    expect(styleForRole(speakers, 3, 2, 'staff')).toBe(2);
+    expect(styleForRole(speakers, 3, 2, 'you')).toBe(3);
+  });
+
+  it('sem voz do atendente, ou com uma que não está baixada, volta para a voz de sempre', () => {
+    expect(styleForRole(speakers, 3, null, 'staff')).toBe(3);
+    expect(styleForRole(speakers, 3, 99, 'staff')).toBe(3);
   });
 });

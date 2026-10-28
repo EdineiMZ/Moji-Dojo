@@ -92,7 +92,7 @@ class VoicevoxModule : Module() {
     AsyncFunction("prepare") { -> prepare() }
 
     /** Sintetiza o texto e devolve o caminho (file://) de um WAV; falas repetidas saem do cache. */
-    AsyncFunction("synthesize") { text: String, styleId: Int, speed: Double -> synthesize(text, styleId, speed) }
+    AsyncFunction("synthesize") { text: String, styleId: Int, speed: Double, pitch: Double, intonation: Double -> synthesize(text, styleId, speed, pitch, intonation) }
 
     /** Apaga os áudios em cache. */
     AsyncFunction("clearCache") { -> cacheDir().listFiles()?.forEach { it.delete() }; Unit }
@@ -363,12 +363,14 @@ class VoicevoxModule : Module() {
   private fun hash(text: String): String =
     MessageDigest.getInstance("SHA-1").digest(text.toByteArray()).joinToString("") { "%02x".format(it) }
 
-  private fun synthesize(text: String, styleId: Int, speed: Double): String {
+  private fun synthesize(text: String, styleId: Int, speed: Double, pitch: Double, intonation: Double): String {
     val clean = text.trim()
     if (clean.isEmpty()) throw VoicevoxException("EMPTY_TEXT", "Texto vazio.")
     val scale = speed.coerceIn(0.5, 1.6)
-    // "v2": os áudios guardados antes da normalização de volume (v1) ficam de lado e são refeitos.
-    val file = File(cacheDir(), hash("v2|$styleId|$scale|$clean") + ".wav")
+    val pitchScale = pitch.coerceIn(-0.15, 0.15)
+    val intonationScale = intonation.coerceIn(0.5, 1.5)
+    // "v3": os áudios guardados antes da altura e da entonação (v2) ficam de lado e são refeitos.
+    val file = File(cacheDir(), hash("v3|$styleId|$scale|$pitchScale|$intonationScale|$clean") + ".wav")
     if (file.exists() && file.length() > 44) return "file://${file.absolutePath}"
     prepare()
     return synchronized(lock) {
@@ -376,6 +378,8 @@ class VoicevoxModule : Module() {
       try {
         val query = engine.createAudioQuery(clean, styleId)
         query.speedScale = scale
+        query.pitchScale = pitchScale
+        query.intonationScale = intonationScale
         val wav = normalizePeak(engine.synthesis(query, styleId).perform())
         val temp = File(file.parentFile, "${file.name}.tmp")
         temp.writeBytes(wav)

@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { Alert, Linking, StyleSheet, View } from 'react-native';
+import { Alert, Linking, StyleSheet, TextInput, View } from 'react-native';
 import { AppText, Bold, Button, ProgressBar } from '@/components';
-import { radii, spacing, useTheme } from '@/theme';
+import { useSettingsStore } from '@/store';
+import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { usePreview, previewLabel } from './usePreview';
 import { useVoicevoxStore } from './voicevox';
 import type { VoicePack } from './voicevoxCatalog';
 import { RECOMMENDED_PACK, VOICEVOX_TERMS_URL, downloadWarning, formatSize, orderedPacks, packSpeakers, partialPercent, speakerInfo } from './voicevoxPacks';
+import { filterPacks } from './voiceFilter';
 import { VOICE_DESC_PT, romanName, speakerLabel, styleLabel } from './voicevoxText';
 
 /** Um personagem de um arquivo: nome, descrição da voz, estilos, amostra para ouvir e os termos dele. */
@@ -179,8 +181,14 @@ export function VoicePacks() {
   const packError = useVoicevoxStore((s) => s.packError);
   const [showAll, setShowAll] = useState(false);
 
+  const favorites = useSettingsStore((s) => s.favoriteVoices);
+  const { colors } = useTheme();
+  const [query, setQuery] = useState('');
+
   const all = orderedPacks();
-  const shown = showAll ? all : all.filter((p) => p.file === RECOMMENDED_PACK || installed.includes(p.file));
+  const searching = query.trim() !== '';
+  // Com busca, a lista mostra todos os arquivos que têm o personagem; sem busca, o recomendado e os já baixados (ou todos).
+  const shown = searching ? filterPacks(query, favorites) : showAll ? all : all.filter((p) => p.file === RECOMMENDED_PACK || installed.includes(p.file));
 
   return (
     <View style={styles.root}>
@@ -192,10 +200,22 @@ export function VoicePacks() {
         &ldquo;Ouvir amostra&rdquo; toca a voz do aparelho (se já baixada) ou a amostra do site oficial (precisa de internet). Os nomes estão em letras latinas e as
         descrições foram traduzidas do site do VOICEVOX.
       </AppText>
+      <TextInput
+        value={query}
+        onChangeText={setQuery}
+        autoCorrect={false}
+        autoCapitalize="none"
+        placeholder="Buscar personagem para baixar"
+        placeholderTextColor={colors.muted}
+        accessibilityLabel="Buscar personagem para baixar"
+        returnKeyType="search"
+        style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+      />
+      {searching && shown.length === 0 ? <AppText color="muted">Nenhum personagem com esse nome.</AppText> : null}
       {shown.map((pack) => (
         <PackRow key={pack.file} pack={pack} />
       ))}
-      <Button label={showAll ? 'Mostrar menos' : `Ver todas as vozes (${all.length} arquivos)`} variant="ghost" onPress={() => setShowAll((v) => !v)} />
+      {searching ? null : <Button label={showAll ? 'Mostrar menos' : `Ver todas as vozes (${all.length} arquivos)`} variant="ghost" onPress={() => setShowAll((v) => !v)} />}
       {packError ? (
         <AppText color="bad" accessibilityLiveRegion="polite">
           {packError}
@@ -207,6 +227,7 @@ export function VoicePacks() {
 
 const styles = StyleSheet.create({
   root: { gap: spacing.md },
+  input: { borderWidth: 1.5, borderRadius: radii.md, paddingHorizontal: spacing.md, minHeight: 48, fontFamily: fonts.regular, fontSize: fontSizes.body },
   pack: { gap: spacing.md, borderTopWidth: StyleSheet.hairlineWidth, paddingTop: spacing.md },
   header: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
   headerText: { flex: 1 },

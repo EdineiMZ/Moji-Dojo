@@ -1,6 +1,6 @@
 # Moji Dojo: roadmap
 
-Versão atual: **2.9.2** (2026-10-28). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
+Versão atual: **2.10.0** (2026-10-28). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
 
 Legenda: ✅ feito · 🟡 em parte · ⬜ pendente. Esforço: **P** = dias, **M** = 1 a 2 semanas, **G** = várias semanas.
 
@@ -105,10 +105,10 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 
 ### Vozes (VOICEVOX)
 
-- ⬜ **Voz por papel nos diálogos:** o atendente numa voz e o aluno em outra. *(P)*
-- ⬜ **Lista de vozes mais fácil de usar:** busca por nome, favoritos, filtro por tipo de voz; são 43 personagens em 25 arquivos. *(M)*
-- ⬜ **Ajustes de fala:** altura e entonação, além da velocidade. *(P)*
-- ⬜ **"Ouvir esta frase com cada voz"** para comparar. *(P)*
+- ✅ **Voz por papel nos diálogos (2.10.0):** o atendente numa voz e você em outra.
+- ✅ **Lista de vozes mais fácil de usar (2.10.0):** busca por nome ou descrição e favoritos, em Minhas vozes e na lista para baixar. O filtro é por Todas e Favoritas; as descrições não têm tipo (voz feminina, aguda...) para filtrar.
+- ✅ **Ajustes de fala (2.10.0):** altura e entonação, além da velocidade.
+- ✅ **Comparar as vozes (2.10.0):** a mesma frase com cada voz baixada, em sequência.
 
 ### IA opcional
 

@@ -64,7 +64,7 @@ function Bubble({ line, mine, hidden = false }: { line: { jp: string; romaji: st
       <PressableScale
         accessibilityRole="button"
         accessibilityLabel={`Ouvir: ${line.jp}`}
-        onPress={() => speakJapanese(line.jp.replace(/ /g, ''), SPEECH_RATES[speed])}
+        onPress={() => speakJapanese(line.jp.replace(/ /g, ''), SPEECH_RATES[speed], mine ? 'you' : 'staff')}
         style={styles.listen}
       >
         <AppText color="primary">🔊 Ouvir</AppText>
@@ -100,7 +100,7 @@ function SceneSession({ scene, onExit, onRestart }: { scene: DialogScene; onExit
     for (let i = current - 1; i >= 0; i--) {
       const turn = scene.turns[i];
       if (turn?.kind === 'staff') {
-        speakJapanese(turn.jp.replace(/ /g, ''), SPEECH_RATES[speed]);
+        speakJapanese(turn.jp.replace(/ /g, ''), SPEECH_RATES[speed], 'staff');
         return;
       }
       if (turn?.kind === 'you') return;

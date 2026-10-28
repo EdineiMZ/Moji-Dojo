@@ -30,7 +30,7 @@ interface NativeVoicevox {
   addListener(event: 'onDownloadProgress', listener: (e: { file: string; bytes: number }) => void): { remove: () => void };
   removeModel(name: string): Promise<string[]>;
   prepare(): Promise<VoicevoxSpeaker[]>;
-  synthesize(text: string, styleId: number, speed: number): Promise<string>;
+  synthesize(text: string, styleId: number, speed: number, pitch: number, intonation: number): Promise<string>;
   clearCache(): Promise<void>;
 }
 
@@ -219,17 +219,26 @@ export const useVoicevoxStore = create<VoicevoxState>((set, get) => {
 /** A voz VOICEVOX está escolhida e pronta para falar? */
 export const voicevoxActive = (): boolean => useSettingsStore.getState().voiceEngine === 'voicevox' && useVoicevoxStore.getState().status === 'ready';
 
-/** Sintetiza o texto com o personagem escolhido e devolve o arquivo de áudio (file://), ou null se não deu. */
-export async function synthesizeFile(text: string, rate: number): Promise<string | null> {
+/** O estilo de um papel: o atendente dos diálogos usa a voz própria, se a pessoa escolheu uma e ela está baixada. */
+export function styleForRole(speakers: readonly VoicevoxSpeaker[], mainStyle: number, staffStyle: number | null, role: 'you' | 'staff'): number {
+  const main = resolveStyle(speakers, mainStyle);
+  if (role === 'staff' && staffStyle !== null && speakers.some((s) => s.styles.some((st) => st.id === staffStyle))) return staffStyle;
+  return main;
+}
+
+/** Sintetiza o texto com o personagem escolhido (ou o do atendente, em diálogos) e devolve o arquivo de áudio (file://), ou null. */
+export async function synthesizeFile(text: string, rate: number, role: 'you' | 'staff' = 'you'): Promise<string | null> {
   if (!native) return null;
-  const style = resolveStyle(useVoicevoxStore.getState().speakers, useSettingsStore.getState().voicevoxStyle);
-  return native.synthesize(text, style, speedScaleFor(rate));
+  const { voicevoxStyle, voicevoxStaffStyle, voicevoxPitch, voicevoxIntonation } = useSettingsStore.getState();
+  const style = styleForRole(useVoicevoxStore.getState().speakers, voicevoxStyle, voicevoxStaffStyle, role);
+  return native.synthesize(text, style, speedScaleFor(rate), voicevoxPitch, voicevoxIntonation);
 }
 
 /** Sintetiza o texto com um estilo escolhido (não o dos Ajustes): usado para ouvir cada voz baixada antes de a escolher. */
 export async function synthesizeStyle(text: string, styleId: number, rate: number): Promise<string | null> {
   if (!native) return null;
-  return native.synthesize(text, styleId, speedScaleFor(rate));
+  const { voicevoxPitch, voicevoxIntonation } = useSettingsStore.getState();
+  return native.synthesize(text, styleId, speedScaleFor(rate), voicevoxPitch, voicevoxIntonation);
 }
 
 /** Prepara o VOICEVOX em segundo plano quando ele está escolhido (chamado ao abrir o app e ao trocar a voz). */

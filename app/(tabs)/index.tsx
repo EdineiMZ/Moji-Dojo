@@ -66,8 +66,9 @@ export default function HomeScreen() {
           <AppText>⚙️</AppText>
         </PressableScale>
       </View>
-      <TodayCard summary={summary} now={now} />
-      <DailyPlanCard dueKana={summary.dueCount} now={now} />
+      <TodayCard summary={summary} now={now}>
+        <DailyPlanCard embedded dueKana={summary.dueCount} now={now} />
+      </TodayCard>
       <JourneyCard />
       <StatsCard
         streak={summary.streak}

@@ -14,7 +14,7 @@ export function RomajiLine({ text }: RomajiLineProps) {
   if (mode === 'never' || !text) return null;
   if (mode === 'always' || revealed) {
     return mode === 'tap' ? (
-      <PressableScale accessibilityRole="button" accessibilityLabel="Esconder o romaji" onPress={() => setRevealed(false)}>
+      <PressableScale accessibilityRole="button" accessibilityLabel="Esconder o romaji" hitSlop={14} onPress={() => setRevealed(false)}>
         <AppText color="muted">{text}</AppText>
       </PressableScale>
     ) : (
@@ -22,7 +22,7 @@ export function RomajiLine({ text }: RomajiLineProps) {
     );
   }
   return (
-    <PressableScale accessibilityRole="button" accessibilityLabel="Mostrar o romaji" onPress={() => setRevealed(true)}>
+    <PressableScale accessibilityRole="button" accessibilityLabel="Mostrar o romaji" hitSlop={14} onPress={() => setRevealed(true)}>
       <AppText color="primary">Ver romaji</AppText>
     </PressableScale>
   );

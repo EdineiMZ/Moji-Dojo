@@ -70,12 +70,12 @@ O app cresceu por camadas e a interface não acompanhou. A queixa é geral, e é
 - ✅ **Texto técnico na frente do usuário (2.9.0):** "Pronta: ja-jp-x-jab-network", "Diagnóstico de som… me mande uma captura desta lista". É informação de desenvolvedor: levar para uma área "Avançado" e trocar por frases humanas. *(P)*
 - ✅ **Opções escondidas em carrosséis de chips (2.9.0, nos Ajustes):** (meta por dia, dia de folga, abas): o "›" no canto esconde escolhas. Preferir seletores que mostrem tudo (grade, lista ou um seletor próprio). *(M)*
 - ✅ **Parágrafos explicativos longos dentro dos cartões (2.9.0, voz, revisões e Início):** (voz, revisões, leitura): mostrar uma linha e deixar o resto num "Saiba mais". *(M)*
-- ✅ **Hierarquia de botões (2.9.0, regra no docs/DESIGN.md):** há telas com dois botões primários (rosa) lado a lado. Definir um primário por tela e usar suave e discreto para o resto. *(P)*
+- ✅ **Hierarquia de botões (2.9.0 e 2.9.1, regra no docs/DESIGN.md):** há telas com dois botões primários (rosa) lado a lado. Definir um primário por tela e usar suave e discreto para o resto. *(P)*
 - ✅ **Sistema de design documentado (2.9.0, docs/DESIGN.md):** escala de espaçamento e de tipografia, estados (carregando, vazio, erro, sucesso) e padrões de cartão e de formulário, para as telas novas nascerem consistentes. *(M)*
-- ⬜ **Aba Frases com três níveis de chips** (deixada para quando houver dados de uso; decidir sem medir é chute) (Frases → Frases → Modelos, Traduzir, Montar, Banco, Diálogos, Viagem, Explorar, Minhas frases, ✨IA → Conversa, Explicar, Diário…). Repensar: um "Praticar" com atalhos, busca por recurso, ou agrupar o que é avançado. Medir o uso antes de decidir. *(G)*
-- ⬜ **Início (2.9.0 só encurtou o texto do cartão; falta decidir se junta os dois):** "Estudar hoje" e "Sessão de hoje" mostram a mesma revisão em dois cartões. Avaliar juntar os dois. *(M)*
+- ✅ **Aba Frases (2.9.1):** dois níveis (grupo e recurso), com uma linha explicando cada grupo e todas as opções à vista. Um "Praticar" com atalhos fica para quando houver dados de uso. (Frases → Frases → Modelos, Traduzir, Montar, Banco, Diálogos, Viagem, Explorar, Minhas frases, ✨IA → Conversa, Explicar, Diário…). Repensar: um "Praticar" com atalhos, busca por recurso, ou agrupar o que é avançado. Medir o uso antes de decidir. *(G)*
+- ✅ **Início (2.9.1, os dois cartões viraram um):** "Estudar hoje" e "Sessão de hoje" mostram a mesma revisão em dois cartões. Avaliar juntar os dois. *(M)*
 - ✅ **Primeira abertura (2.9.0):** um primeiro passo guiado (a primeira lição) logo depois da introdução, em vez de cair numa tela cheia de opções. *(M)*
-- ⬜ **Acessibilidade (2.9.0: alvo de toque da engrenagem e das linhas de Ajustes; falta o resto):** o item 4 da seção 2, mais contraste e alvos de toque revisados nas telas novas. *(M)*
+- ✅ **Acessibilidade (2.9.0 e 2.9.1: alvos de toque revisados; o contraste do tema já é testado):** o item 4 da seção 2, mais contraste e alvos de toque revisados nas telas novas. *(M)*
 - ✅ **Escolha da voz de anime (2.8.1):** "Minhas vozes" com "Usar esta voz", selo "Em uso" e amostra com retorno visível. Serve de modelo para os outros ajustes.
 
 ### 2.10: tamanho e desempenho

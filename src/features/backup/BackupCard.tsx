@@ -94,7 +94,7 @@ export function BackupCard() {
               <AppText color="bad">{error}</AppText>
             </View>
           ) : null}
-          <Button label="Verificar código" onPress={verify} disabled={text.trim().length === 0} />
+          <Button label="Verificar código" variant="soft" onPress={verify} disabled={text.trim().length === 0} />
         </>
       ) : null}
 

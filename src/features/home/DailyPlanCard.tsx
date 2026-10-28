@@ -10,7 +10,7 @@ import { fonts, radii, spacing, useTheme } from '@/theme';
 import { dailyPlan } from './dailyPlan';
 
 /** A sessão do dia em quatro passos (revisar, algo novo, ouvir, uma frase), marcados pelo que já foi feito hoje. */
-export function DailyPlanCard({ dueKana, now }: { dueKana: number; now: number }) {
+export function DailyPlanCard({ dueKana, now, embedded = false }: { dueKana: number; now: number; embedded?: boolean }) {
   const router = useRouter();
   const { colors } = useTheme();
   const counts = useProgressStore((s) => s.journey.today.counts);
@@ -24,12 +24,19 @@ export function DailyPlanCard({ dueKana, now }: { dueKana: number; now: number }
     () => vocabDue(vocab, now).length + conjDue(conj, now).length + Object.values(particles).filter((p) => p.due <= now).length,
     [vocab, conj, particles, now],
   );
-  const steps = dailyPlan({ counts, dueKana, dueOther });
+  // Dentro do cartão "Estudar hoje", que já tem o botão de revisar o kana, esse passo não se repete.
+  const steps = dailyPlan({ counts, dueKana, dueOther }).filter((st) => !(embedded && st.id === 'review' && dueKana > 0 && dueOther === 0));
   const done = steps.filter((s) => s.done).length;
 
-  return (
-    <Card>
-      <AppText variant="title">Sessão de hoje</AppText>
+  const body = (
+    <>
+      {embedded ? (
+        <AppText variant="caption" color="muted">
+          SESSÃO DE HOJE
+        </AppText>
+      ) : (
+        <AppText variant="title">Sessão de hoje</AppText>
+      )}
       {goalMinutes > 0 ? (
         <View style={styles.goal}>
           <ProgressBar value={Math.min(1, seconds / (goalMinutes * 60))} />
@@ -60,11 +67,14 @@ export function DailyPlanCard({ dueKana, now }: { dueKana: number; now: number }
           </PressableScale>
         ))}
       </View>
-    </Card>
+    </>
   );
+
+  return embedded ? <View style={styles.embedded}>{body}</View> : <Card>{body}</Card>;
 }
 
 const styles = StyleSheet.create({
+  embedded: { gap: spacing.md },
   list: { gap: spacing.xs },
   goal: { gap: spacing.xs },
   flex: { flex: 1 },

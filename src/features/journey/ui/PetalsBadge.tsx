@@ -31,5 +31,5 @@ export function PetalsBadge({ onPress }: PetalsBadgeProps) {
 
 const styles = StyleSheet.create({
   text: { fontFamily: fonts.bold, fontSize: 16 },
-  pill: { borderRadius: radii.pill, borderWidth: 1.5, paddingHorizontal: spacing.md, minHeight: 40, justifyContent: 'center' },
+  pill: { borderRadius: radii.pill, borderWidth: 1.5, paddingHorizontal: spacing.md, minHeight: 48, justifyContent: 'center' },
 });

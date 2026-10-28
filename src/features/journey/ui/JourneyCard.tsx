@@ -101,7 +101,7 @@ export function JourneyCard() {
         <AppText>
           Missões: <Bold>{claimed}</Bold> de {missions.length} · Semana: <Bold>{ctx.weekDays}</Bold> de {WEEKLY_DAYS_GOAL} dias
         </AppText>
-        {chest ? <Button label="🎁 Abrir o baú da semana" onPress={() => requestChest('weekly')} /> : null}
+        {chest ? <Button label="🎁 Abrir o baú da semana" variant={dailyChest ? 'soft' : 'primary'} onPress={() => requestChest('weekly')} /> : null}
         {dailyChest ? <Button label="🎁 Abrir o baú do dia" onPress={() => requestChest('daily')} /> : null}
         <Button label="Ver metas e conquistas" variant="soft" onPress={() => router.push({ pathname: '/mochi', params: { tab: 'goals' } })} />
       </Card>

@@ -29,10 +29,11 @@ type PhrasesView = 'vocab' | 'cards' | 'scan' | 'grammar' | 'conjugate' | 'cloze
 type Section = 'words' | 'grammar' | 'sentences';
 
 /** As 13 seções em três grupos: cabem em duas fileiras curtas em vez de uma fileira longa de chips. */
-const SECTIONS: readonly { value: Section; label: string; views: readonly { value: PhrasesView; label: string }[] }[] = [
+const SECTIONS: readonly { value: Section; label: string; hint: string; views: readonly { value: PhrasesView; label: string }[] }[] = [
   {
     value: 'words',
     label: 'Palavras',
+    hint: 'Vocabulário, leitura e câmera',
     views: [
       { value: 'vocab', label: 'Palavras' },
       { value: 'cards', label: 'Cartões' },
@@ -44,6 +45,7 @@ const SECTIONS: readonly { value: Section; label: string; views: readonly { valu
   {
     value: 'grammar',
     label: 'Gramática',
+    hint: 'Como as frases se montam',
     views: [
       { value: 'structure', label: 'Estrutura' },
       { value: 'grammar', label: 'Gramática' },
@@ -55,6 +57,7 @@ const SECTIONS: readonly { value: Section; label: string; views: readonly { valu
   {
     value: 'sentences',
     label: 'Frases',
+    hint: 'Montar, traduzir e conversar',
     views: [
       { value: 'frames', label: 'Modelos' },
       { value: 'translate', label: 'Traduzir' },
@@ -87,7 +90,10 @@ export default function PhrasesScreen() {
         value={sectionOf(view)}
         onChange={(section) => setView(sections.find((g) => g.value === section)?.views[0]?.value ?? 'vocab')}
       />
-      <ChipRow options={sections.find((g) => g.value === sectionOf(view))?.views ?? []} value={view} onChange={setView} />
+      <AppText variant="caption" color="muted">
+        {SECTIONS.find((g) => g.value === sectionOf(view))?.hint}
+      </AppText>
+      <ChipRow wrap options={sections.find((g) => g.value === sectionOf(view))?.views ?? []} value={view} onChange={setView} />
       <SwapView viewKey={view}>
         {view === 'vocab' ? <VocabView /> : null}
         {view === 'cards' ? <FlashcardsView /> : null}

@@ -76,7 +76,7 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
                 leitura on <Bold>{formatReadings(item.on)}</Bold> · leitura kun <Bold>{formatReadings(item.kun)}</Bold>
               </AppText>
               {kanjiExample ? (
-                <PressableScale accessibilityRole="button" onPress={() => speakJapanese(kanjiExample.reading)}>
+                <PressableScale accessibilityRole="button" hitSlop={12} onPress={() => speakJapanese(kanjiExample.reading)}>
                   <AppText center>
                     <Bold>{kanjiExample.word}</Bold> ({kanjiExample.reading}) {kanjiExample.meaning} 🔊
                   </AppText>
@@ -88,7 +88,7 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
                     TAMBÉM APARECE EM
                   </AppText>
                   {moreWords.map((w) => (
-                    <PressableScale key={w.id} accessibilityRole="button" onPress={() => speakJapanese(w.reading)}>
+                    <PressableScale key={w.id} accessibilityRole="button" hitSlop={12} onPress={() => speakJapanese(w.reading)}>
                       <AppText center>
                         <Bold>{w.jp}</Bold> ({w.reading}) {w.meaning} 🔊
                       </AppText>
@@ -108,7 +108,7 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
                 </AppText>
               ) : null}
               {kanaExample ? (
-                <PressableScale accessibilityRole="button" onPress={() => speakJapanese(kanaExample.word)}>
+                <PressableScale accessibilityRole="button" hitSlop={12} onPress={() => speakJapanese(kanaExample.word)}>
                   <AppText center>
                     Exemplo: <Bold>{kanaExample.word}</Bold> {kanaExample.romaji}, {kanaExample.meaning} 🔊
                   </AppText>

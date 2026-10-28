@@ -12,10 +12,12 @@ import { REVIEW_BATCH, type TodaySummary } from './summary';
 interface TodayCardProps {
   summary: TodaySummary;
   now: number;
+  /** O que vem logo abaixo, no mesmo cartão (a sessão do dia). */
+  children?: React.ReactNode;
 }
 
 /** "Estudar hoje": o que fazer agora, os dias seguidos e quando vence a próxima revisão. */
-export function TodayCard({ summary, now }: TodayCardProps) {
+export function TodayCard({ summary, now, children }: TodayCardProps) {
   const router = useRouter();
   const { colors } = useTheme();
   const { dueCount, learnedCount, streak, nextLesson, upcoming } = summary;
@@ -86,6 +88,7 @@ export function TodayCard({ summary, now }: TodayCardProps) {
           />
         ) : null}
       </View>
+      {children ? <View style={[styles.divider, { borderTopColor: colors.line }]}>{children}</View> : null}
     </Card>
   );
 }
@@ -97,4 +100,5 @@ const styles = StyleSheet.create({
   streakNumber: { fontFamily: fonts.bold, fontSize: 28, lineHeight: 32 },
   notice: { borderRadius: radii.md, paddingVertical: spacing.sm, paddingHorizontal: spacing.md },
   actions: { gap: spacing.sm },
+  divider: { borderTopWidth: 1, paddingTop: spacing.md, gap: spacing.md },
 });

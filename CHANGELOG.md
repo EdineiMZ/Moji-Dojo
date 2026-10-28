@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.9.1] - 2026-10-28
+
+Fecha a fase 2.9 (navegação e design).
+
+- **Início:** "Estudar hoje" e "Sessão de hoje" viraram um cartão só: o botão de revisar e, logo abaixo, os passos do dia. O passo "Revisar" não se repete quando o botão de cima já cobre o kana.
+- **Aba Frases:** cada grupo ganhou uma linha que diz do que se trata, e a segunda fileira mostra todas as opções de uma vez, sem rolar para o lado.
+- **Acessibilidade:** alvo de toque ampliado no contador de pétalas (48 dp) e nos textos que tocam (romaji, exemplos das lições).
+- **Botões:** em Ajustes → Dados, "Verificar código" é secundário, e o baú da semana cede o destaque ao do dia quando os dois aparecem. Um único botão rosa por tela.
+
 ## [2.9.0] - 2026-10-28
 
 Ajustes e navegação mais claros (primeira parte da fase 2.9).

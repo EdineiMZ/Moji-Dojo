@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, Card, ChipRow, PressableScale } from '@/components';
 import { findWord } from '@/content';
-import { READINGS, type LinePart, type ReadingLine, type ReadingText } from '@/content/readings';
+import { levelOf, READINGS, type LinePart, type ReadingLine, type ReadingText } from '@/content/readings';
 import { segment, type Token } from '@/features/bank/lexicon';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { learnedWordIds } from '@/features/vocab/cards';
@@ -10,6 +10,11 @@ import { wordClass } from '@/features/vocab/wordInfo';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { fonts, radii, spacing, useTheme } from '@/theme';
+
+const LEVELS = [
+  { value: 'N5' as const, label: 'N5' },
+  { value: 'N4' as const, label: 'N4' },
+];
 
 const KINDS = [
   { value: 'texto' as const, label: 'Textos' },
@@ -208,6 +213,7 @@ function TextReader({ text, onBack }: { text: ReadingText; onBack: () => void })
 /** Leitura: pequenos textos e leituras do dia a dia, com toque na palavra, leitura sobre o kanji, tradução e áudio. */
 export function ReadView() {
   const [kind, setKind] = useState<ReadingText['kind']>('texto');
+  const [level, setLevel] = useState<'N5' | 'N4'>('N5');
   const [open, setOpen] = useState<ReadingText | null>(null);
   if (open) return <TextReader text={open} onBack={() => setOpen(null)} />;
 
@@ -215,8 +221,9 @@ export function ReadView() {
     <Card enterIndex={0}>
       <AppText variant="title">Leitura</AppText>
       <AppText color="muted">Textos curtos só com palavras que o app ensina. Toque numa palavra para ver o que ela é e levar para os cartões.</AppText>
+      <ChipRow options={LEVELS} value={level} onChange={setLevel} />
       <ChipRow options={KINDS} value={kind} onChange={setKind} />
-      {READINGS.filter((t) => t.kind === kind).map((t) => (
+      {READINGS.filter((t) => t.kind === kind && levelOf(t) === level).map((t) => (
         <PressableScale key={t.id} accessibilityRole="button" onPress={() => setOpen(t)} style={styles.item}>
           <AppText style={{ fontFamily: fonts.bold }}>{t.title}</AppText>
           <AppText variant="caption" color="muted">

@@ -1290,6 +1290,1681 @@ export const GRAMMAR_N4: readonly GrammarTopic[] = [
         "pt": "Eu queria ser mais jovem."
       }
     ]
+  },
+  {
+    "id": "n4-8",
+    "title": "Fazer ou deixar fazer: a forma 〜させる",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "A "
+          },
+          {
+            "text": "forma causativa",
+            "bold": true
+          },
+          {
+            "text": " diz que alguém "
+          },
+          {
+            "text": "faz",
+            "bold": true
+          },
+          {
+            "text": " ou "
+          },
+          {
+            "text": "deixa",
+            "bold": true
+          },
+          {
+            "text": " outra pessoa fazer algo. Quem recebe a ordem ou a permissão vem marcado com "
+          },
+          {
+            "text": "に",
+            "bold": true
+          },
+          {
+            "text": " (ou "
+          },
+          {
+            "text": "を",
+            "bold": true
+          },
+          {
+            "text": "): "
+          },
+          {
+            "text": "わたしは かれに ゆかを そうじさせた",
+            "ja": true
+          },
+          {
+            "text": " (\"eu o fiz varrer o chão\")."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "tipo do verbo",
+              "header": true
+            },
+            {
+              "text": "como fica",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "grupo 1 (terminam em う, く, ぐ, す, つ, ぬ, ぶ, む, る)",
+              "header": true
+            },
+            {
+              "text": "troca a última sílaba pela do あ + せる (う vira わ)"
+            },
+            {
+              "text": "いく → いかせる · かう → かわせる",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "grupo 2 (る depois de い ou え)",
+              "header": true
+            },
+            {
+              "text": "tira る, põe させる"
+            },
+            {
+              "text": "たべる → たべさせる",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "する e くる",
+              "header": true
+            },
+            {
+              "text": "irregulares"
+            },
+            {
+              "text": "する → させる · くる → こさせる",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com "
+          },
+          {
+            "text": "てください",
+            "bold": true
+          },
+          {
+            "text": ", vira pedido de permissão: "
+          },
+          {
+            "text": "やらせて ください",
+            "ja": true
+          },
+          {
+            "text": " (\"deixe-me fazer\"). Com verbos de sentimento, indica "
+          },
+          {
+            "text": "provocar",
+            "bold": true
+          },
+          {
+            "text": " esse sentimento: "
+          },
+          {
+            "text": "いらいらさせる",
+            "ja": true
+          },
+          {
+            "text": " (\"irritar\")."
+          }
+        ]
+      }
+    ],
+    "pattern": "[quem manda] は [quem faz] に [verbo causativo] · [verbo causativo て] ください",
+    "examples": [
+      {
+        "jp": "わたしは かれに ゆかを そうじ させた",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "床",
+            "reading": "ゆか"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "掃除",
+            "reading": "そうじ"
+          },
+          {
+            "text": "させた。"
+          }
+        ],
+        "romaji": "watashi wa kare ni yuka o sōji saseta",
+        "pt": "Eu o fiz varrer o chão."
+      },
+      {
+        "jp": "わたしに やらせてください",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "にやらせてください。"
+          }
+        ],
+        "romaji": "watashi ni yarasete kudasai",
+        "pt": "Deixe-me fazer isso."
+      },
+      {
+        "jp": "ねさせてよ",
+        "ruby": [
+          {
+            "text": "寝",
+            "reading": "ね"
+          },
+          {
+            "text": "させてよ。"
+          }
+        ],
+        "romaji": "nesasete yo",
+        "pt": "Deixe-me dormir."
+      },
+      {
+        "jp": "きみは ぼくを いらいら させる",
+        "ruby": [
+          {
+            "text": "君",
+            "reading": "きみ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "僕",
+            "reading": "ぼく"
+          },
+          {
+            "text": "をいらいらさせる。"
+          }
+        ],
+        "romaji": "kimi wa boku o iraira saseru",
+        "pt": "Você me irrita!"
+      }
+    ]
+  },
+  {
+    "id": "n4-9",
+    "title": "Se ou quando: 〜たら",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com "
+          },
+          {
+            "text": "たら",
+            "bold": true
+          },
+          {
+            "text": " você diz \""
+          },
+          {
+            "text": "se",
+            "bold": true
+          },
+          {
+            "text": "\" ou \""
+          },
+          {
+            "text": "quando",
+            "bold": true
+          },
+          {
+            "text": "\" algo acontecer, e o que vem depois depende disso. Forma: a forma "
+          },
+          {
+            "text": "た",
+            "bold": true
+          },
+          {
+            "text": " do verbo ou do adjetivo + "
+          },
+          {
+            "text": "ら",
+            "bold": true
+          },
+          {
+            "text": ". Com substantivo ou adjetivo "
+          },
+          {
+            "text": "な",
+            "bold": true
+          },
+          {
+            "text": ", usa-se "
+          },
+          {
+            "text": "だったら",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "o que vem antes",
+              "header": true
+            },
+            {
+              "text": "como fica",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "verbo",
+              "header": true
+            },
+            {
+              "text": "forma た + ら"
+            },
+            {
+              "text": "ふる → ふったら",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "adjetivo い",
+              "header": true
+            },
+            {
+              "text": "tira い, põe かったら"
+            },
+            {
+              "text": "たかい → たかかったら",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "substantivo e な",
+              "header": true
+            },
+            {
+              "text": "põe だったら"
+            },
+            {
+              "text": "あめ → あめだったら",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Depois de "
+          },
+          {
+            "text": "たら",
+            "bold": true
+          },
+          {
+            "text": " cabe quase tudo: vontade, pedido e também sugestão ("
+          },
+          {
+            "text": "くるま かったら?",
+            "ja": true
+          },
+          {
+            "text": " \"que tal comprar um carro?\"). Para fatos que acontecem sempre em sequência, veja o "
+          },
+          {
+            "text": "と",
+            "bold": true
+          },
+          {
+            "text": ", no próximo tópico."
+          }
+        ]
+      }
+    ],
+    "pattern": "[forma た] ら、... · [substantivo] だったら、...",
+    "examples": [
+      {
+        "jp": "あした あめが ふったら いえに います",
+        "ruby": [
+          {
+            "text": "明日",
+            "reading": "あした"
+          },
+          {
+            "text": "雨",
+            "reading": "あめ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "降",
+            "reading": "ふ"
+          },
+          {
+            "text": "ったら、"
+          },
+          {
+            "text": "家",
+            "reading": "いえ"
+          },
+          {
+            "text": "にいます。"
+          }
+        ],
+        "romaji": "ashita ame ga futtara ie ni imasu",
+        "pt": "Se chover amanhã, ficarei em casa."
+      },
+      {
+        "jp": "こどもが できたら わかるさ",
+        "ruby": [
+          {
+            "text": "子",
+            "reading": "こ"
+          },
+          {
+            "text": "どもができたら、"
+          },
+          {
+            "text": "分",
+            "reading": "わ"
+          },
+          {
+            "text": "かるさ。"
+          }
+        ],
+        "romaji": "kodomo ga dekitara wakaru sa",
+        "pt": "Quando você tiver filhos, vai entender."
+      },
+      {
+        "jp": "ぼく だったら ことわるな",
+        "ruby": [
+          {
+            "text": "僕",
+            "reading": "ぼく"
+          },
+          {
+            "text": "だったら、"
+          },
+          {
+            "text": "断",
+            "reading": "ことわ"
+          },
+          {
+            "text": "るな。"
+          }
+        ],
+        "romaji": "boku dattara kotowaru na",
+        "pt": "Eu diria não se eu fosse você."
+      },
+      {
+        "jp": "くるま かったら",
+        "ruby": [
+          {
+            "text": "車",
+            "reading": "くるま"
+          },
+          {
+            "text": "買",
+            "reading": "か"
+          },
+          {
+            "text": "ったら？"
+          }
+        ],
+        "romaji": "kuruma kattara",
+        "pt": "Por que você não compra um carro?"
+      }
+    ]
+  },
+  {
+    "id": "n4-10",
+    "title": "Quando... acontece...: 〜と",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O "
+          },
+          {
+            "text": "と",
+            "bold": true
+          },
+          {
+            "text": " liga duas coisas em que a segunda "
+          },
+          {
+            "text": "acontece naturalmente",
+            "bold": true
+          },
+          {
+            "text": " depois da primeira: fatos da natureza, hábitos, resultados e descobertas. Vem depois da forma "
+          },
+          {
+            "text": "simples",
+            "bold": true
+          },
+          {
+            "text": " (dicionário ou ない): "
+          },
+          {
+            "text": "はるが くると、はなが さきます",
+            "ja": true
+          },
+          {
+            "text": " (\"quando a primavera chega, as flores desabrocham\")."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "o que vem antes",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "verbo",
+              "header": true
+            },
+            {
+              "text": "みる → みると",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "adjetivo い",
+              "header": true
+            },
+            {
+              "text": "たかい → たかいと",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "substantivo e な",
+              "header": true
+            },
+            {
+              "text": "ひま → ひまだと",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Atenção: depois de "
+          },
+          {
+            "text": "と",
+            "bold": true
+          },
+          {
+            "text": " não se usa vontade, pedido nem convite. Para isso, use "
+          },
+          {
+            "text": "たら",
+            "bold": true
+          },
+          {
+            "text": " (ou "
+          },
+          {
+            "text": "ば",
+            "bold": true
+          },
+          {
+            "text": "). No passado, "
+          },
+          {
+            "text": "と",
+            "bold": true
+          },
+          {
+            "text": " conta uma descoberta ou uma reação: "
+          },
+          {
+            "text": "キスすると、かのじょは あかくなった",
+            "ja": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "pattern": "[forma simples] と、...",
+    "examples": [
+      {
+        "jp": "はるが くると きの はなが さきます",
+        "ruby": [
+          {
+            "text": "春",
+            "reading": "はる"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "来",
+            "reading": "く"
+          },
+          {
+            "text": "ると、"
+          },
+          {
+            "text": "木",
+            "reading": "き"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "花",
+            "reading": "はな"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "咲",
+            "reading": "さ"
+          },
+          {
+            "text": "きます。"
+          }
+        ],
+        "romaji": "haru ga kuruto ki no hana ga sakimasu",
+        "pt": "Quando a primavera chegar, as flores nas árvores vão florescer."
+      },
+      {
+        "jp": "そんなに たべると びょうきに なるよ",
+        "ruby": [
+          {
+            "text": "そんなに"
+          },
+          {
+            "text": "食",
+            "reading": "た"
+          },
+          {
+            "text": "べると、"
+          },
+          {
+            "text": "病気",
+            "reading": "びょうき"
+          },
+          {
+            "text": "になるよ。"
+          }
+        ],
+        "romaji": "sonnani taberuto byōki ni naru yo",
+        "pt": "Se você comer muito, ficará doente."
+      },
+      {
+        "jp": "よく みると むしが いるよ",
+        "ruby": [
+          {
+            "text": "よく"
+          },
+          {
+            "text": "見",
+            "reading": "み"
+          },
+          {
+            "text": "ると、"
+          },
+          {
+            "text": "虫",
+            "reading": "むし"
+          },
+          {
+            "text": "がいるよ。"
+          }
+        ],
+        "romaji": "yoku miruto mushi ga iru yo",
+        "pt": "Se olhar cuidadosamente, irá encontrar alguns insetos."
+      },
+      {
+        "jp": "キス すると かのじょは あかく なった",
+        "ruby": [
+          {
+            "text": "キスすると、"
+          },
+          {
+            "text": "彼女",
+            "reading": "かのじょ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "赤",
+            "reading": "あか"
+          },
+          {
+            "text": "くなった。"
+          }
+        ],
+        "romaji": "kisu suruto kanojo wa akaku natta",
+        "pt": "Ela ficou vermelha quando a beijei."
+      }
+    ]
+  },
+  {
+    "id": "n4-11",
+    "title": "Passar a poder fazer: 〜ようになる",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com "
+          },
+          {
+            "text": "ようになる",
+            "bold": true
+          },
+          {
+            "text": " você diz que algo "
+          },
+          {
+            "text": "passou a acontecer",
+            "bold": true
+          },
+          {
+            "text": ": uma habilidade nova, um hábito, uma mudança. O verbo fica na forma do dicionário (muitas vezes na forma "
+          },
+          {
+            "text": "potencial",
+            "bold": true
+          },
+          {
+            "text": "): "
+          },
+          {
+            "text": "およげる ように なった",
+            "ja": true
+          },
+          {
+            "text": " (\"aprendi a nadar\")."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "sentido",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "passou a",
+              "header": true
+            },
+            {
+              "text": "およげるように なった",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "quero passar a",
+              "header": true
+            },
+            {
+              "text": "およげるように なりたい",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "deixou de",
+              "header": true
+            },
+            {
+              "text": "およげなく なった (já não consigo nadar)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Repare no "
+          },
+          {
+            "text": "に",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "ようになる",
+            "bold": true
+          },
+          {
+            "text": " é \"tornar-se de um jeito\". Para o contrário, \"deixar de\", usa-se o "
+          },
+          {
+            "text": "ない",
+            "bold": true
+          },
+          {
+            "text": " + "
+          },
+          {
+            "text": "なる",
+            "bold": true
+          },
+          {
+            "text": ", como na última linha."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo: dicionário] ように なる · [verbo: ない → なく] なる",
+    "examples": [
+      {
+        "jp": "かれは およげる ように なった",
+        "ruby": [
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "泳",
+            "reading": "およ"
+          },
+          {
+            "text": "げるようになった。"
+          }
+        ],
+        "romaji": "kare wa oyogeru yōni natta",
+        "pt": "Ele aprendeu a nadar."
+      },
+      {
+        "jp": "わたしは かれを しる ように なった",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "知",
+            "reading": "し"
+          },
+          {
+            "text": "るようになった。"
+          }
+        ],
+        "romaji": "watashi wa kare o shiru yōni natta",
+        "pt": "Eu vim conhecê-lo."
+      },
+      {
+        "jp": "およげる ように なりたいんだ",
+        "ruby": [
+          {
+            "text": "泳",
+            "reading": "およ"
+          },
+          {
+            "text": "げるようになりたいんだ。"
+          }
+        ],
+        "romaji": "oyogeru yōni naritai nda",
+        "pt": "Eu quero aprender a nadar."
+      }
+    ]
+  },
+  {
+    "id": "n4-12",
+    "title": "Para e por causa de: 〜ために",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com "
+          },
+          {
+            "text": "ために",
+            "bold": true
+          },
+          {
+            "text": " você diz "
+          },
+          {
+            "text": "para quê",
+            "bold": true
+          },
+          {
+            "text": " (o objetivo) ou "
+          },
+          {
+            "text": "para quem",
+            "bold": true
+          },
+          {
+            "text": " se faz algo. Com verbo, usa-se a forma do dicionário e os dois verbos têm o "
+          },
+          {
+            "text": "mesmo sujeito",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "べんきょうする ために がっこうへ いく",
+            "ja": true
+          },
+          {
+            "text": " (\"vou à escola para estudar\")."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "o que vem antes",
+              "header": true
+            },
+            {
+              "text": "sentido",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "verbo (dicionário)",
+              "header": true
+            },
+            {
+              "text": "objetivo (\"para\")"
+            },
+            {
+              "text": "とる ために (para tirar)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "substantivo + の",
+              "header": true
+            },
+            {
+              "text": "em benefício de (\"para\")"
+            },
+            {
+              "text": "かのじょの ために (para ela)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "substantivo + の",
+              "header": true
+            },
+            {
+              "text": "causa (\"por causa de\")"
+            },
+            {
+              "text": "ゆきの ために (por causa da neve)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com substantivo + "
+          },
+          {
+            "text": "の",
+            "bold": true
+          },
+          {
+            "text": ", quem decide se é benefício ou causa é o resto da frase: algo que você faz por alguém (\"para\") ou algo que aconteceu (\"por causa de\", um tom mais formal)."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo: dicionário] ために · [substantivo] の ために",
+    "examples": [
+      {
+        "jp": "かのじょの ために かったんだ",
+        "ruby": [
+          {
+            "text": "彼女",
+            "reading": "かのじょ"
+          },
+          {
+            "text": "のために"
+          },
+          {
+            "text": "買",
+            "reading": "か"
+          },
+          {
+            "text": "ったんだ。"
+          }
+        ],
+        "romaji": "kanojo no tameni katta nda",
+        "pt": "Eu comprei isto para a minha namorada."
+      },
+      {
+        "jp": "わたしたちは しゃしんを とる ために こうえんへ いきました",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "達",
+            "reading": "たち"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "写真",
+            "reading": "しゃしん"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "撮",
+            "reading": "と"
+          },
+          {
+            "text": "るために"
+          },
+          {
+            "text": "公園",
+            "reading": "こうえん"
+          },
+          {
+            "text": "へ"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "きました。"
+          }
+        ],
+        "romaji": "watashitachi wa shashin o toru tameni kōen e ikimashita",
+        "pt": "Fomos ao parque para tirar fotos."
+      },
+      {
+        "jp": "わたしたちは べんきょう する ために がっこうへ いく",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "たちは"
+          },
+          {
+            "text": "勉強",
+            "reading": "べんきょう"
+          },
+          {
+            "text": "するために"
+          },
+          {
+            "text": "学校",
+            "reading": "がっこう"
+          },
+          {
+            "text": "へ"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "く。"
+          }
+        ],
+        "romaji": "watashitachi wa benkyō suru tameni gakkō e iku",
+        "pt": "Vamos para a escola estudar."
+      },
+      {
+        "jp": "れっしゃは ゆきの ために おくれた",
+        "ruby": [
+          {
+            "text": "列車",
+            "reading": "れっしゃ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "雪",
+            "reading": "ゆき"
+          },
+          {
+            "text": "のために"
+          },
+          {
+            "text": "遅",
+            "reading": "おく"
+          },
+          {
+            "text": "れた。"
+          }
+        ],
+        "romaji": "ressha wa yuki no tameni okureta",
+        "pt": "O trem estava atrasado devido à neve."
+      }
+    ]
+  },
+  {
+    "id": "n4-13",
+    "title": "Mas, embora: 〜のに",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O "
+          },
+          {
+            "text": "のに",
+            "bold": true
+          },
+          {
+            "text": " liga duas ideias quando o resultado é "
+          },
+          {
+            "text": "o contrário do esperado",
+            "bold": true
+          },
+          {
+            "text": ", com tom de surpresa, queixa ou pena: \"embora\", \"apesar de\". Vem depois da forma "
+          },
+          {
+            "text": "simples",
+            "bold": true
+          },
+          {
+            "text": "; com substantivo e adjetivo "
+          },
+          {
+            "text": "な",
+            "bold": true
+          },
+          {
+            "text": ", usa-se "
+          },
+          {
+            "text": "なのに",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "o que vem antes",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "verbo",
+              "header": true
+            },
+            {
+              "text": "かった → かったのに",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "adjetivo い",
+              "header": true
+            },
+            {
+              "text": "いそがしい → いそがしいのに",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "substantivo e な",
+              "header": true
+            },
+            {
+              "text": "ひま → ひまなのに",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "No fim da frase, "
+          },
+          {
+            "text": "のに",
+            "bold": true
+          },
+          {
+            "text": " expressa "
+          },
+          {
+            "text": "pena",
+            "bold": true
+          },
+          {
+            "text": " ou "
+          },
+          {
+            "text": "desejo irreal",
+            "bold": true
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "…ばいいのに",
+            "ja": true
+          },
+          {
+            "text": " (\"quem dera que...\"). Ao contrário de "
+          },
+          {
+            "text": "けど",
+            "bold": true
+          },
+          {
+            "text": " e "
+          },
+          {
+            "text": "が",
+            "bold": true
+          },
+          {
+            "text": ", que só contrastam, o "
+          },
+          {
+            "text": "のに",
+            "bold": true
+          },
+          {
+            "text": " mostra a emoção de quem fala."
+          }
+        ]
+      }
+    ],
+    "pattern": "[forma simples] のに、... · [substantivo/な] なのに、... · ...ばいいのに",
+    "examples": [
+      {
+        "jp": "ともだち だと おもってたのに",
+        "ruby": [
+          {
+            "text": "友達",
+            "reading": "ともだち"
+          },
+          {
+            "text": "だと"
+          },
+          {
+            "text": "思",
+            "reading": "おも"
+          },
+          {
+            "text": "ってたのに！"
+          }
+        ],
+        "romaji": "tomodachi da to omotteta noni",
+        "pt": "Eu pensei que fôssemos amigos."
+      },
+      {
+        "jp": "いそぐ ひつようは なかったのに",
+        "ruby": [
+          {
+            "text": "急",
+            "reading": "いそ"
+          },
+          {
+            "text": "ぐ"
+          },
+          {
+            "text": "必要",
+            "reading": "ひつよう"
+          },
+          {
+            "text": "はなかったのに。"
+          }
+        ],
+        "romaji": "isogu hitsuyō wa nakatta noni",
+        "pt": "Não precisávamos ter corrido."
+      },
+      {
+        "jp": "あたらしい くつ かった ばっかり なのに",
+        "ruby": [
+          {
+            "text": "新",
+            "reading": "あたら"
+          },
+          {
+            "text": "しい"
+          },
+          {
+            "text": "靴",
+            "reading": "くつ"
+          },
+          {
+            "text": "、"
+          },
+          {
+            "text": "買",
+            "reading": "か"
+          },
+          {
+            "text": "ったばっかりなのに。"
+          }
+        ],
+        "romaji": "atarashii kutsu katta bakkari nanoni",
+        "pt": "Acabei de comprar um novo par de sapatos."
+      },
+      {
+        "jp": "うんと おかねが あれば いいのに",
+        "ruby": [
+          {
+            "text": "うんとお"
+          },
+          {
+            "text": "金",
+            "reading": "かね"
+          },
+          {
+            "text": "があればいいのに。"
+          }
+        ],
+        "romaji": "unto okane ga areba ii noni",
+        "pt": "Queria ter muito dinheiro."
+      }
+    ]
+  },
+  {
+    "id": "n4-14",
+    "title": "Mesmo que: 〜ても",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com "
+          },
+          {
+            "text": "ても",
+            "bold": true
+          },
+          {
+            "text": " você diz \""
+          },
+          {
+            "text": "mesmo que",
+            "bold": true
+          },
+          {
+            "text": "\", \""
+          },
+          {
+            "text": "ainda que",
+            "bold": true
+          },
+          {
+            "text": "\": o que vem depois "
+          },
+          {
+            "text": "não muda",
+            "bold": true
+          },
+          {
+            "text": " por causa da condição. Forma: "
+          },
+          {
+            "text": "て",
+            "bold": true
+          },
+          {
+            "text": " + "
+          },
+          {
+            "text": "も",
+            "bold": true
+          },
+          {
+            "text": " (verbo), "
+          },
+          {
+            "text": "くても",
+            "bold": true
+          },
+          {
+            "text": " (adjetivo い) e "
+          },
+          {
+            "text": "でも",
+            "bold": true
+          },
+          {
+            "text": " (substantivo e adjetivo "
+          },
+          {
+            "text": "な",
+            "bold": true
+          },
+          {
+            "text": ")."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "o que vem antes",
+              "header": true
+            },
+            {
+              "text": "como fica",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "verbo",
+              "header": true
+            },
+            {
+              "text": "forma て + も"
+            },
+            {
+              "text": "おこる → おこっても",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "adjetivo い",
+              "header": true
+            },
+            {
+              "text": "tira い, põe くても"
+            },
+            {
+              "text": "おそい → おそくても",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "substantivo e な",
+              "header": true
+            },
+            {
+              "text": "põe でも"
+            },
+            {
+              "text": "あめ → あめでも",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com "
+          },
+          {
+            "text": "いくら",
+            "bold": true
+          },
+          {
+            "text": " ou "
+          },
+          {
+            "text": "なにが",
+            "bold": true
+          },
+          {
+            "text": ", vira \"não importa quanto\" e \"aconteça o que acontecer\". Na forma negativa, "
+          },
+          {
+            "text": "なくても",
+            "bold": true
+          },
+          {
+            "text": " quer dizer \"mesmo sem\"."
+          }
+        ]
+      }
+    ],
+    "pattern": "[forma て] も · [adjetivo い: くても] · [substantivo/な] でも",
+    "examples": [
+      {
+        "jp": "なにが おこっても わたしは おどろきません",
+        "ruby": [
+          {
+            "text": "何",
+            "reading": "なに"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "起",
+            "reading": "お"
+          },
+          {
+            "text": "こっても、"
+          },
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "驚",
+            "reading": "おどろ"
+          },
+          {
+            "text": "きません。"
+          }
+        ],
+        "romaji": "nani ga okottemo watashi wa odorokimasen",
+        "pt": "Não importa o que aconteça, não ficarei surpreso."
+      },
+      {
+        "jp": "いくら かんがえても わかりません",
+        "ruby": [
+          {
+            "text": "いくら"
+          },
+          {
+            "text": "考",
+            "reading": "かんが"
+          },
+          {
+            "text": "えても、わかりません。"
+          }
+        ],
+        "romaji": "ikura kangaetemo wakarimasen",
+        "pt": "Não importa o quanto eu pense sobre isso, não consigo entendê-lo."
+      },
+      {
+        "jp": "おそくても こない より まし",
+        "ruby": [
+          {
+            "text": "遅",
+            "reading": "おそ"
+          },
+          {
+            "text": "くても"
+          },
+          {
+            "text": "来",
+            "reading": "こ"
+          },
+          {
+            "text": "ないよりまし。"
+          }
+        ],
+        "romaji": "osokutemo konai yori mashi",
+        "pt": "Antes tarde do que nunca."
+      },
+      {
+        "jp": "みずが なくても いきられる",
+        "ruby": [
+          {
+            "text": "水",
+            "reading": "みず"
+          },
+          {
+            "text": "がなくても"
+          },
+          {
+            "text": "生",
+            "reading": "い"
+          },
+          {
+            "text": "きられる。"
+          }
+        ],
+        "romaji": "mizu ga nakutemo ikirareru",
+        "pt": "Eu posso viver sem água."
+      }
+    ]
   }
 ];
 
@@ -1612,8 +3287,423 @@ export const BUILD_N4: readonly BuildExercise[] = [
     ],
     "romaji": "kuruma ga areba nā",
     "hint": "Condição: forma ば. Desejo impossível: ばなあ."
+  },
+  {
+    "topic": "n4-8",
+    "pt": "Eu o fiz varrer o chão.",
+    "answer": [
+      "わたし",
+      "は",
+      "かれ",
+      "に",
+      "ゆか",
+      "を",
+      "そうじ",
+      "させた"
+    ],
+    "extra": [
+      "も",
+      "の"
+    ],
+    "romaji": "watashi wa kare ni yuka o sōji saseta",
+    "hint": "Fazer ou deixar alguém fazer: verbo + させる (grupo 1: あ + せる)."
+  },
+  {
+    "topic": "n4-8",
+    "pt": "Deixe-me fazer isso.",
+    "answer": [
+      "わたし",
+      "に",
+      "やらせてください"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "watashi ni yarasete kudasai",
+    "hint": "Fazer ou deixar alguém fazer: verbo + させる (grupo 1: あ + せる)."
+  },
+  {
+    "topic": "n4-8",
+    "pt": "Você me irrita!",
+    "answer": [
+      "きみ",
+      "は",
+      "ぼく",
+      "を",
+      "いらいら",
+      "させる"
+    ],
+    "extra": [
+      "も",
+      "の"
+    ],
+    "romaji": "kimi wa boku o iraira saseru",
+    "hint": "Fazer ou deixar alguém fazer: verbo + させる (grupo 1: あ + せる)."
+  },
+  {
+    "topic": "n4-9",
+    "pt": "Se chover amanhã, ficarei em casa.",
+    "answer": [
+      "あした",
+      "あめ",
+      "が",
+      "ふったら",
+      "いえ",
+      "に",
+      "います"
+    ],
+    "extra": [
+      "で",
+      "の"
+    ],
+    "romaji": "ashita ame ga futtara ie ni imasu",
+    "hint": "Se ou quando: forma た + ら."
+  },
+  {
+    "topic": "n4-9",
+    "pt": "Quando você tiver filhos, vai entender.",
+    "answer": [
+      "こども",
+      "が",
+      "できたら",
+      "わかる",
+      "さ"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "kodomo ga dekitara wakaru sa",
+    "hint": "Se ou quando: forma た + ら."
+  },
+  {
+    "topic": "n4-9",
+    "pt": "Eu diria não se eu fosse você.",
+    "answer": [
+      "ぼく",
+      "だったら",
+      "ことわる",
+      "な"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "boku dattara kotowaru na",
+    "hint": "Se ou quando: forma た + ら."
+  },
+  {
+    "topic": "n4-10",
+    "pt": "Quando a primavera chegar, as flores nas árvores vão florescer.",
+    "answer": [
+      "はる",
+      "が",
+      "くると",
+      "き",
+      "の",
+      "はな",
+      "が",
+      "さきます"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "haru ga kuruto ki no hana ga sakimasu",
+    "hint": "Resultado natural: forma simples + と (sem pedido nem vontade depois)."
+  },
+  {
+    "topic": "n4-10",
+    "pt": "Se você comer muito, ficará doente.",
+    "answer": [
+      "そんなに",
+      "たべると",
+      "びょうき",
+      "に",
+      "なる",
+      "よ"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "sonnani taberuto byōki ni naru yo",
+    "hint": "Resultado natural: forma simples + と (sem pedido nem vontade depois)."
+  },
+  {
+    "topic": "n4-10",
+    "pt": "Se olhar cuidadosamente, irá encontrar alguns insetos.",
+    "answer": [
+      "よく",
+      "みると",
+      "むし",
+      "が",
+      "いる",
+      "よ"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "yoku miruto mushi ga iru yo",
+    "hint": "Resultado natural: forma simples + と (sem pedido nem vontade depois)."
+  },
+  {
+    "topic": "n4-10",
+    "pt": "Ela ficou vermelha quando a beijei.",
+    "answer": [
+      "キス",
+      "すると",
+      "かのじょ",
+      "は",
+      "あかく",
+      "なった"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kisu suruto kanojo wa akaku natta",
+    "hint": "Resultado natural: forma simples + と (sem pedido nem vontade depois)."
+  },
+  {
+    "topic": "n4-11",
+    "pt": "Ele aprendeu a nadar.",
+    "answer": [
+      "かれ",
+      "は",
+      "およげる",
+      "ように",
+      "なった"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kare wa oyogeru yōni natta",
+    "hint": "Passar a: dicionário + ように なった (aprendi a, passei a)."
+  },
+  {
+    "topic": "n4-11",
+    "pt": "Eu vim conhecê-lo.",
+    "answer": [
+      "わたし",
+      "は",
+      "かれ",
+      "を",
+      "しる",
+      "ように",
+      "なった"
+    ],
+    "extra": [
+      "も",
+      "の"
+    ],
+    "romaji": "watashi wa kare o shiru yōni natta",
+    "hint": "Passar a: dicionário + ように なった (aprendi a, passei a)."
+  },
+  {
+    "topic": "n4-11",
+    "pt": "Eu quero aprender a nadar.",
+    "answer": [
+      "およげる",
+      "ように",
+      "なりたいんだ"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "oyogeru yōni naritai nda",
+    "hint": "Passar a: dicionário + ように なった (aprendi a, passei a)."
+  },
+  {
+    "topic": "n4-12",
+    "pt": "Eu comprei isto para a minha namorada.",
+    "answer": [
+      "かのじょ",
+      "の",
+      "ために",
+      "かったんだ"
+    ],
+    "extra": [
+      "は",
+      "を"
+    ],
+    "romaji": "kanojo no tameni katta nda",
+    "hint": "Objetivo: dicionário + ために. Para quem ou por causa de: substantivo + のために."
+  },
+  {
+    "topic": "n4-12",
+    "pt": "Vamos para a escola estudar.",
+    "answer": [
+      "わたしたち",
+      "は",
+      "べんきょう",
+      "する",
+      "ために",
+      "がっこう",
+      "へ",
+      "いく"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "watashitachi wa benkyō suru tameni gakkō e iku",
+    "hint": "Objetivo: dicionário + ために. Para quem ou por causa de: substantivo + のために."
+  },
+  {
+    "topic": "n4-12",
+    "pt": "O trem estava atrasado devido à neve.",
+    "answer": [
+      "れっしゃ",
+      "は",
+      "ゆき",
+      "の",
+      "ために",
+      "おくれた"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "ressha wa yuki no tameni okureta",
+    "hint": "Objetivo: dicionário + ために. Para quem ou por causa de: substantivo + のために."
+  },
+  {
+    "topic": "n4-13",
+    "pt": "Eu pensei que fôssemos amigos.",
+    "answer": [
+      "ともだち",
+      "だ",
+      "と",
+      "おもってたのに"
+    ],
+    "extra": [
+      "も",
+      "に"
+    ],
+    "romaji": "tomodachi da to omotteta noni",
+    "hint": "Contrário do esperado: forma simples + のに (e ばいいのに para um desejo)."
+  },
+  {
+    "topic": "n4-13",
+    "pt": "Não precisávamos ter corrido.",
+    "answer": [
+      "いそぐ",
+      "ひつよう",
+      "は",
+      "なかったのに"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "isogu hitsuyō wa nakatta noni",
+    "hint": "Contrário do esperado: forma simples + のに (e ばいいのに para um desejo)."
+  },
+  {
+    "topic": "n4-13",
+    "pt": "Acabei de comprar um novo par de sapatos.",
+    "answer": [
+      "あたらしい",
+      "くつ",
+      "かった",
+      "ばっかり",
+      "なのに"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "atarashii kutsu katta bakkari nanoni",
+    "hint": "Contrário do esperado: forma simples + のに (e ばいいのに para um desejo)."
+  },
+  {
+    "topic": "n4-13",
+    "pt": "Queria ter muito dinheiro.",
+    "answer": [
+      "うんと",
+      "おかね",
+      "が",
+      "あれば",
+      "いいのに"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "unto okane ga areba ii noni",
+    "hint": "Contrário do esperado: forma simples + のに (e ばいいのに para um desejo)."
+  },
+  {
+    "topic": "n4-14",
+    "pt": "Não importa o que aconteça, não ficarei surpreso.",
+    "answer": [
+      "なに",
+      "が",
+      "おこっても",
+      "わたし",
+      "は",
+      "おどろきません"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "nani ga okottemo watashi wa odorokimasen",
+    "hint": "Mesmo que: forma て + も (adjetivo い: くても; substantivo: でも)."
+  },
+  {
+    "topic": "n4-14",
+    "pt": "Não importa o quanto eu pense sobre isso, não consigo entendê-lo.",
+    "answer": [
+      "いくら",
+      "かんがえても",
+      "わかりません"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "ikura kangaetemo wakarimasen",
+    "hint": "Mesmo que: forma て + も (adjetivo い: くても; substantivo: でも)."
+  },
+  {
+    "topic": "n4-14",
+    "pt": "Antes tarde do que nunca.",
+    "answer": [
+      "おそくても",
+      "こない",
+      "より",
+      "まし"
+    ],
+    "extra": [
+      "から",
+      "の"
+    ],
+    "romaji": "osokutemo konai yori mashi",
+    "hint": "Mesmo que: forma て + も (adjetivo い: くても; substantivo: でも)."
+  },
+  {
+    "topic": "n4-14",
+    "pt": "Eu posso viver sem água.",
+    "answer": [
+      "みず",
+      "が",
+      "なくても",
+      "いきられる"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "mizu ga nakutemo ikirareru",
+    "hint": "Mesmo que: forma て + も (adjetivo い: くても; substantivo: でも)."
   }
 ];
 
 /** Ids das frases do Tatoeba usadas nos exemplos (para o crédito). */
-export const GRAMMAR_N4_SENTENCE_IDS: readonly number[] = [2684823,189732,204854,92933,8935237,11831405,11852556,2490824,10333259,3552079,11878738,3480582,173469,10712752,79947,1452344,110575,10197580,2048906,10592243,115483,10682600,12135719,1202184,189249,148767];
+export const GRAMMAR_N4_SENTENCE_IDS: readonly number[] = [2684823,189732,204854,92933,8935237,11831405,11852556,2490824,10333259,3552079,11878738,3480582,173469,10712752,79947,1452344,110575,10197580,2048906,10592243,115483,10682600,12135719,1202184,189249,148767,154105,3506608,5692169,136179,80357,12003646,10230338,11706769,6391927,204266,10380252,10179138,109752,153577,10711650,12957260,151482,165152,77478,12508745,165927,11746278,228053,188016,6015,126755,2656835];

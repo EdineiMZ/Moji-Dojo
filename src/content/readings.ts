@@ -1,4 +1,4 @@
-// Textos curtos para ler, escritos para o app (N5), com a tradução de cada frase. NÃO vêm de fonte externa: foram escritos
+// Textos curtos para ler, escritos para o app (N5 e N4), com a tradução de cada frase. NÃO vêm de fonte externa: foram escritos
 // por IA com o vocabulário e a gramática que o app ensina e precisam de revisão por quem fala japonês (ver LICENSE.md).
 // O teste src/content/readings.test.ts garante que as frases sem `parts` só usam palavras do vocabulário do app. Os textos do dia a dia
 // (placas, cardápios, avisos) usam kanji de verdade e trazem `parts`, com a leitura e o significado de cada pedaço.
@@ -26,6 +26,8 @@ export interface ReadingText {
   kind: 'texto' | 'dia';
   /** Onde se vê isso na vida real, para as leituras do dia a dia. */
   where?: string;
+  /** Nível do JLPT do texto; sem isto, N5. */
+  level?: 'N5' | 'N4';
   lines: readonly ReadingLine[];
 }
 
@@ -231,4 +233,141 @@ export const READINGS: readonly ReadingText[] = [
       { jp: 'レジ袋 有料', pt: 'Sacola do caixa é paga', parts: [P('レジ袋', 'レジぶくろ', 'sacola do caixa'), P('有料', 'ゆうりょう', 'pago, com taxa')] },
     ],
   },
+  {
+    id: 'n4-viagem-com-amigo',
+    title: 'Viagem com um amigo',
+    kind: 'texto',
+    level: 'N4',
+    lines: [
+      { jp: '来週、友だちと京都へ行くことにしました。', pt: 'Na semana que vem, decidi ir a Quioto com um amigo.', parts: [P('来週', 'らいしゅう', 'semana que vem'), P('、'), P('友だち', 'ともだち', 'amigo'), P('と'), P('京都', 'きょうと', 'Quioto'), P('へ'), P('行く', 'いく', 'ir'), P('ことにしました。', undefined, 'decidi (ことにする)')] },
+      { jp: '朝早く出かけるので、今晩は早く寝ておきます。', pt: 'Como vou sair cedo de manhã, esta noite vou dormir cedo (para me preparar).' },
+      { jp: '天気予報では、雨が降るかもしれません。', pt: 'Segundo a previsão do tempo, talvez chova.', parts: [P('天気予報', 'てんきよほう', 'previsão do tempo'), P('では、'), P('雨', 'あめ', 'chuva'), P('が'), P('降る', 'ふる', 'cair (chuva)'), P('かもしれません。', undefined, 'talvez')] },
+      { jp: 'だから、かさを持っていきます。', pt: 'Por isso, vou levar um guarda-chuva.' },
+      { jp: '京都でお寺を見て、おいしいものを食べるつもりです。', pt: 'Em Quioto, pretendo ver templos e comer coisas gostosas.', parts: [P('京都', 'きょうと', 'Quioto'), P('で'), P('お寺', 'おてら', 'templo'), P('を'), P('見て', 'みて', 'ver'), P('、おいしいものを'), P('食べる', 'たべる', 'comer'), P('つもりです。', undefined, 'pretendo, tenho a intenção')] },
+    ],
+  },
+  {
+    id: 'n4-erro-de-manha',
+    title: 'Um erro de manhã',
+    kind: 'texto',
+    level: 'N4',
+    lines: [
+      { jp: '今朝、寝坊してしまいました。', pt: 'Hoje de manhã, acabei dormindo demais.' },
+      { jp: '電車に乗り遅れて、会社に遅れました。', pt: 'Perdi o trem e me atrasei para a empresa.', parts: [P('電車', 'でんしゃ', 'trem'), P('に'), P('乗り遅れて', 'のりおくれて', 'perder (o trem)'), P('、'), P('会社', 'かいしゃ', 'empresa'), P('に'), P('遅れました。', 'おくれました', 'atrasei-me')] },
+      { jp: '課長に注意されました。', pt: 'Fui advertido pelo chefe de seção.', parts: [P('課長', 'かちょう', 'chefe de seção'), P('に'), P('注意', 'ちゅうい', 'advertência, atenção'), P('されました。', undefined, 'fui (advertido): passiva de する')] },
+      { jp: '明日は早く起きるつもりです。', pt: 'Amanhã pretendo acordar cedo.' },
+    ],
+  },
+  {
+    id: 'n4-doente',
+    title: 'Dor de garganta',
+    kind: 'texto',
+    level: 'N4',
+    lines: [
+      { jp: 'きのうから、のどが痛いです。', pt: 'Desde ontem estou com dor de garganta.' },
+      { jp: '熱があるかもしれません。', pt: 'Talvez eu esteja com febre.', parts: [P('熱', 'ねつ', 'febre'), P('がある'), P('かもしれません。', undefined, 'talvez')] },
+      { jp: '今日は会社を休むことにしました。', pt: 'Hoje decidi faltar ao trabalho.' },
+      { jp: '薬を飲んで、ゆっくり休みます。', pt: 'Vou tomar remédio e descansar bem.', parts: [P('薬', 'くすり', 'remédio'), P('を'), P('飲んで', 'のんで', 'tomar, beber'), P('、ゆっくり'), P('休みます。', 'やすみます', 'descansar')] },
+      { jp: '早く治ればいいのですが。', pt: 'Se eu me recuperar logo, seria bom.', parts: [P('早く', 'はやく', 'cedo, logo'), P('治れば', 'なおれば', 'se eu me recuperar'), P('いいのですが。', undefined, 'seria bom (mas...)')] },
+    ],
+  },
+  {
+    id: 'n4-arubaito',
+    title: 'O trabalho de meio período',
+    kind: 'texto',
+    level: 'N4',
+    lines: [
+      { jp: '私は土曜日にアルバイトをしています。', pt: 'Aos sábados eu trabalho meio período.' },
+      { jp: '店長はとても厳しいですが、やさしい人です。', pt: 'O gerente é muito rigoroso, mas é uma pessoa gentil.', parts: [P('店長', 'てんちょう', 'gerente da loja'), P('はとても'), P('厳しい', 'きびしい', 'rigoroso'), P('ですが、やさしい'), P('人', 'ひと', 'pessoa'), P('です。')] },
+      { jp: '先週、お客さんに怒られました。', pt: 'Na semana passada, fui repreendido por um cliente.', parts: [P('先週', 'せんしゅう', 'semana passada'), P('、'), P('お客さん', 'おきゃくさん', 'cliente'), P('に'), P('怒られました。', 'おこられました', 'fui repreendido (passiva de 怒る)')] },
+      { jp: 'でも、店長にほめられて、うれしかったです。', pt: 'Mas fui elogiado pelo gerente e fiquei feliz.', parts: [P('でも、'), P('店長', 'てんちょう', 'gerente da loja'), P('に'), P('ほめられて', undefined, 'ser elogiado'), P('、うれしかったです。')] },
+    ],
+  },
+  {
+    id: 'n4-aniversario-da-mae',
+    title: 'O aniversário da mãe',
+    kind: 'texto',
+    level: 'N4',
+    lines: [
+      { jp: '来週の日曜日は母の誕生日です。', pt: 'No próximo domingo é o aniversário da minha mãe.' },
+      { jp: 'プレゼントを買いに行くことにしました。', pt: 'Decidi ir comprar um presente.' },
+      { jp: '母は花が好きなはずです。', pt: 'Minha mãe deve gostar de flores.' },
+      { jp: '花を買えば、きっと喜びます。', pt: 'Se eu comprar flores, ela com certeza vai ficar feliz.', parts: [P('花', 'はな', 'flor'), P('を'), P('買えば', 'かえば', 'se eu comprar'), P('、きっと'), P('喜びます。', 'よろこびます', 'ficar feliz')] },
+    ],
+  },
+  {
+    id: 'n4-estudo-de-japones',
+    title: 'Estudando japonês',
+    kind: 'texto',
+    level: 'N4',
+    lines: [
+      { jp: '毎日、日本語を勉強しています。', pt: 'Estudo japonês todos os dias.' },
+      { jp: '去年は、漢字が読めませんでした。', pt: 'No ano passado, eu não conseguia ler kanji.', parts: [P('去年', 'きょねん', 'ano passado'), P('は、'), P('漢字', 'かんじ', 'kanji'), P('が'), P('読めません', 'よめません', 'não consigo ler'), P('でした。')] },
+      { jp: '今は、新聞が少し読めるようになりました。', pt: 'Agora passei a conseguir ler um pouco do jornal.', parts: [P('今', 'いま', 'agora'), P('は、'), P('新聞', 'しんぶん', 'jornal'), P('が'), P('少し', 'すこし', 'um pouco'), P('読める', 'よめる', 'conseguir ler'), P('ようになりました。', undefined, 'passei a (ようになる)')] },
+      { jp: '毎晩、日本語のニュースを聞いています。', pt: 'Toda noite escuto notícias em japonês.' },
+    ],
+  },
+  {
+    id: 'n4-mudanca',
+    title: 'A mudança',
+    kind: 'texto',
+    level: 'N4',
+    lines: [
+      { jp: '来月、新しいアパートに引っ越します。', pt: 'No mês que vem, vou me mudar para um apartamento novo.', parts: [P('来月', 'らいげつ', 'mês que vem'), P('、'), P('新しい', 'あたらしい', 'novo'), P('アパートに'), P('引っ越します。', 'ひっこします', 'mudar-se')] },
+      { jp: '駅から近いのに、家賃は安いです。', pt: 'Embora seja perto da estação, o aluguel é barato.', parts: [P('駅', 'えき', 'estação'), P('から'), P('近い', 'ちかい', 'perto'), P('のに、', undefined, 'embora'), P('家賃', 'やちん', 'aluguel'), P('は'), P('安い', 'やすい', 'barato'), P('です。')] },
+      { jp: '引っ越しのために、お金をためています。', pt: 'Estou juntando dinheiro para a mudança.', parts: [P('引っ越し', 'ひっこし', 'mudança'), P('のために、', undefined, 'para'), P('お金', 'おかね', 'dinheiro'), P('を'), P('ためています。', undefined, 'estou juntando')] },
+      { jp: '荷物が多いので、友だちに手伝ってもらいます。', pt: 'Como tenho muitas coisas, vou pedir ajuda a um amigo.', parts: [P('荷物', 'にもつ', 'bagagem, coisas'), P('が'), P('多い', 'おおい', 'muito'), P('ので、'), P('友だち', 'ともだち', 'amigo'), P('に'), P('手伝って', 'てつだって', 'ajudar'), P('もらいます。', undefined, 'recebo (a ajuda de alguém)')] },
+      { jp: '引っ越したら、パーティーをするつもりです。', pt: 'Quando me mudar, pretendo fazer uma festa.', parts: [P('引っ越したら', 'ひっこしたら', 'quando me mudar'), P('、パーティーをするつもりです。')] },
+    ],
+  },
+  {
+    id: 'n4-minha-mae',
+    title: 'Minha mãe',
+    kind: 'texto',
+    level: 'N4',
+    lines: [
+      { jp: '母はとても厳しい人です。', pt: 'Minha mãe é uma pessoa muito rigorosa.' },
+      { jp: '弟に毎朝、犬の散歩をさせます。', pt: 'Ela faz meu irmão mais novo passear com o cachorro toda manhã.', parts: [P('弟', 'おとうと', 'irmão mais novo'), P('に'), P('毎朝', 'まいあさ', 'toda manhã'), P('、'), P('犬', 'いぬ', 'cachorro'), P('の'), P('散歩', 'さんぽ', 'passeio'), P('を'), P('させます。', undefined, 'faz (alguém) fazer: causativa de する')] },
+      { jp: 'でも、母の料理を食べると、いつも元気になります。', pt: 'Mas quando como a comida da minha mãe, sempre fico animado.' },
+    ],
+  },
+  {
+    id: 'n4-atraso-de-trem',
+    title: 'Aviso de atraso do trem',
+    kind: 'dia',
+    level: 'N4',
+    where: 'Nas plataformas e nos alto-falantes da estação',
+    lines: [
+      { jp: '事故のため、電車が遅れています。', pt: 'Por causa de um acidente, os trens estão atrasados.', parts: [P('事故', 'じこ', 'acidente'), P('のため、'), P('電車', 'でんしゃ', 'trem'), P('が'), P('遅れて', 'おくれて', 'atrasando'), P('います。')] },
+      { jp: 'ご迷惑をおかけして、申し訳ありません。', pt: 'Pedimos desculpas pelo transtorno.', parts: [P('ご'), P('迷惑', 'めいわく', 'incômodo, transtorno'), P('をおかけして、'), P('申し訳', 'もうしわけ', 'desculpa'), P('ありません。')] },
+      { jp: '次の電車は五分後に来ます。', pt: 'O próximo trem chega em cinco minutos.', parts: [P('次', 'つぎ', 'próximo'), P('の'), P('電車', 'でんしゃ', 'trem'), P('は'), P('五分後', 'ごふんご', 'daqui a cinco minutos'), P('に'), P('来ます。', 'きます', 'vem, chega')] },
+    ],
+  },
+  {
+    id: 'n4-hotel',
+    title: 'Aviso no hotel',
+    kind: 'dia',
+    level: 'N4',
+    where: 'Na recepção e no quarto do hotel',
+    lines: [
+      { jp: 'チェックアウトは十一時までです。', pt: 'O check-out é até as onze horas.', parts: [P('チェックアウトは'), P('十一時', 'じゅういちじ', 'onze horas'), P('までです。')] },
+      { jp: '貴重品は、フロントにお預けください。', pt: 'Deixe seus objetos de valor na recepção.', parts: [P('貴重品', 'きちょうひん', 'objetos de valor'), P('は、フロントに'), P('お預け', 'おあずけ', 'deixar em guarda'), P('ください。')] },
+      { jp: '部屋で、たばこを吸わないでください。', pt: 'Não fume no quarto.', parts: [P('部屋', 'へや', 'quarto'), P('で、たばこを'), P('吸わ', 'すわ', 'fumar (raiz de 吸う)'), P('ないでください。')] },
+    ],
+  },
+  {
+    id: 'n4-elevador-e-terremoto',
+    title: 'Elevador e terremoto',
+    kind: 'dia',
+    level: 'N4',
+    where: 'Dentro de elevadores e em prédios',
+    lines: [
+      { jp: '地震のときは、エレベーターを使わないでください。', pt: 'Em caso de terremoto, não use o elevador.', parts: [P('地震', 'じしん', 'terremoto'), P('のときは、エレベーターを'), P('使わ', 'つかわ', 'usar (raiz de 使う)'), P('ないでください。')] },
+      { jp: '階段を使って、外に逃げてください。', pt: 'Use a escada e fuja para fora.', parts: [P('階段', 'かいだん', 'escada'), P('を'), P('使って', 'つかって', 'usando'), P('、'), P('外', 'そと', 'fora'), P('に'), P('逃げて', 'にげて', 'fugir'), P('ください。')] },
+      { jp: '非常ボタンを押せば、助けを呼べます。', pt: 'Se você apertar o botão de emergência, pode chamar ajuda.', parts: [P('非常', 'ひじょう', 'emergência'), P('ボタンを'), P('押せば、', 'おせば', 'se apertar'), P('助け', 'たすけ', 'ajuda'), P('を'), P('呼べます。', 'よべます', 'consegue chamar')] },
+    ],
+  },
 ];
+
+/** O nível de um texto (sem `level`, N5). */
+export const levelOf = (text: ReadingText): 'N5' | 'N4' => text.level ?? 'N5';

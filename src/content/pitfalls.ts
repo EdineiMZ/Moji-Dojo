@@ -230,4 +230,32 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
     'A forma ば vale para condição geral ou desejo; para algo que aconteceu uma vez, prefira たら.',
     'Com substantivo e adjetivo な, a forma é なら, e não なれば.',
   ],
+  'n4-8': [
+    'A causativa tem dois sentidos: forçar ("fazer alguém fazer") e permitir ("deixar fazer"). Quem decide é o contexto; com させてください é sempre um pedido de permissão.',
+    'Nos verbos do grupo 1 que terminam em う, a sílaba vira わ, e não あ: かう → かわせる.',
+  ],
+  'n4-9': [
+    'Com adjetivo い, a forma é かったら (たかかったら), e não たかいたら.',
+    'Para algo que acontece sempre, como um fato da natureza, prefira と; たら serve para condição e para "quando" num caso só.',
+  ],
+  'n4-10': [
+    'Depois de と não vêm pedido, convite nem vontade (nada de "por favor" ou "vamos"): nesses casos use たら ou ば.',
+    'Aqui o と vem depois de um verbo ou adjetivo na forma simples. Não é o と de "e" nem o de "com", que vêm depois de um substantivo.',
+  ],
+  'n4-11': [
+    'ようになる mostra uma mudança que já aconteceu ("passei a"). Não confunda com ことになる, que diz que algo "ficou decidido", e não que alguém passou a conseguir.',
+    'Para "deixar de", use a forma ない: およげなく なった.',
+  ],
+  'n4-12': [
+    'No sentido de objetivo, os dois verbos têm o mesmo sujeito. Se forem diferentes, o japonês usa outra construção (ように).',
+    'Antes de ために o verbo fica na forma do dicionário (とるために), e não na forma ます.',
+  ],
+  'n4-13': [
+    'Com substantivo e adjetivo な, vem な antes de のに: ひまなのに, e não ひまだのに.',
+    'Depois de のに não se usa pedido nem ordem: ele mostra surpresa ou queixa de quem fala.',
+  ],
+  'n4-14': [
+    'Com adjetivo い, a forma é くても (たかくても), e não たかいても.',
+    'Com substantivo e adjetivo な, a forma é でも (あめでも), e não a forma て.',
+  ],
 };

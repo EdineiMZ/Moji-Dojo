@@ -41,7 +41,7 @@
 ## Gramática N4 (`grammarN4.ts`, gerado em `scripts/grammar-n4/`)
 
 - **Texto das explicações:** escrito para este app, em português, **ainda sem revisão por um falante de japonês**.
-- **Frases de exemplo:** 26 frases reais do **Tatoeba** (https://tatoeba.org), todas sob **CC BY 2.0 FR**, escolhidas pelo id e conferidas na API
+- **Frases de exemplo:** 53 frases reais do **Tatoeba** (https://tatoeba.org), todas sob **CC BY 2.0 FR**, escolhidas pelo id e conferidas na API
   (`node scripts/grammar-n5/verify.mjs n4`): o id existe, o texto é o mesmo, a leitura em kana bate com a nossa e a tradução é uma das do
   Tatoeba. Os autores aparecem na página de cada frase (`https://tatoeba.org/sentences/show/<id>`).
 - **Alterações feitas neste projeto:** as mesmas do N5 (a frase em kana, com a leitura do Tatoeba, e o romaji gerado por regra).
@@ -201,6 +201,12 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
 - `src/features/frames/frames.ts`: moldes de frase e as listas de palavras de cada um, **escritos por IA, a revisar.**
 - `src/features/structure/`: as descrições dos papéis (tema, objeto...) e a frase de exemplo do mapa (わたしは きのう えきで ともだちに ほんを あげました) são **escritas por IA, a revisar.**
 - Nada disso vem de fonte externa: não há licença de terceiros a creditar, mas também não há revisão humana ainda.
+
+## Leitura do N4 (`readings.ts`, `level: 'N4'`)
+
+- Oito textos corridos e três leituras do dia a dia (aviso de atraso do trem, hotel, elevador e terremoto), **escritos por IA** para este app com a gramática do N4 (かもしれません, ことにした, てしまう, ておく, はず, passiva, ば, causativa, ようになる, ために, のに, たら, と, ても). Nada vem de fonte externa: não há licença de terceiros a creditar.
+- As frases que usam palavras ou flexões fora do vocabulário do app (買えば, 怒られました, 京都, 引っ越す...) trazem `parts`, com a leitura em kana e o significado em português de cada pedaço, também **escritos por IA**.
+- **Pendência:** a revisão do japonês e das traduções por um falante, como no resto dos textos de leitura.
 
 ## Textos de placas e cardápios reais (1.13.0)
 

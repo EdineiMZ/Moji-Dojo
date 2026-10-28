@@ -16,8 +16,35 @@ export async function search(query, page = 1) {
   });
   // O servidor do Tatoeba falha de vez em quando (502, 504, 429): tenta de novo, esperando um pouco mais a cada vez.
   for (let attempt = 1; ; attempt++) {
-    const res = await fetch(url);
+    let res;
+    try {
+      res = await fetch(url);
+    } catch (error) {
+      // Sem resposta (timeout de conexão, rede caindo): também vale tentar de novo.
+      if (attempt >= 5) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 1500 * attempt));
+      continue;
+    }
     if (res.ok) return res.json();
+    if (attempt >= 5 || (res.status < 500 && res.status !== 429)) throw new Error(`${res.status} ${url}`);
+    await new Promise((resolve) => setTimeout(resolve, 1500 * attempt));
+  }
+}
+
+/** Uma frase pelo id (mesmo formato de um resultado da busca), para quando a busca por texto não a traz. `null` se não existe. */
+export async function sentenceById(id) {
+  const url = `https://tatoeba.org/en/api_v0/sentence/${id}`;
+  for (let attempt = 1; ; attempt++) {
+    let res;
+    try {
+      res = await fetch(url);
+    } catch (error) {
+      if (attempt >= 5) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 1500 * attempt));
+      continue;
+    }
+    if (res.ok) return res.json();
+    if (res.status === 404) return null;
     if (attempt >= 5 || (res.status < 500 && res.status !== 429)) throw new Error(`${res.status} ${url}`);
     await new Promise((resolve) => setTimeout(resolve, 1500 * attempt));
   }

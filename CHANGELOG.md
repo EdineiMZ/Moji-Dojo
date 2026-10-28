@@ -2,6 +2,17 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.14.0] - 2026-10-28
+
+Gramática e leitura do N4, revisão espaçada por tecla e retenção ajustável.
+
+- **Gramática N4, segunda leva:** 7 tópicos novos (causativa 〜させる, 〜たら, 〜と, 〜ようになる, 〜ために, 〜のに e 〜ても), agora 14 no total, com 53 frases do Tatoeba (CC BY 2.0 FR) conferidas na fonte (id, texto, leitura, furigana e tradução), mini-testes e notas de erros comuns. As explicações foram escritas por IA e ainda não foram revisadas por um falante. As frases vieram do banco local de 30 mil frases; descartei as com furigana errada no Tatoeba e a que lia 何 como "なん".
+- **Leitura N4:** 8 textos corridos e 3 leituras do dia a dia (aviso de atraso do trem, hotel, elevador e terremoto), com seletor N5/N4 na tela de Leitura. As frases com palavras fora do vocabulário trazem a leitura e o significado de cada pedaço. Escritos por IA, a revisar por um falante.
+- **Revisão espaçada por tecla:** cada letra do teclado de flick ganha um agendamento FSRS (errou: volta em 10 minutos; acertou: o intervalo cresce; várias letras na mesma sessão contam uma vez). "Pontos fracos" começa pelas letras vencidas e o desempenho mostra o que vence agora e quando volta a próxima. O agendamento entra no backup.
+- **Retenção desejada:** em Ajustes → Revisões, escolha 80, 85, 90 (padrão) ou 95%. Vale para as próximas respostas.
+- **ML Kit:** avaliado e mantido. Pelo que o Google documenta, não há como desligar o envio de dados técnicos; o aviso passou a aparecer na tela da câmera ("Sobre a privacidade do leitor"), com o que é enviado e o que não consta da lista.
+- **Ferramentas:** o verificador de frases do Tatoeba tenta de novo quando a rede falha e confere pelo id quando a busca por texto não traz a frase.
+
 ## [2.13.2] - 2026-10-28
 
 Correção do travamento ao baixar vozes do VOICEVOX.

@@ -11,13 +11,13 @@ O Moji Dojo ensina a escrita e leva o aluno até a produção de frases, a escut
 | Área | Estado | Hoje |
 | --- | --- | --- |
 | Escrita (kana e kanji) | ✅ | Hiragana, katakana e 284 kanji (N5 e N4), traços animados, desenho conferido por geometria |
-| Revisão espaçada | 🟡 | Caixas com ajuste por esquecimento, itens teimosos, revisão mista; falta o modelo completo (FSRS) |
+| Revisão espaçada | ✅ | FSRS 5 com retenção desejada ajustável (80 a 95%), caixas como estágio, itens teimosos, revisão mista; falta calibrar os pesos com o seu histórico |
 | Vocabulário | ✅ | Cerca de 800 palavras do N5, com tom, classe, frases de exemplo, cartões e exportação para o Anki; N4 só nos kanji |
-| Gramática | 🟡 | 51 tópicos do N5, mini-testes, lacunas, conjugação, contadores; falta o N4 |
+| Gramática | 🟡 | 51 tópicos do N5 e 14 do N4, mini-testes, lacunas, conjugação, contadores; faltam outros pontos do N4 (ながら, すぎる, ようだ e そうだ, あげる, もらう e くれる...) |
 | Produção de frases | ✅ | Montar, traduzir, modelos, 13 diálogos, 188 frases de viagem, 30 mil frases para explorar |
 | Escuta e fala | ✅ | Ditado, compreensão, tom, shadowing com gravação, reconhecimento de fala |
-| Leitura | 🟡 | Textos graduados e do dia a dia do N5, toque na palavra, câmera que lê texto; falta o N4 |
-| Teclado de flick | 🟡 | Simulador com níveis, conversão, mapa de calor; falta agendar a revisão por tecla |
+| Leitura | ✅ | Textos graduados e do dia a dia (N5 e N4), toque na palavra, câmera que lê texto |
+| Teclado de flick | ✅ | Simulador com níveis, conversão, mapa de calor e revisão espaçada por tecla |
 | Motivação | ✅ | Mochi, 111 itens, 42 conquistas, missões, baús, metas e lembretes |
 | IA opcional | ✅ | Gemini, Claude e GPT com chave própria, cache, fila offline, 13 recursos |
 | Voz de anime | ✅ | 43 personagens, vozes baixadas pelo app com aceite dos termos de cada um, "Minhas vozes" para escolher e ouvir (2.8.1) |
@@ -60,7 +60,7 @@ Feito entre a 2.8.1 e a 2.8.3, a partir da revisão das telas e das licenças. O
 - ✅ **Amostra com plano B (2.8.3):** se o site mudar ou cair, o botão oferece abrir a página do personagem; ao tocar, mostra o crédito "VOICEVOX:nome".
 - ✅ **Testes de tela (2.8.3):** a lista de vozes (termos, aceite, continuar, dados móveis) e "Minhas vozes" (usar a voz, voltar ao Android, espaço usado).
 - ⬜ **Confirmar no aparelho:** o volume da voz (2.8.1) e o download novo com a rede caindo no meio. *(P)*
-- ⬜ **Telemetria do ML Kit:** a câmera que lê texto usa o ML Kit, que envia dados técnicos ao Google (está avisado). Avaliar um reconhecimento de texto que não envie nada, ou aceitar e manter o aviso. *(M)*
+- ✅ **Telemetria do ML Kit (avaliada em 2026-10-28): aceitar e manter o aviso.** Pelo que a documentação do Google diz, o ML Kit não tem opção para desligar o envio de dados técnicos (modelo do aparelho, versão do app, identificador da instalação, métricas), e o conteúdo da foto e o texto lido não estão na lista do que ele coleta. Só há gambiarras não suportadas, que podem quebrar a cada versão. O aviso agora está na própria tela da câmera. A alternativa realista é o PaddleOCR (PP-OCR) rodando em ONNX, com licença Apache 2.0, mas exige um motor próprio (detecção, reconhecimento e pós-processamento) e uma medição de acerto em fotos reais de placas e cardápios antes de trocar; fica como ideia, só se a privacidade virar prioridade. *(G)*
 
 ### 2.9: UX e design (navegação e Ajustes) ✅
 
@@ -99,15 +99,15 @@ Conferido em 2026-10-28: o dicionário só é copiado para a pasta do app quando
 
 A maior entrega de aprendizado que falta. Exige conferência de fonte e de licença, e revisão por falante.
 
-- 🟡 **Gramática N4 (2.12.0):** 7 tópicos (かもしれません, ことにした, てしまう, ておく, はずだ, passiva, ば). Faltam a causativa, o たら, o と, o ように なる, o ために, o のに e o ても, para os quais as buscas no Tatoeba ainda não acharam frases curtas e boas. *(G)*
+- 🟡 **Gramática N4 (2.12.0 e 2.14.0):** 14 tópicos, todos com frases do Tatoeba conferidas na fonte: かもしれません, ことにした, てしまう, ておく, はずだ, passiva, ば (2.12.0) e causativa, たら, と, ように なる, ために, のに e ても (2.14.0). Faltam outros pontos do N4 (ながら, すぎる, ようだ e そうだ, あげる, もらう e くれる, てみる, ないで, と思う com a forma simples...). *(G)*
 - 🟡 **Vocabulário N4 (2.11.0):** 629 palavras com leitura, significado, tom e classe. Faltam as frases de exemplo do Tatoeba, a frequência, os áudios de falantes nativos e a revisão dos significados por um falante. *(M)*
-- ⬜ **Leitura N4:** textos graduados e do dia a dia. *(M)*
+- ✅ **Leitura N4 (2.14.0):** 8 textos corridos e 3 leituras do dia a dia (atraso de trem, hotel, elevador e terremoto), com a gramática do N4 e seletor N5/N4. Escritos por IA, a revisar por um falante; as frases com palavras fora do vocabulário trazem a leitura e o significado de cada pedaço. *(M)*
 - ⬜ **Kanji N3**, no mesmo formato (traços, leituras, exemplos). *(G)*
 - ⬜ **Simulado offline** (sem IA) por nível, com nota por seção. *(M)*
 
 ### Motor de aprendizado
 
-- ✅ **FSRS no lugar das caixas (2.11.0):** FSRS 5 com os pesos padrão, mantendo a caixa como estágio e a importação do progresso antigo. ⬜ Falta calibrar os pesos com o histórico de quem usa (exige guardar cada revisão) e uma opção de retenção desejada nos Ajustes. *(M)*
+- ✅ **FSRS no lugar das caixas (2.11.0):** FSRS 5 com os pesos padrão, mantendo a caixa como estágio e a importação do progresso antigo. ✅ A retenção desejada (80, 85, 90 ou 95%) é escolhida em Ajustes → Revisões (2.14.0). ⬜ Falta calibrar os pesos com o histórico de quem usa (exige guardar cada revisão). *(M)*
 - ✅ **Contagem própria para a escrita (desenho) (2.9.2):** linha à parte em "Por habilidade"; começa a contar nesta versão.
 - 🟡 **Metas por nível (2.12.0):** o N4 já tem as metas de palavras, de gramática e de kanji. Faltam o marco de leitura do N4 e o caminho do N3. *(M)*
 
@@ -128,7 +128,7 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 
 ### Teclado
 
-- 🟡 **Revisão espaçada por tecla e direção:** o modo "Pontos fracos" já escolhe as letras mais erradas; falta agendar a volta de cada uma. *(M)*
+- ✅ **Revisão espaçada por tecla (2.14.0):** cada letra ganha um agendamento FSRS (errou: volta em 10 minutos; acertou: o intervalo cresce), e o modo "Pontos fracos" começa pelas letras vencidas. O desempenho mostra o que vence agora e quando volta a próxima. ⬜ Falta agendar por direção (ler, digitar e converter separadamente). *(M)*
 - ⬜ **Séries dirigidas** de pontuação e números, e uma meta diária de digitação. *(P)*
 
 ### Engenharia

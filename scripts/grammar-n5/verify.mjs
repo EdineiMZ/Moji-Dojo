@@ -3,7 +3,7 @@
 // Uso: npm run verify-grammar
 import { createRequire } from 'node:module';
 const { TOPICS } = await import(process.argv[2] === 'n4' ? '../grammar-n4/topics.mjs' : './topics.mjs');
-import { search } from './tatoeba.mjs';
+import { search, sentenceById } from './tatoeba.mjs';
 
 const require = createRequire(import.meta.url);
 const { plainKana, stripPunctuation } = require('./romaji.cjs');
@@ -17,7 +17,8 @@ const report = (topic, example, message) => {
 for (const topic of TOPICS) {
   for (const example of topic.examples) {
     const json = await search(example.ja, 1);
-    const found = json.results.find((r) => r.id === example.id);
+    // A busca por texto nem sempre traz a frase (sobretudo as longas): nesse caso, confere pelo id.
+    const found = json.results.find((r) => r.id === example.id) ?? (await sentenceById(example.id));
     if (!found) {
       report(topic, example, `não achei a frase "${example.ja}" no Tatoeba`);
       continue;

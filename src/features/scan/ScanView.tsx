@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { AppText, Bold, Button, Card, useScrollIntoView } from '@/components';
+import { AppText, Bold, Button, Card, LearnMore, useScrollIntoView } from '@/components';
 import { AiDisclaimer } from '@/features/ai/AiParts';
 import { AiError } from '@/features/ai/client';
 import { TappableSentence } from '@/features/ai/TappableSentence';
@@ -103,6 +103,11 @@ export function ScanView() {
         <AppText variant="caption" color="muted">
           Dica: use o recorte para deixar só o texto, com boa luz. Textos na vertical e letras muito decoradas podem sair errados.
         </AppText>
+        <LearnMore label="Sobre a privacidade do leitor">
+          <AppText variant="caption" color="muted">
+            A foto é lida no aparelho e o app não a envia a ninguém. O leitor é o Google ML Kit, que, segundo o Google, envia dados técnicos de uso (modelo do aparelho, versão do Android, nome e versão do app, um identificador da instalação e medidas de desempenho). O conteúdo da foto e o texto lido não estão na lista do que o Google diz coletar. Não há como desligar isso no ML Kit. Os detalhes estão em Ajustes → Créditos e licenças.
+          </AppText>
+        </LearnMore>
         {error ? (
           <AppText color="bad" accessibilityLiveRegion="polite">
             {error}

@@ -41,7 +41,7 @@ O que ainda precisa ser conferido para confiar no app e no conteúdo.
 | 1 | **Revisão do japonês escrito por IA por um falante:** explicações, diálogos, textos de leitura, frases de viagem, moldes, dicas dos kanji, significados em português e as descrições das vozes | É o maior risco de ensinar algo errado. Está avisado no app e no README | G |
 | 2 | **Testar no aparelho** o que só foi verificado por testes e empacotamento: síntese do VOICEVOX (ONNX), câmera, reconhecimento de fala, gravação, teclado 3 × 4 | Dependem do hardware e do Android | P |
 | 3 | **Conferir o nome "Moji Dojo" no banco de marcas do INPI** (classes de software e de educação) | Não achei nenhum "Moji Dojo" na internet, mas há apps do mesmo ramo com nomes parecidos (MOJi, MOJi辞書, "Moji - Learn Japanese") | P |
-| 4 | **Origem dos dados de tom (Kanjium):** o Kanjium declara CC BY-SA 4.0 e credita o autor, mas não dá para verificar de onde ele tirou os dados; aceitar esse risco (é fonte comum em apps de dicionário) ou trocar a fonte | A cadeia anterior à do Kanjium não é verificável | P |
+| 4 | **Origem dos dados de tom (Kanjium):** o Kanjium declara CC BY-SA 4.0 e credita o autor, mas não dá para verificar de onde ele tirou os dados; aceitar esse risco (é fonte comum em apps de dicionário) ou trocar a fonte. **Checado em 2026-10-28:** contra o UniDic, o acento principal coincide em 96,9% de 912 palavras; só 4 divergem (所, 余り, 結構, 大体), a conferir num dicionário de referência. Detalhes em `src/content/LICENSE.md` | A cadeia anterior à do Kanjium não é verificável | P |
 | 5 | **Acessibilidade:** passada com TalkBack e fonte grande; alternativa ao flick por deslize | O flick só funciona por gesto | M |
 
 ## 3. Próximas versões
@@ -88,6 +88,12 @@ Conferido em 2026-10-28: o dicionário só é copiado para a pasta do app quando
 - ⬜ **Medir** a abertura a frio e a memória em aparelho de entrada, e carregar sob demanda os conteúdos grandes. *(M)*
 - ⬜ **32 bits:** hoje o APK é só `arm64-v8a`. Avaliar um APK `armeabi-v7a` separado para aparelhos antigos. *(P)*
 - ⬜ **Analisar o pacote:** a fonte do `expo-symbols` (cerca de 1 MB) vem de dentro do `expo-router` e não é usada. *(P)*
+
+### 2.13: áudio e tema
+
+- ✅ **Áudio sem repetição (2.13.0):** gravações em `mixWithOthers` (sem foco de áudio, que as retomava sozinhas) e fala do Android sempre cancelada antes da próxima. As 360 gravações foram conferidas (existem, têm volume, nenhuma duplicada).
+- ✅ **Tema claro, escuro ou automático (2.13.0):** em Ajustes → Aparência.
+- ⬜ **Confirmar no aparelho** que sumiram o som repetido e as palavras mudas; quais palavras ainda ficarem mudas aparecem em Ajustes → Avançado. *(P)*
 
 ### 3.0: conteúdo do N4
 

@@ -25,6 +25,8 @@ for (const line of lines) {
     .split(',')
     .map(Number)
     .filter((n) => Number.isInteger(n) && n >= 0);
+  // A fonte repete o número em algumas palavras ("3,3"): guarda cada acento uma vez, na ordem em que aparece.
+  numbers.splice(0, numbers.length, ...new Set(numbers));
   if (numbers.length > 0 && !table.has(`${word}|${reading}`)) table.set(`${word}|${reading}`, numbers);
 }
 

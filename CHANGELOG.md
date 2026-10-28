@@ -2,6 +2,12 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.13.1] - 2026-10-28
+
+Conferência dos dados de tom.
+
+- **Tom (pitch accent):** o `build-pitch` guarda cada acento uma vez (a fonte repetia o número em palavras como 大事, "3,3"). Os dados do Kanjium foram comparados com o UniDic: o acento principal coincide em 96,9% de 912 palavras, e só 4 divergem (所, 余り, 結構, 大体). O resultado está em `src/content/LICENSE.md` e no ROADMAP.
+
 ## [2.13.0] - 2026-10-28
 
 Correção dos áudios das palavras e símbolos, e tema claro/escuro nos Ajustes.

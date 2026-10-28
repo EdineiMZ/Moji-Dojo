@@ -105,9 +105,10 @@
 - **Origem:** projeto **Kanjium** (https://github.com/mifunetoshiro/kanjium), arquivo `data/source_files/raw/accents.txt`.
   O projeto declara a licença **CC BY-SA 4.0** (exige crédito e que os dados derivados fiquem sob a mesma licença) e diz que
   a maior parte dos dados vem do EDRDG (EDICT/KANJIDIC), usados conforme a licença do grupo.
-- **Alterações feitas neste projeto:** só as 538 palavras do vocabulário N5 que têm acento na fonte (`npm run build-pitch`).
+- **Alterações feitas neste projeto:** só as palavras do vocabulário N5 e N4 (e dos exemplos dos kanji) que têm acento na fonte, 1.051 hoje (`npm run build-pitch`); o número repetido numa mesma palavra ("3,3") é guardado uma vez.
 - **Cadeia de licenças (conferida em 2026-10-27 no README do Kanjium):** o pacote inteiro é declarado CC BY-SA 4.0, com uso livre, comercial ou não. A maior parte dos dados vem do EDRDG (EDICT, KANJIDIC, KRADFILE, usados conforme a licença do grupo) e as notações de tom e as demais adições foram fornecidas por Uros O. "through his free database". O README pede que se creditem as adições dele na tela de créditos do app, o que está feito. **O que não dá para verificar:** de onde o Uros O. tirou os dados de tom; confiamos na licença que o Kanjium declara. Se isso for inaceitável, é só remover `src/content/pitch.ts` e a tela Tom.
 - Os dados derivados dele ficam sob CC BY-SA (ver `NOTICE.md`).
+- **Checagem contra outra fonte (2026-10-28):** as 1.051 palavras foram comparadas com o acento do **UniDic 2.1.2** (NINJAL, pacote `unidic-lite`; licença BSD/GPL/LGPL; usado só para conferir, nenhum dado dele entra no app). Em 912 palavras com a mesma leitura nas duas fontes, o acento principal é o mesmo em 884 (96,9%); 24 têm o mesmo conjunto de acentos em outra ordem e 4 divergem de verdade: 所 (ところ), 余り (あまり), 結構 (けっこう) e 大体 (だいたい). Ficaram de fora 34 palavras que o UniDic leu com outra leitura, 101 compostos e 4 sem dado. Quem decide as 4 divergências é um dicionário de referência (NHK ou OJAD) ou um falante.
 
 ## Voz VOICEVOX (módulo `modules/voicevox`, opcional)
 

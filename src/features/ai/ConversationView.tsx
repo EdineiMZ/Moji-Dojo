@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { StyleSheet, Switch, TextInput, View } from 'react-native';
 import { AppText, Bold, Button, Card, PressableScale } from '@/components';
 import { PROBLEM_MESSAGES } from '@/features/myphrases/phrases';
+import { useSpokenInput } from '@/features/speech/useSpokenInput';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { JapaneseInput } from '@/features/translate/JapaneseInput';
 import { useProgressStore, useSettingsStore } from '@/store';
@@ -92,6 +93,7 @@ function Chat({ scenario, lines, setLines, onFinish, onLeave }: ChatProps) {
   const speed = useSettingsStore((s) => s.speechSpeed);
   const markStudied = useProgressStore((s) => s.markStudied);
   const [input, setInput] = useState('');
+  const mic = useSpokenInput((text) => setInput(text), MAX_CHAT_INPUT);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [suggestions, setSuggestions] = useState<ChatReply['suggestions']>([]);
@@ -223,7 +225,21 @@ function Chat({ scenario, lines, setLines, onFinish, onLeave }: ChatProps) {
       ) : (
         <>
           <JapaneseInput value={input} onChange={(t) => setInput(t.slice(0, MAX_CHAT_INPUT))} onSubmit={send} disabled={busy} />
+          <Button label={mic.listening ? '⏹ Parar de ouvir' : '🎤 Falar em japonês'} variant="soft" onPress={() => void mic.toggle()} disabled={busy} />
+          {mic.error ? (
+            <AppText color="bad" accessibilityLiveRegion="polite">
+              {mic.error}
+            </AppText>
+          ) : null}
+          {mic.listening ? (
+            <AppText color="muted" accessibilityLiveRegion="polite">
+              Ouvindo... fale a sua frase em japonês.
+            </AppText>
+          ) : null}
           <Button label={busy ? 'Aguardando...' : 'Enviar'} onPress={send} disabled={busy || input.trim().length === 0} />
+          <AppText variant="caption" color="muted">
+            O que você fala vira texto antes de ir à IA: confira e corrija antes de enviar. O reconhecimento usa o serviço de fala do Android, que pode enviar o áudio ao Google.
+          </AppText>
         </>
       )}
       <Button label={turns > 0 ? 'Terminar e ver o resumo' : 'Terminar'} variant="ghost" onPress={onFinish} disabled={busy} />

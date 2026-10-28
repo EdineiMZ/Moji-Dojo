@@ -11,6 +11,7 @@ import {
   type SrsEntry,
   type SrsState,
 } from './srs';
+import { sanitizeRetention, setRetention } from './retention';
 
 // Data fixa: 22/10/2026 às 10:00 (fuso local).
 const NOW = new Date(2026, 9, 22, 10, 0, 0).getTime();
@@ -198,5 +199,28 @@ describe('esquecimentos e itens teimosos', () => {
     const calm = answerReview({ b: 4, due: NOW }, true, false, NOW);
     const forgetful = answerReview({ b: 4, due: NOW, l: 6 }, true, false, NOW);
     expect(forgetful.due).toBeLessThan(calm.due);
+  });
+});
+
+describe('retenção desejada', () => {
+  const mature: SrsEntry = { b: 4, due: NOW, s: 20, d: 5, t: NOW - 20 * DAY_MS };
+
+  it('retenção mais alta agenda a volta mais cedo, e a mais baixa, mais tarde', () => {
+    const at = (retention: number) => answerReview(mature, true, false, NOW, retention).due;
+    expect(at(0.95)).toBeLessThan(at(0.9));
+    expect(at(0.9)).toBeLessThan(at(0.8));
+  });
+
+  it('sem informar, usa a retenção dos Ajustes (padrão 90%)', () => {
+    expect(answerReview(mature, true, false, NOW).due).toBe(answerReview(mature, true, false, NOW, 0.9).due);
+    setRetention(0.8);
+    expect(answerReview(mature, true, false, NOW).due).toBe(answerReview(mature, true, false, NOW, 0.8).due);
+    setRetention(0.9);
+  });
+
+  it('só aceita as opções conhecidas', () => {
+    expect(sanitizeRetention(0.85)).toBe(0.85);
+    expect(sanitizeRetention(0.5)).toBe(0.9);
+    expect(sanitizeRetention('0.95')).toBe(0.9);
   });
 });

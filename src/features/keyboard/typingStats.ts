@@ -1,11 +1,18 @@
 import { FLICK_KEYS } from '@/data/keyboard';
 import { howTo } from './flick';
+import { scheduleKey } from './keySchedule';
 
 /** Desempenho numa letra: acertos, erros e o tempo somado dos acertos (ms). */
 export interface KeyStat {
   ok: number;
   bad: number;
   ms: number;
+  /** Agendamento da revisão da letra (FSRS), ausente enquanto ela nunca foi digitada com a data conhecida. */
+  s?: number;
+  d?: number;
+  /** Última prática e quando a letra vence (ms). */
+  at?: number;
+  due?: number;
 }
 
 /** Progresso do treino de digitação no teclado de flick (entra no backup). */
@@ -37,6 +44,20 @@ const MAX_COUNT = 1_000_000;
 
 const count = (v: unknown): number => (typeof v === 'number' && Number.isFinite(v) && v >= 0 ? Math.min(Math.floor(v), MAX_COUNT) : 0);
 
+const MAX_DAYS = 3650;
+const num = (v: unknown): number | undefined => (typeof v === 'number' && Number.isFinite(v) && v >= 0 ? v : undefined);
+
+/** O agendamento só vale inteiro: estabilidade, dificuldade (1 a 10), última prática e vencimento. */
+function readSchedule(s: Record<string, unknown>): Pick<KeyStat, 's' | 'd' | 'at' | 'due'> | null {
+  const stability = num(s.s);
+  const difficulty = num(s.d);
+  const at = num(s.at);
+  const due = num(s.due);
+  if (stability === undefined || difficulty === undefined || at === undefined || due === undefined) return null;
+  if (stability > MAX_DAYS || difficulty < 1 || difficulty > 10) return null;
+  return { s: stability, d: difficulty, at, due };
+}
+
 /** Lê o que veio do disco ou do backup; o que não tem a forma certa vira vazio. */
 export function sanitizeTyping(raw: unknown): TypingProgress {
   if (typeof raw !== 'object' || raw === null) return EMPTY_TYPING;
@@ -47,7 +68,9 @@ export function sanitizeTyping(raw: unknown): TypingProgress {
       if ([...char].length !== 1 || !howTo(char) || typeof v !== 'object' || v === null) continue;
       if (Object.keys(keys).length >= MAX_KEYS) break;
       const s = v as Record<string, unknown>;
-      keys[char] = { ok: count(s.ok), bad: count(s.bad), ms: count(s.ms) };
+      const stat: KeyStat = { ok: count(s.ok), bad: count(s.bad), ms: count(s.ms) };
+      const sched = readSchedule(s);
+      keys[char] = sched ? { ...stat, ...sched } : stat;
     }
   }
   const levelDone: Record<string, number> = {};
@@ -60,12 +83,14 @@ export function sanitizeTyping(raw: unknown): TypingProgress {
 }
 
 /** Registra uma letra digitada: acerto (com o tempo desde a anterior) ou erro. */
-export function recordKey(typing: TypingProgress, char: string, ok: boolean, ms: number): TypingProgress {
+export function recordKey(typing: TypingProgress, char: string, ok: boolean, ms: number, now?: number): TypingProgress {
   if (!howTo(char)) return typing;
   const prev = typing.keys[char] ?? { ok: 0, bad: 0, ms: 0 };
-  const next: KeyStat = ok
-    ? { ok: prev.ok + 1, bad: prev.bad, ms: prev.ms + Math.min(Math.max(ms, 0), MAX_KEY_MS) }
-    : { ok: prev.ok, bad: prev.bad + 1, ms: prev.ms };
+  const counted: KeyStat = ok
+    ? { ...prev, ok: prev.ok + 1, ms: prev.ms + Math.min(Math.max(ms, 0), MAX_KEY_MS) }
+    : { ...prev, bad: prev.bad + 1 };
+  // Com a hora conhecida, a letra também entra na revisão espaçada (keySchedule.ts).
+  const next = now === undefined ? counted : { ...counted, ...scheduleKey(prev, ok, ms, now) };
   return { ...typing, keys: { ...typing.keys, [char]: next } };
 }
 

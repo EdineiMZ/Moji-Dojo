@@ -1,3 +1,4 @@
+import { getRetention } from './retention';
 import { DAY_MS, initialDifficulty, initialStability, intervalFor, nextDifficulty, nextStability, retrievability, type Grade } from './fsrs';
 
 /**
@@ -55,7 +56,7 @@ export function boxFor(days: number): number {
 
 /** Maior intervalo agendado, em dias. */
 export const MAX_INTERVAL_DAYS = 365;
-/** Retenção desejada: o FSRS agenda para quando a chance de lembrar cair a esse valor. */
+/** A retenção desejada (Ajustes → Revisões, padrão 90%): o FSRS agenda para quando a chance de lembrar cair a esse valor. */
 export const DESIRED_RETENTION = 0.9;
 
 /** Um cartão do agendamento antigo (só caixa e data) ainda não tem estabilidade: ela parte do intervalo da caixa. */
@@ -67,7 +68,7 @@ const isLegacyReviewed = (entry: SrsEntry): boolean => entry.s === undefined && 
  * - acertou, mas só depois de errar na mesma sessão (`wasWrong`): nota 2, vence em pelo menos um dia;
  * - acertou de primeira: nota 3; o intervalo cresce conforme a estabilidade e a dificuldade do cartão.
  */
-export function answerReview(entry: SrsEntry, ok: boolean, wasWrong: boolean, now: number): SrsEntry {
+export function answerReview(entry: SrsEntry, ok: boolean, wasWrong: boolean, now: number, retention: number = getRetention()): SrsEntry {
   const lapses = entry.l ?? 0;
   const grade: Grade = !ok ? 1 : wasWrong ? 2 : 3;
   const lastReviewed = entry.t ?? entry.due - (BOX_DAYS[entry.b] ?? 1) * DAY_MS;
@@ -92,7 +93,7 @@ export function answerReview(entry: SrsEntry, ok: boolean, wasWrong: boolean, no
 
   const lapsedNow = grade < 3;
   // Errou: volta agora. Acertou só depois de errar: volta amanhã (a estabilidade guardada decide o resto depois).
-  const days = grade === 1 ? 0 : grade === 2 ? 1 : Math.min(MAX_INTERVAL_DAYS, Math.max(1, Math.round(intervalFor(s, DESIRED_RETENTION))));
+  const days = grade === 1 ? 0 : grade === 2 ? 1 : Math.min(MAX_INTERVAL_DAYS, Math.max(1, Math.round(intervalFor(s, retention))));
   const box = grade < 3 ? 1 : boxFor(days);
   // Quem chega à caixa firme sem tropeçar de novo vai "perdoando" um esquecimento.
   const newLapses = lapsedNow ? lapses + 1 : box >= FIRM_BOX ? Math.max(0, lapses - 1) : lapses;

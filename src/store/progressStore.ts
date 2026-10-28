@@ -498,7 +498,7 @@ export function createProgressStore(storage: StateStorage) {
         recordTyping: (keys, item, now = Date.now()) =>
           set((s) => {
             let typing = s.typing;
-            for (const k of keys) typing = recordKey(typing, k.char, k.ok, k.ms);
+            for (const k of keys) typing = recordKey(typing, k.char, k.ok, k.ms, now);
             if (item) typing = recordItem(typing, item.level, item.chars, item.ms);
             return { typing, days: markDay(s.days, new Date(now)) };
           }),

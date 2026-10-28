@@ -1,5 +1,6 @@
 import Storage from 'expo-sqlite/kv-store';
 import { createAiStore } from '@/features/ai/aiStore';
+import { setRetention } from '@/features/review/retention';
 import { setFeedbackPrefs } from '@/lib/feedbackPrefs';
 import { LEGACY_STORAGE_KEYS, withLegacyKeys, type SyncStorage } from './legacyKeys';
 import { createProgressStore } from './progressStore';
@@ -32,5 +33,7 @@ export const useAiStore = createAiStore(storage);
 // Vibração e som consultam um módulo simples (sem depender da store): mantemos os dois em sincronia.
 const syncFeedbackPrefs = (s: { hapticsEnabled: boolean; soundEnabled: boolean }) =>
   setFeedbackPrefs({ haptics: s.hapticsEnabled, sound: s.soundEnabled });
+setRetention(useSettingsStore.getState().retention);
+useSettingsStore.subscribe((s) => setRetention(s.retention));
 syncFeedbackPrefs(useSettingsStore.getState());
 useSettingsStore.subscribe(syncFeedbackPrefs);

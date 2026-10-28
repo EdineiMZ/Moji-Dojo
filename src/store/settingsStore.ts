@@ -4,6 +4,7 @@ import { DEFAULT_AI, EMPTY_USAGE, addUsage, sanitizeAi, sanitizeUsage, type AiSe
 import { DEFAULT_LIMITS, sanitizeLimits, type Limits } from '@/features/limits/limits';
 import { DEFAULT_PROFILE, sanitizeProfile, type Profile } from '@/features/profile/profile';
 import { DEFAULT_REMINDERS, type ReminderSettings } from '@/features/reminders/plan';
+import { DEFAULT_RETENTION, sanitizeRetention } from '@/features/review/retention';
 import { DEFAULT_INTONATION, DEFAULT_PITCH, sanitizeFavorites, sanitizeIntonation, sanitizePitch, sanitizeStaffStyle } from '@/features/speech/voiceTuning';
 
 export type SpeechSpeed = 'normal' | 'slow';
@@ -30,6 +31,8 @@ export type TypingInput = 'pad' | 'system';
 
 export interface SettingsData {
   themeMode: ThemeMode;
+  /** Retenção desejada das revisões (0,8 a 0,95): quando a chance de lembrar cai a isso, o cartão volta. */
+  retention: number;
   /** Nas revisões, algumas perguntas pedem para desenhar o símbolo. */
   writeInReview: boolean;
   speechSpeed: SpeechSpeed;
@@ -74,6 +77,7 @@ export interface SettingsData {
 
 export interface SettingsActions {
   setThemeMode: (value: ThemeMode) => void;
+  setRetention: (value: number) => void;
   setWriteInReview: (value: boolean) => void;
   setSpeechSpeed: (value: SpeechSpeed) => void;
   setHapticsEnabled: (value: boolean) => void;
@@ -105,6 +109,7 @@ export const SETTINGS_STORAGE_KEY = 'moji-dojo-settings';
 
 export const DEFAULT_SETTINGS: SettingsData = {
   themeMode: 'system',
+  retention: DEFAULT_RETENTION,
   writeInReview: true,
   speechSpeed: 'normal',
   hapticsEnabled: true,
@@ -138,6 +143,7 @@ export function createSettingsStore(storage: StateStorage) {
       (set) => ({
         ...DEFAULT_SETTINGS,
         setThemeMode: (value) => set({ themeMode: sanitizeThemeMode(value) }),
+        setRetention: (value) => set({ retention: sanitizeRetention(value) }),
         setWriteInReview: (value) => set({ writeInReview: value }),
         setSpeechSpeed: (value) => set({ speechSpeed: value }),
         setHapticsEnabled: (value) => set({ hapticsEnabled: value }),
@@ -171,6 +177,7 @@ export function createSettingsStore(storage: StateStorage) {
             ...current,
             ...saved,
             themeMode: sanitizeThemeMode(saved.themeMode),
+            retention: sanitizeRetention(saved.retention),
             voiceEngine: saved.voiceEngine === 'voicevox' ? 'voicevox' : 'system',
             voicevoxStyle: typeof saved.voicevoxStyle === 'number' && Number.isInteger(saved.voicevoxStyle) && saved.voicevoxStyle >= 0 ? saved.voicevoxStyle : DEFAULT_VOICEVOX_STYLE,
             voicevoxPitch: sanitizePitch(saved.voicevoxPitch),
@@ -181,8 +188,9 @@ export function createSettingsStore(storage: StateStorage) {
             aiUsage: sanitizeUsage(saved.aiUsage),
           };
         },
-        partialize: ({ themeMode, writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
+        partialize: ({ themeMode, retention, writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
           themeMode,
+          retention,
           writeInReview,
           speechSpeed,
           hapticsEnabled,

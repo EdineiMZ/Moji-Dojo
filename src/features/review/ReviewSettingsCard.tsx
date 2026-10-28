@@ -1,5 +1,6 @@
 import { StyleSheet, Switch, View } from 'react-native';
-import { AppText, Card, LearnMore } from '@/components';
+import { AppText, Card, LearnMore, SegmentedControl } from '@/components';
+import { RETENTION_OPTIONS } from './retention';
 import { useSettingsStore } from '@/store';
 import { spacing, useTheme } from '@/theme';
 
@@ -8,6 +9,8 @@ export function ReviewSettingsCard() {
   const { colors } = useTheme();
   const writeInReview = useSettingsStore((s) => s.writeInReview);
   const setWriteInReview = useSettingsStore((s) => s.setWriteInReview);
+  const retention = useSettingsStore((s) => s.retention);
+  const setRetention = useSettingsStore((s) => s.setRetention);
 
   return (
     <Card enterIndex={1}>
@@ -32,11 +35,19 @@ export function ReviewSettingsCard() {
           thumbColor={colors.surface}
         />
       </View>
+      <View style={styles.group}>
+        <AppText>Retenção desejada</AppText>
+        <SegmentedControl<string> options={RETENTION_OPTIONS.map((v) => ({ value: String(v), label: `${Math.round(v * 100)}%` }))} value={String(retention)} onChange={(v) => setRetention(Number(v))} />
+        <AppText variant="caption" color="muted">
+          A chance de lembrar em que o cartão volta. Mais alta: mais revisões e menos esquecimento. Mais baixa: menos revisões. Vale para as próximas respostas; os cartões já agendados mantêm a data.
+        </AppText>
+      </View>
     </Card>
   );
 }
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
+  group: { gap: spacing.sm },
   row: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
 });

@@ -1,7 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Card } from '@/components';
+import { useNow } from '@/hooks/useNow';
 import { useProgressStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
+import { dueChars, nextKeyDue } from './keySchedule';
 import { averageCpm, keyHeat, weakChars } from './typingStats';
 
 /** Mapa do teclado: cada tecla mais vermelha quanto mais você erra nela, e a velocidade média. */
@@ -10,6 +12,9 @@ export function KeyHeatmap() {
   const typing = useProgressStore((s) => s.typing);
   const heat = keyHeat(typing);
   const tried = heat.some((h) => h.tries > 0);
+  const now = useNow();
+  const due = dueChars(typing, now, 12);
+  const next = nextKeyDue(typing, now);
   const weak = weakChars(typing, 6);
   const average = averageCpm(typing);
   const slowest = [...heat].filter((h) => h.avgMs > 0).sort((a, b) => b.avgMs - a.avgMs)[0];
@@ -48,7 +53,14 @@ export function KeyHeatmap() {
             Verde: acerta. Vermelho: erra mais.
             {slowest ? ` A tecla mais lenta é ${slowest.label === 'mod' ? '小゛゜' : slowest.label} (${(slowest.avgMs / 1000).toFixed(1)} s por letra).` : ''}
           </AppText>
-          {weak.length > 0 ? (
+          {due.length > 0 ? (
+            <AppText>
+              Para rever agora: <Bold>{due.join(' ')}</Bold>. O modo <Bold>Pontos fracos</Bold> começa por elas.
+            </AppText>
+          ) : next !== null ? (
+            <AppText color="muted">Nenhuma letra vencida. A próxima volta {whenText(next - now)}.</AppText>
+          ) : null}
+          {due.length === 0 && weak.length > 0 ? (
             <AppText>
               Letras para treinar: <Bold>{weak.join(' ')}</Bold>. O modo <Bold>Pontos fracos</Bold> usa só essas.
             </AppText>
@@ -59,6 +71,15 @@ export function KeyHeatmap() {
       )}
     </Card>
   );
+}
+
+/** "em 3 horas", "amanhã", "em 5 dias": quando uma letra volta. */
+function whenText(ms: number): string {
+  const hours = Math.round(ms / 3_600_000);
+  if (hours < 1) return 'em instantes';
+  if (hours < 24) return `em ${hours} ${hours === 1 ? 'hora' : 'horas'}`;
+  const days = Math.round(hours / 24);
+  return days === 1 ? 'amanhã' : `em ${days} dias`;
 }
 
 function Stat({ label, value }: { label: string; value: string }) {

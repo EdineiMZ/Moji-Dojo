@@ -17,6 +17,8 @@ import {
   type ExtraPhrase,
   type PracticeItem,
 } from './practice';
+import { useNow } from '@/hooks/useNow';
+import { dueChars } from './keySchedule';
 import { weakChars } from './typingStats';
 import { useTypingTracker } from './useTypingTracker';
 
@@ -39,7 +41,10 @@ export function TrainSession({ mode, extras }: TrainSessionProps) {
   const [cpm, setCpm] = useState<number | null>(null);
 
   const pool = useMemo(() => buildPracticePool(extras), [extras]);
-  const weak = useMemo(() => new Set(weakChars(typing, 6)), [typing]);
+  // As letras vencidas na revisão espaçada vêm primeiro; sem nenhuma vencida, as que a pessoa mais erra.
+  const now = useNow();
+  const due = useMemo(() => dueChars(typing, now, 6), [typing, now]);
+  const weak = useMemo(() => new Set(due.length > 0 ? due : weakChars(typing, 6)), [typing, due]);
   const source = useMemo(() => (mode === 'level' ? itemsOfLevel(pool, level) : mode === 'ai' ? pool.filter((i) => i.source === 'ai') : pool), [pool, mode, level]);
   const [item, setItem] = useState<PracticeItem | null>(() => pickPractice(source, Math.random, mode === 'weak' ? { weak } : {}));
   const tracker = useTypingTracker(mode === 'level' ? level : 0);
@@ -106,7 +111,7 @@ export function TrainSession({ mode, extras }: TrainSessionProps) {
         <AppText color="muted">Treine com as frases que a IA criou. Elas ficam guardadas no aparelho e funcionam sem internet.</AppText>
       ) : weak.size > 0 ? (
         <AppText color="muted">
-          Letras em que você mais erra: <Bold>{[...weak].join(' ')}</Bold>. Os itens abaixo usam essas letras.
+          {due.length > 0 ? 'Letras para rever agora' : 'Letras em que você mais erra'}: <Bold>{[...weak].join(' ')}</Bold>. Os itens abaixo usam essas letras.
         </AppText>
       ) : (
         <AppText color="muted">Você ainda não errou nenhuma letra. Treine nos níveis e volte aqui: este modo escolhe o que você mais precisa treinar.</AppText>

@@ -4,6 +4,16 @@
 > conteúdo escrito por IA por um falante**. A licença do código está em `LICENSE`, na raiz, e as licenças de terceiros estão
 > resumidas em `NOTICE.md`; este arquivo traz o detalhe de cada fonte.
 
+## Lista JLPT N4 (`n4.ts`, gerado em `scripts/vocab-n4/`)
+
+- **Origem direta e licença:** a mesma da lista N5, abaixo: projeto *open-anki-jlpt-decks* (licença MIT), arquivo `src/n4.csv`, com dados das
+  listas de Jonathan Waller (tanos.co.uk), sob CC BY (crédito em Ajustes → Créditos e licenças).
+- **Alterações feitas neste projeto:** as mesmas do N5 (formas alternativas reduzidas à primeira, "～" e "(する)" removidos, repetidas
+  descartadas); descartadas também as palavras que já estão no N5 ou nos exemplos dos kana e dos kanji, os sufixos e uma entrada com erro
+  de digitação da lista. O significado em português foi escrito por IA a partir do significado em inglês da lista; **ainda não foi revisado
+  por um falante**. O acento vem do Kanjium e a classe, do JMdict, como no N5. Esta lista não tem a ordem do Genki: as palavras
+  aparecem na ordem da lista.
+
 ## Lista JLPT N5 (`n5.ts`, gerado em `scripts/vocab-n5/`)
 
 - **Origem direta:** projeto *open-anki-jlpt-decks*, arquivo `src/n5.csv`

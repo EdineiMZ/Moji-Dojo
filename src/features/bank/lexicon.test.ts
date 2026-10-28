@@ -20,7 +20,7 @@ describe('segment', () => {
   });
 
   it('devolve null quando algum pedaço não está no léxico', () => {
-    expect(segment('彼は政治家です')).toBeNull();
+    expect(segment('彼は弁護士です')).toBeNull();
     expect(segment('abc')).toBeNull();
   });
 

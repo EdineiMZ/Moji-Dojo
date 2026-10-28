@@ -5,9 +5,10 @@ import {
   DAY_MS,
   learnItems,
   shouldApplyReviewAnswer,
-  intervalFactor,
+  boxFor,
   isLeech,
   upcomingReviews,
+  type SrsEntry,
   type SrsState,
 } from './srs';
 
@@ -46,29 +47,88 @@ describe('boostSkippedItems', () => {
   });
 });
 
-describe('answerReview', () => {
-  const start = { b: 1, due: NOW };
-
-  it('acerto de primeira sobe a caixa e usa o intervalo 1, 3, 7, 14, 30, 60 dias', () => {
-    const days = [3, 7, 14, 30, 60]; // caixas 2 a 6
-    let entry = start;
-    for (const d of days) {
-      entry = answerReview(entry, true, false, NOW);
-      expect(entry.due).toBe(NOW + d * DAY_MS);
+describe('answerReview (FSRS)', () => {
+  /** Responde de primeira, no dia em que vence, `n` vezes seguidas. */
+  const streak = (n: number) => {
+    let entry: SrsEntry = { b: 1, due: NOW };
+    let at = NOW;
+    const dues: number[] = [];
+    for (let i = 0; i < n; i++) {
+      entry = answerReview(entry, true, false, at);
+      dues.push(Math.round((entry.due - at) / DAY_MS));
+      at = entry.due;
     }
+    return { entry, dues };
+  };
+
+  it('acertos seguidos, no dia em que vencem, espaçam cada vez mais', () => {
+    const { dues } = streak(5);
+    for (let i = 1; i < dues.length; i++) expect(dues[i]!).toBeGreaterThan(dues[i - 1]!);
+    expect(dues[0]).toBe(3);
+  });
+
+  it('a caixa acompanha o intervalo e nunca passa de 6', () => {
+    const { entry } = streak(14);
     expect(entry.b).toBe(6);
+    expect(boxFor(1)).toBe(1);
+    expect(boxFor(3)).toBe(2);
+    expect(boxFor(7)).toBe(3);
+    expect(boxFor(14)).toBe(4);
+    expect(boxFor(30)).toBe(5);
+    expect(boxFor(400)).toBe(6);
   });
 
-  it('na última caixa continua em 60 dias', () => {
-    expect(answerReview({ b: 6, due: NOW }, true, false, NOW)).toEqual({ b: 6, due: NOW + 60 * DAY_MS });
+  it('o intervalo tem um teto de um ano', () => {
+    const { dues } = streak(40);
+    expect(Math.max(...dues)).toBeLessThanOrEqual(365);
   });
 
-  it('erro volta para a caixa 1 e vence agora', () => {
-    expect(answerReview({ b: 5, due: NOW }, false, false, NOW)).toEqual({ b: 1, due: NOW, l: 1 });
+  it('erro volta para a caixa 1, vence agora e guarda o esquecimento', () => {
+    const next = answerReview({ b: 5, due: NOW }, false, false, NOW);
+    expect(next).toMatchObject({ b: 1, due: NOW, l: 1, t: NOW });
+    expect(next.s).toBeGreaterThan(0);
   });
 
-  it('acerto depois de errar na sessão: caixa 1, vence amanhã', () => {
-    expect(answerReview({ b: 5, due: NOW }, true, true, NOW)).toEqual({ b: 1, due: NOW + DAY_MS, l: 1 });
+  it('acerto depois de errar na sessão vence em pelo menos um dia e em poucos', () => {
+    const wrong = answerReview({ b: 5, due: NOW }, false, false, NOW);
+    const next = answerReview(wrong, true, true, NOW);
+    expect(next.due - NOW).toBeGreaterThanOrEqual(DAY_MS);
+    expect(next.b).toBeLessThanOrEqual(2);
+    expect(next.l).toBe(2);
+  });
+
+  it('errar deixa o cartão mais difícil e acertar de primeira, menos', () => {
+    const base = answerReview({ b: 4, due: NOW }, true, false, NOW);
+    const hard = answerReview(base, false, false, base.due);
+    const easy = answerReview(base, true, false, base.due);
+    expect(hard.d!).toBeGreaterThan(base.d!);
+    expect(easy.d!).toBeLessThanOrEqual(base.d!);
+  });
+
+  it('o cartão difícil é espaçado menos que o fácil', () => {
+    const easy = { b: 3, due: NOW, s: 10, d: 2, t: NOW - 10 * DAY_MS };
+    const hard = { b: 3, due: NOW, s: 10, d: 9, t: NOW - 10 * DAY_MS };
+    expect(answerReview(easy, true, false, NOW).due).toBeGreaterThan(answerReview(hard, true, false, NOW).due);
+  });
+
+  it('revisar atrasado rende um intervalo maior que revisar em dia', () => {
+    const card = { b: 3, due: NOW, s: 10, d: 5, t: NOW - 10 * DAY_MS };
+    const onTime = answerReview(card, true, false, NOW);
+    const late = answerReview(card, true, false, NOW + 20 * DAY_MS);
+    expect((late.due - (NOW + 20 * DAY_MS))).toBeGreaterThan(onTime.due - NOW);
+  });
+
+  it('um cartão do agendamento antigo (só caixa e data) segue funcionando', () => {
+    const next = answerReview({ b: 4, due: NOW }, true, false, NOW);
+    expect(next.s).toBeGreaterThan(14);
+    expect(next.b).toBeGreaterThanOrEqual(4);
+    expect(next.t).toBe(NOW);
+  });
+
+  it('na revisão do mesmo dia o espaçamento mal muda', () => {
+    const first = answerReview({ b: 3, due: NOW }, true, false, NOW);
+    const again = answerReview(first, true, false, NOW + 60_000);
+    expect(again.s!).toBeLessThanOrEqual(first.s! * 1.5);
   });
 });
 
@@ -123,20 +183,20 @@ describe('upcomingReviews', () => {
 });
 
 describe('esquecimentos e itens teimosos', () => {
-  it('cada esquecimento encolhe o intervalo em 10%, até 40%', () => {
-    expect([0, 1, 2, 4, 9].map(intervalFactor)).toEqual([1, 0.9, 0.8, 0.6, 0.6]);
-    const forgetful = answerReview({ b: 4, due: NOW, l: 4 }, true, false, NOW); // caixa 5: 30 dias x 0,6
-    expect(forgetful.due).toBe(NOW + 18 * DAY_MS);
-  });
-
   it('chegar à caixa firme sem tropeçar perdoa um esquecimento', () => {
-    expect(answerReview({ b: 2, due: NOW, l: 2 }, true, false, NOW).l).toBe(1);
-    expect(answerReview({ b: 2, due: NOW, l: 1 }, true, false, NOW).l).toBeUndefined();
+    expect(answerReview({ b: 3, due: NOW, l: 2 }, true, false, NOW).l).toBe(1);
+    expect(answerReview({ b: 3, due: NOW, l: 1 }, true, false, NOW).l).toBeUndefined();
   });
 
   it('teimoso: 4 esquecimentos e ainda nas caixas 1 e 2', () => {
     expect(isLeech({ b: 1, due: NOW, l: 4 })).toBe(true);
     expect(isLeech({ b: 3, due: NOW, l: 4 })).toBe(false);
     expect(isLeech({ b: 1, due: NOW, l: 3 })).toBe(false);
+  });
+
+  it('quem esquece muito volta mais cedo que quem nunca esqueceu', () => {
+    const calm = answerReview({ b: 4, due: NOW }, true, false, NOW);
+    const forgetful = answerReview({ b: 4, due: NOW, l: 6 }, true, false, NOW);
+    expect(forgetful.due).toBeLessThan(calm.due);
   });
 });

@@ -46,13 +46,15 @@ describe('learnWords e recordVocabAnswer', () => {
     const key = cardKey(kana.id, 'jm');
 
     store.getState().recordVocabAnswer(key, true, true, NOW);
-    expect(store.getState().vocab[key]).toEqual({ b: 2, due: NOW + 3 * DAY_MS });
+    expect(store.getState().vocab[key]!.due).toBeGreaterThanOrEqual(NOW + 3 * DAY_MS);
+    expect(store.getState().vocab[key]!.b).toBeGreaterThanOrEqual(2);
 
     store.getState().recordVocabAnswer(key, false, true, NOW);
-    expect(store.getState().vocab[key]).toEqual({ b: 1, due: NOW, l: 1 });
+    expect(store.getState().vocab[key]).toMatchObject({ b: 1, due: NOW, l: 1 });
 
     store.getState().recordVocabAnswer(key, true, false, NOW);
-    expect(store.getState().vocab[key]).toEqual({ b: 1, due: NOW + DAY_MS, l: 2 });
+    expect(store.getState().vocab[key]).toMatchObject({ b: 1, l: 2 });
+    expect(store.getState().vocab[key]!.due).toBeGreaterThanOrEqual(NOW + DAY_MS);
   });
 
   it('conta como atividade do dia (respostas e acertos), sem inflar os caracteres aprendidos', () => {

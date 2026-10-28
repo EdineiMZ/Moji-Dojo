@@ -96,7 +96,7 @@ describe('progresso da conjugação', () => {
     store.getState().recordConjAnswer('飲む|te', true, true, NOW);
     expect(store.getState().conj['飲む|te']?.b).toBe(2);
     store.getState().recordConjAnswer('飲む|te', false, true, NOW);
-    expect(store.getState().conj['飲む|te']).toEqual({ b: 1, due: NOW, l: 1 });
+    expect(store.getState().conj['飲む|te']).toMatchObject({ b: 1, due: NOW, l: 1 });
     expect(store.getState().days).toHaveLength(1);
     expect(store.getState().history).not.toEqual({});
   });

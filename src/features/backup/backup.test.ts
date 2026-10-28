@@ -128,3 +128,22 @@ describe('parseBackup: erros', () => {
     expect(errorOf(htmlCode({ srs: { Z: { b: 1, due: 1 } } }))).toBe('empty');
   });
 });
+
+describe('parseBackup: memória do FSRS', () => {
+  const withMemory = (entry: Record<string, unknown>) => {
+    const result = parseBackup(htmlCode({ ...htmlStore, srs: { あ: { b: 3, due: 1_700_000_000_000, ...entry } } }));
+    if (!result.ok) throw new Error(`esperava sucesso, veio ${result.error}`);
+    return result.snapshot.srs['あ'];
+  };
+
+  it('guarda estabilidade, dificuldade e a última revisão quando são plausíveis', () => {
+    expect(withMemory({ s: 12.5, d: 4.2, t: 1_699_000_000_000 })).toEqual({ b: 3, due: 1_700_000_000_000, s: 12.5, d: 4.2, t: 1_699_000_000_000 });
+  });
+
+  it('descarta a memória inteira se algum valor é absurdo, e o cartão volta ao agendamento pela caixa', () => {
+    expect(withMemory({ s: -1, d: 4, t: 5 })).toEqual({ b: 3, due: 1_700_000_000_000 });
+    expect(withMemory({ s: 5, d: 99, t: 5 })).toEqual({ b: 3, due: 1_700_000_000_000 });
+    expect(withMemory({ s: 5, d: 4 })).toEqual({ b: 3, due: 1_700_000_000_000 });
+    expect(withMemory({ s: 'x', d: 4, t: 5 })).toEqual({ b: 3, due: 1_700_000_000_000 });
+  });
+});

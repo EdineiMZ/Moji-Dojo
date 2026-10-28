@@ -2,6 +2,14 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.11.0] - 2026-10-28
+
+Revisão espaçada com FSRS e o vocabulário do N4.
+
+- **FSRS no lugar das caixas:** o agendamento agora usa o FSRS (versão 5, pesos padrão): cada cartão tem estabilidade e dificuldade, e a revisão volta quando a chance de lembrar cai a 90%. Revisar antes ou depois do dia rende o intervalo certo, e cartão difícil volta mais cedo. A "caixa" (1 a 6) continua como estágio do cartão: firme, maduro e teimoso funcionam como antes. Cartões antigos seguem de onde estavam (a estabilidade parte do intervalo da caixa), e a memória do FSRS entra no backup. Os pesos são os do algoritmo, ainda sem ajuste aos seus dados.
+- **Vocabulário do N4:** 629 palavras novas (lista JLPT N4 aberta, mesma fonte do N5), com leitura, significado em português, tom (Kanjium) e classe (JMdict), em grupos "N4: ...". Os significados foram escritos por IA e ainda não foram revisados por um falante. As palavras novas vêm depois das do N5.
+- **Metas por nível:** o N4 ganhou a meta "Palavras do N4 aprendidas", separada da do N5.
+
 ## [2.10.0] - 2026-10-28
 
 Vozes de anime: mais controle e mais fácil de achar.

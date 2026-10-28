@@ -40,7 +40,7 @@ describe('buildDeck', () => {
   it('"Palavras que estudo" só traz as que já têm cartões, e "novas" só as que não têm', () => {
     const studied = buildDeck('words', sources(), { direction: 'jp-pt', size: 1000 });
     expect(studied.map((c) => c.id)).toEqual([`${first.id}|jp-pt`]);
-    const fresh = buildDeck('new-words', sources(), { direction: 'jp-pt', size: 1000 });
+    const fresh = buildDeck('new-words', sources(), { direction: 'jp-pt', size: VOCAB.length });
     expect(fresh.length).toBe(VOCAB.length - 1);
     expect(fresh.some((c) => c.id.startsWith(`${first.id}|`))).toBe(false);
   });

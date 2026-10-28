@@ -22,9 +22,18 @@ import { MAX_NOTE_LENGTH, type ProgressExtras, type ShadowRating } from '@/store
  *   então um código antigo continua valendo (sem o campo, vale vazio).
  */
 /** Entrada de revisão lida do backup: caixa dentro dos limites e, se houver, o número de esquecimentos. */
-function srsEntry(b: number, due: number, lapses: unknown): SrsEntry {
+function srsEntry(b: number, due: number, lapses: unknown, fsrs?: Record<string, unknown>): SrsEntry {
   const l = isCount(lapses) ? Math.min(Math.round(lapses), 99) : 0;
-  return { b: Math.min(Math.max(Math.round(b), 1), LAST_BOX), due, ...(l > 0 ? { l } : {}) };
+  // Os campos do FSRS (estabilidade, dificuldade e a última revisão) só entram se forem números plausíveis; senão o cartão
+  // volta ao agendamento pela caixa, como num backup antigo.
+  const s = fsrs?.s;
+  const d = fsrs?.d;
+  const t = fsrs?.t;
+  const memory =
+    typeof s === 'number' && Number.isFinite(s) && s > 0 && s <= 36500 && typeof d === 'number' && Number.isFinite(d) && d >= 1 && d <= 10 && isCount(t)
+      ? { s, d, t }
+      : {};
+  return { b: Math.min(Math.max(Math.round(b), 1), LAST_BOX), due, ...(l > 0 ? { l } : {}), ...memory };
 }
 
 export const BACKUP_PREFIX = 'NDJ1:';
@@ -198,7 +207,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
       ignored++;
       continue;
     }
-    vocab[key] = srsEntry(v.b, v.due, v.l);
+    vocab[key] = srsEntry(v.b, v.due, v.l, v);
   }
 
   const conj: Record<string, SrsEntry> = {};
@@ -207,7 +216,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
       ignored++;
       continue;
     }
-    conj[key] = srsEntry(v.b, v.due, v.l);
+    conj[key] = srsEntry(v.b, v.due, v.l, v);
   }
 
   const particles: Record<string, SrsEntry> = {};
@@ -216,7 +225,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
       ignored++;
       continue;
     }
-    particles[key] = srsEntry(v.b, v.due, v.l);
+    particles[key] = srsEntry(v.b, v.due, v.l, v);
   }
 
   const wordNotes: Record<string, string> = {};
@@ -287,7 +296,7 @@ export function parseBackup(code: string): BackupParseResult {
         ignored++;
         continue;
       }
-      srs[char] = srsEntry(v.b, v.due, v.l);
+      srs[char] = srsEntry(v.b, v.due, v.l, v);
     }
 
     const knownLessons = new Set(Object.values(LESSONS).flatMap((list) => list.map((l) => l.id)));

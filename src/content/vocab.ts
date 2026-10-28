@@ -2,8 +2,9 @@ import { KANA } from '@/data/kana';
 import { KANA_EXAMPLES, KANJI_EXAMPLES } from '@/data/examples';
 import { KANJI, KANJI_CATEGORIES } from '@/data/kanji';
 import { SIMULATOR_WORDS } from '@/data/keyboard';
+import { N4_WORDS } from './n4';
 import { N5_WORDS } from './n5';
-import type { VocabKind, VocabWord } from './types';
+import type { SourceWord, VocabKind, VocabWord } from './types';
 
 const KANJI_CHAR = /[一-鿿]/u;
 
@@ -81,8 +82,13 @@ const KATAKANA = /[ァ-ヺ]/u;
  * Lista JLPT N5 (scripts/vocab-n5/, gerada em ./n5.ts): leitura e palavra vêm da lista; o significado é a
  * tradução para o português. Fonte e licença em src/content/LICENSE.md.
  */
-export function buildN5Vocabulary(): VocabWord[] {
-  return N5_WORDS.map((w): VocabWord => {
+export const buildN5Vocabulary = (): VocabWord[] => fromSource(N5_WORDS);
+
+/** Lista JLPT N4 (scripts/vocab-n4/, gerada em ./n4.ts): mesmo formato do N5, em grupos com o prefixo "N4:". */
+export const buildN4Vocabulary = (): VocabWord[] => fromSource(N4_WORDS);
+
+function fromSource(words: readonly SourceWord[]): VocabWord[] {
+  return words.map((w): VocabWord => {
     const kanji = [...w.jp].filter((c) => KANJI_CHAR.test(c));
     const kind: VocabKind = kanji.length > 0 ? 'kanji' : KATAKANA.test(w.jp) ? 'kata' : 'hira';
     return { id: w.jp, jp: w.jp, reading: w.reading, meaning: w.meaning, kind, group: w.group, kanji };

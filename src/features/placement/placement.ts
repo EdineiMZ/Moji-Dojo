@@ -57,7 +57,8 @@ export function placeKnown(state: SrsState, keys: readonly string[], now: number
   const next: Record<string, SrsEntry> = { ...state };
   for (const key of keys) {
     const entry = next[key];
-    if (!entry || entry.b < PLACED_BOX) next[key] = { ...(entry ?? {}), b: PLACED_BOX, due: now + 7 * DAY_MS };
+    // A memória do FSRS (s, d, t) fica de fora: o cartão recomeça da caixa nova.
+    if (!entry || entry.b < PLACED_BOX) next[key] = { b: PLACED_BOX, due: now + 7 * DAY_MS, ...(entry?.l ? { l: entry.l } : {}) };
   }
   return next;
 }

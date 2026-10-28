@@ -64,19 +64,21 @@ describe('recordReviewAnswer', () => {
   it('acerto de primeira sobe a caixa', () => {
     const store = withEntry();
     store.getState().recordReviewAnswer('あ', true, true, false);
-    expect(store.getState().srs['あ']).toEqual({ b: 3, due: NOW + 7 * DAY_MS });
+    expect(store.getState().srs['あ']!.b).toBeGreaterThanOrEqual(3);
+    expect(store.getState().srs['あ']!.due).toBeGreaterThanOrEqual(NOW + 7 * DAY_MS);
   });
 
   it('erro volta à caixa 1 e fica vencido agora', () => {
     const store = withEntry();
     store.getState().recordReviewAnswer('あ', false, true, false);
-    expect(store.getState().srs['あ']).toEqual({ b: 1, due: NOW, l: 1 });
+    expect(store.getState().srs['あ']).toMatchObject({ b: 1, due: NOW, l: 1 });
   });
 
   it('acerto numa repetição vence amanhã', () => {
     const store = withEntry();
     store.getState().recordReviewAnswer('あ', true, false, false);
-    expect(store.getState().srs['あ']).toEqual({ b: 1, due: NOW + DAY_MS, l: 1 });
+    expect(store.getState().srs['あ']).toMatchObject({ b: 1, l: 1 });
+    expect(store.getState().srs['あ']!.due).toBeGreaterThanOrEqual(NOW + DAY_MS);
   });
 
   it('na revisão extra, acertar de primeira não reagenda, mas conta nas estatísticas', () => {

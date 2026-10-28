@@ -1,0 +1,657 @@
+1|V|pisar em
+2|-|
+3|E|de repente; direto
+4|V|roubar
+5|E|geralmente; na maioria das vezes
+6|E|finalmente; por fim
+7|L|gasolina
+8|V|soar; tocar (sino, telefone)
+9|E|com firmeza; direito
+10|V|viver; estar vivo
+11|A|amargo
+12|V|ferver; esquentar
+13|E|opinião; ideia
+14|E|como eu pensava; afinal
+15|L|mangá; história em quadrinhos
+16|L|aparelho de som
+17|P|medicina (ciência)
+18|L|texto; livro didático
+19|-|
+20|V|quebrar (algo comprido); dobrar
+21|-|
+22|V|perguntar (humilde)
+23|V|ser ouvido; dar para ouvir
+24|P|eu (usado por homens)
+25|E|sem falta; com certeza
+26|V|quebrar (algo); estragar
+27|V|ficar bravo; dar bronca
+28|L|barbearia
+29|X|moto
+30|P|exercício físico; fazer exercício
+31|V|parar (chuva, vento); cessar
+32|E|se (condição)
+33|D|frente; superfície; lado de fora
+34|P|universitário
+35|P|motorista (profissão)
+36|P|preparar a lição antes da aula
+37|E|preocupação; preocupar-se
+38|E|diferente; à parte
+39|E|extremamente; muito
+40|L|casa (de outra pessoa; educado)
+41|A|macio; mole (textura)
+42|V|pegar do chão; achar
+43|E|ser; estar (muito educado)
+44|E|ânimo; espírito; atenção
+45|V|comparar
+46|E|quase; na maior parte
+47|E|intenção; plano
+48|L|subúrbio; arredores da cidade
+49|A|inútil; sem jeito; não pode
+50|L|seção de vendas; balcão (de loja)
+51|T|Ano-Novo
+52|E|regra; regulamento
+53|E|sim (informal); tá
+54|P|pronúncia
+55|V|assar; grelhar; queimar
+56|L|terraço (no telhado)
+57|E|falta de educação; com licença
+58|L|lixo
+59|L|África
+60|E|ponto; nota
+61|E|com todo o empenho
+62|T|desta vez; próxima vez; em breve
+63|E|oportunidade; chance
+64|V|construir
+65|A|complicado
+66|P|ele; namorado
+67|V|ir; vir; estar (honorífico)
+68|L|futon (colchão japonês)
+69|A|importante; sério
+70|L|presente
+71|P|ladrão
+72|-|
+73|E|cuidado; atenção; aviso
+74|C|tufão
+75|-|
+76|-|
+77|-|
+78|V|passar por; atravessar
+79|V|passar do limite; exagerar
+80|L|relatório; trabalho escrito
+81|C|folha
+82|A|necessário
+83|P|chefe de seção
+84|C|terremoto
+85|E|e então; nesse caso
+86|V|parar; desistir de
+87|L|vidro
+88|P|faculdade; departamento
+89|A|rigoroso; severo
+90|L|escada rolante
+91|P|população
+93|L|seda
+94|E|nem um pouco (com negativo)
+95|A|fundo; profundo
+96|V|quebrar-se; estragar
+97|V|balançar; tremer
+98|V|cair
+99|E|o máximo possível
+100|A|triste
+101|P|escola de ensino fundamental (anos finais)
+102|L|gás
+103|V|rezar; desejar
+104|A|próspero; popular; ativo
+105|P|trabalho temporário; bico
+106|V|acordar alguém; levantar
+107|V|fazer (muito humilde)
+108|V|morder; mastigar
+109|P|bebê
+110|A|raso; superficial
+111|E|mentira
+112|L|romance; conto
+113|P|pais; pai ou mãe
+114|E|além disso; e ainda por cima
+115|L|Ocidente
+116|V|pensar; achar
+117|P|trabalho meio período
+118|T|época; era
+119|V|dizer (humilde)
+120|-|
+121|P|comparecimento; presença
+122|-|
+123|V|receber; ir buscar; acolher
+124|V|tocar; encostar
+125|-|
+126|P|presidente de empresa
+127|L|zoológico
+128|V|pegar; prender
+129|T|estação do ano
+130|V|passar em; dar uma parada
+131|V|ser decidido; ficar definido
+132|-|
+133|V|fugir; escapar
+134|E|por isso; então
+135|E|pena; lamentável
+136|L|tatame
+137|A|educado; cuidadoso
+138|P|geografia
+139|T|agora há pouco
+140|A|assustador
+141|V|embrulhar; envolver
+142|E|se possível; o mais possível
+143|E|impossível; forçado
+144|F|sanduíche
+145|L|sala de reuniões
+146|R|mercadoria; artigo
+147|L|boneca
+148|E|uso; aproveitamento
+149|V|enfeitar; decorar
+151|A|envergonhado; vergonhoso
+152|-|
+153|E|assunto a resolver; compromisso
+154|L|prédio
+155|P|brigar
+156|V|esforçar-se; dar o melhor de si
+157|V|jogar; arremessar
+158|L|defeito; pane
+159|C|força
+160|V|prestar (exame); receber
+161|E|sensação; humor; disposição
+162|V|errar; confundir
+163|E|desse tipo; assim
+164|C|estrela
+165|E|caso; situação
+166|E|enfim; até que enfim
+167|V|ser suficiente; bastar
+168|V|realizar; conduzir (formal)
+169|F|uva
+170|V|acabar; sumir; perder-se
+171|E|preparação; preparar
+172|L|mundo
+173|L|endereço
+174|T|daqui a dois meses
+175|C|bosque
+176|N|dobro; vezes
+177|V|emagrecer
+178|L|linha; traço
+179|L|guerra
+180|V|decidir
+181|V|pesquisar; verificar; investigar
+182|T|dormir até tarde; perder a hora
+183|P|papai
+184|V|brilhar
+185|P|marido
+186|C|nuvem
+187|C|ladeira
+188|V|acabar fazendo; terminar de
+189|X|campo de aviação; aeroporto
+190|L|judô
+191|E|nunca; de jeito nenhum
+192|L|escritório
+193|E|contato; comunicação
+194|P|escola primária
+195|P|cliente; visita
+196|T|antigamente; tempos antigos
+197|A|bonito; belo
+198|V|jogar fora
+199|V|fazer (honorífico)
+200|E|coisa; fato
+201|E|rapidamente; cada vez mais rápido
+202|L|partida; jogo; competição
+203|A|adequado; aleatório; qualquer
+204|A|maravilhoso; esplêndido
+205|L|museu de arte
+206|P|gramática
+207|T|fim
+208|L|parede
+209|T|uma vez
+210|E|agradecimento; presente de gratidão
+211|A|gentil; bondoso
+212|V|avisar; informar
+213|P|dentista
+214|A|entusiasmado; dedicado
+215|V|começar
+216|V|receber
+217|V|chorar
+218|V|melhorar; curar-se
+219|C|febre
+220|T|festa tradicional; matsuri
+221|L|água encanada; rede de água
+222|C|cheiro
+223|L|sino; campainha
+224|P|bebê de colo
+225|A|estranho; engraçado
+226|L|acidente
+227|A|esquisito; estranho
+228|L|dicionário; enciclopédia
+229|V|restar; ficar
+230|V|levantar; erguer; fazer (barulho)
+231|V|dar (a mim); fazer por mim
+233|E|causa; origem
+234|V|surpreender-se; assustar-se
+236|P|avó
+237|L|local; sítio
+238|E|resposta
+239|E|claro; é claro
+240|V|pôr de molho; conservar em conserva
+241|L|recepção; balcão de atendimento
+242|D|dentro; interior
+243|L|tela
+244|V|aumentar
+245|E|ou; ou então
+246|P|ferimento; machucar-se
+247|E|menos de; abaixo de
+248|V|escolher
+249|E|apenas; só; acabou de
+250|C|coração; mente
+251|V|começar a (fazer)
+252|F|salada
+253|V|entregar; levar
+254|E|cumprimento; cumprimentar
+255|C|paisagem
+256|E|se bem me lembro; certo
+257|F|bife
+258|F|alimentos; mantimentos
+259|C|floresta
+260|E|dentro de; não mais que
+261|E|plano; programação
+262|R|sobretudo; excessivo
+263|V|secar
+264|C|pedra
+265|V|lembrar-se
+266|V|dançar
+267|A|miúdo; detalhado
+268|V|pintar; passar (tinta)
+269|P|marido (de outra pessoa)
+270|A|raro; incomum
+271|E|assunto; coisa a fazer
+272|P|funcionário público
+273|P|filha (de outra pessoa)
+274|E|preparação; preparativos
+275|V|procurar
+276|L|forma; formato
+277|X|dirigir; condução
+278|E|completamente; totalmente
+279|P|locutor; apresentador
+280|L|lembrança de viagem; suvenir
+281|L|borracha (de apagar)
+282|L|pousada japonesa
+283|C|costa; litoral
+284|A|solitário; triste
+285|C|fogo
+286|V|criar; educar
+287|F|missô (pasta de soja)
+288|E|comemoração; presente de celebração
+289|X|veículo; meio de transporte
+290|E|informação; guiar; conduzir
+291|V|frequentar; ir e voltar
+292|V|levar (uma pessoa)
+293|E|técnica; tecnologia
+294|C|passarinho
+295|L|pensão; quarto alugado
+296|-|
+297|E|convite; convidar
+298|L|espelho
+299|E|deve ser; é de se esperar
+300|L|lei
+301|V|avançar; progredir
+302|V|desfrutar; divertir-se
+303|E|comércio exterior
+304|E|oposição; ser contra
+305|V|estar (muito humilde)
+306|V|dizer (muito humilde)
+307|L|prova; exame
+308|A|sério; dedicado
+310|P|atendente de loja
+311|V|hospedar-se; pernoitar
+312|A|bom; certo (educado)
+313|T|hoje à noite
+314|L|troco
+315|E|conferir; checar
+316|E|conversa; conversação
+317|C|ar; clima; atmosfera
+318|E|tráfego; transporte
+319|L|processador de texto
+320|V|alegrar-se
+321|X|trem expresso
+322|P|todos (formal)
+323|F|sabor; gosto
+324|-|
+325|R|luvas
+326|P|diretor de escola
+327|F|banquete; refeição oferecida
+328|E|dança
+329|E|interesse
+330|V|mudar de casa
+331|L|ar-condicionado (refrigeração)
+332|E|conveniência; circunstâncias
+333|E|reserva; hesitação; abster-se
+334|V|falecer
+335|P|ciência
+336|E|claramente; com nitidez
+337|V|dar (humilde)
+338|E|sentimento; sensação
+339|P|avô
+340|L|porto
+341|E|reserva
+342|A|incrível; impressionante
+343|P|ingresso na escola; matrícula
+344|V|arrumar; guardar
+345|V|copiar; fotografar
+346|-|
+347|P|gerente de departamento
+348|L|incêndio
+349|V|somar; adicionar
+350|L|igreja
+351|P|eles
+352|E|cheio; um copo; muito
+353|L|América; Estados Unidos
+354|P|homem (formal)
+355|E|razão; motivo
+356|E|produção; produzir
+357|R|quimono
+358|L|brinquedo
+359|V|escurecer; terminar (dia)
+360|V|pescar
+361|-|
+362|V|bater; golpear
+363|E|assim (aquele tipo)
+364|V|pedir desculpas
+365|T|durante o dia
+366|P|educação
+367|P|mulher (formal)
+368|F|arroz (cru)
+369|E|atrapalho; incômodo
+370|E|internacional
+371|D|canto
+372|V|visitar; perguntar; ouvir (humilde)
+373|T|daqui a duas semanas
+374|E|sonho
+375|C|garganta
+376|T|ultimamente; recentemente
+377|D|ao redor; arredores
+378|P|história
+379|E|inconveniência
+380|C|sangue
+381|V|continuar a (fazer)
+382|C|pelo; cabelo (de corpo ou animal)
+383|A|terrível; cruel
+384|E|por exemplo
+385|E|bastante; muito
+386|E|bastante; muito (extremamente)
+387|E|fácil de (fazer)
+388|L|armário embutido (futon)
+389|L|lâmpada elétrica
+390|V|repreender
+391|R|sandália
+392|V|assustar-se
+393|A|gostoso; habilidoso; sortudo
+394|V|mudar; alterar
+395|L|auditório
+396|P|criança; filho(a)
+397|V|ferver (água)
+398|L|caixa registradora
+399|T|por um tempo
+400|E|especialmente
+401|V|abrir; ficar vago
+402|E|plano; planejar
+403|L|rua; avenida
+404|R|roupa de baixo
+405|E|economia; finanças
+406|E|assim; deste modo
+407|E|com certeza; sem falta
+408|D|verso; lado de trás
+409|E|por causa de; para
+410|V|estar; ir; vir (honorífico)
+411|V|mudar; transformar-se
+412|E|exceto; além de
+413|V|terminar; acabar
+414|F|hambúrguer (bife)
+415|L|cidade
+416|L|gaveta
+417|E|brincadeira; diversão
+418|E|preparativos; preparar-se
+420|V|ser visto; aparecer; chegar (educado)
+421|E|suficiente; bastante
+422|C|som; ruído
+423|E|com certeza; sem dúvida
+424|E|primeiro de tudo; antes de mais nada
+425|D|longe; distante
+426|E|mais ou menos; em geral
+427|V|quebrar; dobrar; ceder; virar (esquina)
+428|A|certo; correto
+429|E|importação
+430|E|resposta; retorno
+431|-|
+432|E|indústria; setor produtivo
+433|V|transmitir; contar
+434|P|rico; pessoa rica
+435|E|explicação
+436|C|ilha
+437|L|ferramenta
+438|V|escorregar; deslizar
+439|E|nesse grau; tanto assim
+440|E|mais de; isso é tudo
+441|E|do jeito que está
+442|X|trem expresso limitado
+443|L|presente; mimo
+444|E|segundo (fonte); conforme
+445|P|esposa (própria)
+446|E|volta; retorno
+447|E|condição; estado de saúde
+448|A|duro; firme; sólido
+449|X|estacionamento
+450|R|terno; tailleur
+451|E|perigo; risco
+452|C|cabelo
+453|L|previsão do tempo
+454|P|ela; namorada
+455|D|espaço; intervalo; entre
+456|P|formatura
+457|E|então; por causa disso
+458|C|galho
+459|P|especialização; especialidade
+460|E|daqui a pouco; já está na hora
+461|V|enviar; mandar
+462|V|dar
+463|V|fazer barulho; agitar-se
+464|V|perguntar; visitar
+465|E|transmissão; transmitir
+466|E|política
+467|P|cidadão
+468|L|fax
+469|V|perder (jogo); ser derrotado
+470|R|anel
+471|L|interior; roça
+472|V|encontrar; descobrir
+473|P|aluno do ensino médio
+474|P|aula expositiva; palestra
+475|E|tanto assim; desse jeito
+476|T|hora do almoço (intervalo)
+477|L|objeto esquecido
+478|V|descer
+479|C|braço
+480|E|razão; motivo; explicação
+481|E|consentimento; ciente
+482|L|diário
+483|P|ensino médio; colégio
+484|V|parecer-se com
+485|V|terminar de (fazer)
+486|L|aquecimento
+487|E|ausência; não estar em casa
+488|E|proporção; relativamente
+489|L|templo budista
+490|V|acostumar-se
+491|E|comum; normal
+492|V|ajudar
+493|E|ah, entendo; de fato
+494|V|dar (a mim; honorífico)
+495|P|filho (próprio)
+496|P|filho (de outra pessoa)
+497|L|local do evento
+498|V|rir; sorrir
+499|V|carregar; transportar
+500|P|literatura
+501|C|luz
+502|E|visita a um doente
+503|L|assento; lugar
+504|-|
+505|E|conhecimento (de outra pessoa; educado)
+506|V|descer; baixar; recuar
+507|L|letra; caractere
+508|L|Ásia
+509|V|elogiar
+511|E|ah
+512|E|o mais; muito mais
+513|V|combinar; encaixar; dar certo
+514|-|
+515|E|final; último
+516|R|preço
+517|E|alta do hospital
+518|L|exposição
+519|E|há quanto tempo; faz tempo
+520|L|cortina
+521|X|trem a vapor
+522|V|atrasar
+523|V|ser encontrado; aparecer
+524|V|comer; beber (honorífico)
+525|V|engordar
+526|E|injeção
+528|-|
+529|E|começo; primeiro
+530|-|
+531|E|tranquilidade; alívio
+532|V|ser consertado
+533|V|reunir; juntar
+534|V|consertar; corrigir
+535|V|continuar
+536|P|veterano; colega mais velho
+537|E|combinado; promessa; compromisso
+538|E|cuidar de; cuidado
+539|L|vizinhança
+540|E|futuro
+541|N|cem milhões
+542|P|matemática
+543|E|cultura
+544|V|pagar
+545|E|costume; hábito
+546|V|queimar; assar
+547|P|você (informal, para homens)
+548|V|esfriar
+549|V|acender; ligar
+550|T|outro dia; recentemente
+551|E|aparência; figura
+554|V|deixar cair; perder
+555|-|
+556|E|partida; partir
+557|E|ver (humilde)
+558|V|quebrar-se; rachar
+559|C|costas
+560|L|empresa de jornal
+561|V|implicar; fazer bullying
+564|V|dizer (honorífico)
+565|A|com sono
+566|V|molhar-se
+567|V|desabar; cair
+568|L|supermercado
+569|R|acessório
+570|V|pensar; considerar
+571|V|dirigir-se a; ir em direção a
+572|E|liberdade
+573|E|jeito; modo de fazer
+574|C|pescoço
+575|E|grau; medida
+576|E|substituto; em vez de
+577|E|fracasso; erro
+578|E|indústria (manufatura)
+579|V|mudar-se; transferir-se
+580|L|mala
+581|C|barba; bigode
+582|P|sala de professor; laboratório
+583|L|fábrica
+584|E|apresentação
+585|E|mas; embora
+586|X|barco
+587|V|mover-se
+588|-|
+589|L|show; concerto
+590|C|inseto
+591|A|gentil; fácil
+592|L|computador
+593|V|plantar
+594|E|ambos
+595|V|sujar-se
+596|E|natação
+597|E|experiência
+598|V|vencer; ganhar
+599|C|areia
+600|L|polícia; delegacia
+601|V|trocar; substituir
+602|V|apressar-se
+603|A|simples; fácil
+604|V|ir; vir (humilde)
+605|E|nada; de modo nenhum
+606|E|especial
+607|E|revisão (da matéria)
+608|V|chegar a tempo
+609|V|ser útil
+610|E|em breve; já já
+611|D|meio; centro
+612|V|voltar
+613|E|pesquisa; estudo
+614|-|
+615|C|grama; erva
+616|V|estar cheio; lotado
+617|T|ultimamente; hoje em dia
+618|V|visitar
+619|V|baixar; pendurar
+620|-|
+621|E|no caminho; a meio caminho
+622|E|internação (hospital)
+623|V|fazer baldeação
+624|V|separar-se; despedir-se
+625|-|
+626|E|segurança
+627|P|enfermeira
+628|E|passeio turístico
+629|E|consulta; conversar
+630|L|posto de gasolina
+631|L|tênis (esporte)
+632|V|dormir
+633|V|subir; entrar
+634|E|tradução
+635|E|refeição; comer
+636|E|graças a
+637|P|filha
+638|C|água quente
+639|E|competição
+640|E|reunião
+641|C|lago
+642|V|reunir-se
+643|E|difícil de (fazer)
+644|E|vida; viver
+645|L|linha; fio
+646|E|relação; ligação
+647|L|piano
+648|-|
+649|L|programa (de TV, rádio)
+650|E|urgente; repentino; íngreme
+651|L|prateleira
+652|R|algodão
+653|E|exportação
+654|E|tipo; estilo
+655|P|batedor de carteira
+656|A|feliz; alegre
+657|F|álcool
+658|L|suave; software
+659|L|santuário xintoísta
+660|E|bastante; consideravelmente
+661|E|prazer; expectativa
+662|E|hobby; passatempo
+663|L|telegrama
+664|P|esposa (própria; informal)
+665|C|dedo
+666|E|daqui para a frente
+667|E|de vez em quando
+668|E|sociedade
+232|-|

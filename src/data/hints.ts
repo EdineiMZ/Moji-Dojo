@@ -1,4 +1,4 @@
-// Gerado por scripts/extract-data.mjs a partir de "Nihongo Dojo.html". Não edite à mão.
+// Dados-base do app, extraídos do protótipo web original (removido do repositório; está no histórico do git). Agora são mantidos à mão.
 /** Dicas de memorização dos kana (chave = o caractere). */
 export const KANA_MNEMONICS: Readonly<Record<string, string>> = {
   "あ": "Uma cruz com um laço: alguém amarrando a gravata e dizendo \"aaah, apertou!\".",

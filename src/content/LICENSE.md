@@ -146,10 +146,10 @@
   curadoria feita para este app (nenhuma palavra nova).
 - **Pendência:** todas essas fontes são CC BY-SA, então o item 4 de "Antes de publicar" (licença do projeto) vale para elas.
 
-## Vocabulário da especificação (HTML)
+## Vocabulário do protótipo original (HTML)
 
 A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado vêm do protótipo
-`Nihongo Dojo.html` (a especificação do projeto), já presentes em `src/data/`.
+`Nihongo Dojo.html` (a especificação do projeto, removida do repositório em 2026-10-27 e disponível no histórico do git), já presentes em `src/data/`, que passou a ser mantida à mão.
 
 ## Áudio nativo das palavras (Lingua Libre)
 

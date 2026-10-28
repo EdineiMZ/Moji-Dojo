@@ -2,32 +2,19 @@ import { useState } from 'react';
 import { Alert, Linking, StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, ProgressBar } from '@/components';
 import { radii, spacing, useTheme } from '@/theme';
+import { usePreview, previewLabel } from './usePreview';
 import { useVoicevoxStore } from './voicevox';
 import type { VoicePack } from './voicevoxCatalog';
 import { RECOMMENDED_PACK, VOICEVOX_TERMS_URL, formatSize, orderedPacks, packSpeakers, speakerInfo } from './voicevoxPacks';
-import { playSpeakerPreview } from './voicevoxPreview';
 import { VOICE_DESC_PT, romanName, speakerLabel, styleLabel } from './voicevoxText';
 
 /** Um personagem de um arquivo: nome, descrição da voz, estilos, amostra para ouvir e os termos dele. */
 function SpeakerLine({ voice, installed }: { voice: VoicePack['voices'][number]; installed: boolean }) {
   const info = speakerInfo(voice.speaker);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
   const first = voice.styles[0];
+  const { state, error, play } = usePreview(info?.slug ?? '', first?.[0] ?? 0, installed);
 
   if (!info || !first) return <AppText>{voice.speaker}</AppText>;
-
-  const listen = async () => {
-    setError('');
-    setLoading(true);
-    try {
-      await playSpeakerPreview(info.slug, first[0], installed);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Não consegui tocar a amostra.');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <View style={styles.speaker}>
@@ -41,7 +28,7 @@ function SpeakerLine({ voice, installed }: { voice: VoicePack['voices'][number];
         Tons: {voice.styles.map(([, name]) => styleLabel(name)).join(', ')}
       </AppText>
       <View style={styles.actions}>
-        <Button label={loading ? 'Carregando...' : '🔊 Amostra'} variant="soft" onPress={() => void listen()} disabled={loading} style={styles.action} />
+        <Button label={previewLabel(state)} variant="soft" onPress={() => void play()} disabled={state === 'loading'} style={styles.action} />
         <Button label="Termos" variant="ghost" onPress={() => void Linking.openURL(info.termsUrl)} style={styles.action} />
       </View>
       {error ? (
@@ -158,10 +145,10 @@ export function VoicePacks() {
   return (
     <View style={styles.root}>
       <AppText variant="caption" color="muted">
-        VOZES PARA BAIXAR
+        BAIXAR VOZES
       </AppText>
       <AppText variant="caption" color="muted">
-        Cada arquivo tem de 55 a 65 MB: baixe no Wi-Fi. Depois de baixado, funciona sem internet. Ao baixar, você aceita os termos dos personagens do arquivo.
+        Cada arquivo tem de 55 a 65 MB: baixe no Wi-Fi. Depois de baixada, a voz aparece em &ldquo;Minhas vozes&rdquo;, acima, e funciona sem internet. Ao baixar, você aceita os termos dos personagens do arquivo.
         &ldquo;Ouvir amostra&rdquo; toca a voz do aparelho (se já baixada) ou a amostra do site oficial (precisa de internet). Os nomes estão em letras latinas e as
         descrições foram traduzidas do site do VOICEVOX.
       </AppText>

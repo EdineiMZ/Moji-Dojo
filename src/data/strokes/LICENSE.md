@@ -19,9 +19,9 @@ resultado sob a mesma licença (CC BY-SA 3.0 ou uma licença compatível).
 
 ## Alterações feitas (a licença exige indicá-las)
 
-- **Origem imediata:** os dados foram extraídos do protótipo `Nihongo Dojo.html` (na raiz deste repositório),
+- **Origem imediata:** os dados foram extraídos do protótipo web `Nihongo Dojo.html` (que ficava na raiz deste repositório e foi removido em 2026-10-27; continua no histórico do git),
   que declara tê-los obtido do KanjiVG (o crédito aparece no rodapé da página).
-- **O que este projeto fez:** o script `scripts/extract-data.mjs` copiou, para um único arquivo JSON, os caminhos
+- **O que este projeto fez:** o script `scripts/extract-data.mjs` (também removido; está no histórico do git) copiou, para um único arquivo JSON, os caminhos
   SVG de cada traço (`p`) e a posição do número de cada traço (`n`). Ou seja, o **formato** mudou (de SVG para
   JSON); o script não altera os valores.
 - **O que não foi verificado:** estes dados não foram comparados com os arquivos originais do KanjiVG. Se o
@@ -29,7 +29,7 @@ resultado sob a mesma licença (CC BY-SA 3.0 ou uma licença compatível).
 
 ## Onde mais o crédito aparece
 
-- No rodapé de `Nihongo Dojo.html`, que também contém esses dados.
+- No rodapé do protótipo `Nihongo Dojo.html` (removido do repositório; está no histórico do git), que também continha esses dados.
 - No `README.md` e na tela **Ajustes → Sobre** do app.
 
 ## Escopo

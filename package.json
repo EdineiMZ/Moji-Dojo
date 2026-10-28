@@ -1,6 +1,6 @@
 {
   "name": "moji-dojo",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "main": "expo-router/entry",
   "dependencies": {
     "@expo-google-fonts/m-plus-rounded-1c": "^0.4.4",
@@ -50,7 +50,6 @@
     "android": "expo run:android",
     "typecheck": "tsc --noEmit",
     "test": "jest",
-    "extract-data": "node scripts/extract-data.mjs",
     "generate-sounds": "node scripts/generate-sounds.mjs",
     "build-n5": "node scripts/build-n5.mjs",
     "build-grammar": "node scripts/grammar-n5/build.mjs",

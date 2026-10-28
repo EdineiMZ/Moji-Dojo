@@ -4,6 +4,7 @@ import {
   RECOMMENDED_PACK,
   formatSize,
   installedBytes,
+  installedSpeakers,
   orderedPacks,
   packByFile,
   packForStyle,
@@ -130,5 +131,30 @@ describe('ajudantes das vozes', () => {
   it('exige uma folga de espaço além do arquivo', () => {
     const pack = packByFile('0.vvm');
     expect(pack && requiredFreeBytes(pack)).toBeGreaterThan(pack?.bytes ?? 0);
+  });
+});
+
+describe('minhas vozes (personagens já baixados)', () => {
+  it('sem nenhuma voz baixada, não há personagem', () => {
+    expect(installedSpeakers([])).toEqual([]);
+    expect(installedSpeakers(['999.vvm'])).toEqual([]);
+  });
+
+  it('lista os personagens do arquivo baixado, na ordem do catálogo', () => {
+    const names = installedSpeakers(['0.vvm']).map((v) => v.info.name);
+    expect(names).toEqual(['四国めたん', 'ずんだもん', '春日部つむぎ', '雨晴はう']);
+  });
+
+  it('junta os tons do mesmo personagem que está em mais de um arquivo, sem repetir o personagem', () => {
+    const one = installedSpeakers(['0.vvm']).find((v) => v.info.name === 'ずんだもん')!;
+    const all = installedSpeakers(['0.vvm', '5.vvm', '15.vvm']);
+    const zunda = all.find((v) => v.info.name === 'ずんだもん')!;
+    expect(all.filter((v) => v.info.name === 'ずんだもん')).toHaveLength(1);
+    expect(zunda.styles.length).toBeGreaterThan(one.styles.length);
+    const ids = zunda.styles.map(([id]) => id);
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(ids).toContain(3); // ノーマル, do 0.vvm
+    expect(ids).toContain(22); // ささやき, do 5.vvm
+    expect(ids).toContain(75); // ヘロヘロ, do 15.vvm
   });
 });

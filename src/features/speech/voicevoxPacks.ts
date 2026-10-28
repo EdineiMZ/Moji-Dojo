@@ -23,6 +23,28 @@ export const packForStyle = (styleId: number): VoicePack | undefined => VOICE_PA
 /** Os dados do site oficial de um personagem (endereço, descrição em japonês, termos). */
 export const speakerInfo = (name: string): VoiceSpeaker | undefined => VOICE_SPEAKERS.find((s) => s.name === name);
 
+/** Um personagem das vozes já baixadas, com os tons de todos os arquivos baixados juntos (ずんだもん tem tons em 3 arquivos). */
+export interface InstalledSpeaker {
+  info: VoiceSpeaker;
+  styles: readonly (readonly [number, string])[];
+}
+
+/** Os personagens que a pessoa já pode usar, na ordem do catálogo, sem repetir quem aparece em mais de um arquivo. */
+export function installedSpeakers(files: readonly string[]): InstalledSpeaker[] {
+  const byName = new Map<string, { info: VoiceSpeaker; styles: (readonly [number, string])[] }>();
+  for (const pack of VOICE_PACKS) {
+    if (!files.includes(pack.file)) continue;
+    for (const voice of pack.voices) {
+      const info = speakerInfo(voice.speaker);
+      if (!info) continue;
+      const entry = byName.get(voice.speaker) ?? { info, styles: [] };
+      entry.styles.push(...voice.styles);
+      byName.set(voice.speaker, entry);
+    }
+  }
+  return [...byName.values()];
+}
+
 /** A lista para mostrar: o recomendado primeiro, depois na ordem da release. */
 export const orderedPacks = (): readonly VoicePack[] => [...VOICE_PACKS].sort((a, b) => Number(b.file === RECOMMENDED_PACK) - Number(a.file === RECOMMENDED_PACK));
 

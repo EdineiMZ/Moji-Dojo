@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.8.1] - 2026-10-28
+
+Corrige o volume baixo da voz de anime e deixa a escolha da voz clara.
+
+- **Voz de anime sintetizada estava quase inaudível (corrigido).** O motor entrega cada personagem num volume diferente: medindo no celular, o ずんだもん saía uns 12 dB abaixo das amostras do site (cerca de um quarto do volume), o que fazia "Ouvir" e a amostra parecerem mudas. Agora todo áudio sintetizado é nivelado pelo pico (perto de -2 dBFS, como as amostras do site, com ganho máximo de 8 vezes). Os áudios guardados antes são refeitos sozinhos na primeira vez.
+- **Escolher a voz ficou direto.** O cartão ganhou **"Minhas vozes"**: cada personagem baixado aparece com a descrição, o selo **"✓ Em uso"**, os tons (no personagem em uso) e os botões **"Ouvir"** e **"Usar esta voz"**. Usar uma voz já liga o VOICEVOX sozinho; some o passo separado de escolher o motor. "Voltar para a voz do Android" desliga. A lista de download passou a se chamar "Baixar vozes" e diz que a voz baixada aparece em "Minhas vozes".
+- **Amostra com retorno visível:** o botão mostra "Carregando..." enquanto baixa ou sintetiza e "Tocando..." durante o áudio, e mostra o erro se falhar. Antes ele ficava mudo.
+- **Projeto:** removido o protótipo web `Nihongo Dojo.html` e o script que gerava `src/data/` a partir dele (continuam no histórico do git; `src/data/` é mantido à mão). O roadmap foi reorganizado (o antigo ficou em `docs/roadmap-historico.md`), o README virou uma página de portfólio com a seção de download e entraram o `LICENSE` (MIT) e o `NOTICE.md` com as licenças de terceiros. Não foi testado no aparelho depois da correção do volume.
+
 ## [2.8.0] - 2026-10-27
 
 A lista de vozes do VOICEVOX ficou mais clara: nomes em letras latinas, descrição em português e amostra para ouvir antes de baixar.

@@ -1,4 +1,4 @@
-// Gerado por scripts/extract-data.mjs a partir de "Nihongo Dojo.html". Não edite à mão.
+// Dados-base do app, extraídos do protótipo web original (removido do repositório; está no histórico do git). Agora são mantidos à mão.
 import type { GrammarTopic } from './types';
 
 export const GRAMMAR_TOPICS: readonly GrammarTopic[] = [

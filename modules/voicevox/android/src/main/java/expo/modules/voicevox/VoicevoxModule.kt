@@ -12,11 +12,22 @@ import jp.hiroshiba.voicevoxcore.blocking.Synthesizer
 import jp.hiroshiba.voicevoxcore.blocking.VoiceModelFile
 import java.io.File
 import java.io.IOException
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 import java.security.MessageDigest
 import java.util.UUID
+import kotlin.math.abs
+import kotlin.math.min
+import kotlin.math.roundToInt
 
 private const val ASSETS_ROOT = "voicevox"
 private const val CACHE_LIMIT_BYTES = 80L * 1024 * 1024
+
+/** Pico-alvo do áudio (16 bits): perto de -2 dBFS, como as amostras do site oficial. */
+private const val TARGET_PEAK = 26000.0
+
+/** Quanto o áudio pode ser amplificado: evita transformar ruído de fundo em chiado quando a fala é quase muda. */
+private const val MAX_GAIN = 8.0
 private val MODEL_NAME = Regex("^\\d{1,3}\\.vvm$")
 
 class VoicevoxException(code: String, message: String, cause: Throwable? = null) : CodedException(code, message, cause)
@@ -217,7 +228,8 @@ class VoicevoxModule : Module() {
     val clean = text.trim()
     if (clean.isEmpty()) throw VoicevoxException("EMPTY_TEXT", "Texto vazio.")
     val scale = speed.coerceIn(0.5, 1.6)
-    val file = File(cacheDir(), hash("v1|$styleId|$scale|$clean") + ".wav")
+    // "v2": os áudios guardados antes da normalização de volume (v1) ficam de lado e são refeitos.
+    val file = File(cacheDir(), hash("v2|$styleId|$scale|$clean") + ".wav")
     if (file.exists() && file.length() > 44) return "file://${file.absolutePath}"
     prepare()
     return synchronized(lock) {
@@ -225,7 +237,7 @@ class VoicevoxModule : Module() {
       try {
         val query = engine.createAudioQuery(clean, styleId)
         query.speedScale = scale
-        val wav = engine.synthesis(query, styleId).perform()
+        val wav = normalizePeak(engine.synthesis(query, styleId).perform())
         val temp = File(file.parentFile, "${file.name}.tmp")
         temp.writeBytes(wav)
         temp.renameTo(file)
@@ -236,6 +248,46 @@ class VoicevoxModule : Module() {
       }
     }
   }
+
+  /**
+   * Deixa o pico do WAV (PCM de 16 bits) em TARGET_PEAK. O motor entrega cada personagem num volume diferente (alguns saem uns
+   * 12 dB abaixo das amostras do site e ficam quase inaudíveis no alto-falante), então todo áudio é nivelado pelo pico.
+   */
+  private fun normalizePeak(wav: ByteArray): ByteArray {
+    var pos = 12
+    while (pos + 8 <= wav.size) {
+      val id = String(wav, pos, 4, Charsets.US_ASCII)
+      val size = ByteBuffer.wrap(wav, pos + 4, 4).order(ByteOrder.LITTLE_ENDIAN).int
+      if (id != "data") {
+        if (size < 0) return wav
+        pos += 8 + size + (size and 1)
+        continue
+      }
+      val start = pos + 8
+      val end = if (size <= 0) wav.size else min(wav.size, start + size)
+      var peak = 0
+      var i = start
+      while (i + 1 < end) {
+        peak = maxOf(peak, abs(sample(wav, i)))
+        i += 2
+      }
+      if (peak < 200) return wav
+      val gain = min(TARGET_PEAK / peak, MAX_GAIN)
+      if (abs(gain - 1.0) < 0.05) return wav
+      val out = wav.copyOf()
+      i = start
+      while (i + 1 < end) {
+        val value = (sample(wav, i) * gain).roundToInt().coerceIn(-32768, 32767)
+        out[i] = (value and 0xFF).toByte()
+        out[i + 1] = ((value shr 8) and 0xFF).toByte()
+        i += 2
+      }
+      return out
+    }
+    return wav
+  }
+
+  private fun sample(wav: ByteArray, at: Int): Int = ((wav[at + 1].toInt() shl 8) or (wav[at].toInt() and 0xFF)).toShort().toInt()
 
   /** Mantém o cache de áudio abaixo do limite, apagando os mais antigos. */
   private fun trimCache() {

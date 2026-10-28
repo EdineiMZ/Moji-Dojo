@@ -1,4 +1,4 @@
-// Gerado por scripts/extract-data.mjs a partir de "Nihongo Dojo.html". Não edite à mão.
+// Dados-base do app, extraídos do protótipo web original (removido do repositório; está no histórico do git). Agora são mantidos à mão.
 import type { FlickKey, TypingChallenge, TypingWord } from './types';
 
 /** Teclas do teclado de flick (a tecla com label "mod" é a de 小゛゜). chars = [toque, esquerda, cima, direita, baixo]. */

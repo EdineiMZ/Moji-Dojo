@@ -1,4 +1,5 @@
 import { ALL_EXERCISES, ALL_GRAMMAR } from './grammar';
+import { BUILD_N4 } from './grammarN4';
 import { BUILD_N5, GRAMMAR_N5, GRAMMAR_N5_SENTENCE_IDS } from './grammarN5';
 
 describe('gramática N5 (Tatoeba)', () => {
@@ -43,7 +44,7 @@ describe('gramática N5 (Tatoeba)', () => {
     const missing = GRAMMAR_N5.filter((t) => !withExercises.has(t.id)).map((t) => t.id);
     // Só ficaria de fora um tópico cujas frases fossem curtas demais para montar (menos de 3 blocos).
     expect(missing).toEqual([]);
-    expect(ALL_EXERCISES.length).toBe(26 + BUILD_N5.length);
+    expect(ALL_EXERCISES.length).toBe(26 + BUILD_N5.length + BUILD_N4.length);
   });
 
   it('os exercícios fecham a frase: blocos juntos = exemplo, sem blocos a mais repetidos', () => {

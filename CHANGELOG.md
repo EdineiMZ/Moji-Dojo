@@ -2,6 +2,13 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.12.0] - 2026-10-28
+
+Gramática do N4 e o N4 nas metas.
+
+- **7 tópicos novos de gramática (N4):** かもしれません, ことにしました, てしまいます, ておきます, はずです, a forma passiva e a forma ば, cada um com explicação em português, o que costuma confundir quem fala português, 3 a 4 frases reais do Tatoeba (conferidas na fonte) e exercícios de Montar e Lacunas. As explicações foram escritas por IA e ainda não foram revisadas por um falante.
+- **Metas do N4:** a meta "Tópicos de gramática do N4 dominados" entrou no caminho do N4, e a do N5 passou a contar só os tópicos do N5.
+
 ## [2.11.0] - 2026-10-28
 
 Revisão espaçada com FSRS e o vocabulário do N4.

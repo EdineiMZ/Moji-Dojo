@@ -38,6 +38,14 @@
 - **As traduções e a classificação por assunto são minhas (de um assistente de IA) e não foram revisadas por
   um falante.** Podem conter erros ou escolhas discutíveis.
 
+## Gramática N4 (`grammarN4.ts`, gerado em `scripts/grammar-n4/`)
+
+- **Texto das explicações:** escrito para este app, em português, **ainda sem revisão por um falante de japonês**.
+- **Frases de exemplo:** 26 frases reais do **Tatoeba** (https://tatoeba.org), todas sob **CC BY 2.0 FR**, escolhidas pelo id e conferidas na API
+  (`node scripts/grammar-n5/verify.mjs n4`): o id existe, o texto é o mesmo, a leitura em kana bate com a nossa e a tradução é uma das do
+  Tatoeba. Os autores aparecem na página de cada frase (`https://tatoeba.org/sentences/show/<id>`).
+- **Alterações feitas neste projeto:** as mesmas do N5 (a frase em kana, com a leitura do Tatoeba, e o romaji gerado por regra).
+
 ## Gramática N5, tópicos 11 a 30 (`grammarN5.ts`, gerado em `scripts/grammar-n5/`)
 
 - **Explicações, esquemas e tabelas:** texto próprio, escrito para este app em português.

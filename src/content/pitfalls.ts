@@ -202,4 +202,32 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
     'O contador depende da coisa: folha (まい), livro (さつ), bicho pequeno (ひき), pessoa (にん). Na dúvida, ひとつ, ふたつ servem para a maioria das coisas.',
     'Pessoas têm exceção: ひとり e ふたり (nunca いちにん). A partir de três é さんにん.',
   ],
+  'n4-1': [
+    'かもしれません é só possibilidade, sem força: se você tem um motivo para esperar algo, o certo é はず.',
+    'Com substantivo e adjetivo な não vai だ antes: あめかもしれません (e não あめだかもしれません).',
+  ],
+  'n4-2': [
+    'ことにします é decisão sua. Se a decisão veio de fora (uma regra, um acordo), é ことになります: "ficou decidido".',
+    'Para decidir não fazer, o verbo vai em ない antes: いかない ことに しました (e não いく ことに しません).',
+  ],
+  'n4-3': [
+    'てしまいます não é só "terminar": muitas vezes traz o sentimento de pena ou de algo sem querer. わすれてしまった é "esqueci, que pena".',
+    'Na conversa, ねてしまった vira ねちゃった, e のんでしまった vira のんじゃった.',
+  ],
+  'n4-4': [
+    'ておきます não é "deixar" no sentido de abandonar: é fazer antes ou manter como está, de propósito.',
+    'Na conversa, ておく vira とく: かんがえとく.',
+  ],
+  'n4-5': [
+    'はずです não é "é certo, eu garanto": é "pelo que sei, deveria ser". Se o fato contrariar, o falante se surpreende.',
+    'Com substantivo, vai の: せんせいの はずです. Com adjetivo な, vai な: しずかな はずです.',
+  ],
+  'n4-6': [
+    'A passiva em japonês costuma mostrar que a ação incomodou quem a sofreu (a "passiva do prejuízo"), mesmo quando o português não usaria passiva.',
+    'Quem faz a ação vem com に: せんせいに しかられた. Não use で nem から para isso.',
+  ],
+  'n4-7': [
+    'A forma ば vale para condição geral ou desejo; para algo que aconteceu uma vez, prefira たら.',
+    'Com substantivo e adjetivo な, a forma é なら, e não なれば.',
+  ],
 };

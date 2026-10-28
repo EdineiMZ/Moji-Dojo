@@ -1,6 +1,6 @@
 # Moji Dojo: roadmap
 
-Versão atual: **2.11.0** (2026-10-28). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
+Versão atual: **2.12.0** (2026-10-28). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
 
 Legenda: ✅ feito · 🟡 em parte · ⬜ pendente. Esforço: **P** = dias, **M** = 1 a 2 semanas, **G** = várias semanas.
 
@@ -91,7 +91,7 @@ O APK tem 112 MB. Onde está o peso (comprimido): bibliotecas nativas 51 MB (ONN
 
 A maior entrega de aprendizado que falta. Exige conferência de fonte e de licença, e revisão por falante.
 
-- ⬜ **Gramática N4:** condicionais, passiva, causativa, os contrastes (けど, が) e o tempo (とき). Falta fonte de frases curtas boas no Tatoeba para alguns pontos. *(G)*
+- 🟡 **Gramática N4 (2.12.0):** 7 tópicos (かもしれません, ことにした, てしまう, ておく, はずだ, passiva, ば). Faltam a causativa, o たら, o と, o ように なる, o ために, o のに e o ても, para os quais as buscas no Tatoeba ainda não acharam frases curtas e boas. *(G)*
 - 🟡 **Vocabulário N4 (2.11.0):** 629 palavras com leitura, significado, tom e classe. Faltam as frases de exemplo do Tatoeba, a frequência, os áudios de falantes nativos e a revisão dos significados por um falante. *(M)*
 - ⬜ **Leitura N4:** textos graduados e do dia a dia. *(M)*
 - ⬜ **Kanji N3**, no mesmo formato (traços, leituras, exemplos). *(G)*
@@ -101,7 +101,7 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 
 - ✅ **FSRS no lugar das caixas (2.11.0):** FSRS 5 com os pesos padrão, mantendo a caixa como estágio e a importação do progresso antigo. ⬜ Falta calibrar os pesos com o histórico de quem usa (exige guardar cada revisão) e uma opção de retenção desejada nos Ajustes. *(M)*
 - ✅ **Contagem própria para a escrita (desenho) (2.9.2):** linha à parte em "Por habilidade"; começa a contar nesta versão.
-- 🟡 **Metas por nível (2.11.0):** o N4 já tem a meta de palavras e a de kanji. Faltam os marcos de gramática e de leitura do N4 e o caminho do N3. *(M)*
+- 🟡 **Metas por nível (2.12.0):** o N4 já tem as metas de palavras, de gramática e de kanji. Faltam o marco de leitura do N4 e o caminho do N3. *(M)*
 
 ### Vozes (VOICEVOX)
 

@@ -1,7 +1,10 @@
 // Gera src/content/grammarN5.ts a partir de scripts/grammar-n5/topics.mjs. Uso: npm run build-grammar
 import { createRequire } from 'node:module';
 import { writeFileSync } from 'node:fs';
-import { TOPICS } from './topics.mjs';
+
+// "node scripts/grammar-n5/build.mjs n4" gera os tópicos do N4 (scripts/grammar-n4/topics.mjs); sem argumento, os do N5.
+const LEVEL = process.argv[2] === 'n4' ? 'N4' : 'N5';
+const { TOPICS } = await import(LEVEL === 'N4' ? '../grammar-n4/topics.mjs' : './topics.mjs');
 
 const require = createRequire(import.meta.url);
 const { parseAnnotation, plainKana } = require('./romaji.cjs');
@@ -132,17 +135,17 @@ const exercises = TOPICS.flatMap((t) =>
 
 const sources = TOPICS.flatMap((t) => t.examples.map((e) => e.id));
 
-const text = `// Gerado por scripts/grammar-n5/build.mjs a partir de scripts/grammar-n5/topics.mjs. Não edite à mão.
+const text = `// Gerado por scripts/grammar-n5/build.mjs ${LEVEL === 'N4' ? 'n4' : ''} a partir de scripts/grammar-${LEVEL.toLowerCase()}/topics.mjs. Não edite à mão.
 // Exemplos: frases do Tatoeba (CC BY 2.0 FR), conferidas por scripts/grammar-n5/verify.mjs. Ver LICENSE.md.
 import type { BuildExercise, GrammarTopic } from '@/data/types';
 
-export const GRAMMAR_N5: readonly GrammarTopic[] = ${JSON.stringify(topics, null, 2)};
+export const GRAMMAR_${LEVEL}: readonly GrammarTopic[] = ${JSON.stringify(topics, null, 2)};
 
 /** Exercícios do Montar e das Lacunas feitos com os exemplos acima (mesmo formato dos exercícios iniciais). */
-export const BUILD_N5: readonly BuildExercise[] = ${JSON.stringify(exercises, null, 2)};
+export const BUILD_${LEVEL}: readonly BuildExercise[] = ${JSON.stringify(exercises, null, 2)};
 
 /** Ids das frases do Tatoeba usadas nos exemplos (para o crédito). */
-export const GRAMMAR_N5_SENTENCE_IDS: readonly number[] = ${JSON.stringify(sources)};
+export const GRAMMAR_${LEVEL}_SENTENCE_IDS: readonly number[] = ${JSON.stringify(sources)};
 `;
-writeFileSync(new URL('../../src/content/grammarN5.ts', import.meta.url), text);
+writeFileSync(new URL(`../../src/content/grammar${LEVEL}.ts`, import.meta.url), text);
 console.log(`${topics.length} tópicos, ${sources.length} frases, ${exercises.length} exercícios`);

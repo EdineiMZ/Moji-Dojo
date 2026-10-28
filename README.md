@@ -70,7 +70,7 @@ A versão mais recente fica na aba **[Releases](https://github.com/EdineiMZ/Moji
 
 **Vocabulário e gramática**
 - Cerca de **1.400 palavras** (N5 e N4) por assunto, situação de viagem e frequência, com leitura, **tom** (pitch accent), classe e frases reais; cartões em várias direções e **exportação para o Anki**.
-- **51 tópicos de gramática** com frases do Tatoeba, mini-teste por tópico, lacunas, conjugação com revisão espaçada, contadores, números, horas e datas.
+- **58 tópicos de gramática** (N5 e N4) com frases do Tatoeba, mini-teste por tópico, lacunas, conjugação com revisão espaçada, contadores, números, horas e datas.
 
 **Frases, escuta, fala e leitura**
 - **Montar, Traduzir, Frases-modelo, 13 diálogos e 188 frases de viagem**, além de **30 mil frases** para explorar e buscar, tudo dentro do aparelho.

@@ -33,6 +33,10 @@ describe('settingsStore', () => {
       voiceId: null,
       voiceEngine: 'system',
       voicevoxStyle: 3,
+      voicevoxPitch: 0,
+      voicevoxIntonation: 1,
+      voicevoxStaffStyle: null,
+      favoriteVoices: [],
       nativeAudio: true,
       reminders: DEFAULT_REMINDERS,
       limits: { newPerDay: 0, reviewsPerDay: 0 },
@@ -82,5 +86,21 @@ describe('settingsStore', () => {
     progress.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] });
 
     expect(createSettingsStore(storage).getState().writeInReview).toBe(false);
+  });
+});
+
+describe('ajustes da voz de anime guardados', () => {
+  it('valores fora do limite ou de tipo errado voltam ao padrão ao ler do disco', () => {
+    const storage = {
+      getItem: () => JSON.stringify({ state: { voicevoxPitch: 9, voicevoxIntonation: 'x', voicevoxStaffStyle: -2, favoriteVoices: ['a', 'a', 3] }, version: 1 }),
+      setItem: () => undefined,
+      removeItem: () => undefined,
+    };
+    const store = createSettingsStore(storage);
+    const s = store.getState();
+    expect(s.voicevoxPitch).toBe(0.15);
+    expect(s.voicevoxIntonation).toBe(1);
+    expect(s.voicevoxStaffStyle).toBeNull();
+    expect(s.favoriteVoices).toEqual(['a']);
   });
 });

@@ -77,7 +77,7 @@ export async function runJob(spec: JobSpec, now: number = Date.now()): Promise<J
 }
 
 /** Falhas que passam sozinhas: o pedido continua na fila para a próxima vez. */
-const TRANSIENT: ReadonlySet<AiErrorCode> = new Set(['offline', 'timeout', 'server', 'rate', 'limit', 'disabled', 'no-key']);
+const TRANSIENT: ReadonlySet<AiErrorCode> = new Set(['offline', 'timeout', 'server', 'rate', 'limit', 'disabled', 'no-key', 'no-server']);
 
 export const isTransient = (error: unknown): boolean => error instanceof AiError && TRANSIENT.has(error.code);
 

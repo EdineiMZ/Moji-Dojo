@@ -1,5 +1,5 @@
 /** Provedores de IA que o aluno pode usar com a própria chave. */
-export type AiProvider = 'gemini' | 'claude' | 'openai';
+export type AiProvider = 'gemini' | 'claude' | 'openai' | 'custom';
 
 export interface ProviderInfo {
   id: AiProvider;
@@ -34,9 +34,25 @@ export const PROVIDERS: Readonly<Record<AiProvider, ProviderInfo>> = {
     models: ['gpt-4.1-mini', 'gpt-4.1'],
     keyUrl: 'https://platform.openai.com/api-keys',
   },
+  custom: {
+    id: 'custom',
+    label: 'Servidor próprio (compatível com OpenAI)',
+    defaultModel: 'local',
+    models: [],
+    keyUrl: '',
+  },
 };
 
-export const PROVIDER_IDS: readonly AiProvider[] = ['gemini', 'claude', 'openai'];
+export const PROVIDER_IDS: readonly AiProvider[] = ['gemini', 'claude', 'openai', 'custom'];
+
+/**
+ * O endereço de um servidor próprio (Ollama, LM Studio, llama.cpp...) vira a URL de "chat/completions": aceita o endereço
+ * base ("http://192.168.0.10:11434/v1") ou já completo, com ou sem barra no fim.
+ */
+export function chatCompletionsUrl(base: string): string {
+  const clean = base.trim().replace(/\/+$/, '');
+  return /\/chat\/completions$/.test(clean) ? clean : `${clean}/chat/completions`;
+}
 
 export interface AiRequest {
   /** Instruções fixas (quem a IA é e o formato da resposta). */
@@ -54,7 +70,24 @@ export interface HttpRequest {
 }
 
 /** Monta a chamada HTTP de cada provedor. A resposta sempre deve ser um JSON em texto. */
-export function buildHttpRequest(provider: AiProvider, key: string, model: string, request: AiRequest): HttpRequest {
+export function buildHttpRequest(provider: AiProvider, key: string, model: string, request: AiRequest, baseUrl = ''): HttpRequest {
+  if (provider === 'custom') {
+    return {
+      url: chatCompletionsUrl(baseUrl),
+      // Servidor local costuma dispensar chave: o cabeçalho de autorização só vai se houver uma.
+      headers: { 'content-type': 'application/json', ...(key ? { authorization: `Bearer ${key}` } : {}) },
+      body: JSON.stringify({
+        model,
+        response_format: { type: 'json_object' },
+        // "max_tokens" é o nome que todos os servidores compatíveis entendem.
+        max_tokens: request.maxTokens,
+        messages: [
+          { role: 'system', content: request.system },
+          { role: 'user', content: request.user },
+        ],
+      }),
+    };
+  }
   if (provider === 'gemini') {
     return {
       url: `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
@@ -117,7 +150,7 @@ export function parseHttpReply(provider: AiProvider, json: unknown): AiReply | n
     const usage = isRecord(json.usageMetadata) ? json.usageMetadata : {};
     return { text, tokensIn: num(usage.promptTokenCount), tokensOut: num(usage.candidatesTokenCount) };
   }
-  if (provider === 'openai') {
+  if (provider === 'openai' || provider === 'custom') {
     const choices = Array.isArray(json.choices) ? json.choices : [];
     const first = choices[0];
     const content = isRecord(first) && isRecord(first.message) ? first.message.content : undefined;

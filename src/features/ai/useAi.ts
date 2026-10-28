@@ -20,7 +20,7 @@ export const productionDeps: AiDeps = {
 export const ask = <T>(options: AskOptions<T>): Promise<T> => askAi(options, productionDeps);
 
 /**
- * A IA está pronta para usar? (ligada em Ajustes e com chave do provedor escolhido). Não checa a internet: sem conexão
+ * A IA está pronta para usar? (ligada em Ajustes e com chave do provedor escolhido; no servidor próprio, com o endereço informado). Não checa a internet: sem conexão
  * o pedido falha com uma mensagem clara, e o resto do app não depende disso.
  */
 export function useAiReady(): boolean {
@@ -28,9 +28,10 @@ export function useAiReady(): boolean {
   const provider = useSettingsStore((s) => s.ai.provider);
   const loaded = useAiKeys((s) => s.loaded);
   const hasKey = useAiKeys((s) => s.has[provider]);
+  const hasServer = useSettingsStore((s) => s.ai.customUrl !== '');
   const refresh = useAiKeys((s) => s.refresh);
   useEffect(() => {
     if (!loaded) void refresh();
   }, [loaded, refresh]);
-  return enabled && hasKey;
+  return enabled && (provider === 'custom' ? hasServer : hasKey);
 }

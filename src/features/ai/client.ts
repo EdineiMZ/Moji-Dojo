@@ -1,12 +1,13 @@
 import { buildHttpRequest, extractJson, parseErrorMessage, parseHttpReply, PROVIDERS, type AiProvider } from './providers';
 import { usageToday, withinLimit, type AiSettings, type AiUsage } from './settings';
 
-export type AiErrorCode = 'disabled' | 'no-key' | 'limit' | 'offline' | 'timeout' | 'auth' | 'rate' | 'server' | 'bad-response';
+export type AiErrorCode = 'disabled' | 'no-key' | 'no-server' | 'limit' | 'offline' | 'timeout' | 'auth' | 'rate' | 'server' | 'bad-response';
 
 /** O que mostrar à pessoa em cada falha (em português, sem jargão). */
 export const AI_ERROR_MESSAGES: Readonly<Record<AiErrorCode, string>> = {
   disabled: 'A IA está desligada em Ajustes → IA.',
   'no-key': 'Cadastre uma chave de API em Ajustes → IA para usar este recurso.',
+  'no-server': 'Informe o endereço do servidor em Ajustes → IA para usar este recurso.',
   limit: 'Você chegou ao limite de pedidos à IA de hoje. Ajuste o limite em Ajustes → IA.',
   offline: 'Sem conexão com a internet. O resto do app continua funcionando offline.',
   timeout: 'A IA demorou demais para responder. Tente de novo.',
@@ -57,10 +58,15 @@ export async function askAi<T>(options: AskOptions<T>, deps: AiDeps): Promise<T>
   const settings = deps.settings();
   if (!settings.enabled) throw new AiError('disabled');
   const provider = settings.provider;
+  // O servidor próprio pode dispensar chave, mas precisa de um endereço.
   const key = await deps.getKey(provider);
-  if (!key) throw new AiError('no-key');
+  if (provider === 'custom') {
+    if (!settings.customUrl) throw new AiError('no-server');
+  } else if (!key) {
+    throw new AiError('no-key');
+  }
 
-  const cacheId = options.cacheKey ? `${provider}:${settings.models[provider]}:${options.cacheKey}` : null;
+  const cacheId = options.cacheKey ? `${provider}:${provider === 'custom' ? `${settings.customUrl}:` : ''}${settings.models[provider]}:${options.cacheKey}` : null;
   if (cacheId) {
     const hit = deps.getCache(cacheId);
     if (hit !== undefined) {
@@ -72,11 +78,13 @@ export async function askAi<T>(options: AskOptions<T>, deps: AiDeps): Promise<T>
   const now = deps.now();
   if (!withinLimit(settings, deps.usage(), now)) throw new AiError('limit');
 
-  const request = buildHttpRequest(provider, key, settings.models[provider] || PROVIDERS[provider].defaultModel, {
-    system: options.system,
-    user: options.user,
-    maxTokens: options.maxTokens,
-  });
+  const request = buildHttpRequest(
+    provider,
+    key ?? '',
+    settings.models[provider] || PROVIDERS[provider].defaultModel,
+    { system: options.system, user: options.user, maxTokens: options.maxTokens },
+    settings.customUrl,
+  );
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), deps.timeoutMs);
   let status: number;

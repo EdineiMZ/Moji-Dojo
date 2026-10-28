@@ -59,7 +59,7 @@ A versão mais recente fica na aba **[Releases](https://github.com/EdineiMZ/Moji
 - **Câmera:** só para ler um texto em japonês fotografado; o reconhecimento roda no aparelho.
 - **Microfone:** só para gravar a sua voz (Ouvir → Repetir) e para o reconhecimento de fala, que usa o serviço de fala do Android.
 - **Notificações:** só para os lembretes de estudo, que você controla.
-- **Internet:** só para o que você pedir: baixar vozes de anime, ouvir a amostra de um personagem e, se você cadastrar uma chave, usar a IA. A chave fica no armazenamento seguro do aparelho e não entra no backup.
+- **Internet:** só para o que você pedir: baixar vozes de anime, ouvir a amostra de um personagem e, se você cadastrar uma chave (ou o endereço https de um servidor seu, compatível com a OpenAI), usar a IA. A chave fica no armazenamento seguro do aparelho e não entra no backup.
 
 ## Funcionalidades
 

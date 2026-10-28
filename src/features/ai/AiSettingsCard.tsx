@@ -7,7 +7,7 @@ import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { AiError } from './client';
 import { cleanKey, looksLikeKey, useAiKeys } from './keyStore';
 import { PROVIDER_IDS, PROVIDERS, type AiProvider } from './providers';
-import { LIMIT_OPTIONS, limitLabel, usageToday } from './settings';
+import { LIMIT_OPTIONS, limitLabel, sanitizeCustomUrl, usageToday } from './settings';
 import { ask } from './useAi';
 
 type Status = { kind: 'idle' } | { kind: 'busy' } | { kind: 'ok'; text: string } | { kind: 'error'; text: string };
@@ -34,6 +34,16 @@ export function AiSettingsCard() {
   const provider = ai.provider;
   const info = PROVIDERS[provider];
   const hasKey = has[provider];
+  const isCustom = provider === 'custom';
+  const [urlDraft, setUrlDraft] = useState<string | null>(null);
+  const shownUrl = urlDraft ?? ai.customUrl;
+  const urlProblem = urlDraft !== null && urlDraft.trim() !== '' && sanitizeCustomUrl(urlDraft) === '';
+  const commitUrl = () => {
+    if (urlDraft === null) return;
+    const clean = sanitizeCustomUrl(urlDraft);
+    if (clean !== ai.customUrl && (clean !== '' || urlDraft.trim() === '')) setAi({ customUrl: clean });
+    if (!urlProblem) setUrlDraft(null);
+  };
   const today = usageToday(usage, now);
 
   const choose = (value: AiProvider) => {
@@ -106,8 +116,33 @@ export function AiSettingsCard() {
           </AppText>
           <ChipRow wrap options={PROVIDER_IDS.map((id) => ({ value: id, label: PROVIDERS[id].label }))} value={provider} onChange={choose} />
 
+          {isCustom ? (
+            <>
+              <AppText variant="caption" color="muted">
+                ENDEREÇO DO SERVIDOR
+              </AppText>
+              <TextInput
+                value={shownUrl}
+                onChangeText={setUrlDraft}
+                onBlur={commitUrl}
+                onSubmitEditing={commitUrl}
+                autoCapitalize="none"
+                autoCorrect={false}
+                keyboardType="url"
+                placeholder="https://meu-servidor.exemplo/v1"
+                placeholderTextColor={colors.muted}
+                accessibilityLabel="Endereço do servidor de IA"
+                style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: urlProblem ? colors.bad : colors.line }]}
+              />
+              <AppText variant="caption" color={urlProblem ? 'bad' : 'muted'}>
+                {urlProblem
+                  ? 'Esse endereço não serve. Use https:// (o app não aceita http, que viaja sem criptografia), sem espaços e sem usuário e senha.'
+                  : 'Qualquer servidor que fale o formato de chat da OpenAI (Ollama, LM Studio, llama.cpp, vLLM...) e responda por https. Para um servidor seu em casa, use um túnel ou proxy com https (por exemplo Tailscale Funnel ou Cloudflare Tunnel).'}
+              </AppText>
+            </>
+          ) : null}
           <AppText variant="caption" color="muted">
-            CHAVE DE API {hasKey ? '(guardada)' : '(não cadastrada)'}
+            CHAVE DE API {isCustom ? '(opcional)' : ''} {hasKey ? '(guardada)' : '(não cadastrada)'}
           </AppText>
           <TextInput
             value={draft}
@@ -138,17 +173,13 @@ export function AiSettingsCard() {
             ) : null}
           </View>
           <AppText variant="caption" color="muted">
-            A chave fica no armazenamento seguro do Android, só neste aparelho. Ela <Bold>não entra no backup</Bold> nem é enviada a ninguém além de {info.label.split(' ')[0]}.
+            A chave fica no armazenamento seguro do Android, só neste aparelho. Ela <Bold>não entra no backup</Bold> nem é enviada a ninguém além de {isCustom ? 'do servidor que você informou' : info.label.split(' ')[0]}.
           </AppText>
-          <AppText
-            variant="caption"
-            color="primary"
-            accessibilityRole="link"
-            onPress={() => void Linking.openURL(info.keyUrl)}
-            style={styles.link}
-          >
-            Criar uma chave: {info.keyUrl.replace('https://', '')}
-          </AppText>
+          {isCustom ? null : (
+            <AppText variant="caption" color="primary" accessibilityRole="link" onPress={() => void Linking.openURL(info.keyUrl)} style={styles.link}>
+              Criar uma chave: {info.keyUrl.replace('https://', '')}
+            </AppText>
+          )}
 
           <AppText variant="caption" color="muted">
             MODELO
@@ -164,7 +195,7 @@ export function AiSettingsCard() {
             style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
           />
           <AppText variant="caption" color="muted">
-            O padrão é um modelo barato e rápido. Sugestões: {info.models.join(', ')}.
+            {isCustom ? 'O nome do modelo como o seu servidor o conhece (por exemplo, o que o "ollama list" mostra).' : `O padrão é um modelo barato e rápido. Sugestões: ${info.models.join(', ')}.`}
           </AppText>
 
           <AppText variant="caption" color="muted">
@@ -175,7 +206,7 @@ export function AiSettingsCard() {
             Hoje: {today.calls} pedido{today.calls === 1 ? '' : 's'}, {today.tokensIn + today.tokensOut} tokens. Cada pedido usa a sua cota ou o seu crédito no provedor.
           </AppText>
 
-          <Button label={status.kind === 'busy' ? 'Testando...' : 'Testar conexão'} variant="soft" onPress={test} disabled={!hasKey || status.kind === 'busy'} />
+          <Button label={status.kind === 'busy' ? 'Testando...' : 'Testar conexão'} variant="soft" onPress={test} disabled={(isCustom ? ai.customUrl === '' : !hasKey) || status.kind === 'busy'} />
           {status.kind === 'ok' || status.kind === 'error' ? (
             <AppText accessibilityLiveRegion="polite" color={status.kind === 'ok' ? 'ok' : 'bad'}>
               {status.text}

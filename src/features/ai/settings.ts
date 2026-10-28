@@ -9,6 +9,8 @@ export interface AiSettings {
   models: Readonly<Record<AiProvider, string>>;
   /** Pedidos à IA por dia (0 = sem limite). */
   dailyLimit: number;
+  /** Endereço https do servidor próprio (provedor "custom"), como https://meu-servidor.exemplo/v1; vazio = nenhum. */
+  customUrl: string;
 }
 
 export const LIMIT_OPTIONS: readonly number[] = [10, 30, 60, 0];
@@ -16,13 +18,21 @@ export const LIMIT_OPTIONS: readonly number[] = [10, 30, 60, 0];
 export const DEFAULT_AI: AiSettings = {
   enabled: true,
   provider: 'gemini',
-  models: { gemini: PROVIDERS.gemini.defaultModel, claude: PROVIDERS.claude.defaultModel, openai: PROVIDERS.openai.defaultModel },
+  models: { gemini: PROVIDERS.gemini.defaultModel, claude: PROVIDERS.claude.defaultModel, openai: PROVIDERS.openai.defaultModel, custom: PROVIDERS.custom.defaultModel },
   dailyLimit: 30,
+  customUrl: '',
 };
 
 export const limitLabel = (n: number): string => (n === 0 ? 'Sem limite' : `${n} por dia`);
 
 const MAX_MODEL_LENGTH = 80;
+
+/** Um endereço https sem espaços e sem usuário/senha embutidos; o que não serve (inclusive http, sem criptografia) vira vazio. */
+export function sanitizeCustomUrl(value: unknown): string {
+  if (typeof value !== 'string') return '';
+  const url = value.trim().replace(/\/+$/, '');
+  return url.length <= 200 && /^https:\/\/[^\s/@]+(:\d+)?(\/[^\s]*)?$/.test(url) ? url : '';
+}
 
 /** Lê o que veio do disco; o que não tem a forma certa volta ao padrão. */
 export function sanitizeAi(raw: unknown): AiSettings {
@@ -31,13 +41,14 @@ export function sanitizeAi(raw: unknown): AiSettings {
   const rawModels = typeof r.models === 'object' && r.models !== null ? (r.models as Record<string, unknown>) : {};
   const model = (id: AiProvider): string => {
     const value = rawModels[id];
-    return typeof value === 'string' && /^[\w.:-]+$/.test(value.trim()) && value.trim().length <= MAX_MODEL_LENGTH ? value.trim() : PROVIDERS[id].defaultModel;
+    return typeof value === 'string' && /^[\w.:/-]+$/.test(value.trim()) && value.trim().length <= MAX_MODEL_LENGTH ? value.trim() : PROVIDERS[id].defaultModel;
   };
   return {
     enabled: typeof r.enabled === 'boolean' ? r.enabled : DEFAULT_AI.enabled,
     provider,
-    models: { gemini: model('gemini'), claude: model('claude'), openai: model('openai') },
+    models: { gemini: model('gemini'), claude: model('claude'), openai: model('openai'), custom: model('custom') },
     dailyLimit: typeof r.dailyLimit === 'number' && LIMIT_OPTIONS.includes(r.dailyLimit) ? r.dailyLimit : DEFAULT_AI.dailyLimit,
+    customUrl: sanitizeCustomUrl(r.customUrl),
   };
 }
 

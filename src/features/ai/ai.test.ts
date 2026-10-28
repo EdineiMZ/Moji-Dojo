@@ -4,7 +4,7 @@ import { emptyJourney } from '@/features/journey/journey';
 import { createAiStore, mergePhrases, trimCache, type AiPhrase } from './aiStore';
 import { AiError, askAi, callsLeft, type AiDeps } from './client';
 import { buildHttpRequest, extractJson, parseErrorMessage, parseHttpReply } from './providers';
-import { addUsage, dayKey, DEFAULT_AI, EMPTY_USAGE, sanitizeAi, sanitizeUsage, usageToday, withinLimit } from './settings';
+import { addUsage, dayKey, DEFAULT_AI, EMPTY_USAGE, sanitizeAi, sanitizeCustomUrl, sanitizeUsage, usageToday, withinLimit } from './settings';
 
 const NOW = new Date(2026, 9, 26, 12).getTime();
 
@@ -165,6 +165,63 @@ describe('askAi', () => {
     });
     await expect(askAi(options, deps)).resolves.toBe(7);
     expect((deps.fetch as jest.Mock).mock.calls[0][0]).toBe('https://api.anthropic.com/v1/messages');
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+});
+
+describe('servidor próprio (compatível com a OpenAI)', () => {
+  const req = { system: 'sys', user: 'oi', maxTokens: 100 };
+
+  it('monta a chamada no endereço informado, sem cabeçalho de autorização quando não há chave', () => {
+    const http = buildHttpRequest('custom', '', 'llama3.1:8b', req, 'https://ia.exemplo.com/v1/');
+    expect(http.url).toBe('https://ia.exemplo.com/v1/chat/completions');
+    expect(http.headers).toEqual({ 'content-type': 'application/json' });
+    expect(JSON.parse(http.body)).toMatchObject({ model: 'llama3.1:8b', max_tokens: 100, response_format: { type: 'json_object' } });
+    expect(buildHttpRequest('custom', 'K', 'm', req, 'https://ia.exemplo.com/v1').headers.authorization).toBe('Bearer K');
+  });
+
+  it('aceita o endereço já completo e lê a resposta no formato da OpenAI', () => {
+    expect(buildHttpRequest('custom', '', 'm', req, 'https://ia.exemplo.com/v1/chat/completions').url).toBe('https://ia.exemplo.com/v1/chat/completions');
+    const reply = parseHttpReply('custom', { choices: [{ message: { content: '{"a":1}' } }], usage: { prompt_tokens: 3, completion_tokens: 2 } });
+    expect(reply).toEqual({ text: '{"a":1}', tokensIn: 3, tokensOut: 2 });
+  });
+
+  it('só guarda endereços https sem usuário e senha', () => {
+    expect(sanitizeCustomUrl(' https://ia.exemplo.com:8443/v1/ ')).toBe('https://ia.exemplo.com:8443/v1');
+    for (const bad of ['http://192.168.0.10:11434/v1', 'ftp://x.com', 'https://user:pass@x.com/v1', 'https://x.com/a b', '', 42, null]) {
+      expect(sanitizeCustomUrl(bad)).toBe('');
+    }
+    expect(sanitizeAi({ provider: 'custom', customUrl: 'http://x.com' }).customUrl).toBe('');
+    expect(sanitizeAi({ provider: 'custom', customUrl: 'https://x.com/v1', models: { custom: 'org/modelo:7b' } })).toMatchObject({ provider: 'custom', customUrl: 'https://x.com/v1', models: { custom: 'org/modelo:7b' } });
+  });
+
+  const ok = { status: 200, json: async () => ({ choices: [{ message: { content: '{"v":42}' } }], usage: { prompt_tokens: 1, completion_tokens: 1 } }) };
+  const parse42 = (json: unknown) => ((json as { v?: number }).v === 42 ? 42 : null);
+  const deps = (settings: typeof DEFAULT_AI, fetchMock = jest.fn(async () => ok)): AiDeps => ({
+    fetch: fetchMock,
+    getKey: async () => null,
+    settings: () => settings,
+    usage: () => ({ ...EMPTY_USAGE, day: dayKey(NOW) }),
+    recordUsage: () => undefined,
+    getCache: () => undefined,
+    putCache: () => undefined,
+    now: () => NOW,
+    timeoutMs: 1000,
+  });
+
+  it('funciona sem chave quando há endereço', async () => {
+    const fetchMock = jest.fn(async () => ok);
+    const settings = { ...DEFAULT_AI, provider: 'custom' as const, customUrl: 'https://ia.exemplo.com/v1' };
+    await expect(askAi({ system: 's', user: 'u', maxTokens: 10, parse: parse42 }, deps(settings, fetchMock))).resolves.toBe(42);
+    expect(fetchMock).toHaveBeenCalledWith('https://ia.exemplo.com/v1/chat/completions', expect.objectContaining({ method: 'POST' }));
+  });
+
+  it('sem endereço, avisa antes de chamar a rede', async () => {
+    const fetchMock = jest.fn(async () => ok);
+    const settings = { ...DEFAULT_AI, provider: 'custom' as const };
+    const error = await askAi({ system: 's', user: 'u', maxTokens: 10, parse: parse42 }, deps(settings, fetchMock)).catch((e: unknown) => e);
+    expect(error).toBeInstanceOf(AiError);
+    expect((error as AiError).code).toBe('no-server');
     expect(fetchMock).not.toHaveBeenCalled();
   });
 });

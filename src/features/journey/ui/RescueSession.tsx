@@ -91,7 +91,7 @@ export function RescueSession({ onExit }: RescueSessionProps) {
 
   const record = (question: Question, ok: boolean, firstTry: boolean) => {
     const area: RescueKind | undefined = built.kind.get(question);
-    if (area === 'kana') recordReviewAnswer(question.item.char, ok, firstTry, false);
+    if (area === 'kana') recordReviewAnswer(question.item.char, ok, firstTry, false, undefined, question.direction === 'write');
     else if (area === 'vocab') recordVocabAnswer(vocabKey(question), ok, firstTry);
     else if (area === 'conj') recordConjAnswer(conjKey(question) ?? '', ok, firstTry);
     else if (area === 'particle') recordParticleAnswer(question.item.char, ok, firstTry);

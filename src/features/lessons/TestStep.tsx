@@ -75,7 +75,7 @@ export function TestStep({ script, lesson, skipped, onReview, onNext, onExit, on
           key={attempt}
           lesson={lesson}
           title={skipped ? 'Teste para pular' : 'Teste da lição'}
-          onAnswer={(char, ok) => recordAnswer(char, ok)}
+          onAnswer={(char, ok, drawn) => recordAnswer(char, ok, undefined, drawn)}
           onDone={finish}
           onActiveChange={onActiveChange}
         />
@@ -117,7 +117,7 @@ export function TestStep({ script, lesson, skipped, onReview, onNext, onExit, on
 interface TestAttemptProps {
   lesson: Lesson;
   title: string;
-  onAnswer: (char: string, ok: boolean) => void;
+  onAnswer: (char: string, ok: boolean, drawn: boolean) => void;
   onDone: (result: QuizResult) => void;
   onActiveChange?: (active: boolean) => void;
 }
@@ -135,7 +135,7 @@ function TestAttempt({ lesson, title, onAnswer, onDone, onActiveChange }: TestAt
     <QuizView
       questions={questions}
       title={title}
-      onAnswer={(q, ok) => onAnswer(q.item.char, ok)}
+      onAnswer={(q, ok) => onAnswer(q.item.char, ok, q.direction === 'write')}
       onDone={onDone}
     />
   );

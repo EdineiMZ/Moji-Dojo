@@ -1,6 +1,6 @@
 # Moji Dojo: roadmap
 
-Versão atual: **2.9.1** (2026-10-28). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
+Versão atual: **2.9.2** (2026-10-28). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
 
 Legenda: ✅ feito · 🟡 em parte · ⬜ pendente. Esforço: **P** = dias, **M** = 1 a 2 semanas, **G** = várias semanas.
 
@@ -100,7 +100,7 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 ### Motor de aprendizado
 
 - 🟡 **FSRS completo** no lugar das caixas, calibrado com dados reais de uso, mantendo a importação do progresso antigo. *(G)*
-- ⬜ **Contagem própria para a escrita (desenho)** nas estatísticas por habilidade, que hoje não a medem. *(P)*
+- ✅ **Contagem própria para a escrita (desenho) (2.9.2):** linha à parte em "Por habilidade"; começa a contar nesta versão.
 - ⬜ **Metas por nível** N5 → N4 → N3 com marcos de gramática e de leitura, não só de kana e palavras. *(M)*
 
 ### Vozes (VOICEVOX)

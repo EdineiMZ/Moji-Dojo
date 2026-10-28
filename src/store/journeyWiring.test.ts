@@ -151,4 +151,16 @@ describe('a jornada ligada ao progresso', () => {
     expect(counts.reviews).toBe(2);
     expect(counts.answers).toBe(4);
   });
+
+  it('a resposta desenhada conta na escrita à parte, e a escolhida não', () => {
+    const store = createProgressStore(memoryStorage());
+    store.getState().recordReviewAnswer('あ', true, true, false, at(21), true);
+    store.getState().recordReviewAnswer('い', false, false, false, at(21), true);
+    store.getState().recordReviewAnswer('う', true, true, false, at(21));
+    store.getState().recordAnswer('え', true, at(21), true);
+    const c = store.getState().journey.counters;
+    expect(c['wr.n']).toBe(3);
+    expect(c['wr.ok']).toBe(2);
+    expect(c['sk.kana.n']).toBe(4);
+  });
 });

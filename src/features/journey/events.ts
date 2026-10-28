@@ -175,6 +175,8 @@ export interface AnswerEvent {
   review?: boolean;
   /** A resposta é de um cartão já maduro (caixa 4 ou mais, intervalo de 2 semanas ou mais): mede a retenção real. */
   mature?: boolean;
+  /** A resposta foi desenhada (pergunta de escrita), não escolhida: conta também na contagem própria da escrita. */
+  drawn?: boolean;
 }
 
 /** Uma resposta numa pergunta de qualquer área. */

@@ -4,7 +4,7 @@ import { examAverage } from '@/features/ai/examStats';
 import { averageCpm } from '@/features/keyboard/typingStats';
 import { useAiStore, useProgressStore } from '@/store';
 import { spacing } from '@/theme';
-import { MIN_RETENTION_ANSWERS, retention, skillStats } from '../skills';
+import { MIN_RETENTION_ANSWERS, retention, skillStats, writingStat } from '../skills';
 
 /** Acertos por habilidade e a retenção real (acertos em cartões que só voltam depois de 2 semanas ou mais). */
 export function SkillsCard() {
@@ -15,6 +15,7 @@ export function SkillsCard() {
   const cpm = averageCpm(typing);
   const mock = examAverage(exams);
   const kept = retention(counters);
+  const drawing = writingStat(counters);
   return (
     <Card>
       <AppText variant="title">Por habilidade</AppText>
@@ -29,6 +30,11 @@ export function SkillsCard() {
           </View>
         ))}
       </View>
+      {drawing.total > 0 ? (
+        <AppText color="muted">
+          Escrita à parte: {drawing.pct}% dos {drawing.total} símbolos que você desenhou (já contam em Kana e kanji).
+        </AppText>
+      ) : null}
       <AppText variant="title">Retenção</AppText>
       <AppText color="muted">
         {kept.pct === null

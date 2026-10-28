@@ -39,9 +39,9 @@ export interface ProgressActions {
   /** Conclui a lição: entra na trilha, e os caracteres entram na revisão. */
   completeLesson: (lessonId: string, chars: readonly string[], skipped?: boolean, now?: number, result?: { first: number; total: number }) => void;
   /** Conta um acerto/erro de qualquer quiz e marca o dia como estudado. */
-  recordAnswer: (char: string, ok: boolean, now?: number) => void;
+  recordAnswer: (char: string, ok: boolean, now?: number, drawn?: boolean) => void;
   /** Resposta numa revisão: além das estatísticas, reagenda o caractere. */
-  recordReviewAnswer: (char: string, ok: boolean, firstTry: boolean, extra: boolean, now?: number) => void;
+  recordReviewAnswer: (char: string, ok: boolean, firstTry: boolean, extra: boolean, now?: number, drawn?: boolean) => void;
   /** Marca um desafio de digitação (chave = a palavra-alvo) como feito e marca o dia. */
   completeChallenge: (word: string, now?: number) => void;
   /** Guarda a autoavaliação de uma frase do Repetir (chave = a frase em japonês) e marca o dia. */
@@ -195,7 +195,7 @@ export function createProgressStore(storage: StateStorage) {
             return { srs, lessons, days, history: addActivity(s.history, new Date(now), { learned: newlyLearned }), journey };
           }),
 
-        recordAnswer: (char, ok, now = Date.now()) =>
+        recordAnswer: (char, ok, now = Date.now(), drawn = false) =>
           set((s) => {
             const prev = s.stats[char] ?? { c: 0, w: 0 };
             const days = markDay(s.days, new Date(now));
@@ -203,11 +203,11 @@ export function createProgressStore(storage: StateStorage) {
               stats: { ...s.stats, [char]: ok ? { ...prev, c: prev.c + 1 } : { ...prev, w: prev.w + 1 } },
               days,
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
-              journey: trackAnswer(s, days, now, { ok, area: 'kana', ref: `srs:${char}` }),
+              journey: trackAnswer(s, days, now, { ok, area: 'kana', ref: `srs:${char}`, ...(drawn ? { drawn } : {}) }),
             };
           }),
 
-        recordReviewAnswer: (char, ok, firstTry, extra, now = Date.now()) =>
+        recordReviewAnswer: (char, ok, firstTry, extra, now = Date.now(), drawn = false) =>
           set((s) => {
             const prev = s.stats[char] ?? { c: 0, w: 0 };
             const entry = s.srs[char];
@@ -216,7 +216,7 @@ export function createProgressStore(storage: StateStorage) {
             return {
               stats: { ...s.stats, [char]: ok ? { ...prev, c: prev.c + 1 } : { ...prev, w: prev.w + 1 } },
               days,
-              journey: trackAnswer(s, days, now, { ok, area: 'kana', ref: `srs:${char}`, review: true, mature: (entry?.b ?? 0) >= MATURE_BOX }),
+              journey: trackAnswer(s, days, now, { ok, area: 'kana', ref: `srs:${char}`, review: true, mature: (entry?.b ?? 0) >= MATURE_BOX, ...(drawn ? { drawn } : {}) }),
               history: addActivity(s.history, new Date(now), { answers: 1, correct: ok ? 1 : 0 }),
               ...(reschedule ? { srs: { ...s.srs, [char]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };

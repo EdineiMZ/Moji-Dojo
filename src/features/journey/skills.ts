@@ -35,10 +35,14 @@ const SKILL_OF: Readonly<Record<Area, Skill>> = {
 export const skillOf = (area: Area): Skill => SKILL_OF[area];
 
 /** Soma uma resposta nos contadores da habilidade (`sk.<habilidade>.n` e `.ok`) e, se o cartão é maduro, nos da retenção. */
-export function countSkill(counters: Readonly<Record<string, number>>, event: Pick<AnswerEvent, 'area' | 'ok' | 'mature'>): Record<string, number> {
+export function countSkill(counters: Readonly<Record<string, number>>, event: Pick<AnswerEvent, 'area' | 'ok' | 'mature' | 'drawn'>): Record<string, number> {
   const skill = skillOf(event.area);
   let next = bump(counters, `sk.${skill}.n`);
   if (event.ok) next = bump(next, `sk.${skill}.ok`);
+  if (event.drawn) {
+    next = bump(next, 'wr.n');
+    if (event.ok) next = bump(next, 'wr.ok');
+  }
   if (event.mature) {
     next = bump(next, 'matureAnswers');
     if (event.ok) next = bump(next, 'matureCorrect');
@@ -60,6 +64,13 @@ export function skillStats(counters: Readonly<Record<string, number>>): SkillSta
     const ok = counters[`sk.${skill}.ok`] ?? 0;
     return { skill, label: SKILL_LABELS[skill], total, pct: total > 0 ? Math.round((ok / total) * 100) : null };
   });
+}
+
+/** A escrita (desenhar o símbolo) à parte: já conta em "Kana e kanji", e aqui se vê só o que foi desenhado. */
+export function writingStat(counters: Readonly<Record<string, number>>): { total: number; pct: number | null } {
+  const total = counters['wr.n'] ?? 0;
+  const ok = counters['wr.ok'] ?? 0;
+  return { total, pct: total > 0 ? Math.round((ok / total) * 100) : null };
 }
 
 export interface Retention {

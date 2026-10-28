@@ -2,6 +2,13 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.9.2] - 2026-10-28
+
+Contagem própria da escrita e integração contínua.
+
+- **Escrita nas estatísticas:** em "Por habilidade", uma linha à parte mostra o acerto dos símbolos que você desenhou (revisão, revisão mista, resgate e teste da lição). Eles continuam contando em "Kana e kanji". A contagem começa nesta versão.
+- **Integração contínua:** o repositório ganhou o GitHub Actions (tipos, lint, testes e `expo-doctor` a cada push) e o Dependabot (o Expo em grupo, o SDK só à mão).
+
 ## [2.9.1] - 2026-10-28
 
 Fecha a fase 2.9 (navegação e design).

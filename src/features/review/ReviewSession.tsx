@@ -159,7 +159,7 @@ function ReviewRun({ extra, light, unlimited, onExit, onDone, onDrawingChange, o
       <QuizView
         questions={questions}
         title={reviewTitle(extra)}
-        onAnswer={(q, ok, firstTry) => recordReviewAnswer(q.item.char, ok, firstTry, extra)}
+        onAnswer={(q, ok, firstTry) => recordReviewAnswer(q.item.char, ok, firstTry, extra, undefined, q.direction === 'write')}
         onDone={onDone}
         onDrawingChange={onDrawingChange}
       />

@@ -19,20 +19,14 @@ resultado sob a mesma licença (CC BY-SA 3.0 ou uma licença compatível).
 
 ## Alterações feitas (a licença exige indicá-las)
 
-- **Origem imediata:** os dados foram extraídos do protótipo web `Nihongo Dojo.html` (que ficava na raiz deste repositório e foi removido em 2026-10-27; continua no histórico do git),
-  que declara tê-los obtido do KanjiVG (o crédito aparece no rodapé da página).
-- **O que este projeto fez:** o script `scripts/extract-data.mjs` (também removido; está no histórico do git) copiou, para um único arquivo JSON, os caminhos
-  SVG de cada traço (`p`) e a posição do número de cada traço (`n`). Ou seja, o **formato** mudou (de SVG para
-  JSON); o script não altera os valores.
-- **O que não foi verificado:** estes dados não foram comparados com os arquivos originais do KanjiVG. Se o
-  protótipo os alterou de alguma forma, essa alteração também está presente aqui.
+- **Origem imediata:** os dados já faziam parte do projeto desde o começo, vindos de um conjunto de dados anterior que declarava tê-los obtido do KanjiVG.
+- **O que este projeto fez:** reuniu, em um único arquivo JSON, os caminhos SVG de cada traço (`p`) e a posição do número de cada traço (`n`). Ou seja, o **formato** mudou (de SVG para JSON); os valores não foram alterados.
+- **O que não foi verificado:** estes dados não foram comparados com os arquivos originais do KanjiVG. Se o conjunto anterior os alterou de alguma forma, essa alteração também está presente aqui.
 
 ## Onde mais o crédito aparece
 
-- No rodapé do protótipo `Nihongo Dojo.html` (removido do repositório; está no histórico do git), que também continha esses dados.
-- No `README.md` e na tela **Ajustes → Sobre** do app.
+- No `README.md`, no `NOTICE.md` e na tela **Ajustes → Sobre** do app.
 
 ## Escopo
 
-Este arquivo trata apenas do **material do KanjiVG** contido em `strokes.json`. A licença do restante do código
-deste repositório é definida à parte e ainda não foi escolhida.
+Este arquivo trata apenas do **material do KanjiVG** contido em `strokes.json`, que segue a **CC BY-SA 3.0**. O código deste repositório tem licença própria (ver `LICENSE`, na raiz).

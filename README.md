@@ -136,7 +136,7 @@ Mais sobre estrutura de pastas, dados, formato de backup e decisões técnicas: 
 #### Requisitos
 
 - **Node.js LTS** (testado com a versão 22) e **Git**. No Windows: `node --version` e `git --version` devem responder.
-- O app **Expo Go** instalado no Android (Play Store).
+- O app **Expo Go** instalado no Android.
 - O celular e o PC na **mesma rede Wi-Fi**.
 
 #### Passo a passo
@@ -150,7 +150,7 @@ No Expo Go, escaneie o QR code mostrado no terminal. Se o QR não funcionar, use
 
 - Se algo ficar estranho depois de mudar de versão ou de arquivo de configuração: `npx expo start -c` (limpa o cache).
 - Se o celular não conectar, o Firewall do Windows costuma estar bloqueando a porta 8081 para a rede privada.
-- **O Expo Go precisa suportar o SDK do projeto.** Este projeto usa o **Expo SDK 57**, que é o que o Expo Go da Play Store suporta. Ao atualizar o SDK, confirme antes que o Expo Go público já o suporta.
+- **O Expo Go precisa suportar o SDK do projeto.** Este projeto usa o **Expo SDK 57**, que é o que o Expo Go suporta. Ao atualizar o SDK, confirme antes que o Expo Go público já o suporta.
 
 #### Scripts
 
@@ -205,8 +205,8 @@ O conteúdo vem de **fontes abertas com licença conferida e creditada**; o que 
 
 ## Status do projeto
 
-Projeto pessoal de estudo e de portfólio, só para Android e sem publicação em loja. O que já foi verificado por testes e no aparelho, o que ainda depende de teste num celular e a lista de pendências antes de uma divulgação maior estão no [`ROADMAP.md`](ROADMAP.md) (seção "Antes de divulgar").
+Projeto pessoal de estudo e de portfólio, só para Android. O que ainda precisa de validação (revisão do japonês por um falante, testes em aparelho) e o que vem a seguir estão no [`ROADMAP.md`](ROADMAP.md).
 
 ## Licença
 
-O **código** é distribuído sob a licença **MIT** ([`LICENSE`](LICENSE)). Os **dados e o conteúdo de terceiros** mantêm as licenças das suas fontes, listadas acima e em [`NOTICE.md`](NOTICE.md); os derivados de obras CC BY-SA continuam sob CC BY-SA.
+O **código**, a **arte** e os **sons originais** são distribuídos sob a licença **MIT**, com o texto em português e em inglês e os esclarecimentos de uso em [`LICENSE`](LICENSE). Os **dados e o conteúdo de terceiros** mantêm as licenças das suas fontes, listadas acima e em [`NOTICE.md`](NOTICE.md); os derivados de obras CC BY-SA continuam sob CC BY-SA.

@@ -1,6 +1,6 @@
 # Moji Dojo: roadmap
 
-Versão atual: **2.8.1** (2026-10-27). Este documento diz **onde o app está**, **o que falta antes de divulgá-lo** e **o que vem depois, por prioridade**. O detalhe de tudo o que já foi entregue em cada fase está em [`docs/roadmap-historico.md`](docs/roadmap-historico.md), e o histórico por versão, no [`CHANGELOG.md`](CHANGELOG.md).
+Versão atual: **2.8.2** (2026-10-27). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
 
 Legenda: ✅ feito · 🟡 em parte · ⬜ pendente. Esforço: **P** = dias, **M** = 1 a 2 semanas, **G** = várias semanas.
 
@@ -22,7 +22,6 @@ O Moji Dojo ensina a escrita e leva o aluno até a produção de frases, a escut
 | IA opcional | ✅ | Gemini, Claude e GPT com chave própria, cache, fila offline, 13 recursos |
 | Voz de anime | ✅ | 43 personagens, vozes baixadas pelo app com aceite dos termos de cada um, "Minhas vozes" para escolher e ouvir (2.8.1) |
 | Dados e backup | ✅ | Backup `MDJ1:`, importação do formato antigo, exportação para o Anki |
-| Distribuição | 🟡 | APK de demonstração (chave de depuração); página de Releases a publicar |
 
 ### Princípios
 
@@ -33,19 +32,16 @@ O Moji Dojo ensina a escrita e leva o aluno até a produção de frases, a escut
 5. **Conteúdo confiável:** nada de japonês inventado. Vem de fonte aberta com licença conferida, ou é marcado como escrito por IA e revisado por um falante.
 6. **Funciona offline e é leve:** sem conta, sem servidor, sem telemetria.
 
-## 2. Antes de divulgar
+## 2. O que falta validar
 
-O que ainda impede ou deveria impedir a publicação do projeto e a distribuição do APK. Os dois primeiros bloqueiam; os demais precisam estar claros para quem usar.
+O que ainda precisa ser conferido para confiar no app e no conteúdo.
 
 | # | Pendência | Por quê | Esforço |
 | --- | --- | --- | --- |
-| 1 | **Licença do projeto.** Não há `LICENSE`. Proposta: código sob MIT e dados derivados sob CC BY-SA 4.0 | KanjiVG, JMdict e Kanjium exigem compartilhar igual; publicar sem declarar a licença deixa isso em aberto | P |
-| 2 | **Assinar o APK com chave própria.** Hoje ele usa a chave de depuração padrão do Android | Qualquer pessoa pode gerar um APK "atualização" com a mesma assinatura. Trocar a chave exige reinstalar: avise antes e use o backup | P |
-| 3 | **Revisão do japonês escrito por IA por um falante:** explicações, diálogos, textos de leitura, frases de viagem, moldes, dicas dos kanji, significados em português e as descrições das vozes | É o maior risco de ensinar algo errado. Está avisado no app e no README | G |
-| 4 | **Testar no aparelho** o que só foi verificado por testes e empacotamento: síntese do VOICEVOX (ONNX), câmera, reconhecimento de fala, gravação, teclado 3 × 4 | Dependem do hardware e do Android | P |
-| 5 | **Ler os termos do site do VOICEVOX sobre reutilizar as amostras** (ou trocar o botão "Amostra" por um link para a página do personagem) | O app toca a amostra que o site publica; os termos do site sobre isso não foram lidos | P |
-| 6 | **Acessibilidade:** passada com TalkBack e fonte grande; alternativa ao flick por deslize | O flick só funciona por gesto | M |
-| 7 | **Para a loja:** confirmar o `applicationId` (`com.edi.mojidojo`), política de privacidade (microfone, câmera, IA), ícone e splash no aparelho, AAB | Depois de publicado, o `applicationId` não muda | M |
+| 1 | **Revisão do japonês escrito por IA por um falante:** explicações, diálogos, textos de leitura, frases de viagem, moldes, dicas dos kanji, significados em português e as descrições das vozes | É o maior risco de ensinar algo errado. Está avisado no app e no README | G |
+| 2 | **Testar no aparelho** o que só foi verificado por testes e empacotamento: síntese do VOICEVOX (ONNX), câmera, reconhecimento de fala, gravação, teclado 3 × 4 | Dependem do hardware e do Android | P |
+| 3 | **Ler os termos do site do VOICEVOX sobre reutilizar as amostras** (ou trocar o botão "Amostra" por um link para a página do personagem) | O app toca a amostra que o site publica; os termos do site sobre isso não foram lidos | P |
+| 4 | **Acessibilidade:** passada com TalkBack e fonte grande; alternativa ao flick por deslize | O flick só funciona por gesto | M |
 
 ## 3. Próximas versões
 
@@ -75,7 +71,7 @@ O app cresceu por camadas e a interface não acompanhou. A queixa é geral, e é
 - ⬜ **Aba Frases com três níveis de chips** (Frases → Frases → Modelos, Traduzir, Montar, Banco, Diálogos, Viagem, Explorar, Minhas frases, ✨IA → Conversa, Explicar, Diário…). Repensar: um "Praticar" com atalhos, busca por recurso, ou agrupar o que é avançado. Medir o uso antes de decidir. *(G)*
 - ⬜ **Início:** "Estudar hoje" e "Sessão de hoje" mostram a mesma revisão em dois cartões. Avaliar juntar os dois. *(M)*
 - ⬜ **Primeira abertura:** um primeiro passo guiado (a primeira lição) logo depois da introdução, em vez de cair numa tela cheia de opções. *(M)*
-- ⬜ **Acessibilidade:** o item 6 da seção 2, mais contraste e alvos de toque revisados nas telas novas. *(M)*
+- ⬜ **Acessibilidade:** o item 4 da seção 2, mais contraste e alvos de toque revisados nas telas novas. *(M)*
 - ✅ **Escolha da voz de anime (2.8.1):** "Minhas vozes" com "Usar esta voz", selo "Em uso" e amostra com retorno visível. Serve de modelo para os outros ajustes.
 
 ### 2.10: tamanho e desempenho
@@ -123,11 +119,9 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 - 🟡 **Revisão espaçada por tecla e direção:** o modo "Pontos fracos" já escolhe as letras mais erradas; falta agendar a volta de cada uma. *(M)*
 - ⬜ **Séries dirigidas** de pontuação e números, e uma meta diária de digitação. *(P)*
 
-### Engenharia e distribuição
+### Engenharia
 
 - ⬜ **Integração contínua** (GitHub Actions) rodando `tsc`, lint, Jest e `expo-doctor` em cada alteração. *(P)*
-- ⬜ **Releases automáticas:** APK assinado com a chave própria e o SHA-256 nas notas. *(M)*
-- ⬜ **Checagem de atualização dentro do app**, pelo endpoint já decidido (`https://api.github.com/repos/EdineiMZ/Moji-Dojo/releases/latest`, tratando 404 como "sem atualização"), com aviso discreto e opção em Ajustes. *(M)*
 - ⬜ **Testes de ponta a ponta** (por exemplo com Maestro) dos fluxos críticos: primeira abertura, uma lição, uma revisão, a compra na loja. *(M)*
 - ⬜ **Dependências em dia:** Dependabot ou Renovate, e subir para o Expo SDK 58 quando ele virar `latest` (hoje é `next`; o projeto está no 57.0.31, e o React Native mais novo é o 0.88). *(M)*
 - ⬜ **Capturas de tela automatizadas** para o README a cada versão. *(P)*
@@ -141,8 +135,8 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 
 Sem prioridade nem decisão; entram nas versões acima quando fizerem sentido.
 
-- As abas do protótipo que não entraram: tabela de caracteres, treino livre e dicas de pares parecidos.
-- Dicas de memória para os kana com dakuten (o protótipo original não tinha).
+- Tabela de caracteres, treino livre e dicas de pares parecidos.
+- Dicas de memória para os kana com dakuten.
 - Moldes de frase com a fala do atendente para escolher, e mais moldes.
 - Mais exemplos de leitura do dia a dia (placas, preços em lojas).
 - Missões mais variadas: em cadeia, por horário e pesadas pelas áreas mais fracas.
@@ -153,7 +147,7 @@ Sem prioridade nem decisão; entram nas versões acima quando fizerem sentido.
 ## 5. Fora do escopo por enquanto
 
 - Contas, nuvem, sincronização entre aparelhos e rankings (o app é offline; o backup cobre a troca de celular).
-- iPhone (e, junto, a publicação em loja, até o `applicationId` estar decidido).
+- iPhone.
 - Conteúdo acima do N3.
 
 ## 6. Como saber se está funcionando

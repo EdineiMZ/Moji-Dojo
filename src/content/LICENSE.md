@@ -1,8 +1,8 @@
 # Fontes e licenças do vocabulário
 
-> **Status (2026-10-27):** a licença das listas do Tanos foi validada (CC BY) e o crédito do VOICEVOX foi conferido (exceto 雨晴はう,
-> sem seção nos termos oficiais). Seguem pendentes a **revisão do conteúdo escrito por IA por um falante** e a escolha da licença do
-> projeto. Siga a lista "Antes de publicar" no fim deste arquivo.
+> **Status:** a licença das listas do Tanos foi validada (CC BY) e o crédito do VOICEVOX foi conferido. Resta a **revisão do
+> conteúdo escrito por IA por um falante**. A licença do código está em `LICENSE`, na raiz, e as licenças de terceiros estão
+> resumidas em `NOTICE.md`; este arquivo traz o detalhe de cada fonte.
 
 ## Lista JLPT N5 (`n5.ts`, gerado em `scripts/vocab-n5/`)
 
@@ -77,7 +77,7 @@
 
 ## Diálogos (`dialogs.ts`, gerado em `scripts/dialogs/`)
 
-- **Falas do aluno:** frases de Viagem, vindas do protótipo HTML. Nada novo.
+- **Falas do aluno:** frases de Viagem do próprio app. Nada novo.
 - **Falas do atendente** (ex.: "いらっしゃいませ", "ご注文はお決まりですか"), **narração e motivos das respostas
   erradas:** texto próprio, escrito para este app por um assistente de IA, com frases fixas de atendimento.
 - **Pendência:** as falas do atendente e as explicações **não foram revisadas por um falante**. Revisar junto com o resto.
@@ -88,8 +88,8 @@
   O projeto declara a licença **CC BY-SA 4.0** (exige crédito e que os dados derivados fiquem sob a mesma licença) e diz que
   a maior parte dos dados vem do EDRDG (EDICT/KANJIDIC), usados conforme a licença do grupo.
 - **Alterações feitas neste projeto:** só as 538 palavras do vocabulário N5 que têm acento na fonte (`npm run build-pitch`).
-- **Pendência:** confirmar a cadeia de licenças (Kanjium → EDRDG → fontes originais do acento) antes de publicar. O
-  CC BY-SA é o mesmo do KanjiVG, então a escolha da licença do projeto (item 4 de "Antes de publicar") já precisa dele.
+- **Pendência:** confirmar a cadeia de licenças (Kanjium → EDRDG → fontes originais do acento). O CC BY-SA é o mesmo do
+  KanjiVG, e os dados derivados dele ficam sob CC BY-SA (ver `NOTICE.md`).
 
 ## Voz VOICEVOX (módulo `modules/voicevox`, opcional)
 
@@ -124,13 +124,12 @@
 ## Câmera para ler (módulo `modules/textscan`)
 
 - **Google ML Kit** (`com.google.mlkit:text-recognition-japanese`), com o modelo japonês dentro do app: a imagem não sai do aparelho.
-  Os termos do ML Kit estão em https://developers.google.com/ml-kit/terms. Confira-os antes de publicar.
+  Os termos do ML Kit estão em https://developers.google.com/ml-kit/terms.
 
 ## Reconhecimento de fala (biblioteca)
 
 - **`expo-speech-recognition`** (MIT) usa o reconhecimento de fala do Android (serviço do Google). O app não guarda o áudio,
-  mas a voz é enviada a esse serviço. Antes de publicar: incluir isso numa política de privacidade e conferir as regras da
-  loja para o uso do microfone e do reconhecimento de fala.
+  mas a voz é enviada a esse serviço; o README explica o que cada permissão faz.
 
 ## Classe gramatical, frequência e kanji novos (`wordClass.ts`, `frequency.ts`, `kanjiExtra.ts`)
 
@@ -144,12 +143,11 @@
   por IA para este app** (`scripts/kanji/pt.json`) e **precisam de revisão por um falante**.
 - **Situações de viagem** (`src/features/vocab/order.ts`): a escolha de quais palavras do vocabulário servem em cada situação é uma
   curadoria feita para este app (nenhuma palavra nova).
-- **Pendência:** todas essas fontes são CC BY-SA, então o item 4 de "Antes de publicar" (licença do projeto) vale para elas.
+- Todas essas fontes são CC BY-SA: os dados derivados delas ficam sob CC BY-SA (ver `NOTICE.md`).
 
-## Vocabulário do protótipo original (HTML)
+## Vocabulário inicial
 
-A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado vêm do protótipo
-`Nihongo Dojo.html` (a especificação do projeto, removida do repositório em 2026-10-27 e disponível no histórico do git), já presentes em `src/data/`, que passou a ser mantida à mão.
+A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado são conteúdo próprio do app, em `src/data/`.
 
 ## Áudio nativo das palavras (Lingua Libre)
 
@@ -173,7 +171,7 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
 
 ## Dicas dos kanji (1.11.2)
 
-- `src/content/kanjiHints.ts`: dicas de memorização para os 216 kanji que o protótipo não trazia, **escritas por IA** a partir dos
+- `src/content/kanjiHints.ts`: dicas de memorização para os 216 kanji que ainda não tinham dica, **escritas por IA** a partir dos
   componentes de cada kanji no KanjiVG (CC BY-SA 3.0). São imagens para lembrar a forma, não a origem histórica do caractere.
   **Escritas por IA, a revisar por um falante.**
 
@@ -197,15 +195,9 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
 
 - `scripts/verify-japanese/` e `src/content/confirmed.ts`: as frases do app foram comparadas com o **Tatoeba** (CC BY 2.0 FR; os números das frases estão em `confirmed.ts`, para crédito), com o **JMdict** (EDRDG, CC BY-SA 4.0) e com o guia de frases da **Wikivoyage** em inglês (CC BY-SA 4.0; `wikivoyage.txt` guarda só a romanização, para comparar). Nenhum texto dessas fontes é exibido no app além do número de referência. O selo diz o que foi confirmado; a revisão por um falante continua pendente para o resto.
 
-## Antes de publicar
+## Pendências e conferências
 
-1. ~~Confirmar a licença das listas do Tanos~~ **Feito em 2026-10-27** (CC BY, com crédito; ver a seção da lista JLPT N5 acima).
-2. **Se usar dados do JMdict/KANJIDIC (EDRDG):** a licença é **CC BY-SA 4.0** e exige crédito, inclusive em
-   apps (https://www.edrdg.org/edrdg/licence.html); os dados derivados ficam sob a mesma licença.
-3. **Revisar as traduções** com um falante (no mínimo uma amostra grande) e corrigir `scripts/vocab-n5/pt-*.txt`;
-   depois `npm run build-n5`.
-4. **Escolher a licença do restante do projeto** (hoje não há `LICENSE` na raiz) de forma compatível com o
-   CC BY-SA do KanjiVG e com o que ficar decidido acima.
-5. **Crédito do Tatoeba** (CC BY 2.0 FR): manter a menção em **Ajustes → Sobre** e, se as frases saírem do app
-   (repositório público, site), incluir o crédito e o link junto delas.
-6. Conferir a tela **Ajustes → Sobre** (créditos) e este arquivo, e atualizar o texto se a fonte mudar.
+1. **Revisar as traduções e o japonês escrito por IA** com um falante (no mínimo uma amostra grande): corrigir `scripts/vocab-n5/pt-*.txt` e depois `npm run build-n5`; o mesmo vale para explicações, diálogos, textos de leitura, frases de viagem, moldes, dicas dos kanji e descrições das vozes.
+2. **Créditos que a licença de cada fonte exige:** manter em **Ajustes → Sobre** e em `NOTICE.md` a menção ao KanjiVG, ao JMdict e KANJIDIC2 (EDRDG, https://www.edrdg.org/edrdg/licence.html), ao Kanjium, ao Tatoeba (com o link de cada frase), às listas de Jonathan Waller e aos falantes do Lingua Libre. Se as frases ou os áudios forem copiados para fora do app (um site, por exemplo), levar o crédito e o link junto.
+3. **Termos do site do VOICEVOX** sobre reutilizar as amostras que ele publica: não foram lidos. Se for um problema, trocar o botão "Amostra" por um link para a página do personagem.
+4. Conferir a tela **Ajustes → Sobre** e este arquivo e atualizar o texto se alguma fonte mudar.

@@ -18,7 +18,7 @@ e diz o que já foi confirmado e o que ainda precisa de um falante. Gerada por `
 
 | Tipo | Frase confirmada | Construção confirmada | Sem confirmação |
 | --- | ---: | ---: | ---: |
-| Frases de viagem (do protótipo) | 22 | 7 | 8 |
+| Frases de viagem (as 37 iniciais) | 22 | 7 | 8 |
 | Frases de viagem e dia a dia (escritas por IA) | 80 | 39 | 32 |
 | Falas do atendente nos diálogos (escritas por IA) | 15 | 5 | 13 |
 | Frases-modelo (escritas por IA) | 45 | 53 | 9 |
@@ -31,7 +31,7 @@ Wikivoyage têm o sentido confirmado pelas fontes.
 
 ## Ainda sem confirmação em fontes (para revisão por um falante)
 
-### Frases de viagem (do protótipo)
+### Frases de viagem (as 37 iniciais)
 
 - はい / いいえ — Sim / não
 - カードで はらえますか — Posso pagar com cartão?

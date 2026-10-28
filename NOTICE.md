@@ -1,6 +1,6 @@
 # Avisos de terceiros
 
-O código do Moji Dojo é distribuído sob a licença MIT (ver [`LICENSE`](LICENSE)). Este arquivo lista o que o app usa de terceiros, com a licença de cada um. O detalhe de origem, alterações feitas e pendências está em [`src/content/LICENSE.md`](src/content/LICENSE.md) e em [`src/data/strokes/LICENSE.md`](src/data/strokes/LICENSE.md).
+O código, a arte e os sons originais do Moji Dojo são distribuídos sob a licença MIT (ver [`LICENSE`](LICENSE), em português e em inglês). Este arquivo lista o que o app usa de terceiros, com a licença de cada um. O detalhe de origem, alterações feitas e pendências está em [`src/content/LICENSE.md`](src/content/LICENSE.md) e em [`src/data/strokes/LICENSE.md`](src/data/strokes/LICENSE.md).
 
 ## Conteúdo e dados
 

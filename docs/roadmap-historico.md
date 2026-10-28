@@ -1,5 +1,7 @@
 # Moji Dojo: roadmap rumo à fluência 🌸
 
+> **Histórico.** Este é o roadmap como estava na versão 2.8.0 (2026-10-27), com o detalhe de tudo o que foi entregue em cada fase. Ele não é mais atualizado: o roadmap vivo, organizado por prioridade e por versão, está em [`ROADMAP.md`](../ROADMAP.md). Dois itens ficaram desatualizados aqui de propósito, para não reescrever a história: a "Câmera para ler" aparece como feita e como "não feita" ao mesmo tempo (está feita, desde a 2.6.0) e as "Mais vozes" do VOICEVOX já foram entregues (2.7.0).
+
 Este documento propõe o que construir depois da versão atual, na ordem em que mais ajuda a **aprender japonês de verdade**: entender o significado das coisas, montar frases, ouvir, falar, ler e continuar estudando por meses. É uma proposta para revisar e priorizar, não um compromisso.
 
 ## 1. Onde o app está hoje
@@ -69,7 +71,7 @@ Objetivo: saber o que as palavras *significam* e reconhecê-las ao ouvir e ler.
 
 ### Antes de publicar (pendência registrada)
 
-O app é de **uso pessoal e privado**, então as licenças de conteúdo ainda não foram validadas. Antes de distribuir o app para outras pessoas, seguir a lista "Antes de publicar" em [`src/content/LICENSE.md`](src/content/LICENSE.md): confirmar a licença das listas do Tanos (ou trocar a fonte), cumprir o crédito do JMdict se for usado, **revisar as traduções com um falante** e escolher a licença do projeto.
+O app é de **uso pessoal e privado**, então as licenças de conteúdo ainda não foram validadas. Antes de distribuir o app para outras pessoas, seguir a lista "Antes de publicar" em [`src/content/LICENSE.md`](../src/content/LICENSE.md): confirmar a licença das listas do Tanos (ou trocar a fonte), cumprir o crédito do JMdict se for usado, **revisar as traduções com um falante** e escolher a licença do projeto.
 
 ### Fase 2: gramática ativa
 

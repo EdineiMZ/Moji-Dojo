@@ -13,7 +13,8 @@ export function LevelPathCard() {
   const vocab = useProgressStore((s) => s.vocab);
   const conj = useProgressStore((s) => s.conj);
   const mastered = useProgressStore((s) => s.mastered);
-  const paths = useMemo(() => levelPaths(srs, vocab, conj, mastered), [srs, vocab, conj, mastered]);
+  const reads = useProgressStore((s) => s.reads);
+  const paths = useMemo(() => levelPaths(srs, vocab, conj, mastered, reads), [srs, vocab, conj, mastered, reads]);
   return (
     <Card>
       <AppText variant="title">Caminho por nível</AppText>

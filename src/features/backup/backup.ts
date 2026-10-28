@@ -5,6 +5,7 @@ import { LAST_BOX, type SrsEntry } from '@/features/review/srs';
 import { MAX_HISTORY_DAYS, type DayActivity } from '@/features/stats/metrics';
 import { findWord } from '@/content';
 import { sanitizeTyping } from '@/features/keyboard/typingStats';
+import { sanitizeReads } from '@/features/reading/reads';
 import { sanitizeJourney } from '@/features/journey/journey';
 import { ALL_GRAMMAR } from '@/content/grammar';
 import { MAX_MY_PHRASES, MAX_PHRASE_LENGTH, type MyPhrase } from '@/features/myphrases/phrases';
@@ -270,7 +271,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
     };
   }
 
-  return { value: { history: recent, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases, typing: sanitizeTyping(root.typing) }, ignored };
+  return { value: { history: recent, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases, typing: sanitizeTyping(root.typing), reads: sanitizeReads(root.reads) }, ignored };
 }
 
 /**
@@ -390,6 +391,7 @@ export function exportBackup(progress: ProgressSnapshot & ProgressExtras, now: D
     mastered: progress.mastered,
     myPhrases: progress.myPhrases,
     typing: progress.typing,
+    reads: progress.reads,
   };
   return APP_BACKUP_PREFIX + btoa(encodeUtf8(JSON.stringify(payload)));
 }

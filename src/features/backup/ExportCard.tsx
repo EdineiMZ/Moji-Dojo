@@ -28,6 +28,7 @@ export function ExportCard() {
   const mastered = useProgressStore((s) => s.mastered);
   const myPhrases = useProgressStore((s) => s.myPhrases);
   const typing = useProgressStore((s) => s.typing);
+  const reads = useProgressStore((s) => s.reads);
 
   const counts = useMemo(
     () => ({ ...summarizeProgress({ srs, lessons, stats, days }), words: learnedWordIds(vocab).size }),
@@ -35,7 +36,7 @@ export function ExportCard() {
   );
   const [code, setCode] = useState<string | null>(null);
 
-  const generate = () => setCode(exportBackup({ srs, lessons, stats, days, history, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases, typing }));
+  const generate = () => setCode(exportBackup({ srs, lessons, stats, days, history, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases, typing, reads }));
 
   const share = () => {
     if (!code) return;

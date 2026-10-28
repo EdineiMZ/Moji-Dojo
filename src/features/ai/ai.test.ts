@@ -275,7 +275,7 @@ describe('a chave de API fica fora do backup', () => {
       journey: emptyJourney(),
       mastered: {},
       myPhrases: {},
-      typing: EMPTY_TYPING,
+      typing: EMPTY_TYPING, reads: {},
     });
     const text = atob(code.slice('MDJ1:'.length));
     expect(text).not.toMatch(/"ai"|apiKey|moji_ai_key|aiUsage/);

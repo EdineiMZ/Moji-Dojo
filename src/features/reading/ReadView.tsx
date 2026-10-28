@@ -173,6 +173,8 @@ function TextReader({ text, onBack }: { text: ReadingText; onBack: () => void })
   const known = useMemo(() => learnedWordIds(vocab), [vocab]);
   const [furigana, setFurigana] = useState(true);
   const [picked, setPicked] = useState<Picked | null>(null);
+  const isRead = useProgressStore((s) => s.reads[text.id] !== undefined);
+  const markRead = useProgressStore((s) => s.markRead);
 
   return (
     <View style={styles.root}>
@@ -201,6 +203,7 @@ function TextReader({ text, onBack }: { text: ReadingText; onBack: () => void })
             onPick={(piece) => setPicked({ piece, line })}
           />
         ))}
+        <Button label={isRead ? '✓ Texto lido' : 'Marcar como lido'} variant={isRead ? 'soft' : 'primary'} onPress={() => markRead(text.id)} disabled={isRead} />
         <AppText variant="caption" color="muted">
           Toque numa palavra sublinhada. Verde: você já estuda. Roxa: ainda não (nas placas e cardápios, toda palavra tem explicação).
         </AppText>

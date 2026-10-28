@@ -1,6 +1,6 @@
 # Moji Dojo: roadmap
 
-Versão atual: **2.8.2** (2026-10-27). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
+Versão atual: **2.8.3** (2026-10-27). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
 
 Legenda: ✅ feito · 🟡 em parte · ⬜ pendente. Esforço: **P** = dias, **M** = 1 a 2 semanas, **G** = várias semanas.
 
@@ -40,8 +40,9 @@ O que ainda precisa ser conferido para confiar no app e no conteúdo.
 | --- | --- | --- | --- |
 | 1 | **Revisão do japonês escrito por IA por um falante:** explicações, diálogos, textos de leitura, frases de viagem, moldes, dicas dos kanji, significados em português e as descrições das vozes | É o maior risco de ensinar algo errado. Está avisado no app e no README | G |
 | 2 | **Testar no aparelho** o que só foi verificado por testes e empacotamento: síntese do VOICEVOX (ONNX), câmera, reconhecimento de fala, gravação, teclado 3 × 4 | Dependem do hardware e do Android | P |
-| 3 | **Ler os termos do site do VOICEVOX sobre reutilizar as amostras** (ou trocar o botão "Amostra" por um link para a página do personagem) | O app toca a amostra que o site publica; os termos do site sobre isso não foram lidos | P |
-| 4 | **Acessibilidade:** passada com TalkBack e fonte grande; alternativa ao flick por deslize | O flick só funciona por gesto | M |
+| 3 | **Conferir o nome "Moji Dojo" no banco de marcas do INPI** (classes de software e de educação) | Não achei nenhum "Moji Dojo" na internet, mas há apps do mesmo ramo com nomes parecidos (MOJi, MOJi辞書, "Moji - Learn Japanese") | P |
+| 4 | **Origem dos dados de tom (Kanjium):** o Kanjium declara CC BY-SA 4.0 e credita o autor, mas não dá para verificar de onde ele tirou os dados; aceitar esse risco (é fonte comum em apps de dicionário) ou trocar a fonte | A cadeia anterior à do Kanjium não é verificável | P |
+| 5 | **Acessibilidade:** passada com TalkBack e fonte grande; alternativa ao flick por deslize | O flick só funciona por gesto | M |
 
 ## 3. Próximas versões
 
@@ -49,14 +50,17 @@ Cada bloco abaixo conta como uma "fase" para a regra de versão do `AGENTS.md` (
 
 ### 2.8.x: correções e acabamento
 
-Pequenas, de baixo risco, achadas ao revisar as telas.
+Feito entre a 2.8.1 e a 2.8.3, a partir da revisão das telas e das licenças. O que ainda falta é confirmar no aparelho.
 
-- ⬜ **Baú do primeiro dia:** ele diz "um presente por você ter voltado hoje", o que não faz sentido na primeira abertura. Trocar por uma mensagem de boas-vindas. *(P)*
-- ⬜ **Tela Sobre muito longa:** os créditos viraram um bloco de texto grande no fim dos Ajustes. Levar para uma tela "Créditos" com seções (escrita, vocabulário, frases, áudio, vozes). *(P)*
-- ⬜ **Download de voz mais robusto:** retomar um download interrompido, avisar quando estiver em dados móveis, conferir o SHA-256 do arquivo (a API do GitHub publica) e mostrar o espaço usado, com "apagar todas as vozes". *(M)*
-- ✅ **Voz sintetizada quase inaudível (2.8.1):** o motor entregava cada personagem num volume diferente (o ずんだもん saía uns 12 dB abaixo das amostras do site); agora o áudio é nivelado pelo pico. Falta confirmar no aparelho.
-- ⬜ **Amostra frágil:** ela lê o endereço da página do personagem no site oficial; se o site mudar, o botão só avisa. Ter um plano B (link para a página, ou clipes curtos no app, se os termos permitirem). *(P)*
-- ⬜ **Testes de tela:** a lista de vozes e o painel de termos só têm teste da lógica; faltam testes de componente. *(M)*
+- ✅ **Voz sintetizada quase inaudível (2.8.1):** o motor entregava cada personagem num volume diferente; agora o áudio é nivelado pelo pico. Falta medir no aparelho.
+- ✅ **Escolher a voz (2.8.1):** "Minhas vozes", com "Usar esta voz", selo "Em uso" e amostra com retorno visível.
+- ✅ **Baú do primeiro dia (2.8.3):** a primeira abertura dá boas-vindas, em vez de agradecer uma volta que não houve.
+- ✅ **Créditos e licenças em tela própria (2.8.3):** os créditos de cada fonte (inclusive o aviso da EDRDG e a atribuição ao Kanjium, que faltavam), o aviso do ML Kit e o texto de licença de 336 componentes de terceiros (pacotes do app, bibliotecas Android e componentes nativos, com os avisos do ONNX Runtime). A tela Sobre ficou curta.
+- ✅ **Download de voz mais robusto (2.8.3):** continua de onde parou, confere o SHA-256 oficial de cada arquivo, avisa em dados móveis, mostra o espaço usado e tem "Apagar todas as vozes".
+- ✅ **Amostra com plano B (2.8.3):** se o site mudar ou cair, o botão oferece abrir a página do personagem; ao tocar, mostra o crédito "VOICEVOX:nome".
+- ✅ **Testes de tela (2.8.3):** a lista de vozes (termos, aceite, continuar, dados móveis) e "Minhas vozes" (usar a voz, voltar ao Android, espaço usado).
+- ⬜ **Confirmar no aparelho:** o volume da voz (2.8.1) e o download novo com a rede caindo no meio. *(P)*
+- ⬜ **Telemetria do ML Kit:** a câmera que lê texto usa o ML Kit, que envia dados técnicos ao Google (está avisado). Avaliar um reconhecimento de texto que não envie nada, ou aceitar e manter o aviso. *(M)*
 
 ### 2.9: UX e design (navegação e Ajustes)
 

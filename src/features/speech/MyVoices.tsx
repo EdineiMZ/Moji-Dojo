@@ -1,10 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, ChipRow } from '@/components';
 import { useSettingsStore } from '@/store';
 import { radii, spacing, useTheme } from '@/theme';
 import { usePreview, previewLabel } from './usePreview';
 import { useVoicevoxStore, warmUpVoicevox } from './voicevox';
-import { installedSpeakers, type InstalledSpeaker } from './voicevoxPacks';
+import { formatSize, installedBytes, installedSpeakers, type InstalledSpeaker } from './voicevoxPacks';
 import { VOICE_DESC_PT, speakerLabel, styleLabel } from './voicevoxText';
 
 /** Um personagem já baixado: selo "Em uso", descrição, tons (só no escolhido) e os botões "Ouvir" e "Usar esta voz". */
@@ -70,6 +70,8 @@ export function MyVoices() {
   const style = useSettingsStore((s) => s.voicevoxStyle);
   const setEngine = useSettingsStore((s) => s.setVoiceEngine);
   const clearCache = useVoicevoxStore((s) => s.clearCache);
+  const removeAll = useVoicevoxStore((s) => s.removeAll);
+  const busy = useVoicevoxStore((s) => s.download !== null);
   const voices = installedSpeakers(installed);
 
   if (voices.length === 0) return null;
@@ -92,7 +94,21 @@ export function MyVoices() {
         <VoiceRow key={voice.info.slug} voice={voice} inUse={using && voice === current} />
       ))}
       {using ? <Button label="Voltar para a voz do Android" variant="ghost" onPress={() => setEngine('system')} /> : null}
+      <AppText variant="caption" color="muted">
+        Vozes baixadas: {installed.length} {installed.length === 1 ? 'arquivo' : 'arquivos'}, {formatSize(installedBytes(installed))} no aparelho.
+      </AppText>
       <Button label="Limpar áudios guardados" variant="ghost" onPress={() => void clearCache()} />
+      <Button
+        label="Apagar todas as vozes"
+        variant="ghost"
+        disabled={busy}
+        onPress={() =>
+          Alert.alert('Apagar todas as vozes?', `As ${installed.length} ${installed.length === 1 ? 'voz sai' : 'vozes saem'} do aparelho e liberam ${formatSize(installedBytes(installed))}. Dá para baixar de novo quando quiser.`, [
+            { text: 'Manter', style: 'cancel' },
+            { text: 'Apagar tudo', style: 'destructive', onPress: () => void removeAll() },
+          ])
+        }
+      />
       <AppText variant="caption" color="muted">
         As gravações de falantes nativos (em Sons e vibração) continuam tendo prioridade nas palavras que as têm; desligue-as para ouvir só o VOICEVOX.
       </AppText>

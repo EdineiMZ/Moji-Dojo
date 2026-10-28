@@ -4,7 +4,9 @@ import {
   RECOMMENDED_PACK,
   formatSize,
   installedBytes,
+  downloadWarning,
   installedSpeakers,
+  partialPercent,
   orderedPacks,
   packByFile,
   packForStyle,
@@ -156,5 +158,32 @@ describe('minhas vozes (personagens já baixados)', () => {
     expect(ids).toContain(3); // ノーマル, do 0.vvm
     expect(ids).toContain(22); // ささやき, do 5.vvm
     expect(ids).toContain(75); // ヘロヘロ, do 15.vvm
+  });
+});
+
+describe('download das vozes', () => {
+  it('todo arquivo tem o SHA-256 oficial (64 caracteres hexadecimais) e ele é único', () => {
+    const hashes = VOICE_PACKS.map((p) => p.sha256);
+    for (const h of hashes) expect(h).toMatch(/^[0-9a-f]{64}$/);
+    expect(new Set(hashes).size).toBe(hashes.length);
+  });
+
+  it('o hash do arquivo recomendado é o que a release publica e que conferimos no 0.vvm baixado', () => {
+    expect(packByFile('0.vvm')?.sha256).toBe('ecd35374d4182cd883cba5040376f7f888cc6ba248b1c2f4cea07cdb34bb1318');
+  });
+
+  it('mostra quanto de um download interrompido já veio, sem passar de 100', () => {
+    const pack = packByFile('0.vvm')!;
+    expect(partialPercent(0, pack)).toBe(0);
+    expect(partialPercent(pack.bytes / 2, pack)).toBe(50);
+    expect(partialPercent(pack.bytes * 3, pack)).toBe(100);
+    expect(partialPercent(-5, pack)).toBe(0);
+  });
+
+  it('avisa quando o download gastaria dados móveis ou quando não há internet', () => {
+    expect(downloadWarning('wifi', 57 * 1048576)).toBeNull();
+    expect(downloadWarning('unknown', 57 * 1048576)).toBeNull();
+    expect(downloadWarning('cellular', 57 * 1048576)).toMatch(/dados móveis.*57 MB/);
+    expect(downloadWarning('none', 57 * 1048576)).toMatch(/Sem internet/);
   });
 });

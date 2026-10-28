@@ -21,7 +21,7 @@ resultado sob a mesma licença (CC BY-SA 3.0 ou uma licença compatível).
 
 - **Origem imediata:** os dados já faziam parte do projeto desde o começo, vindos de um conjunto de dados anterior que declarava tê-los obtido do KanjiVG.
 - **O que este projeto fez:** reuniu, em um único arquivo JSON, os caminhos SVG de cada traço (`p`) e a posição do número de cada traço (`n`). Ou seja, o **formato** mudou (de SVG para JSON); os valores não foram alterados.
-- **O que não foi verificado:** estes dados não foram comparados com os arquivos originais do KanjiVG. Se o conjunto anterior os alterou de alguma forma, essa alteração também está presente aqui.
+- **Conferência (2026-10-27):** os 460 itens (176 kana e 284 kanji) foram comparados, traço a traço, com os arquivos do KanjiVG da versão r20260714: os caminhos e a posição dos números são idênticos.
 
 ## Onde mais o crédito aparece
 

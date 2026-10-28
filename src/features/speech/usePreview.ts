@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { playSpeakerPreview } from './voicevoxPreview';
+import { SampleUnavailable, playSpeakerPreview } from './voicevoxPreview';
 
 export type PreviewState = 'idle' | 'loading' | 'playing';
 
@@ -13,6 +13,8 @@ const PLAYING_MS = 3500;
 export function usePreview(slug: string, styleId: number, installed: boolean) {
   const [state, setState] = useState<PreviewState>('idle');
   const [error, setError] = useState('');
+  /** Quando a amostra do site falha: a página do personagem, para ouvir lá. */
+  const [fallbackUrl, setFallbackUrl] = useState<string | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(
@@ -26,6 +28,7 @@ export function usePreview(slug: string, styleId: number, installed: boolean) {
     if (state === 'loading') return;
     if (timer.current) clearTimeout(timer.current);
     setError('');
+    setFallbackUrl(null);
     setState('loading');
     try {
       await playSpeakerPreview(slug, styleId, installed);
@@ -33,11 +36,12 @@ export function usePreview(slug: string, styleId: number, installed: boolean) {
       timer.current = setTimeout(() => setState('idle'), PLAYING_MS);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Não consegui tocar a amostra.');
+      if (e instanceof SampleUnavailable) setFallbackUrl(e.pageUrl);
       setState('idle');
     }
   }, [slug, styleId, installed, state]);
 
-  return { state, error, play };
+  return { state, error, fallbackUrl, play };
 }
 
 /** O texto do botão em cada estado ("🔊 Amostra" quando parado). */

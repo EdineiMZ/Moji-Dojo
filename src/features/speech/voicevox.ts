@@ -21,6 +21,13 @@ interface NativeVoicevox {
   modelsPath(): Promise<string>;
   installedModels(): Promise<string[]>;
   commitModel(name: string, expectedBytes: number): Promise<string[]>;
+  /** Baixa para "<nome>.part" (continuando de onde parou) e confere o SHA-256; lança erro com `code` ("CANCELLED", "NETWORK", "BAD_HASH"...). */
+  downloadModel(name: string, url: string, expectedBytes: number, sha256: string): Promise<void>;
+  cancelDownload(): void;
+  /** Bytes já baixados de cada voz interrompida. */
+  partialBytes(): Record<string, number>;
+  networkType(): 'wifi' | 'cellular' | 'none';
+  addListener(event: 'onDownloadProgress', listener: (e: { file: string; bytes: number }) => void): { remove: () => void };
   removeModel(name: string): Promise<string[]>;
   prepare(): Promise<VoicevoxSpeaker[]>;
   synthesize(text: string, styleId: number, speed: number): Promise<string>;
@@ -31,6 +38,9 @@ interface NativeVoicevox {
 const native = requireOptionalNativeModule<NativeVoicevox>('Voicevox');
 
 /** `missing`: o APK não tem o motor. `novoices`: o motor está lá, mas nenhuma voz foi baixada ainda. */
+/** A rede no momento do toque em "Baixar": só importa saber se é grátis (Wi-Fi) ou com franquia. */
+export type NetworkKind = 'wifi' | 'cellular' | 'none' | 'unknown';
+
 export type VoicevoxStatus = 'unsupported' | 'missing' | 'novoices' | 'idle' | 'loading' | 'ready' | 'error';
 
 /** Velocidade da voz do app (taxa do expo-speech, 0,9 = normal) → `speedScale` do VOICEVOX (1,0 = normal). */
@@ -63,6 +73,9 @@ interface VoicevoxState {
   /** Arquivos de voz (.vvm) já baixados. */
   installed: readonly string[];
   download: PackDownload | null;
+  /** Bytes já baixados das vozes cujo download foi interrompido (dá para continuar). */
+  partial: Readonly<Record<string, number>>;
+  network: NetworkKind;
   /** Erro do último download ou remoção (vazio se deu certo ou foi cancelado). */
   packError: string;
   /** Vê se o app foi gerado com o motor do VOICEVOX e quais vozes já foram baixadas. */
@@ -75,13 +88,17 @@ interface VoicevoxState {
    * personagens daquele arquivo (a tela pede isso a cada download); sem ele, nada é baixado.
    */
   downloadPack: (file: string, acceptedTerms: boolean) => Promise<void>;
+  /** Para o download em andamento; o que já veio fica guardado para continuar depois. */
   cancelDownload: () => void;
   removePack: (file: string) => Promise<void>;
+  /** Apaga todas as vozes baixadas (e os downloads parciais). */
+  removeAll: () => Promise<void>;
+  /** Lê o tipo de rede agora (para avisar quando o download gastaria dados móveis). */
+  refreshNetwork: () => void;
 }
 
-/** O download em curso, para o botão Cancelar. */
-let activeTask: { cancel: () => void } | null = null;
-let cancelled = false;
+/** O código do erro nativo ("CANCELLED", "NETWORK", "BAD_HASH"...), se houver. */
+const codeOf = (e: unknown): string | undefined => (e as { code?: string } | null)?.code;
 
 const message = (e: unknown, fallback: string): string => (e instanceof Error && e.message ? e.message : fallback);
 
@@ -105,6 +122,8 @@ export const useVoicevoxStore = create<VoicevoxState>((set, get) => {
     error: '',
     installed: [],
     download: null,
+    partial: {},
+    network: 'unknown',
     packError: '',
     check: async () => {
       if (!native) return set({ status: 'unsupported' });
@@ -112,7 +131,7 @@ export const useVoicevoxStore = create<VoicevoxState>((set, get) => {
         if (get().status === 'ready' || get().status === 'loading') return;
         if (!(await native.isInstalled())) return set({ status: 'missing' });
         const installed = await native.installedModels();
-        set({ installed, status: installed.length > 0 ? 'idle' : 'novoices' });
+        set({ installed, partial: native.partialBytes(), status: installed.length > 0 ? 'idle' : 'novoices' });
       } catch {
         set({ status: 'missing' });
       }
@@ -135,47 +154,61 @@ export const useVoicevoxStore = create<VoicevoxState>((set, get) => {
       if (!pack || get().download) return;
       if (!acceptedTerms) return set({ packError: 'Aceite os termos de uso dos personagens antes de baixar a voz.' });
       if (!native) return;
-      set({ packError: '', download: { file, progress: 0 } });
-      cancelled = false;
-      let part: { exists: boolean; delete: () => void } | null = null;
+      const have = get().partial[file] ?? 0;
+      set({ packError: '', download: { file, progress: Math.min(have / pack.bytes, 1) } });
+      const progress = native.addListener('onDownloadProgress', (e) => {
+        if (e.file === file) set({ download: { file, progress: Math.min(e.bytes / pack.bytes, 1) } });
+      });
       try {
         // Carregado só aqui: o módulo de arquivos não precisa existir nos testes nem no Expo Go sem o VOICEVOX.
-        const { File, Paths } = await import('expo-file-system');
-        if (Paths.availableDiskSpace < requiredFreeBytes(pack)) {
+        const { Paths } = await import('expo-file-system');
+        if (Paths.availableDiskSpace < requiredFreeBytes(pack) - have) {
           throw new Error('Falta espaço livre no aparelho para baixar esta voz.');
         }
-        const dir = await native.modelsPath();
-        const target = new File(`file://${dir}/${file}.part`);
-        part = target;
-        if (target.exists) target.delete();
-        const task = File.createDownloadTask(packUrl(file), target, {
-          onProgress: ({ bytesWritten }) => set({ download: { file, progress: Math.min(bytesWritten / pack.bytes, 1) } }),
-        });
-        activeTask = task;
-        await task.downloadAsync();
+        try {
+          await native.downloadModel(file, packUrl(file), pack.bytes, pack.sha256);
+        } catch (e) {
+          // O servidor devolveu outro trecho: o parcial foi descartado e uma segunda tentativa recomeça do zero.
+          if (codeOf(e) !== 'RANGE') throw e;
+          await native.downloadModel(file, packUrl(file), pack.bytes, pack.sha256);
+        }
         set({ download: { file, progress: 1 } });
         await applyInstalled(await native.commitModel(file, pack.bytes));
       } catch (e) {
-        try {
-          if (part?.exists) part.delete();
-        } catch {
-          // O arquivo parcial é apagado de novo no próximo download.
-        }
-        if (!cancelled) set({ packError: `Não consegui baixar a voz: ${message(e, 'erro desconhecido')}` });
+        if (codeOf(e) !== 'CANCELLED') set({ packError: `Não consegui baixar a voz: ${message(e, 'erro desconhecido')}` });
       } finally {
-        activeTask = null;
-        set({ download: null });
+        progress.remove();
+        set({ download: null, partial: native.partialBytes() });
       }
     },
     cancelDownload: () => {
-      cancelled = true;
-      activeTask?.cancel();
+      native?.cancelDownload();
+    },
+    refreshNetwork: () => {
+      try {
+        set({ network: native ? native.networkType() : 'unknown' });
+      } catch {
+        set({ network: 'unknown' });
+      }
+    },
+    removeAll: async () => {
+      if (!native || get().download) return;
+      set({ packError: '' });
+      try {
+        let left: string[] = [...get().installed];
+        for (const file of left) left = await native.removeModel(file);
+        await applyInstalled(left);
+        set({ partial: native.partialBytes() });
+      } catch (e) {
+        set({ packError: `Não consegui apagar as vozes: ${message(e, 'erro desconhecido')}` });
+      }
     },
     removePack: async (file) => {
       if (!native || get().download) return;
       set({ packError: '' });
       try {
         await applyInstalled(await native.removeModel(file));
+        set({ partial: native.partialBytes() });
       } catch (e) {
         set({ packError: `Não consegui apagar a voz: ${message(e, 'erro desconhecido')}` });
       }

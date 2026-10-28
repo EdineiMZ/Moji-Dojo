@@ -2,6 +2,17 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.8.3] - 2026-10-28
+
+Créditos e licenças em tela própria, download de voz mais robusto e privacidade descrita com precisão.
+
+- **Créditos e licenças:** nova tela (Ajustes → Sobre → Créditos e licenças) com os créditos de cada fonte e o texto de licença de 336 componentes de terceiros (pacotes do app, bibliotecas Android e componentes nativos, inclusive os avisos do ONNX Runtime do VOICEVOX). Entraram créditos que faltavam: o aviso de uso do JMdict e do KANJIDIC2 (EDRDG) e a atribuição do Kanjium. A lista é gerada por `node scripts/licenses/build.mjs`.
+- **Privacidade corrigida:** o README dizia "sem telemetria", mas o Google ML Kit (câmera que lê texto) envia ao Google dados técnicos de uso, e isso agora está dito no README, no `NOTICE.md` e na tela de créditos.
+- **Download de voz:** continua de onde parou depois de uma queda ou de "Cancelar" (mostra "Continuar" e quanto já veio), confere o SHA-256 oficial de cada arquivo e descarta o que não confere, avisa quando a rede for de dados móveis, mostra o espaço usado e ganhou "Apagar todas as vozes".
+- **Amostra:** se o site do VOICEVOX mudar ou cair, o botão oferece abrir a página do personagem; ao tocar, aparece o crédito "VOICEVOX:nome".
+- **Baú do primeiro dia:** a primeira abertura dá boas-vindas, em vez de dizer que você "voltou".
+- **Conferências:** os 460 itens de traços (176 kana e 284 kanji) foram comparados com o KanjiVG original (r20260714) e são idênticos; a cadeia de licença do tom (Kanjium) foi lida e documentada; os termos do site do VOICEVOX foram lidos. Novos testes de tela (11) e de dados. Não foi testado no aparelho depois do download novo.
+
 ## [2.8.2] - 2026-10-28
 
 Limpeza dos textos do app e licença do projeto.

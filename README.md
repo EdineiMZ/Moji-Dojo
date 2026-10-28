@@ -54,7 +54,8 @@ A versão mais recente fica na aba **[Releases](https://github.com/EdineiMZ/Moji
 
 **Permissões e privacidade**
 
-- Os dados de estudo ficam **só no aparelho**. Não há conta, anúncio nem telemetria.
+- Os dados de estudo ficam **só no aparelho**. Não há conta nem anúncio, e o app não tem análise de uso própria.
+- **Uma exceção, do Google ML Kit** (a câmera que lê texto): segundo o Google, o ML Kit envia a ele dados técnicos (modelo do aparelho, versão do Android, nome e versão do app, um identificador por instalação e métricas de desempenho). O conteúdo das imagens não está na lista do Google. O detalhe está em **Ajustes → Créditos e licenças**.
 - **Câmera:** só para ler um texto em japonês fotografado; o reconhecimento roda no aparelho.
 - **Microfone:** só para gravar a sua voz (Ouvir → Repetir) e para o reconhecimento de fala, que usa o serviço de fala do Android.
 - **Notificações:** só para os lembretes de estudo, que você controla.
@@ -84,7 +85,7 @@ A versão mais recente fica na aba **[Releases](https://github.com/EdineiMZ/Moji
 
 **Opcionais**
 - **IA com a sua própria chave** (Gemini, Claude ou GPT): corrige frases, explica erros, conversa em cenas, faz diário, simulados e textos sob medida. Sem chave, o app funciona igual.
-- **Voz de anime (VOICEVOX):** vozes de 43 personagens geradas **dentro do aparelho**. O APK leva só o motor; cada pessoa baixa as vozes que quiser, depois de ver e aceitar os termos de cada personagem, e pode ouvir uma amostra antes.
+- **Voz de anime (VOICEVOX):** vozes de 43 personagens geradas **dentro do aparelho**, com download que continua de onde parou e confere o SHA-256 oficial. O APK leva só o motor; cada pessoa baixa as vozes que quiser, depois de ver e aceitar os termos de cada personagem, e pode ouvir uma amostra antes.
 - **Backup** em código de texto (`MDJ1:`) para trocar de celular.
 
 O estado de cada item e o que vem a seguir estão no [`ROADMAP.md`](ROADMAP.md); o histórico de versões, no [`CHANGELOG.md`](CHANGELOG.md).

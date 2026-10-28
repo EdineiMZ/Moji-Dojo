@@ -5,14 +5,14 @@ import { radii, spacing, useTheme } from '@/theme';
 import { usePreview, previewLabel } from './usePreview';
 import { useVoicevoxStore } from './voicevox';
 import type { VoicePack } from './voicevoxCatalog';
-import { RECOMMENDED_PACK, VOICEVOX_TERMS_URL, formatSize, orderedPacks, packSpeakers, speakerInfo } from './voicevoxPacks';
+import { RECOMMENDED_PACK, VOICEVOX_TERMS_URL, downloadWarning, formatSize, orderedPacks, packSpeakers, partialPercent, speakerInfo } from './voicevoxPacks';
 import { VOICE_DESC_PT, romanName, speakerLabel, styleLabel } from './voicevoxText';
 
 /** Um personagem de um arquivo: nome, descrição da voz, estilos, amostra para ouvir e os termos dele. */
 function SpeakerLine({ voice, installed }: { voice: VoicePack['voices'][number]; installed: boolean }) {
   const info = speakerInfo(voice.speaker);
   const first = voice.styles[0];
-  const { state, error, play } = usePreview(info?.slug ?? '', first?.[0] ?? 0, installed);
+  const { state, error, fallbackUrl, play } = usePreview(info?.slug ?? '', first?.[0] ?? 0, installed);
 
   if (!info || !first) return <AppText>{voice.speaker}</AppText>;
 
@@ -31,11 +31,17 @@ function SpeakerLine({ voice, installed }: { voice: VoicePack['voices'][number];
         <Button label={previewLabel(state)} variant="soft" onPress={() => void play()} disabled={state === 'loading'} style={styles.action} />
         <Button label="Termos" variant="ghost" onPress={() => void Linking.openURL(info.termsUrl)} style={styles.action} />
       </View>
+      {state === 'playing' ? (
+        <AppText variant="caption" color="muted">
+          VOICEVOX:{info.name}
+        </AppText>
+      ) : null}
       {error ? (
         <AppText variant="caption" color="bad" accessibilityLiveRegion="polite">
           {error}
         </AppText>
       ) : null}
+      {fallbackUrl ? <Button label="Ouvir na página do personagem" variant="soft" onPress={() => void Linking.openURL(fallbackUrl)} /> : null}
     </View>
   );
 }
@@ -44,7 +50,7 @@ function SpeakerLine({ voice, installed }: { voice: VoicePack['voices'][number];
  * O aceite que vem antes de cada download: lista os personagens do arquivo, cada um com o link dos termos dele, e só o botão
  * "Li e aceito" deixa o download começar. O aceite vale para este download (apagar a voz e baixar de novo pede de novo).
  */
-function TermsPanel({ pack, onAccept, onCancel }: { pack: VoicePack; onAccept: () => void; onCancel: () => void }) {
+function TermsPanel({ pack, warning, onAccept, onCancel }: { pack: VoicePack; warning: string | null; onAccept: () => void; onCancel: () => void }) {
   const { colors } = useTheme();
   const speakers = pack.voices.flatMap((v) => {
     const info = speakerInfo(v.speaker);
@@ -62,6 +68,11 @@ function TermsPanel({ pack, onAccept, onCancel }: { pack: VoicePack; onAccept: (
         crédito), sem engenharia reversa dos arquivos, sem prejudicar o autor ou terceiros e sem uso contra a ordem pública. Alguns personagens têm regras extras: leia o
         link de cada um.
       </AppText>
+      {warning ? (
+        <AppText color="warn" accessibilityLiveRegion="polite">
+          <Bold>{warning}</Bold>
+        </AppText>
+      ) : null}
       {speakers.map((s) => (
         <Button key={s.slug} label={`Termos de ${speakerLabel(s.name, s.slug)}`} variant="ghost" onPress={() => void Linking.openURL(s.termsUrl)} />
       ))}
@@ -81,6 +92,8 @@ function PackRow({ pack }: { pack: VoicePack }) {
   const downloadPack = useVoicevoxStore((s) => s.downloadPack);
   const cancelDownload = useVoicevoxStore((s) => s.cancelDownload);
   const removePack = useVoicevoxStore((s) => s.removePack);
+  const refreshNetwork = useVoicevoxStore((s) => s.refreshNetwork);
+  const have = useVoicevoxStore((s) => s.partial[pack.file] ?? 0);
   const names = packSpeakers(pack).join(' · ');
   const mine = download?.file === pack.file;
   const count = pack.voices.length;
@@ -94,6 +107,25 @@ function PackRow({ pack }: { pack: VoicePack }) {
   const accept = () => {
     setConfirming(false);
     void downloadPack(pack.file, true);
+  };
+
+  // O aviso de dados móveis vale para o que ainda falta baixar.
+  const warn = () => {
+    refreshNetwork();
+    return downloadWarning(useVoicevoxStore.getState().network, pack.bytes - have);
+  };
+
+  const start = () => {
+    const warning = warn();
+    if (have > 0) {
+      // Continuar um download que a pessoa já aceitou: não pede o aceite de novo, só confirma se for dados móveis.
+      if (!warning) return void downloadPack(pack.file, true);
+      return Alert.alert('Continuar o download?', warning, [
+        { text: 'Agora não', style: 'cancel' },
+        { text: 'Continuar', onPress: () => void downloadPack(pack.file, true) },
+      ]);
+    }
+    setConfirming(true);
   };
 
   return (
@@ -111,10 +143,18 @@ function PackRow({ pack }: { pack: VoicePack }) {
         ) : installed ? (
           <Button label="Apagar" variant="ghost" onPress={confirmRemove} disabled={download !== null} />
         ) : confirming ? null : (
-          <Button label={`Baixar ${formatSize(pack.bytes)}`} variant="soft" onPress={() => setConfirming(true)} disabled={download !== null} />
+          <Button label={have > 0 ? `Continuar (${partialPercent(have, pack)}%)` : `Baixar ${formatSize(pack.bytes)}`} variant="soft" onPress={start} disabled={download !== null} />
         )}
       </View>
-      {confirming ? <TermsPanel pack={pack} onAccept={accept} onCancel={() => setConfirming(false)} /> : null}
+      {confirming ? <TermsPanel pack={pack} warning={warn()} onAccept={accept} onCancel={() => setConfirming(false)} /> : null}
+      {have > 0 && !installed && !mine && !confirming ? (
+        <View style={styles.actions}>
+          <AppText variant="caption" color="muted" style={styles.action}>
+            Download interrompido: já vieram {formatSize(have)} de {formatSize(pack.bytes)}.
+          </AppText>
+          <Button label="Descartar" variant="ghost" onPress={() => void removePack(pack.file)} disabled={download !== null} />
+        </View>
+      ) : null}
       {mine ? (
         <>
           <ProgressBar value={download.progress} height={8} />

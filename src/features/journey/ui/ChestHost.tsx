@@ -15,6 +15,7 @@ import type { MochiOutfit } from '@/components/mascot/MochiArt';
 import { formatDay } from '@/features/streak/days';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { radii, spacing, useTheme } from '@/theme';
+import { dailyChestText } from '../chestCopy';
 import { useChestUi } from '../chestUi';
 import { findItem, RARITY_LABELS } from '../items';
 import { outfit as outfitOf } from '../journey';
@@ -123,7 +124,7 @@ export function ChestHost() {
               <ChestArt opened={false} rarityGlow={null} />
               <AppText center color="muted">
                 {kind === 'daily'
-                  ? 'Um presente do Mochi por você ter voltado hoje. O que será que veio?'
+                  ? dailyChestText(days.length <= 1)
                   : `Você estudou em ${WEEKLY_DAYS_GOAL} dias desta semana! Este baú tem sempre um item exclusivo.`}
               </AppText>
               <Button label="Abrir o baú" onPress={open} />

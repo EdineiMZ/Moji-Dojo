@@ -54,5 +54,15 @@ export const formatSize = (bytes: number): string => `${Math.round(bytes / 10485
 /** Soma dos arquivos já baixados, para dizer quanto espaço as vozes ocupam. */
 export const installedBytes = (files: readonly string[]): number => files.reduce((sum, file) => sum + (packByFile(file)?.bytes ?? 0), 0);
 
+/** Quanto de um arquivo já foi baixado, de 0 a 100 (um download interrompido guarda o que veio). */
+export const partialPercent = (bytes: number, pack: VoicePack): number => Math.min(100, Math.max(0, Math.floor((bytes / pack.bytes) * 100)));
+
+/** O aviso antes de baixar: dados móveis gastam o plano, e sem rede não há o que baixar. Null quando está tudo bem. */
+export function downloadWarning(network: 'wifi' | 'cellular' | 'none' | 'unknown', remainingBytes: number): string | null {
+  if (network === 'cellular') return `Você está usando dados móveis (ou uma rede com franquia): este download gasta até ${formatSize(remainingBytes)} do seu plano.`;
+  if (network === 'none') return 'Sem internet no momento: o download não vai começar até a conexão voltar.';
+  return null;
+}
+
 /** Espaço livre mínimo para baixar um arquivo: ele mais uma folga, porque o aparelho também guarda áudios em cache. */
 export const requiredFreeBytes = (pack: VoicePack): number => pack.bytes + 150 * 1048576;

@@ -16,15 +16,20 @@ O código, a arte e os sons originais do Moji Dojo são distribuídos sob a lice
 
 Os significados em português do vocabulário, as explicações, os diálogos, os textos de leitura, as frases de viagem e as descrições das vozes foram escritos para este app, em parte por IA, e **não foram revisados por um falante nativo**.
 
+## Avisos dentro do aplicativo
+
+Os avisos que as licenças pedem acompanham o app em **Ajustes → Créditos e licenças**: os créditos exatos (inclusive o aviso de uso do JMdict e do KANJIDIC2 pedido pela EDRDG e a atribuição ao Kanjium) e o texto de licença de cada componente de terceiros (pacotes do app, bibliotecas Android e componentes nativos). Essa lista é gerada por `scripts/licenses/build.mjs` a partir do que entra de fato no pacote.
+
 ## Voz de anime (VOICEVOX)
 
 - **VOICEVOX CORE** ([VOICEVOX/voicevox_core](https://github.com/VOICEVOX/voicevox_core)) e **ONNX Runtime** (Microsoft): licença MIT.
 - **Dicionário do Open JTalk** (incluído no APK, em `assets/voicevox/dict`): Copyright (c) 2009, Nara Institute of Science and Technology, Japan. Licença BSD de 3 cláusulas, com o aviso completo no arquivo `COPYING` que acompanha o dicionário.
+- **ONNX Runtime do VOICEVOX:** o pacote que o app usa traz os próprios termos (uso comercial e não comercial e redistribuição em aplicativos permitidos, sem engenharia reversa, crédito "VOICEVOX" obrigatório) e uma lista de avisos de terceiros, que vai inteira na tela de créditos.
 - **Vozes (`.vvm`):** não fazem parte do APK nem do repositório. O app as baixa da [release oficial](https://github.com/VOICEVOX/voicevox_vvm/releases) a pedido da pessoa, depois de mostrar os termos de cada personagem. Toda voz usada exige o crédito **"VOICEVOX:nome do personagem"**, que o app mostra. Termos gerais: [TERMS.txt](https://github.com/VOICEVOX/voicevox_vvm/blob/main/TERMS.txt); os de cada personagem têm link na própria tela de download.
 
 ## Bibliotecas e serviços
 
-- **Google ML Kit** (reconhecimento de texto japonês, modelo dentro do app): [termos do ML Kit](https://developers.google.com/ml-kit/terms).
+- **Google ML Kit** (reconhecimento de texto japonês, modelo dentro do app): [termos do ML Kit](https://developers.google.com/ml-kit/terms). Segundo o Google, o ML Kit coleta dados técnicos (modelo do aparelho, versão do Android, nome e versão do app, identificador por instalação e métricas de desempenho) e os envia ao Google por HTTPS ([divulgação de dados](https://developers.google.com/ml-kit/android-data-disclosure)); o conteúdo das imagens não está na lista.
 - **Reconhecimento de fala:** `expo-speech-recognition` (MIT), que usa o serviço de fala do Android; o áudio não é guardado pelo app.
 - **Expo, React Native, Zustand, Reanimated e demais dependências:** ver `package.json`; todas sob licenças permissivas (MIT ou Apache-2.0), conforme cada pacote.
 

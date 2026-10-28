@@ -1,6 +1,8 @@
 package expo.modules.voicevox
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.system.Os
 import expo.modules.kotlin.exception.CodedException
 import expo.modules.kotlin.modules.Module
@@ -11,7 +13,10 @@ import jp.hiroshiba.voicevoxcore.blocking.OpenJtalk
 import jp.hiroshiba.voicevoxcore.blocking.Synthesizer
 import jp.hiroshiba.voicevoxcore.blocking.VoiceModelFile
 import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
+import java.net.HttpURLConnection
+import java.net.URL
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.security.MessageDigest
@@ -39,6 +44,9 @@ class VoicevoxException(code: String, message: String, cause: Throwable? = null)
  */
 class VoicevoxModule : Module() {
   private val lock = Any()
+
+  /** Pedido de cancelamento do download em andamento (o arquivo parcial fica, para continuar depois). */
+  @Volatile private var cancelRequested = false
   private var synthesizer: Synthesizer? = null
   private var speakers: List<Map<String, Any>> = emptyList()
 
@@ -50,6 +58,20 @@ class VoicevoxModule : Module() {
 
   override fun definition() = ModuleDefinition {
     Name("Voicevox")
+
+    Events("onDownloadProgress")
+
+    /** Baixa uma voz para "<nome>.part", continuando de onde parou se já houver parte do arquivo, e confere o SHA-256. */
+    AsyncFunction("downloadModel") { name: String, url: String, expectedBytes: Double, sha256: String -> downloadModel(name, url, expectedBytes.toLong(), sha256) }
+
+    /** Pede para o download em andamento parar (o arquivo parcial é mantido). */
+    Function("cancelDownload") { -> cancelRequested = true }
+
+    /** Quantos bytes já foram baixados de cada voz interrompida: { "0.vvm": 123456 }. */
+    Function("partialBytes") { -> partialBytes() }
+
+    /** "wifi" (sem custo), "cellular" (dados móveis ou rede com franquia) ou "none". */
+    Function("networkType") { -> networkType() }
 
     /** O motor (dicionário do Open JTalk) está dentro do app? As vozes são conferidas à parte, por `installedModels`. */
     AsyncFunction("isInstalled") { -> installed() }
@@ -176,6 +198,123 @@ class VoicevoxModule : Module() {
       throw e
     } catch (e: Throwable) {
       throw VoicevoxException("PREPARE_FAILED", "Não consegui iniciar o VOICEVOX: ${e.message}", e)
+    }
+  }
+
+  private fun partialBytes(): Map<String, Long> =
+    modelsDir().listFiles()?.filter { it.isFile && it.name.endsWith(".vvm.part") }?.associate { it.name.removeSuffix(".part") to it.length() } ?: emptyMap()
+
+  private fun networkType(): String {
+    val manager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager ?: return "none"
+    val capabilities = manager.getNetworkCapabilities(manager.activeNetwork) ?: return "none"
+    return when {
+      capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || manager.isActiveNetworkMetered -> "cellular"
+      else -> "wifi"
+    }
+  }
+
+  private fun openAt(url: URL, from: Long): HttpURLConnection {
+    var current = url
+    repeat(6) {
+      val connection = (current.openConnection() as HttpURLConnection).apply {
+        instanceFollowRedirects = false
+        connectTimeout = 20_000
+        readTimeout = 30_000
+        setRequestProperty("User-Agent", "MojiDojo")
+        if (from > 0) setRequestProperty("Range", "bytes=$from-")
+      }
+      val code = connection.responseCode
+      if (code !in listOf(301, 302, 303, 307, 308)) return connection
+      val location = connection.getHeaderField("Location") ?: throw VoicevoxException("HTTP_$code", "O servidor mandou seguir para um endereço vazio.")
+      connection.disconnect()
+      current = URL(current, location)
+      if (current.protocol != "https") throw VoicevoxException("BAD_URL", "O download tentou sair do HTTPS.")
+    }
+    throw VoicevoxException("TOO_MANY_REDIRECTS", "Redirecionamentos demais.")
+  }
+
+  private fun sha256Of(file: File): String {
+    val digest = MessageDigest.getInstance("SHA-256")
+    file.inputStream().use { input ->
+      val buffer = ByteArray(1 shl 16)
+      while (true) {
+        val n = input.read(buffer)
+        if (n < 0) break
+        digest.update(buffer, 0, n)
+      }
+    }
+    return digest.digest().joinToString("") { "%02x".format(it) }
+  }
+
+  private fun downloadModel(name: String, url: String, expected: Long, sha256: String) {
+    checkedName(name)
+    if (!url.startsWith("https://")) throw VoicevoxException("BAD_URL", "Endereço de download inválido.")
+    val part = File(modelsDir(), "$name.part")
+    cancelRequested = false
+    var have = if (part.exists()) part.length() else 0L
+    if (have > expected) {
+      part.delete()
+      have = 0L
+    }
+    if (have < expected) {
+      val connection = try {
+        openAt(URL(url), have)
+      } catch (e: IOException) {
+        throw VoicevoxException("NETWORK", "Sem conexão com o servidor. Dá para continuar de onde parou. (${e.message})", e)
+      }
+      try {
+        val code = connection.responseCode
+        when (code) {
+          200 -> if (have > 0) {
+            // O servidor ignorou o pedido de continuar: o arquivo vem inteiro, então recomeça do zero.
+            have = 0L
+            part.delete()
+          }
+          206 -> {
+            val start = Regex("bytes (\\d+)-").find(connection.getHeaderField("Content-Range") ?: "")?.groupValues?.get(1)?.toLongOrNull()
+            if (start != have) {
+              part.delete()
+              throw VoicevoxException("RANGE", "O servidor devolveu outro trecho do arquivo. Tente de novo.")
+            }
+          }
+          416 -> {
+            part.delete()
+            throw VoicevoxException("RANGE", "O arquivo parcial não servia mais e foi descartado. Tente de novo.")
+          }
+          else -> throw VoicevoxException("HTTP_$code", "O servidor respondeu $code ao pedido da voz.")
+        }
+        try {
+          FileOutputStream(part, code == 206).use { out ->
+            connection.inputStream.use { input ->
+              val buffer = ByteArray(1 shl 16)
+              var total = have
+              var lastEmit = 0L
+              while (true) {
+                if (cancelRequested) throw VoicevoxException("CANCELLED", "Download cancelado.")
+                val n = input.read(buffer)
+                if (n < 0) break
+                out.write(buffer, 0, n)
+                total += n
+                val now = System.currentTimeMillis()
+                if (now - lastEmit > 200) {
+                  sendEvent("onDownloadProgress", mapOf("file" to name, "bytes" to total))
+                  lastEmit = now
+                }
+              }
+              sendEvent("onDownloadProgress", mapOf("file" to name, "bytes" to total))
+            }
+          }
+        } catch (e: IOException) {
+          throw VoicevoxException("NETWORK", "A conexão caiu no meio do download. Dá para continuar de onde parou. (${e.message})", e)
+        }
+      } finally {
+        connection.disconnect()
+      }
+    }
+    if (part.length() != expected) throw VoicevoxException("INCOMPLETE", "O download parou antes do fim (${part.length()} de $expected bytes). Dá para continuar de onde parou.")
+    if (!sha256Of(part).equals(sha256, ignoreCase = true)) {
+      part.delete()
+      throw VoicevoxException("BAD_HASH", "O arquivo baixado não confere com o SHA-256 oficial e foi descartado. Tente baixar de novo.")
     }
   }
 

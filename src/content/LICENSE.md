@@ -88,8 +88,8 @@
   O projeto declara a licença **CC BY-SA 4.0** (exige crédito e que os dados derivados fiquem sob a mesma licença) e diz que
   a maior parte dos dados vem do EDRDG (EDICT/KANJIDIC), usados conforme a licença do grupo.
 - **Alterações feitas neste projeto:** só as 538 palavras do vocabulário N5 que têm acento na fonte (`npm run build-pitch`).
-- **Pendência:** confirmar a cadeia de licenças (Kanjium → EDRDG → fontes originais do acento). O CC BY-SA é o mesmo do
-  KanjiVG, e os dados derivados dele ficam sob CC BY-SA (ver `NOTICE.md`).
+- **Cadeia de licenças (conferida em 2026-10-27 no README do Kanjium):** o pacote inteiro é declarado CC BY-SA 4.0, com uso livre, comercial ou não. A maior parte dos dados vem do EDRDG (EDICT, KANJIDIC, KRADFILE, usados conforme a licença do grupo) e as notações de tom e as demais adições foram fornecidas por Uros O. "through his free database". O README pede que se creditem as adições dele na tela de créditos do app, o que está feito. **O que não dá para verificar:** de onde o Uros O. tirou os dados de tom; confiamos na licença que o Kanjium declara. Se isso for inaceitável, é só remover `src/content/pitch.ts` e a tela Tom.
+- Os dados derivados dele ficam sob CC BY-SA (ver `NOTICE.md`).
 
 ## Voz VOICEVOX (módulo `modules/voicevox`, opcional)
 
@@ -124,7 +124,7 @@
 ## Câmera para ler (módulo `modules/textscan`)
 
 - **Google ML Kit** (`com.google.mlkit:text-recognition-japanese`), com o modelo japonês dentro do app: a imagem não sai do aparelho.
-  Os termos do ML Kit estão em https://developers.google.com/ml-kit/terms.
+  Os termos do ML Kit estão em https://developers.google.com/ml-kit/terms. Segundo o Google (https://developers.google.com/ml-kit/android-data-disclosure), o ML Kit coleta dados técnicos (modelo do aparelho, versão do Android, nome e versão do app, identificador por instalação e métricas de desempenho) e os envia ao Google por HTTPS; o conteúdo das imagens não está na lista. O app informa isso em Ajustes → Créditos e licenças.
 
 ## Reconhecimento de fala (biblioteca)
 
@@ -199,5 +199,5 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
 
 1. **Revisar as traduções e o japonês escrito por IA** com um falante (no mínimo uma amostra grande): corrigir `scripts/vocab-n5/pt-*.txt` e depois `npm run build-n5`; o mesmo vale para explicações, diálogos, textos de leitura, frases de viagem, moldes, dicas dos kanji e descrições das vozes.
 2. **Créditos que a licença de cada fonte exige:** manter em **Ajustes → Sobre** e em `NOTICE.md` a menção ao KanjiVG, ao JMdict e KANJIDIC2 (EDRDG, https://www.edrdg.org/edrdg/licence.html), ao Kanjium, ao Tatoeba (com o link de cada frase), às listas de Jonathan Waller e aos falantes do Lingua Libre. Se as frases ou os áudios forem copiados para fora do app (um site, por exemplo), levar o crédito e o link junto.
-3. **Termos do site do VOICEVOX** sobre reutilizar as amostras que ele publica: não foram lidos. Se for um problema, trocar o botão "Amostra" por um link para a página do personagem.
+3. **Termos do site do VOICEVOX (lidos em 2026-10-27):** os "Termos de uso do software" tratam do programa VOICEVOX (uso livre, sem redistribuir o software sem autorização, sem engenharia reversa, crédito obrigatório) e não falam das amostras de áudio do site. O áudio gerado é regido pelos termos de cada personagem, que permitem o uso com o crédito "VOICEVOX:nome"; o app mostra esse crédito ao tocar a amostra e só a busca quando a pessoa pede, sem guardar nem redistribuir.
 4. Conferir a tela **Ajustes → Sobre** e este arquivo e atualizar o texto se alguma fonte mudar.

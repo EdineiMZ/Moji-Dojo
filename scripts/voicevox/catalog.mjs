@@ -47,11 +47,14 @@ for (const line of talk.split('\n')) {
 }
 
 const sizes = new Map(release.assets.map((a) => [a.name, a.size]));
+const digests = new Map(release.assets.map((a) => [a.name, String(a.digest ?? '').replace(/^sha256:/, '')]));
 const list = [...packs.values()].sort((a, b) => parseInt(a.file) - parseInt(b.file));
 for (const pack of list) {
   const bytes = sizes.get(pack.file);
   if (!bytes) throw new Error(`${pack.file} não está na release ${release.tag_name}.`);
   pack.bytes = bytes;
+  pack.sha256 = digests.get(pack.file);
+  if (!/^[0-9a-f]{64}$/.test(pack.sha256 ?? '')) throw new Error(`${pack.file} não tem SHA-256 publicado na release ${release.tag_name}.`);
 }
 
 // --- páginas dos personagens no site oficial ---
@@ -74,7 +77,7 @@ const speakers = speakerNames.map((n) => bySite.get(n));
 
 const q = (s) => JSON.stringify(s);
 const packRows = list
-  .map((p) => `  { file: '${p.file}', bytes: ${p.bytes}, voices: [${p.voices.map((v) => `{ speaker: ${q(v.speaker)}, styles: [${v.styles.map(([id, name]) => `[${id}, ${q(name)}]`).join(', ')}] }`).join(', ')}] },`)
+  .map((p) => `  { file: '${p.file}', bytes: ${p.bytes}, sha256: '${p.sha256}', voices: [${p.voices.map((v) => `{ speaker: ${q(v.speaker)}, styles: [${v.styles.map(([id, name]) => `[${id}, ${q(name)}]`).join(', ')}] }`).join(', ')}] },`)
   .join('\n');
 const speakerRows = speakers.map((s) => `  { name: ${q(s.name)}, slug: '${s.slug}', voiceJa: ${q(s.voiceJa)}, termsUrl: ${q(s.termsUrl)} },`).join('\n');
 
@@ -100,6 +103,8 @@ export interface VoicePack {
   file: string;
   /** Tamanho exato, conferido depois do download. */
   bytes: number;
+  /** SHA-256 publicado pela release oficial, conferido depois do download (hexadecimal, minúsculas). */
+  sha256: string;
   /** Os personagens do arquivo e os estilos de cada um ([id, nome em japonês]). */
   voices: readonly { speaker: string; styles: readonly (readonly [number, string])[] }[];
 }

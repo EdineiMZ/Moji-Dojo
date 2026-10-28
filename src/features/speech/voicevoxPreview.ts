@@ -5,6 +5,17 @@ import { VOICEVOX_SITE, parseSampleUrl } from './voicevoxSample';
 /** Frase de teste das vozes baixadas. */
 export const PREVIEW_SENTENCE = 'こんにちは。きょうも いっしょに がんばりましょう。';
 
+/** A amostra do site não pôde ser buscada ou lida; a tela oferece abrir a página do personagem. */
+export class SampleUnavailable extends Error {
+  constructor(
+    message: string,
+    readonly pageUrl: string,
+  ) {
+    super(message);
+    this.name = 'SampleUnavailable';
+  }
+}
+
 /**
  * Toca uma amostra do personagem: com a voz já baixada e o motor pronto, sintetiza a frase de teste no aparelho; senão baixa
  * a amostra do site oficial (precisa de internet; fica em cache). Lança um Error com texto em português se não der.
@@ -26,10 +37,10 @@ export async function playSpeakerPreview(slug: string, firstStyleId: number, ins
       if (!response.ok) throw new Error(`site respondeu ${response.status}`);
       html = await response.text();
     } catch {
-      throw new Error('Sem internet ou o site do VOICEVOX não respondeu.');
+      throw new SampleUnavailable('Sem internet ou o site do VOICEVOX não respondeu.', `${VOICEVOX_SITE}/product/${slug}/`);
     }
     const url = parseSampleUrl(html);
-    if (!url) throw new Error('Não achei a amostra desta voz no site (a página pode ter mudado).');
+    if (!url) throw new SampleUnavailable('Não achei a amostra desta voz no site (a página pode ter mudado).', `${VOICEVOX_SITE}/product/${slug}/`);
     await File.downloadFileAsync(url, file, { idempotent: true });
   }
   if (!playFile(file.uri)) throw new Error('Não consegui tocar a amostra.');

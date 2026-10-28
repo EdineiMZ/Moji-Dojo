@@ -80,7 +80,9 @@ Concluída na 2.9.0 e na 2.9.1. As regras ficaram em [`docs/DESIGN.md`](docs/DES
 
 ### 2.10: tamanho e desempenho
 
-O APK tem 112 MB. Onde está o peso (comprimido): bibliotecas nativas 51 MB (ONNX Runtime, VOICEVOX, ML Kit), dicionário do Open JTalk 22,5 MB, banco de frases 8 MB.
+O APK tem **112,5 MB** na 2.12.0 (era 112,3 MB na 2.8.3): o N4, o FSRS e as telas novas somaram só 0,2 MB. Onde está o peso (comprimido): bibliotecas nativas 51 MB (ONNX Runtime, VOICEVOX, ML Kit), dicionário do Open JTalk 22,5 MB (98 MB sem compressão), banco de frases 8 MB, cinco arquivos de código (classes.dex) com 50 MB.
+
+Conferido em 2026-10-28: o dicionário só é copiado para a pasta do app quando o VOICEVOX é ativado (nada a fazer nesse ponto), e o APK não cresce com o conteúdo novo. Falta tudo o que depende de aparelho ou de uma entrega nativa nova:
 
 - ⬜ **Dicionário do Open JTalk como download opcional**, junto da primeira voz: tira cerca de 22 MB do APK. Hoje ele também é copiado para a pasta do app na primeira vez (98 MB sem compressão); só copiar quando o VOICEVOX for ativado. *(M)*
 - ⬜ **Medir** a abertura a frio e a memória em aparelho de entrada, e carregar sob demanda os conteúdos grandes. *(M)*

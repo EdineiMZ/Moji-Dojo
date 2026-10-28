@@ -1,0 +1,23 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      # O Expo SDK fixa as versões compatíveis: atualizar o conjunto junto (use `npx expo install --fix`).
+      expo:
+        patterns: ["expo", "expo-*", "@expo/*", "react-native", "react", "react-dom", "react-native-*", "@react-native/*"]
+      dev-tools:
+        dependency-type: development
+    ignore:
+      # O SDK é atualizado à mão, junto com o React Native que ele pede.
+      - dependency-name: "expo"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-native"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

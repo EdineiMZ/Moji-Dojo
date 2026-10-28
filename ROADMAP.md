@@ -1,6 +1,6 @@
 # Moji Dojo: roadmap
 
-Versão atual: **2.8.3** (2026-10-27). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
+Versão atual: **2.9.1** (2026-10-28). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
 
 Legenda: ✅ feito · 🟡 em parte · ⬜ pendente. Esforço: **P** = dias, **M** = 1 a 2 semanas, **G** = várias semanas.
 
@@ -62,21 +62,21 @@ Feito entre a 2.8.1 e a 2.8.3, a partir da revisão das telas e das licenças. O
 - ⬜ **Confirmar no aparelho:** o volume da voz (2.8.1) e o download novo com a rede caindo no meio. *(P)*
 - ⬜ **Telemetria do ML Kit:** a câmera que lê texto usa o ML Kit, que envia dados técnicos ao Google (está avisado). Avaliar um reconhecimento de texto que não envie nada, ou aceitar e manter o aviso. *(M)*
 
-### 2.9: UX e design (navegação e Ajustes)
+### 2.9: UX e design (navegação e Ajustes) ✅
 
-O app cresceu por camadas e a interface não acompanhou. A queixa é geral, e é mais forte nos **Ajustes**. Vale começar por uma auditoria de UX e de design (com o app aberto no aparelho, tela por tela) e só depois redesenhar. O que já se vê nas telas:
+Concluída na 2.9.0 e na 2.9.1. As regras ficaram em [`docs/DESIGN.md`](docs/DESIGN.md).
 
-- ✅ **Ajustes como uma lista de áreas, não uma rolagem longa (2.9.0).** Hoje são cartões soltos (Você, Lembretes, Meu Mochi) misturados com seções que abrem (Estudo e exibição, IA, Sons, Seus dados) e um bloco de créditos enorme no fim. Proposta: uma tela inicial com uma linha por área, cada uma com ícone, título e um resumo do estado ("Lembretes: leves, 20:00"), e uma subtela para cada: Perfil e metas, Lembretes, Voz e áudio, Estudo, IA, Dados e backup, Créditos. *(G)*
-- ✅ **Texto técnico na frente do usuário (2.9.0):** "Pronta: ja-jp-x-jab-network", "Diagnóstico de som… me mande uma captura desta lista". É informação de desenvolvedor: levar para uma área "Avançado" e trocar por frases humanas. *(P)*
-- ✅ **Opções escondidas em carrosséis de chips (2.9.0, nos Ajustes):** (meta por dia, dia de folga, abas): o "›" no canto esconde escolhas. Preferir seletores que mostrem tudo (grade, lista ou um seletor próprio). *(M)*
-- ✅ **Parágrafos explicativos longos dentro dos cartões (2.9.0, voz, revisões e Início):** (voz, revisões, leitura): mostrar uma linha e deixar o resto num "Saiba mais". *(M)*
-- ✅ **Hierarquia de botões (2.9.0 e 2.9.1, regra no docs/DESIGN.md):** há telas com dois botões primários (rosa) lado a lado. Definir um primário por tela e usar suave e discreto para o resto. *(P)*
-- ✅ **Sistema de design documentado (2.9.0, docs/DESIGN.md):** escala de espaçamento e de tipografia, estados (carregando, vazio, erro, sucesso) e padrões de cartão e de formulário, para as telas novas nascerem consistentes. *(M)*
-- ✅ **Aba Frases (2.9.1):** dois níveis (grupo e recurso), com uma linha explicando cada grupo e todas as opções à vista. Um "Praticar" com atalhos fica para quando houver dados de uso. (Frases → Frases → Modelos, Traduzir, Montar, Banco, Diálogos, Viagem, Explorar, Minhas frases, ✨IA → Conversa, Explicar, Diário…). Repensar: um "Praticar" com atalhos, busca por recurso, ou agrupar o que é avançado. Medir o uso antes de decidir. *(G)*
-- ✅ **Início (2.9.1, os dois cartões viraram um):** "Estudar hoje" e "Sessão de hoje" mostram a mesma revisão em dois cartões. Avaliar juntar os dois. *(M)*
-- ✅ **Primeira abertura (2.9.0):** um primeiro passo guiado (a primeira lição) logo depois da introdução, em vez de cair numa tela cheia de opções. *(M)*
-- ✅ **Acessibilidade (2.9.0 e 2.9.1: alvos de toque revisados; o contraste do tema já é testado):** o item 4 da seção 2, mais contraste e alvos de toque revisados nas telas novas. *(M)*
-- ✅ **Escolha da voz de anime (2.8.1):** "Minhas vozes" com "Usar esta voz", selo "Em uso" e amostra com retorno visível. Serve de modelo para os outros ajustes.
+- ✅ **Ajustes em áreas (2.9.0):** uma linha por área, com ícone e o resumo do estado, e uma tela para cada: Perfil e metas, Lembretes, Voz japonesa, Estudo e leitura, Sons e vibração, IA, Dados e backup, Avançado.
+- ✅ **Texto técnico fora da frente do usuário (2.9.0):** o nome da voz do aparelho e o diagnóstico de som foram para Avançado.
+- ✅ **Opções à vista (2.9.0):** os chips dos Ajustes quebram em linhas em vez de rolar.
+- ✅ **Menos parágrafo (2.9.0):** uma linha à vista e o resto em "Saiba mais".
+- ✅ **Hierarquia de botões (2.9.0 e 2.9.1):** um primário por tela.
+- ✅ **Sistema de design documentado (2.9.0).**
+- ✅ **Aba Frases (2.9.1):** grupo e recurso, com uma linha explicando cada grupo. Um "Praticar" com atalhos fica para quando houver dados de uso.
+- ✅ **Início (2.9.1):** "Estudar hoje" e "Sessão de hoje" viraram um cartão.
+- ✅ **Primeira abertura (2.9.0):** cai na primeira lição.
+- ✅ **Acessibilidade de toque e contraste (2.9.0 e 2.9.1).** A passada com TalkBack continua na seção 2.
+- ✅ **Escolha da voz de anime (2.8.1).**
 
 ### 2.10: tamanho e desempenho
 
@@ -125,9 +125,9 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 
 ### Engenharia
 
-- ⬜ **Integração contínua** (GitHub Actions) rodando `tsc`, lint, Jest e `expo-doctor` em cada alteração. *(P)*
+- ✅ **Integração contínua:** `.github/workflows/ci.yml` roda `tsc`, lint, Jest e `expo-doctor` a cada push e pull request (conferido numa cópia limpa do repositório).
 - ⬜ **Testes de ponta a ponta** (por exemplo com Maestro) dos fluxos críticos: primeira abertura, uma lição, uma revisão, a compra na loja. *(M)*
-- ⬜ **Dependências em dia:** Dependabot ou Renovate, e subir para o Expo SDK 58 quando ele virar `latest` (hoje é `next`; o projeto está no 57.0.31, e o React Native mais novo é o 0.88). *(M)*
+- 🟡 **Dependências em dia:** o Dependabot está configurado (`.github/dependabot.yml`, o Expo em grupo e o SDK só à mão). Falta subir para o Expo SDK 58 quando ele virar `latest` (hoje é `next`; o projeto está no 57.0.31, e o React Native mais novo é o 0.88). *(M)*
 - ⬜ **Capturas de tela automatizadas** para o README a cada versão. *(P)*
 
 ### Fora do app (a fluência acontece lá)

@@ -33,6 +33,7 @@ describe('settingsStore', () => {
     createSettingsStore(storage).getState().setWriteInReview(false);
     expect(JSON.parse(storage.data.get(SETTINGS_STORAGE_KEY) ?? '{}').state).toEqual({
       themeMode: 'system',
+      typingGoal: 100,
       retention: 0.9,
       writeInReview: false,
       speechSpeed: 'normal',

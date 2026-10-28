@@ -104,6 +104,37 @@ let cached: PracticeItem[] | null = null;
 /** O conjunto base (sem extras), montado uma vez. */
 export const basePool = (): readonly PracticeItem[] => (cached ??= buildPracticePool());
 
+export type SeriesKind = 'punct' | 'numbers';
+
+export const SERIES: readonly { id: SeriesKind; title: string; description: string }[] = [
+  { id: 'punct', title: 'Pontuação', description: 'Frases inteiras com o sinal do fim: 。 ？ ！ (tecla 、: deslize para a esquerda, para cima ou para a direita). O sinal vem da tradução: pergunta, exclamação ou afirmação.' },
+  { id: 'numbers', title: 'Números', description: 'Contar em kana: ひとつ, ふたつ, ひとり, ふたり... O teclado de flick não tem dígitos; no celular, os números saem pelo teclado de números.' },
+];
+
+const PUNCTUATION = /[、。？！…「」〜ー]/;
+
+/** O sinal do fim da frase, pelo que a tradução mostra: pergunta (？), exclamação (！) ou afirmação (。). */
+export const endMark = (meaning: string): string => {
+  const end = meaning.trim().slice(-1);
+  return end === '?' ? '？' : end === '!' ? '！' : '。';
+};
+
+/**
+ * Os itens de uma série dirigida, dos mais curtos aos mais longos. Pontuação: as frases do app (só kana) com o sinal do fim,
+ * que a tradução indica. Números: palavras do grupo Números.
+ */
+export function seriesItems(pool: readonly PracticeItem[], kind: SeriesKind): PracticeItem[] {
+  if (kind === 'punct') {
+    return pool
+      .filter((i) => i.source === 'phrase' && !PUNCTUATION.test(i.text))
+      .map((i) => ({ ...i, text: i.text + endMark(i.meaning) }))
+      .filter((i) => typeable(i.text))
+      .sort((a, b) => a.text.length - b.text.length);
+  }
+  const readings = new Set(VOCAB.filter((w) => /Números$/.test(w.group)).map((w) => compact(w.reading)));
+  return pool.filter((i) => i.source === 'word' && readings.has(i.text)).sort((a, b) => a.level - b.level || a.text.length - b.text.length);
+}
+
 /** Itens de um nível. */
 export const itemsOfLevel = (pool: readonly PracticeItem[], level: number): PracticeItem[] => pool.filter((i) => i.level === level);
 

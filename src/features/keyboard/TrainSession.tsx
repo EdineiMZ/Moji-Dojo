@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, Card, ChipRow } from '@/components';
 import { feedbackCorrect } from '@/lib/feedback';
-import { useProgressStore } from '@/store';
+import { useProgressStore, useSettingsStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { howTo, simulatorProgress } from './flick';
 import { FlickPad } from './FlickPad';
@@ -13,25 +13,30 @@ import {
   itemsOfLevel,
   LEVELS,
   pickPractice,
+  SERIES,
+  seriesItems,
   UNLOCK_AFTER,
+  type SeriesKind,
   type ExtraPhrase,
   type PracticeItem,
 } from './practice';
 import { useNow } from '@/hooks/useNow';
 import { dueChars } from './keySchedule';
-import { weakChars } from './typingStats';
+import { typedToday, weakChars } from './typingStats';
 import { useTypingTracker } from './useTypingTracker';
 
 const SOURCE_LABEL: Readonly<Record<PracticeItem['source'], string>> = { word: '', phrase: '', mine: 'sua frase', ai: 'gerada por IA' };
 
 interface TrainSessionProps {
-  /** `level`: segue os níveis; `weak`: foca nas letras em que a pessoa mais erra; `ai`: só as frases geradas pela IA. */
-  mode: 'level' | 'weak' | 'ai';
+  /** `level`: segue os níveis; `weak`: foca nas letras em que a pessoa mais erra; `ai`: só as frases geradas pela IA; `series`: pontuação ou números. */
+  mode: 'level' | 'weak' | 'ai' | 'series';
+  /** Qual série, quando `mode` é `series`. */
+  series?: SeriesKind;
   extras: readonly ExtraPhrase[];
 }
 
 /** Treino do teclado de flick: digite palavras e frases com a dica de qual tecla e direção usar. */
-export function TrainSession({ mode, extras }: TrainSessionProps) {
+export function TrainSession({ mode, extras, series = 'punct' }: TrainSessionProps) {
   const { colors } = useTheme();
   const typing = useProgressStore((s) => s.typing);
   const [level, setLevel] = useState(() => highestUnlocked(typing));
@@ -43,9 +48,11 @@ export function TrainSession({ mode, extras }: TrainSessionProps) {
   const pool = useMemo(() => buildPracticePool(extras), [extras]);
   // As letras vencidas na revisão espaçada vêm primeiro; sem nenhuma vencida, as que a pessoa mais erra.
   const now = useNow();
+  const goal = useSettingsStore((s) => s.typingGoal);
+  const typedLetters = typedToday(typing, now);
   const due = useMemo(() => dueChars(typing, now, 6), [typing, now]);
   const weak = useMemo(() => new Set(due.length > 0 ? due : weakChars(typing, 6)), [typing, due]);
-  const source = useMemo(() => (mode === 'level' ? itemsOfLevel(pool, level) : mode === 'ai' ? pool.filter((i) => i.source === 'ai') : pool), [pool, mode, level]);
+  const source = useMemo(() => (mode === 'level' ? itemsOfLevel(pool, level) : mode === 'ai' ? pool.filter((i) => i.source === 'ai') : mode === 'series' ? seriesItems(pool, series) : pool), [pool, mode, level, series]);
   const [item, setItem] = useState<PracticeItem | null>(() => pickPractice(source, Math.random, mode === 'weak' ? { weak } : {}));
   const tracker = useTypingTracker(mode === 'level' ? level : 0);
 
@@ -107,6 +114,10 @@ export function TrainSession({ mode, extras }: TrainSessionProps) {
           </AppText>
           {note ? <AppText variant="caption" color="bad">{note}</AppText> : null}
         </>
+      ) : mode === 'series' ? (
+        <AppText variant="caption" color="muted">
+          <Bold>{SERIES.find((s) => s.id === series)?.title}</Bold>: {SERIES.find((s) => s.id === series)?.description}
+        </AppText>
       ) : mode === 'ai' ? (
         <AppText color="muted">Treine com as frases que a IA criou. Elas ficam guardadas no aparelho e funcionam sem internet.</AppText>
       ) : weak.size > 0 ? (
@@ -161,6 +172,11 @@ export function TrainSession({ mode, extras }: TrainSessionProps) {
       ) : (
         <AppText color="muted">Não há itens neste nível ainda.</AppText>
       )}
+      {goal > 0 ? (
+        <AppText variant="caption" color={typedLetters >= goal ? 'ok' : 'muted'}>
+          {typedLetters >= goal ? `Meta de hoje batida: ${typedLetters} letras. ✓` : `Hoje: ${typedLetters} de ${goal} letras.`}
+        </AppText>
+      ) : null}
       <AppText variant="caption" color="muted">
         Segure a tecla e arraste para a direção da letra que quer.
       </AppText>

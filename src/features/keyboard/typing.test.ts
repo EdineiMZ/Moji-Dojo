@@ -1,8 +1,8 @@
 import { VOCAB } from '@/content';
 import { conversionPool, lookupReading, pickConversion, suggestionBar } from './conversion';
-import { basePool, buildPracticePool, highestUnlocked, isUnlocked, levelOf, LEVELS, pickPractice, typeable, UNLOCK_AFTER } from './practice';
+import { basePool, buildPracticePool, endMark, highestUnlocked, isUnlocked, levelOf, LEVELS, pickPractice, seriesItems, typeable, UNLOCK_AFTER } from './practice';
 import { itemResult, startTrack, trackStep } from './tracker';
-import { averageCpm, EMPTY_TYPING, keyHeat, recordItem, recordKey, sanitizeTyping, weakChars, type TypingKeyEvent, type TypingProgress } from './typingStats';
+import { addTyped, averageCpm, EMPTY_TYPING, keyHeat, recordItem, recordKey, sanitizeTyping, typedToday, weakChars, type TypingKeyEvent, type TypingProgress } from './typingStats';
 
 describe('typeable e levelOf', () => {
   it('aceita o que o teclado de flick digita e recusa o resto', () => {
@@ -166,5 +166,55 @@ describe('conversão', () => {
     if (!word) throw new Error('sem palavras');
     expect(lookupReading(word.reading).some((w) => w.jp === word.jp)).toBe(true);
     expect(lookupReading('')).toEqual([]);
+  });
+});
+
+describe('séries dirigidas', () => {
+  it('o sinal do fim vem da tradução', () => {
+    expect(endMark('Isto é sushi?')).toBe('？');
+    expect(endMark('Que bom!')).toBe('！');
+    expect(endMark('Vou para o Japão.')).toBe('。');
+  });
+
+  const pool = buildPracticePool();
+
+  it('pontuação: frases com o sinal do fim (pela tradução), digitáveis, das mais curtas às mais longas', () => {
+    const items = seriesItems(pool, 'punct');
+    expect(items.length).toBeGreaterThanOrEqual(100);
+    for (const i of items) {
+      expect(i.text).toMatch(/[。？！]$/);
+      expect(typeable(i.text)).toBe(true);
+    }
+    expect(items.find((i) => i.text === 'これはすしですか？')?.meaning).toBe('Isto é sushi?');
+    expect(items.find((i) => i.text === 'にほんにいきます。')).toBeDefined();
+    expect(items.map((i) => i.text.length)).toEqual([...items.map((i) => i.text.length)].sort((a, b) => a - b));
+  });
+
+  it('números: palavras do grupo Números (contar em kana)', () => {
+    const items = seriesItems(pool, 'numbers');
+    const texts = items.map((i) => i.text);
+    expect(items.length).toBeGreaterThanOrEqual(10);
+    for (const t of ['ひとつ', 'ふたつ', 'ひとり']) expect(texts).toContain(t);
+    for (const i of items) expect(i.source).toBe('word');
+  });
+});
+
+describe('meta diária de letras', () => {
+  const day1 = new Date(2026, 9, 28, 10, 0).getTime();
+  const day2 = new Date(2026, 9, 29, 9, 0).getTime();
+
+  it('soma as letras certas do dia e recomeça no dia seguinte', () => {
+    let t = addTyped(EMPTY_TYPING, 12, day1);
+    t = addTyped(t, 8, day1 + 60_000);
+    expect(typedToday(t, day1 + 120_000)).toBe(20);
+    expect(typedToday(t, day2)).toBe(0);
+    expect(addTyped(t, 5, day2).today?.chars).toBe(5);
+  });
+
+  it('não muda nada sem letras certas e sobrevive à leitura do disco', () => {
+    expect(addTyped(EMPTY_TYPING, 0, day1)).toBe(EMPTY_TYPING);
+    const t = addTyped(EMPTY_TYPING, 7, day1);
+    expect(sanitizeTyping(JSON.parse(JSON.stringify(t))).today).toEqual(t.today);
+    expect(sanitizeTyping({ today: { day: 'ontem', chars: 3 } }).today).toBeUndefined();
   });
 });

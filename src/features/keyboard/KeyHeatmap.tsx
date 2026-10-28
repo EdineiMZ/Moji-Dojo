@@ -1,15 +1,18 @@
 import { StyleSheet, View } from 'react-native';
-import { AppText, Bold, Card } from '@/components';
+import { AppText, Bold, Card, SegmentedControl } from '@/components';
+import { TYPING_GOAL_OPTIONS } from '@/store/settingsStore';
 import { useNow } from '@/hooks/useNow';
-import { useProgressStore } from '@/store';
+import { useProgressStore, useSettingsStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { dueChars, nextKeyDue } from './keySchedule';
-import { averageCpm, keyHeat, weakChars } from './typingStats';
+import { averageCpm, keyHeat, typedToday, weakChars } from './typingStats';
 
 /** Mapa do teclado: cada tecla mais vermelha quanto mais você erra nela, e a velocidade média. */
 export function KeyHeatmap() {
   const { colors } = useTheme();
   const typing = useProgressStore((s) => s.typing);
+  const goal = useSettingsStore((s) => s.typingGoal);
+  const setGoal = useSettingsStore((s) => s.setTypingGoal);
   const heat = keyHeat(typing);
   const tried = heat.some((h) => h.tries > 0);
   const now = useNow();
@@ -26,6 +29,14 @@ export function KeyHeatmap() {
         <Stat label="Média" value={average ? `${average}/min` : '–'} />
         <Stat label="Recorde" value={typing.best ? `${typing.best}/min` : '–'} />
         <Stat label="Letras" value={String(typing.chars)} />
+      </View>
+
+      <View style={styles.goal}>
+        <AppText>Meta diária de letras</AppText>
+        <SegmentedControl<string> options={TYPING_GOAL_OPTIONS.map((g) => ({ value: String(g), label: g === 0 ? 'Sem meta' : String(g) }))} value={String(goal)} onChange={(v) => setGoal(Number(v))} />
+        <AppText variant="caption" color={goal > 0 && typedToday(typing, now) >= goal ? 'ok' : 'muted'}>
+          {goal === 0 ? 'Sem meta: o contador de hoje fica só como informação.' : `Hoje: ${typedToday(typing, now)} de ${goal} letras certas.`}
+        </AppText>
       </View>
 
       {tried ? (
@@ -108,6 +119,7 @@ function mix(a: string, b: string, t: number): string {
 
 const styles = StyleSheet.create({
   numbers: { flexDirection: 'row', justifyContent: 'space-between' },
+  goal: { gap: spacing.sm },
   number: { alignItems: 'center', flex: 1 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
   cell: { width: '30.5%', flexGrow: 1, minHeight: 56, borderRadius: radii.md, borderWidth: 1.5, alignItems: 'center', justifyContent: 'center', padding: spacing.xs },

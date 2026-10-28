@@ -19,7 +19,7 @@ import { trackAnswer, trackDialog, trackExplored, trackLesson, trackNewWords, tr
 import type { Area } from '@/features/journey/events';
 import { buyItem, dismissToast, emptyJourney, equipItem, sanitizeJourney, unequipSlot, type BuyError, type JourneyState } from '@/features/journey/journey';
 import type { Slot } from '@/features/journey/items';
-import { EMPTY_TYPING, recordItem, recordKey, sanitizeTyping, type TypingKeyEvent, type TypingProgress } from '@/features/keyboard/typingStats';
+import { addTyped, EMPTY_TYPING, recordItem, recordKey, sanitizeTyping, type TypingKeyEvent, type TypingProgress } from '@/features/keyboard/typingStats';
 
 const DAY_MS = 86_400_000;
 
@@ -499,6 +499,7 @@ export function createProgressStore(storage: StateStorage) {
           set((s) => {
             let typing = s.typing;
             for (const k of keys) typing = recordKey(typing, k.char, k.ok, k.ms, now);
+            typing = addTyped(typing, keys.filter((k) => k.ok).length, now);
             if (item) typing = recordItem(typing, item.level, item.chars, item.ms);
             return { typing, days: markDay(s.days, new Date(now)) };
           }),

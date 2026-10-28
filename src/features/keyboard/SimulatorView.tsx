@@ -5,14 +5,15 @@ import { AiPhrasesCard } from './AiPhrasesCard';
 import { ConversionSession } from './ConversionSession';
 import { FreeTyping } from './FreeTyping';
 import { KeyHeatmap } from './KeyHeatmap';
-import type { ExtraPhrase } from './practice';
+import { SERIES, type ExtraPhrase, type SeriesKind } from './practice';
 import { TrainSession } from './TrainSession';
 
-type Mode = 'level' | 'weak' | 'ai' | 'convert' | 'free' | 'stats';
+type Mode = 'level' | 'weak' | 'series' | 'ai' | 'convert' | 'free' | 'stats';
 
 const MODES = [
   { value: 'level' as const, label: 'Níveis' },
   { value: 'weak' as const, label: 'Pontos fracos' },
+  { value: 'series' as const, label: 'Séries' },
   { value: 'ai' as const, label: '✨ IA' },
   { value: 'convert' as const, label: 'Conversão' },
   { value: 'free' as const, label: 'Livre' },
@@ -20,11 +21,12 @@ const MODES = [
 ];
 
 /**
- * Simulador do teclado de flick: treino por níveis (palavras e frases do próprio app e as suas), foco nas letras fracas,
+ * Simulador do teclado de flick: treino por níveis (palavras e frases do próprio app e as suas), foco nas letras fracas, séries de pontuação e números,
  * a barra de conversão para kanji, digitação livre e o mapa de desempenho por tecla.
  */
 export function SimulatorView() {
   const [mode, setMode] = useState<Mode>('level');
+  const [series, setSeries] = useState<SeriesKind>('punct');
   const myPhrases = useProgressStore((s) => s.myPhrases);
   const aiPhrases = useAiStore((s) => s.phrases);
   const aiEnabled = useSettingsStore((s) => s.ai.enabled);
@@ -44,6 +46,12 @@ export function SimulatorView() {
       <SwapView viewKey={shown}>
         {shown === 'level' ? <TrainSession mode="level" extras={extras} /> : null}
         {shown === 'weak' ? <TrainSession mode="weak" extras={extras} /> : null}
+        {shown === 'series' ? (
+          <>
+            <ChipRow options={SERIES.map((s) => ({ value: s.id, label: s.title }))} value={series} onChange={setSeries} />
+            <TrainSession key={series} mode="series" series={series} extras={extras} />
+          </>
+        ) : null}
         {shown === 'ai' ? (
           <>
             <AiPhrasesCard />

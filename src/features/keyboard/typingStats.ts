@@ -1,4 +1,5 @@
 import { FLICK_KEYS } from '@/data/keyboard';
+import { dayKey } from '@/features/ai/settings';
 import { howTo } from './flick';
 import { scheduleKey } from './keySchedule';
 
@@ -26,6 +27,8 @@ export interface TypingProgress {
   ms: number;
   /** Recorde de letras por minuto num item (com 4 letras ou mais). */
   best: number;
+  /** Letras certas digitadas no dia (para a meta diária); some quando o dia muda. */
+  today?: { day: string; chars: number };
 }
 
 /** Uma letra digitada: acertou ou errou e quanto levou desde a anterior. */
@@ -79,7 +82,9 @@ export function sanitizeTyping(raw: unknown): TypingProgress {
       if (/^[1-9]$/.test(level)) levelDone[level] = count(v);
     }
   }
-  return { keys, levelDone, chars: count(r.chars), ms: count(r.ms), best: count(r.best) };
+  const t = r.today as Record<string, unknown> | undefined;
+  const today = typeof t === 'object' && t !== null && typeof t.day === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(t.day) ? { day: t.day, chars: count(t.chars) } : undefined;
+  return { keys, levelDone, chars: count(r.chars), ms: count(r.ms), best: count(r.best), ...(today ? { today } : {}) };
 }
 
 /** Registra uma letra digitada: acerto (com o tempo desde a anterior) ou erro. */
@@ -111,6 +116,17 @@ export function recordItem(typing: TypingProgress, level: number, chars: number,
     best: Math.max(typing.best, cpm),
   };
 }
+
+/** Soma letras certas ao dia de hoje (o contador recomeça quando o dia muda). */
+export function addTyped(typing: TypingProgress, chars: number, now: number): TypingProgress {
+  if (chars <= 0) return typing;
+  const day = dayKey(now);
+  const before = typing.today?.day === day ? typing.today.chars : 0;
+  return { ...typing, today: { day, chars: Math.min(before + chars, MAX_COUNT) } };
+}
+
+/** Letras certas digitadas hoje. */
+export const typedToday = (typing: TypingProgress, now: number): number => (typing.today?.day === dayKey(now) ? typing.today.chars : 0);
 
 /** Média geral de letras por minuto (0 se ainda não há dados). */
 export const averageCpm = (typing: TypingProgress): number => charsPerMinute(typing.chars, typing.ms);

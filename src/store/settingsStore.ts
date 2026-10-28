@@ -9,6 +9,11 @@ import { DEFAULT_INTONATION, DEFAULT_PITCH, sanitizeFavorites, sanitizeIntonatio
 
 export type SpeechSpeed = 'normal' | 'slow';
 
+/** Metas diárias de letras digitadas no teclado de flick (0 = sem meta). */
+export const TYPING_GOAL_OPTIONS: readonly number[] = [0, 50, 100, 200];
+export const DEFAULT_TYPING_GOAL = 100;
+export const sanitizeTypingGoal = (value: unknown): number => (typeof value === 'number' && TYPING_GOAL_OPTIONS.includes(value) ? value : DEFAULT_TYPING_GOAL);
+
 /** Tema do app: segue o sistema (padrão), sempre claro ou sempre escuro. */
 export type ThemeMode = 'system' | 'light' | 'dark';
 
@@ -31,6 +36,8 @@ export type TypingInput = 'pad' | 'system';
 
 export interface SettingsData {
   themeMode: ThemeMode;
+  /** Meta diária de letras digitadas no simulador do teclado (0 = sem meta). */
+  typingGoal: number;
   /** Retenção desejada das revisões (0,8 a 0,95): quando a chance de lembrar cai a isso, o cartão volta. */
   retention: number;
   /** Nas revisões, algumas perguntas pedem para desenhar o símbolo. */
@@ -77,6 +84,7 @@ export interface SettingsData {
 
 export interface SettingsActions {
   setThemeMode: (value: ThemeMode) => void;
+  setTypingGoal: (value: number) => void;
   setRetention: (value: number) => void;
   setWriteInReview: (value: boolean) => void;
   setSpeechSpeed: (value: SpeechSpeed) => void;
@@ -109,6 +117,7 @@ export const SETTINGS_STORAGE_KEY = 'moji-dojo-settings';
 
 export const DEFAULT_SETTINGS: SettingsData = {
   themeMode: 'system',
+  typingGoal: DEFAULT_TYPING_GOAL,
   retention: DEFAULT_RETENTION,
   writeInReview: true,
   speechSpeed: 'normal',
@@ -143,6 +152,7 @@ export function createSettingsStore(storage: StateStorage) {
       (set) => ({
         ...DEFAULT_SETTINGS,
         setThemeMode: (value) => set({ themeMode: sanitizeThemeMode(value) }),
+        setTypingGoal: (value) => set({ typingGoal: sanitizeTypingGoal(value) }),
         setRetention: (value) => set({ retention: sanitizeRetention(value) }),
         setWriteInReview: (value) => set({ writeInReview: value }),
         setSpeechSpeed: (value) => set({ speechSpeed: value }),
@@ -177,6 +187,7 @@ export function createSettingsStore(storage: StateStorage) {
             ...current,
             ...saved,
             themeMode: sanitizeThemeMode(saved.themeMode),
+            typingGoal: sanitizeTypingGoal(saved.typingGoal),
             retention: sanitizeRetention(saved.retention),
             voiceEngine: saved.voiceEngine === 'voicevox' ? 'voicevox' : 'system',
             voicevoxStyle: typeof saved.voicevoxStyle === 'number' && Number.isInteger(saved.voicevoxStyle) && saved.voicevoxStyle >= 0 ? saved.voicevoxStyle : DEFAULT_VOICEVOX_STYLE,
@@ -188,8 +199,9 @@ export function createSettingsStore(storage: StateStorage) {
             aiUsage: sanitizeUsage(saved.aiUsage),
           };
         },
-        partialize: ({ themeMode, retention, writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
+        partialize: ({ themeMode, typingGoal, retention, writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
           themeMode,
+          typingGoal,
           retention,
           writeInReview,
           speechSpeed,

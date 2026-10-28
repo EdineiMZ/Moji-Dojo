@@ -23,7 +23,7 @@ const Lines = ({ lines }: { lines: readonly string[] }) => (
 );
 
 /**
- * Importa um código de backup: "MDJ1:..." (exportado por este app) ou "NDJ1:..." (do protótipo HTML).
+ * Importa um código de backup: "MDJ1:..." (exportado por este app) ou "NDJ1:..." (formato antigo).
  * O código é validado e resumido, e o progresso só é substituído depois de o usuário confirmar.
  */
 export function BackupCard() {
@@ -67,7 +67,7 @@ export function BackupCard() {
         <>
           <AppText color="muted">
             Cole aqui um código de backup. Ele começa com MDJ1: (gerado pelo “Exportar backup” deste app) ou com NDJ1:
-            (do protótipo web: toque em “Copiar código de backup”, na aba Aprender, no fim da página).
+            (formato antigo, de uma versão anterior).
           </AppText>
           <TextInput
             ref={inputRef}
@@ -119,7 +119,7 @@ export function BackupCard() {
           ) : null}
           {stage.source === 'prototype' ? (
             <AppText variant="caption" color="muted">
-              A melhor sequência de acertos e as notas de desenho do protótipo não são importadas.
+              A melhor sequência de acertos e as notas de desenho do formato antigo não são importadas.
             </AppText>
           ) : null}
           <View style={styles.actions}>

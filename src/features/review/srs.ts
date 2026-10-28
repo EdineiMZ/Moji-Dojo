@@ -1,5 +1,5 @@
 /**
- * Repetição espaçada em 6 caixas (mesma lógica do protótipo).
+ * Repetição espaçada em 6 caixas (1, 3, 7, 14, 30 e 60 dias).
  * Tudo aqui é puro: o relógio ("now", em ms) é sempre passado de fora.
  */
 export const DAY_MS = 86_400_000;

@@ -8,7 +8,7 @@ export interface CharStats {
 
 /**
  * Tudo que é salvo do progresso. Os nomes dos campos e as chaves (ids de lição,
- * caracteres) são os mesmos do protótipo HTML, o que permite importar o backup dele.
+ * caracteres) são os mesmos do formato antigo, o que permite importar o backup dele.
  */
 export interface ProgressSnapshot {
   srs: SrsState;

@@ -17,7 +17,7 @@ describe('exemplos das lições', () => {
     expect(missing.map((i) => i.char)).toEqual([]);
   });
 
-  it('as palavras extras contêm o kanji e não repetem as do protótipo', () => {
+  it('as palavras extras contêm o kanji e não repetem as iniciais', () => {
     for (const [char, ex] of Object.entries(KANJI_MORE_WORDS)) {
       expect(ex.word).toContain(char);
       expect(KANJI_EXAMPLES[char]).toBeUndefined();
@@ -26,7 +26,7 @@ describe('exemplos das lições', () => {
 });
 
 describe('dicas dos kanji', () => {
-  it('todo kanji tem dica (do protótipo ou as extras) e as extras não repetem as do protótipo', () => {
+  it('todo kanji tem dica (das iniciais ou as extras) e as extras não repetem as iniciais', () => {
     const { ALL_KANJI } = require('@/content/kanji') as typeof import('@/content/kanji');
     const { KANJI_HINTS } = require('@/data/hints') as typeof import('@/data/hints');
     const { KANJI_HINTS_EXTRA } = require('@/content/kanjiHints') as typeof import('@/content/kanjiHints');

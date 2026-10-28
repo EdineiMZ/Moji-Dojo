@@ -7382,7 +7382,7 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
   }
 ];
 
-/** Exercícios do Montar e das Lacunas feitos com os exemplos acima (mesmo formato dos do protótipo). */
+/** Exercícios do Montar e das Lacunas feitos com os exemplos acima (mesmo formato dos exercícios iniciais). */
 export const BUILD_N5: readonly BuildExercise[] = [
   {
     "topic": "g11",

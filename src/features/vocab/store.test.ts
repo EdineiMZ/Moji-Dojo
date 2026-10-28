@@ -125,10 +125,10 @@ describe('vocabulário no backup (MDJ1)', () => {
     expect(result.summary.words).toBe(0);
   });
 
-  it('importar um backup do app troca o vocabulário; do protótipo (NDJ1) preserva o que existe', () => {
+  it('importar um backup do app troca o vocabulário; do formato antigo (NDJ1) preserva o que existe', () => {
     const store = createProgressStore(memoryStorage());
     store.getState().learnWords([kana.id], NOW);
-    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }); // sem extras = protótipo
+    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }); // sem extras = formato antigo
     expect(Object.keys(store.getState().vocab)).toHaveLength(3);
     store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, journey: emptyJourney(), mastered: {}, myPhrases: {}, typing: EMPTY_TYPING });
     expect(store.getState().vocab).toEqual({});

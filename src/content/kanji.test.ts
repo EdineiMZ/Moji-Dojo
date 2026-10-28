@@ -4,8 +4,8 @@ import { LESSONS } from './lessons';
 import { ALL_KANJI, ALL_KANJI_CATEGORIES } from './kanji';
 import { KANJI_EXTRA, KANJI_EXTRA_CATEGORIES, KANJI_EXTRA_LESSONS } from './kanjiExtra';
 
-describe('kanji além do protótipo', () => {
-  it('somam 182 aos 102 do protótipo, sem repetir nenhum', () => {
+describe('kanji além dos 102 iniciais', () => {
+  it('somam 182 aos 102 iniciais, sem repetir nenhum', () => {
     expect(KANJI).toHaveLength(102);
     expect(KANJI_EXTRA).toHaveLength(182);
     expect(new Set(ALL_KANJI.map((k) => k.char)).size).toBe(284);

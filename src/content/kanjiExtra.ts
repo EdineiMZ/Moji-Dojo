@@ -3,7 +3,7 @@
 // Traços: ver src/data/strokes (KanjiVG, CC BY-SA 3.0). Ver src/content/LICENSE.md.
 import type { Kanji, KanjiCategory, Lesson } from '@/data/types';
 
-/** O último kanji do N5 e os do N4 que o protótipo não tinha. */
+/** O último kanji do N5 e os do N4 que não estavam nos 102 iniciais. */
 export const KANJI_EXTRA: readonly Kanji[] = [
   {
     "char": "兄",

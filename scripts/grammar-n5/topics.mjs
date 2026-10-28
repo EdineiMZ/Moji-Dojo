@@ -1,4 +1,4 @@
-// Tópicos de gramática N5 além dos 10 do protótipo (g1 a g10).
+// Tópicos de gramática N5 além dos 10 iniciais (g1 a g10).
 //
 // As explicações são texto próprio, em português. Os exemplos são frases reais do Tatoeba (CC BY 2.0 FR),
 // escolhidas pelo id; `ja` é o texto original, `pt` uma das traduções do Tatoeba e `kana` a mesma frase só em

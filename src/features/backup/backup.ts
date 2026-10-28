@@ -15,7 +15,7 @@ import { MAX_NOTE_LENGTH, type ProgressExtras, type ShadowRating } from '@/store
 
 /**
  * Dois formatos, os dois "prefixo" + base64 de um JSON em UTF-8:
- * - "NDJ1:" é o backup do protótipo HTML (btoa(unescape(encodeURIComponent(JSON.stringify(store))))).
+ * - "NDJ1:" é o backup do formato antigo (btoa(unescape(encodeURIComponent(JSON.stringify(store))))).
  *   Só os campos srs, lessons, stats e days são importados.
  * - "MDJ1:" é o backup do próprio app (exportBackup): além desses, histórico, autoavaliação do Repetir,
  *   desafios de digitação e vocabulário, com um campo `v` de versão. Campos novos entram como opcionais,
@@ -336,7 +336,7 @@ export function parseBackup(code: string): BackupParseResult {
 }
 
 export const BACKUP_ERROR_MESSAGES: Readonly<Record<BackupError, string>> = {
-  format: 'Esse texto não parece um código de backup do Moji Dojo. Ele deve começar com MDJ1: (do app) ou NDJ1: (do protótipo).',
+  format: 'Esse texto não parece um código de backup do Moji Dojo. Ele deve começar com MDJ1: (do app) ou NDJ1: (formato antigo).',
   encoding: 'O código parece estar cortado ou alterado. Copie de novo, inteiro, e cole aqui.',
   json: 'O código foi lido, mas o conteúdo está corrompido.',
   data: 'O código foi lido, mas não tem a forma de um backup do Moji Dojo.',

@@ -1,4 +1,4 @@
-// Dicas de memorização para os kanji que o protótipo não trazia (os 182 do N4 e vários do N5). Escritas por IA para este app,
+// Dicas de memorização para os kanji que ainda não tinham dica (os 182 do N4 e vários do N5). Escritas por IA para este app,
 // a partir dos componentes de cada kanji no KanjiVG (CC BY-SA 3.0): são ajudas de memória, imagens para lembrar a forma, e não
 // a origem histórica do caractere. Precisam de revisão por um falante (ver LICENSE.md). O teste confere que nenhum kanji ficou sem dica.
 

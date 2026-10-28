@@ -1,7 +1,7 @@
 import { VOCAB, type VocabWord } from '@/content';
 
 /**
- * Palavras "gêmeas": a lista do protótipo tem あさ e a lista do N5 tem 朝, as duas com a mesma leitura e o mesmo significado.
+ * Palavras "gêmeas": a lista inicial tem あさ e a lista do N5 tem 朝, as duas com a mesma leitura e o mesmo significado.
  * Estudar as duas seria estudar a mesma palavra duas vezes. A principal é a que tem kanji; as outras só aparecem para quem já
  * estudou aquela forma (o progresso antigo continua valendo) e nunca são oferecidas como "novas" junto com a principal.
  */

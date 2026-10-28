@@ -15,7 +15,7 @@ import { useMotionEnabled } from './motion';
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedText = Animated.createAnimatedComponent(SvgText);
 
-/** Tempo de cada traço, incluindo a pausa antes do próximo (igual ao protótipo). */
+/** Tempo de cada traço, incluindo a pausa antes do próximo. */
 const STROKE_MS = 650;
 /** Parte do tempo do traço em que ele de fato se desenha; o resto é a pausa. */
 const DRAW_FRACTION = 0.8;

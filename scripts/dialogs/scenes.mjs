@@ -1,6 +1,6 @@
 // Fonte dos diálogos curtos. Gera src/content/dialogs.ts com `npm run build-dialogs`.
 //
-// As falas do ALUNO (`you`) são sempre frases de Viagem (src/data/travel.ts, vindas do HTML original): aqui só se
+// As falas do ALUNO (`you`) são sempre frases de Viagem (src/data/travel.ts, as 37 iniciais): aqui só se
 // escreve o texto japonês exatamente como está lá, e o gerador busca o romaji e a tradução. As falas do ATENDENTE
 // (`staff`) são frases fixas de atendimento, escritas com a marcação de kana de scripts/grammar-n5 (espaço = palavra,
 // | = só no romaji, ~X = partícula). Elas precisam de revisão por quem fala japonês antes de publicar.

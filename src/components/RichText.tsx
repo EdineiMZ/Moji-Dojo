@@ -41,7 +41,7 @@ function Table({ block }: { block: RichTable }) {
   );
 }
 
-/** Mostra texto formatado extraído do HTML: parágrafos com negrito e tabelas. */
+/** Mostra texto formatado: parágrafos com negrito e tabelas. */
 export function RichText({ blocks }: { blocks: readonly RichBlock[] }) {
   return (
     <View style={styles.root}>

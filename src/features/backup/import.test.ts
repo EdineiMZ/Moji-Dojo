@@ -9,7 +9,7 @@ import { describeCounts, ignoredNote } from './describe';
 // Data fixa: 22/10/2026 às 10:00.
 const NOW = new Date(2026, 9, 22, 10, 0, 0).getTime();
 
-/** Código exatamente como o protótipo HTML gera. */
+/** Código do formato antigo (NDJ1), exatamente como era gerado. */
 const htmlCode = (store: unknown): string => 'NDJ1:' + btoa(unescape(encodeURIComponent(JSON.stringify(store))));
 
 const memory = () => {
@@ -22,7 +22,7 @@ const memory = () => {
   };
 };
 
-/** Um progresso realista do protótipo: 3 lições de hiragana, revisões em vários estados e 4 dias seguidos. */
+/** Um progresso realista do formato antigo: 3 lições de hiragana, revisões em vários estados e 4 dias seguidos. */
 function prototypeStore() {
   const hira = LESSONS.hira.slice(0, 3);
   const chars = hira.flatMap((l) => l.items);
@@ -41,8 +41,8 @@ function prototypeStore() {
   };
 }
 
-describe('importar o backup do protótipo HTML', () => {
-  it('o app passa a mostrar a trilha, as revisões vencidas e a sequência do protótipo', () => {
+describe('importar o backup do formato antigo (NDJ1)', () => {
+  it('o app passa a mostrar a trilha, as revisões vencidas e a sequência do backup', () => {
     const store = createProgressStore(memory());
     store.getState().completeLesson('kata:L0', ['ア'], false, NOW); // progresso anterior, que será substituído
 

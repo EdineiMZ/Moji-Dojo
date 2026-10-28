@@ -3,7 +3,7 @@ import type { TravelCategory, TravelPhrase } from '@/data/types';
 import { TRAVEL_EXTRA } from './travelExtra';
 
 /**
- * Todas as frases de viagem e de dia a dia: as 37 do HTML original mais as escritas depois (src/content/travelExtra.ts).
+ * Todas as frases de viagem e de dia a dia: as 37 iniciais mais as escritas depois (src/content/travelExtra.ts).
  * Categorias com o mesmo nome são somadas (as do original primeiro); as novas vêm no fim.
  */
 /** Correções do "Palavra por palavra" do original (o arquivo src/data/travel.ts é gerado e não se edita à mão). */

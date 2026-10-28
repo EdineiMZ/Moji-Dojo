@@ -1,4 +1,4 @@
-// Dados-base do app, extraídos do protótipo web original (removido do repositório; está no histórico do git). Agora são mantidos à mão.
+// Dados-base do app (kana, kanji, lições, gramática inicial, viagem e teclado), mantidos à mão.
 import type { KanaChar } from './types';
 
 export const KANA: readonly KanaChar[] = [

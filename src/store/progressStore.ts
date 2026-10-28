@@ -122,7 +122,7 @@ export interface ProgressActions {
   recordTyping: (keys: readonly TypingKeyEvent[], item?: { level: number; chars: number; ms: number }, now?: number) => void;
   /**
    * Substitui todo o progresso (importação de backup). Com `extras` (backup do próprio app), troca também
-   * histórico, autoavaliação e desafios; sem eles (backup do protótipo), só o histórico é zerado.
+   * histórico, autoavaliação e desafios; sem eles (backup do formato antigo), só o histórico é zerado.
    */
   replaceProgress: (snapshot: ProgressSnapshot, extras?: ProgressExtras) => void;
   resetProgress: () => void;
@@ -130,7 +130,7 @@ export interface ProgressActions {
 
 /**
  * Além do progresso do backup, guarda a autoavaliação do Repetir. Ela não faz parte do
- * snapshot (o backup do protótipo é só srs, lessons, stats e days), mas é zerada junto.
+ * snapshot (o backup do formato antigo é só srs, lessons, stats e days), mas é zerada junto.
  */
 export interface ProgressExtras {
   shadow: Readonly<Record<string, ShadowRating>>;
@@ -504,7 +504,7 @@ export function createProgressStore(storage: StateStorage) {
           }),
 
         replaceProgress: (snapshot, extras) =>
-          // O histórico do progresso antigo não vale para o importado; o backup do protótipo não traz histórico.
+          // O histórico do progresso antigo não vale para o importado; o backup do formato antigo não traz histórico.
           set({
             srs: snapshot.srs,
             lessons: snapshot.lessons,

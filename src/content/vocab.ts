@@ -19,7 +19,7 @@ const GROUP_LABELS = {
 const categoryLabel = new Map(KANJI_CATEGORIES.map((c) => [c.id, c.label] as const));
 
 /**
- * Vocabulário que já vem da especificação (o HTML): a palavra de exemplo de cada kana e de cada kanji e as
+ * Vocabulário inicial do app: a palavra de exemplo de cada kana e de cada kanji e as
  * palavras do simulador de teclado. Nenhuma palavra é inventada. Ordem da trilha: hiragana, katakana, kanji.
  * Palavras repetidas aparecem uma vez só (vale a primeira). O vocabulário que vier de outras fontes entra
  * depois, no mesmo formato.

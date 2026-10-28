@@ -138,7 +138,7 @@ import type { BuildExercise, GrammarTopic } from '@/data/types';
 
 export const GRAMMAR_N5: readonly GrammarTopic[] = ${JSON.stringify(topics, null, 2)};
 
-/** Exercícios do Montar e das Lacunas feitos com os exemplos acima (mesmo formato dos do protótipo). */
+/** Exercícios do Montar e das Lacunas feitos com os exemplos acima (mesmo formato dos exercícios iniciais). */
 export const BUILD_N5: readonly BuildExercise[] = ${JSON.stringify(exercises, null, 2)};
 
 /** Ids das frases do Tatoeba usadas nos exemplos (para o crédito). */

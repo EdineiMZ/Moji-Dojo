@@ -1,5 +1,5 @@
 {
-  "_nota": "Significados em português (escritos por IA, a revisar por um falante) e a divisão em categorias dos kanji que entram além dos 102 do protótipo: o último kanji do N5 (魚) e os 181 do N4 pela lista antiga do JLPT no KANJIDIC.",
+  "_nota": "Significados em português (escritos por IA, a revisar por um falante) e a divisão em categorias dos kanji que entram além dos 102 iniciais: o último kanji do N5 (魚) e os 181 do N4 pela lista antiga do JLPT no KANJIDIC.",
   "categories": [
     { "id": "n4fam", "label": "N4: Família e pessoas", "chars": "兄姉弟妹親族者医員民私主" },
     { "id": "n4lug", "label": "N4: Lugares", "chars": "家屋室館院堂町村市区県京都場所池森林田野海地界門銀" },

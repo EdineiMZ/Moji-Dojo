@@ -2,6 +2,14 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.8.2] - 2026-10-28
+
+Limpeza dos textos do app e licença do projeto.
+
+- **Importar backup:** a tela e a mensagem de erro passam a chamar o código `NDJ1:` de "formato antigo", em vez de explicar de onde ele vinha. O código continua sendo aceito como antes.
+- **Licença:** o `LICENSE` agora traz a licença MIT em português e em inglês, com o que a lei brasileira pede que uma licença diga de forma expressa (objeto, modalidades de uso, prazo, território, gratuidade, direitos morais e o que fica de fora). O `NOTICE.md` lista as licenças de terceiros.
+- **Documentação:** README reorganizado como página de portfólio, roadmap reorganizado por prioridade e por versão, e as seções técnicas longas foram para `docs/ARQUITETURA.md`. Comentários e testes deixaram de citar materiais de origem que não fazem mais parte do projeto.
+
 ## [2.8.1] - 2026-10-28
 
 Corrige o volume baixo da voz de anime e deixa a escolha da voz clara.
@@ -9,7 +17,7 @@ Corrige o volume baixo da voz de anime e deixa a escolha da voz clara.
 - **Voz de anime sintetizada estava quase inaudível (corrigido).** O motor entrega cada personagem num volume diferente: medindo no celular, o ずんだもん saía uns 12 dB abaixo das amostras do site (cerca de um quarto do volume), o que fazia "Ouvir" e a amostra parecerem mudas. Agora todo áudio sintetizado é nivelado pelo pico (perto de -2 dBFS, como as amostras do site, com ganho máximo de 8 vezes). Os áudios guardados antes são refeitos sozinhos na primeira vez.
 - **Escolher a voz ficou direto.** O cartão ganhou **"Minhas vozes"**: cada personagem baixado aparece com a descrição, o selo **"✓ Em uso"**, os tons (no personagem em uso) e os botões **"Ouvir"** e **"Usar esta voz"**. Usar uma voz já liga o VOICEVOX sozinho; some o passo separado de escolher o motor. "Voltar para a voz do Android" desliga. A lista de download passou a se chamar "Baixar vozes" e diz que a voz baixada aparece em "Minhas vozes".
 - **Amostra com retorno visível:** o botão mostra "Carregando..." enquanto baixa ou sintetiza e "Tocando..." durante o áudio, e mostra o erro se falhar. Antes ele ficava mudo.
-- **Projeto:** removido o protótipo web `Nihongo Dojo.html` e o script que gerava `src/data/` a partir dele (continuam no histórico do git; `src/data/` é mantido à mão). O roadmap foi reorganizado (o antigo ficou em `docs/roadmap-historico.md`), o README virou uma página de portfólio com a seção de download e entraram o `LICENSE` (MIT) e o `NOTICE.md` com as licenças de terceiros. Não foi testado no aparelho depois da correção do volume.
+- **Projeto:** o roadmap foi reorganizado, o README virou uma página de portfólio com a seção de download e entraram o `LICENSE` e o `NOTICE.md` com as licenças de terceiros. Não foi testado no aparelho depois da correção do volume.
 
 ## [2.8.0] - 2026-10-27
 
@@ -329,7 +337,7 @@ Primeira parte da Fase 1 do [ROADMAP](ROADMAP.md): vocabulário.
 
 Fase 0 do [ROADMAP](ROADMAP.md): correções e base para crescer.
 
-- **Backup:** novo "Exportar backup" em Ajustes gera um código `MDJ1:` com todo o progresso (inclusive histórico, Repetir e desafios). O importador aceita `MDJ1:` e `NDJ1:` (do protótipo).
+- **Backup:** novo "Exportar backup" em Ajustes gera um código `MDJ1:` com todo o progresso (inclusive histórico, Repetir e desafios). O importador aceita `MDJ1:` e `NDJ1:` (formato antigo).
 - **Teclado:** a grade do simulador é sempre 3 colunas × 4 linhas (a largura agora é medida na tela), e ⌫ e Limpar ficam numa barra abaixo.
 - **Acessibilidade:** contraste do tema claro corrigido (WCAG AA), alvos de toque de 48 dp e ícones das abas fora do leitor de tela.
 - **Visual e som:** ícone, ícone adaptativo e splash com o Mochi; animações mais suaves; som de abertura e som de toque nos botões.
@@ -345,5 +353,5 @@ Primeira versão completa: Fases 1 e 2 mais o polimento.
 - **Ouvir:** guia de sons, treino de ouvido e Repetir (shadowing).
 - **Frases:** gramática, montar frases e frases de viagem.
 - **Teclado:** guia, simulador de flick e desafios.
-- **Início:** painel de constância e evolução. **Ajustes:** voz, importação de backup do protótipo, som e vibração.
+- **Início:** painel de constância e evolução. **Ajustes:** voz, importação de backup do formato antigo, som e vibração.
 - **Geral:** tela de carregamento com o Mochi, efeitos sonoros e vibração, temas claro e escuro.

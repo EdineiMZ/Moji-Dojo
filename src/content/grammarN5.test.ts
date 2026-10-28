@@ -2,7 +2,7 @@ import { ALL_EXERCISES, ALL_GRAMMAR } from './grammar';
 import { BUILD_N5, GRAMMAR_N5, GRAMMAR_N5_SENTENCE_IDS } from './grammarN5';
 
 describe('gramática N5 (Tatoeba)', () => {
-  it('os ids seguem os 10 tópicos do protótipo, sem repetir', () => {
+  it('os ids seguem os 10 tópicos iniciais, sem repetir', () => {
     const ids = ALL_GRAMMAR.map((t) => t.id);
     expect(new Set(ids).size).toBe(ids.length);
     expect(ids.slice(0, 10)).toEqual(Array.from({ length: 10 }, (_, i) => `g${i + 1}`));

@@ -1,9 +1,9 @@
-// Frases de viagem e de dia a dia além das 37 do HTML original (src/data/travel.ts). Gera src/content/travelExtra.ts com
+// Frases de viagem e de dia a dia além das 37 iniciais (src/data/travel.ts). Gera src/content/travelExtra.ts com
 // `npm run build-travel`.
 //
 // Cada frase: `ja` na marcação de kana de scripts/grammar-n5 (espaço = palavra, "~X" = partícula colada à palavra de antes,
 // "|" = separa só no romaji), `pt` e `parts` ("pedaço=significado; pedaço=significado"), que vira o "Palavra por palavra".
-// O gerador monta o romaji. As categorias com o mesmo nome de uma do HTML (Básico, Restaurante...) são somadas a ela.
+// O gerador monta o romaji. As categorias com o mesmo nome de uma das iniciais (Básico, Restaurante...) são somadas a ela.
 //
 // Escritas por IA com frases de uso corrente; precisam de revisão por quem fala japonês (ver src/content/LICENSE.md).
 

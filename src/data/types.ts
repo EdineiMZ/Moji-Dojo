@@ -45,7 +45,7 @@ export interface KanjiExample {
 }
 
 export interface Lesson {
-  /** Mesmo id do protótipo HTML (ex.: "hira:L0"); o backup depende dele. */
+  /** Id estável (ex.: "hira:L0"); o backup depende dele. */
   id: string;
   title: string;
   /** Caracteres da lição, na ordem de estudo. */
@@ -61,7 +61,7 @@ export interface StrokeData {
   n: readonly (readonly [number, number])[];
 }
 
-// ---------- Texto formatado (extraído do HTML do protótipo) ----------
+// ---------- Texto formatado ----------
 
 /** Trecho de texto; `ja` marca japonês (para usar a fonte e a leitura certas). */
 export interface RichRun {

@@ -11,7 +11,7 @@ const plainText = (blocks: readonly RichBlock[]): string =>
     .join(' ');
 
 describe('dados de frases, sons, viagem e teclado (extraídos do HTML)', () => {
-  it('tem as quantidades do protótipo', () => {
+  it('tem as quantidades esperadas', () => {
     expect(GRAMMAR_TOPICS).toHaveLength(10);
     expect(BUILD_EXERCISES).toHaveLength(26);
     expect(SOUND_TOPICS).toHaveLength(9);

@@ -202,7 +202,7 @@ ${body}
 );
 writeFileSync(new URL('./summary.json', import.meta.url), JSON.stringify(summary, null, 1));
 
-const label = { 'viagem-original': 'Frases de viagem (do protótipo)', 'viagem-ia': 'Frases de viagem e dia a dia (escritas por IA)', 'atendente-ia': 'Falas do atendente nos diálogos (escritas por IA)', 'molde-ia': 'Frases-modelo (escritas por IA)' };
+const label = { 'viagem-original': 'Frases de viagem (as 37 iniciais)', 'viagem-ia': 'Frases de viagem e dia a dia (escritas por IA)', 'atendente-ia': 'Falas do atendente nos diálogos (escritas por IA)', 'molde-ia': 'Frases-modelo (escritas por IA)' };
 const groups = Object.keys(label).map((src) => ({ src, rows: pending.filter((p) => p.src === src) })).filter((g) => g.rows.length > 0);
 writeFileSync(
   new URL('../../docs/verificacao-japones.md', import.meta.url),

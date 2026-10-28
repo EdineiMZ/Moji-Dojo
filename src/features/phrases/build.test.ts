@@ -158,7 +158,7 @@ describe('rodada', () => {
   });
 });
 
-describe('os 26 exercícios do protótipo são montáveis', () => {
+describe('os 26 exercícios iniciais são montáveis', () => {
   it('a resposta e as ordens alternativas que só usam blocos oferecidos são aceitas', () => {
     for (const e of BUILD_EXERCISES) {
       let round = createRound([e], rng);

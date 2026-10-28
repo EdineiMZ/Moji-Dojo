@@ -137,7 +137,7 @@ describe('parseBackup: backup do app (MDJ1)', () => {
     expect(kept.at(-1)).toBe(Object.keys(history).sort().at(-1));
   });
 
-  it('o backup do protótipo (NDJ1) continua sem extras', () => {
+  it('o backup do formato antigo (NDJ1) continua sem extras', () => {
     const code = 'NDJ1:' + btoa(unescape(encodeURIComponent(JSON.stringify({ stats: { あ: { c: 1, w: 0 } } }))));
     const result = parseBackup(code);
     if (!result.ok) throw new Error('esperava sucesso');
@@ -147,7 +147,7 @@ describe('parseBackup: backup do app (MDJ1)', () => {
 });
 
 describe('replaceProgress com extras', () => {
-  it('sem extras (protótipo) mantém autoavaliação e desafios e zera o histórico', () => {
+  it('sem extras (formato antigo) mantém autoavaliação e desafios e zera o histórico', () => {
     const store = createProgressStore(memoryStorage());
     store.getState().rateShadow('こんにちは', 'ok', NOW.getTime());
     store.getState().completeChallenge('ねこ', NOW.getTime());

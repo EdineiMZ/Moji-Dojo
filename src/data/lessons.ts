@@ -1,4 +1,4 @@
-// Dados-base do app, extraídos do protótipo web original (removido do repositório; está no histórico do git). Agora são mantidos à mão.
+// Dados-base do app (kana, kanji, lições, gramática inicial, viagem e teclado), mantidos à mão.
 import type { Lesson, Script } from './types';
 
 /** Trilha de lições por escrita. Cada item é o caractere (chave em KANA / KANJI). */

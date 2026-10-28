@@ -149,7 +149,7 @@ describe('checkTyping', () => {
     expect(result.message).toBe('Saiu ありがとお. O esperado é ありがとう. Compare letra por letra.');
   });
 
-  it('os 9 desafios do protótipo são resolvíveis com o texto exato', () => {
+  it('os 9 desafios iniciais são resolvíveis com o texto exato', () => {
     for (const c of TYPING_CHALLENGES) expect(checkTyping(c.word, c.word).ok).toBe(true);
   });
 });

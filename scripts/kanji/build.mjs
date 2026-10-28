@@ -1,4 +1,4 @@
-// Acrescenta kanji além dos 102 do protótipo: o último do N5 (魚) e os 181 do N4 (lista antiga do JLPT, campo `jlpt` 3 do
+// Acrescenta kanji além dos 102 iniciais: o último do N5 (魚) e os 181 do N4 (lista antiga do JLPT, campo `jlpt` 3 do
 // KANJIDIC2). Gera src/content/kanjiExtra.ts (leituras, significados, categorias e lições) e src/data/strokes/extra.json
 // (ordem dos traços, do KanjiVG). Uso: npm run build-kanji [-- caminho do kanjidic2.xml.gz]
 //
@@ -79,7 +79,7 @@ const kanji = ordered.map(({ char, category }) => {
   return { char, meaning: pt[char], on: unique(k.on).slice(0, 3), kun: unique(k.kun.map(kunOf)).slice(0, 3), category };
 });
 
-// Lições novas, de até 6 kanji, continuando a numeração das lições do protótipo.
+// Lições novas, de até 6 kanji, continuando a numeração das lições iniciais.
 const lessons = [];
 let number = kanjiLessons.length;
 for (const cat of categories) {
@@ -99,7 +99,7 @@ writeFileSync(
 // Traços: ver src/data/strokes (KanjiVG, CC BY-SA 3.0). Ver src/content/LICENSE.md.
 import type { Kanji, KanjiCategory, Lesson } from '@/data/types';
 
-/** O último kanji do N5 e os do N4 que o protótipo não tinha. */
+/** O último kanji do N5 e os do N4 que não estavam nos 102 iniciais. */
 export const KANJI_EXTRA: readonly Kanji[] = ${literal(kanji)};
 
 export const KANJI_EXTRA_CATEGORIES: readonly KanjiCategory[] = ${literal(categories.map(({ id, label, chars }) => ({ id, label, chars })))};

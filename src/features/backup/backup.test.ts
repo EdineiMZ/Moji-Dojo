@@ -1,7 +1,7 @@
 import { BACKUP_PREFIX, parseBackup } from './backup';
 
 /**
- * Gera o código exatamente como o protótipo HTML faz:
+ * Gera o código do formato antigo (NDJ1) exatamente como ele era gerado:
  * btoa(unescape(encodeURIComponent(JSON.stringify(store)))).
  */
 const htmlCode = (store: unknown): string => BACKUP_PREFIX + btoa(unescape(encodeURIComponent(JSON.stringify(store))));

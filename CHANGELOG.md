@@ -9,6 +9,7 @@ Correção do travamento ao baixar vozes do VOICEVOX.
 - **Travava ao tocar em "Baixar":** o painel de termos lia o tipo de rede durante a renderização, o que muda a loja do VOICEVOX; como o cartão assinava a loja inteira, cada mudança redesenhava a lista, que lia a rede de novo, num laço sem fim (o app ficava a 100% de CPU, parado). Reproduzido no emulador e corrigido: a rede só é lida ao tocar, e o cartão e as linhas assinam só o que usam.
 - **Download mais leve:** a barra de progresso é um componente à parte e a loja só é atualizada a cada 1% (antes, umas 5 vezes por segundo redesenhando todas as linhas). Por isso o aviso de leitor de tela "Baixando... N%" deixou de ser anunciado a cada atualização.
 - Teste novo que falha no código antigo e passa no novo.
+- **Licença:** o `LICENSE` ficou só com a MIT em inglês (o GitHub passa a reconhecê-la); a versão em português e os esclarecimentos sob a lei brasileira foram para `LICENCA.pt-BR.md`, com o art. 50 tratado como cautela (a licença não é cessão), "ícones originais", o aviso de que o ONNX Runtime do VOICEVOX e o Google ML Kit não são código aberto, e a aceitação ligada à cópia e à distribuição, não ao uso. No `NOTICE.md`: o ONNX Runtime deixou de ser listado como MIT, o aviso do reconhecimento de fala diz que o serviço do Android pode enviar o áudio ao Google, e a versão da CC BY do Waller consta como não informada pela fonte.
 
 ## [2.13.1] - 2026-10-28
 

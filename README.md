@@ -210,4 +210,4 @@ Projeto pessoal de estudo e de portfólio, só para Android. O que ainda precisa
 
 ## Licença
 
-O **código**, a **arte** e os **sons originais** são distribuídos sob a licença **MIT**, com o texto em português e em inglês e os esclarecimentos de uso em [`LICENSE`](LICENSE). Os **dados e o conteúdo de terceiros** mantêm as licenças das suas fontes, listadas acima e em [`NOTICE.md`](NOTICE.md); os derivados de obras CC BY-SA continuam sob CC BY-SA.
+O **código**, a **arte** e os **sons originais** são distribuídos sob a licença **MIT**, com o texto original em inglês em [`LICENSE`](LICENSE) e a versão em português, com os esclarecimentos sob a lei brasileira, em [`LICENCA.pt-BR.md`](LICENCA.pt-BR.md). Os **dados e o conteúdo de terceiros** mantêm as licenças das suas fontes, listadas acima e em [`NOTICE.md`](NOTICE.md); os derivados de obras CC BY-SA continuam sob CC BY-SA.

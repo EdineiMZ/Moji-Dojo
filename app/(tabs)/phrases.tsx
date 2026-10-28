@@ -4,6 +4,7 @@ import { AiStudioView } from '@/features/ai/AiStudioView';
 import { BankView } from '@/features/bank/BankView';
 import { ClozeView } from '@/features/cloze/ClozeView';
 import { DialogView } from '@/features/dialogs/DialogView';
+import { OfflineExamView } from '@/features/exam/OfflineExamView';
 import { FlashcardsView } from '@/features/flashcards/FlashcardsView';
 import { ScanView } from '@/features/scan/ScanView';
 import { CountingView } from '@/features/counting/CountingView';
@@ -24,7 +25,7 @@ import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 import { useSettingsStore } from '@/store';
 
-type PhrasesView = 'vocab' | 'cards' | 'scan' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure' | 'frames' | 'explore' | 'ai';
+type PhrasesView = 'vocab' | 'cards' | 'scan' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure' | 'frames' | 'explore' | 'exam' | 'ai';
 
 type Section = 'words' | 'grammar' | 'sentences';
 
@@ -52,6 +53,7 @@ const SECTIONS: readonly { value: Section; label: string; hint: string; views: r
       { value: 'conjugate', label: 'Conjugar' },
       { value: 'cloze', label: 'Lacunas' },
       { value: 'count', label: 'Contar' },
+      { value: 'exam', label: 'Simulado' },
     ],
   },
   {
@@ -108,6 +110,7 @@ export default function PhrasesScreen() {
         {view === 'conjugate' ? <ConjugationView /> : null}
         {view === 'cloze' ? <ClozeView /> : null}
         {view === 'count' ? <CountingView /> : null}
+        {view === 'exam' ? <OfflineExamView /> : null}
         {view === 'kata' ? <LoanwordsView /> : null}
         {view === 'read' ? <ReadView /> : null}
         {view === 'scan' ? <ScanView /> : null}

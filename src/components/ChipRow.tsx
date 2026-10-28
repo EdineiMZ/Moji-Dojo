@@ -9,6 +9,8 @@ interface ChipRowProps<T extends string> {
   options: readonly { value: T; label: string }[];
   value: T;
   onChange: (value: T) => void;
+  /** Mostra todas as opções de uma vez, quebrando em linhas, em vez de rolar na horizontal. */
+  wrap?: boolean;
 }
 
 /** Largura da névoa que avisa que há mais chips para o lado. */
@@ -28,7 +30,7 @@ const withAlpha = (hex: string, alpha: number): string => {
  * Escolha de uma opção entre várias, em chips que rolam na horizontal (ex.: categorias). Quando há mais chips para
  * rolar, uma névoa e uma seta na borda avisam disso.
  */
-export function ChipRow<T extends string>({ options, value, onChange }: ChipRowProps<T>) {
+export function ChipRow<T extends string>({ options, value, onChange, wrap = false }: ChipRowProps<T>) {
   const { colors } = useTheme();
   const [viewport, setViewport] = useState(0);
   const [content, setContent] = useState(0);
@@ -37,11 +39,34 @@ export function ChipRow<T extends string>({ options, value, onChange }: ChipRowP
   const onLayout = (e: LayoutChangeEvent) => setViewport(e.nativeEvent.layout.width);
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => setOffset(e.nativeEvent.contentOffset.x);
 
-  const overflows = content > viewport + EDGE;
+  const overflows = !wrap && content > viewport + EDGE;
   const moreRight = overflows && offset + viewport < content - EDGE;
   const moreLeft = overflows && offset > EDGE;
   const transparent = withAlpha(colors.background, 0);
   const solid = withAlpha(colors.background, 0.95);
+
+  const renderChip = (opt: { value: T; label: string }) => {
+    const selected = opt.value === value;
+    return (
+      <PressableScale
+        key={opt.value}
+        accessibilityRole="tab"
+        accessibilityState={{ selected }}
+        onPress={() => onChange(opt.value)}
+        haptic
+        style={[
+          styles.chip,
+          { backgroundColor: selected ? colors.primary : colors.surface, borderColor: selected ? colors.primary : colors.line },
+        ]}
+      >
+        <AppText color={selected ? 'onPrimary' : 'ink'} style={{ fontFamily: fonts.bold }}>
+          {opt.label}
+        </AppText>
+      </PressableScale>
+    );
+  };
+
+  if (wrap) return <View style={styles.wrap}>{options.map(renderChip)}</View>;
 
   return (
     <View onLayout={onLayout}>
@@ -53,26 +78,7 @@ export function ChipRow<T extends string>({ options, value, onChange }: ChipRowP
         onScroll={onScroll}
         scrollEventThrottle={32}
       >
-        {options.map((opt) => {
-          const selected = opt.value === value;
-          return (
-            <PressableScale
-              key={opt.value}
-              accessibilityRole="tab"
-              accessibilityState={{ selected }}
-              onPress={() => onChange(opt.value)}
-              haptic
-              style={[
-                styles.chip,
-                { backgroundColor: selected ? colors.primary : colors.surface, borderColor: selected ? colors.primary : colors.line },
-              ]}
-            >
-              <AppText color={selected ? 'onPrimary' : 'ink'} style={{ fontFamily: fonts.bold }}>
-                {opt.label}
-              </AppText>
-            </PressableScale>
-          );
-        })}
+        {options.map(renderChip)}
       </ScrollView>
       {moreLeft ? (
         <LinearGradient pointerEvents="none" colors={[solid, transparent]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={[styles.fade, styles.left]}>
@@ -93,6 +99,7 @@ export function ChipRow<T extends string>({ options, value, onChange }: ChipRowP
 }
 
 const styles = StyleSheet.create({
+  wrap: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, paddingVertical: spacing.xs },
   row: { gap: spacing.sm, paddingVertical: spacing.xs },
   chip: { borderRadius: radii.pill, borderWidth: 1.5, minHeight: 48, justifyContent: 'center', paddingHorizontal: spacing.lg },
   fade: { position: 'absolute', top: 0, bottom: 0, width: FADE_WIDTH, justifyContent: 'center' },

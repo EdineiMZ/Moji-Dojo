@@ -81,7 +81,7 @@ export function RemindersCard() {
       <AppText variant="title">Lembretes</AppText>
       <AppText color="muted">O Mochi avisa no celular para você treinar um pouco por dia. Tudo no aparelho, sem internet e sem conta.</AppText>
 
-      <ChipRow options={PRESETS.map((p) => ({ value: p.value, label: p.label }))} value={preset} onChange={(v) => void choose(v)} />
+      <ChipRow wrap options={PRESETS.map((p) => ({ value: p.value, label: p.label }))} value={preset} onChange={(v) => void choose(v)} />
       {info ? (
         <AppText variant="caption" color="muted">
           {info.description}
@@ -96,7 +96,7 @@ export function RemindersCard() {
           <AppText variant="caption" color="muted">
             QUE HORAS?
           </AppText>
-          <ChipRow
+          <ChipRow wrap
             options={[...TIME_CHOICES.map((t) => ({ value: t.label, label: t.label })), { value: CUSTOM, label: `Outro (${pad(reminders.hour)}:${pad(reminders.minute)})` }]}
             value={timeValue}
             onChange={(v) => {
@@ -132,8 +132,8 @@ export function RemindersCard() {
           <AppText variant="caption" color="muted">
             HORÁRIO EXATO: {pad(reminders.hour)}:{pad(reminders.minute)}
           </AppText>
-          <ChipRow options={HOURS.map((h) => ({ value: String(h), label: `${pad(h)}h` }))} value={String(reminders.hour)} onChange={(v) => setReminders({ hour: Number(v) })} />
-          <ChipRow options={MINUTES.map((m) => ({ value: String(m), label: `:${pad(m)}` }))} value={String(reminders.minute)} onChange={(v) => setReminders({ minute: Number(v) })} />
+          <ChipRow wrap options={HOURS.map((h) => ({ value: String(h), label: `${pad(h)}h` }))} value={String(reminders.hour)} onChange={(v) => setReminders({ hour: Number(v) })} />
+          <ChipRow wrap options={MINUTES.map((m) => ({ value: String(m), label: `:${pad(m)}` }))} value={String(reminders.minute)} onChange={(v) => setReminders({ minute: Number(v) })} />
 
           <AppText variant="caption" color="muted">
             DIAS COM LEMBRETE
@@ -164,8 +164,8 @@ export function RemindersCard() {
           <AppText variant="caption" color="muted">
             SILÊNCIO: DAS {pad(reminders.quietFrom)}H ÀS {pad(reminders.quietTo)}H
           </AppText>
-          <ChipRow options={QUIET_FROM.map((h) => ({ value: String(h), label: `desde ${pad(h)}h` }))} value={String(reminders.quietFrom)} onChange={(v) => setReminders({ quietFrom: Number(v) })} />
-          <ChipRow options={QUIET_TO.map((h) => ({ value: String(h), label: `até ${pad(h)}h` }))} value={String(reminders.quietTo)} onChange={(v) => setReminders({ quietTo: Number(v) })} />
+          <ChipRow wrap options={QUIET_FROM.map((h) => ({ value: String(h), label: `desde ${pad(h)}h` }))} value={String(reminders.quietFrom)} onChange={(v) => setReminders({ quietFrom: Number(v) })} />
+          <ChipRow wrap options={QUIET_TO.map((h) => ({ value: String(h), label: `até ${pad(h)}h` }))} value={String(reminders.quietTo)} onChange={(v) => setReminders({ quietTo: Number(v) })} />
 
           <Button
             label="Refazer o agendamento"

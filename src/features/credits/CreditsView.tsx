@@ -1,3 +1,4 @@
+import Constants from 'expo-constants';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Card, Collapsible } from '@/components';
 import { WORD_RECORDINGS } from '@/content/wordAudio';
@@ -25,6 +26,7 @@ export function CreditsView() {
     <View style={styles.root}>
       <Card enterIndex={0}>
         <AppText variant="title">Sobre</AppText>
+        <AppText>Moji Dojo · versão {Constants.expoConfig?.version ?? '1.0.0'}</AppText>
         <AppText color="muted">
           O Moji Dojo usa conteúdo de fontes abertas, com a licença conferida e o crédito aqui. O que foi escrito por IA para o app (explicações, diálogos, textos de leitura, frases de viagem e descrições das vozes) ainda não foi revisado por um falante de japonês.
         </AppText>

@@ -1,5 +1,5 @@
 import { StyleSheet, Switch, View } from 'react-native';
-import { AppText, Card } from '@/components';
+import { AppText, Card, LearnMore } from '@/components';
 import { useSettingsStore } from '@/store';
 import { spacing, useTheme } from '@/theme';
 
@@ -16,9 +16,13 @@ export function ReviewSettingsCard() {
         <View style={styles.flex}>
           <AppText>Escrever nas revisões</AppText>
           <AppText variant="caption" color="muted">
-            Em cerca de 1 de cada 5 perguntas dos caracteres que têm traços, você vê o significado e o som e desenha o
-            símbolo com o dedo. Acertar vale 70% de semelhança ou mais. Desligue se preferir revisões mais rápidas.
+            Desenhe o símbolo com o dedo em parte das perguntas.
           </AppText>
+          <LearnMore>
+            <AppText variant="caption" color="muted">
+              Em cerca de 1 de cada 5 perguntas dos caracteres que têm traços, você vê o significado e o som e desenha o símbolo. Acertar vale 70% de semelhança ou mais. Desligue se preferir revisões mais rápidas.
+            </AppText>
+          </LearnMore>
         </View>
         <Switch
           value={writeInReview}

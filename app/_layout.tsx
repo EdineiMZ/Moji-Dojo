@@ -65,7 +65,8 @@ function ThemedStack() {
         <Stack.Screen name="mixed" />
         <Stack.Screen name="placement" />
         <Stack.Screen name="welcome" options={{ gestureEnabled: false, animation: 'fade' }} />
-        <Stack.Screen name="settings" />
+        <Stack.Screen name="settings/index" />
+        <Stack.Screen name="settings/[area]" />
         <Stack.Screen name="credits" />
         <Stack.Screen name="mochi" />
         <Stack.Screen name="rescue" />

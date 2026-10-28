@@ -87,5 +87,5 @@ const styles = StyleSheet.create({
   badge: { alignSelf: 'flex-start', marginTop: spacing.xs },
   flex: { flex: 1 },
   header: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
-  gear: { alignSelf: 'flex-start', padding: spacing.xs },
+  gear: { alignSelf: 'flex-start', minWidth: 48, minHeight: 48, alignItems: 'center', justifyContent: 'center' },
 });

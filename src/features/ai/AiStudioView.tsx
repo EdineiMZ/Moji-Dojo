@@ -35,7 +35,7 @@ export function AiStudioView() {
         <AppText color="muted">
           Converse com a IA em japonês, explique falas de anime, escreva um diário corrigido, compare registros, leia textos feitos para você faça simulados estilo JLPT e receba um plano semanal. Cadastre a sua chave de API em Ajustes para usar. O resto do app não precisa dela.
         </AppText>
-        <Button label="Abrir Ajustes" variant="soft" onPress={() => router.push('/settings')} />
+        <Button label="Abrir Ajustes" variant="soft" onPress={() => router.push('/settings/ai')} />
       </Card>
     );
   }

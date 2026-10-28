@@ -29,7 +29,7 @@ export function TodayCard({ summary, now }: TodayCardProps) {
       : 'Comece pela primeira lição';
 
   const body = dueCount
-    ? 'Primeiro as revisões: são caracteres que você já aprendeu e está na hora de relembrar. Depois, se der tempo, uma lição nova.'
+    ? 'Revisões primeiro; depois, se der tempo, uma lição nova.'
     : nextLesson
       ? `Próximo passo: lição ${nextLesson.index + 1} de ${SCRIPT_NAMES[nextLesson.script]}, ${nextLesson.lesson.title}.`
       : 'Você terminou todas as trilhas. Mantenha as revisões em dia.';

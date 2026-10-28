@@ -50,7 +50,7 @@ export function AiPhrasesCard() {
         <AppText color="muted">
           Com a sua chave de API, a IA cria frases sobre o tema que você escolher e usa as palavras que você já sabe. Cadastre a chave em Ajustes. Sem ela, o resto do simulador funciona normalmente.
         </AppText>
-        <Button label="Abrir Ajustes" variant="soft" onPress={() => router.push('/settings')} />
+        <Button label="Abrir Ajustes" variant="soft" onPress={() => router.push('/settings/ai')} />
       </Card>
     );
   }

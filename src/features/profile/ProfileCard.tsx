@@ -51,7 +51,7 @@ export function ProfileCard() {
       <AppText variant="caption" color="muted">
         META POR DIA
       </AppText>
-      <ChipRow
+      <ChipRow wrap
         options={[{ value: '0', label: 'Sem meta' }, ...GOAL_OPTIONS.map((m) => ({ value: String(m), label: `${m} min` }))]}
         value={String(profile.goalMinutes)}
         onChange={(v) => {
@@ -64,7 +64,7 @@ export function ProfileCard() {
       <AppText variant="caption" color="muted">
         DIA DE FOLGA
       </AppText>
-      <ChipRow
+      <ChipRow wrap
         options={[{ value: 'none', label: 'Nenhum' }, ...WEEKDAYS.map((d, i) => ({ value: String(i), label: d }))]}
         value={restValue}
         onChange={(v) => updateJourney((j) => ({ ...j, restWeekdays: v === 'none' ? [] : [Number(v)] }))}

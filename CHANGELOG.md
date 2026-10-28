@@ -2,6 +2,19 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.9.0] - 2026-10-28
+
+Ajustes e navegação mais claros (primeira parte da fase 2.9).
+
+- **Ajustes em áreas:** a tela inicial virou uma lista com uma linha por área (Perfil e metas, Lembretes, Voz japonesa, Estudo e leitura, Sons e vibração, Inteligência artificial, Dados e backup, Avançado), cada uma com ícone e o resumo do que está ligado ("Leves · Noite (20h)"). Cada área abre numa tela própria. "Sobre e créditos" ganhou uma linha, e a versão passou para a tela de créditos.
+- **Sem texto de desenvolvedor:** o nome técnico da voz do aparelho e o teste de som foram para Avançado; a voz mostra só "está pronta". O pedido para mandar captura da lista saiu.
+- **Opções à vista:** nos Ajustes, meta por dia, dia de folga, horários, provedor da IA e limites mostram todas as opções de uma vez, em vez de rolar para o lado.
+- **Menos parágrafo:** voz, revisões e o cartão "Estudar hoje" mostram uma linha, com o resto atrás de "Saiba mais".
+- **Primeira abertura:** quem termina a introdução sem ter estudado nada cai direto na primeira lição.
+- **Acessibilidade:** a engrenagem do Início e as linhas de Ajustes têm alvo de toque de pelo menos 48 dp.
+- **Sistema de design:** novo `docs/DESIGN.md` (espaçamento, tipografia, botões, escolhas, estados, acessibilidade) e componentes `ListRow`, `LearnMore` e `ChipRow wrap`.
+- **Ficou para depois:** repensar a aba Frases (falta medir o uso), juntar os dois cartões do Início e o restante da revisão de acessibilidade.
+
 ## [2.8.3] - 2026-10-28
 
 Créditos e licenças em tela própria, download de voz mais robusto e privacidade descrita com precisão.

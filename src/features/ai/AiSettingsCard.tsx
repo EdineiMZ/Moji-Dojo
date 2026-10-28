@@ -104,7 +104,7 @@ export function AiSettingsCard() {
           <AppText variant="caption" color="muted">
             PROVEDOR
           </AppText>
-          <ChipRow options={PROVIDER_IDS.map((id) => ({ value: id, label: PROVIDERS[id].label }))} value={provider} onChange={choose} />
+          <ChipRow wrap options={PROVIDER_IDS.map((id) => ({ value: id, label: PROVIDERS[id].label }))} value={provider} onChange={choose} />
 
           <AppText variant="caption" color="muted">
             CHAVE DE API {hasKey ? '(guardada)' : '(não cadastrada)'}
@@ -170,7 +170,7 @@ export function AiSettingsCard() {
           <AppText variant="caption" color="muted">
             LIMITE DE PEDIDOS POR DIA
           </AppText>
-          <ChipRow options={LIMIT_OPTIONS.map((n) => ({ value: String(n), label: limitLabel(n) }))} value={String(ai.dailyLimit)} onChange={(v) => setAi({ dailyLimit: Number(v) })} />
+          <ChipRow wrap options={LIMIT_OPTIONS.map((n) => ({ value: String(n), label: limitLabel(n) }))} value={String(ai.dailyLimit)} onChange={(v) => setAi({ dailyLimit: Number(v) })} />
           <AppText variant="caption" color="muted">
             Hoje: {today.calls} pedido{today.calls === 1 ? '' : 's'}, {today.tokensIn + today.tokensOut} tokens. Cada pedido usa a sua cota ou o seu crédito no provedor.
           </AppText>

@@ -15,6 +15,8 @@ export { ChipRow } from './ChipRow';
 export { CountUp } from './CountUp';
 export { PressableScale } from './PressableScale';
 export { Collapsible } from './Collapsible';
+export { LearnMore } from './LearnMore';
+export { ListRow } from './ListRow';
 export { SwapView } from './SwapView';
 export { BackLink } from './BackLink';
 export { ReduceMotion } from './motion';

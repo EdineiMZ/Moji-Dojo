@@ -44,7 +44,7 @@ function VoiceRow({ voice, inUse }: { voice: InstalledSpeaker; inUse: boolean })
           <AppText variant="caption" color="muted">
             TOM
           </AppText>
-          <ChipRow options={voice.styles.map(([id, name]) => ({ value: String(id), label: styleLabel(name) }))} value={String(current)} onChange={(id) => use(Number(id))} />
+          <ChipRow wrap options={voice.styles.map(([id, name]) => ({ value: String(id), label: styleLabel(name) }))} value={String(current)} onChange={(id) => use(Number(id))} />
         </>
       ) : null}
       <View style={styles.actions}>

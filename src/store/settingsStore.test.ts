@@ -14,6 +14,16 @@ const memory = () => {
 };
 
 describe('settingsStore', () => {
+  it('o tema vem automático, guarda a escolha e ignora valor inválido', () => {
+    const storage = memory();
+    const store = createSettingsStore(storage);
+    expect(store.getState().themeMode).toBe('system');
+    store.getState().setThemeMode('dark');
+    expect(createSettingsStore(storage).getState().themeMode).toBe('dark');
+    store.getState().setThemeMode('roxo' as never);
+    expect(store.getState().themeMode).toBe('system');
+  });
+
   it('o write nas revisões vem ligado por padrão', () => {
     expect(createSettingsStore(memory()).getState().writeInReview).toBe(true);
   });
@@ -22,6 +32,7 @@ describe('settingsStore', () => {
     const storage = memory();
     createSettingsStore(storage).getState().setWriteInReview(false);
     expect(JSON.parse(storage.data.get(SETTINGS_STORAGE_KEY) ?? '{}').state).toEqual({
+      themeMode: 'system',
       writeInReview: false,
       speechSpeed: 'normal',
       hapticsEnabled: true,

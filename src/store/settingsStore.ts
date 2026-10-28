@@ -8,6 +8,11 @@ import { DEFAULT_INTONATION, DEFAULT_PITCH, sanitizeFavorites, sanitizeIntonatio
 
 export type SpeechSpeed = 'normal' | 'slow';
 
+/** Tema do app: segue o sistema (padrão), sempre claro ou sempre escuro. */
+export type ThemeMode = 'system' | 'light' | 'dark';
+
+export const sanitizeThemeMode = (value: unknown): ThemeMode => (value === 'light' || value === 'dark' ? value : 'system');
+
 /** Velocidade da voz japonesa (taxa do expo-speech). */
 export const SPEECH_RATES: Readonly<Record<SpeechSpeed, number>> = { normal: 0.9, slow: 0.65 };
 
@@ -24,6 +29,7 @@ export const DEFAULT_VOICEVOX_STYLE = 3;
 export type TypingInput = 'pad' | 'system';
 
 export interface SettingsData {
+  themeMode: ThemeMode;
   /** Nas revisões, algumas perguntas pedem para desenhar o símbolo. */
   writeInReview: boolean;
   speechSpeed: SpeechSpeed;
@@ -67,6 +73,7 @@ export interface SettingsData {
 }
 
 export interface SettingsActions {
+  setThemeMode: (value: ThemeMode) => void;
   setWriteInReview: (value: boolean) => void;
   setSpeechSpeed: (value: SpeechSpeed) => void;
   setHapticsEnabled: (value: boolean) => void;
@@ -97,6 +104,7 @@ export type SettingsState = SettingsData & SettingsActions;
 export const SETTINGS_STORAGE_KEY = 'moji-dojo-settings';
 
 export const DEFAULT_SETTINGS: SettingsData = {
+  themeMode: 'system',
   writeInReview: true,
   speechSpeed: 'normal',
   hapticsEnabled: true,
@@ -129,6 +137,7 @@ export function createSettingsStore(storage: StateStorage) {
     persist(
       (set) => ({
         ...DEFAULT_SETTINGS,
+        setThemeMode: (value) => set({ themeMode: sanitizeThemeMode(value) }),
         setWriteInReview: (value) => set({ writeInReview: value }),
         setSpeechSpeed: (value) => set({ speechSpeed: value }),
         setHapticsEnabled: (value) => set({ hapticsEnabled: value }),
@@ -161,6 +170,7 @@ export function createSettingsStore(storage: StateStorage) {
           return {
             ...current,
             ...saved,
+            themeMode: sanitizeThemeMode(saved.themeMode),
             voiceEngine: saved.voiceEngine === 'voicevox' ? 'voicevox' : 'system',
             voicevoxStyle: typeof saved.voicevoxStyle === 'number' && Number.isInteger(saved.voicevoxStyle) && saved.voicevoxStyle >= 0 ? saved.voicevoxStyle : DEFAULT_VOICEVOX_STYLE,
             voicevoxPitch: sanitizePitch(saved.voicevoxPitch),
@@ -171,7 +181,8 @@ export function createSettingsStore(storage: StateStorage) {
             aiUsage: sanitizeUsage(saved.aiUsage),
           };
         },
-        partialize: ({ writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
+        partialize: ({ themeMode, writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
+          themeMode,
           writeInReview,
           speechSpeed,
           hapticsEnabled,

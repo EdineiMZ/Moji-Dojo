@@ -22,13 +22,21 @@ export const recordingFor = (text: string): WordRecording | null => recordingInd
 let player: AudioPlayer | null = null;
 let modeReady = false;
 
+/**
+ * "mixWithOthers": não pede o foco de áudio. Com "duckOthers" a voz do Android tomava o foco, o expo-audio pausava a gravação
+ * e a RETOMAVA sozinho quando o foco voltava, repetindo o som antigo. É o mesmo modo dos efeitos (lib/sfx.ts), que dividem o
+ * estado global do módulo: antes os dois modos se alternavam conforme quem tocou por último.
+ */
+function ensureAudioMode(): void {
+  if (modeReady) return;
+  modeReady = true;
+  setAudioModeAsync({ interruptionMode: 'mixWithOthers', playsInSilentMode: true }).catch(() => undefined);
+}
+
 /** Toca a gravação. `rate` é a velocidade da fala (0,9 = normal); só abaixo disso desacelera. Devolve false se falhar. */
 export function playRecording(rec: WordRecording, rate: number): boolean {
   try {
-    if (!modeReady) {
-      modeReady = true;
-      setAudioModeAsync({ interruptionMode: 'duckOthers' }).catch(() => undefined);
-    }
+    ensureAudioMode();
     if (!player) player = createAudioPlayer(rec.file);
     else player.replace(rec.file);
     player.setPlaybackRate(Math.max(0.5, Math.min(1, rate / 0.9)), 'high');
@@ -42,10 +50,7 @@ export function playRecording(rec: WordRecording, rate: number): boolean {
 /** Toca um arquivo de áudio gerado no aparelho (a voz VOICEVOX). Devolve false se falhar. */
 export function playFile(uri: string): boolean {
   try {
-    if (!modeReady) {
-      modeReady = true;
-      setAudioModeAsync({ interruptionMode: 'duckOthers' }).catch(() => undefined);
-    }
+    ensureAudioMode();
     if (!player) player = createAudioPlayer(uri);
     else player.replace(uri);
     // A velocidade já foi aplicada na síntese: aqui volta ao normal (uma gravação anterior pode ter desacelerado).

@@ -7,6 +7,7 @@ import { ExportCard } from '@/features/backup/ExportCard';
 import { ProfileCard } from '@/features/profile/ProfileCard';
 import { DisplaySettingsCard } from '@/features/progress/DisplaySettingsCard';
 import { FeedbackSettingsCard } from '@/features/progress/FeedbackSettingsCard';
+import { ThemeSettingsCard } from '@/features/progress/ThemeSettingsCard';
 import { ResetCard } from '@/features/progress/ResetCard';
 import { RemindersCard } from '@/features/reminders/RemindersCard';
 import { ReviewSettingsCard } from '@/features/review/ReviewSettingsCard';
@@ -20,6 +21,8 @@ function Content({ area }: { area: SettingsArea }) {
   switch (area) {
     case 'profile':
       return <ProfileCard />;
+    case 'appearance':
+      return <ThemeSettingsCard />;
     case 'reminders':
       return <RemindersCard />;
     case 'voice':

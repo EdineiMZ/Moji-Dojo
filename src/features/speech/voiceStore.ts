@@ -82,6 +82,8 @@ const ATTEMPTS: readonly Attempt[] = [
 
 /** Uma fala que terminou antes disto (ms) não chegou a ser dita. */
 const TOO_SHORT_MS = 90;
+/** Sem aviso de início, uma fala que durou menos que isto (ms) não foi dita; mais que isso, o motor só não avisou. */
+const NO_START_MS = 350;
 
 export interface SpeechLogEntry {
   text: string;
@@ -129,8 +131,10 @@ function speakAttempt(text: string, rate: number, step: number, id: number): voi
     onDone: () => {
       if (id !== request) return;
       speaking = false;
-      if (!started) retry('terminou sem começar');
-      else if (Date.now() - begin < TOO_SHORT_MS) retry('terminou rápido demais');
+      const elapsed = Date.now() - begin;
+      // Alguns motores falam sem avisar o início: sem `onStart`, só conta como silêncio se acabou quase na hora.
+      if (!started && elapsed < NO_START_MS) retry('terminou sem começar');
+      else if (elapsed < TOO_SHORT_MS) retry('terminou rápido demais');
       else remember({ text, attempt: step + 1, note: `ok em ${Date.now() - begin} ms` });
     },
     onStopped: () => {
@@ -147,6 +151,7 @@ function speakSystem(text: string, rate: number, id: number): void {
   const busy = speaking || Date.now() - lastSpokenAt < 600;
   lastSpokenAt = Date.now();
   if (busy) {
+    // O Speech.speak enfileira: `speaking` só vira true no onStart, então a janela de `lastSpokenAt` cobre as falas ainda não iniciadas.
     speaking = false;
     void Speech.stop();
     setTimeout(() => speakAttempt(text, rate, 0, id), 80);
@@ -180,14 +185,14 @@ export function speakJapanese(text: string, rate = 0.9, role: 'you' | 'staff' = 
   if (useSettingsStore.getState().nativeAudio) {
     const recording = recordingFor(text);
     if (recording) {
-      if (speaking) Speech.stop();
       speaking = false;
+      void Speech.stop();
       if (playRecording(recording, rate)) return;
     }
   }
   if (voicevoxActive()) {
-    if (speaking) void Speech.stop();
     speaking = false;
+    void Speech.stop();
     stopRecording();
     void speakVoicevox(text, rate, id, role);
     return;

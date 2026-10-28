@@ -2,7 +2,7 @@ import { PRESETS, presetOf, timeChoiceOf } from '@/features/reminders/presets';
 import type { SettingsData } from '@/store/settingsStore';
 
 /** As áreas dos Ajustes: uma linha cada na tela inicial, e uma subtela para cada. */
-export type SettingsArea = 'profile' | 'reminders' | 'voice' | 'study' | 'sounds' | 'ai' | 'data' | 'advanced';
+export type SettingsArea = 'profile' | 'appearance' | 'reminders' | 'voice' | 'study' | 'sounds' | 'ai' | 'data' | 'advanced';
 
 export interface AreaInfo {
   id: SettingsArea;
@@ -12,6 +12,7 @@ export interface AreaInfo {
 
 export const AREAS: readonly AreaInfo[] = [
   { id: 'profile', icon: '🙂', title: 'Perfil e metas' },
+  { id: 'appearance', icon: '🎨', title: 'Aparência' },
   { id: 'reminders', icon: '🔔', title: 'Lembretes' },
   { id: 'voice', icon: '🗣️', title: 'Voz japonesa' },
   { id: 'study', icon: '📖', title: 'Estudo e leitura' },
@@ -23,7 +24,7 @@ export const AREAS: readonly AreaInfo[] = [
 
 export const isArea = (value: unknown): value is SettingsArea => AREAS.some((a) => a.id === value);
 
-type Summarized = Pick<SettingsData, 'profile' | 'reminders' | 'voiceEngine' | 'speechSpeed' | 'romajiMode' | 'showKanji' | 'furiganaMode' | 'soundEnabled' | 'hapticsEnabled' | 'nativeAudio' | 'ai'>;
+type Summarized = Pick<SettingsData, 'themeMode' | 'profile' | 'reminders' | 'voiceEngine' | 'speechSpeed' | 'romajiMode' | 'showKanji' | 'furiganaMode' | 'soundEnabled' | 'hapticsEnabled' | 'nativeAudio' | 'ai'>;
 
 const AID: Record<Summarized['romajiMode'], string> = { always: 'sempre', tap: 'ao tocar', never: 'nunca' };
 
@@ -34,6 +35,8 @@ export function summaryOf(area: SettingsArea, s: Summarized): string {
       const name = s.profile.username || 'sem nome';
       return `${name} · ${s.profile.goalMinutes > 0 ? `meta de ${s.profile.goalMinutes} min por dia` : 'sem meta de tempo'}`;
     }
+    case 'appearance':
+      return s.themeMode === 'light' ? 'Tema claro' : s.themeMode === 'dark' ? 'Tema escuro' : 'Automático (segue o sistema)';
     case 'reminders': {
       const preset = presetOf(s.reminders);
       if (preset === 'off') return 'Desligados';

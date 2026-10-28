@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.13.0] - 2026-10-28
+
+Correção dos áudios das palavras e símbolos, e tema claro/escuro nos Ajustes.
+
+- **Áudio sem repetir:** o modo de áudio das gravações de falantes nativos (`duckOthers`) pedia o foco de áudio; quando a voz do Android tomava o foco, o player pausava a gravação e a retomava sozinho ao devolvê-lo, repetindo o som antigo. Agora as gravações usam `mixWithOthers`, o mesmo modo dos efeitos sonoros (antes os dois se alternavam no estado global do módulo), e tocam mesmo com o celular no silencioso.
+- **Voz do Android:** o `Speech.speak` enfileira falas, e só se parava a anterior quando já tinha começado; toques rápidos acumulavam falas antigas. Agora a fala anterior é sempre cancelada ao trocar para uma gravação ou para o VOICEVOX. As novas tentativas automáticas (para voz silenciosa) também não repetem mais uma fala que saiu normalmente mas cujo motor não avisou o início.
+- **Tema:** em Ajustes → Aparência, escolha Automático (segue o sistema), Claro ou Escuro. A escolha fica salva e entra no backup das preferências.
+- Conferi as 360 gravações incluídas: todas existem, têm volume audível e nenhuma é duplicada. As palavras sem gravação usam a voz do Android ou o VOICEVOX.
+
 ## [2.12.0] - 2026-10-28
 
 Gramática do N4 e o N4 nas metas.

@@ -4,6 +4,7 @@ import { DEFAULT_AI } from '@/features/ai/settings';
 import { AREAS, isArea, summaryOf } from './areas';
 
 const base = {
+  themeMode: 'system' as const,
   profile: { ...DEFAULT_PROFILE, username: 'Edi', goalMinutes: 20 },
   reminders: { ...DEFAULT_REMINDERS, enabled: true, risk: false, hour: 20, minute: 0 },
   voiceEngine: 'system' as const,
@@ -44,6 +45,8 @@ describe('áreas dos Ajustes', () => {
     expect(summaryOf('voice', { ...base, voiceEngine: 'voicevox' })).toContain('VOICEVOX');
     expect(summaryOf('sounds', base)).toBe('Sons ligados · vibração desligada');
     expect(summaryOf('ai', base)).toBe('Desligada');
+    expect(summaryOf('appearance', base)).toContain('Automático');
+    expect(summaryOf('appearance', { ...base, themeMode: 'dark' })).toBe('Tema escuro');
     expect(summaryOf('study', { ...base, showKanji: false })).toContain('só kana');
   });
 });

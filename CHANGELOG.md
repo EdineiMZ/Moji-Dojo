@@ -2,6 +2,17 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.15.0] - 2026-10-28
+
+Simulado offline, servidor de IA próprio, voz na conversa e mais treino de teclado.
+
+- **Simulado offline:** em Frases → Gramática → Simulado. Provas de N5 e N4 com vocabulário, leitura, kanji e gramática, montadas só com o conteúdo do app (sem IA e sem internet), com 5, 8 ou 10 perguntas por seção, gabarito comentado e **nota por seção**.
+- **Servidor de IA próprio:** novo provedor "Servidor próprio (compatível com a OpenAI)" em Ajustes → IA: Ollama, LM Studio, llama.cpp ou vLLM, com chave opcional. Só aceita endereços **https**; o http (sem criptografia) exigiria liberar esse tráfego no app inteiro e ficou de fora de propósito.
+- **Conversa com a voz:** o botão "Falar em japonês" transforma a fala em texto no campo da conversa com a IA, para você conferir antes de enviar. Usa o serviço de fala do Android, que pode enviar o áudio ao Google.
+- **Teclado:** séries "Pontuação" (frases com o sinal do fim) e "Números" (contar em kana) e meta diária de letras certas (50, 100 ou 200), com o contador de hoje.
+- **Leitura:** botão "Marcar como lido" em cada texto e novos marcos "Textos de leitura lidos" no caminho do N5 e do N4 (o progresso entra no backup).
+- **Vocabulário N4:** a frequência de uso, calculada com as frases do Tatoeba, passou a cobrir 618 das 629 palavras (antes, nenhuma).
+
 ## [2.14.0] - 2026-10-28
 
 Gramática e leitura do N4, revisão espaçada por tecla e retenção ajustável.

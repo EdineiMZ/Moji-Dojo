@@ -17,7 +17,7 @@ O Moji Dojo ensina a escrita e leva o aluno até a produção de frases, a escut
 | Produção de frases | ✅ | Montar, traduzir, modelos, 13 diálogos, 188 frases de viagem, 30 mil frases para explorar |
 | Escuta e fala | ✅ | Ditado, compreensão, tom, shadowing com gravação, reconhecimento de fala |
 | Leitura | ✅ | Textos graduados e do dia a dia (N5 e N4), toque na palavra, câmera que lê texto |
-| Teclado de flick | ✅ | Simulador com níveis, conversão, mapa de calor e revisão espaçada por tecla |
+| Teclado de flick | ✅ | Simulador com níveis, séries de pontuação e números, conversão, mapa de calor, revisão espaçada por tecla e meta diária |
 | Motivação | ✅ | Mochi, 111 itens, 42 conquistas, missões, baús, metas e lembretes |
 | IA opcional | ✅ | Gemini, Claude e GPT com chave própria, cache, fila offline, 13 recursos |
 | Voz de anime | ✅ | 43 personagens, vozes baixadas pelo app com aceite dos termos de cada um, "Minhas vozes" para escolher e ouvir (2.8.1) |
@@ -100,16 +100,16 @@ Conferido em 2026-10-28: o dicionário só é copiado para a pasta do app quando
 A maior entrega de aprendizado que falta. Exige conferência de fonte e de licença, e revisão por falante.
 
 - 🟡 **Gramática N4 (2.12.0 e 2.14.0):** 14 tópicos, todos com frases do Tatoeba conferidas na fonte: かもしれません, ことにした, てしまう, ておく, はずだ, passiva, ば (2.12.0) e causativa, たら, と, ように なる, ために, のに e ても (2.14.0). Faltam outros pontos do N4 (ながら, すぎる, ようだ e そうだ, あげる, もらう e くれる, てみる, ないで, と思う com a forma simples...). *(G)*
-- 🟡 **Vocabulário N4 (2.11.0):** 629 palavras com leitura, significado, tom e classe. Faltam as frases de exemplo do Tatoeba, a frequência, os áudios de falantes nativos e a revisão dos significados por um falante. *(M)*
+- 🟡 **Vocabulário N4 (2.11.0 e 2.15.0):** 629 palavras com leitura, significado, tom (504) e classe (621). A frequência de uso (2.15.0) cobre 618 delas, e 533 têm ao menos uma frase no banco local de frases do Tatoeba. Faltam os áudios de falantes nativos (nenhuma das 360 gravações é do N4) e a revisão dos significados por um falante. *(M)*
 - ✅ **Leitura N4 (2.14.0):** 8 textos corridos e 3 leituras do dia a dia (atraso de trem, hotel, elevador e terremoto), com a gramática do N4 e seletor N5/N4. Escritos por IA, a revisar por um falante; as frases com palavras fora do vocabulário trazem a leitura e o significado de cada pedaço. *(M)*
 - ⬜ **Kanji N3**, no mesmo formato (traços, leituras, exemplos). *(G)*
-- ⬜ **Simulado offline** (sem IA) por nível, com nota por seção. *(M)*
+- ✅ **Simulado offline (2.15.0):** em Frases → Gramática → Simulado. Provas de N5 e N4 com vocabulário, leitura, kanji e gramática, montadas só com o conteúdo do app (sem IA, sem internet), 5, 8 ou 10 perguntas por seção e nota por seção. Falta um simulado de compreensão de texto e o tempo de prova. *(M)*
 
 ### Motor de aprendizado
 
 - ✅ **FSRS no lugar das caixas (2.11.0):** FSRS 5 com os pesos padrão, mantendo a caixa como estágio e a importação do progresso antigo. ✅ A retenção desejada (80, 85, 90 ou 95%) é escolhida em Ajustes → Revisões (2.14.0). ⬜ Falta calibrar os pesos com o histórico de quem usa (exige guardar cada revisão). *(M)*
 - ✅ **Contagem própria para a escrita (desenho) (2.9.2):** linha à parte em "Por habilidade"; começa a contar nesta versão.
-- 🟡 **Metas por nível (2.12.0):** o N4 já tem as metas de palavras, de gramática e de kanji. Faltam o marco de leitura do N4 e o caminho do N3. *(M)*
+- 🟡 **Metas por nível (2.12.0 e 2.15.0):** o N5 e o N4 têm as metas de palavras, de gramática, de kanji e, desde a 2.15.0, de textos de leitura lidos (botão "Marcar como lido" em cada texto). Falta o caminho do N3, que depende do conteúdo do N3. *(M)*
 
 ### Vozes (VOICEVOX)
 
@@ -120,16 +120,16 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 
 ### IA opcional
 
-- ⬜ **Modelos locais:** aceitar um endereço próprio compatível com a OpenAI. *(P)*
+- 🟡 **Modelos locais (2.15.0):** o provedor "Servidor próprio" aceita o endereço de qualquer servidor compatível com a OpenAI (Ollama, LM Studio, llama.cpp, vLLM), com chave opcional. **Só https**: o app não aceita http porque isso exigiria liberar tráfego sem criptografia no app inteiro (ver abaixo). ⬜ Para servidores em rede local por http, falta decidir liberar o tráfego sem criptografia (`usesCleartextTraffic`); hoje a saída é um túnel ou proxy com https. *(P)*
 - ⬜ **Receber texto pelo "compartilhar" do Android** na tela Explicar texto. *(M)*
-- ⬜ **Conversa com a voz como entrada** (reconhecimento de fala), não só texto. *(M)*
+- ✅ **Conversa com a voz como entrada (2.15.0):** o botão "Falar em japonês" transforma a fala em texto no campo da conversa, para conferir e corrigir antes de enviar. Usa o serviço de fala do Android, com o aviso de que ele pode enviar o áudio ao Google. *(M)*
 - ⬜ **Simulado com tempo de prova**, missões em cadeia e adaptadas aos pontos fracos, cenas escolhidas pelo aluno. *(M)*
 - ⬜ Testar com uma chave real da OpenAI (o provedor GPT foi escrito, mas não foi exercitado). *(P)*
 
 ### Teclado
 
 - ✅ **Revisão espaçada por tecla (2.14.0):** cada letra ganha um agendamento FSRS (errou: volta em 10 minutos; acertou: o intervalo cresce), e o modo "Pontos fracos" começa pelas letras vencidas. O desempenho mostra o que vence agora e quando volta a próxima. ⬜ Falta agendar por direção (ler, digitar e converter separadamente). *(M)*
-- ⬜ **Séries dirigidas** de pontuação e números, e uma meta diária de digitação. *(P)*
+- ✅ **Séries dirigidas e meta diária (2.15.0):** as séries "Pontuação" (frases com o sinal do fim, 。 ？ ！, pela tradução) e "Números" (contar em kana) no simulador, e a meta diária de letras certas (50, 100 ou 200) no Desempenho. O teclado de flick do app não tem camada de dígitos, então os números são treinados em kana. *(P)*
 
 ### Engenharia
 

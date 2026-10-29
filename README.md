@@ -64,7 +64,7 @@ A versão mais recente fica na aba **[Releases](https://github.com/EdineiMZ/Moji
 ## Funcionalidades
 
 **Escrever e memorizar**
-- **Hiragana, katakana e 284 kanji (N5 e N4)**, com a ordem dos traços animada, som, exemplo e dica de memória.
+- **Hiragana, katakana e 477 kanji (N5, N4 e parte do N3)**, com a ordem dos traços animada, som, exemplo e dica de memória.
 - **Lição em três passos:** conhecer, escrever com o dedo e testar. A escrita é conferida **por geometria, traço a traço**, e a nota é só um guia.
 - **Revisão espaçada** em que o intervalo encolhe nos itens esquecidos, com "itens teimosos", revisão mista e o modo "write" (desenhar o símbolo a partir do significado e do som).
 

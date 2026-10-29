@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.18.0] - 2026-10-29
+
+Kanji N3, modo Atendente nos moldes, mais leituras do dia a dia e correção do áudio da tabela.
+
+- **Correção do áudio da tabela de caracteres:** tocar し falava a gravação da palavra 四, じ falava 時, き falava 木, e assim por diante (た, に, は, ご, え, て, と, め também). O índice ligava a leitura curta de uma palavra à gravação de outra; agora só vale para leituras de 3 letras ou mais com um único significado. Testado com os dados; **não ouvido no aparelho**.
+- **Moldes com a fala do atendente:** novo modo "Atendente" em Frases → Moldes. O atendente diz uma fala, você escolhe o molde que responde e completa a lacuna. 5 moldes novos (29 no total, 14 com fala do atendente).
+- **Mais leituras do dia a dia:** ofertas e promoções, no caixa, mesas e reservas, placas de serviços (27 placas e avisos, com leitura e significado de cada pedaço). Escritas por IA, a revisar por um falante.
+- **Kanji N3 (parcial):** 193 kanji com ordem dos traços, leituras, significado, dica de memória, palavra de exemplo (JMdict) e lições. São os mais frequentes dentre os do nível 2 da lista antiga do JLPT, **não o N3 inteiro**. Ficam fora das metas e das provas do N5 e do N4. Significados e dicas escritos por IA, a revisar por um falante.
+
 ## [2.17.0] - 2026-10-29
 
 Compartilhar texto para a IA, simulado com tempo de prova e widget para o Niagara.

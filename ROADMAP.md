@@ -10,7 +10,7 @@ O Moji Dojo ensina a escrita e leva o aluno até a produção de frases, a escut
 
 | Área | Estado | Hoje |
 | --- | --- | --- |
-| Escrita (kana e kanji) | ✅ | Hiragana, katakana e 284 kanji (N5 e N4), traços animados, desenho conferido por geometria |
+| Escrita (kana e kanji) | ✅ | Hiragana, katakana e 477 kanji (N5, N4 e parte do N3), traços animados, desenho conferido por geometria |
 | Revisão espaçada | ✅ | FSRS 5 com retenção desejada ajustável (80 a 95%), caixas como estágio, itens teimosos, revisão mista; falta calibrar os pesos com o seu histórico |
 | Vocabulário | ✅ | Cerca de 800 palavras do N5, com tom, classe, frases de exemplo, cartões e exportação para o Anki; N4 só nos kanji |
 | Gramática | 🟡 | 51 tópicos do N5 e 14 do N4, mini-testes, lacunas, conjugação, contadores; faltam outros pontos do N4 (ながら, すぎる, ようだ e そうだ, あげる, もらう e くれる...) |
@@ -111,7 +111,7 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 - 🟡 **Gramática N4 (2.12.0 e 2.14.0):** 14 tópicos, todos com frases do Tatoeba conferidas na fonte: かもしれません, ことにした, てしまう, ておく, はずだ, passiva, ば (2.12.0) e causativa, たら, と, ように なる, ために, のに e ても (2.14.0). Faltam outros pontos do N4 (ながら, すぎる, ようだ e そうだ, あげる, もらう e くれる, てみる, ないで, と思う com a forma simples...). *(G)*
 - 🟡 **Vocabulário N4 (2.11.0 e 2.15.0):** 629 palavras com leitura, significado, tom (504) e classe (621). A frequência de uso (2.15.0) cobre 618 delas, e 533 têm ao menos uma frase no banco local de frases do Tatoeba. Faltam os áudios de falantes nativos (nenhuma das 360 gravações é do N4) e a revisão dos significados por um falante. *(M)*
 - ✅ **Leitura N4 (2.14.0):** 8 textos corridos e 3 leituras do dia a dia (atraso de trem, hotel, elevador e terremoto), com a gramática do N4 e seletor N5/N4. Escritos por IA, a revisar por um falante; as frases com palavras fora do vocabulário trazem a leitura e o significado de cada pedaço. *(M)*
-- ⬜ **Kanji N3**, no mesmo formato (traços, leituras, exemplos). *(G)*
+- 🟡 **Kanji N3 (2.18.0):** 193 kanji no mesmo formato do N4 (ordem dos traços, leituras on e kun, significado, dica de memória, palavra de exemplo e lições). São os mais frequentes em jornais dentre os do nível 2 da lista antiga do JLPT (KANJIDIC2), que reúne N3 e N2, **não o N3 inteiro**: o JLPT não publica lista oficial e o N3 moderno tem cerca de 370 kanji. Significados, categorias e dicas escritos por IA, a revisar por um falante; as palavras de exemplo e as leituras vêm do JMdict. **Falta:** vocabulário, gramática e simulado do N3, e o caminho de metas do N3 (por isso os kanji N3 ficam fora das metas e das provas do N5 e do N4). *(G)*
 - ✅ **Simulado offline (2.15.0):** em Frases → Gramática → Simulado. Provas de N5 e N4 com vocabulário, leitura, kanji e gramática, montadas só com o conteúdo do app (sem IA, sem internet), 5, 8 ou 10 perguntas por seção e nota por seção. Falta um simulado de compreensão de texto e o tempo de prova. *(M)*
 
 ### Motor de aprendizado
@@ -156,8 +156,8 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 
 Sem prioridade nem decisão; entram nas versões acima quando fizerem sentido.
 
-- Moldes de frase com a fala do atendente para escolher, e mais moldes.
-- Mais exemplos de leitura do dia a dia (placas, preços em lojas).
+- ✅ Moldes de frase com a fala do atendente para escolher, e mais moldes (2.18.0): modo "Atendente" em Frases → Moldes, e 5 moldes novos (29 no total, 14 com fala do atendente).
+- ✅ Mais exemplos de leitura do dia a dia (2.18.0): ofertas e promoções, no caixa, mesas e reservas, placas de serviços (27 placas e avisos novos).
 
 As outras ideias desta lista (tabela de caracteres, treino livre e pares parecidos; dicas dos kana com ten-ten; missões em cadeia, por horário e pelas áreas fracas; widget da revisão do dia; exportar só as configurações; temas de cor) foram feitas na 2.16, abaixo.
 

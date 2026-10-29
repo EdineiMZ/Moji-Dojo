@@ -81,6 +81,21 @@ export interface Retention {
 
 export const MIN_RETENTION_ANSWERS = 10;
 
+/** Abaixo desta porcentagem de acerto, a habilidade conta como fraca. */
+export const WEAK_PCT = 80;
+
+/**
+ * As habilidades mais fracas (a mais fraca primeiro, no máximo duas): as que têm respostas suficientes para a conta valer e
+ * acertam menos que `WEAK_PCT`. Quem ainda não treinou o bastante não entra: falta dado, não falta habilidade.
+ */
+export function weakSkills(counters: Readonly<Record<string, number>>): Skill[] {
+  return skillStats(counters)
+    .filter((s) => s.total >= MIN_RETENTION_ANSWERS && s.pct !== null && s.pct < WEAK_PCT)
+    .sort((a, b) => (a.pct ?? 100) - (b.pct ?? 100))
+    .slice(0, 2)
+    .map((s) => s.skill);
+}
+
 export function retention(counters: Readonly<Record<string, number>>): Retention {
   const answers = counters.matureAnswers ?? 0;
   const correct = counters.matureCorrect ?? 0;

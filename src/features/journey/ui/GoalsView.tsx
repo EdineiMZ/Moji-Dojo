@@ -4,8 +4,7 @@ import { useNow } from '@/hooks/useNow';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { DAILY_GOALS } from '../journey';
-import { ALL_MISSIONS_BONUS, challengeFor, DIFFICULTY_LABELS, missionsFor, rewardOf, WEEKLY_DAYS_GOAL, WEEKLY_PETALS } from '../missions';
-import { formatDay } from '@/features/streak/days';
+import { ALL_MISSIONS_BONUS, chainStatus, challengeFor, DIFFICULTY_LABELS, EVENING_START, MORNING_END, rewardOf, todaysMissions, WEEKLY_DAYS_GOAL, WEEKLY_PETALS } from '../missions';
 import { buildContext } from '../track';
 import { useChestUi } from '../chestUi';
 import { limitLabel, NEW_OPTIONS, REVIEW_OPTIONS } from '@/features/limits/limits';
@@ -30,7 +29,7 @@ export function GoalsView() {
   const ctx = buildContext(state, state.days, now);
   const counts = journey.today.counts;
   const answers = counts.answers ?? 0;
-  const missions = missionsFor(formatDay(date));
+  const missions = todaysMissions(journey.today);
   const challenge = challengeFor(date);
   const strip = weekDays(state.days, date);
   const chestReady = weekChestReady(journey, ctx);
@@ -58,6 +57,7 @@ export function GoalsView() {
         {missions.map((m) => {
           const got = Math.min(counts[m.counter] ?? 0, m.goal);
           const claimed = journey.today.claimed.includes(m.id);
+          const chain = chainStatus(counts, m);
           return (
             <View key={m.id} style={styles.mission}>
               <AppText>
@@ -67,16 +67,26 @@ export function GoalsView() {
               <AppText variant="caption" color="muted">
                 {DIFFICULTY_LABELS[m.difficulty]} · 🌸 {rewardOf(m).petals}
               </AppText>
+              {chain ? (
+                <AppText variant="caption" color="muted">
+                  Passo {chain.step} de {chain.total}: {chain.text} ({chain.have} de {chain.goal}). Cada passo só conta depois do anterior.
+                </AppText>
+              ) : null}
+              {m.window ? (
+                <AppText variant="caption" color="muted">
+                  {m.window === 'morning' ? `Só conta até as ${MORNING_END}h.` : `Só conta a partir das ${EVENING_START}h.`}
+                </AppText>
+              ) : null}
               <ProgressBar value={m.goal > 0 ? got / m.goal : 0} height={8} />
               <AppText variant="caption" color="muted">
-                {got} de {m.goal}
+                {chain ? `${got} de ${m.goal} passos` : `${got} de ${m.goal}`}
                 {claimed ? ` · +${rewardOf(m).petals} 🌸` : ''}
               </AppText>
             </View>
           );
         })}
         <AppText variant="caption" color="muted">
-          Todo dia vêm três: uma fácil, uma média e uma difícil, que rendem mais pétalas. As três juntas dão mais 🌸 {ALL_MISSIONS_BONUS}. Elas se resgatam sozinhas e mudam de um dia para o outro.
+          Todo dia vêm três: uma fácil, uma média e uma difícil, que rendem mais pétalas. As três juntas dão mais 🌸 {ALL_MISSIONS_BONUS}. Elas se resgatam sozinhas e mudam de um dia para o outro. Quando uma habilidade está fraca (menos de 80% de acerto), as missões dela aparecem mais. Algumas são em cadeia (os passos vêm em ordem) e outras valem só de manhã ou à noite.
         </AppText>
       </Card>
 

@@ -20,7 +20,7 @@ import {
 } from './events';
 import { addPetals, emptyJourney, MAX_MISSES } from './journey';
 import { levelOf, levelProgress, titleFor, xpForLevel } from './levels';
-import { ALL_MISSIONS_BONUS, challengeFor, CHALLENGE_GROUPS, MISSION_PETALS, MISSIONS, missionsFor } from './missions';
+import { ALL_MISSIONS_BONUS, challengeFor, CHALLENGE_GROUPS, MISSION_PETALS, MISSIONS, missionsFor, todaysMissions } from './missions';
 import { daysStudiedInWeek, mondayOf, weekDays, weekIndex, weekKey } from './week';
 
 // Quarta-feira, 21/10/2026, meio-dia.
@@ -258,7 +258,7 @@ describe('missões do dia', () => {
 
   it('cumprir uma missão a resgata sozinha, com pétalas e aviso; resgatar as 3 dá o bônus', () => {
     let state = roll(emptyJourney(), NOW);
-    const today = missionsFor(state.today.day);
+    const today = todaysMissions(state.today);
     const counters: Record<string, number> = Object.fromEntries(today.map((m) => [m.counter, m.goal]));
     state = { ...state, today: { ...state.today, counts: counters } };
     state = onNewWords(state, ctx(), 0);

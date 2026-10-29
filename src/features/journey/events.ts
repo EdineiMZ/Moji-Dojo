@@ -1,5 +1,5 @@
 import { formatDay } from '@/features/streak/days';
-import { countSkill } from './skills';
+import { countSkill, weakSkills } from './skills';
 import { newlyEarned, type AchievementContext } from './achievements';
 import { answerXp, lessonReward, roomToday, sessionReward } from './economy';
 import { rollLoot, type Loot, type Rng } from './loot';
@@ -20,7 +20,11 @@ import {
   challengeFor,
   CHALLENGE_XP,
   findMission,
+  EVENING_START,
+  MORNING_END,
+  advanceChains,
   missionsFor,
+  todaysMissions,
   rewardOf,
   WEEKLY_DAYS_GOAL,
 } from './missions';
@@ -65,7 +69,11 @@ const GRAMMAR_AREAS: readonly Area[] = ['drill', 'conj', 'particle'];
 export function roll(state: JourneyState, now: Date): JourneyState {
   let next = state;
   const day = formatDay(now);
-  if (next.today.day !== day) next = { ...next, today: emptyDay(day) };
+  // O dia virou: as três missões ficam fixadas agora (pesadas pelas habilidades mais fracas e pelo horário), para não mudarem durante o dia.
+  if (next.today.day !== day) {
+    const picked = missionsFor(day, { weak: weakSkills(next.counters), hour: now.getHours() }).map((m) => m.id);
+    next = { ...next, today: { ...emptyDay(day), missions: picked } };
+  }
   const key = weekKey(now);
   if (next.week.key !== key) next = { ...next, week: emptyWeek(key) };
   return next;
@@ -185,6 +193,10 @@ export function onAnswer(state: JourneyState, ctx: EventContext, event: AnswerEv
   next = gainXp(next, answerXp(event.ok));
   next = { ...next, counters: bump(next.counters, 'answers') };
   next = countDay(next, 'answers');
+  // Missões de horário: as respostas da manhã e as da noite contam à parte.
+  const hour = ctx.now.getHours();
+  if (hour < MORNING_END) next = countDay(next, 'answersMorning');
+  if (hour >= EVENING_START) next = countDay(next, 'answersEvening');
   if (event.ok) next = { ...next, counters: bump(next.counters, 'correct') };
   if (event.ok) next = countDay(next, 'correctDay');
   if (event.review) next = countDay(next, 'reviews');
@@ -378,7 +390,9 @@ export function settle(state: JourneyState, ctx: EventContext, studied: boolean)
   }
 
   // Missões do dia, resgatadas sozinhas quando a meta é atingida.
-  const missions = missionsFor(next.today.day || formatDay(ctx.now));
+  const missions = todaysMissions({ day: next.today.day || formatDay(ctx.now), missions: next.today.missions });
+  const advanced = advanceChains(next.today.counts, missions);
+  if (advanced !== next.today.counts) next = { ...next, today: { ...next.today, counts: advanced } };
   for (const mission of missions) {
     if (next.today.claimed.includes(mission.id)) continue;
     if ((next.today.counts[mission.counter] ?? 0) < mission.goal) continue;

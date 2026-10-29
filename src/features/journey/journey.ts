@@ -34,6 +34,8 @@ export interface DayState {
   claimed: string[];
   /** A meta diária de respostas já foi comemorada hoje. */
   goalDone: boolean;
+  /** As três missões de hoje (ids), fixadas no começo do dia; sem isso, vale o sorteio sem opções (ver `todaysMissions`). */
+  missions?: string[];
 }
 
 export interface WeekState {
@@ -186,6 +188,7 @@ export function sanitizeJourney(raw: unknown): JourneyState {
       counts: numberMap(today.counts),
       claimed: strings(today.claimed, 20),
       goalDone: today.goalDone === true,
+      ...(strings(today.missions, 3).length === 3 ? { missions: strings(today.missions, 3) } : {}),
     },
     week: {
       key: typeof week.key === 'string' ? week.key : '',

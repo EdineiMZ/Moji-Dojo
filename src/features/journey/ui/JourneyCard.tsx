@@ -8,7 +8,7 @@ import { requestPermission } from '@/features/reminders/scheduler';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { spacing } from '@/theme';
 import { roll, weekChestReady } from '../events';
-import { missionsFor, WEEKLY_DAYS_GOAL } from '../missions';
+import { todaysMissions, WEEKLY_DAYS_GOAL } from '../missions';
 import { buildContext } from '../track';
 import { useChestUi } from '../chestUi';
 
@@ -29,7 +29,7 @@ export function JourneyCard() {
   const date = new Date(now);
   const journey = roll(state.journey, date);
   const ctx = buildContext(state, state.days, now);
-  const missions = missionsFor(formatDay(date));
+  const missions = todaysMissions(journey.today);
   const claimed = missions.filter((m) => journey.today.claimed.includes(m.id)).length;
   const answers = journey.today.counts.answers ?? 0;
   const offer = journey.rescue && journey.rescue.day === formatDay(date) ? journey.rescue : null;

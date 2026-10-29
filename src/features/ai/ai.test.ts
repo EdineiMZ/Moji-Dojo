@@ -281,3 +281,45 @@ describe('a chave de API fica fora do backup', () => {
     expect(text).not.toMatch(/"ai"|apiKey|moji_ai_key|aiUsage/);
   });
 });
+
+describe('provedor OpenAI: respostas reais da API', () => {
+  // Resposta verdadeira da OpenAI (obtida em 2026-10-28 com uma chave falsa) para uma chamada no formato do app.
+  const invalidKey = {
+    status: 401,
+    body: {
+      error: {
+        message: 'Incorrect API key provided: sk-chave************************erro. You can find your API key at https://platform.openai.com/account/api-keys.',
+        type: 'invalid_request_error',
+        code: 'invalid_api_key',
+        param: null,
+      },
+      status: 401,
+    },
+  };
+
+  it('chave recusada (401) vira o erro "auth", sem vazar a chave na mensagem', async () => {
+    const deps: AiDeps = {
+      fetch: jest.fn(async () => ({ status: invalidKey.status, json: async () => invalidKey.body })),
+      getKey: async () => 'sk-chave-falsa',
+      settings: () => ({ ...DEFAULT_AI, provider: 'openai' as const }),
+      usage: () => ({ ...EMPTY_USAGE, day: dayKey(NOW) }),
+      recordUsage: () => undefined,
+      getCache: () => undefined,
+      putCache: () => undefined,
+      now: () => NOW,
+      timeoutMs: 1000,
+    };
+    const error = await askAi({ system: 'JSON', user: 'oi', maxTokens: 50, parse: () => null }, deps).catch((e: unknown) => e);
+    expect(error).toBeInstanceOf(AiError);
+    expect((error as AiError).code).toBe('auth');
+    expect((error as AiError).message).not.toContain('sk-');
+  });
+
+  it('monta a chamada no endereço e com o cabeçalho de autorização da OpenAI (os campos do corpo só uma chave real confirma)', () => {
+    const http = buildHttpRequest('openai', 'sk-x', 'gpt-4.1-mini', { system: 'Responda em JSON.', user: 'oi', maxTokens: 50 });
+    expect(http.url).toBe('https://api.openai.com/v1/chat/completions');
+    expect(http.headers.authorization).toBe('Bearer sk-x');
+    expect(JSON.parse(http.body)).toMatchObject({ model: 'gpt-4.1-mini', response_format: { type: 'json_object' }, max_completion_tokens: 50 });
+    expect(parseErrorMessage(invalidKey.body)).toContain('Incorrect API key');
+  });
+});

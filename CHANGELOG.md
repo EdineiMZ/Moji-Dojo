@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.17.0] - 2026-10-29
+
+Compartilhar texto para a IA, simulado com tempo de prova e widget para o Niagara.
+
+- **Compartilhar do Android:** o Moji Dojo aparece em Compartilhar para texto. O app abre em Frases → IA → Explicar com o campo preenchido; nada é enviado à IA até você tocar em "Explicar". O texto de fora é limpo e limitado. Sem a IA configurada, o cartão mostra o texto recebido e o guarda para depois.
+- **Tempo de prova:** nos simulados (o offline e o da IA), a opção "Tempo de prova" põe um cronômetro regressivo de 45 segundos por pergunta para a prova toda; ao acabar, a prova encerra e as perguntas sem resposta contam como erradas.
+- **Widget para o Niagara Launcher e outros:** duas disposições (compacta e larga e baixa), escolhidas pelo tamanho que o lançador dá e refeitas quando ele muda; canto arredondado do sistema e pré-visualização no seletor (Android 12 em diante); orientação em Ajustes para lançadores que não abrem a confirmação do Android. Verificado no emulador (redimensionando o widget); **não testado no Niagara**.
+- **OpenAI:** teste com a resposta real da API para chave recusada (HTTP 401). A chamada completa segue sem teste por falta de chave.
+
 ## [2.16.0] - 2026-10-29
 
 As ideias em aberto do roadmap: tabela de kana, missões novas, widget, temas de cor e backup de configurações.

@@ -130,10 +130,10 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 ### IA opcional
 
 - 🟡 **Modelos locais (2.15.0):** o provedor "Servidor próprio" aceita o endereço de qualquer servidor compatível com a OpenAI (Ollama, LM Studio, llama.cpp, vLLM), com chave opcional. **Só https**: o app não aceita http porque isso exigiria liberar tráfego sem criptografia no app inteiro (ver abaixo). ⬜ Para servidores em rede local por http, falta decidir liberar o tráfego sem criptografia (`usesCleartextTraffic`); hoje a saída é um túnel ou proxy com https. *(P)*
-- ⬜ **Receber texto pelo "compartilhar" do Android** na tela Explicar texto. *(M)*
+- ✅ **Receber texto pelo "compartilhar" do Android (2.17.0):** o Moji Dojo aparece em Compartilhar para texto; o app abre em Frases → IA → Explicar com o campo preenchido e **nada é enviado à IA** sem você tocar em "Explicar". O texto de fora é limpo (caracteres de controle e de direção) e limitado ao tamanho da tela. Sem a IA configurada, o cartão mostra o texto recebido e o guarda. Verificado no emulador com o app fechado e com ele aberto; o preenchimento do campo com a IA pronta é coberto por teste de tela, não foi visto no emulador (sem chave de IA lá). *(M)*
 - ✅ **Conversa com a voz como entrada (2.15.0):** o botão "Falar em japonês" transforma a fala em texto no campo da conversa, para conferir e corrigir antes de enviar. Usa o serviço de fala do Android, com o aviso de que ele pode enviar o áudio ao Google. *(M)*
-- ⬜ **Simulado com tempo de prova**, missões em cadeia e adaptadas aos pontos fracos, cenas escolhidas pelo aluno. *(M)*
-- ⬜ Testar com uma chave real da OpenAI (o provedor GPT foi escrito, mas não foi exercitado). *(P)*
+- ✅ **Simulado com tempo de prova (2.17.0):** no simulado offline e no da IA, a opção "Tempo de prova (45 s por pergunta)" mostra um cronômetro regressivo da prova toda; ao acabar o tempo, a prova encerra e o que ficou sem resposta conta como errado. ✅ **Missões em cadeia e adaptadas aos pontos fracos:** feitas na 2.16 (ver acima). ✅ **Cenas escolhidas pelo aluno:** a conversa por cenas já tinha "Ou invente a sua cena" (você descreve a situação e a IA monta o personagem). *(M)*
+- 🟡 **Testar com uma chave real da OpenAI:** não há chave aqui, então a chamada completa continua sem teste. O que foi conferido em 2026-10-28: o endereço `api.openai.com/v1/chat/completions` responde e uma chave **falsa** devolve HTTP 401 com `error.message`, que o app lê e converte em "chave recusada" (teste com a resposta real). **Não confirmado:** que o corpo da chamada (`max_completion_tokens`, `response_format`, o modelo `gpt-4.1-mini`) é aceito, porque a API checa a chave antes. *(P)*
 
 ### Teclado
 

@@ -3,7 +3,7 @@
 // Traços: ver src/data/strokes (KanjiVG, CC BY-SA 3.0). Ver src/content/LICENSE.md.
 import type { Kanji, KanjiCategory, Lesson } from '@/data/types';
 
-/** O último kanji do N5 e os do N4 que não estavam nos 102 iniciais. */
+/** O último kanji do N5, os do N4 e os 193 do N3 (mais frequentes) que não estavam nos 102 iniciais. */
 export const KANJI_EXTRA: readonly Kanji[] = [
   {
     "char": "兄",
@@ -2211,6 +2211,2324 @@ export const KANJI_EXTRA: readonly Kanji[] = [
       "こわ"
     ],
     "category": "n4corpo"
+  },
+  {
+    "char": "政",
+    "meaning": "política, governo",
+    "on": [
+      "セイ",
+      "ショウ"
+    ],
+    "kun": [
+      "まつりごと",
+      "まん"
+    ],
+    "category": "n3gov"
+  },
+  {
+    "char": "党",
+    "meaning": "partido",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "なかま",
+      "むら"
+    ],
+    "category": "n3gov"
+  },
+  {
+    "char": "府",
+    "meaning": "prefeitura (府), órgão do governo",
+    "on": [
+      "フ"
+    ],
+    "kun": [],
+    "category": "n3gov"
+  },
+  {
+    "char": "官",
+    "meaning": "funcionário público, governo",
+    "on": [
+      "カン"
+    ],
+    "kun": [],
+    "category": "n3gov"
+  },
+  {
+    "char": "局",
+    "meaning": "repartição, departamento",
+    "on": [
+      "キョク"
+    ],
+    "kun": [
+      "つぼね"
+    ],
+    "category": "n3gov"
+  },
+  {
+    "char": "軍",
+    "meaning": "exército",
+    "on": [
+      "グン"
+    ],
+    "kun": [
+      "いくさ"
+    ],
+    "category": "n3gov"
+  },
+  {
+    "char": "公",
+    "meaning": "público, oficial",
+    "on": [
+      "コウ",
+      "ク"
+    ],
+    "kun": [
+      "おおやけ"
+    ],
+    "category": "n3gov"
+  },
+  {
+    "char": "権",
+    "meaning": "direito, poder",
+    "on": [
+      "ケン",
+      "ゴン"
+    ],
+    "kun": [
+      "おもり",
+      "かり",
+      "はか(る)"
+    ],
+    "category": "n3gov"
+  },
+  {
+    "char": "税",
+    "meaning": "imposto",
+    "on": [
+      "ゼイ"
+    ],
+    "kun": [],
+    "category": "n3gov"
+  },
+  {
+    "char": "制",
+    "meaning": "sistema, regra",
+    "on": [
+      "セイ"
+    ],
+    "kun": [],
+    "category": "n3gov"
+  },
+  {
+    "char": "法",
+    "meaning": "lei, método",
+    "on": [
+      "ホウ",
+      "ハッ",
+      "ホッ"
+    ],
+    "kun": [
+      "のり"
+    ],
+    "category": "n3gov"
+  },
+  {
+    "char": "州",
+    "meaning": "estado, província",
+    "on": [
+      "シュウ",
+      "ス"
+    ],
+    "kun": [
+      "す"
+    ],
+    "category": "n3gov"
+  },
+  {
+    "char": "武",
+    "meaning": "guerreiro, militar",
+    "on": [
+      "ブ",
+      "ム"
+    ],
+    "kun": [
+      "たけ",
+      "たけ(し)"
+    ],
+    "category": "n3gov"
+  },
+  {
+    "char": "戦",
+    "meaning": "guerra, lutar",
+    "on": [
+      "セン"
+    ],
+    "kun": [
+      "いくさ",
+      "たたか(う)",
+      "おのの(く)"
+    ],
+    "category": "n3gov"
+  },
+  {
+    "char": "争",
+    "meaning": "disputar, brigar",
+    "on": [
+      "ソウ"
+    ],
+    "kun": [
+      "あらそ(う)",
+      "いか(でか)"
+    ],
+    "category": "n3gov"
+  },
+  {
+    "char": "勢",
+    "meaning": "força, ímpeto",
+    "on": [
+      "セイ",
+      "ゼイ"
+    ],
+    "kun": [
+      "いきお(い)",
+      "はずみ"
+    ],
+    "category": "n3gov"
+  },
+  {
+    "char": "務",
+    "meaning": "tarefa, dever",
+    "on": [
+      "ム"
+    ],
+    "kun": [
+      "つと(める)"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "職",
+    "meaning": "ofício, emprego",
+    "on": [
+      "ショク",
+      "ソク"
+    ],
+    "kun": [],
+    "category": "n3org"
+  },
+  {
+    "char": "役",
+    "meaning": "função, papel",
+    "on": [
+      "ヤク",
+      "エキ"
+    ],
+    "kun": [],
+    "category": "n3org"
+  },
+  {
+    "char": "係",
+    "meaning": "encarregado, relação",
+    "on": [
+      "ケイ"
+    ],
+    "kun": [
+      "かか(る)",
+      "かかり",
+      "がかり"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "委",
+    "meaning": "confiar, comissão",
+    "on": [
+      "イ"
+    ],
+    "kun": [
+      "ゆだ(ねる)"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "営",
+    "meaning": "gerir, administrar",
+    "on": [
+      "エイ"
+    ],
+    "kun": [
+      "いとな(む)",
+      "いとな(み)"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "部",
+    "meaning": "seção, parte",
+    "on": [
+      "ブ"
+    ],
+    "kun": [
+      "べ"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "副",
+    "meaning": "vice, auxiliar",
+    "on": [
+      "フク"
+    ],
+    "kun": [],
+    "category": "n3org"
+  },
+  {
+    "char": "設",
+    "meaning": "estabelecer, instalar",
+    "on": [
+      "セツ"
+    ],
+    "kun": [
+      "もう(ける)"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "任",
+    "meaning": "encargo, confiar",
+    "on": [
+      "ニン"
+    ],
+    "kun": [
+      "まか(せる)",
+      "まか(す)"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "団",
+    "meaning": "grupo, associação",
+    "on": [
+      "ダン",
+      "トン"
+    ],
+    "kun": [
+      "かたまり",
+      "まる(い)"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "組",
+    "meaning": "grupo, turma",
+    "on": [
+      "ソ"
+    ],
+    "kun": [
+      "く(む)",
+      "くみ",
+      "ぐみ"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "機",
+    "meaning": "máquina, ocasião",
+    "on": [
+      "キ"
+    ],
+    "kun": [
+      "はた"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "構",
+    "meaning": "estrutura, preparar",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "かま(える)",
+      "かま(う)"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "資",
+    "meaning": "recursos, capital",
+    "on": [
+      "シ"
+    ],
+    "kun": [],
+    "category": "n3org"
+  },
+  {
+    "char": "費",
+    "meaning": "gasto, custo",
+    "on": [
+      "ヒ"
+    ],
+    "kun": [
+      "つい(やす)",
+      "つい(える)"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "備",
+    "meaning": "preparar, equipar",
+    "on": [
+      "ビ"
+    ],
+    "kun": [
+      "そな(える)",
+      "そな(わる)",
+      "つぶさ(に)"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "輸",
+    "meaning": "transportar",
+    "on": [
+      "ユ",
+      "シュ"
+    ],
+    "kun": [],
+    "category": "n3org"
+  },
+  {
+    "char": "農",
+    "meaning": "agricultura",
+    "on": [
+      "ノウ"
+    ],
+    "kun": [],
+    "category": "n3org"
+  },
+  {
+    "char": "労",
+    "meaning": "trabalho, esforço",
+    "on": [
+      "ロウ"
+    ],
+    "kun": [
+      "ろう(する)",
+      "いたわ(る)",
+      "いた(ずき)"
+    ],
+    "category": "n3org"
+  },
+  {
+    "char": "議",
+    "meaning": "debate, discussão",
+    "on": [
+      "ギ"
+    ],
+    "kun": [],
+    "category": "n3com"
+  },
+  {
+    "char": "談",
+    "meaning": "conversar",
+    "on": [
+      "ダン"
+    ],
+    "kun": [],
+    "category": "n3com"
+  },
+  {
+    "char": "論",
+    "meaning": "argumento, teoria",
+    "on": [
+      "ロン"
+    ],
+    "kun": [
+      "あげつら(う)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "述",
+    "meaning": "expor, dizer",
+    "on": [
+      "ジュツ"
+    ],
+    "kun": [
+      "の(べる)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "告",
+    "meaning": "comunicar, anunciar",
+    "on": [
+      "コク"
+    ],
+    "kun": [
+      "つ(げる)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "報",
+    "meaning": "notícia, informar",
+    "on": [
+      "ホウ"
+    ],
+    "kun": [
+      "むく(いる)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "信",
+    "meaning": "acreditar, confiar",
+    "on": [
+      "シン"
+    ],
+    "kun": [],
+    "category": "n3com"
+  },
+  {
+    "char": "念",
+    "meaning": "pensamento, desejo",
+    "on": [
+      "ネン"
+    ],
+    "kun": [],
+    "category": "n3com"
+  },
+  {
+    "char": "認",
+    "meaning": "reconhecer",
+    "on": [
+      "ニン"
+    ],
+    "kun": [
+      "みと(める)",
+      "したた(める)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "示",
+    "meaning": "mostrar",
+    "on": [
+      "ジ",
+      "シ"
+    ],
+    "kun": [
+      "しめ(す)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "表",
+    "meaning": "superfície, tabela, expressar",
+    "on": [
+      "ヒョウ"
+    ],
+    "kun": [
+      "おもて",
+      "あらわ(す)",
+      "あらわ(れる)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "記",
+    "meaning": "anotar, registrar",
+    "on": [
+      "キ"
+    ],
+    "kun": [
+      "しる(す)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "疑",
+    "meaning": "duvidar",
+    "on": [
+      "ギ"
+    ],
+    "kun": [
+      "うたが(う)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "案",
+    "meaning": "plano, proposta",
+    "on": [
+      "アン"
+    ],
+    "kun": [
+      "つくえ"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "想",
+    "meaning": "pensamento, imaginar",
+    "on": [
+      "ソウ",
+      "ソ"
+    ],
+    "kun": [
+      "おも(う)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "判",
+    "meaning": "julgar, carimbo",
+    "on": [
+      "ハン",
+      "バン"
+    ],
+    "kun": [
+      "わか(る)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "調",
+    "meaning": "investigar, tom",
+    "on": [
+      "チョウ"
+    ],
+    "kun": [
+      "しら(べる)",
+      "しら(べ)",
+      "ととの(う)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "査",
+    "meaning": "investigar",
+    "on": [
+      "サ"
+    ],
+    "kun": [],
+    "category": "n3com"
+  },
+  {
+    "char": "検",
+    "meaning": "examinar",
+    "on": [
+      "ケン"
+    ],
+    "kun": [
+      "しら(べる)"
+    ],
+    "category": "n3com"
+  },
+  {
+    "char": "協",
+    "meaning": "cooperar",
+    "on": [
+      "キョウ"
+    ],
+    "kun": [],
+    "category": "n3rel"
+  },
+  {
+    "char": "共",
+    "meaning": "juntos, comum",
+    "on": [
+      "キョウ"
+    ],
+    "kun": [
+      "とも",
+      "とも(に)",
+      "ども"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "供",
+    "meaning": "oferecer, acompanhar",
+    "on": [
+      "キョウ",
+      "ク",
+      "クウ"
+    ],
+    "kun": [
+      "そな(える)",
+      "とも",
+      "ども"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "交",
+    "meaning": "cruzar, trocar",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "まじ(わる)",
+      "まじ(える)",
+      "ま(じる)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "連",
+    "meaning": "levar junto, ligar",
+    "on": [
+      "レン"
+    ],
+    "kun": [
+      "つら(なる)",
+      "つら(ねる)",
+      "つ(れる)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "相",
+    "meaning": "mútuo, aspecto",
+    "on": [
+      "ソウ",
+      "ショウ"
+    ],
+    "kun": [
+      "あい"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "対",
+    "meaning": "contra, oposto, par",
+    "on": [
+      "タイ",
+      "ツイ"
+    ],
+    "kun": [
+      "あいて",
+      "こた(える)",
+      "そろ(い)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "助",
+    "meaning": "ajudar",
+    "on": [
+      "ジョ"
+    ],
+    "kun": [
+      "たす(ける)",
+      "たす(かる)",
+      "す(ける)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "与",
+    "meaning": "dar",
+    "on": [
+      "ヨ"
+    ],
+    "kun": [
+      "あた(える)",
+      "あずか(る)",
+      "くみ(する)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "受",
+    "meaning": "receber",
+    "on": [
+      "ジュ"
+    ],
+    "kun": [
+      "う(ける)",
+      "う(け)",
+      "う(かる)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "支",
+    "meaning": "sustentar, ramo",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "ささ(える)",
+      "つか(える)",
+      "か(う)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "保",
+    "meaning": "proteger, manter",
+    "on": [
+      "ホ",
+      "ホウ"
+    ],
+    "kun": [
+      "たも(つ)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "補",
+    "meaning": "completar, suprir",
+    "on": [
+      "ホ"
+    ],
+    "kun": [
+      "おぎな(う)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "取",
+    "meaning": "pegar",
+    "on": [
+      "シュ"
+    ],
+    "kun": [
+      "と(る)",
+      "と(り)",
+      "とり"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "付",
+    "meaning": "anexar, grudar",
+    "on": [
+      "フ"
+    ],
+    "kun": [
+      "つ(ける)",
+      "づ(ける)",
+      "つ(け)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "配",
+    "meaning": "distribuir",
+    "on": [
+      "ハイ"
+    ],
+    "kun": [
+      "くば(る)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "投",
+    "meaning": "lançar, jogar",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "な(げる)",
+      "な(げ)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "打",
+    "meaning": "bater",
+    "on": [
+      "ダ",
+      "ダース"
+    ],
+    "kun": [
+      "う(つ)",
+      "う(ち)",
+      "ぶ(つ)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "導",
+    "meaning": "guiar",
+    "on": [
+      "ドウ"
+    ],
+    "kun": [
+      "みちび(く)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "得",
+    "meaning": "obter, ganhar",
+    "on": [
+      "トク"
+    ],
+    "kun": [
+      "え(る)",
+      "う(る)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "演",
+    "meaning": "apresentar, encenar",
+    "on": [
+      "エン"
+    ],
+    "kun": [],
+    "category": "n3rel"
+  },
+  {
+    "char": "応",
+    "meaning": "responder, corresponder",
+    "on": [
+      "オウ",
+      "ヨウ",
+      "-ノウ"
+    ],
+    "kun": [
+      "あた(る)",
+      "まさに",
+      "こた(える)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "能",
+    "meaning": "capacidade",
+    "on": [
+      "ノウ"
+    ],
+    "kun": [
+      "よ(く)",
+      "あた(う)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "当",
+    "meaning": "acertar, este (próprio)",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "あ(たる)",
+      "あ(たり)",
+      "あ(てる)"
+    ],
+    "category": "n3rel"
+  },
+  {
+    "char": "変",
+    "meaning": "mudar, estranho",
+    "on": [
+      "ヘン"
+    ],
+    "kun": [
+      "か(わる)",
+      "か(わり)",
+      "か(える)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "化",
+    "meaning": "mudar, transformar",
+    "on": [
+      "カ",
+      "ケ"
+    ],
+    "kun": [
+      "ば(ける)",
+      "ば(かす)",
+      "ふ(ける)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "改",
+    "meaning": "renovar, mudar",
+    "on": [
+      "カイ"
+    ],
+    "kun": [
+      "あらた(める)",
+      "あらた(まる)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "加",
+    "meaning": "somar, acrescentar",
+    "on": [
+      "カ"
+    ],
+    "kun": [
+      "くわ(える)",
+      "くわ(わる)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "増",
+    "meaning": "aumentar",
+    "on": [
+      "ゾウ"
+    ],
+    "kun": [
+      "ま(す)",
+      "ま(し)",
+      "ふ(える)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "減",
+    "meaning": "diminuir",
+    "on": [
+      "ゲン"
+    ],
+    "kun": [
+      "へ(る)",
+      "へ(らす)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "残",
+    "meaning": "sobrar, restar",
+    "on": [
+      "ザン",
+      "サン"
+    ],
+    "kun": [
+      "のこ(る)",
+      "のこ(す)",
+      "そこな(う)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "続",
+    "meaning": "continuar",
+    "on": [
+      "ゾク",
+      "ショク",
+      "コウ"
+    ],
+    "kun": [
+      "つづ(く)",
+      "つづ(ける)",
+      "つぐ(ない)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "済",
+    "meaning": "terminar, acabado",
+    "on": [
+      "サイ",
+      "セイ"
+    ],
+    "kun": [
+      "す(む)",
+      "ず(み)",
+      "ずみ"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "初",
+    "meaning": "primeiro, início",
+    "on": [
+      "ショ"
+    ],
+    "kun": [
+      "はじ(め)",
+      "はじ(めて)",
+      "はつ"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "最",
+    "meaning": "o mais, extremo",
+    "on": [
+      "サイ",
+      "シュ"
+    ],
+    "kun": [
+      "もっと(も)",
+      "つま"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "再",
+    "meaning": "de novo",
+    "on": [
+      "サイ",
+      "サ"
+    ],
+    "kun": [
+      "ふたた(び)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "次",
+    "meaning": "seguinte, próximo",
+    "on": [
+      "ジ",
+      "シ"
+    ],
+    "kun": [
+      "つ(ぐ)",
+      "つぎ"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "向",
+    "meaning": "voltar-se para, direção",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "む(く)",
+      "む(い)",
+      "む(き)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "参",
+    "meaning": "comparecer, ir",
+    "on": [
+      "サン",
+      "シン"
+    ],
+    "kun": [
+      "まい(る)",
+      "まい",
+      "まじわる"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "訪",
+    "meaning": "visitar",
+    "on": [
+      "ホウ"
+    ],
+    "kun": [
+      "おとず(れる)",
+      "たず(ねる)",
+      "と(う)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "防",
+    "meaning": "defender, prevenir",
+    "on": [
+      "ボウ"
+    ],
+    "kun": [
+      "ふせ(ぐ)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "放",
+    "meaning": "soltar, liberar",
+    "on": [
+      "ホウ"
+    ],
+    "kun": [
+      "はな(す)",
+      "っぱな(し)",
+      "はな(つ)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "流",
+    "meaning": "fluir, corrente",
+    "on": [
+      "リュウ",
+      "ル"
+    ],
+    "kun": [
+      "なが(れる)",
+      "なが(れ)",
+      "なが(す)"
+    ],
+    "category": "n3mud"
+  },
+  {
+    "char": "難",
+    "meaning": "difícil",
+    "on": [
+      "ナン"
+    ],
+    "kun": [
+      "かた(い)",
+      "がた(い)",
+      "むずか(しい)"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "違",
+    "meaning": "diferente, errado",
+    "on": [
+      "イ"
+    ],
+    "kun": [
+      "ちが(う)",
+      "ちが(い)",
+      "ちが(える)"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "確",
+    "meaning": "certo, confirmar",
+    "on": [
+      "カク",
+      "コウ"
+    ],
+    "kun": [
+      "たし(か)",
+      "たし(かめる)"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "常",
+    "meaning": "sempre, comum",
+    "on": [
+      "ジョウ"
+    ],
+    "kun": [
+      "つね",
+      "とこ"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "平",
+    "meaning": "plano, paz",
+    "on": [
+      "ヘイ",
+      "ビョウ",
+      "ヒョウ"
+    ],
+    "kun": [
+      "たい(ら)",
+      "たい(らげる)",
+      "ひら"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "独",
+    "meaning": "sozinho, único",
+    "on": [
+      "ドク",
+      "トク"
+    ],
+    "kun": [
+      "ひと(り)"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "無",
+    "meaning": "sem, nada",
+    "on": [
+      "ム",
+      "ブ"
+    ],
+    "kun": [
+      "な(い)"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "全",
+    "meaning": "todo, inteiro",
+    "on": [
+      "ゼン"
+    ],
+    "kun": [
+      "まった(く)",
+      "すべ(て)"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "各",
+    "meaning": "cada",
+    "on": [
+      "カク"
+    ],
+    "kun": [
+      "おのおの"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "総",
+    "meaning": "total, geral",
+    "on": [
+      "ソウ"
+    ],
+    "kun": [
+      "す(べて)",
+      "すべ(て)",
+      "ふさ"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "要",
+    "meaning": "necessário, essencial",
+    "on": [
+      "ヨウ"
+    ],
+    "kun": [
+      "い(る)",
+      "かなめ"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "必",
+    "meaning": "sem falta, necessário",
+    "on": [
+      "ヒツ"
+    ],
+    "kun": [
+      "かなら(ず)"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "可",
+    "meaning": "possível, aprovar",
+    "on": [
+      "カ",
+      "コク"
+    ],
+    "kun": [
+      "べ(き)",
+      "べ(し)"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "優",
+    "meaning": "gentil, excelente",
+    "on": [
+      "ユウ",
+      "ウ"
+    ],
+    "kun": [
+      "やさ(しい)",
+      "すぐ(れる)",
+      "まさ(る)"
+    ],
+    "category": "n3qua"
+  },
+  {
+    "char": "位",
+    "meaning": "posição, grau",
+    "on": [
+      "イ"
+    ],
+    "kun": [
+      "くらい",
+      "ぐらい"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "域",
+    "meaning": "região, área",
+    "on": [
+      "イキ"
+    ],
+    "kun": [],
+    "category": "n3abs"
+  },
+  {
+    "char": "育",
+    "meaning": "criar, crescer",
+    "on": [
+      "イク"
+    ],
+    "kun": [
+      "そだ(つ)",
+      "そだ(ち)",
+      "そだ(てる)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "果",
+    "meaning": "fruto, resultado",
+    "on": [
+      "カ"
+    ],
+    "kun": [
+      "は(たす)",
+      "はた(す)",
+      "は(てる)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "過",
+    "meaning": "passar, exceder",
+    "on": [
+      "カ"
+    ],
+    "kun": [
+      "す(ぎる)",
+      "す(ごす)",
+      "あやま(ち)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "解",
+    "meaning": "soltar, explicar",
+    "on": [
+      "カイ",
+      "ゲ"
+    ],
+    "kun": [
+      "と(く)",
+      "と(かす)",
+      "と(ける)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "害",
+    "meaning": "dano",
+    "on": [
+      "ガイ"
+    ],
+    "kun": [],
+    "category": "n3abs"
+  },
+  {
+    "char": "格",
+    "meaning": "categoria, padrão",
+    "on": [
+      "カク",
+      "コウ",
+      "キャク"
+    ],
+    "kun": [],
+    "category": "n3abs"
+  },
+  {
+    "char": "革",
+    "meaning": "couro, reformar",
+    "on": [
+      "カク"
+    ],
+    "kun": [
+      "かわ"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "割",
+    "meaning": "dividir, proporção",
+    "on": [
+      "カツ"
+    ],
+    "kun": [
+      "わ(る)",
+      "わり",
+      "わ(り)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "活",
+    "meaning": "vivo, ativo",
+    "on": [
+      "カツ"
+    ],
+    "kun": [
+      "い(きる)",
+      "い(かす)",
+      "い(ける)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "感",
+    "meaning": "sentir, sentimento",
+    "on": [
+      "カン"
+    ],
+    "kun": [],
+    "category": "n3abs"
+  },
+  {
+    "char": "関",
+    "meaning": "ligação, barreira",
+    "on": [
+      "カン"
+    ],
+    "kun": [
+      "せき",
+      "ぜき",
+      "かか(わる)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "基",
+    "meaning": "base",
+    "on": [
+      "キ"
+    ],
+    "kun": [
+      "もと",
+      "もとい"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "期",
+    "meaning": "período, época",
+    "on": [
+      "キ",
+      "ゴ"
+    ],
+    "kun": [],
+    "category": "n3abs"
+  },
+  {
+    "char": "規",
+    "meaning": "regra, norma",
+    "on": [
+      "キ"
+    ],
+    "kun": [],
+    "category": "n3abs"
+  },
+  {
+    "char": "求",
+    "meaning": "pedir, procurar",
+    "on": [
+      "キュウ",
+      "グ"
+    ],
+    "kun": [
+      "もと(める)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "境",
+    "meaning": "fronteira, limite",
+    "on": [
+      "キョウ",
+      "ケイ"
+    ],
+    "kun": [
+      "さかい"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "経",
+    "meaning": "passar (tempo), sutra",
+    "on": [
+      "ケイ",
+      "キョウ",
+      "キン"
+    ],
+    "kun": [
+      "へ(る)",
+      "た(つ)",
+      "たていと"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "警",
+    "meaning": "avisar, alertar",
+    "on": [
+      "ケイ"
+    ],
+    "kun": [
+      "いまし(める)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "件",
+    "meaning": "caso, assunto",
+    "on": [
+      "ケン"
+    ],
+    "kun": [
+      "くだん"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "原",
+    "meaning": "origem, campo",
+    "on": [
+      "ゲン"
+    ],
+    "kun": [
+      "はら"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "現",
+    "meaning": "atual, aparecer",
+    "on": [
+      "ゲン"
+    ],
+    "kun": [
+      "あらわ(れる)",
+      "あらわ(す)",
+      "うつつ"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "際",
+    "meaning": "ocasião, momento",
+    "on": [
+      "サイ"
+    ],
+    "kun": [
+      "きわ",
+      "ぎわ"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "在",
+    "meaning": "estar, existir",
+    "on": [
+      "ザイ"
+    ],
+    "kun": [
+      "あ(る)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "昨",
+    "meaning": "passado (ontem)",
+    "on": [
+      "サク"
+    ],
+    "kun": [],
+    "category": "n3abs"
+  },
+  {
+    "char": "算",
+    "meaning": "calcular",
+    "on": [
+      "サン"
+    ],
+    "kun": [
+      "そろ"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "価",
+    "meaning": "valor, preço",
+    "on": [
+      "カ",
+      "ケ"
+    ],
+    "kun": [
+      "あたい"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "条",
+    "meaning": "artigo, item",
+    "on": [
+      "ジョウ",
+      "チョウ",
+      "デキ"
+    ],
+    "kun": [
+      "えだ",
+      "すじ"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "的",
+    "meaning": "alvo, \"-tico\"",
+    "on": [
+      "テキ"
+    ],
+    "kun": [
+      "まと"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "由",
+    "meaning": "motivo",
+    "on": [
+      "ユ",
+      "ユウ",
+      "ユイ"
+    ],
+    "kun": [
+      "よし",
+      "よ(る)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "例",
+    "meaning": "exemplo",
+    "on": [
+      "レイ"
+    ],
+    "kun": [
+      "たと(える)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "予",
+    "meaning": "de antemão",
+    "on": [
+      "ヨ",
+      "シャ"
+    ],
+    "kun": [
+      "あらかじ(め)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "利",
+    "meaning": "lucro, eficaz",
+    "on": [
+      "リ"
+    ],
+    "kun": [
+      "き(く)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "率",
+    "meaning": "taxa, proporção",
+    "on": [
+      "ソツ",
+      "リツ",
+      "シュツ"
+    ],
+    "kun": [
+      "ひき(いる)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "領",
+    "meaning": "território",
+    "on": [
+      "リョウ"
+    ],
+    "kun": [
+      "えり"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "反",
+    "meaning": "contra, oposto",
+    "on": [
+      "ハン",
+      "ホン",
+      "タン"
+    ],
+    "kun": [
+      "そ(る)",
+      "そ(らす)",
+      "かえ(す)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "比",
+    "meaning": "comparar",
+    "on": [
+      "ヒ"
+    ],
+    "kun": [
+      "くら(べる)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "約",
+    "meaning": "promessa, cerca de",
+    "on": [
+      "ヤク"
+    ],
+    "kun": [
+      "つづ(まる)",
+      "つづ(める)",
+      "つづま(やか)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "容",
+    "meaning": "conter, aparência",
+    "on": [
+      "ヨウ"
+    ],
+    "kun": [
+      "い(れる)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "両",
+    "meaning": "ambos",
+    "on": [
+      "リョウ"
+    ],
+    "kun": [
+      "てる",
+      "ふたつ"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "和",
+    "meaning": "harmonia, estilo japonês",
+    "on": [
+      "ワ",
+      "オ",
+      "カ"
+    ],
+    "kun": [
+      "やわ(らぐ)",
+      "やわ(らげる)",
+      "なご(む)"
+    ],
+    "category": "n3abs"
+  },
+  {
+    "char": "球",
+    "meaning": "bola, esfera",
+    "on": [
+      "キュウ"
+    ],
+    "kun": [
+      "たま"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "石",
+    "meaning": "pedra",
+    "on": [
+      "セキ",
+      "シャク",
+      "コク"
+    ],
+    "kun": [
+      "いし"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "島",
+    "meaning": "ilha",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "しま"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "点",
+    "meaning": "ponto",
+    "on": [
+      "テン"
+    ],
+    "kun": [
+      "つ(ける)",
+      "つ(く)",
+      "た(てる)"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "線",
+    "meaning": "linha",
+    "on": [
+      "セン"
+    ],
+    "kun": [
+      "すじ"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "席",
+    "meaning": "assento, lugar",
+    "on": [
+      "セキ"
+    ],
+    "kun": [
+      "むしろ"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "宅",
+    "meaning": "casa, residência",
+    "on": [
+      "タク"
+    ],
+    "kun": [],
+    "category": "n3coi"
+  },
+  {
+    "char": "米",
+    "meaning": "arroz, EUA",
+    "on": [
+      "ベイ",
+      "マイ",
+      "メエトル"
+    ],
+    "kun": [
+      "こめ",
+      "よね"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "夫",
+    "meaning": "marido",
+    "on": [
+      "フ",
+      "フウ",
+      "ブ"
+    ],
+    "kun": [
+      "おっと",
+      "それ"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "身",
+    "meaning": "corpo, si mesmo",
+    "on": [
+      "シン"
+    ],
+    "kun": [
+      "み"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "神",
+    "meaning": "deus, espírito",
+    "on": [
+      "シン",
+      "ジン"
+    ],
+    "kun": [
+      "かみ",
+      "かん",
+      "こう"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "象",
+    "meaning": "elefante, imagem",
+    "on": [
+      "ショウ",
+      "ゾウ"
+    ],
+    "kun": [
+      "かたど(る)"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "状",
+    "meaning": "situação, carta",
+    "on": [
+      "ジョウ"
+    ],
+    "kun": [],
+    "category": "n3coi"
+  },
+  {
+    "char": "情",
+    "meaning": "sentimento, situação",
+    "on": [
+      "ジョウ",
+      "セイ"
+    ],
+    "kun": [
+      "なさ(け)"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "式",
+    "meaning": "cerimônia, fórmula",
+    "on": [
+      "シキ"
+    ],
+    "kun": [],
+    "category": "n3coi"
+  },
+  {
+    "char": "実",
+    "meaning": "real, fruto",
+    "on": [
+      "ジツ",
+      "シツ"
+    ],
+    "kun": [
+      "み",
+      "みの(る)",
+      "まこと"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "数",
+    "meaning": "número, contar",
+    "on": [
+      "スウ",
+      "ス",
+      "サク"
+    ],
+    "kun": [
+      "かず",
+      "かぞ(える)",
+      "しばしば"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "性",
+    "meaning": "natureza, sexo",
+    "on": [
+      "セイ",
+      "ショウ"
+    ],
+    "kun": [
+      "さが"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "成",
+    "meaning": "tornar-se, realizar",
+    "on": [
+      "セイ",
+      "ジョウ"
+    ],
+    "kun": [
+      "な(る)",
+      "な(す)"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "治",
+    "meaning": "governar, curar",
+    "on": [
+      "ジ",
+      "チ"
+    ],
+    "kun": [
+      "おさ(める)",
+      "おさ(まる)",
+      "なお(る)"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "術",
+    "meaning": "técnica, arte",
+    "on": [
+      "ジュツ"
+    ],
+    "kun": [
+      "すべ"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "歳",
+    "meaning": "anos (idade)",
+    "on": [
+      "サイ",
+      "セイ"
+    ],
+    "kun": [
+      "とし",
+      "とせ",
+      "よわい"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "指",
+    "meaning": "dedo, apontar",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "ゆび",
+      "さ(す)",
+      "さ(し)"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "側",
+    "meaning": "lado",
+    "on": [
+      "ソク"
+    ],
+    "kun": [
+      "かわ",
+      "がわ",
+      "そば"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "第",
+    "meaning": "ordinal (nº)",
+    "on": [
+      "ダイ",
+      "テイ"
+    ],
+    "kun": [],
+    "category": "n3coi"
+  },
+  {
+    "char": "内",
+    "meaning": "dentro",
+    "on": [
+      "ナイ",
+      "ダイ"
+    ],
+    "kun": [
+      "うち"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "番",
+    "meaning": "vez, número",
+    "on": [
+      "バン"
+    ],
+    "kun": [
+      "つが(い)"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "面",
+    "meaning": "rosto, superfície",
+    "on": [
+      "メン",
+      "ベン"
+    ],
+    "kun": [
+      "おも",
+      "おもて",
+      "つら"
+    ],
+    "category": "n3coi"
+  },
+  {
+    "char": "決",
+    "meaning": "decidir",
+    "on": [
+      "ケツ"
+    ],
+    "kun": [
+      "き(める)",
+      "ぎ(め)",
+      "き(まる)"
+    ],
+    "category": "n3dec"
+  },
+  {
+    "char": "結",
+    "meaning": "atar, concluir",
+    "on": [
+      "ケツ",
+      "ケチ"
+    ],
+    "kun": [
+      "むす(ぶ)",
+      "ゆ(う)",
+      "ゆ(わえる)"
+    ],
+    "category": "n3dec"
+  },
+  {
+    "char": "選",
+    "meaning": "escolher",
+    "on": [
+      "セン"
+    ],
+    "kun": [
+      "えら(ぶ)",
+      "え(る)",
+      "よ(る)"
+    ],
+    "category": "n3dec"
+  },
+  {
+    "char": "断",
+    "meaning": "cortar, recusar",
+    "on": [
+      "ダン"
+    ],
+    "kun": [
+      "た(つ)",
+      "ことわ(る)",
+      "さだ(める)"
+    ],
+    "category": "n3dec"
+  },
+  {
+    "char": "定",
+    "meaning": "fixar, determinar",
+    "on": [
+      "テイ",
+      "ジョウ"
+    ],
+    "kun": [
+      "さだ(める)",
+      "さだ(まる)",
+      "さだ(か)"
+    ],
+    "category": "n3dec"
+  },
+  {
+    "char": "勝",
+    "meaning": "vencer",
+    "on": [
+      "ショウ"
+    ],
+    "kun": [
+      "か(つ)",
+      "が(ち)",
+      "まさ(る)"
+    ],
+    "category": "n3dec"
+  },
+  {
+    "char": "収",
+    "meaning": "recolher, guardar",
+    "on": [
+      "シュウ"
+    ],
+    "kun": [
+      "おさ(める)",
+      "おさ(まる)"
+    ],
+    "category": "n3dec"
+  },
+  {
+    "char": "消",
+    "meaning": "apagar, sumir",
+    "on": [
+      "ショウ"
+    ],
+    "kun": [
+      "き(える)",
+      "け(す)"
+    ],
+    "category": "n3dec"
+  },
+  {
+    "char": "直",
+    "meaning": "reto, consertar",
+    "on": [
+      "チョク",
+      "ジキ",
+      "ジカ"
+    ],
+    "kun": [
+      "ただ(ちに)",
+      "なお(す)",
+      "なお(る)"
+    ],
+    "category": "n3dec"
+  },
+  {
+    "char": "置",
+    "meaning": "colocar, deixar",
+    "on": [
+      "チ"
+    ],
+    "kun": [
+      "お(く)",
+      "お(き)"
+    ],
+    "category": "n3dec"
+  },
+  {
+    "char": "展",
+    "meaning": "expandir, exibir",
+    "on": [
+      "テン"
+    ],
+    "kun": [],
+    "category": "n3dec"
   }
 ];
 
@@ -2264,6 +4582,51 @@ export const KANJI_EXTRA_CATEGORIES: readonly KanjiCategory[] = [
     "id": "n4corpo",
     "label": "N4: Corpo e sentidos",
     "chars": "体首顔頭心声"
+  },
+  {
+    "id": "n3gov",
+    "label": "N3: Governo e leis",
+    "chars": "政党府官局軍公権税制法州武戦争勢"
+  },
+  {
+    "id": "n3org",
+    "label": "N3: Trabalho e organização",
+    "chars": "務職役係委営部副設任団組機構資費備輸農労"
+  },
+  {
+    "id": "n3com",
+    "label": "N3: Comunicação e ideias",
+    "chars": "議談論述告報信念認示表記疑案想判調査検"
+  },
+  {
+    "id": "n3rel",
+    "label": "N3: Relações e ações",
+    "chars": "協共供交連相対助与受支保補取付配投打導得演応能当"
+  },
+  {
+    "id": "n3mud",
+    "label": "N3: Mudança e movimento",
+    "chars": "変化改加増減残続済初最再次向参訪防放流"
+  },
+  {
+    "id": "n3qua",
+    "label": "N3: Qualidades e estados",
+    "chars": "難違確常平独無全各総要必可優"
+  },
+  {
+    "id": "n3abs",
+    "label": "N3: Coisas e situações",
+    "chars": "位域育果過解害格革割活感関基期規求境経警件原現際在昨算価条的由例予利率領反比約容両和"
+  },
+  {
+    "id": "n3coi",
+    "label": "N3: Objetos, lugares e pessoas",
+    "chars": "球石島点線席宅米夫身神象状情式実数性成治術歳指側第内番面"
+  },
+  {
+    "id": "n3dec",
+    "label": "N3: Decisões e resultados",
+    "chars": "決結選断定勝収消直置展"
   }
 ];
 
@@ -2658,6 +5021,415 @@ export const KANJI_EXTRA_LESSONS: readonly Lesson[] = [
       "頭",
       "心",
       "声"
+    ]
+  },
+  {
+    "id": "kanji:L54",
+    "title": "Governo e leis 1",
+    "items": [
+      "政",
+      "党",
+      "府",
+      "官",
+      "局",
+      "軍"
+    ]
+  },
+  {
+    "id": "kanji:L55",
+    "title": "Governo e leis 2",
+    "items": [
+      "公",
+      "権",
+      "税",
+      "制",
+      "法",
+      "州"
+    ]
+  },
+  {
+    "id": "kanji:L56",
+    "title": "Governo e leis 3",
+    "items": [
+      "武",
+      "戦",
+      "争",
+      "勢"
+    ]
+  },
+  {
+    "id": "kanji:L57",
+    "title": "Trabalho e organização 1",
+    "items": [
+      "務",
+      "職",
+      "役",
+      "係",
+      "委"
+    ]
+  },
+  {
+    "id": "kanji:L58",
+    "title": "Trabalho e organização 2",
+    "items": [
+      "営",
+      "部",
+      "副",
+      "設",
+      "任"
+    ]
+  },
+  {
+    "id": "kanji:L59",
+    "title": "Trabalho e organização 3",
+    "items": [
+      "団",
+      "組",
+      "機",
+      "構",
+      "資"
+    ]
+  },
+  {
+    "id": "kanji:L60",
+    "title": "Trabalho e organização 4",
+    "items": [
+      "費",
+      "備",
+      "輸",
+      "農",
+      "労"
+    ]
+  },
+  {
+    "id": "kanji:L61",
+    "title": "Comunicação e ideias 1",
+    "items": [
+      "議",
+      "談",
+      "論",
+      "述",
+      "告"
+    ]
+  },
+  {
+    "id": "kanji:L62",
+    "title": "Comunicação e ideias 2",
+    "items": [
+      "報",
+      "信",
+      "念",
+      "認",
+      "示"
+    ]
+  },
+  {
+    "id": "kanji:L63",
+    "title": "Comunicação e ideias 3",
+    "items": [
+      "表",
+      "記",
+      "疑",
+      "案",
+      "想"
+    ]
+  },
+  {
+    "id": "kanji:L64",
+    "title": "Comunicação e ideias 4",
+    "items": [
+      "判",
+      "調",
+      "査",
+      "検"
+    ]
+  },
+  {
+    "id": "kanji:L65",
+    "title": "Relações e ações 1",
+    "items": [
+      "協",
+      "共",
+      "供",
+      "交",
+      "連",
+      "相"
+    ]
+  },
+  {
+    "id": "kanji:L66",
+    "title": "Relações e ações 2",
+    "items": [
+      "対",
+      "助",
+      "与",
+      "受",
+      "支",
+      "保"
+    ]
+  },
+  {
+    "id": "kanji:L67",
+    "title": "Relações e ações 3",
+    "items": [
+      "補",
+      "取",
+      "付",
+      "配",
+      "投",
+      "打"
+    ]
+  },
+  {
+    "id": "kanji:L68",
+    "title": "Relações e ações 4",
+    "items": [
+      "導",
+      "得",
+      "演",
+      "応",
+      "能",
+      "当"
+    ]
+  },
+  {
+    "id": "kanji:L69",
+    "title": "Mudança e movimento 1",
+    "items": [
+      "変",
+      "化",
+      "改",
+      "加",
+      "増"
+    ]
+  },
+  {
+    "id": "kanji:L70",
+    "title": "Mudança e movimento 2",
+    "items": [
+      "減",
+      "残",
+      "続",
+      "済",
+      "初"
+    ]
+  },
+  {
+    "id": "kanji:L71",
+    "title": "Mudança e movimento 3",
+    "items": [
+      "最",
+      "再",
+      "次",
+      "向",
+      "参"
+    ]
+  },
+  {
+    "id": "kanji:L72",
+    "title": "Mudança e movimento 4",
+    "items": [
+      "訪",
+      "防",
+      "放",
+      "流"
+    ]
+  },
+  {
+    "id": "kanji:L73",
+    "title": "Qualidades e estados 1",
+    "items": [
+      "難",
+      "違",
+      "確",
+      "常",
+      "平"
+    ]
+  },
+  {
+    "id": "kanji:L74",
+    "title": "Qualidades e estados 2",
+    "items": [
+      "独",
+      "無",
+      "全",
+      "各",
+      "総"
+    ]
+  },
+  {
+    "id": "kanji:L75",
+    "title": "Qualidades e estados 3",
+    "items": [
+      "要",
+      "必",
+      "可",
+      "優"
+    ]
+  },
+  {
+    "id": "kanji:L76",
+    "title": "Coisas e situações 1",
+    "items": [
+      "位",
+      "域",
+      "育",
+      "果",
+      "過",
+      "解"
+    ]
+  },
+  {
+    "id": "kanji:L77",
+    "title": "Coisas e situações 2",
+    "items": [
+      "害",
+      "格",
+      "革",
+      "割",
+      "活",
+      "感"
+    ]
+  },
+  {
+    "id": "kanji:L78",
+    "title": "Coisas e situações 3",
+    "items": [
+      "関",
+      "基",
+      "期",
+      "規",
+      "求",
+      "境"
+    ]
+  },
+  {
+    "id": "kanji:L79",
+    "title": "Coisas e situações 4",
+    "items": [
+      "経",
+      "警",
+      "件",
+      "原",
+      "現",
+      "際"
+    ]
+  },
+  {
+    "id": "kanji:L80",
+    "title": "Coisas e situações 5",
+    "items": [
+      "在",
+      "昨",
+      "算",
+      "価",
+      "条",
+      "的"
+    ]
+  },
+  {
+    "id": "kanji:L81",
+    "title": "Coisas e situações 6",
+    "items": [
+      "由",
+      "例",
+      "予",
+      "利",
+      "率",
+      "領"
+    ]
+  },
+  {
+    "id": "kanji:L82",
+    "title": "Coisas e situações 7",
+    "items": [
+      "反",
+      "比",
+      "約",
+      "容",
+      "両",
+      "和"
+    ]
+  },
+  {
+    "id": "kanji:L83",
+    "title": "Objetos, lugares e pessoas 1",
+    "items": [
+      "球",
+      "石",
+      "島",
+      "点",
+      "線",
+      "席"
+    ]
+  },
+  {
+    "id": "kanji:L84",
+    "title": "Objetos, lugares e pessoas 2",
+    "items": [
+      "宅",
+      "米",
+      "夫",
+      "身",
+      "神",
+      "象"
+    ]
+  },
+  {
+    "id": "kanji:L85",
+    "title": "Objetos, lugares e pessoas 3",
+    "items": [
+      "状",
+      "情",
+      "式",
+      "実",
+      "数",
+      "性"
+    ]
+  },
+  {
+    "id": "kanji:L86",
+    "title": "Objetos, lugares e pessoas 4",
+    "items": [
+      "成",
+      "治",
+      "術",
+      "歳",
+      "指",
+      "側"
+    ]
+  },
+  {
+    "id": "kanji:L87",
+    "title": "Objetos, lugares e pessoas 5",
+    "items": [
+      "第",
+      "内",
+      "番",
+      "面"
+    ]
+  },
+  {
+    "id": "kanji:L88",
+    "title": "Decisões e resultados 1",
+    "items": [
+      "決",
+      "結",
+      "選",
+      "断",
+      "定",
+      "勝"
+    ]
+  },
+  {
+    "id": "kanji:L89",
+    "title": "Decisões e resultados 2",
+    "items": [
+      "収",
+      "消",
+      "直",
+      "置",
+      "展"
     ]
   }
 ];

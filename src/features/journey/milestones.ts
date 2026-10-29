@@ -1,4 +1,4 @@
-import { ALL_KANJI, ALL_KANJI_CATEGORIES } from '@/content/kanji';
+import { ALL_KANJI, kanjiLevelOf } from '@/content/kanji';
 import { ALL_GRAMMAR } from '@/content/grammar';
 import { levelOf, READINGS } from '@/content/readings';
 import { learnedVerbIds } from '@/features/conjugation/cards';
@@ -22,10 +22,9 @@ export interface LevelPath {
   milestones: Milestone[];
 }
 
-const N4_GROUPS: ReadonlySet<string> = new Set(ALL_KANJI_CATEGORIES.filter((c) => c.label.startsWith('N4:')).map((c) => c.id));
 const KANA = ALL_ITEMS.filter((i) => i.script === 'hira' || i.script === 'kata');
-const N5_KANJI = ALL_KANJI.filter((k) => !N4_GROUPS.has(k.category)).map((k) => k.char);
-const N4_KANJI = ALL_KANJI.filter((k) => N4_GROUPS.has(k.category)).map((k) => k.char);
+const N5_KANJI = ALL_KANJI.filter((k) => kanjiLevelOf(k) === 'N5').map((k) => k.char);
+const N4_KANJI = ALL_KANJI.filter((k) => kanjiLevelOf(k) === 'N4').map((k) => k.char);
 
 /** As palavras do N4 são as dos grupos "N4: ..."; as demais (inclusive os exemplos dos kana e dos kanji) contam no N5. */
 const N4_WORD_IDS: ReadonlySet<string> = new Set(VOCAB.filter((w) => w.group.startsWith('N4:')).map((w) => w.id));

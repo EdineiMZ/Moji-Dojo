@@ -76,7 +76,7 @@ describe('scriptProgress', () => {
     });
     expect(p.hira).toMatchObject({ total: 104, learned: 2, firm: 1 });
     expect(p.kata).toMatchObject({ total: 123, learned: 1, firm: 1 });
-    expect(p.kanji).toMatchObject({ total: 284, learned: 1, firm: 0 });
+    expect(p.kanji).toMatchObject({ total: 477, learned: 1, firm: 0 });
   });
 });
 

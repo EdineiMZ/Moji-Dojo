@@ -156,8 +156,10 @@
   https://www.edrdg.org/jmdict/j_jmdict.html). Para cada palavra do vocabulário, a entrada mais comum com a mesma escrita e leitura.
 - **Frequência** (`frequency.ts`, `npm run build-frequency`): em quantas das ~243 mil frases curtas do **Tatoeba** (CC BY 2.0 FR)
   cada palavra aparece. Só os números ficam no app, não as frases.
-- **Kanji novos** (`kanjiExtra.ts`, `npm run build-kanji`): o último kanji do N5 (魚) e os **181 do N4**, pela lista antiga do JLPT
-  no campo `jlpt` do **KANJIDIC2** (EDRDG, CC BY-SA 4.0), de onde também vêm as leituras on e kun. A ordem dos traços vem do
+- **Kanji novos** (`kanjiExtra.ts`, `npm run build-kanji`): o último kanji do N5 (魚), os **181 do N4** pela lista antiga do JLPT
+  no campo `jlpt` do **KANJIDIC2** (EDRDG, CC BY-SA 4.0) e **193 do N3**: os do nível 2 antigo (N3 e N2 juntos) mais frequentes em
+  jornais (campo `freq` até 400). O KANJIDIC2 também dá as leituras on e kun. As palavras de exemplo (`kanjiMoreWords.ts`) e suas
+  leituras vêm do **JMdict** (EDRDG, CC BY-SA 4.0). A ordem dos traços vem do
   **KanjiVG** (CC BY-SA 3.0, ver `src/data/strokes/LICENSE.md`). Os **significados em português e a divisão em categorias foram escritos
   por IA para este app** (`scripts/kanji/pt.json`) e **precisam de revisão por um falante**.
 - **Situações de viagem** (`src/features/vocab/order.ts`): a escolha de quais palavras do vocabulário servem em cada situação é uma

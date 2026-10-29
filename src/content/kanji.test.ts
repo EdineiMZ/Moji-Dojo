@@ -1,14 +1,14 @@
 import { KANJI } from '@/data/kanji';
 import { STROKES } from '@/data/strokes';
 import { LESSONS } from './lessons';
-import { ALL_KANJI, ALL_KANJI_CATEGORIES } from './kanji';
+import { ALL_KANJI, ALL_KANJI_CATEGORIES, kanjiLevelOf } from './kanji';
 import { KANJI_EXTRA, KANJI_EXTRA_CATEGORIES, KANJI_EXTRA_LESSONS } from './kanjiExtra';
 
 describe('kanji além dos 102 iniciais', () => {
-  it('somam 182 aos 102 iniciais, sem repetir nenhum', () => {
+  it('somam 375 (182 do N5/N4 e 193 do N3) aos 102 iniciais, sem repetir nenhum', () => {
     expect(KANJI).toHaveLength(102);
-    expect(KANJI_EXTRA).toHaveLength(182);
-    expect(new Set(ALL_KANJI.map((k) => k.char)).size).toBe(284);
+    expect(KANJI_EXTRA).toHaveLength(375);
+    expect(new Set(ALL_KANJI.map((k) => k.char)).size).toBe(477);
   });
 
   it('todo kanji tem significado, uma leitura pelo menos, categoria que existe e a ordem dos traços', () => {
@@ -46,6 +46,14 @@ describe('kanji além dos 102 iniciais', () => {
       expect(lesson.items.length).toBeGreaterThanOrEqual(2);
       expect(lesson.items.length).toBeLessThanOrEqual(6);
     }
+  });
+
+  it('o N3 traz 193 kanji de grupos "N3: ...", com nível N3 e fora das metas e provas do N5 e do N4', () => {
+    const n3 = ALL_KANJI.filter((k) => kanjiLevelOf(k) === 'N3');
+    expect(n3).toHaveLength(193);
+    expect(ALL_KANJI.filter((k) => kanjiLevelOf(k) === 'N4')).toHaveLength(182);
+    expect(ALL_KANJI.filter((k) => kanjiLevelOf(k) === 'N5')).toHaveLength(102);
+    for (const c of '政党議選戦') expect(n3.some((k) => k.char === c)).toBe(true);
   });
 
   it('o N5 fica completo: 魚 entrou, e os kanji do N4 mais comuns estão lá', () => {

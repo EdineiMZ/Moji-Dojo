@@ -1,6 +1,6 @@
 import { VOCAB } from '@/content';
 import { ALL_GRAMMAR } from '@/content/grammar';
-import { ALL_KANJI, ALL_KANJI_CATEGORIES } from '@/content/kanji';
+import { ALL_KANJI, kanjiLevelOf } from '@/content/kanji';
 import { shuffle, type Rng } from '@/features/quiz/quiz';
 import { isSecondaryTwin } from '@/features/vocab/twins';
 
@@ -56,10 +56,9 @@ function question(section: ExamSection, prompt: string, right: string, wrong: re
 
 const levelWords = (level: ExamLevel) => VOCAB.filter((w) => !isSecondaryTwin(w.id) && w.group.startsWith('N4:') === (level === 'N4'));
 
-/** Os kanji do N4 são os dos grupos "N4: ..."; os demais são do N5. */
+/** Os kanji do N4 são os dos grupos "N4: ..."; os do N5 são os demais, menos os do N3 (que ainda não têm simulado). */
 function levelKanji(level: ExamLevel) {
-  const n4 = new Set(ALL_KANJI_CATEGORIES.filter((c) => c.label.startsWith('N4:')).map((c) => c.id));
-  return ALL_KANJI.filter((k) => n4.has(k.category) === (level === 'N4'));
+  return ALL_KANJI.filter((k) => kanjiLevelOf(k) === level);
 }
 
 /** Os tópicos de gramática do N4 têm o prefixo "n4-" no id. */

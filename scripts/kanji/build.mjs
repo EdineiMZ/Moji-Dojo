@@ -1,5 +1,6 @@
-// Acrescenta kanji além dos 102 iniciais: o último do N5 (魚) e os 181 do N4 (lista antiga do JLPT, campo `jlpt` 3 do
-// KANJIDIC2). Gera src/content/kanjiExtra.ts (leituras, significados, categorias e lições) e src/data/strokes/extra.json
+// Acrescenta kanji além dos 102 iniciais: o último do N5 (魚), os 181 do N4 (lista antiga do JLPT, campo `jlpt` 3 do
+// KANJIDIC2) e uma parte do N3: os 193 kanji do nível 2 da lista antiga (que reúne N3 e N2) mais frequentes em jornais
+// (campo `freq` até 400). Não é o N3 inteiro: o JLPT não publica lista oficial. Gera src/content/kanjiExtra.ts (leituras, significados, categorias e lições) e src/data/strokes/extra.json
 // (ordem dos traços, do KanjiVG). Uso: npm run build-kanji [-- caminho do kanjidic2.xml.gz]
 //
 // Fontes: KANJIDIC2 (EDRDG, CC BY-SA 4.0) para as leituras; KanjiVG (CC BY-SA 3.0) para os traços; os significados em português
@@ -27,11 +28,16 @@ for (const block of xml.split('<character>').slice(1)) {
   const literal = /<literal>(.)<\/literal>/u.exec(block)?.[1];
   if (!literal) continue;
   const jlpt = /<jlpt>(\d)<\/jlpt>/.exec(block)?.[1];
+  const freq = /<freq>(\d+)<\/freq>/.exec(block)?.[1];
   const readings = (type) => [...block.matchAll(new RegExp(`<reading r_type="${type}">([^<]+)<`, 'g'))].map((m) => m[1]);
-  info.set(literal, { jlpt: jlpt ? Number(jlpt) : 0, on: readings('ja_on'), kun: readings('ja_kun') });
+  info.set(literal, { jlpt: jlpt ? Number(jlpt) : 0, freq: freq ? Number(freq) : 0, on: readings('ja_on'), kun: readings('ja_kun') });
 }
 
-const targets = [...info.entries()].filter(([c, v]) => (v.jlpt === 3 || c === '魚') && !existing.has(c)).map(([c]) => c);
+/** Até que posição na frequência dos jornais (campo `freq`) o nível 2 antigo entra como N3. */
+const N3_MAX_FREQ = 400;
+const targets = [...info.entries()]
+  .filter(([c, v]) => (v.jlpt === 3 || (v.jlpt === 2 && v.freq > 0 && v.freq <= N3_MAX_FREQ) || c === '魚') && !existing.has(c))
+  .map(([c]) => c);
 
 // --- conferências: todo alvo tem significado e categoria, e cada categoria só tem alvos
 const inCategories = categories.flatMap((c) => [...c.chars]);
@@ -87,7 +93,7 @@ for (const cat of categories) {
   const parts = Math.ceil(chars.length / 6);
   const size = Math.ceil(chars.length / parts);
   for (let i = 0; i < parts; i++) {
-    lessons.push({ id: `kanji:L${number++}`, title: `${cat.label.replace('N4: ', '')}${parts > 1 ? ` ${i + 1}` : ''}`, items: chars.slice(i * size, (i + 1) * size) });
+    lessons.push({ id: `kanji:L${number++}`, title: `${cat.label.replace(/^N[34]: /, '')}${parts > 1 ? ` ${i + 1}` : ''}`, items: chars.slice(i * size, (i + 1) * size) });
   }
 }
 
@@ -99,7 +105,7 @@ writeFileSync(
 // Traços: ver src/data/strokes (KanjiVG, CC BY-SA 3.0). Ver src/content/LICENSE.md.
 import type { Kanji, KanjiCategory, Lesson } from '@/data/types';
 
-/** O último kanji do N5 e os do N4 que não estavam nos 102 iniciais. */
+/** O último kanji do N5, os do N4 e os 193 do N3 (mais frequentes) que não estavam nos 102 iniciais. */
 export const KANJI_EXTRA: readonly Kanji[] = ${literal(kanji)};
 
 export const KANJI_EXTRA_CATEGORIES: readonly KanjiCategory[] = ${literal(categories.map(({ id, label, chars }) => ({ id, label, chars })))};

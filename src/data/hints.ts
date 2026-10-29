@@ -1,6 +1,8 @@
+import { DAKUTEN_MNEMONICS } from './dakutenHints';
+
 // Dados-base do app (kana, kanji, lições, gramática inicial, viagem e teclado), mantidos à mão.
-/** Dicas de memorização dos kana (chave = o caractere). */
-export const KANA_MNEMONICS: Readonly<Record<string, string>> = {
+/** Dicas de memorização dos kana sem marca (chave = o caractere). */
+const BASE_KANA_MNEMONICS: Readonly<Record<string, string>> = {
   "あ": "Uma cruz com um laço: alguém amarrando a gravata e dizendo \"aaah, apertou!\".",
   "い": "Dois tracinhos lado a lado, como dois \"i\" sem o pingo.",
   "う": "Um tracinho em cima e uma curva: alguém de braço erguido gritando \"uuu!\".",
@@ -96,6 +98,9 @@ export const KANA_MNEMONICS: Readonly<Record<string, string>> = {
 };
 
 /** Dicas de memorização dos kanji (chave = o caractere). */
+/** Dicas de memorização de todos os kana, com e sem ten-ten e maru (chave = o caractere). */
+export const KANA_MNEMONICS: Readonly<Record<string, string>> = { ...BASE_KANA_MNEMONICS, ...DAKUTEN_MNEMONICS };
+
 export const KANJI_HINTS: Readonly<Record<string, string>> = {
   "一": "Um traço = um.",
   "二": "Dois traços = dois.",

@@ -3,6 +3,7 @@ import { createJSONStorage, persist, type StateStorage } from 'zustand/middlewar
 import { DEFAULT_AI, EMPTY_USAGE, addUsage, sanitizeAi, sanitizeUsage, type AiSettings, type AiUsage } from '@/features/ai/settings';
 import { DEFAULT_LIMITS, sanitizeLimits, type Limits } from '@/features/limits/limits';
 import { DEFAULT_PROFILE, sanitizeProfile, type Profile } from '@/features/profile/profile';
+import { DEFAULT_COLOR_THEME, isColorTheme, type ColorTheme } from '@/theme/colors';
 import { DEFAULT_REMINDERS, type ReminderSettings } from '@/features/reminders/plan';
 import { DEFAULT_RETENTION, sanitizeRetention } from '@/features/review/retention';
 import { DEFAULT_INTONATION, DEFAULT_PITCH, sanitizeFavorites, sanitizeIntonation, sanitizePitch, sanitizeStaffStyle } from '@/features/speech/voiceTuning';
@@ -16,6 +17,8 @@ export const sanitizeTypingGoal = (value: unknown): number => (typeof value === 
 
 /** Tema do app: segue o sistema (padrão), sempre claro ou sempre escuro. */
 export type ThemeMode = 'system' | 'light' | 'dark';
+
+export const sanitizeColorTheme = (value: unknown): ColorTheme => (isColorTheme(value) ? value : DEFAULT_COLOR_THEME);
 
 export const sanitizeThemeMode = (value: unknown): ThemeMode => (value === 'light' || value === 'dark' ? value : 'system');
 
@@ -36,6 +39,8 @@ export type TypingInput = 'pad' | 'system';
 
 export interface SettingsData {
   themeMode: ThemeMode;
+  /** Cores do app (Sakura, Matcha, Oceano, Lavanda); cada uma tem o modo claro e o escuro. */
+  colorTheme: ColorTheme;
   /** Meta diária de letras digitadas no simulador do teclado (0 = sem meta). */
   typingGoal: number;
   /** Retenção desejada das revisões (0,8 a 0,95): quando a chance de lembrar cai a isso, o cartão volta. */
@@ -84,6 +89,7 @@ export interface SettingsData {
 
 export interface SettingsActions {
   setThemeMode: (value: ThemeMode) => void;
+  setColorTheme: (value: ColorTheme) => void;
   setTypingGoal: (value: number) => void;
   setRetention: (value: number) => void;
   setWriteInReview: (value: boolean) => void;
@@ -117,6 +123,7 @@ export const SETTINGS_STORAGE_KEY = 'moji-dojo-settings';
 
 export const DEFAULT_SETTINGS: SettingsData = {
   themeMode: 'system',
+  colorTheme: DEFAULT_COLOR_THEME,
   typingGoal: DEFAULT_TYPING_GOAL,
   retention: DEFAULT_RETENTION,
   writeInReview: true,
@@ -152,6 +159,7 @@ export function createSettingsStore(storage: StateStorage) {
       (set) => ({
         ...DEFAULT_SETTINGS,
         setThemeMode: (value) => set({ themeMode: sanitizeThemeMode(value) }),
+        setColorTheme: (value) => set({ colorTheme: sanitizeColorTheme(value) }),
         setTypingGoal: (value) => set({ typingGoal: sanitizeTypingGoal(value) }),
         setRetention: (value) => set({ retention: sanitizeRetention(value) }),
         setWriteInReview: (value) => set({ writeInReview: value }),
@@ -187,6 +195,7 @@ export function createSettingsStore(storage: StateStorage) {
             ...current,
             ...saved,
             themeMode: sanitizeThemeMode(saved.themeMode),
+            colorTheme: sanitizeColorTheme(saved.colorTheme),
             typingGoal: sanitizeTypingGoal(saved.typingGoal),
             retention: sanitizeRetention(saved.retention),
             voiceEngine: saved.voiceEngine === 'voicevox' ? 'voicevox' : 'system',
@@ -199,8 +208,9 @@ export function createSettingsStore(storage: StateStorage) {
             aiUsage: sanitizeUsage(saved.aiUsage),
           };
         },
-        partialize: ({ themeMode, typingGoal, retention, writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
+        partialize: ({ themeMode, colorTheme, typingGoal, retention, writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
           themeMode,
+          colorTheme,
           typingGoal,
           retention,
           writeInReview,

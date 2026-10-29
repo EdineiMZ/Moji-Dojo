@@ -102,7 +102,7 @@ class BackupFailure extends Error {
 }
 
 /** Texto binário (um byte por caractere) → string UTF-8. */
-function decodeUtf8(binary: string): string {
+export function decodeUtf8(binary: string): string {
   let out = '';
   let i = 0;
   while (i < binary.length) {
@@ -355,7 +355,7 @@ export const BACKUP_ERROR_MESSAGES: Readonly<Record<BackupError, string>> = {
 };
 
 /** Texto → texto binário (um byte por caractere) em UTF-8; o inverso de decodeUtf8. */
-function encodeUtf8(text: string): string {
+export function encodeUtf8(text: string): string {
   let out = '';
   for (const ch of text) {
     const cp = ch.codePointAt(0) as number;

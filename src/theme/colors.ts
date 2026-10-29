@@ -80,3 +80,44 @@ export const darkPalette: Palette = {
   chart: '#FF9EC4',
   shadow: '#000000',
 };
+
+/** Temas de cor: o "tema" claro/escuro continua à parte (cada tema de cor tem as duas versões). */
+export type ColorTheme = 'sakura' | 'matcha' | 'oceano' | 'lavanda';
+
+export const COLOR_THEMES: readonly { id: ColorTheme; label: string; emoji: string }[] = [
+  { id: 'sakura', label: 'Sakura', emoji: '🌸' },
+  { id: 'matcha', label: 'Matcha', emoji: '🍵' },
+  { id: 'oceano', label: 'Oceano', emoji: '🌊' },
+  { id: 'lavanda', label: 'Lavanda', emoji: '💜' },
+];
+
+export const DEFAULT_COLOR_THEME: ColorTheme = 'sakura';
+
+type Accent = Pick<Palette, 'background' | 'backgroundGradient' | 'line' | 'primary' | 'primaryText' | 'primarySoft' | 'onPrimary' | 'chart' | 'shadow'>;
+type Variants = { light: Accent; dark: Accent & Pick<Palette, 'surface' | 'ink' | 'muted'> };
+
+/** Só o que muda de um tema de cor para outro; o resto (verde, vermelho, âmbar, lilás e azul de apoio) fica igual. */
+const ACCENTS: Readonly<Record<Exclude<ColorTheme, 'sakura'>, Variants>> = {
+  matcha: {
+    light: { background: '#F6FBF7', backgroundGradient: ['#EEF9F2', '#EEF6FF'], line: '#DCEBDF', primary: '#6CCB97', primaryText: '#1D6B45', primarySoft: '#DDF3E6', onPrimary: '#0C2A1D', chart: '#2E8B5B', shadow: '#7FB394' },
+    dark: { background: '#0F1F1A', backgroundGradient: ['#14302A', '#0B1A16'], surface: '#18302A', ink: '#EAF7F0', muted: '#9FC3B2', line: '#2C5446', primary: '#7FE0A8', primaryText: '#7FE0A8', primarySoft: '#1E4A38', onPrimary: '#0C2A1D', chart: '#7FE0A8', shadow: '#000000' },
+  },
+  oceano: {
+    light: { background: '#F3F8FF', backgroundGradient: ['#EAF4FF', '#F4F0FF'], line: '#DDE8F5', primary: '#62AEF2', primaryText: '#1B5FA8', primarySoft: '#DDEEFF', onPrimary: '#0B1F3A', chart: '#2F7FCC', shadow: '#8AA9C8' },
+    dark: { background: '#0E1630', backgroundGradient: ['#13224A', '#0A1128'], surface: '#182450', ink: '#EEF3FF', muted: '#A5B5DA', line: '#2D3F78', primary: '#7DB8FF', primaryText: '#7DB8FF', primarySoft: '#223A6B', onPrimary: '#0B1F3A', chart: '#7DB8FF', shadow: '#000000' },
+  },
+  lavanda: {
+    light: { background: '#FAF6FF', backgroundGradient: ['#F3ECFF', '#EEF6FF'], line: '#E6DDF3', primary: '#A98BEF', primaryText: '#5B33B0', primarySoft: '#EEE8FF', onPrimary: '#20103A', chart: '#7E57C8', shadow: '#A58FC4' },
+    dark: { background: '#16112B', backgroundGradient: ['#211848', '#100C26'], surface: '#231B48', ink: '#F4EFFF', muted: '#B3A9D6', line: '#3B3170', primary: '#BCA6FF', primaryText: '#BCA6FF', primarySoft: '#3A2D70', onPrimary: '#20103A', chart: '#BCA6FF', shadow: '#000000' },
+  },
+};
+
+export const isColorTheme = (value: unknown): value is ColorTheme => COLOR_THEMES.some((t) => t.id === value);
+
+/** A paleta de um tema de cor, no modo claro ou escuro. */
+export function paletteFor(theme: ColorTheme, isDark: boolean): Palette {
+  const base = isDark ? darkPalette : lightPalette;
+  if (theme === 'sakura') return base;
+  const accent = ACCENTS[theme];
+  return { ...base, ...(isDark ? accent.dark : accent.light) };
+}

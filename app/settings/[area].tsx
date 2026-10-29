@@ -4,6 +4,7 @@ import { AppText, BackLink, Screen } from '@/components';
 import { AiSettingsCard } from '@/features/ai/AiSettingsCard';
 import { BackupCard } from '@/features/backup/BackupCard';
 import { ExportCard } from '@/features/backup/ExportCard';
+import { SettingsBackupCard } from '@/features/backup/SettingsBackupCard';
 import { ProfileCard } from '@/features/profile/ProfileCard';
 import { DisplaySettingsCard } from '@/features/progress/DisplaySettingsCard';
 import { FeedbackSettingsCard } from '@/features/progress/FeedbackSettingsCard';
@@ -48,6 +49,7 @@ function Content({ area }: { area: SettingsArea }) {
         <>
           <ExportCard />
           <BackupCard />
+          <SettingsBackupCard />
           <ResetCard />
         </>
       );

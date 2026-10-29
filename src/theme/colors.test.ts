@@ -1,4 +1,4 @@
-import { darkPalette, lightPalette, type Palette } from './colors';
+import { COLOR_THEMES, darkPalette, lightPalette, paletteFor, type Palette } from './colors';
 
 /** Luminância relativa e razão de contraste do WCAG 2.x. */
 const luminance = (hex: string): number => {
@@ -33,10 +33,16 @@ const TEXT_PAIRS: readonly [keyof Palette, keyof Palette][] = [
   ['bad', 'background'],
 ];
 
-describe.each([
+const ALL_PALETTES: readonly [string, Palette][] = [
   ['claro', lightPalette],
   ['escuro', darkPalette],
-])('contraste do tema %s', (_name, palette) => {
+  ...COLOR_THEMES.flatMap((t) => [
+    [`${t.label} claro`, paletteFor(t.id, false)] as [string, Palette],
+    [`${t.label} escuro`, paletteFor(t.id, true)] as [string, Palette],
+  ]),
+];
+
+describe.each(ALL_PALETTES)('contraste do tema %s', (_name, palette) => {
   it.each(TEXT_PAIRS)('%s sobre %s tem pelo menos 4,5:1', (fg, bg) => {
     expect(contrast(palette[fg] as string, palette[bg] as string)).toBeGreaterThanOrEqual(4.5);
   });

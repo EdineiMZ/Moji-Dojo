@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, Card, ChipRow, Mascot, SegmentedControl } from '@/components';
 import { resultMood } from '@/features/lessons/resultCopy';
@@ -9,6 +9,7 @@ import { feedbackComplete, feedbackCorrect, feedbackWrong } from '@/lib/feedback
 import { useAiStore, useProgressStore } from '@/store';
 import { radii, spacing, useTheme } from '@/theme';
 import type { StoredExam } from './aiStore';
+import { examTimeMs, formatClock, SECONDS_PER_QUESTION, useExamClock, WARNING_MS } from '@/features/exam/clock';
 import { AiDisclaimer } from './AiParts';
 import { AiError } from './client';
 import {
@@ -29,27 +30,29 @@ const sectionLabel = (section: ExamSection): string => EXAM_SECTIONS.find((s) =>
 
 /** Simulado estilo JLPT: a IA cria as questões, você responde e vê o gabarito comentado. */
 export function ExamView() {
-  const [run, setRun] = useState<{ exam: StoredExam; attempt: number } | null>(null);
+  const [run, setRun] = useState<{ exam: StoredExam; attempt: number; timed: boolean } | null>(null);
   if (run) {
     return (
       <ExamSession
         key={run.attempt}
         exam={run.exam}
+        timed={run.timed}
         onExit={() => setRun(null)}
-        onRestart={() => setRun({ exam: run.exam, attempt: run.attempt + 1 })}
+        onRestart={() => setRun({ exam: run.exam, attempt: run.attempt + 1, timed: run.timed })}
       />
     );
   }
-  return <ExamPicker onStart={(exam) => setRun({ exam, attempt: 1 })} />;
+  return <ExamPicker onStart={(exam, timed) => setRun({ exam, attempt: 1, timed })} />;
 }
 
-function ExamPicker({ onStart }: { onStart: (exam: StoredExam) => void }) {
+function ExamPicker({ onStart }: { onStart: (exam: StoredExam, timed: boolean) => void }) {
   const ready = useAiReady();
   const exams = useAiStore((s) => s.exams);
   const removeExam = useAiStore((s) => s.removeExam);
   const [level, setLevel] = useState<ExamLevel>('N5');
   const [section, setSection] = useState<ExamSection>('grammar');
   const [size, setSize] = useState(5);
+  const [timed, setTimed] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [failure, setFailure] = useState<{ spec: JobSpec; error: unknown } | null>(null);
@@ -62,7 +65,7 @@ function ExamPicker({ onStart }: { onStart: (exam: StoredExam) => void }) {
     try {
       const result = await runJob(next);
       const made = useAiStore.getState().exams.find((x) => x.id === result.id);
-      if (made) onStart(made);
+      if (made) onStart(made, timed);
     } catch (e) {
       setError(e instanceof AiError ? e.message : 'Não consegui falar com a IA agora.');
       setFailure({ spec: next, error: e });
@@ -91,6 +94,17 @@ function ExamPicker({ onStart }: { onStart: (exam: StoredExam) => void }) {
             TAMANHO
           </AppText>
           <SegmentedControl options={EXAM_SIZES.map((n) => ({ value: String(n), label: `${n} questões` }))} value={String(size)} onChange={(v) => setSize(Number(v))} />
+          <AppText variant="caption" color="muted">
+            TEMPO
+          </AppText>
+          <ChipRow
+            options={[
+              { value: 'free', label: 'Sem tempo' },
+              { value: 'timed', label: `Tempo de prova (${SECONDS_PER_QUESTION} s por pergunta)` },
+            ]}
+            value={timed ? 'timed' : 'free'}
+            onChange={(v) => setTimed(v === 'timed')}
+          />
           <Button label={busy ? 'Montando o simulado...' : '✨ Criar um simulado'} onPress={create} disabled={busy} />
           {error ? (
             <AppText color="bad" accessibilityLiveRegion="polite">
@@ -116,7 +130,7 @@ function ExamPicker({ onStart }: { onStart: (exam: StoredExam) => void }) {
               {exam.questions.length} questões · {exam.best === null ? 'ainda não feito' : `melhor nota: ${exam.best} de ${exam.questions.length}`}
             </AppText>
             <View style={styles.row}>
-              <Button label="Fazer" style={styles.flex} onPress={() => onStart(exam)} />
+              <Button label="Fazer" style={styles.flex} onPress={() => onStart(exam, timed)} />
               <Button label="Apagar" variant="ghost" style={styles.flex} onPress={() => removeExam(exam.id)} />
             </View>
           </Card>
@@ -126,7 +140,7 @@ function ExamPicker({ onStart }: { onStart: (exam: StoredExam) => void }) {
   );
 }
 
-function ExamSession({ exam, onExit, onRestart }: { exam: StoredExam; onExit: () => void; onRestart: () => void }) {
+function ExamSession({ exam, timed, onExit, onRestart }: { exam: StoredExam; timed: boolean; onExit: () => void; onRestart: () => void }) {
   const { colors } = useTheme();
   const recordExamScore = useAiStore((s) => s.recordExamScore);
   const markStudied = useProgressStore((s) => s.markStudied);
@@ -136,14 +150,27 @@ function ExamSession({ exam, onExit, onRestart }: { exam: StoredExam; onExit: ()
   const [picked, setPicked] = useState<number | null>(null);
   const [results, setResults] = useState<readonly boolean[]>([]);
 
+  const answeredAll = index >= questions.length;
+  const clock = useExamClock(timed ? examTimeMs(questions.length) : null, !answeredAll);
+  // O tempo acabou: o que não foi respondido conta como errado e a nota é guardada.
+  const timedOut = clock.expired && !answeredAll;
+  const correctAtTimeout = results.filter(Boolean).length;
+  useEffect(() => {
+    if (!timedOut) return;
+    recordExamScore(exam.id, correctAtTimeout);
+    markStudied();
+  }, [timedOut, correctAtTimeout, exam.id, recordExamScore, markStudied]);
+
   const question = questions[index];
-  const finished = index >= questions.length;
+  const finished = answeredAll || timedOut;
 
   if (finished || !question) {
-    const correct = results.filter(Boolean).length;
+    const final = questions.map((_, i) => results[i] ?? false);
+    const unanswered = questions.length - results.length;
+    const correct = final.filter(Boolean).length;
     const pct = Math.round((correct / Math.max(questions.length, 1)) * 100);
     const good = pct >= REVIEW_GOOD_PCT;
-    const missed = questions.flatMap((q, i) => (results[i] ? [] : [`${q.prompt} → ${q.options[q.answer] ?? ''}`]));
+    const missed = questions.flatMap((q, i) => (final[i] ? [] : [`${q.prompt} → ${q.options[q.answer] ?? ''}`]));
     return (
       <ResultCard
         label={`Simulado ${exam.level} · ${sectionLabel(exam.section)}`}
@@ -157,6 +184,11 @@ function ExamSession({ exam, onExit, onRestart }: { exam: StoredExam; onExit: ()
         passed={good}
         mood={resultMood(good, pct)}
       >
+        {timedOut && unanswered > 0 ? (
+          <AppText color="bad" accessibilityLiveRegion="polite">
+            <Bold>O tempo acabou.</Bold> {unanswered} {unanswered === 1 ? 'questão ficou' : 'questões ficaram'} sem resposta e {unanswered === 1 ? 'conta' : 'contam'} como errada{unanswered === 1 ? '' : 's'}.
+          </AppText>
+        ) : null}
         <View style={styles.actions}>
           <Button label="Refazer" onPress={onRestart} />
           <Button label="Voltar aos simulados" variant="ghost" onPress={onExit} />
@@ -200,6 +232,11 @@ function ExamSession({ exam, onExit, onRestart }: { exam: StoredExam; onExit: ()
             <AppText variant="caption" color="muted">
               {exam.level} · {sectionLabel(exam.section).toUpperCase()} · {index + 1} DE {questions.length}
             </AppText>
+            {clock.left !== null ? (
+              <AppText color={clock.left <= WARNING_MS ? 'bad' : 'muted'} accessibilityLabel={`Tempo restante ${formatClock(clock.left)}`}>
+                <Bold>⏱ {formatClock(clock.left)}</Bold>
+              </AppText>
+            ) : null}
             {question.passage ? (
               <View style={[styles.passage, { backgroundColor: colors.lilacSoft }]}>
                 <AppText style={styles.jp}>{question.passage}</AppText>

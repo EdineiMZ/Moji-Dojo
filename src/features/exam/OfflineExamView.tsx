@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Bold, Button, Card, ChipRow, Mascot } from '@/components';
 import { resultMood } from '@/features/lessons/resultCopy';
@@ -8,6 +8,7 @@ import { REVIEW_GOOD_PCT } from '@/features/review/session';
 import { feedbackComplete, feedbackCorrect, feedbackWrong } from '@/lib/feedback';
 import { useProgressStore } from '@/store';
 import { spacing } from '@/theme';
+import { examTimeMs, formatClock, SECONDS_PER_QUESTION, useExamClock, WARNING_MS } from './clock';
 import { buildExam, EXAM_LEVELS, EXAM_SECTIONS, EXAM_SIZES, scoreBySection, type ExamLevel, type ExamQuestion } from './buildExam';
 
 const sectionLabel = (id: ExamQuestion['section']): string => EXAM_SECTIONS.find((s) => s.id === id)?.label ?? id;
@@ -16,9 +17,10 @@ const sectionLabel = (id: ExamQuestion['section']): string => EXAM_SECTIONS.find
 export function OfflineExamView() {
   const [level, setLevel] = useState<ExamLevel>('N5');
   const [size, setSize] = useState(5);
+  const [timed, setTimed] = useState(false);
   const [questions, setQuestions] = useState<readonly ExamQuestion[] | null>(null);
 
-  if (questions) return <ExamSession level={level} questions={questions} onRestart={() => setQuestions(buildExam(level, size))} onExit={() => setQuestions(null)} />;
+  if (questions) return <ExamSession level={level} questions={questions} timed={timed} onRestart={() => setQuestions(buildExam(level, size))} onExit={() => setQuestions(null)} />;
 
   return (
     <Card enterIndex={0}>
@@ -35,27 +37,49 @@ export function OfflineExamView() {
       </AppText>
       <ChipRow options={EXAM_SIZES.map((n) => ({ value: String(n), label: String(n) }))} value={String(size)} onChange={(v) => setSize(Number(v))} />
       <AppText variant="caption" color="muted">
-        Total: até {size * EXAM_SECTIONS.length} perguntas. O N4 usa só o conteúdo do N4. As perguntas vêm do vocabulário, dos kanji e das frases de gramática, que ainda não foram revisados por um falante.
+        TEMPO
+      </AppText>
+      <ChipRow
+        options={[
+          { value: 'free', label: 'Sem tempo' },
+          { value: 'timed', label: `Tempo de prova (${SECONDS_PER_QUESTION} s por pergunta)` },
+        ]}
+        value={timed ? 'timed' : 'free'}
+        onChange={(v) => setTimed(v === 'timed')}
+      />
+      <AppText variant="caption" color="muted">
+        Total: até {size * EXAM_SECTIONS.length} perguntas.{timed ? ` Com tempo, a prova toda tem ${formatClock(examTimeMs(size * EXAM_SECTIONS.length))}; o que ficar sem resposta quando o tempo acabar conta como errado.` : ''} O N4 usa só o conteúdo do N4. As perguntas vêm do vocabulário, dos kanji e das frases de gramática, que ainda não foram revisados por um falante.
       </AppText>
       <Button label="Começar o simulado" onPress={() => setQuestions(buildExam(level, size))} />
     </Card>
   );
 }
 
-function ExamSession({ level, questions, onExit, onRestart }: { level: ExamLevel; questions: readonly ExamQuestion[]; onExit: () => void; onRestart: () => void }) {
+function ExamSession({ level, questions, timed, onExit, onRestart }: { level: ExamLevel; questions: readonly ExamQuestion[]; timed: boolean; onExit: () => void; onRestart: () => void }) {
   const markStudied = useProgressStore((s) => s.markStudied);
   const [index, setIndex] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
   const [results, setResults] = useState<readonly boolean[]>([]);
 
+  const answeredAll = index >= questions.length;
+  const clock = useExamClock(timed ? examTimeMs(questions.length) : null, !answeredAll);
+  // O tempo acabou: o que não foi respondido conta como errado.
+  const timedOut = clock.expired && !answeredAll;
+  const markStudiedNow = timedOut;
+  useEffect(() => {
+    if (markStudiedNow) markStudied();
+  }, [markStudiedNow, markStudied]);
+
   const question = questions[index];
-  const finished = index >= questions.length;
+  const finished = answeredAll || timedOut;
 
   if (finished || !question) {
-    const correct = results.filter(Boolean).length;
+    const final = questions.map((_, i) => results[i] ?? false);
+    const unanswered = questions.length - results.length;
+    const correct = final.filter(Boolean).length;
     const pct = Math.round((correct / Math.max(questions.length, 1)) * 100);
     const good = pct >= REVIEW_GOOD_PCT;
-    const missed = questions.flatMap((q, i) => (results[i] ? [] : [`${q.prompt} → ${q.options[q.answer] ?? ''}`]));
+    const missed = questions.flatMap((q, i) => (final[i] ? [] : [`${q.prompt} → ${q.options[q.answer] ?? ''}`]));
     return (
       <ResultCard
         label={`Simulado ${level}`}
@@ -73,7 +97,12 @@ function ExamSession({ level, questions, onExit, onRestart }: { level: ExamLevel
           <AppText variant="caption" color="muted">
             NOTA POR SEÇÃO
           </AppText>
-          {scoreBySection(questions, results).map((s) => (
+          {timedOut && unanswered > 0 ? (
+            <AppText color="bad" accessibilityLiveRegion="polite">
+              <Bold>O tempo acabou.</Bold> {unanswered} {unanswered === 1 ? 'pergunta ficou' : 'perguntas ficaram'} sem resposta e {unanswered === 1 ? 'conta' : 'contam'} como errada{unanswered === 1 ? '' : 's'}.
+            </AppText>
+          ) : null}
+          {scoreBySection(questions, final).map((s) => (
             <AppText key={s.section} color={s.pct >= REVIEW_GOOD_PCT ? 'ok' : 'bad'}>
               <Bold>{sectionLabel(s.section)}:</Bold> {s.correct} de {s.total} ({s.pct}%)
             </AppText>
@@ -121,6 +150,11 @@ function ExamSession({ level, questions, onExit, onRestart }: { level: ExamLevel
             <AppText variant="caption" color="muted">
               {level} · {sectionLabel(question.section).toUpperCase()} · {index + 1} DE {questions.length}
             </AppText>
+            {clock.left !== null ? (
+              <AppText color={clock.left <= WARNING_MS ? 'bad' : 'muted'} accessibilityLabel={`Tempo restante ${formatClock(clock.left)}`}>
+                <Bold>⏱ {formatClock(clock.left)}</Bold>
+              </AppText>
+            ) : null}
             <AppText style={styles.prompt}>{question.prompt}</AppText>
           </View>
           <Mascot mood={!answered ? 'neutral' : picked === question.answer ? 'happy' : 'sad'} size={56} />

@@ -23,6 +23,7 @@ import { TranslateView } from '@/features/translate/TranslateView';
 import { VocabView } from '@/features/vocab/VocabView';
 import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
+import { useShareStore } from '@/features/share/sharedText';
 import { useSettingsStore } from '@/store';
 
 type PhrasesView = 'vocab' | 'cards' | 'scan' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure' | 'frames' | 'explore' | 'exam' | 'ai';
@@ -77,8 +78,16 @@ const SECTIONS: readonly { value: Section; label: string; hint: string; views: r
 const sectionOf = (view: PhrasesView): Section => SECTIONS.find((s) => s.views.some((v) => v.value === view))?.value ?? 'words';
 
 export default function PhrasesScreen() {
-  const [view, setView] = useState<PhrasesView>('vocab');
+  // Se o app foi aberto por um texto compartilhado, já abre na IA (o estúdio escolhe a aba Explicar).
+  const [view, setView] = useState<PhrasesView>(() => (useShareStore.getState().text ? 'ai' : 'vocab'));
   const [topic, setTopic] = useState(ALL_TOPICS);
+  // Chegou um texto compartilhado de outro app: abre a IA (o estúdio escolhe a aba Explicar sozinho).
+  const shareNonce = useShareStore((s) => s.nonce);
+  const [seenShare, setSeenShare] = useState(shareNonce);
+  if (shareNonce !== seenShare) {
+    setSeenShare(shareNonce);
+    setView('ai');
+  }
   const aiEnabled = useSettingsStore((s) => s.ai.enabled);
   const sections = SECTIONS.map((g) => ({ ...g, views: aiEnabled ? g.views : g.views.filter((v) => v.value !== 'ai') }));
 
@@ -121,7 +130,7 @@ export default function PhrasesScreen() {
         {view === 'dialog' ? <DialogView /> : null}
         {view === 'explore' ? <SentencesView /> : null}
         {view === 'mine' ? <MyPhrasesView /> : null}
-        {view === 'ai' ? <AiStudioView /> : null}
+        {view === 'ai' ? <AiStudioView key={shareNonce} /> : null}
         {view === 'build' ? <BuildHub topic={topic} onTopicChange={setTopic} /> : null}
         {view === 'travel' ? <TravelView /> : null}
       </SwapView>

@@ -17,6 +17,7 @@ import { useReminderSync } from '@/features/reminders/useReminderSync';
 import { remainingLoadingMs } from '@/lib/loading';
 import { useProgressStore } from '@/store';
 import { playSfx, preloadSfx } from '@/lib/sfx';
+import { useShareReceiver } from '@/features/share/sharedText';
 import { useWidgetSync } from '@/features/widget/homeWidget';
 import { fontAssets, ThemeProvider, useTheme } from '@/theme';
 
@@ -80,6 +81,7 @@ export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts(fontAssets);
   useReminderSync();
   useWidgetSync();
+  useShareReceiver();
   useAiQueueSync();
 
   useEffect(() => {

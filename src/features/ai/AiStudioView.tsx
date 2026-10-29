@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { AppText, Bold, Button, Card, ChipRow, useScrollIntoView } from '@/components';
 import { PROBLEM_MESSAGES } from '@/features/myphrases/phrases';
+import { useShareStore } from '@/features/share/sharedText';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { JapaneseInput } from '@/features/translate/JapaneseInput';
 import { useAiStore, useProgressStore, useSettingsStore } from '@/store';
@@ -26,7 +27,13 @@ const errorText = (error: unknown): string => (error instanceof AiError ? error.
 export function AiStudioView() {
   const router = useRouter();
   const ready = useAiReady();
-  const [tab, setTab] = useState<Tab>('chat');
+  // Um texto compartilhado de outro app abre direto o Explicar, com o campo preenchido (nada é enviado à IA sem a pessoa tocar em Explicar).
+  const [shared, setShared] = useState(() => useShareStore.getState().text ?? '');
+  const [tab, setTab] = useState<Tab>(() => (useShareStore.getState().text ? 'explain' : 'chat'));
+  const used = useCallback(() => {
+    setShared('');
+    useShareStore.getState().clear();
+  }, []);
 
   if (!ready) {
     return (
@@ -35,6 +42,11 @@ export function AiStudioView() {
         <AppText color="muted">
           Converse com a IA em japonês, explique falas de anime, escreva um diário corrigido, compare registros, leia textos feitos para você faça simulados estilo JLPT e receba um plano semanal. Cadastre a sua chave de API em Ajustes para usar. O resto do app não precisa dela.
         </AppText>
+        {shared ? (
+          <AppText accessibilityLiveRegion="polite">
+            <Bold>Texto recebido:</Bold> &ldquo;{shared.length > 120 ? `${shared.slice(0, 120)}...` : shared}&rdquo;. Ele fica guardado: configure a IA e abra Explicar para usá-lo.
+          </AppText>
+        ) : null}
         <Button label="Abrir Ajustes" variant="soft" onPress={() => router.push('/settings/ai')} />
       </Card>
     );
@@ -57,7 +69,7 @@ export function AiStudioView() {
       />
       <QueueBar />
       {tab === 'chat' ? <ConversationView /> : null}
-      {tab === 'explain' ? <ExplainTextCard /> : null}
+      {tab === 'explain' ? <ExplainTextCard initial={shared} onUsed={used} /> : null}
       {tab === 'diary' ? <DiaryCard /> : null}
       {tab === 'register' ? <RegisterCard /> : null}
       {tab === 'story' ? <StoryCard /> : null}
@@ -76,14 +88,19 @@ function useSavePhrase() {
   };
 }
 
-function ExplainTextCard() {
+function ExplainTextCard({ initial, onUsed }: { initial: string; onUsed: () => void }) {
   const { colors } = useTheme();
   const scrollIntoView = useScrollIntoView();
   const speed = useSettingsStore((s) => s.speechSpeed);
   const save = useSavePhrase();
-  const [source, setSource] = useState('');
+  const [source, setSource] = useState(initial);
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<TextExplanation | null>(null);
+
+  // O texto compartilhado já foi para o campo: não volta a ser usado.
+  useEffect(() => {
+    if (initial) onUsed();
+  }, [initial, onUsed]);
   const [shown, setShown] = useState('');
   const [message, setMessage] = useState<{ text: string; ok: boolean } | null>(null);
 

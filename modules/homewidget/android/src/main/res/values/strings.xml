@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="mojiwidget_label">Revisão do dia</string>
+  <string name="mojiwidget_description">Quantas revisões do Moji Dojo estão vencidas. Toque para abrir o app.</string>
+</resources>

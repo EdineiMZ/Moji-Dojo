@@ -1,0 +1,16 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <application>
+    <!-- Widget "Revisão do dia" da tela inicial. O sistema é quem o atualiza; não precisa ficar exportado. -->
+    <receiver
+      android:name="expo.modules.homewidget.ReviewWidgetProvider"
+      android:exported="false"
+      android:label="@string/mojiwidget_label">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/mojiwidget_review_info" />
+    </receiver>
+  </application>
+</manifest>

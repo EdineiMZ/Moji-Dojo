@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="mojiwidget_background">#FFF8F3</color>
+  <color name="mojiwidget_text">#3B2F4A</color>
+  <color name="mojiwidget_muted">#726481</color>
+  <color name="mojiwidget_accent">#C42A5F</color>
+</resources>

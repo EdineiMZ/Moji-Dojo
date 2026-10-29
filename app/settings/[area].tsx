@@ -15,6 +15,7 @@ import { ReviewSettingsCard } from '@/features/review/ReviewSettingsCard';
 import { AREAS, isArea, type SettingsArea } from '@/features/settings/areas';
 import { VoiceDiagnosticsCard } from '@/features/speech/VoiceDiagnosticsCard';
 import { VoiceStatusCard } from '@/features/speech/VoiceStatusCard';
+import { WidgetCard } from '@/features/widget/WidgetCard';
 import { VoicevoxCard } from '@/features/speech/VoicevoxCard';
 import { spacing } from '@/theme';
 
@@ -25,7 +26,12 @@ function Content({ area }: { area: SettingsArea }) {
     case 'appearance':
       return <ThemeSettingsCard />;
     case 'reminders':
-      return <RemindersCard />;
+      return (
+        <>
+          <RemindersCard />
+          <WidgetCard />
+        </>
+      );
     case 'voice':
       return (
         <>

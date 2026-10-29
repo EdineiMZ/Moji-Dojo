@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AppText, Button, Card } from '@/components';
 import { useProgressStore } from '@/store';
-import { canPinWidget, pushWidget, requestPinWidget, widgetAvailable, widgetPlaced } from './homeWidget';
+import { pushWidget, requestPinWidget, widgetAvailable, widgetPlaced } from './homeWidget';
 
 /** Ajustes: coloca o widget "Revisão do dia" na tela inicial do Android. */
 export function WidgetCard() {
@@ -27,7 +27,7 @@ export function WidgetCard() {
     setMessage(
       requestPinWidget()
         ? 'Confirme na janela que o Android abriu.'
-        : 'Seu celular não deixou o app adicionar o widget. Segure um espaço vazio da tela inicial, toque em Widgets e procure "Moji Dojo".',
+        : 'O seu lançador não deixou o app adicionar o widget. Adicione pelo seletor de widgets dele e procure "Moji Dojo".',
     );
   };
 
@@ -43,11 +43,9 @@ export function WidgetCard() {
           {message}
         </AppText>
       ) : null}
-      {canPinWidget() ? null : (
-        <AppText variant="caption" color="muted">
-          Se o botão não funcionar no seu celular: segure um espaço vazio da tela inicial, toque em Widgets e procure &ldquo;Moji Dojo&rdquo;.
-        </AppText>
-      )}
+      <AppText variant="caption" color="muted">
+        Alguns lançadores, como o Niagara, têm o próprio seletor de widgets e podem não abrir a confirmação do Android. Nesse caso, adicione o widget por esse seletor e procure &ldquo;Moji Dojo&rdquo; (ou segure um espaço vazio da tela inicial e toque em Widgets). O widget se ajusta sozinho ao tamanho que o lançador der: mais largo e baixo ele mostra o número ao lado do texto.
+      </AppText>
     </Card>
   );
 }

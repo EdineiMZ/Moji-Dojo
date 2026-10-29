@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pré-visualização do seletor de widgets (Android 12 em diante): um exemplo de como o widget aparece. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/mojiwidget_background"
+  android:gravity="center_vertical"
+  android:orientation="vertical"
+  android:padding="12dp">
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/mojiwidget_label"
+    android:textColor="@color/mojiwidget_muted"
+    android:textSize="12sp" />
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="12"
+    android:textColor="@color/mojiwidget_accent"
+    android:textSize="30sp"
+    android:textStyle="bold" />
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/mojiwidget_preview_label"
+    android:textColor="@color/mojiwidget_text"
+    android:textSize="13sp" />
+</LinearLayout>

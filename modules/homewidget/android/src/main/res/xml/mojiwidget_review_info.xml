@@ -2,6 +2,8 @@
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
   android:minWidth="110dp"
   android:minHeight="55dp"
+  android:minResizeWidth="110dp"
+  android:minResizeHeight="55dp"
   android:updatePeriodMillis="1800000"
   android:initialLayout="@layout/mojiwidget_review"
   android:resizeMode="horizontal|vertical"

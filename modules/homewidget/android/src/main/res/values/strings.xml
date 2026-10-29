@@ -2,4 +2,5 @@
 <resources>
   <string name="mojiwidget_label">Revisão do dia</string>
   <string name="mojiwidget_description">Quantas revisões do Moji Dojo estão vencidas. Toque para abrir o app.</string>
+  <string name="mojiwidget_preview_label">revisões vencidas · 5 dias</string>
 </resources>

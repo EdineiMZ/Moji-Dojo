@@ -1,3 +1,5 @@
+import { ALL_KANJI } from '@/content/kanji';
+import { KANJI_HINTS } from '@/data/hints';
 import { getItem } from '@/features/catalog';
 import { autoAdvanceMs, buildFeedback, explainItem } from './explain';
 
@@ -28,8 +30,15 @@ describe('buildFeedback', () => {
     expect(fb.hint).toContain('gravata');
   });
 
-  it('erro de um caractere sem dica no HTML (が) não inventa texto', () => {
-    expect(buildFeedback(getItem('が'), false)).not.toHaveProperty('hint');
+  it('erro de um caractere sem dica não inventa texto', () => {
+    // Os kana (com e sem ten-ten) já têm dica; o que pode faltar é a de algum kanji.
+    const noHint = ALL_KANJI.find((k) => !KANJI_HINTS[k.char]);
+    expect(noHint).toBeDefined();
+    expect(buildFeedback(getItem(noHint?.char ?? ''), false)).not.toHaveProperty('hint');
+  });
+
+  it('erro num kana com ten-ten mostra a dica do kana base', () => {
+    expect(buildFeedback(getItem('が'), false).hint).toContain('か (ka)');
   });
 });
 

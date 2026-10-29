@@ -2,15 +2,28 @@ import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-aud
 import { VOCAB } from '@/content';
 import { WORD_RECORDINGS, type WordRecording } from '@/content/wordAudio';
 
-/** Texto → gravação: pela escrita da palavra e, nas que só têm kana igual à leitura, pela leitura. */
+/** Leituras de menos letras que isto nunca viram gravação: "し", "じ", "は", "か"... têm muitas palavras diferentes por trás. */
+export const MIN_READING_LENGTH = 3;
+
+/**
+ * Texto → gravação: pela escrita da palavra e, nas palavras com kanji, pela leitura. A leitura só vale quando não há dúvida de
+ * qual palavra o falante gravou: tem pelo menos `MIN_READING_LENGTH` letras e todas as palavras com essa leitura têm o mesmo
+ * significado (senão é homófona: は é "dente" e "folha", じ é "hora" e "letra"). Antes, a leitura mais curta ganhava a gravação
+ * de outra palavra (tocar "し" falava a de 四, que o falante lê "よん").
+ */
 let index: Map<string, WordRecording> | null = null;
 function recordingIndex(): Map<string, WordRecording> {
   if (index) return index;
   const map = new Map<string, WordRecording>();
   for (const [word, rec] of Object.entries(WORD_RECORDINGS)) map.set(word, rec);
-  for (const w of VOCAB) {
-    const rec = WORD_RECORDINGS[w.jp];
-    if (rec && !map.has(w.reading)) map.set(w.reading, rec);
+  const byReading = new Map<string, typeof VOCAB>();
+  for (const w of VOCAB) byReading.set(w.reading, [...(byReading.get(w.reading) ?? []), w]);
+  for (const [reading, words] of byReading) {
+    if (map.has(reading) || [...reading].length < MIN_READING_LENGTH) continue;
+    if (new Set(words.map((w) => w.meaning)).size !== 1) continue;
+    const recorded = words.find((w) => WORD_RECORDINGS[w.jp]);
+    const rec = recorded ? WORD_RECORDINGS[recorded.jp] : undefined;
+    if (rec) map.set(reading, rec);
   }
   index = map;
   return map;

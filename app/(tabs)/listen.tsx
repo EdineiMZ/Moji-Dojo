@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AppText, ChipRow, Screen, SwapView } from '@/components';
+import { ChartView } from '@/features/chart/ChartView';
 import { ComprehensionView } from '@/features/listen/ComprehensionView';
 import { DictationView } from '@/features/listen/DictationView';
 import { TomView } from '@/features/pitch/TomView';
@@ -10,10 +11,11 @@ import { SoundsView } from '@/features/listen/SoundsView';
 import { SpeedControl } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 
-type ListenView = 'sounds' | 'ear' | 'dictation' | 'understand' | 'tone' | 'speak' | 'repeat';
+type ListenView = 'sounds' | 'chart' | 'ear' | 'dictation' | 'understand' | 'tone' | 'speak' | 'repeat';
 
 const VIEWS = [
   { value: 'sounds' as const, label: 'Sons' },
+  { value: 'chart' as const, label: 'Tabela' },
   { value: 'ear' as const, label: 'Ouvido' },
   { value: 'dictation' as const, label: 'Ditado' },
   { value: 'understand' as const, label: 'Compreensão' },
@@ -33,6 +35,7 @@ export default function ListenScreen() {
       <ChipRow options={VIEWS} value={view} onChange={setView} />
       <SwapView viewKey={view}>
         {view === 'sounds' ? <SoundsView /> : null}
+        {view === 'chart' ? <ChartView /> : null}
         {view === 'ear' ? <EarView /> : null}
         {view === 'dictation' ? <DictationView /> : null}
         {view === 'understand' ? <ComprehensionView /> : null}

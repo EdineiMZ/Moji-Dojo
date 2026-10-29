@@ -2,6 +2,17 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.16.0] - 2026-10-29
+
+As ideias em aberto do roadmap: tabela de kana, missões novas, widget, temas de cor e backup de configurações.
+
+- **Tabela de kana (Ouvir → Tabela):** a tabela do hiragana e do katakana, com e sem ten-ten e maru, que toca o som e mostra o exemplo e a dica; **treino livre** (pergunta o som de cada letra, sem mexer nas revisões); e **pares parecidos** (ぬ e め, ね, れ e わ, シ e ツ, ソ e ン...) com o detalhe que separa cada um e um atalho para treinar só aquelas letras.
+- **Dicas dos kana com ten-ten e maru:** as 50 letras que não tinham dica agora têm (o kana base, a troca de som e as exceções じ/ぢ e ず/づ).
+- **Missões mais variadas:** as missões das habilidades fracas (menos de 80% de acerto) aparecem mais; há missões de horário ("de manhã", "à noite") e missões em cadeia (cada passo só conta depois do anterior). As três missões do dia ficam fixadas no começo do dia.
+- **Widget "Revisão do dia":** novo widget da tela inicial com as revisões vencidas e os dias seguidos; o número continua certo mesmo com o app fechado. Adicione em Ajustes → Lembretes. Verificado no emulador; ainda não testado em aparelho real.
+- **Temas de cor:** Sakura, Matcha, Oceano e Lavanda, cada um claro e escuro, em Ajustes → Aparência.
+- **Backup só das configurações:** em Ajustes → Dados e backup, um código "MDJC1:" com as preferências (sem a chave da IA, o seu nome e a voz do Android escolhida).
+
 ## [2.15.0] - 2026-10-28
 
 Simulado offline, servidor de IA próprio, voz na conversa e mais treino de teclado.

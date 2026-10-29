@@ -95,6 +95,15 @@ Conferido em 2026-10-28: o dicionário só é copiado para a pasta do app quando
 - ✅ **Tema claro, escuro ou automático (2.13.0):** em Ajustes → Aparência.
 - ⬜ **Confirmar no aparelho** que sumiram o som repetido e as palavras mudas; quais palavras ainda ficarem mudas aparecem em Ajustes → Avançado. *(P)*
 
+### 2.16: ideias entregues
+
+- ✅ **Tabela de caracteres, treino livre e pares parecidos:** em Ouvir → Tabela. A tabela do hiragana e do katakana (com e sem ten-ten e maru) toca o som e mostra o exemplo e a dica; o treino livre pergunta o som de cada letra sem mexer nas revisões; "Parecidos" traz 13 grupos de letras que se confundem (ぬ e め, ね, れ e わ, シ e ツ, ソ e ン...) com o detalhe que as separa, e leva ao treino só daquelas letras.
+- ✅ **Dicas de memória dos kana com ten-ten e maru:** as 50 letras (25 de hiragana e 25 de katakana) ganharam dica, com o kana base, a troca de som e as exceções (じ e ぢ, ず e づ).
+- ✅ **Missões mais variadas:** (1) o sorteio dá preferência às missões das habilidades fracas (menos de 80% de acerto, com ao menos 10 respostas); (2) duas missões de horário, "de manhã" e "à noite", que só entram quando ainda dá tempo; (3) duas missões em cadeia, em que cada passo só conta depois do anterior. As três missões do dia ficam fixadas na primeira vez que o app abre no dia.
+- ✅ **Widget "Revisão do dia" (2.16):** módulo nativo Android (`modules/homewidget`). Mostra as revisões vencidas e os dias seguidos; o app envia o que vence nas próximas 36 horas, então o número continua certo mesmo com o app fechado. Tocar abre o app; o botão em Ajustes → Lembretes pede ao Android para adicioná-lo. **Verificado no emulador** (x86_64): o receiver registra, o Android mostra a confirmação, o widget aparece com os dados do app, no tema escuro, e o toque abre o app. Não testado em aparelho real nem com revisões vencidas no emulador.
+- ✅ **Exportar e importar só as configurações:** em Ajustes → Dados e backup, um código "MDJC1:" com tema, voz, leitura, lembretes, metas e IA. Ficam de fora a chave da IA, o uso do dia, o seu nome e a voz do Android escolhida.
+- ✅ **Temas de cor:** Sakura, Matcha, Oceano e Lavanda, cada um claro e escuro, em Ajustes → Aparência. O contraste de todas as paletas é conferido por teste (WCAG AA).
+
 ### 3.0: conteúdo do N4
 
 A maior entrega de aprendizado que falta. Exige conferência de fonte e de licença, e revisão por falante.
@@ -147,14 +156,10 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 
 Sem prioridade nem decisão; entram nas versões acima quando fizerem sentido.
 
-- Tabela de caracteres, treino livre e dicas de pares parecidos.
-- Dicas de memória para os kana com dakuten.
 - Moldes de frase com a fala do atendente para escolher, e mais moldes.
 - Mais exemplos de leitura do dia a dia (placas, preços em lojas).
-- Missões mais variadas: em cadeia, por horário e pesadas pelas áreas mais fracas.
-- Widget de tela inicial com a revisão do dia.
-- Exportar e importar só as configurações.
-- Temas de cor além do claro e do escuro.
+
+As outras ideias desta lista (tabela de caracteres, treino livre e pares parecidos; dicas dos kana com ten-ten; missões em cadeia, por horário e pelas áreas fracas; widget da revisão do dia; exportar só as configurações; temas de cor) foram feitas na 2.16, abaixo.
 
 ## 5. Fora do escopo por enquanto
 

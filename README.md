@@ -75,6 +75,7 @@ A versão mais recente fica na aba **[Releases](https://github.com/EdineiMZ/Moji
 **Frases, escuta, fala e leitura**
 - **Montar, Traduzir, Frases-modelo, 13 diálogos e 188 frases de viagem**, além de **30 mil frases** para explorar e buscar, tudo dentro do aparelho.
 - **Ditado, compreensão, tom, shadowing com gravação da própria voz e reconhecimento de fala** em japonês.
+- **Tabela de kana com treino livre e pares parecidos**, **widget da revisão do dia** e **temas de cor** (Sakura, Matcha, Oceano e Lavanda)
 - **Simulado offline por nível (N5 e N4)**, com nota por seção, e **textos graduados (N5 e N4) e leitura de placas e cardápios**, com toque na palavra, furigana opcional e uma **câmera que lê texto** (OCR japonês no aparelho).
 
 **Teclado**

@@ -12,12 +12,13 @@ import { feedbackComplete, feedbackCorrect, feedbackWrong } from '@/lib/feedback
 import { useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { spacing } from '@/theme';
-import { FRAMES, fillFrame, type Frame, type SlotWord } from './frames';
+import { buildStaffRound, FRAMES, fillFrame, staffRomaji, type Frame, type SlotWord, type StaffRound } from './frames';
 
-type Mode = 'make' | 'challenge';
+type Mode = 'make' | 'staff' | 'challenge';
 
 const MODES = [
   { value: 'make' as const, label: 'Montar frases' },
+  { value: 'staff' as const, label: 'Atendente' },
   { value: 'challenge' as const, label: 'Desafio' },
 ];
 
@@ -67,6 +68,98 @@ function MakeView() {
         </View>
         <Button label="🔊 Ouvir" variant="soft" onPress={() => speakJapanese(spoken(filled.jp), SPEECH_RATES[speed])} />
       </Card>
+    </View>
+  );
+}
+
+/**
+ * Modo "atendente": o atendente diz uma fala (no restaurante, no hotel, no táxi...), a pessoa escolhe o molde que responde a
+ * ela e completa a lacuna. Depois de escolher, a frase certa aparece pronta para ouvir.
+ */
+function StaffView() {
+  const recordDrill = useProgressStore((s) => s.recordDrill);
+  const speed = useSettingsStore((s) => s.speechSpeed);
+  const [round, setRound] = useState<StaffRound>(() => buildStaffRound());
+  const [chosen, setChosen] = useState<string | null>(null);
+  const [wordJp, setWordJp] = useState<string | null>(null);
+  const [showPt, setShowPt] = useState(false);
+  const { frame, line } = round;
+  const word = frame.words.find((w) => w.jp === wordJp) ?? frame.words[0]!;
+  const filled = fillFrame(frame, word);
+  const blocks = anatomize(filled.pieces);
+
+  const stateOf = (id: string): OptionState => {
+    if (chosen === null) return 'idle';
+    if (id === frame.id) return 'right';
+    return id === chosen ? 'wrong' : 'dim';
+  };
+  const pick = (id: string) => {
+    if (chosen !== null) return;
+    setChosen(id);
+    const ok = id === frame.id;
+    recordDrill(ok, 'drill');
+    if (ok) feedbackCorrect();
+    else feedbackWrong();
+  };
+  const next = () => {
+    setRound(buildStaffRound(Math.random, frame.id));
+    setChosen(null);
+    setWordJp(null);
+    setShowPt(false);
+  };
+
+  return (
+    <View style={styles.root}>
+      <Card enterIndex={0}>
+        <AppText variant="caption" color="muted">
+          O ATENDENTE DIZ
+        </AppText>
+        <AppText style={styles.big} accessibilityLabel={`O atendente diz: ${line.jp}`}>
+          {line.jp}
+        </AppText>
+        <RomajiLine text={staffRomaji(line.jp)} />
+        {showPt ? (
+          <AppText color="muted">{line.pt}</AppText>
+        ) : (
+          <AppText variant="caption" color="primary" accessibilityRole="button" onPress={() => setShowPt(true)}>
+            Ver a tradução
+          </AppText>
+        )}
+        <Button label="🔊 Ouvir o atendente" variant="soft" onPress={() => speakJapanese(spoken(line.jp.replace(/[？！。、]/g, ' ')), SPEECH_RATES[speed])} />
+      </Card>
+
+      <AppText variant="caption" color="muted">
+        QUAL MOLDE RESPONDE?
+      </AppText>
+      <View style={styles.options}>
+        {round.options.map((f, i) => (
+          <OptionButton key={f.id} index={i} label={f.title} glyph={false} state={stateOf(f.id)} onPress={() => pick(f.id)} />
+        ))}
+      </View>
+
+      {chosen !== null ? (
+        <Card>
+          <AppText accessibilityLiveRegion="polite" color={chosen === frame.id ? 'ok' : 'bad'}>
+            <Bold>{chosen === frame.id ? 'Certo!' : `O molde era: ${frame.title}`}</Bold>
+          </AppText>
+          <AppText variant="caption" color="muted">
+            {frame.use}
+          </AppText>
+          <AppText variant="caption" color="muted">
+            {frame.slotLabel.toUpperCase()}
+          </AppText>
+          <ChipRow options={frame.words.map((w) => ({ value: w.jp, label: w.jp }))} value={word.jp} onChange={setWordJp} />
+          <View style={styles.result}>
+            {blocks ? <BlockRow blocks={blocks} /> : <AppText style={styles.big}>{filled.jp}</AppText>}
+            <RomajiLine text={filled.romaji} />
+            <AppText>
+              <Bold>{filled.pt}</Bold>
+            </AppText>
+          </View>
+          <Button label="🔊 Ouvir a resposta" variant="soft" onPress={() => speakJapanese(spoken(filled.jp), SPEECH_RATES[speed])} />
+          <Button label="Outra fala" onPress={next} />
+        </Card>
+      ) : null}
     </View>
   );
 }
@@ -179,7 +272,7 @@ export function FramesView() {
   return (
     <View style={styles.root}>
       <ChipRow options={MODES} value={mode} onChange={setMode} />
-      {mode === 'make' ? <MakeView /> : <ChallengeView />}
+      {mode === 'make' ? <MakeView /> : mode === 'staff' ? <StaffView /> : <ChallengeView />}
     </View>
   );
 }

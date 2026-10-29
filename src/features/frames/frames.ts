@@ -20,8 +20,16 @@ export interface FixedPiece {
   particle?: boolean;
 }
 
+/** O que o atendente costuma dizer antes de a pessoa usar o molde: em kana (como o resto), com a tradução. */
+export interface StaffLine {
+  jp: string;
+  pt: string;
+}
+
 export interface Frame {
   id: string;
+  /** Falas do atendente que pedem este molde como resposta (restaurante, loja, hotel, táxi...). Nem todo molde tem. */
+  staff?: readonly StaffLine[];
   title: string;
   /** Para que serve o molde, em uma frase. */
   use: string;
@@ -42,6 +50,7 @@ const w = (jp: string, pt: string, the: string = pt): SlotWord => ({ jp, pt, the
 export const FRAMES: readonly Frame[] = [
   {
     id: 'kudasai',
+    staff: [{ jp: 'ごちゅうもんは？', pt: 'Qual é o seu pedido?' }, { jp: 'なにに しますか？', pt: 'O que vai querer?' }],
     title: '[coisa] を ください',
     use: 'Pedir algo: no restaurante, na loja, no conbini.',
     slotParticle: 'を',
@@ -52,6 +61,7 @@ export const FRAMES: readonly Frame[] = [
   },
   {
     id: 'doko',
+    staff: [{ jp: 'なにか おさがしですか？', pt: 'Está procurando alguma coisa?' }],
     title: '[lugar] は どこ ですか',
     use: 'Perguntar onde fica algo.',
     slotParticle: 'は',
@@ -72,6 +82,7 @@ export const FRAMES: readonly Frame[] = [
   },
   {
     id: 'ikitai',
+    staff: [{ jp: 'どちら まで いきますか？', pt: 'Até onde o senhor vai?' }],
     title: '[lugar] に いきたい です',
     use: 'Dizer para onde você quer ir.',
     slotParticle: 'に',
@@ -82,6 +93,7 @@ export const FRAMES: readonly Frame[] = [
   },
   {
     id: 'made',
+    staff: [{ jp: 'どちら まで ですか？', pt: 'Até onde?' }],
     title: '[lugar] まで いくら ですか',
     use: 'Perguntar o preço do trajeto (táxi, trem).',
     slotParticle: 'まで',
@@ -102,6 +114,7 @@ export const FRAMES: readonly Frame[] = [
   },
   {
     id: 'arerugi',
+    staff: [{ jp: 'アレルギーは ありますか？', pt: 'O senhor tem alguma alergia?' }],
     title: '[comida] の アレルギーが あります',
     use: 'Avisar sobre uma alergia alimentar: importante para quem viaja.',
     before: [],
@@ -113,6 +126,7 @@ export const FRAMES: readonly Frame[] = [
   },
   {
     id: 'tabemasen',
+    staff: [{ jp: 'たべられない ものは ありますか？', pt: 'Há algo que o senhor não possa comer?' }],
     title: '[comida] が たべられません',
     use: 'Dizer o que você não consegue ou não pode comer.',
     slotParticle: 'が',
@@ -142,6 +156,7 @@ export const FRAMES: readonly Frame[] = [
   },
   {
     id: 'kara-kimashita',
+    staff: [{ jp: 'どちら から いらっしゃいましたか？', pt: 'De onde o senhor veio?' }],
     title: '[país] から きました',
     use: 'Dizer de onde você veio.',
     slotParticle: 'から',
@@ -152,6 +167,7 @@ export const FRAMES: readonly Frame[] = [
   },
   {
     id: 'harau',
+    staff: [{ jp: 'おしはらいは どう なさいますか？', pt: 'Como vai pagar?' }],
     title: '[meio] で はらえますか',
     use: 'Perguntar se dá para pagar de um jeito.',
     slotParticle: 'で',
@@ -188,6 +204,7 @@ export const FRAMES: readonly Frame[] = [
   },
   {
     id: 'hitotsu',
+    staff: [{ jp: 'おいくつ ですか？', pt: 'Quantos?' }],
     title: '[coisa] を ひとつ ください',
     use: 'Pedir uma unidade de algo: no restaurante, no conbini.',
     slotParticle: 'を',
@@ -264,6 +281,7 @@ export const FRAMES: readonly Frame[] = [
   },
   {
     id: 'checkin',
+    staff: [{ jp: 'ごよやくの おなまえを おねがいします。', pt: 'O nome da reserva, por favor.' }],
     title: 'チェックインは [hora] から です',
     use: 'Perguntar ou confirmar o horário do check-in no hotel.',
     before: [{ jp: 'チェックイン' }, { jp: 'は', particle: true }],
@@ -286,6 +304,7 @@ export const FRAMES: readonly Frame[] = [
   },
   {
     id: 'quando-iku',
+    staff: [{ jp: 'いつ いらっしゃいますか？', pt: 'Quando o senhor vem?' }],
     title: '[quando] いきます',
     use: 'Dizer quando você vai a algum lugar.',
     after: [{ jp: 'いきます' }],
@@ -312,6 +331,59 @@ export const FRAMES: readonly Frame[] = [
     ptTemplate: 'Fecha {the}?',
     slotLabel: 'Que dia?',
     words: [w('げつようび', 'segunda-feira', 'na segunda-feira'), w('かようび', 'terça-feira', 'na terça-feira'), w('すいようび', 'quarta-feira', 'na quarta-feira'), w('もくようび', 'quinta-feira', 'na quinta-feira'), w('きんようび', 'sexta-feira', 'na sexta-feira'), w('どようび', 'sábado', 'no sábado'), w('にちようび', 'domingo', 'no domingo')],
+  },
+  {
+    id: 'onegai',
+    title: '[coisa] を おねがいします',
+    staff: [{ jp: 'ごちゅうもんは？', pt: 'Qual é o seu pedido?' }, { jp: 'おきまりですか？', pt: 'O senhor já decidiu?' }],
+    use: 'Pedir algo de um jeito educado: no restaurante, no hotel, no táxi.',
+    slotParticle: 'を',
+    after: [{ jp: 'おねがいします' }],
+    ptTemplate: '{pt}, por favor',
+    slotLabel: 'O que você quer?',
+    words: [w('みず', 'Água'), w('おちゃ', 'Chá'), w('コーヒー', 'Café'), w('ビール', 'Cerveja'), w('おかいけい', 'A conta'), w('レシート', 'O recibo'), w('ふくろ', 'Uma sacola'), w('タクシー', 'Um táxi')],
+  },
+  {
+    id: 'nanji-kara',
+    title: '[coisa] は なんじ からですか',
+    staff: [{ jp: 'ごりようの かたは こちらへ どうぞ。', pt: 'Quem vai usar, por aqui, por favor.' }],
+    use: 'Perguntar a que horas começa uma refeição, um passeio ou um show.',
+    slotParticle: 'は',
+    after: [{ jp: 'なんじ' }, { jp: 'から', particle: true }, { jp: 'ですか' }],
+    ptTemplate: 'A que horas começa {the}?',
+    slotLabel: 'O que começa?',
+    words: [w('あさごはん', 'café da manhã', 'o café da manhã'), w('ひるごはん', 'almoço', 'o almoço'), w('ばんごはん', 'jantar', 'o jantar'), w('ランチ', 'almoço', 'o almoço'), w('ディナー', 'jantar', 'o jantar'), w('ショー', 'show', 'o show'), w('ツアー', 'passeio', 'o passeio')],
+  },
+  {
+    id: 'doko-kaemasu',
+    title: '[coisa] は どこで かえますか',
+    use: 'Perguntar onde dá para comprar algo.',
+    slotParticle: 'は',
+    after: [{ jp: 'どこで' }, { jp: 'かえます' }, { jp: 'か', particle: true }],
+    ptTemplate: 'Onde posso comprar {the}?',
+    slotLabel: 'O que você quer comprar?',
+    words: [w('きっぷ', 'bilhete', 'o bilhete'), w('おみやげ', 'lembrança', 'uma lembrança'), w('かさ', 'guarda-chuva', 'um guarda-chuva'), w('くすり', 'remédio', 'remédio'), w('ちず', 'mapa', 'um mapa'), w('でんち', 'pilha', 'pilhas'), w('はがき', 'cartão-postal', 'cartões-postais')],
+  },
+  {
+    id: 'hanasemasu',
+    title: '[idioma] は はなせますか',
+    staff: [{ jp: 'どう なさいましたか？', pt: 'O que houve?' }],
+    use: 'Perguntar se a pessoa fala uma língua.',
+    slotParticle: 'は',
+    after: [{ jp: 'はなせます' }, { jp: 'か', particle: true }],
+    ptTemplate: 'Você fala {pt}?',
+    slotLabel: 'Que língua?',
+    words: [w('えいご', 'inglês'), w('ポルトガルご', 'português'), w('スペインご', 'espanhol'), w('フランスご', 'francês'), w('ちゅうごくご', 'chinês'), w('かんこくご', 'coreano')],
+  },
+  {
+    id: 'wakarimasen',
+    title: '[idioma ou coisa] は わかりません',
+    use: 'Dizer que você não entende algo (uma língua, uma palavra).',
+    slotParticle: 'は',
+    after: [{ jp: 'わかりません' }],
+    ptTemplate: 'Eu não entendo {pt}',
+    slotLabel: 'O que você não entende?',
+    words: [w('にほんご', 'japonês'), w('かんじ', 'kanji'), w('えいご', 'inglês'), w('これ', 'isto'), w('ことば', 'a palavra'), w('メニュー', 'o cardápio')],
   },
 ];
 
@@ -372,4 +444,44 @@ export function fillFrame(frame: Frame, word: SlotWord): FilledFrame {
     pt: frame.ptTemplate.replace('{pt}', word.pt).replace('{the}', word.the),
     pieces,
   };
+}
+
+/** Pontuação que a fala do atendente traz (？ ！ 。 、) e que o romaji não usa. */
+const PUNCT = /[？！。、]/g;
+
+/** Romaji de uma fala em kana: sem pontuação; は colado no fim de uma palavra se lê wa, e a pergunta (か) fica à parte. */
+export function staffRomaji(jp: string): string {
+  return jp
+    .replace(PUNCT, ' ')
+    .split(/\s+/)
+    .filter(Boolean)
+    .map(romajiOfWord)
+    .join(' ');
+}
+
+/** Os moldes que têm fala do atendente. */
+export const STAFF_FRAMES = FRAMES.filter((f) => (f.staff?.length ?? 0) > 0);
+
+export interface StaffRound {
+  line: StaffLine;
+  /** O molde certo: o que a fala pede. */
+  frame: Frame;
+  /** Os moldes entre os quais escolher (o certo e dois que não servem para esta fala), embaralhados. */
+  options: readonly Frame[];
+}
+
+/**
+ * Uma rodada do modo "atendente": uma fala, o molde que responde a ela e dois moldes que não respondem (sem nenhuma fala em
+ * comum com ela). `pick` sorteia um número de 0 a 1.
+ */
+export function buildStaffRound(pick: () => number = Math.random, avoid?: string): StaffRound {
+  const frames = STAFF_FRAMES.filter((f) => f.id !== avoid);
+  const frame = frames[Math.floor(pick() * frames.length)] ?? STAFF_FRAMES[0]!;
+  const lines = frame.staff ?? [];
+  const line = lines[Math.floor(pick() * lines.length)] ?? lines[0]!;
+  const wrongPool = FRAMES.filter((f) => f.id !== frame.id && !(f.staff ?? []).some((l) => l.jp === line.jp));
+  // Embaralha com o sorteador dado, para o resultado ser repetível nos testes.
+  const shuffled = [...wrongPool].sort(() => pick() - 0.5);
+  const options = [frame, ...shuffled.slice(0, 2)].sort(() => pick() - 0.5);
+  return { line, frame, options };
 }

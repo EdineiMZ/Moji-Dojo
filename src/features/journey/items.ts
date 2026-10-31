@@ -85,7 +85,12 @@ const season = (
   from: readonly [number, number],
   to: readonly [number, number],
   description: string,
-): Item => ({ id, name, slot, rarity: 'rare', source: { kind: 'season', price: 380, from, to }, description });
+  price = 380,
+  rarity: Rarity = 'rare',
+): Item => ({ id, name, slot, rarity, source: { kind: 'season', price, from, to }, description });
+
+/** Preço por espaço: fundo 520, cor 450, pele 800 (épica), o resto 380. */
+const seasonPrice = (slot: Slot): number => (slot === 'back' ? 520 : slot === 'tint' ? 450 : slot === 'skin' ? 800 : 380);
 
 export const ITEMS: readonly Item[] = [
   // ---- Loja: cabeça
@@ -148,12 +153,91 @@ export const ITEMS: readonly Item[] = [
   shop('pele-estrelas', 'Mochi estrelado', 'skin', 800, 'Pintinhas de estrela.'),
   shop('pele-coracoes', 'Mochi de corações', 'skin', 800, 'Cheio de carinho.'),
   shop('pele-onda', 'Mochi de ondas', 'skin', 900, 'Uma grande onda, estilo ukiyo-e.'),
-  // ---- Temporada (loja, só em datas)
-  season('chapeu-natal', 'Gorro de fim de ano', 'head', [12, 1], [1, 6], 'Dezembro e começo de janeiro.'),
+  // ---- Temporada (loja, só em datas): 12 datas com seis itens cada, um por espaço. Fora da janela o item não se compra, mas quem já tem continua com ele.
+  // Natal
+  season('chapeu-natal', 'Gorro de Natal', 'head', [12, 15], [12, 26], 'Ho, ho, ho!'),
+  season('barba-papai-noel', 'Barba de Papai Noel', 'face', [12, 15], [12, 26], 'Branca e fofa.', seasonPrice('face')),
+  season('cachecol-natal', 'Cachecol de Natal', 'neck', [12, 15], [12, 26], 'Listras vermelhas e verdes.', seasonPrice('neck')),
+  season('fundo-natal', 'Noite de Natal', 'back', [12, 15], [12, 26], 'Pinheiro com luzinhas.', seasonPrice('back')),
+  season('cor-natal', 'Mochi de Natal', 'tint', [12, 15], [12, 26], 'Verde-claro com rosa vermelho.', seasonPrice('tint')),
+  season('pele-natal', 'Mochi de flocos', 'skin', [12, 15], [12, 26], 'Flocos de neve vermelhos e azuis.', seasonPrice('skin'), 'epic'),
+  // Ano-Novo (Oshōgatsu)
+  season('enfeite-ano-novo', 'Enfeite de Ano-Novo', 'head', [12, 28], [1, 7], 'Pinheiro, ameixeira e laço.', seasonPrice('head')),
+  season('daruma-sobrancelhas', 'Sobrancelhas de daruma', 'face', [12, 28], [1, 7], 'Sorte para o ano que começa.', seasonPrice('face')),
+  season('omamori', 'Omamori', 'neck', [12, 28], [1, 7], 'Um amuleto da sorte.', seasonPrice('neck')),
+  season('fundo-hatsuhinode', 'Primeiro nascer do sol', 'back', [12, 28], [1, 7], 'Hatsuhinode: o sol do primeiro dia.', seasonPrice('back')),
+  season('cor-kohaku', 'Mochi kohaku', 'tint', [12, 28], [1, 7], 'Branco com rosa vermelho, as cores da festa.', seasonPrice('tint')),
+  season('pele-kohaku', 'Mochi vermelho e branco', 'skin', [12, 28], [1, 7], 'Manchas vermelhas de boa sorte.', seasonPrice('skin'), 'epic'),
+  // Setsubun
   season('mascara-oni', 'Máscara de oni', 'face', [1, 25], [2, 5], 'Setsubun: fora o azar!'),
+  season('chifres-setsubun', 'Chifres de Setsubun', 'head', [1, 25], [2, 5], 'Com a faixa de pele de tigre.', seasonPrice('head')),
+  season('saco-feijoes', 'Saquinho de feijões', 'neck', [1, 25], [2, 5], 'Para atirar no oni.', seasonPrice('neck')),
+  season('fundo-setsubun', 'Chuva de feijões', 'back', [1, 25], [2, 5], 'Oni para fora, sorte para dentro!', seasonPrice('back')),
+  season('cor-oni', 'Mochi oni', 'tint', [1, 25], [2, 5], 'Vermelhinho de tanto jogar feijão.', seasonPrice('tint')),
+  season('pele-tigre-oni', 'Mochi de tigre', 'skin', [1, 25], [2, 5], 'Listras de pele de tigre.', seasonPrice('skin'), 'epic'),
+  // Dia dos Namorados
+  season('coroa-coracoes', 'Coroa de corações', 'head', [2, 7], [2, 14], 'Dourada, cheia de amor.', seasonPrice('head')),
+  season('olhos-apaixonados', 'Olhos apaixonados', 'face', [2, 7], [2, 14], 'Coração nos olhos.', seasonPrice('face')),
+  season('colar-coracao', 'Colar de coração', 'neck', [2, 7], [2, 14], 'Um pingente vermelho.', seasonPrice('neck')),
+  season('fundo-namorados', 'Chuva de corações', 'back', [2, 7], [2, 14], 'Rosa e apaixonado.', seasonPrice('back')),
+  season('cor-chocolate', 'Mochi chocolate', 'tint', [2, 7], [2, 14], 'Cor de chocolate ao leite.', seasonPrice('tint')),
+  season('pele-chocolate', 'Mochi de cobertura', 'skin', [2, 7], [2, 14], 'Chocolate escorrendo com granulado.', seasonPrice('skin'), 'epic'),
+  // Hinamatsuri
+  season('coroa-hina', 'Coroa da imperatriz', 'head', [2, 20], [3, 3], 'Com pingentes dourados.', seasonPrice('head')),
+  season('bochechas-hina', 'Maquiagem de boneca', 'face', [2, 20], [3, 3], 'Bochechas e lábios das bonecas hina.', seasonPrice('face')),
+  season('colar-pessego', 'Guirlanda de pessegueiro', 'neck', [2, 20], [3, 3], 'Flores de pêssego.', seasonPrice('neck')),
+  season('fundo-hinadan', 'Plataforma das bonecas', 'back', [2, 20], [3, 3], 'O hinadan, vermelho e dourado.', seasonPrice('back')),
+  season('cor-pessego', 'Mochi pêssego', 'tint', [2, 20], [3, 3], 'Um tom de flor de pessegueiro.', seasonPrice('tint')),
+  season('pele-hishimochi', 'Mochi hishimochi', 'skin', [2, 20], [3, 3], 'Rosa, branco e verde em losangos.', seasonPrice('skin'), 'epic'),
+  // Hanami
   season('flor-sakura', 'Flor de sakura', 'head', [3, 10], [4, 20], 'Época de hanami.'),
+  season('petalas-no-rosto', 'Pétalas no rosto', 'face', [3, 10], [4, 20], 'Caíram da cerejeira.', seasonPrice('face')),
+  season('furoshiki-sakura', 'Furoshiki de sakura', 'neck', [3, 10], [4, 20], 'Um pano verde para o piquenique.', seasonPrice('neck')),
+  season('fundo-hanami', 'Piquenique sob a cerejeira', 'back', [3, 10], [4, 20], 'Hanami com dango e esteira.', seasonPrice('back')),
+  season('cor-petala', 'Mochi pétala', 'tint', [3, 10], [4, 20], 'Quase branco, com rosa suave.', seasonPrice('tint')),
+  season('pele-petalas', 'Mochi de pétalas', 'skin', [3, 10], [4, 20], 'Coberto de pétalas.', seasonPrice('skin'), 'epic'),
+  // Kodomo no Hi e Koinobori
+  season('kabuto-papel', 'Kabuto de papel', 'head', [4, 25], [5, 5], 'O capacete dobrado do Dia das Crianças.', seasonPrice('head')),
+  season('bochechas-kintaro', 'Bochechas de Kintarō', 'face', [4, 25], [5, 5], 'Forte e corado.', seasonPrice('face')),
+  season('carpas-penduradas', 'Carpas de pano', 'neck', [4, 25], [5, 5], 'Três koinobori no pescoço.', seasonPrice('neck')),
+  season('fundo-koinobori', 'Céu de koinobori', 'back', [4, 25], [5, 5], 'Carpas ao vento.', seasonPrice('back')),
+  season('cor-carpa', 'Mochi carpa', 'tint', [4, 25], [5, 5], 'Cor de carpa dourada.', seasonPrice('tint')),
+  season('pele-escamas-carpa', 'Mochi de escamas', 'skin', [4, 25], [5, 5], 'Escamas vermelhas de carpa.', seasonPrice('skin'), 'epic'),
+  // Festa Junina
+  season('chapeu-junino', 'Chapéu caipira', 'head', [6, 1], [6, 30], 'De palha, todo remendado.', seasonPrice('head')),
+  season('bigode-junino', 'Bigode e sardas', 'face', [6, 1], [6, 30], 'Pintado para a quadrilha.', seasonPrice('face')),
+  season('bandana-xadrez', 'Bandana xadrez', 'neck', [6, 1], [6, 30], 'Vermelha, de festa na roça.', seasonPrice('neck')),
+  season('fundo-fogueira', 'Fogueira junina', 'back', [6, 1], [6, 30], 'Bandeirinhas e fogueira.', seasonPrice('back')),
+  season('cor-milho', 'Mochi milho', 'tint', [6, 1], [6, 30], 'Amarelo de milho cozido.', seasonPrice('tint')),
+  season('pele-xadrez', 'Mochi xadrez', 'skin', [6, 1], [6, 30], 'Xadrez com remendo.', seasonPrice('skin'), 'epic'),
+  // Tanabata
   season('fita-tanabata', 'Fita de Tanabata', 'neck', [6, 25], [7, 15], 'Para pendurar um desejo.'),
+  season('bambu-tanzaku', 'Bambu de desejos', 'head', [6, 25], [7, 15], 'Com tiras de papel coloridas.', seasonPrice('head')),
+  season('olhos-estrelados', 'Olhos estrelados', 'face', [6, 25], [7, 15], 'Brilham como Orihime e Hikoboshi.', seasonPrice('face')),
+  season('fundo-tanabata', 'Via Láctea', 'back', [6, 25], [7, 15], 'Duas estrelas se encontram.', seasonPrice('back')),
+  season('cor-via-lactea', 'Mochi Via Láctea', 'tint', [6, 25], [7, 15], 'Azul-lilás da noite estrelada.', seasonPrice('tint')),
+  season('pele-via-lactea', 'Mochi de estrelas', 'skin', [6, 25], [7, 15], 'Uma faixa de estrelas.', seasonPrice('skin'), 'epic'),
+  // Natsu-matsuri e Obon
+  season('hachimaki-matsuri', 'Faixa de festival', 'head', [7, 15], [8, 20], 'Com o sol vermelho.', seasonPrice('head')),
+  season('pintura-matsuri', 'Pintura de matsuri', 'face', [7, 15], [8, 20], 'Listras de festival.', seasonPrice('face')),
+  season('furin-colar', 'Furin', 'neck', [7, 15], [8, 20], 'Sininho de vidro do verão.', seasonPrice('neck')),
+  season('fundo-fogos', 'Fogos de artifício', 'back', [7, 15], [8, 20], 'Hanabi sobre o rio.', seasonPrice('back')),
+  season('cor-yukata', 'Mochi yukata', 'tint', [7, 15], [8, 20], 'Azul de yukata.', seasonPrice('tint')),
+  season('pele-yukata', 'Mochi de yukata', 'skin', [7, 15], [8, 20], 'Círculos brancos sobre o índigo.', seasonPrice('skin'), 'epic'),
+  // Tsukimi
+  season('enfeite-susuki', 'Susuki da lua', 'head', [9, 10], [10, 5], 'Capim-dos-pampas para a lua cheia.', seasonPrice('head')),
+  season('bigode-coelho', 'Nariz de coelho', 'face', [9, 10], [10, 5], 'O coelho que soca mochi na lua.', seasonPrice('face')),
+  season('colar-dango', 'Espeto de dango', 'neck', [9, 10], [10, 5], 'Rosa, branco e verde.', seasonPrice('neck')),
+  season('fundo-tsukimi', 'Lua cheia', 'back', [9, 10], [10, 5], 'O coelho da lua.', seasonPrice('back')),
+  season('cor-lua', 'Mochi lua', 'tint', [9, 10], [10, 5], 'Amarelo-claro de lua cheia.', seasonPrice('tint')),
+  season('pele-lua-cheia', 'Mochi de crateras', 'skin', [9, 10], [10, 5], 'Crateras de lua.', seasonPrice('skin'), 'epic'),
+  // Halloween
   season('chapeu-abobora', 'Chapéu de abóbora', 'head', [10, 10], [11, 2], 'Doce ou travessura.'),
+  season('dentes-vampiro', 'Presas de vampiro', 'face', [10, 10], [11, 2], 'Cuidado com o pescoço!', seasonPrice('face')),
+  season('gola-vampiro', 'Gola de vampiro', 'neck', [10, 10], [11, 2], 'Preta por fora, vermelha por dentro.', seasonPrice('neck')),
+  season('fundo-halloween', 'Casa assombrada', 'back', [10, 10], [11, 2], 'Lua laranja e morcegos.', seasonPrice('back')),
+  season('cor-fantasma', 'Mochi fantasma', 'tint', [10, 10], [11, 2], 'Branco-azulado de assombração.', seasonPrice('tint')),
+  season('pele-abobora', 'Mochi de abóbora', 'skin', [10, 10], [11, 2], 'Gomos de abóbora.', seasonPrice('skin'), 'epic'),
   // ---- Só por conquista
   reward('hachimaki-ganbare', 'Faixa Ganbare', 'head', 'streak-7', 'Sete dias seguidos: ganbare!'),
   reward('coroa-dourada', 'Coroa dourada', 'head', 'streak-30', 'Trinta dias seguidos.', 'epic'),

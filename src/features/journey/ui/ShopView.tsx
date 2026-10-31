@@ -9,7 +9,7 @@ import { BUY_MESSAGES, outfit as outfitOf } from '../journey';
 import { buyable, howToGet, ITEMS, priceOf, RARITIES, RARITY_LABELS, SLOTS, type Item, type Rarity, type Slot } from '../items';
 import { rarityStyle } from './rarity';
 
-type Category = Slot | 'all' | 'collection';
+type Category = Slot | 'all' | 'seasons' | 'collection';
 type Show = 'all' | 'can' | 'mine';
 type Sort = 'default' | 'price' | 'rarity';
 
@@ -18,6 +18,7 @@ const CATEGORY_LABELS: Readonly<Record<Slot, string>> = { head: 'Cabeça', face:
 const CATEGORIES: readonly { value: Category; label: string }[] = [
   { value: 'all', label: 'Tudo' },
   ...SLOTS.map((slot) => ({ value: slot as Category, label: CATEGORY_LABELS[slot] })),
+  { value: 'seasons', label: 'Datas' },
   { value: 'collection', label: 'Coleção rara' },
 ];
 
@@ -122,6 +123,7 @@ export function ShopView({ onPreview }: ShopViewProps) {
 
   const items = useMemo(() => {
     let list = ITEMS.filter((item) => {
+      if (category === 'seasons') return item.source.kind === 'season';
       if (category === 'collection') return item.source.kind !== 'shop' && item.source.kind !== 'season';
       return category === 'all' || item.slot === category;
     });
@@ -131,6 +133,7 @@ export function ShopView({ onPreview }: ShopViewProps) {
     const ordered = [...list];
     if (sort === 'price') ordered.sort((a, b) => (priceOf(a) ?? 99999) - (priceOf(b) ?? 99999));
     else if (sort === 'rarity') ordered.sort((a, b) => rarityIndex(b.rarity) - rarityIndex(a.rarity) || kindOrder(a) - kindOrder(b));
+    else if (category === 'seasons') ordered.sort((a, b) => Number(buyable(b, new Date())) - Number(buyable(a, new Date())));
     else ordered.sort((a, b) => kindOrder(a) - kindOrder(b));
     return ordered;
   }, [category, show, sort, journey.owned, journey.petals]);

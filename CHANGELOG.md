@@ -2,6 +2,16 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.22.0] - 2026-10-31
+
+Cosméticos de 12 datas comemorativas para o Mochi.
+
+- **72 itens novos de época:** 12 datas com seis itens cada, um por espaço (cabeça, rosto, pescoço, fundo, cor e pele): Natal, Ano-Novo, Setsubun, Dia dos Namorados, Hinamatsuri, Hanami, Kodomo no Hi e Koinobori, Festa Junina, Tanabata, Natsu-matsuri e Obon, Tsukimi e Halloween. O Mochi passa a ter 178 itens.
+- **Só na época:** cada item só se compra dentro das datas da comemoração (por exemplo, o Halloween de 10/10 a 2/11). Quem já comprou continua com o item o ano todo, e o Mochi veste sozinho os itens de época que você tem quando a data chega, se a opção estiver ligada.
+- **Loja:** nova categoria "Datas", com o que está à venda hoje no começo. Preços: 380 pétalas (cabeça, rosto e pescoço), 450 (cor), 520 (fundo) e 800 (pele, épica).
+- **Ajustes de datas existentes:** o gorro de Natal passa a valer de 15/12 a 26/12 (antes, de 1/12 a 6/1; o Ano-Novo agora tem os próprios itens) e se chama "Gorro de Natal".
+- **Desenhos:** conferidos numa pré-visualização no navegador; o acabamento no aparelho ainda precisa ser visto.
+
 ## [2.21.0] - 2026-10-31
 
 Nove pontos novos de gramática do N4.

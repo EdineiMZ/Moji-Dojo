@@ -177,7 +177,7 @@ export const TINTS_MORE: Readonly<Record<string, { body: string; pink: string }>
 /** O contorno do corpo do Mochi (o mesmo de MochiArt): as peles são recortadas por ele para não passar da borda. */
 export const BODY_PATH = 'M30 118 C30 74 62 50 100 50 C138 50 170 74 170 118 C170 150 148 172 100 172 C52 172 30 150 30 118 Z';
 
-function Clipped({ children }: { children: React.ReactNode }) {
+export function Clipped({ children }: { children: React.ReactNode }) {
   return (
     <G>
       <Defs>

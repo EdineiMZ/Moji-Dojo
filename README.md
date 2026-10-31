@@ -82,7 +82,7 @@ A versão mais recente fica na aba **[Releases](https://github.com/EdineiMZ/Moji
 - Simulador do teclado de 12 teclas com deslize (flick): níveis, conversão para kanji, mapa de calor das teclas que mais erra e frases sob medida.
 
 **Motivação, sem pressão**
-- Meta diária de minutos, lembretes locais, sessão diária guiada, missões, 42 conquistas, baús do dia e da semana e o **Mochi**: nível, humores e **111 itens** na loja (cabeça, rosto, pescoço, fundos, cores e peles, em quatro raridades).
+- Meta diária de minutos, lembretes locais, sessão diária guiada, missões, 42 conquistas, baús do dia e da semana e o **Mochi**: nível, humores e **178 itens** na loja (cabeça, rosto, pescoço, fundos, cores e peles, em quatro raridades), 72 deles de 12 datas comemorativas que só se compram na época (Natal, Ano-Novo, Setsubun, Namorados, Hinamatsuri, Hanami, Koinobori, Festa Junina, Tanabata, Natsu-matsuri, Tsukimi e Halloween).
 
 **Opcionais**
 - **IA com a sua própria chave** (Gemini, Claude ou GPT): corrige frases, explica erros, conversa em cenas, faz diário, simulados e textos sob medida. Sem chave, o app funciona igual.
@@ -95,7 +95,7 @@ O estado de cada item e o que vem a seguir estão no [`ROADMAP.md`](ROADMAP.md);
 
 <table>
   <tr>
-    <td align="center" width="25%"><img src="docs/screenshots/loja.png" alt="Loja do Mochi com 111 itens e raridades"><br><sub><b>Loja do Mochi</b><br>111 itens em quatro raridades</sub></td>
+    <td align="center" width="25%"><img src="docs/screenshots/loja.png" alt="Loja do Mochi com raridades"><br><sub><b>Loja do Mochi</b><br>178 itens em quatro raridades</sub></td>
     <td align="center" width="25%"><img src="docs/screenshots/dialogos.png" alt="Diálogos de viagem"><br><sub><b>Diálogos</b><br>13 cenas de viagem</sub></td>
     <td align="center" width="25%"><img src="docs/screenshots/voz-de-anime.png" alt="Lista de vozes de anime traduzida"><br><sub><b>Voz de anime</b><br>nomes e descrições em português</sub></td>
     <td align="center" width="25%"><img src="docs/screenshots/ia-conversa.png" alt="Conversa por cenas com a IA"><br><sub><b>IA opcional</b><br>conversa por cenas</sub></td>

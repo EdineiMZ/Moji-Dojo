@@ -18,7 +18,7 @@ O Moji Dojo ensina a escrita e leva o aluno até a produção de frases, a escut
 | Escuta e fala | ✅ | Ditado, compreensão, tom, shadowing com gravação, reconhecimento de fala |
 | Leitura | ✅ | Textos graduados e do dia a dia (N5 e N4), toque na palavra, câmera que lê texto |
 | Teclado de flick | ✅ | Simulador com níveis, séries de pontuação e números, conversão, mapa de calor, revisão espaçada por tecla e meta diária |
-| Motivação | ✅ | Mochi, 111 itens, 42 conquistas, missões, baús, metas e lembretes |
+| Motivação | ✅ | Mochi, 178 itens (72 de 12 datas), 42 conquistas, missões, baús, metas e lembretes |
 | IA opcional | ✅ | Gemini, Claude e GPT com chave própria, cache, fila offline, 13 recursos |
 | Voz de anime | ✅ | 43 personagens, vozes baixadas pelo app com aceite dos termos de cada um, "Minhas vozes" para escolher e ouvir (2.8.1) |
 | Dados e backup | ✅ | Backup `MDJ1:`, importação do formato antigo, exportação para o Anki |
@@ -141,6 +141,12 @@ Passada de design no emulador (Pixel de 1080 × 2400, Android 16, tema escuro, f
 - ⬜ **Passada do tema claro e dos 4 temas de cor** com as mesmas capturas, e o resultado guardado em `docs/screenshots`. *(P)*
 - ✅ **Script de capturas para o emulador:** as capturas desta passada foram à mão com `adb`; vale transformar em `scripts/screenshots` (ver "Capturas de tela automatizadas" em Engenharia). *(P)* *(2.20.0: `npm run screenshots` (`scripts/screenshots`), com `--font` e `--serial`; ainda não testado num aparelho.)*
 - ✅ **APK para o emulador:** o `gerar-apk.bat` gera só `arm64-v8a`, que não abre no emulador x86_64 (o app fecha com `couldn't find DSO to load: libreactnative.so`). Para testar no emulador é preciso `gradlew assembleRelease -PreactNativeArchitectures=x86_64`; criar um `gerar-apk-emulador.bat` com isso, que não copia o resultado para `versoes`. *(P)* *(2.20.0: `gerar-apk-emulador.bat` (x86_64, sem copiar para `versoes`).)*
+
+### 2.22: cosméticos de datas e a Casa do Mochi (2026-10-31)
+
+- ✅ **Cosméticos de datas comemorativas (2.22.0):** 12 datas com seis itens cada, um por espaço (cabeça, rosto, pescoço, fundo, cor e pele), 72 itens no total: Natal (15/12 a 26/12), Ano-Novo (28/12 a 7/1), Setsubun (25/1 a 5/2), Dia dos Namorados (7/2 a 14/2), Hinamatsuri (20/2 a 3/3), Hanami (10/3 a 20/4), Kodomo no Hi e Koinobori (25/4 a 5/5), Festa Junina (1/6 a 30/6), Tanabata (25/6 a 15/7), Natsu-matsuri e Obon (15/7 a 20/8), Tsukimi (10/9 a 5/10) e Halloween (10/10 a 2/11). Só se compram dentro da janela; quem já tem o item o mantém. Na loja há a categoria "Datas", com o que está à venda hoje primeiro. Os desenhos foram conferidos numa pré-visualização no navegador, **não no aparelho**: falta ver o acabamento no celular. *(M)*
+- ⬜ **Datas móveis:** o Carnaval, a Páscoa e o Dia das Crianças brasileiro (12/10) não entraram; as datas móveis pedem um cálculo por ano. *(P)*
+- ⬜ **Casa do Mochi (ideia, análise em 2026-10-31):** cômodos internos (Quarto, Sala, Cozinha, Ofurô, Escritório) e externos (Jardim, Engawa, Lago de carpas) que se compram, e depois móveis, skins de móveis e cenários. Ordem sugerida: (1) casa mínima com 3 cômodos (Quarto, Jardim e Escritório) e móveis sem skins; (2) mais cômodos e skins; (3) clima e decoração por data. Riscos: a economia (hoje os itens custam de 150 a 900 pétalas; cômodos custariam milhares), o desempenho de várias cenas em SVG em aparelhos fracos e a compatibilidade do backup. Ligar o desbloqueio de cômodos às metas de estudo (o Escritório pelo N5 completo, por exemplo). *(G)*
 
 ### 3.0: conteúdo do N4
 

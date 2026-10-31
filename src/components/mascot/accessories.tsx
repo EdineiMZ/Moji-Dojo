@@ -8,6 +8,7 @@ import { Circle, Ellipse, G, Path, Polygon, Rect } from 'react-native-svg';
 import { Art, Bow, Flower, LINE, star, stroke } from './artKit';
 import { BACK_MORE, SKIN, TINTS_MORE } from './artScenes';
 import { FACE_MORE, HEAD_MORE, NECK_MORE } from './artWear';
+import { SEASON_BACK, SEASON_FACE, SEASON_HEAD, SEASON_NECK, SEASON_SKIN, SEASON_TINTS } from './artSeasons';
 
 export { LINE };
 
@@ -346,16 +347,17 @@ export const TINTS: Readonly<Record<string, { body: string; pink: string }>> = {
   'cor-lavanda': { body: '#EBE1FF', pink: '#C7B0F5' },
   'cor-ouro': { body: '#FFEBA8', pink: '#F5B94B' },
   ...TINTS_MORE,
+  ...SEASON_TINTS,
 };
 
 export type ArtSlot = 'head' | 'face' | 'neck' | 'back' | 'skin';
 
 const ART: Record<ArtSlot, Record<string, Art>> = {
-  head: { ...HEAD, ...HEAD_MORE },
-  face: { ...FACE, ...FACE_MORE },
-  neck: { ...NECK, ...NECK_MORE },
-  back: { ...BACK, ...BACK_MORE },
-  skin: SKIN,
+  head: { ...HEAD, ...HEAD_MORE, ...SEASON_HEAD },
+  face: { ...FACE, ...FACE_MORE, ...SEASON_FACE },
+  neck: { ...NECK, ...NECK_MORE, ...SEASON_NECK },
+  back: { ...BACK, ...BACK_MORE, ...SEASON_BACK },
+  skin: { ...SKIN, ...SEASON_SKIN },
 };
 
 export const hasArt = (slot: ArtSlot, id: string): boolean => ART[slot][id] !== undefined;

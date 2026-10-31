@@ -34,3 +34,6 @@ scripts/verify-japanese/cache.json
 /modules/voicevox/android/src/main/jniLibs/
 /modules/*/android/build/
 /modules/*/android/.cxx/
+
+# capturas e arquivos temporários de teste no aparelho
+.scratch/

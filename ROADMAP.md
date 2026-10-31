@@ -59,7 +59,7 @@ Feito entre a 2.8.1 e a 2.8.3, a partir da revisão das telas e das licenças. O
 - ✅ **Download de voz mais robusto (2.8.3):** continua de onde parou, confere o SHA-256 oficial de cada arquivo, avisa em dados móveis, mostra o espaço usado e tem "Apagar todas as vozes".
 - ✅ **Amostra com plano B (2.8.3):** se o site mudar ou cair, o botão oferece abrir a página do personagem; ao tocar, mostra o crédito "VOICEVOX:nome".
 - ✅ **Testes de tela (2.8.3):** a lista de vozes (termos, aceite, continuar, dados móveis) e "Minhas vozes" (usar a voz, voltar ao Android, espaço usado).
-- ⬜ **Confirmar no aparelho:** o volume da voz (2.8.1) e o download novo com a rede caindo no meio. *(P)*
+- 🟡 **Confirmar no aparelho:** ✅ o volume da voz (2.8.1) está funcionando, confirmado pelo usuário em 2026-10-31. ⬜ Falta o download novo com a rede caindo no meio. *(P)*
 - ✅ **Telemetria do ML Kit (avaliada em 2026-10-28): aceitar e manter o aviso.** Pelo que a documentação do Google diz, o ML Kit não tem opção para desligar o envio de dados técnicos (modelo do aparelho, versão do app, identificador da instalação, métricas), e o conteúdo da foto e o texto lido não estão na lista do que ele coleta. Só há gambiarras não suportadas, que podem quebrar a cada versão. O aviso agora está na própria tela da câmera. A alternativa realista é o PaddleOCR (PP-OCR) rodando em ONNX, com licença Apache 2.0, mas exige um motor próprio (detecção, reconhecimento e pós-processamento) e uma medição de acerto em fotos reais de placas e cardápios antes de trocar; fica como ideia, só se a privacidade virar prioridade. *(G)*
 
 ### 2.9: UX e design (navegação e Ajustes) ✅

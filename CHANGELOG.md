@@ -2,6 +2,14 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.31.0] - 2026-10-31
+
+Mais leitura do N3.
+
+- **Três leituras do dia a dia:** "Aviso do prédio: obra na rede de água", "Regras da biblioteca" e "Anúncio na estação: trem parado", com o lugar onde se vê cada uma.
+- **Dois textos corridos novos:** "Como eu estudo japonês" e "Um dia de chuva", com os pontos de gramática do N3 que entraram na 2.30.0 (〜ようとする, 〜てほしい, 〜ずに, 〜とおり, 〜かどうか, 〜たびに, 〜だらけ...).
+- Como nos outros textos do N3, cada frase tem tradução e pedaços tocáveis com leitura e significado. **Escritos por IA, a revisar por um falante.** O teste confere que cada pedaço fecha com a frase e que todo kanji tem leitura.
+
 ## [2.30.0] - 2026-10-31
 
 Gramática N3: de 15 para 27 tópicos.

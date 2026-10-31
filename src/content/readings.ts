@@ -476,6 +476,69 @@ export const READINGS: readonly ReadingText[] = [
       { jp: '彼は子供っぽいけれど、友だちとしては最高です。', pt: 'Ele é meio infantil, mas como amigo é o melhor.', parts: [P('彼', 'かれ', 'ele'), P('は'), P('子供っぽい', 'こどもっぽい', 'infantil'), P('けれど、', undefined, 'mas'), P('友だち', 'ともだち', 'amigo'), P('として', undefined, 'como'), P('は'), P('最高', 'さいこう', 'o melhor'), P('です。')] },
     ],
   },
+  {
+    id: 'n3-aviso-do-predio',
+    title: 'Aviso do prédio: obra na rede de água',
+    kind: 'dia',
+    where: 'No mural do prédio ou do condomínio',
+    level: 'N3',
+    lines: [
+      { jp: '来週の火曜日、水道工事のため、午前中は水が使えません。', pt: 'Na próxima terça-feira, por causa de obras na rede de água, não será possível usar água pela manhã.', parts: [P('来週', 'らいしゅう', 'semana que vem'), P('の'), P('火曜日', 'かようび', 'terça-feira'), P('、'), P('水道', 'すいどう', 'rede de água'), P('工事', 'こうじ', 'obras'), P('のため、', undefined, 'por causa de'), P('午前中', 'ごぜんちゅう', 'durante a manhã'), P('は'), P('水', 'みず', 'água'), P('が'), P('使えません', 'つかえません', 'não se pode usar'), P('。')] },
+      { jp: '前の日のうちに、水をためておいてください。', pt: 'Na véspera, deixe água guardada.', parts: [P('前の日', 'まえのひ', 'véspera'), P('のうちに、', undefined, 'enquanto ainda dá'), P('水', 'みず', 'água'), P('を'), P('ためておいてください。', undefined, 'guarde (com antecedência)')] },
+      { jp: 'ご迷惑をおかけしますが、ご協力をお願いします。', pt: 'Pedimos desculpas pelo transtorno e contamos com a sua colaboração.', parts: [P('ご'), P('迷惑', 'めいわく', 'transtorno'), P('を'), P('おかけしますが、', undefined, 'causamos, mas'), P('ご'), P('協力', 'きょうりょく', 'colaboração'), P('を'), P('お願いします', 'おねがいします', 'pedimos'), P('。')] },
+      { jp: '質問は管理人までお願いします。', pt: 'Dúvidas, falem com o administrador.', parts: [P('質問', 'しつもん', 'pergunta'), P('は'), P('管理人', 'かんりにん', 'administrador do prédio'), P('まで'), P('お願いします', 'おねがいします', 'por favor'), P('。')] },
+    ],
+  },
+  {
+    id: 'n3-regras-da-biblioteca',
+    title: 'Regras da biblioteca',
+    kind: 'dia',
+    where: 'Na entrada de uma biblioteca',
+    level: 'N3',
+    lines: [
+      { jp: '本を借りるときは、カードを見せてください。', pt: 'Para pegar livros emprestados, mostre o cartão.', parts: [P('本', 'ほん', 'livro'), P('を'), P('借りる', 'かりる', 'pegar emprestado'), P('ときは、', undefined, 'quando'), P('カード', undefined, 'cartão'), P('を'), P('見せて', 'みせて', 'mostrar'), P('ください。', undefined, 'por favor')] },
+      { jp: '借りた本は、二週間以内に返してください。', pt: 'Devolva os livros emprestados em até duas semanas.', parts: [P('借りた', 'かりた', 'pegou emprestado'), P('本', 'ほん', 'livro'), P('は、'), P('二週間', 'にしゅうかん', 'duas semanas'), P('以内', 'いない', 'dentro de'), P('に'), P('返して', 'かえして', 'devolver'), P('ください。', undefined, 'por favor')] },
+      { jp: '館内では、大きな声で話さないでください。', pt: 'Dentro da biblioteca, não fale em voz alta.', parts: [P('館内', 'かんない', 'dentro do prédio'), P('では、'), P('大きな', 'おおきな', 'grande'), P('声', 'こえ', 'voz'), P('で'), P('話さないで', 'はなさないで', 'não fale'), P('ください。', undefined, 'por favor')] },
+      { jp: '食べ物は持ち込まないでください。', pt: 'Não leve comida para dentro.', parts: [P('食べ物', 'たべもの', 'comida'), P('は'), P('持ち込まないで', 'もちこまないで', 'não leve para dentro'), P('ください。', undefined, 'por favor')] },
+    ],
+  },
+  {
+    id: 'n3-anuncio-da-estacao',
+    title: 'Anúncio na estação: trem parado',
+    kind: 'dia',
+    where: 'No alto-falante ou no painel de uma estação',
+    level: 'N3',
+    lines: [
+      { jp: 'ただいま、事故のため、電車が止まっています。', pt: 'Neste momento, o trem está parado por causa de um acidente.', parts: [P('ただいま、', undefined, 'neste momento'), P('事故', 'じこ', 'acidente'), P('のため、', undefined, 'por causa de'), P('電車', 'でんしゃ', 'trem'), P('が'), P('止まって', 'とまって', 'estar parado'), P('います。')] },
+      { jp: '運転を再開するまで、しばらくお待ちください。', pt: 'Aguarde um pouco até a retomada da operação.', parts: [P('運転', 'うんてん', 'operação'), P('を'), P('再開', 'さいかい', 'retomada'), P('するまで、', undefined, 'até que'), P('しばらく', undefined, 'um pouco'), P('お待ちください', 'おまちください', 'aguarde'), P('。')] },
+      { jp: '他の路線をご利用の方は、駅員にお尋ねください。', pt: 'Quem for usar outra linha, pergunte a um funcionário da estação.', parts: [P('他の', 'ほかの', 'outra'), P('路線', 'ろせん', 'linha'), P('を'), P('ご利用', 'ごりよう', 'uso (honorífico)'), P('の'), P('方', 'かた', 'pessoa'), P('は、'), P('駅員', 'えきいん', 'funcionário da estação'), P('に'), P('お尋ねください', 'おたずねください', 'pergunte'), P('。')] },
+      { jp: 'お急ぎのところ、ご迷惑をおかけして申し訳ありません。', pt: 'Pedimos desculpas pelo transtorno a quem está com pressa.', parts: [P('お急ぎ', 'おいそぎ', 'estar com pressa'), P('のところ、', undefined, 'neste momento'), P('ご'), P('迷惑', 'めいわく', 'transtorno'), P('を'), P('おかけして', undefined, 'causando'), P('申し訳ありません', 'もうしわけありません', 'pedimos desculpas'), P('。')] },
+    ],
+  },
+  {
+    id: 'n3-como-eu-estudo',
+    title: 'Como eu estudo japonês',
+    kind: 'texto',
+    level: 'N3',
+    lines: [
+      { jp: '毎日少しずつ勉強するうちに、漢字が読めるようになりました。', pt: 'Estudando um pouco todos os dias, passei a conseguir ler kanji.', parts: [P('毎日', 'まいにち', 'todos os dias'), P('少しずつ', 'すこしずつ', 'aos poucos'), P('勉強', 'べんきょう', 'estudo'), P('する'), P('うちに、', undefined, 'enquanto'), P('漢字', 'かんじ', 'kanji'), P('が'), P('読める', 'よめる', 'conseguir ler'), P('ようになりました。', undefined, 'passei a')] },
+      { jp: '辞書を引かずに、文を読もうとしています。', pt: 'Estou tentando ler frases sem consultar o dicionário.', parts: [P('辞書', 'じしょ', 'dicionário'), P('を'), P('引かず', 'ひかず', 'sem consultar'), P('に、'), P('文', 'ぶん', 'frase'), P('を'), P('読もう', 'よもう', 'tentar ler'), P('と'), P('しています。', undefined, 'estou tentando')] },
+      { jp: '日本人の友だちに、間違いを直してほしいと頼みました。', pt: 'Pedi a um amigo japonês que corrigisse meus erros.', parts: [P('日本人', 'にほんじん', 'japonês'), P('の'), P('友だち', 'ともだち', 'amigo'), P('に、'), P('間違い', 'まちがい', 'erro'), P('を'), P('直して', 'なおして', 'corrigir'), P('ほしい', undefined, 'quero que'), P('と'), P('頼みました', 'たのみました', 'pedi'), P('。')] },
+      { jp: '言われたとおりに練習すれば、きっと上手になります。', pt: 'Se eu praticar do jeito que me disserem, com certeza vou melhorar.', parts: [P('言われた', 'いわれた', 'foi dito'), P('とおりに', undefined, 'do jeito que'), P('練習', 'れんしゅう', 'prática'), P('すれば、', undefined, 'se fizer'), P('きっと', undefined, 'com certeza'), P('上手', 'じょうず', 'hábil'), P('に'), P('なります。')] },
+    ],
+  },
+  {
+    id: 'n3-dia-de-chuva',
+    title: 'Um dia de chuva',
+    kind: 'texto',
+    level: 'N3',
+    lines: [
+      { jp: '今日は雨が強くて、傘をさしても足がどろだらけになりました。', pt: 'Hoje a chuva estava forte e, mesmo de guarda-chuva, meus pés ficaram cheios de lama.', parts: [P('今日', 'きょう', 'hoje'), P('は'), P('雨', 'あめ', 'chuva'), P('が'), P('強くて', 'つよくて', 'forte'), P('、'), P('傘', 'かさ', 'guarda-chuva'), P('を'), P('さしても', undefined, 'mesmo abrindo'), P('足', 'あし', 'pés'), P('が'), P('どろだらけ', undefined, 'cheio de lama'), P('に'), P('なりました。')] },
+      { jp: '雨の日は、電車が来るかどうかが心配です。', pt: 'Em dia de chuva, fico preocupado se o trem vai passar.', parts: [P('雨', 'あめ', 'chuva'), P('の'), P('日', 'ひ', 'dia'), P('は、'), P('電車', 'でんしゃ', 'trem'), P('が'), P('来る', 'くる', 'vir'), P('かどうか', undefined, 'se ... ou não'), P('が'), P('心配', 'しんぱい', 'preocupação'), P('です。')] },
+      { jp: '会社に着くたびに、くつ下を取りかえます。', pt: 'Toda vez que chego na empresa, troco as meias.', parts: [P('会社', 'かいしゃ', 'empresa'), P('に'), P('着く', 'つく', 'chegar'), P('たびに、', undefined, 'toda vez que'), P('くつ下', 'くつした', 'meias'), P('を'), P('取りかえます', 'とりかえます', 'trocar'), P('。')] },
+      { jp: '早く晴れてほしいです。', pt: 'Quero que o tempo abra logo.', parts: [P('早く', 'はやく', 'logo'), P('晴れて', 'はれて', 'abrir (o tempo)'), P('ほしいです。', undefined, 'quero que')] },
+    ],
+  },
 ];
 
 /** O nível de um texto (sem `level`, N5). */

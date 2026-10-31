@@ -226,7 +226,7 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
 
 ## Leitura do N3 (`readings.ts`, `level: 'N3'`)
 
-- Quatro textos corridos (mudança de cidade, um resfriado, professor de japonês e a promessa esquecida), **escritos por IA** para este app com a gramática do N3 (ことになる, らしい, ところ, について, おかげ e せい, まま, として, に対して, によって, ほど, さえ, はずがない, うちに, っぽい). Nada vem de fonte externa. Cada frase traz os pedaços com a leitura e o significado, e **ainda não foi revisada por um falante**.
+- Seis textos corridos (mudança de cidade, um resfriado, professor de japonês, a promessa esquecida, como eu estudo e um dia de chuva) e três leituras do dia a dia (aviso de obra no prédio, regras da biblioteca e anúncio de trem parado), **escritos por IA** para este app com a gramática do N3 (ことになる, らしい, ところ, について, おかげ e せい, まま, として, に対して, によって, ほど, さえ, はずがない, うちに, っぽい). Nada vem de fonte externa. Cada frase traz os pedaços com a leitura e o significado, e **ainda não foi revisada por um falante**.
 
 ## Leitura do N4 (`readings.ts`, `level: 'N4'`)
 

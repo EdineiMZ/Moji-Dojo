@@ -69,7 +69,7 @@ A versão mais recente fica na aba **[Releases](https://github.com/EdineiMZ/Moji
 - **Revisão espaçada** em que o intervalo encolhe nos itens esquecidos, com "itens teimosos", revisão mista e o modo "write" (desenhar o símbolo a partir do significado e do som).
 
 **Vocabulário e gramática**
-- Cerca de **1.400 palavras** (N5 e N4) por assunto, situação de viagem e frequência, com leitura, **tom** (pitch accent), classe e frases reais; cartões em várias direções e **exportação para o Anki**.
+- Cerca de **3.500 palavras** (N5, N4 e N3) por assunto, situação de viagem e frequência, com leitura, **tom** (pitch accent), classe e frases reais; cartões em várias direções e **exportação para o Anki**.
 - **78 tópicos de gramática** (51 do N5 e 27 do N4) com frases do Tatoeba, mini-teste por tópico, lacunas, conjugação com revisão espaçada, contadores, números, horas e datas.
 
 **Frases, escuta, fala e leitura**

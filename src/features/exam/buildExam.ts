@@ -1,4 +1,5 @@
 import { VOCAB } from '@/content';
+import { wordLevelOfGroup } from '@/content/vocab';
 import { ALL_GRAMMAR } from '@/content/grammar';
 import { ALL_KANJI, kanjiLevelOf } from '@/content/kanji';
 import { shuffle, type Rng } from '@/features/quiz/quiz';
@@ -54,7 +55,7 @@ function question(section: ExamSection, prompt: string, right: string, wrong: re
   return { section, prompt, options, answer: options.indexOf(right), explanation };
 }
 
-const levelWords = (level: ExamLevel) => VOCAB.filter((w) => !isSecondaryTwin(w.id) && w.group.startsWith('N4:') === (level === 'N4'));
+const levelWords = (level: ExamLevel) => VOCAB.filter((w) => !isSecondaryTwin(w.id) && wordLevelOfGroup(w.group) === level);
 
 /** Os kanji do N4 são os dos grupos "N4: ..."; os do N5 são os demais, menos os do N3 (que ainda não têm simulado). */
 function levelKanji(level: ExamLevel) {

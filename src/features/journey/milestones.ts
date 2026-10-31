@@ -6,6 +6,7 @@ import { VERBS } from '@/features/conjugation/verbs';
 import { ALL_ITEMS } from '@/features/catalog';
 import { FIRM_BOX, type SrsState } from '@/features/review/srs';
 import { VOCAB } from '@/content';
+import { wordLevelOfGroup } from '@/content/vocab';
 import { learnedWordIds } from '@/features/vocab/cards';
 import { DISTINCT_WORDS, isSecondaryTwin, twinsOf } from '@/features/vocab/twins';
 
@@ -27,15 +28,22 @@ const N5_KANJI = ALL_KANJI.filter((k) => kanjiLevelOf(k) === 'N5').map((k) => k.
 const N4_KANJI = ALL_KANJI.filter((k) => kanjiLevelOf(k) === 'N4').map((k) => k.char);
 
 /** As palavras do N4 são as dos grupos "N4: ..."; as demais (inclusive os exemplos dos kana e dos kanji) contam no N5. */
-const N4_WORD_IDS: ReadonlySet<string> = new Set(VOCAB.filter((w) => w.group.startsWith('N4:')).map((w) => w.id));
+const N4_WORD_IDS: ReadonlySet<string> = new Set(VOCAB.filter((w) => wordLevelOfGroup(w.group) === 'N4').map((w) => w.id));
+/** As do N3 ainda não têm caminho próprio: ficam fora das contas do N5 e do N4. */
+const N3_WORD_IDS: ReadonlySet<string> = new Set(VOCAB.filter((w) => wordLevelOfGroup(w.group) === 'N3').map((w) => w.id));
+const N3_WORD_TOTAL = VOCAB.filter((w) => N3_WORD_IDS.has(w.id) && !isSecondaryTwin(w.id)).length;
 const N4_WORD_TOTAL = VOCAB.filter((w) => N4_WORD_IDS.has(w.id) && !isSecondaryTwin(w.id)).length;
 
 /** Palavras aprendidas, separadas por nível (cada grupo de gêmeas conta uma vez). */
 export function learnedWordsByLevel(vocab: SrsState): { n5: number; n4: number } {
   const distinct = new Set([...learnedWordIds(vocab)].map((id) => twinsOf(id)[0]?.id ?? id));
   let n4 = 0;
-  for (const id of distinct) if (N4_WORD_IDS.has(id)) n4++;
-  return { n5: distinct.size - n4, n4 };
+  let n5 = 0;
+  for (const id of distinct) {
+    if (N4_WORD_IDS.has(id)) n4++;
+    else if (!N3_WORD_IDS.has(id)) n5++;
+  }
+  return { n5, n4 };
 }
 
 /** Os tópicos de gramática do N4 têm o prefixo "n4-" no id. */
@@ -57,7 +65,7 @@ export function levelPaths(srs: SrsState, vocab: SrsState, conj: SrsState = {}, 
       title: 'Nível N5',
       milestones: [
         { id: 'kana', label: 'Hiragana e katakana firmes', have: firm(srs, KANA.map((i) => i.char)), goal: KANA.length },
-        { id: 'words', label: 'Palavras do vocabulário aprendidas', have: words.n5, goal: DISTINCT_WORDS - N4_WORD_TOTAL },
+        { id: 'words', label: 'Palavras do vocabulário aprendidas', have: words.n5, goal: DISTINCT_WORDS - N4_WORD_TOTAL - N3_WORD_TOTAL },
         { id: 'verbs', label: 'Verbos com a conjugação em estudo', have: learnedVerbIds(conj).size, goal: VERBS.length },
         { id: 'grammar', label: 'Tópicos de gramática dominados (teste)', have: N5_TOPICS.filter((t) => mastered[t.id] !== undefined).length, goal: N5_TOPICS.length },
         { id: 'kanji5', label: 'Kanji do N5 firmes', have: firm(srs, N5_KANJI), goal: N5_KANJI.length },

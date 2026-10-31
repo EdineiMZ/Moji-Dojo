@@ -2,6 +2,7 @@ import { KANA } from '@/data/kana';
 import { KANA_EXAMPLES, KANJI_EXAMPLES } from '@/data/examples';
 import { KANJI, KANJI_CATEGORIES } from '@/data/kanji';
 import { SIMULATOR_WORDS } from '@/data/keyboard';
+import { N3_WORDS } from './n3';
 import { N4_WORDS } from './n4';
 import { N5_WORDS } from './n5';
 import type { SourceWord, VocabKind, VocabWord } from './types';
@@ -86,6 +87,12 @@ export const buildN5Vocabulary = (): VocabWord[] => fromSource(N5_WORDS);
 
 /** Lista JLPT N4 (scripts/vocab-n4/, gerada em ./n4.ts): mesmo formato do N5, em grupos com o prefixo "N4:". */
 export const buildN4Vocabulary = (): VocabWord[] => fromSource(N4_WORDS);
+
+/** Lista JLPT N3 (scripts/vocab-n3/, gerada em ./n3.ts): só o que não está no N5 nem no N4, em grupos com o prefixo "N3:". */
+export const buildN3Vocabulary = (): VocabWord[] => fromSource(N3_WORDS);
+
+/** O nível de uma palavra vem do prefixo do grupo ("N4: Verbos"); o que não tem prefixo (kana, kanji, teclado) conta como N5. */
+export const wordLevelOfGroup = (group: string): 'N5' | 'N4' | 'N3' => (group.startsWith('N3:') ? 'N3' : group.startsWith('N4:') ? 'N4' : 'N5');
 
 function fromSource(words: readonly SourceWord[]): VocabWord[] {
   return words.map((w): VocabWord => {

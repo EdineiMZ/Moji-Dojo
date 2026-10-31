@@ -1,0 +1,416 @@
+1|S|etiqueta; boas maneiras
+2|E|vários; diversos
+3|V|esfriar (algo); deixar esfriar
+4|V|despertar (alguém); acordar
+5|V|esfriar; perder o efeito
+6|V|acordar; despertar
+7|D|esquerda e direita; influenciar
+8|L|prato
+9|E|além disso; ainda mais
+10|V|ir embora; deixar
+11|C|macaco
+12|S|tumulto; alvoroço
+13|S|participação
+14|M|referência; consulta
+15|M|aprovação; concordância
+16|C|acidez
+17|C|oxigênio
+18|P|sobrenome (formal); senhor(a) (sufixo)
+19|M|poema; poesia
+20|M|felicidade; sorte
+21|R|jeans
+22|X|avião a jato
+23|L|quadrado
+24|E|diretamente; pessoalmente
+25|E|além disso; e ainda por cima
+26|T|as quatro estações
+27|E|logo; em breve
+28|T|época; período
+29|S|pagamento; fornecimento
+30|E|urgente; com urgência
+31|E|com frequência; insistentemente
+32|M|estímulo; incentivo
+33|S|recursos (naturais)
+34|S|caso; incidente
+35|T|hora; horário
+36|S|suicídio
+37|M|fato; verdade
+38|S|despesa; gasto
+39|S|circunstâncias; situação; motivos
+40|P|poeta
+41|P|a própria pessoa; si mesmo
+42|V|afundar; ficar deprimido
+43|C|natureza; natural
+44|M|pensamento; ideia
+45|C|língua (órgão)
+46|E|conforme; depende de; logo que
+47|V|obedecer; seguir (regras)
+48|E|portanto; consequentemente
+49|A|íntimo; próximo (amigo)
+50|M|qualidade; natureza
+51|S|desemprego
+52|C|umidade (no ar)
+53|M|experimento; laboratório
+54|S|realização; concretização
+55|S|execução; pôr em prática
+56|E|na verdade; de fato
+57|S|implementação; execução
+58|C|umidade (do ar)
+59|E|quieto; imóvel; pacientemente
+60|E|realmente; de fato
+61|E|na verdade; para dizer a verdade
+62|M|decepção; desânimo
+63|M|capacidade; competência
+64|S|filial
+65|S|orientação; liderança
+66|M|automático
+67|P|criança (em idade escolar)
+68|L|artigo; mercadoria
+69|S|domínio; controle
+70|M|peça de teatro; teatro
+71|E|frequentemente; muitas vezes
+72|L|gramado
+73|S|pagamento
+74|V|pagar
+75|S|morte; falecimento
+76|S|capital; fundos
+77|P|irmãs
+78|E|droga!; errei!
+79|M|orgulho; gabar-se
+80|A|discreto; sóbrio; simples
+81|V|mostrar; indicar
+82|V|ocupar; representar (uma parte)
+83|V|ficar úmido; umedecer
+85|C|geada
+86|S|dívida
+87|V|falar; tagarelar; conversar
+88|T|semana
+89|S|estado; província
+90|L|arma de fogo
+91|L|arredores; ao redor
+92|S|colheita
+93|S|religião
+94|M|dar importância; valorizar
+95|S|conseguir emprego
+96|F|suco; refrigerante
+97|S|correção; emenda
+98|M|estado grave (doença)
+99|S|congestionamento; atraso
+100|M|grave; importante
+101|L|moradia; residência
+102|S|grupo; coletivo
+103|M|concentração; focar
+104|S|renda; receita
+105|P|moradores; residentes
+106|M|importante; essencial
+107|S|conserto; reparo
+108|M|princípio; doutrina; -ismo
+109|X|hospedagem; pernoitar
+110|S|cirurgia
+111|P|primeiro-ministro
+112|S|meio; medida; recurso
+113|M|afirmação; insistência
+114|S|participação (em competição)
+115|P|origem; ser natural de
+116|S|publicação
+117|L|capital (cidade)
+118|P|dona de casa
+119|M|principal; mais importante
+120|S|demanda
+121|M|tipo; espécie
+122|M|ordem; sequência
+123|T|momento; instante
+124|A|que vai bem; sem problemas
+125|M|vez; ordem (na fila)
+126|S|uso; emprego
+127|A|pequeno
+128|M|capítulo; seção
+129|S|prêmio
+131|M|obstáculo; deficiência
+132|S|bolsa de estudos
+133|P|passageiro
+134|X|ir para a capital (Tóquio)
+135|M|situação; estado de coisas
+136|M|condição; requisito
+137|T|meio-dia
+138|A|honesto; sincero
+139|M|bom senso; senso comum
+140|P|menina; garota
+141|E|um pouco (formal)
+142|M|sintoma
+143|V|surgir; ocorrer; produzir-se
+144|M|estado; condição
+145|M|progresso; melhora
+146|E|piada; brincadeira
+147|A|de primeira; de alta qualidade
+148|S|colisão; conflito
+149|P|comerciante
+150|S|aprovação; reconhecimento
+151|P|rapaz; menino; jovem
+152|S|comércio; negócio
+153|S|consumo; gasto
+154|R|mercadoria; produto
+155|R|prêmio (objeto)
+156|S|bombeiros; combate a incêndio
+157|M|informação
+158|M|prova; comprovação
+159|M|omissão; abreviação
+160|P|rainha
+161|S|emprego; ocupação
+162|S|profissão; ofício
+163|L|mesa de jantar
+164|F|alimentos
+165|C|planta; vegetação
+166|F|comida; alimento
+167|F|apetite
+168|F|alimentos; mantimentos
+169|F|provisões; mantimentos
+170|L|escritório em casa; biblioteca
+171|P|mulher; menina
+172|P|assistente; ajudante
+173|E|aos poucos; gradualmente
+174|S|assinatura
+175|M|livros; escritos
+176|P|atriz
+177|S|processamento; tratamento
+178|S|documentos
+179|M|aviso; notícia
+180|C|bumbum; traseiro
+181|P|conhecido; conhecida
+182|M|marca; sinal; prova
+183|L|castelo
+184|M|seguir para a faculdade
+185|C|nervo; sensibilidade
+186|A|sério; a sério
+187|M|fé; crença
+188|L|semáforo; sinal
+189|M|artificial
+190|A|grave; sério
+191|S|consulta médica; exame
+192|P|raça (de pessoas)
+193|V|acreditar; confiar
+194|M|vida (humana)
+195|P|parentes
+196|A|fresco
+197|C|coração (órgão)
+198|C|corpo
+199|C|altura (do corpo)
+200|A|cuidadoso; prudente
+201|S|árbitro; julgamento
+202|P|pessoa; personalidade
+203|M|progresso; avanço
+204|P|amigo íntimo
+205|S|confiança; crédito
+206|M|confiança; fé
+207|M|psicologia; estado de espírito
+208|P|humanidade
+209|C|ninho
+210|F|vinagre
+211|M|figura; desenho; diagrama
+212|M|nível; padrão
+213|S|recomendação
+214|L|interruptor
+215|C|sono
+216|T|número; quantidade
+217|T|número; algarismo
+218|F|sopa
+219|T|fim; final
+220|C|figura; aparência; forma
+221|M|esqui
+222|V|salvar; socorrer
+223|E|pelo menos
+224|V|destacar-se; ser excelente
+225|M|patinação; patins
+226|M|agenda; programação
+227|E|nem um pouco
+228|V|passar (tempo); levar a vida
+229|C|músculo; linha; enredo
+230|V|avançar; fazer progredir
+231|V|aconselhar; recomendar
+232|P|estrela (artista); astro
+233|M|estilo; silhueta
+234|L|arquibancada; suporte; luminária de mesa
+235|C|dor de cabeça
+236|E|muito mais; durante muito tempo
+237|A|azedo
+238|A|lindo; ótimo
+239|E|já
+240|E|ou seja; isto é
+241|M|discurso
+242|E|tudo; todos
+243|V|terminar; resolver
+245|L|tinta (nanquim)
+246|E|desculpe; com licença
+247|V|ficar claro; ficar límpido
+249|V|imprimir
+251|A|afiado; agudo
+252|V|cruzar-se; passar um pelo outro
+253|V|desviar-se; sair do lugar
+254|M|correto; positivo
+255|M|vida; nascimento
+256|M|sexo; natureza; gênero
+257|P|sobrenome
+259|S|imposto
+260|M|personalidade; caráter
+261|A|preciso; exato
+262|T|século
+263|S|pedido; cobrança; reivindicação
+264|S|impostos
+265|A|limpo; asseado
+266|S|limite; restrição
+267|M|sucesso
+268|A|oficial; formal
+269|M|natureza; propriedade
+270|M|mente; espírito
+271|P|adulto
+272|E|no máximo; quando muito
+273|M|nota; desempenho escolar
+274|S|fabricação; produção
+275|A|luxo; extravagância
+276|M|crescimento
+278|S|sistema; instituição
+279|P|jovem; rapaz
+280|T|data de nascimento
+281|R|produto fabricado
+282|S|governo
+283|C|ser vivo
+284|C|vida
+285|S|organização; arrumação
+286|C|tosse
+287|C|carvão
+288|M|responsabilidade
+289|C|petróleo
+290|S|mundo; sociedade
+291|M|teoria
+292|A|positivo; ativo
+293|M|projeto; plano; design
+294|E|absolutamente; sem falta
+295|M|conjunto; set
+296|M|amor
+297|E|como sempre; como de costume
+298|M|amor; afeição
+299|M|sinal; gesto combinado
+300|F|sorvete
+301|V|amar
+302|P|parceiro; interlocutor
+303|E|infelizmente
+304|V|encontrar (algo ruim); sofrer
+305|M|fora (esporte)
+306|L|luz; iluminação
+307|M|vaga; espaço livre
+308|A|óbvio; claro
+309|V|desistir; abrir mão
+310|V|cansar-se de; enjoar
+311|S|aperto de mão
+312|P|demônio
+313|V|amanhecer; começar (ano novo)
+314|V|fritar; levantar
+315|V|levantar; citar (exemplo)
+316|V|guardar (para alguém); tomar conta
+317|V|deixar em depósito; entregar para guardar
+318|C|suor
+319|V|dar; conceder
+320|A|morno; quente (agradável)
+321|V|esquentar; aquecer-se
+322|V|aquecer-se; esquentar
+323|V|esquentar (um ambiente)
+324|V|esquentar (comida); aquecer
+325|D|arredores; redondezas
+326|E|natural; óbvio; evidente
+327|V|acertar; ser atingido; dar certo
+328|D|aqui e ali
+329|V|tratar; manejar; lidar com
+330|S|reunião; encontro; grupo
+331|V|acertar; aplicar; atingir
+332|M|marca; vestígio; cicatriz
+333|L|buraco
+334|L|óleo
+335|C|gordura
+336|M|erro
+337|M|defeito; falha
+338|C|tempestade
+339|V|disputar; brigar
+340|A|novo; renovado
+341|E|todo; todos os
+342|V|expressar; mostrar
+343|V|revelar; mostrar-se
+344|V|escrever; publicar (obra)
+345|M|expressão; sinal; manifestação
+346|V|aparecer; surgir
+347|E|obrigado
+349|E|um certo; algum
+350|E|ou; talvez
+351|L|álbum
+352|C|bolha; espuma
+353|V|juntar; combinar; ajustar
+354|V|ficar confuso; entrar em pânico
+355|A|lamentável; digno de pena
+356|M|plano; proposta
+357|E|inesperadamente
+358|M|memorização; decorar
+359|M|estabilidade
+360|E|até esse ponto; tanto assim
+361|E|não muito; excessivamente
+362|C|estômago
+363|P|membro de comitê
+364|A|inesperado; surpreendente
+365|X|ida
+367|C|respiração; fôlego
+368|M|força; ímpeto
+369|C|ser vivo; criatura
+370|E|não pode; não se deve; ruim
+371|P|médico
+372|M|intenção; vontade
+373|M|vontade; determinação
+374|S|manutenção; conservação
+375|M|consciência; percepção
+376|M|anormalidade; algo estranho
+377|A|maldoso; malvado
+378|C|nascente; fonte
+379|E|de qualquer modo; qualquer um
+380|T|antes; no passado
+381|L|tábua; prancha
+382|A|grandioso; ilustre
+383|V|abraçar; nutrir (sentimento)
+384|M|travessura; brincadeira
+385|E|bom apetite (antes de comer)
+386|M|dor
+387|V|chegar a; alcançar
+389|D|posição; localização
+390|T|por um tempo; temporariamente
+391|E|de uma vez; ao mesmo tempo
+392|L|mercado; feira
+393|E|algum dia; uma vez
+394|P|família; toda a casa
+395|M|um tipo; uma espécie
+396|T|um instante
+397|T|a vida toda
+398|E|ainda mais
+399|E|afinal; em geral
+400|M|coincidência; concordância
+401|E|a qualquer hora; sempre
+402|E|sem perceber
+403|M|geral; comum
+404|E|por outro lado; enquanto isso
+405|E|para sempre
+406|M|movimento; deslocamento
+407|P|primo
+408|P|prima
+409|C|arroz (planta)
+410|M|cochilo
+411|C|vida
+412|S|infração; violação
+413|R|roupas
+414|L|sala de estar
+415|E|daqui a pouco
+416|E|prestes a; a qualquer momento
+417|M|imagem
+418|E|não; negativo
+419|E|desde; a partir de
+420|S|pedido; encomenda
+421|M|irritação; ficar nervoso
+422|E|bem-vindo
+423|S|tratamento médico
+424|C|rocha
+425|M|celebração; comemoração
+426|V|comemorar; felicitar

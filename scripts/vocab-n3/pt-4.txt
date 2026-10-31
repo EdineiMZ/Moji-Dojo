@@ -1,0 +1,400 @@
+1313|M|escolha; seleção
+1314|S|propaganda; divulgação
+1315|C|elefante
+1316|C|barulho; ruído
+1317|M|aumento
+1318|M|operação; manejo
+1319|M|imaginação
+1320|S|herança; sucessão
+1321|L|aparelho; dispositivo
+1322|E|bastante; considerável
+1323|M|velocidade
+1324|D|fundo; sola
+1325|E|então; por isso
+1326|S|organização; estrutura; tecido
+1327|E|e então
+1328|V|despejar; verter
+1329|V|crescer; ser criado
+1330|E|igualzinho; inteiro
+1331|E|suavemente; de leve
+1332|R|manga (de roupa)
+1333|V|preparar-se; equipar; dispor de
+1334|V|estar dotado de; possuir
+1335|E|além disso
+1336|E|em breve; mais cedo ou mais tarde
+1337|E|do jeito que está; sem mudar
+1338|F|soba (macarrão de trigo-sarraceno)
+1339|L|sofá
+1340|A|grosseiro; humilde; pobre
+1341|E|cada um; respectivamente
+1342|E|mesmo assim; ainda assim
+1343|E|e; além disso
+1344|E|ou então
+1345|V|ficar completo; estar reunido
+1346|V|reunir; deixar em ordem
+1347|M|perda; prejuízo
+1348|M|dano; prejuízo
+1349|M|respeito; admiração
+1350|M|existência
+1351|M|respeito; consideração
+1352|L|campo de arroz
+1353|M|outro; demais
+1354|M|par; contra (placar)
+1355|A|grande
+1356|M|título; tema
+1357|M|educação física
+1358|C|temperatura do corpo
+1359|S|grande encontro; torneio
+1360|C|atmosfera
+1361|S|preço; pagamento
+1362|M|tédio; monotonia
+1363|X|estadia; permanência
+1364|P|embaixador
+1365|A|considerável; grande
+1366|C|peso (do corpo)
+1367|M|alvo; objeto de estudo
+1368|M|contraste; comparação
+1369|P|ministro
+1370|V|enfrentar; estar diante de; em relação a
+1371|S|grande guerra
+1372|M|atitude; postura
+1373|P|presidente (da República)
+1374|M|a maior parte; a maioria
+1375|S|representante; delegação
+1376|M|a maior parte
+1377|L|máquina de escrever
+1378|S|prisão; captura
+1379|M|título
+1380|X|diamante; tabela de horários de trem
+1381|C|sol
+1382|A|plano; liso
+1383|S|representante; procuração; substituto
+1384|C|continente
+1385|V|derrubar; vencer
+1386|L|toalha
+1387|E|mas; porém
+1388|M|mútuo; um ao outro
+1389|V|elevar; aumentar
+1390|L|tesouro
+1391|L|casa; residência
+1392|V|cozinhar (arroz)
+1393|V|queimar; acender (fogo)
+1395|E|mas; no entanto
+1396|E|certo; se bem me lembro
+1397|V|confirmar; certificar-se
+1398|E|um pouco; mais ou menos
+1399|V|ser salvo; ser ajudado
+1400|V|ajudar; salvar
+1401|E|de graça; apenas
+1402|E|de graça; apenas
+1403|E|mero; simplesmente
+1404|S|batalha; luta
+1405|V|lutar; competir
+1406|V|bater; dar pancadas
+1407|E|imediatamente
+1408|V|dobrar (roupa)
+1409|V|levantar-se
+1410|M|posição; ponto de vista; situação
+1411|V|ser construído; erguer-se
+1412|V|passar (o tempo)
+1413|V|alcançar; chegar a
+1415|E|mas; porque; até mesmo
+1416|E|à vontade; de sobra
+1417|E|mesmo que; ainda que
+1418|C|vale
+1419|P|desconhecido; estranho
+1420|C|semente; matéria; causa
+1421|M|maço; feixe
+1422|R|tabi (meia japonesa de dedo separado)
+1424|X|viagem
+1425|E|muitas vezes; repetidamente
+1426|L|bola; esfera; moeda
+1428|L|bala; projétil
+1429|M|par; acaso; raro
+1430|V|enganar; iludir
+1431|E|por acaso
+1432|A|insuportável; irresistível
+1433|V|acumular-se; juntar-se
+1434|V|ficar calado
+1435|M|tentativa; teste
+1436|V|experimentar; testar
+1437|V|acumular; guardar
+1438|M|notícia; carta
+1439|V|contar com; depender de
+1440|M|degrau; etapa
+1441|M|crédito (de curso); unidade
+1442|M|palavra; vocábulo
+1443|P|rapaz; homem jovem
+1444|A|simples
+1445|M|nascimento
+1446|M|dança
+1447|S|grupo; organização
+1448|S|encarregado; responsável por
+1449|E|mero; simples
+1450|E|simplesmente; apenas
+1451|C|terra
+1452|S|posição social; status
+1453|D|área; região
+1454|F|queijo
+1455|S|time; equipe
+1456|M|sabedoria; engenho
+1457|D|subsolo; porão
+1458|M|diferença
+1459|E|sem dúvida; certamente
+1460|T|ultimamente; hoje em dia
+1461|C|a Terra
+1462|D|distrito; setor
+1463|T|atraso; chegar atrasado
+1464|P|governador (de província)
+1465|M|conhecimento
+1466|P|pai
+1467|M|inteligência
+1468|C|horizonte
+1469|D|região; interior (do país)
+1470|F|chá
+1471|M|oportunidade; chance
+1472|E|direito; corretamente
+1474|M|nota explicativa
+1475|D|centro; meio
+1476|S|ensino fundamental II (colégio)
+1477|A|usado; de segunda mão
+1478|S|suspensão; cancelamento
+1479|X|estacionamento
+1480|F|almoço
+1481|D|centro; núcleo
+1482|M|atenção; foco
+1483|S|pedido; encomenda
+1484|T|longo prazo
+1485|M|pesquisa; investigação
+1486|M|estado; ritmo; tom
+1487|D|topo; cume
+1488|E|me dá (informal)
+1489|S|poupança (em banco)
+1490|A|direto; imediato
+1491|P|autor
+1492|V|espalhar; dispersar
+1493|V|cair (flores); dispersar-se
+1494|E|finalmente; por fim
+1495|X|passagem; passar por
+1496|S|moeda corrente
+1497|S|ir à escola (trajeto)
+1498|S|ir ao trabalho (trajeto)
+1499|X|trânsito; passagem
+1500|V|levar a; comunicar-se; ser compreendido
+1501|S|correspondência; comunicação
+1502|P|intérprete; interpretação
+1503|V|ser preso; ser pego
+1504|V|agarrar; segurar
+1505|M|cansaço
+1506|M|convívio; relacionamento
+1507|V|acompanhar; conviver com; namorar
+1508|E|um após o outro
+1509|V|ficar preso; pegar; estar ligado a
+1510|V|assumir (cargo); tomar (assento)
+1511|V|empurrar; cutucar; golpear
+1512|V|vir logo depois; ficar em segundo
+1514|V|pôr; anexar; acrescentar
+1515|V|vestir; chegar (a um lugar)
+1516|V|ser transmitido; propagar-se
+1517|C|terra; solo
+1518|M|continuação
+1519|L|pacote; embrulho
+1520|S|trabalho; emprego
+1521|M|dever; obrigação
+1522|V|estar ligado a; conectar-se
+1523|V|atar; conectar
+1524|V|conectar; ligar
+1525|E|sempre (formal)
+1526|C|asas
+1527|E|ou seja; em resumo
+1528|M|crime; culpa
+1529|V|empilhar; carregar
+1530|V|empacotar; encurtar; apertar
+1531|V|acumular-se (neve, pó)
+1532|T|estação das chuvas
+1534|M|pesca
+1535|P|companheiro; acompanhante
+1536|M|saída; formado em
+1537|M|encontro; primeiro contato
+1538|M|encontro; confluência
+1539|V|encontrar por acaso
+1540|M|proposta; sugestão
+1541|S|periódico; regular; passe
+1542|M|resistência
+1543|S|entrega; apresentação
+1544|C|queda de energia; apagão
+1545|M|grau; medida; nível
+1546|X|ponto de ônibus
+1547|M|encontro (namoro); date
+1548|P|inimigo; adversário
+1549|M|acontecimento; ocorrência
+1550|V|combinar; ser apropriado
+1551|A|adequado; apropriado
+1552|A|moderado
+1553|S|aplicação
+1554|E|se for possível
+1555|M|truque de mágica
+1556|E|por isso; portanto
+1557|L|ferro
+1558|M|filosofia
+1559|S|ajuda; ajudante
+1560|M|rigor; minuciosidade
+1561|X|ferrovia
+1562|M|virar a noite
+1563|M|tempo e trabalho; esforço
+1564|S|manifestação; demonstração
+1565|M|típico; exemplo típico
+1566|C|tempo (clima)
+1567|M|elétron; eletrônico
+1568|L|barraca; tenda
+1569|M|tradição
+1570|C|natural; espontâneo
+1571|M|pergunta; questão
+1572|S|partido (político)
+1573|L|torre; pagode
+1574|S|folha de respostas
+1575|M|idêntico
+1576|L|moeda de cobre
+1577|T|naquela época
+1578|M|verbo
+1579|E|ao mesmo tempo
+1580|E|de qualquer jeito; por mais que tente
+1581|E|muito prazer
+1582|X|chegada
+1583|M|moral; ética
+1584|S|votação
+1585|D|Oriente
+1586|M|igual; semelhante
+1587|M|canção infantil
+1588|P|colega de trabalho
+1589|L|estrada; rua
+1590|V|deixar passar; fazer atravessar; manter
+1591|V|passar direto; passar por
+1592|L|cidade (grande)
+1593|V|dissolver (tinta); bater (ovo)
+1594|V|desatar; resolver
+1595|V|sair do caminho; afastar-se
+1596|M|veneno
+1597|M|ser bom em; orgulho; forte
+1598|M|leitura
+1599|P|solteiro
+1600|M|característica; traço
+1601|M|ponto forte; mérito
+1602|A|peculiar; singular
+1603|M|independência
+1604|V|derreter; dissolver-se
+1605|V|desatar-se; soltar-se
+1606|E|em algum lugar
+1607|E|porém; mas
+1608|E|a propósito; mesmo que
+1609|X|alpinismo
+1610|L|cidade; urbano
+1611|T|anos e meses; tempo
+1612|L|livros
+1613|P|idoso
+1614|V|fechar (livro, olhos)
+1615|E|no momento em que
+1616|L|terreno; solo
+1617|E|de repente
+1618|M|topo; primeiro lugar
+1619|V|chegar; alcançar
+1620|E|de qualquer forma; seja como for
+1621|V|pular; omitir; lançar
+1622|V|sair correndo; saltar para fora
+1623|V|prender; fixar; desligar
+1624|V|hospedar (alguém)
+1625|P|amigo
+1626|E|junto com; ambos
+1627|C|tigre
+1628|X|passeio de carro; dirigir
+1629|X|caminhão; pista de atletismo
+1630|M|drama
+1631|L|baralho
+1632|V|pegar; adotar; confiscar
+1633|M|esforço
+1634|M|treinamento
+1635|R|vestido
+1636|V|sair; soltar-se; ser removido
+1637|C|lama
+1638|M|tonelada
+1639|A|absurdo; de jeito nenhum
+1640|E|quanto; como
+1641|L|túnel
+1642|M|nome; reputação
+1643|M|conteúdo
+1644|E|ainda; além disso
+1645|M|relação (entre pessoas)
+1646|V|derramar; deixar escorrer; transmitir
+1647|T|meio; metade
+1648|P|colega; companheiro
+1649|M|conteúdo; interior
+1650|M|conteúdo; recheio
+1651|M|vista; paisagem
+1652|V|contemplar; olhar
+1653|M|corrente; fluxo
+1654|V|fluir; escorrer
+1655|V|perder (alguém por morte)
+1656|V|bater; dar soco
+1657|E|sem
+1658|E|porque
+1659|M|enigma; mistério
+1660|M|compreensão; concordância
+1661|E|alguma coisa
+1662|E|nada
+1663|L|panela
+1665|V|ser preguiçoso; negligenciar
+1666|C|onda
+1667|C|lágrima
+1668|V|angustiar-se; sofrer com
+1669|V|tocar (sino); fazer soar
+1671|V|dar frutos
+1672|V|acostumar-se; domesticar-se
+1673|L|corda
+1674|E|por quê
+1675|E|tudo; qualquer coisa
+1676|E|de algum modo
+1677|V|combinar com; ficar bem em
+1678|V|cozinhar; ferver
+1679|M|ponto fraco; ter dificuldade com
+1680|V|agarrar; apertar; moldar (sushi)
+1682|M|cotidiano; diário
+1683|C|luz do sol
+1684|T|durante o dia
+1685|E|sorrindo; com um sorriso
+1686|L|Japão
+1688|S|entrada; admissão
+1689|V|cozinhar; ferver
+1690|M|popularidade
+1691|P|ser humano
+1692|V|tirar; arrancar; omitir
+1693|V|sair; cair; faltar
+1694|L|pano; tecido
+1695|V|molhar; encharcar
+1696|C|raiz
+1697|S|preço; valor
+1698|M|desejo; pedido
+1699|V|desejar; pedir
+1700|C|rato
+1701|C|trópicos
+1702|M|entusiasmo; dedicação
+1703|T|ano; período de um ano
+1705|T|o ano todo; sempre
+1706|T|era; geração; década
+1707|M|idade
+1708|C|campo; planície
+1709|M|habilidade; capacidade
+1710|P|agricultor; família de agricultores
+1711|S|agricultura
+1712|P|camponeses
+1713|M|capacidade
+1714|E|não
+1715|L|beiral
+1716|V|deixar; reservar
+1717|M|restante; sobra
+1718|V|pôr em cima; levar (a bordo); dar carona
+1719|V|pôr em cima; publicar
+1720|V|espiar; olhar de relance
+1721|V|retirar; excluir
+1722|M|desejo; esperança
+1723|V|desejar; esperar
+1725|M|batida na porta

@@ -4,6 +4,17 @@
 > conteúdo escrito por IA por um falante**. A licença do código está em `LICENSE`, na raiz, e as licenças de terceiros estão
 > resumidas em `NOTICE.md`; este arquivo traz o detalhe de cada fonte.
 
+## Lista JLPT N3 (`n3.ts`, gerado em `scripts/vocab-n3/`)
+
+- **Origem direta e licença:** a mesma das listas N5 e N4: projeto *open-anki-jlpt-decks* (licença MIT), arquivo `src/n3.csv`, com dados das
+  listas de Jonathan Waller (tanos.co.uk), sob CC BY (crédito em Ajustes → Créditos e licenças).
+- **Alterações feitas neste projeto:** as mesmas do N4 (formas alternativas reduzidas à primeira, "～" e "(する)" removidos, repetidas
+  descartadas), além das palavras que já estão no N5 ou no N4 (28) e quatro linhas puladas à mão (清む, 為る e 生長, variantes de palavras que
+  já existem, e uma leitura que não era kana). **O recorte é a lista inteira:** ela mistura as marcas `JLPT_2` e `JLPT_3` da lista antiga do
+  JLPT, então traz o N3 e uma parte do N2, e **não é o N3 oficial** (o JLPT não publica lista oficial). O significado em português foi escrito por IA a partir do
+  significado em inglês da lista; **ainda não foi revisado por um falante**. A classe vem do JMdict, como no N5; o tom e a frequência
+  ainda não foram acrescentados a estas palavras.
+
 ## Lista JLPT N4 (`n4.ts`, gerado em `scripts/vocab-n4/`)
 
 - **Origem direta e licença:** a mesma da lista N5, abaixo: projeto *open-anki-jlpt-decks* (licença MIT), arquivo `src/n4.csv`, com dados das

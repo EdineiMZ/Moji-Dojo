@@ -2,6 +2,16 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.25.0] - 2026-10-31
+
+Vocabulário N3: 2.072 palavras novas.
+
+- **Palavras do N3:** a lista do *open-anki-jlpt-decks* (MIT) entra com leitura, significado em português e classe (JMdict), em 13 grupos "N3: ..." (verbos, adjetivos, ideias e sentimentos, sociedade e trabalho, natureza e corpo, e outros). Ficaram de fora as 28 que já estão no N5 e no N4, e três variantes de palavras que já existem.
+- **Atenção ao recorte:** a lista junta as marcas `JLPT_2` e `JLPT_3` da lista antiga do JLPT, então traz o N3 **e uma parte do N2**; não é o N3 oficial (o JLPT não publica lista). Os significados foram escritos por IA e **ainda precisam de revisão por um falante**.
+- **Sem misturar com o N5 e o N4:** as palavras do N3 ficam fora do simulado e das metas do N5 e do N4 (que antes contavam como N5 tudo o que não era "N4:"). Elas aparecem por último na trilha de estudo, depois do N5 e do N4.
+- **Para depois:** tom, frequência e frases do Tatoeba para estas palavras, e o caminho de metas e o simulado do N3.
+- **Dentro do app:** `scripts/build-n3.mjs` gera `src/content/n3.ts`; a classe gramatical foi regerada com `npm run build-pos`.
+
 ## [2.24.0] - 2026-10-31
 
 Gramática N4: de 23 para 27 tópicos.

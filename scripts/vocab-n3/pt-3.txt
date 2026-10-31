@@ -1,0 +1,430 @@
+871|M|direito; privilégio
+873|M|go (jogo de tabuleiro)
+874|M|amor; paixão
+875|A|forte; escuro; denso
+876|P|namorado(a); amante
+877|M|boa sorte
+878|M|palestra; conferência
+879|M|efeito; resultado
+880|L|moeda
+881|A|caro; de alto preço
+882|A|luxuoso; suntuoso
+883|M|aprovação (em exame)
+884|S|troca; câmbio
+885|X|aviação
+886|M|cena; panorama
+887|S|total; soma
+888|M|ataque
+889|M|contribuição
+890|S|propaganda; anúncio
+891|M|relacionamento; convívio
+892|L|prédio da escola
+893|M|o último (mencionado); o segundo
+895|M|justiça; imparcialidade
+896|M|composição; organização
+897|A|alta velocidade
+898|M|ação; comportamento
+899|S|assalto; roubo
+900|P|colega mais novo; júnior
+901|M|felicidade; bem-aventurança
+902|A|justo; imparcial
+903|P|candidato; candidatura
+904|M|consideração; levar em conta
+905|V|ultrapassar; atravessar
+906|V|exceder; passar de
+907|P|treinador
+908|M|código; cabo; acorde
+909|C|gelo
+910|V|congelar; gelar
+911|M|gol; meta
+912|M|mal-entendido
+913|M|estudo de idiomas
+914|C|respiração
+915|L|terra natal
+916|E|bem; muito
+917|M|língua nacional; japonês (disciplina)
+918|M|nacionalidade
+919|L|lousa; quadro-negro
+920|M|superação; vencer
+921|P|povo; cidadão
+922|F|cereais; grãos
+923|C|quadril; cintura
+924|F|pimenta-do-reino
+925|P|indivíduo; pessoa em particular
+926|V|passar; ultrapassar; mudar-se
+927|V|cruzar; ultrapassar; superar
+928|S|país; nação; Estado
+929|S|parlamento nacional (Dieta)
+930|L|fronteira
+931|C|fratura óssea
+932|L|pacote; encomenda
+933|L|koto (harpa japonesa)
+934|V|diferir; ser diferente
+935|M|provérbio
+936|V|recusar; declinar
+937|F|farinha; pó
+938|M|gosto; preferência
+939|V|gostar de; preferir
+940|V|derramar
+941|V|transbordar; derramar-se
+942|L|lixo
+943|F|trigo
+944|E|desculpe; sinto muito
+945|L|cabana; barracão
+946|E|estes; estas
+947|V|matar
+948|V|cair; tropeçar
+949|T|desta vez; agora
+950|T|daqui para frente
+951|M|congestionamento; aglomeração
+952|E|assim tanto; deste jeito
+953|M|dificuldade
+955|E|olá; boa tarde
+956|M|noivado
+957|M|confusão; caos
+958|M|diferença
+959|S|serviço; atendimento
+960|T|ocasião; momento
+961|A|o melhor; máximo
+962|S|bens; patrimônio
+963|T|final; último
+964|T|bem no meio de; durante
+965|A|o pior; o mínimo
+966|M|talento; capacidade
+967|S|julgamento; processo
+968|F|ingredientes; material
+969|E|felizmente
+970|M|assinatura; sinal; seno
+971|D|fronteira; limite
+972|V|ir contra; desobedecer
+973|M|porção; auge
+974|S|trabalho; operação
+975|V|rasgar; dividir
+976|T|último; passado (ano)
+977|M|obra; produção
+978|S|colheita; plantação
+979|C|cerejeira; flor de cerejeira
+980|F|bebida alcoólica; saquê
+981|V|gritar; clamar
+982|V|evitar; desviar
+983|V|apoiar; sustentar
+984|V|cravar-se; ficar espetado
+985|V|picar; espetar; ferroar
+986|V|apontar; indicar
+987|V|inserir; enfiar
+988|V|pôr (líquido); servir
+989|V|incidir (luz); entrar (raios de sol)
+990|L|assento; lugar
+991|V|convidar; tentar
+992|S|nota; cédula
+993|P|escritor; autor
+994|M|composição musical
+995|E|mais ou menos; por alto
+996|E|refrescado; leve; simples
+997|E|bem; então
+998|C|deserto
+999|M|discriminação; distinção
+1000|P|mamãe
+1001|C|feijão; ervilha
+1002|V|proteger; cumprir (regras)
+1003|V|ficar em dúvida; perder-se
+1004|M|círculo; redondo
+1006|E|como se fosse; exatamente como
+1007|E|por acaso; se por acaso
+1008|M|satisfação
+1009|C|corpo; si mesmo
+1010|C|fruto; semente; resultado
+1011|S|despedida (acompanhar alguém)
+1012|P|aliado; partidário
+1013|A|esplêndido; magnífico
+1014|M|erro
+1015|V|encher-se; amadurecer
+1016|A|denso; íntimo
+1017|V|reconhecer; aprovar
+1018|S|visita a doente; condolências
+1019|L|lembrança; souvenir
+1020|L|cidade; capital
+1021|A|estranho; curioso
+1023|T|futuro
+1024|M|encanto; fascínio
+1025|V|examinar (paciente)
+1026|F|leite
+1027|M|nada; zero
+1028|D|em frente a; do outro lado
+1029|S|recepção; busca (de alguém)
+1030|V|voltar-se para; estar virado para
+1031|V|descascar
+1032|V|voltar para; dirigir
+1033|M|ignorar; desconsiderar
+1034|A|abafado; úmido e quente
+1035|C|cárie
+1036|E|em vez disso; antes
+1037|V|cozinhar no vapor; ficar abafado
+1038|V|atar; amarrar; unir
+1039|M|inutilidade; desperdício
+1040|M|ser fissurado em; estar vidrado
+1041|C|peito; tórax
+1042|S|grátis; sem custo
+1043|C|broto
+1044|A|claro; definido
+1045|S|cartão de visita
+1046|M|substantivo
+1047|V|ordenar; nomear
+1048|P|mestre; especialista
+1049|M|ordem; comando
+1050|M|incômodo; transtorno
+1051|P|superior; pessoa de posição mais alta
+1052|F|refeição; comida
+1053|E|raramente
+1054|M|anotação; recado
+1055|M|face; superfície; página
+1056|R|algodão
+1057|S|licença; habilitação
+1058|S|entrevista
+1059|M|trabalho; incômodo; cuidado
+1060|P|membro
+1061|V|inscrever-se; fazer pedido
+1062|M|desculpa; justificativa
+1063|L|cobertor
+1064|V|queimar; pegar fogo
+1065|M|propósito; finalidade
+1066|M|alvo; meta
+1067|M|letra; caractere
+1069|E|talvez; quem sabe
+1070|E|se (por acaso)
+1071|V|levantar; elogiar (para agradar)
+1072|V|usar; empregar
+1073|A|desperdício; imerecido
+1074|E|com razão; no entanto
+1075|M|origem; antigo; ex-
+1076|M|base; fundamento
+1077|M|elemento; componente
+1078|V|devolver; colocar de volta
+1079|V|basear-se em
+1080|V|pedir; procurar
+1081|P|pessoa
+1082|M|ruído; barulho
+1083|M|história; conto; lenda
+1084|M|coisas; tudo
+1085|V|queimar (algo); incinerar
+1086|M|estampa; padrão; situação
+1087|M|reclamação
+1088|E|logo; em breve
+1089|M|papel; função (teatro); cargo
+1090|E|aproximadamente; cerca de
+1092|V|traduzir
+1093|M|papel; função
+1094|S|aluguel
+1095|A|incômodo; trabalhoso
+1096|L|pousada; alojamento
+1097|V|contratar; empregar
+1098|L|telhado
+1099|V|rasgar; violar; derrotar
+1100|V|rasgar-se; gastar-se
+1101|V|deixar (emprego); sair; demitir-se
+1102|E|um pouco; ligeiramente
+1103|A|único; exclusivo
+1104|M|coragem
+1105|M|amizade
+1106|A|válido; eficaz
+1107|A|excelente; superior
+1108|M|vitória total; campeonato
+1109|M|amizade; companheirismo
+1110|P|amigo (formal)
+1111|A|capaz; competente
+1112|S|correio
+1113|M|humor
+1114|A|vantajoso
+1115|L|chão; piso
+1116|A|agradável; divertido
+1117|V|ceder; passar adiante; vender
+1118|A|abundante; rico
+1119|V|ferver (cozinhar em água)
+1120|V|permitir; perdoar
+1122|T|amanhecer; madrugada
+1123|V|embriagar-se; enjoar (transporte)
+1124|A|fácil; simples
+1125|L|recipiente
+1126|T|época do ano; clima; animação
+1127|S|exigência; pedido
+1128|M|cuidado; precaução
+1129|M|aspecto; situação; jeito
+1130|E|em resumo; resumindo
+1131|M|elemento; fator
+1132|M|ponto principal
+1133|T|dia da semana
+1134|L|Europa
+1135|M|expectativa; previsão
+1136|V|atravessar; cortar caminho
+1137|V|sujar; manchar
+1138|S|orçamento; previsão de gastos
+1139|V|parar; desistir de
+1140|V|aproximar; juntar; reunir
+1141|M|previsão; estimativa
+1142|X|iate
+1143|T|meia-noite; madrugada
+1144|S|sociedade; mundo
+1145|A|excedente; extra
+1146|S|previsão (do tempo)
+1147|S|prevenção
+1148|M|leitura (de um kanji ou texto)
+1149|P|nora; esposa; noiva
+1150|M|folga; margem
+1151|M|torção; fio torcido
+1152|V|vir de; depender de; causar
+1153|M|alegria; prazer
+1154|E|por favor; cumprimentos
+1156|T|próximo; que vem (ano, mês)
+1157|L|isqueiro; escritor
+1158|A|confortável; fácil
+1159|L|raquete
+1160|S|lucro; benefício
+1161|M|compreensão
+1162|C|terra firme; continente
+1163|A|esperto; inteligente
+1164|S|divórcio
+1165|M|ideal
+1166|M|taxa; porcentagem
+1167|S|estudo no exterior
+1168|M|moda; tendência; epidemia
+1169|M|quantidade
+1170|L|alojamento estudantil; dormitório
+1171|S|câmbio; troca de dinheiro
+1172|S|tarifa; taxa
+1173|M|exemplo; caso
+1174|M|agradecimento; reverência
+1175|M|exceção
+1176|M|boas maneiras; etiqueta
+1177|A|calmo; sereno
+1178|M|fila; fileira
+1179|X|trem
+1180|M|nível
+1181|M|associação de ideias
+1182|M|continuação; seguido
+1183|P|idoso; pessoa de idade
+1184|S|trabalho; mão de obra
+1185|L|foguete
+1186|V|discutir; argumentar
+1187|M|controvérsia; disputa
+1188|M|tese; artigo científico
+1189|M|anel; aro; círculo
+1190|F|vinho
+1191|M|egoísmo; teimosia
+1192|M|despedida; separação
+1193|V|dividir-se; ramificar-se
+1194|D|lado; ao lado
+1195|V|brotar; jorrar; ferver
+1196|V|dividir; separar
+1197|E|de propósito
+1198|E|apenas; pouco
+1200|M|assunto; tema de conversa
+1201|M|riso; risada
+1202|V|dividir; quebrar
+1203|M|calúnia; fala mal de alguém
+1204|P|nós
+1205|C|baía; golfo
+1206|L|tigela
+1207|L|tigela
+1208|M|mal; vício
+1209|M|acerto; sucesso
+1210|M|para cima; aumento
+1211|V|endereçar; dirigir a
+1212|S|questionário; pesquisa
+1213|M|diferença (de opinião)
+1214|M|vontade
+1215|L|clínica; consultório
+1216|M|raiva; ira
+1217|A|chique; elegante
+1218|M|teimosia; orgulho; força de vontade
+1219|E|ainda; como antes
+1220|V|danificar; estragar
+1221|V|refogar
+1222|D|toda a região
+1223|S|transferência; mudança (de cargo)
+1224|R|roupas; vestuário
+1225|C|redemoinho
+1226|V|ficar enterrado; ficar cheio
+1227|V|dar à luz; produzir
+1228|M|laço; destino; relação
+1229|C|cauda; rabo
+1230|V|carregar; dever
+1231|M|atraso
+1232|M|ensinamento; doutrina
+1233|M|surpresa; espanto
+1234|V|tecer
+1235|V|faltar; carecer de
+1237|M|núcleo; centro
+1238|M|categoria; posição; caso (gramática)
+1239|M|formação acadêmica
+1240|V|correr (galopar)
+1241|V|apostar; arriscar
+1242|M|tarefa; tema
+1243|S|arrumação; término
+1244|M|toque; tempero
+1245|S|empréstimo; dívida
+1246|M|caça
+1248|M|visão; ponto de vista
+1249|C|câncer
+1250|S|publicação
+1251|M|costume; prática habitual
+1252|M|grito de alegria; ovação
+1253|P|burocrata; funcionário público
+1254|C|órgão (do corpo)
+1255|M|trimestral
+1256|M|origem; começo
+1257|S|organização; mecanismo
+1258|V|construir; estabelecer
+1259|S|regulamento; controle
+1260|C|colina
+1261|S|conferência; negociação
+1262|M|usufruto; desfrute
+1263|M|cooperação; harmonia
+1264|M|limite; ponto de parada
+1265|C|bactéria; germe
+1266|C|miopia
+1267|M|sofrimento; dificuldade
+1268|M|grupo
+1269|S|pena; condenação
+1270|M|sequência dos fatos
+1271|L|medidor; instrumento de medição
+1272|M|oportunidade; ensejo
+1273|L|portátil; celular
+1274|M|forma; estado
+1275|C|vaso sanguíneo
+1276|S|execução (com determinação)
+1277|M|assunto; caso
+1278|M|diminuição; redução
+1279|M|apresentação pública
+1280|M|arrependimento
+1281|X|navegação; viagem de navio
+1282|S|restrição; limitação
+1283|M|ruína; devastação
+1284|M|rendição; capitulação
+1285|M|excitação; empolgação
+1286|M|palavras; locuções
+1287|E|cada um; individualmente
+1288|P|falecido
+1289|S|trocado; moedas
+1290|E|talvez; dependendo da situação
+1291|M|concurso; competição
+1292|S|coleta; colheita
+1293|M|obra; safra
+1294|M|plano; medida; política
+1295|S|equipamento; instalações
+1296|M|extinção
+1297|S|economia; poupança
+1298|V|atacar; assaltar
+1299|V|culpar; criticar
+1300|M|bem; virtude
+1301|M|todo; inteiro
+1302|P|todos os membros
+1303|M|área de estudo; especialização
+1304|S|o país inteiro; nacional
+1305|L|detergente
+1306|T|outro dia; há alguns dias
+1307|M|o primeiro (mencionado); o anterior
+1308|P|jogador; atleta
+1309|C|corpo inteiro
+1310|M|avanço; progresso
+1311|L|centro
+1312|M|todo; inteiro; afinal

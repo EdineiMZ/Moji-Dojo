@@ -1,0 +1,395 @@
+1726|V|esticar; estender
+1727|V|estender; adiar; prolongar
+1728|V|crescer; esticar-se; progredir
+1729|V|ser adiado; prolongar-se
+1730|V|expor; declarar; mencionar
+1731|V|subir; escalar
+1732|V|subir; nascer (o sol)
+1733|V|ser publicado; constar
+1734|E|tranquilamente; sem pressa
+1735|D|lugar; local
+1736|E|ah (suspiro)
+1737|M|por cento
+1738|C|cinza
+1740|L|violino
+1741|M|caminhada; trilha
+1742|S|entrega
+1743|L|cano; cachimbo; contato
+1744|P|ator; atriz
+1745|P|piloto
+1746|V|crescer (planta, dentes); nascer
+1747|L|túmulo
+1748|P|tolo; idiota
+1749|P|doutor (título)
+1750|V|medir; calcular
+1751|V|pesar; medir
+1752|V|medir (comprimento, profundidade)
+1753|V|varrer
+1754|V|vomitar; soltar (ar)
+1755|M|aplauso
+1756|A|enorme; vasto
+1757|M|explosão
+1758|L|museu
+1759|A|violento; intenso
+1760|L|tesoura
+1761|S|falência
+1762|D|ponta; borda
+1763|M|começo; origem
+1764|M|passe; passagem
+1765|V|tirar; soltar; desviar
+1766|L|passaporte
+1767|V|soltar-se; sair do lugar; errar o alvo
+1768|L|bandeira
+1769|C|pele
+1770|C|nu
+1771|L|horta; plantação
+1772|M|trabalho; função
+1773|L|bolsa; saco
+1774|M|descoberta
+1775|S|emissão; publicação
+1776|X|partida (de veículo)
+1777|M|disparo; lançamento
+1778|V|punir
+1779|M|desenvolvimento
+1780|E|de repente (encontrar)
+1781|M|desenvolvimento; progresso
+1782|S|anúncio; apresentação; publicação
+1783|M|invenção
+1784|A|chamativo; vistoso
+1785|V|conversar; discutir
+1786|V|separar; soltar
+1787|V|soltar; libertar
+1788|V|afastar-se; separar-se
+1789|V|soltar-se; libertar-se
+1790|C|asa
+1791|C|pena (de ave); peteca
+1792|M|largura
+1793|P|mãe
+1794|V|omitir; cortar
+1795|M|cena; situação
+1796|V|estar na moda; fazer sucesso
+1797|C|barriga; ventre
+1798|C|campo; planície
+1799|M|equilíbrio
+1800|L|agulha; ponteiro
+1801|M|alcance; âmbito
+1802|M|rebeldia; oposição
+1803|M|crime
+1804|A|bonito (homem)
+1805|M|reflexão; autocrítica
+1806|M|julgamento; decisão
+1807|P|criminoso; culpado
+1808|S|venda
+1809|L|luz
+1810|F|cerveja
+1811|M|dano; prejuízo
+1812|M|comparação
+1813|M|piquenique
+1814|M|tragédia
+1815|X|voo
+1816|C|joelho; colo
+1817|A|extraordinário; emergência
+1818|P|mulher bonita
+1820|T|data (dia do mês)
+1821|S|mudança de casa
+1822|A|desesperado; de vida ou morte
+1823|E|justo; certinho
+1824|V|puxar; esticar; arrastar
+1825|M|negação
+1826|L|vídeo
+1827|M|uma palavra
+1828|M|multidão
+1829|A|igual
+1830|P|sozinho; solteiro
+1831|P|um por um; cada um
+1832|M|crítica
+1833|M|crítica; resenha
+1834|M|segredo
+1835|A|delicado; sutil
+1836|L|cordão; barbante
+1837|V|esfriar; refrigerar
+1838|S|custo; despesa
+1840|T|segundo (tempo)
+1841|M|avaliação
+1842|M|expressão
+1843|C|expressão do rosto
+1844|M|igualdade
+1845|M|fama; reputação
+1846|D|superfície
+1847|V|espalhar-se; estender-se
+1848|V|abrir; estender; ampliar
+1849|V|difundir; divulgar
+1851|L|garrafa
+1852|X|meio; correio; voo
+1853|L|alfinete; pino
+1854|M|não-; negativo
+1858|M|ansiedade; inquietação
+1859|C|paisagem
+1860|P|casal
+1861|L|flauta; apito
+1862|A|errado; inadequado
+1863|V|aprofundar-se
+1864|L|arma
+1865|V|enxugar; limpar
+1866|R|vestimenta; traje
+1867|V|conter; incluir
+1868|V|incluir
+1869|L|saco; sacola
+1870|M|infelicidade
+1871|M|nó; articulação; melodia
+1872|A|sem problemas; são e salvo
+1873|A|misterioso; estranho
+1874|A|desconfortável; incapacitado
+1875|P|esposa; senhora
+1876|P|mulher; senhora
+1877|M|injustiça; fraude
+1878|V|prevenir; defender
+1879|M|falta; escassez
+1880|L|palco
+1881|P|gêmeos
+1882|E|de novo; mais uma vez
+1883|E|normalmente; no dia a dia
+1886|X|interrupção; suspenso (trens)
+1887|S|preços
+1888|V|bater em; colidir
+1889|V|bater (algo) em; atirar contra
+1890|M|matéria; substância
+1891|M|física
+1892|L|pincel (de escrita)
+1893|E|de repente; sem querer
+1894|M|parte; seção
+1895|M|queixa; descontentamento
+1896|M|insatisfação
+1897|V|aumentar; acrescentar
+1898|V|multiplicar; aumentar
+1899|M|mais; positivo
+1900|L|plástico
+1901|M|plano
+1902|M|desvantagem
+1903|V|agitar; balançar; salpicar
+1904|V|tremer; estremecer
+1905|L|freio
+1906|V|tocar; mencionar
+1907|P|profissional
+1909|M|frase; texto
+1910|M|atmosfera; clima
+1911|M|análise
+1912|M|civilização
+1913|M|campo; área
+1914|L|muro; cerca
+1915|M|média; equilíbrio
+1916|M|paz
+1917|E|em particular; nada especial
+1918|V|reduzir; diminuir
+1919|V|diminuir; reduzir-se
+1920|R|cinto
+1921|M|mudança; variação
+1922|L|tinta (para parede)
+1923|M|alteração; modificação
+1924|L|banco (de praça)
+1925|F|marmita; bentô
+1927|M|lei
+1928|L|vara; bastão
+1929|M|aventura
+1930|D|direção; rumo
+1931|S|relatório; informe
+1932|L|joia; pedra preciosa
+1933|S|embalagem; embrulho
+1934|A|abundante; rico
+1935|M|método
+1937|S|visita
+1938|V|latir; uivar
+1939|P|garoto; mensageiro
+1940|X|barco a remo
+1941|X|plataforma; casa
+1942|L|bola; tigela
+1944|M|orgulho
+1945|C|poeira
+1946|S|garantia
+1947|M|conservação; guardar
+1948|L|calçada
+1949|P|Buda
+1950|C|osso
+1951|C|chama
+1952|C|bochecha
+1954|E|quase; aproximadamente
+1955|V|sorrir
+1956|L|fosso; canal
+1957|L|fosso
+1959|P|a própria pessoa
+1960|M|autêntico; original
+1961|E|vagamente; distraído
+1963|E|bem; bom (hesitando)
+1964|L|mercado
+1965|L|microfone
+1966|P|criança perdida
+1967|M|menos; negativo
+1968|V|confiar a; deixar nas mãos de
+1969|V|enrolar; dar volta
+1970|V|semear
+1971|V|espalhar; borrifar; semear
+1972|M|cortina; ato (teatro)
+1973|M|derrota
+1974|P|neto; neta
+1975|E|não pode ser; não é possível
+1976|E|justamente; exatamente
+1977|V|misturar-se; estar misturado
+1978|V|misturar-se; estar misturado
+1979|V|misturar-se; estar misturado
+1980|V|misturar-se; estar misturado
+1981|V|aumentar; ganhar
+1982|A|pobre; necessitado
+1983|P|dono do bar; mestre
+1984|E|cada vez mais
+1985|V|misturar; mexer
+1986|V|misturar; combinar
+1987|L|cidade; rua; bairro
+1988|M|erro; engano
+1989|C|pinheiro
+1990|A|vermelhíssimo
+1991|E|realmente; completamente
+1992|M|festival
+1993|V|ficar organizado; chegar a um acordo
+1994|V|organizar; resumir; concluir
+1995|V|aprender; estudar
+1996|M|imitação; comportamento
+1997|V|convidar
+1998|A|ofuscante; brilhante demais
+1999|L|cerca; grade
+2000|V|rasgar-se; fender-se
+2001|V|julgar
+2002|C|oxidação
+2003|M|morte
+2004|M|qualificação; requisito
+2005|C|visão
+2006|S|comando; direção
+2007|C|magnetismo
+2008|L|porcelana
+2009|M|si mesmo; o eu
+2010|M|tipo de letra; fonte
+2011|M|recusa; declínio
+2012|M|ponto de vista
+2013|C|gordura
+2014|M|desejo; aspiração
+2015|P|pessoas; multidão
+2016|M|moradia; viver
+2017|M|ornamento; modificação (gramática)
+2018|S|uso pessoal
+2019|M|jeito; especificação
+2020|M|sentimento; emoção
+2021|T|vida inteira
+2022|P|chefe; superior
+2023|M|verdadeira natureza; identidade
+2024|L|iluminação
+2025|P|senhora (título)
+2026|M|partícula (gramática)
+2027|M|choque
+2028|M|avanço; progresso
+2029|A|emergente; em ascensão
+2030|S|promoção; fomento
+2031|S|declaração; relatório
+2032|M|verdade
+2033|L|descarga (privada); lavar com água
+2034|M|estresse
+2035|V|esfregar; roçar
+2036|A|regular; oficial
+2037|A|elaborado; delicado
+2038|S|acerto de contas
+2039|P|maioridade
+2040|S|declaração; comunicado
+2041|M|nome completo
+2042|C|fisiologia; menstruação
+2044|F|bandeja; refeição
+2045|M|zen
+2046|S|eleição
+2047|M|que precede; ir na frente
+2048|S|seleção
+2049|M|aspecto; fase
+2050|V|seguir (ao longo de)
+2051|V|acompanhar; atender
+2052|P|monge
+2053|M|estátua; imagem
+2054|S|investigação; busca policial
+2055|S|pilotagem; manejo
+2056|M|criação
+2057|S|tropa; esquadrão
+2058|S|abandono dos estudos
+2059|M|título
+2060|M|para baixo; queda
+2061|V|subir; aumentar (tensão)
+2062|V|cortar; interromper
+2063|L|escudo
+2064|M|exemplo; ainda que
+2065|L|sinal sonoro; sineta
+2066|M|desafio
+2067|S|tratamento médico
+2069|V|unir; enxertar
+2070|V|suceder; herdar
+2071|V|colher; apanhar
+2072|C|orvalho
+2073|V|ficar mais forte
+2074|V|fortalecer; enfatizar
+2075|M|dados
+2076|M|design
+2077|F|sobremesa
+2078|S|mudança de escola
+2079|M|recado
+2080|E|e
+2081|V|perguntar; questionar
+2082|L|edifício; prédio (contador)
+2083|S|falência (de empresa)
+2084|P|companheiro; entre
+2085|P|camarada; correligionário
+2086|A|natural; óbvio
+2087|M|agitação; abalo
+2088|V|explicar; pregar
+2089|V|encadernar; arquivar
+2090|P|acompanhante; séquito
+2091|M|normal; comum
+2092|V|acostumar
+2093|V|domesticar
+2094|M|dificuldade; defeito
+2096|L|anuário
+2097|C|cérebro
+2098|V|dar para; encarar; comparecer
+2099|C|pulmão
+2100|M|derrotas (contador)
+2101|V|brilhar; destacar-se
+2102|V|consultar; submeter
+2103|V|planejar; tentar
+2104|V|deixar crescer (barba)
+2105|S|grupo; equipe
+2106|M|formato (de papel ou livro)
+2107|S|edição
+2108|L|monumento de pedra
+2109|M|delinquência
+2110|S|voto; etiqueta
+2111|V|espalhar-se; difundir-se
+2112|V|aprofundar
+2113|M|sorte; felicidade
+2114|M|jeito; aparência
+2115|V|passar (tempo); atravessar
+2116|S|proteção
+2117|S|garantia; segurança
+2118|S|indenização
+2119|E|aliviado
+2120|E|com antecedência
+2121|C|membrana; película
+2122|S|meios de comunicação de massa
+2123|C|coxa; virilha
+2125|M|massagem
+2126|V|ver por aí; avistar
+2127|V|virar (página)
+2128|M|mensagem
+2129|S|partido de oposição
+2130|M|excelência; nota máxima
+2131|M|orgânico
+2132|M|mundo; geração
+2133|A|bom
+2134|M|previsão; expectativa
+2135|V|enfraquecer
+2136|V|enfraquecer (algo)
+2137|L|etiqueta; rótulo
+2138|M|regra
+2139|M|moldura; limite
+2140|M|exibição; indicação

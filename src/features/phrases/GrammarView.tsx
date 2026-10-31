@@ -5,6 +5,7 @@ import { AppText, Button, Card, PressableScale, ProgressBar, ReduceMotion, RichT
 import { ALL_GRAMMAR } from '@/content/grammar';
 import { GENERAL_PITFALLS, TOPIC_PITFALLS } from '@/content/pitfalls';
 import { AiExplain } from '@/features/ai/AiParts';
+import { JpText } from '@/features/annotate/JpText';
 import { TopicTest } from '@/features/grammar-test/TopicTest';
 import { useProgressStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
@@ -45,7 +46,7 @@ function GeneralPitfalls() {
           {GENERAL_PITFALLS.map((p) => (
             <View key={p.title} style={[styles.note, { backgroundColor: colors.lilacSoft }]}>
               <AppText style={{ fontFamily: fonts.bold }}>{p.title}</AppText>
-              <AppText>{p.text}</AppText>
+              <JpText>{p.text}</JpText>
             </View>
           ))}
         </Animated.View>
@@ -111,7 +112,7 @@ export function GrammarView({ onPractice }: GrammarViewProps) {
                 <RichText blocks={topic.body} />
                 {topic.pattern ? (
                   <View style={[styles.note, { backgroundColor: colors.lilacSoft }]}>
-                    <AppText style={{ fontFamily: fonts.bold }}>{topic.pattern}</AppText>
+                    <JpText style={{ fontFamily: fonts.bold }}>{topic.pattern}</JpText>
                   </View>
                 ) : null}
                 <View style={styles.examples}>
@@ -123,7 +124,7 @@ export function GrammarView({ onPractice }: GrammarViewProps) {
                   <View style={[styles.note, { backgroundColor: colors.primarySoft }]}>
                     <AppText style={{ fontFamily: fonts.bold }}>Cuidado, quem fala português costuma errar aqui</AppText>
                     {pitfalls.map((line) => (
-                      <AppText key={line}>• {line}</AppText>
+                      <JpText key={line}>• {line}</JpText>
                     ))}
                   </View>
                 ) : null}

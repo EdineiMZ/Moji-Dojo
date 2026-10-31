@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import type { RichBlock, RichParagraph, RichTable } from '@/data/types';
+import { JpInline } from '@/features/annotate/JpText';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { AppText } from './AppText';
 
@@ -8,7 +9,7 @@ function Paragraph({ block }: { block: RichParagraph }) {
     <AppText>
       {block.runs.map((run, i) => (
         <Text key={i} style={run.bold ? styles.bold : undefined}>
-          {run.text}
+          <JpInline text={run.text} />
         </Text>
       ))}
     </AppText>
@@ -31,7 +32,7 @@ function Table({ block }: { block: RichTable }) {
               ]}
             >
               <AppText variant="caption" color={cell.header ? 'muted' : 'ink'} style={cell.header ? styles.bold : undefined}>
-                {cell.text}
+                {cell.header ? cell.text : <JpInline text={cell.text} />}
               </AppText>
             </View>
           ))}

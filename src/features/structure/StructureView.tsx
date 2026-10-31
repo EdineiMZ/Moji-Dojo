@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { romajiOf } from '@/features/annotate/annotate';
 import { AppText, Bold, Button, Card, ChipRow, PetalRain } from '@/components';
 import { ALL_TRAVEL } from '@/content/travel';
 import type { TravelPhrase } from '@/data/types';
@@ -24,6 +25,7 @@ const MODES = [
 /** O esqueleto da frase japonesa, para o aluno ter o mapa na cabeça antes de ver os exemplos. */
 function SkeletonCard() {
   const { colors } = useTheme();
+  const romajiMode = useSettingsStore((s) => s.romajiMode);
   const pieces: { text: string; role: BlockRole }[] = [
     { text: 'わたしは', role: 'topic' },
     { text: 'きのう', role: 'detail' },
@@ -43,6 +45,11 @@ function SkeletonCard() {
         {pieces.map((p) => (
           <View key={p.text} style={[styles.block, { backgroundColor: tintOf(p.role, colors), borderColor: colors.line }]}>
             <AppText style={[styles.blockText, p.role === 'predicate' && { color: colors.onPrimary }]}>{p.text}</AppText>
+            {romajiMode !== 'never' ? (
+              <AppText variant="caption" style={p.role === 'predicate' ? { color: colors.onPrimary } : { color: colors.muted }}>
+                {romajiOf(p.text)}
+              </AppText>
+            ) : null}
             <AppText variant="caption" style={p.role === 'predicate' ? { color: colors.onPrimary } : { color: colors.muted }}>
               {ROLES[p.role].label.split(' ')[0]}
             </AppText>

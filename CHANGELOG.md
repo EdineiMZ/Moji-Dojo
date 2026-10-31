@@ -2,6 +2,16 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.29.0] - 2026-10-31
+
+Japonês com leitura nas telas de explicação.
+
+- **Como se lê, em todo texto de explicação:** nos textos que explicam a gramática (explicação, tabelas, padrão, "Cuidado, quem fala português costuma errar aqui" e erros comuns), nos guias de pronúncia e na consulta de números, horas e datas, cada trecho em japonês agora vem seguido de como se lê, em romaji, entre colchetes. Os kanji que o app ensina também ganham a leitura.
+- **O que significa:** quando o trecho é uma palavra do vocabulário, o significado em português vem junto (a menos que o texto já traduza logo depois, para não repetir).
+- **Segue o ajuste de romaji** (Ajustes → Estudo e leitura): "sempre" mostra tudo, "só ao tocar" mostra um ⓘ que abre a leitura daquele trecho, e "nunca" deixa como era. Um kanji que o app não conhece fica sem leitura, em vez de mostrar uma leitura errada.
+- **O mapa da frase japonesa** (Estrutura) ganhou o romaji de cada bloco.
+- **Limite:** a leitura de trechos soltos em kana pode sair um pouco diferente do jeito de falar (por exemplo, a partícula に colada na palavra); o significado só aparece para palavras do vocabulário, não para pedaços de gramática.
+
 ## [2.28.0] - 2026-10-31
 
 Leitura do N3.

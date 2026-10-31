@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { JpText } from '@/features/annotate/JpText';
 import { AppText, Button, Card, ChipRow, Mascot, PetalRain } from '@/components';
 import { resultMood } from '@/features/lessons/resultCopy';
 import type { Question, QuizResult } from '@/features/quiz/quiz';
@@ -26,29 +27,29 @@ function ReferenceCard() {
       <AppText variant="title">Para consultar</AppText>
 
       <AppText style={styles.bold}>Números que mudam de som</AppText>
-      <AppText>300 さんびゃく · 600 ろっぴゃく · 800 はっぴゃく · 3000 さんぜん · 8000 はっせん · 10000 いちまん</AppText>
-      <AppText color="muted" variant="caption">
+      <JpText>300 さんびゃく · 600 ろっぴゃく · 800 はっぴゃく · 3000 さんぜん · 8000 はっせん · 10000 いちまん</JpText>
+      <JpText color="muted" variant="caption">
         4 é よん (ou し), 7 é なな (ou しち) e 9 é きゅう (ou く). Nos números grandes, prefira よん, なな e きゅう.
-      </AppText>
+      </JpText>
 
       <AppText style={styles.bold}>Horas</AppText>
-      <AppText>4時 よじ · 7時 しちじ · 9時 くじ · 半 はん</AppText>
-      <AppText color="muted" variant="caption">
+      <JpText>4時 よじ · 7時 しちじ · 9時 くじ · 半 はん</JpText>
+      <JpText color="muted" variant="caption">
         Minutos: 1 {minuteReading(1)}, 3 {minuteReading(3)}, 6 {minuteReading(6)}, 8 {minuteReading(8)}, 10 {minuteReading(10)} (ぷん); 2, 5, 7 e
         9 usam ふん.
-      </AppText>
+      </JpText>
 
       <AppText style={styles.bold}>Datas</AppText>
-      <AppText>
+      <JpText>
         4月 {monthReading(4)} · 7月 {monthReading(7)} · 9月 {monthReading(9)}
-      </AppText>
-      <AppText color="muted" variant="caption">
+      </JpText>
+      <JpText color="muted" variant="caption">
         Dias 1 a 10: {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((d) => dayReading(d)).join(', ')}. Também 14 {dayReading(14)}, 20 {dayReading(20)}, 24{' '}
         {dayReading(24)}. Os outros são número + にち.
-      </AppText>
+      </JpText>
 
       <AppText style={styles.bold}>Preços</AppText>
-      <AppText>Número + えん. O 4 final vira よ: 4円 よえん, 14円 じゅうよえん.</AppText>
+      <JpText>Número + えん. O 4 final vira よ: 4円 よえん, 14円 じゅうよえん.</JpText>
 
       <AppText style={styles.bold}>Contadores (1 a 10)</AppText>
       {COUNTERS.map((c) => (
@@ -56,14 +57,14 @@ function ReferenceCard() {
           <AppText>
             <AppText style={styles.bold}>{c.written}</AppText> <AppText color="muted">{c.use}</AppText>
           </AppText>
-          <AppText variant="caption" color="muted">
+          <JpText variant="caption" color="muted">
             {c.readings.slice(1).join(' · ')}
-          </AppText>
+          </JpText>
         </View>
       ))}
-      <AppText variant="caption" color="muted">
+      <JpText variant="caption" color="muted">
         Para a idade, 20 anos é はたち. Para perguntar quantos, troque o número por なん: なんにん, なんぼん, なんまい.
-      </AppText>
+      </JpText>
     </Card>
   );
 }

@@ -5120,6 +5120,915 @@ export const GRAMMAR_N4: readonly GrammarTopic[] = [
         "pt": "Acho que eu vou dormir."
       }
     ]
+  },
+  {
+    "id": "n4-24",
+    "title": "Transformar em substantivo: 〜のが e 〜のは",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com "
+          },
+          {
+            "text": "の",
+            "bold": true
+          },
+          {
+            "text": " depois de um verbo na "
+          },
+          {
+            "text": "forma simples",
+            "bold": true
+          },
+          {
+            "text": ", a ação vira uma \"coisa\": "
+          },
+          {
+            "text": "はしる",
+            "ja": true
+          },
+          {
+            "text": " (\"correr\") → "
+          },
+          {
+            "text": "はしるの",
+            "ja": true
+          },
+          {
+            "text": " (\"o ato de correr\"). Assim o verbo pode ser usado com "
+          },
+          {
+            "text": "が",
+            "bold": true
+          },
+          {
+            "text": " ou "
+          },
+          {
+            "text": "は",
+            "bold": true
+          },
+          {
+            "text": ", como em \"gosto de correr\" ou \"nadar é divertido\"."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "padrão",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "verbo + のが + gosto, habilidade, medo"
+            },
+            {
+              "text": "はしるのが すき (gosto de correr)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "verbo + のは + opinião"
+            },
+            {
+              "text": "およぐのは おもしろい (nadar é divertido)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com palavras como "
+          },
+          {
+            "text": "すき",
+            "bold": true
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "じょうず",
+            "bold": true
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "へた",
+            "bold": true
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "こわい",
+            "bold": true
+          },
+          {
+            "text": " e "
+          },
+          {
+            "text": "はやい",
+            "bold": true
+          },
+          {
+            "text": ", a coisa de que se gosta, em que se é bom ou que se teme leva "
+          },
+          {
+            "text": "が",
+            "bold": true
+          },
+          {
+            "text": ". Com "
+          },
+          {
+            "text": "は",
+            "bold": true
+          },
+          {
+            "text": ", a frase fala do \"ato\" como tema e dá uma opinião sobre ele."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo simples] のが すき / じょうず / こわい · [verbo simples] のは [opinião]",
+    "examples": [
+      {
+        "jp": "わたしは はしるのが すきだ",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "走",
+            "reading": "はし"
+          },
+          {
+            "text": "るのが"
+          },
+          {
+            "text": "好",
+            "reading": "す"
+          },
+          {
+            "text": "きだ。"
+          }
+        ],
+        "romaji": "watashi wa hashiruno ga sukida",
+        "pt": "Eu gosto de correr."
+      },
+      {
+        "jp": "かれは うたうのが じょうずだ",
+        "ruby": [
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "歌",
+            "reading": "うた"
+          },
+          {
+            "text": "うのが"
+          },
+          {
+            "text": "上手",
+            "reading": "じょうず"
+          },
+          {
+            "text": "だ。"
+          }
+        ],
+        "romaji": "kare wa utauno ga jōzuda",
+        "pt": "Ele canta bem."
+      },
+      {
+        "jp": "わたしは いくのが こわい",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "くのが"
+          },
+          {
+            "text": "怖",
+            "reading": "こわ"
+          },
+          {
+            "text": "い。"
+          }
+        ],
+        "romaji": "watashi wa ikuno ga kowai",
+        "pt": "Estou com medo de ir."
+      },
+      {
+        "jp": "うみで およぐのは おもしろい",
+        "ruby": [
+          {
+            "text": "海",
+            "reading": "うみ"
+          },
+          {
+            "text": "で"
+          },
+          {
+            "text": "泳",
+            "reading": "およ"
+          },
+          {
+            "text": "ぐのは"
+          },
+          {
+            "text": "面白",
+            "reading": "おもしろ"
+          },
+          {
+            "text": "い。"
+          }
+        ],
+        "romaji": "umi de oyoguno wa omoshiroi",
+        "pt": "É divertido nadar no mar."
+      }
+    ]
+  },
+  {
+    "id": "n4-25",
+    "title": "Chamado e \"dizem que\": 〜という",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O verbo "
+          },
+          {
+            "text": "いう",
+            "bold": true
+          },
+          {
+            "text": " (\"dizer\") depois de "
+          },
+          {
+            "text": "と",
+            "bold": true
+          },
+          {
+            "text": " forma "
+          },
+          {
+            "text": "という",
+            "bold": true
+          },
+          {
+            "text": ". Ele liga um nome ou uma frase ao que vem depois: \"chamado...\", \"(a notícia) de que...\", \"o fato de que...\"."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "uso",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "nome: なんという + substantivo"
+            },
+            {
+              "text": "なんという とり (um pássaro de que nome?)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "conteúdo: frase simples + という + substantivo"
+            },
+            {
+              "text": "ふゆに なるという はなし (a história de que vem o inverno)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "fato: frase simples + ということ"
+            },
+            {
+              "text": "かつということ (o fato de vencer)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para perguntar o nome de algo, use "
+          },
+          {
+            "text": "なんという",
+            "bold": true
+          },
+          {
+            "text": " + o substantivo (escreve-se 何という): "
+          },
+          {
+            "text": "なんという とり",
+            "ja": true
+          },
+          {
+            "text": " é \"como se chama esse pássaro?\". Já "
+          },
+          {
+            "text": "ということ",
+            "bold": true
+          },
+          {
+            "text": " funciona como a "
+          },
+          {
+            "text": "の",
+            "bold": true
+          },
+          {
+            "text": " do tópico anterior, mas para falar de um fato ou de uma ideia inteira."
+          }
+        ]
+      }
+    ],
+    "pattern": "なんという [substantivo] · [forma simples] という [substantivo] · [forma simples] ということ",
+    "examples": [
+      {
+        "jp": "あれは なん という とりですか",
+        "ruby": [
+          {
+            "text": "あれは"
+          },
+          {
+            "text": "何",
+            "reading": "なん"
+          },
+          {
+            "text": "という"
+          },
+          {
+            "text": "鳥",
+            "reading": "とり"
+          },
+          {
+            "text": "ですか。"
+          }
+        ],
+        "romaji": "are wa nan toiu tori desu ka",
+        "pt": "Que pássaro é esse?"
+      },
+      {
+        "jp": "ここは なん という とおりですか",
+        "ruby": [
+          {
+            "text": "ここは"
+          },
+          {
+            "text": "何",
+            "reading": "なん"
+          },
+          {
+            "text": "という"
+          },
+          {
+            "text": "通",
+            "reading": "とお"
+          },
+          {
+            "text": "りですか。"
+          }
+        ],
+        "romaji": "koko wa nan toiu tōri desu ka",
+        "pt": "Qual é o nome desta rua, por favor?"
+      },
+      {
+        "jp": "きびしい ふゆに なる という はなしです",
+        "ruby": [
+          {
+            "text": "厳",
+            "reading": "きび"
+          },
+          {
+            "text": "しい"
+          },
+          {
+            "text": "冬",
+            "reading": "ふゆ"
+          },
+          {
+            "text": "になるという"
+          },
+          {
+            "text": "話",
+            "reading": "はなし"
+          },
+          {
+            "text": "です。"
+          }
+        ],
+        "romaji": "kibishii fuyu ni naru toiu hanashi desu",
+        "pt": "Eles disseram que vamos ter um inverno duro."
+      },
+      {
+        "jp": "あくが かつ ということも あります",
+        "ruby": [
+          {
+            "text": "悪",
+            "reading": "あく"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "勝",
+            "reading": "か"
+          },
+          {
+            "text": "つということもあります。"
+          }
+        ],
+        "romaji": "aku ga katsu toiukoto mo arimasu",
+        "pt": "O mal às vezes vence."
+      }
+    ]
+  },
+  {
+    "id": "n4-26",
+    "title": "Ser obrigado a fazer: 〜させられる",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Juntando a forma "
+          },
+          {
+            "text": "させる",
+            "bold": true
+          },
+          {
+            "text": " (\"fazer alguém fazer\") com a "
+          },
+          {
+            "text": "passiva",
+            "bold": true
+          },
+          {
+            "text": " ("
+          },
+          {
+            "text": "られる",
+            "bold": true
+          },
+          {
+            "text": "), nasce "
+          },
+          {
+            "text": "させられる",
+            "bold": true
+          },
+          {
+            "text": ": \"ser obrigado a fazer\", quase sempre contra a vontade. Quem foi obrigado vira o sujeito da frase."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "verbo",
+              "header": true
+            },
+            {
+              "text": "forma",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "grupo 1 (godan)"
+            },
+            {
+              "text": "いく → いかされる · まつ → またされる",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "grupo 2 (ichidan)"
+            },
+            {
+              "text": "たべる → たべさせられる",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "する"
+            },
+            {
+              "text": "する → させられる",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Nos verbos do grupo 1, a forma curta "
+          },
+          {
+            "text": "〜される",
+            "bold": true
+          },
+          {
+            "text": " ("
+          },
+          {
+            "text": "いかされる",
+            "ja": true
+          },
+          {
+            "text": ") é a mais usada. A frase também aparece com "
+          },
+          {
+            "text": "する",
+            "bold": true
+          },
+          {
+            "text": ", para um sentimento que é \"provocado\" em você: "
+          },
+          {
+            "text": "ハラハラさせられた",
+            "ja": true
+          },
+          {
+            "text": " (\"fiquei com o coração na mão\")."
+          }
+        ]
+      }
+    ],
+    "pattern": "[grupo 2: たべさせられる] · [grupo 1: いかされる] · [する: させられる]",
+    "examples": [
+      {
+        "jp": "かれは そこに いかされた",
+        "ruby": [
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "はそこに"
+          },
+          {
+            "text": "行",
+            "reading": "い"
+          },
+          {
+            "text": "かされた。"
+          }
+        ],
+        "romaji": "kare wa soko ni ikasareta",
+        "pt": "Ele foi feito para ir lá."
+      },
+      {
+        "jp": "かれは そう させられました",
+        "ruby": [
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "はそうさせられました。"
+          }
+        ],
+        "romaji": "kare wa sō saseraremashita",
+        "pt": "Obrigaram-no a fazer assim."
+      },
+      {
+        "jp": "さんじゅっぷん ちかく またされた",
+        "ruby": [
+          {
+            "text": "３０",
+            "reading": "さんじゅっ"
+          },
+          {
+            "text": "分",
+            "reading": "ぷん"
+          },
+          {
+            "text": "近",
+            "reading": "ちか"
+          },
+          {
+            "text": "く"
+          },
+          {
+            "text": "待",
+            "reading": "ま"
+          },
+          {
+            "text": "たされた。"
+          }
+        ],
+        "romaji": "sanjuppun chikaku matasareta",
+        "pt": "Fizeram-me esperar cerca de 30 minutos."
+      },
+      {
+        "jp": "みていて ハラハラ させられた",
+        "ruby": [
+          {
+            "text": "見",
+            "reading": "み"
+          },
+          {
+            "text": "ていてハラハラさせられた。"
+          }
+        ],
+        "romaji": "miteite harahara saserareta",
+        "pt": "Fiquei nervoso só de assistir a ele."
+      }
+    ]
+  },
+  {
+    "id": "n4-27",
+    "title": "Falar com respeito: お〜になります e verbos especiais",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O japonês tem uma linguagem de "
+          },
+          {
+            "text": "respeito",
+            "bold": true
+          },
+          {
+            "text": " ("
+          },
+          {
+            "text": "けいご",
+            "bold": true
+          },
+          {
+            "text": ") para clientes, professores e pessoas mais velhas. Ela tem dois lados: o "
+          },
+          {
+            "text": "honorífico",
+            "bold": true
+          },
+          {
+            "text": ", que eleva a ação da "
+          },
+          {
+            "text": "outra pessoa",
+            "bold": true
+          },
+          {
+            "text": ", e o "
+          },
+          {
+            "text": "humilde",
+            "bold": true
+          },
+          {
+            "text": ", que rebaixa a "
+          },
+          {
+            "text": "sua própria",
+            "bold": true
+          },
+          {
+            "text": " ação."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "tipo",
+              "header": true
+            },
+            {
+              "text": "como é",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "honorífico (ação do outro)"
+            },
+            {
+              "text": "お + verbo sem ます + になります: のむ → おのみに なります",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "honorífico, verbos especiais"
+            },
+            {
+              "text": "いる → いらっしゃいます · たべる → めしあがります · いう → おっしゃいます",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "humilde (sua ação)"
+            },
+            {
+              "text": "いう → もうします · みる → はいけんします · する → いたします",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Nunca use o honorífico para você mesmo: \"eu me chamo...\" é "
+          },
+          {
+            "text": "もうします",
+            "ja": true
+          },
+          {
+            "text": ", e \"o senhor se chama...\" é "
+          },
+          {
+            "text": "おっしゃいます",
+            "ja": true
+          },
+          {
+            "text": ". Em lojas, o cumprimento é "
+          },
+          {
+            "text": "いらっしゃいませ",
+            "ja": true
+          },
+          {
+            "text": " (\"bem-vindo\"). Estas formas são fixas: vale decorar as principais."
+          }
+        ]
+      }
+    ],
+    "pattern": "お [verbo sem ます] になります · いらっしゃる / めしあがる / おっしゃる · もうす / はいけんする / いたす",
+    "examples": [
+      {
+        "jp": "なにを おのみ に なりますか",
+        "ruby": [
+          {
+            "text": "何",
+            "reading": "なに"
+          },
+          {
+            "text": "をお"
+          },
+          {
+            "text": "飲",
+            "reading": "の"
+          },
+          {
+            "text": "みになりますか。"
+          }
+        ],
+        "romaji": "nani o onomi ni narimasu ka",
+        "pt": "O que você quer beber?"
+      },
+      {
+        "jp": "なにを めしあがりますか",
+        "ruby": [
+          {
+            "text": "何",
+            "reading": "なに"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "召",
+            "reading": "め"
+          },
+          {
+            "text": "し"
+          },
+          {
+            "text": "上",
+            "reading": "あ"
+          },
+          {
+            "text": "がりますか。"
+          }
+        ],
+        "romaji": "nani o meshiagarimasu ka",
+        "pt": "O que você gostaria de comer?"
+      },
+      {
+        "jp": "おかあさんは いらっしゃいますか",
+        "ruby": [
+          {
+            "text": "お"
+          },
+          {
+            "text": "母",
+            "reading": "かあ"
+          },
+          {
+            "text": "さんはいらっしゃいますか。"
+          }
+        ],
+        "romaji": "okāsan wa irasshaimasu ka",
+        "pt": "Sua mãe está em casa?"
+      },
+      {
+        "jp": "アンドレアと もうします",
+        "ruby": [
+          {
+            "text": "アンドレアと"
+          },
+          {
+            "text": "申",
+            "reading": "もう"
+          },
+          {
+            "text": "します。"
+          }
+        ],
+        "romaji": "andorea to mōshimasu",
+        "pt": "Eu me chamo Andréa."
+      },
+      {
+        "jp": "きっぷを はいけん いたします",
+        "ruby": [
+          {
+            "text": "切符",
+            "reading": "きっぷ"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "拝見",
+            "reading": "はいけん"
+          },
+          {
+            "text": "いたします。"
+          }
+        ],
+        "romaji": "kippu o haiken itashimasu",
+        "pt": "Bilhete, por favor."
+      }
+    ]
   }
 ];
 
@@ -6311,8 +7220,292 @@ export const BUILD_N4: readonly BuildExercise[] = [
     ],
     "romaji": "neyō to omō",
     "hint": "Opinião: forma simples + と思う."
+  },
+  {
+    "topic": "n4-24",
+    "pt": "Eu gosto de correr.",
+    "answer": [
+      "わたし",
+      "は",
+      "はしるの",
+      "が",
+      "すきだ"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "watashi wa hashiruno ga sukida",
+    "hint": "Verbo na forma simples + の vira \"o ato de...\"."
+  },
+  {
+    "topic": "n4-24",
+    "pt": "Ele canta bem.",
+    "answer": [
+      "かれ",
+      "は",
+      "うたうの",
+      "が",
+      "じょうずだ"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kare wa utauno ga jōzuda",
+    "hint": "Verbo na forma simples + の vira \"o ato de...\"."
+  },
+  {
+    "topic": "n4-24",
+    "pt": "Estou com medo de ir.",
+    "answer": [
+      "わたし",
+      "は",
+      "いくの",
+      "が",
+      "こわい"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "watashi wa ikuno ga kowai",
+    "hint": "Verbo na forma simples + の vira \"o ato de...\"."
+  },
+  {
+    "topic": "n4-24",
+    "pt": "É divertido nadar no mar.",
+    "answer": [
+      "うみ",
+      "で",
+      "およぐの",
+      "は",
+      "おもしろい"
+    ],
+    "extra": [
+      "に",
+      "を"
+    ],
+    "romaji": "umi de oyoguno wa omoshiroi",
+    "hint": "Verbo na forma simples + の vira \"o ato de...\"."
+  },
+  {
+    "topic": "n4-25",
+    "pt": "Que pássaro é esse?",
+    "answer": [
+      "あれ",
+      "は",
+      "なん",
+      "という",
+      "とりです",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "are wa nan toiu tori desu ka",
+    "hint": "という liga um nome ou uma frase ao substantivo seguinte."
+  },
+  {
+    "topic": "n4-25",
+    "pt": "Qual é o nome desta rua, por favor?",
+    "answer": [
+      "ここ",
+      "は",
+      "なん",
+      "という",
+      "とおりです",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "koko wa nan toiu tōri desu ka",
+    "hint": "という liga um nome ou uma frase ao substantivo seguinte."
+  },
+  {
+    "topic": "n4-25",
+    "pt": "Eles disseram que vamos ter um inverno duro.",
+    "answer": [
+      "きびしい",
+      "ふゆ",
+      "に",
+      "なる",
+      "という",
+      "はなしです"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "kibishii fuyu ni naru toiu hanashi desu",
+    "hint": "という liga um nome ou uma frase ao substantivo seguinte."
+  },
+  {
+    "topic": "n4-25",
+    "pt": "O mal às vezes vence.",
+    "answer": [
+      "あく",
+      "が",
+      "かつ",
+      "ということ",
+      "も",
+      "あります"
+    ],
+    "extra": [
+      "に",
+      "で"
+    ],
+    "romaji": "aku ga katsu toiukoto mo arimasu",
+    "hint": "という liga um nome ou uma frase ao substantivo seguinte."
+  },
+  {
+    "topic": "n4-26",
+    "pt": "Ele foi feito para ir lá.",
+    "answer": [
+      "かれ",
+      "は",
+      "そこ",
+      "に",
+      "いかされた"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kare wa soko ni ikasareta",
+    "hint": "Causativa + passiva: \"ser obrigado a\"."
+  },
+  {
+    "topic": "n4-26",
+    "pt": "Obrigaram-no a fazer assim.",
+    "answer": [
+      "かれ",
+      "は",
+      "そう",
+      "させられました"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kare wa sō saseraremashita",
+    "hint": "Causativa + passiva: \"ser obrigado a\"."
+  },
+  {
+    "topic": "n4-26",
+    "pt": "Fizeram-me esperar cerca de 30 minutos.",
+    "answer": [
+      "さんじゅっぷん",
+      "ちかく",
+      "またされた"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "sanjuppun chikaku matasareta",
+    "hint": "Causativa + passiva: \"ser obrigado a\"."
+  },
+  {
+    "topic": "n4-26",
+    "pt": "Fiquei nervoso só de assistir a ele.",
+    "answer": [
+      "みていて",
+      "ハラハラ",
+      "させられた"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "miteite harahara saserareta",
+    "hint": "Causativa + passiva: \"ser obrigado a\"."
+  },
+  {
+    "topic": "n4-27",
+    "pt": "O que você quer beber?",
+    "answer": [
+      "なに",
+      "を",
+      "おのみ",
+      "に",
+      "なります",
+      "か"
+    ],
+    "extra": [
+      "は",
+      "で"
+    ],
+    "romaji": "nani o onomi ni narimasu ka",
+    "hint": "Honorífico eleva o outro; humilde rebaixa você."
+  },
+  {
+    "topic": "n4-27",
+    "pt": "O que você gostaria de comer?",
+    "answer": [
+      "なに",
+      "を",
+      "めしあがります",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "nani o meshiagarimasu ka",
+    "hint": "Honorífico eleva o outro; humilde rebaixa você."
+  },
+  {
+    "topic": "n4-27",
+    "pt": "Sua mãe está em casa?",
+    "answer": [
+      "おかあさん",
+      "は",
+      "いらっしゃいます",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "okāsan wa irasshaimasu ka",
+    "hint": "Honorífico eleva o outro; humilde rebaixa você."
+  },
+  {
+    "topic": "n4-27",
+    "pt": "Eu me chamo Andréa.",
+    "answer": [
+      "アンドレア",
+      "と",
+      "もうします"
+    ],
+    "extra": [
+      "も",
+      "に"
+    ],
+    "romaji": "andorea to mōshimasu",
+    "hint": "Honorífico eleva o outro; humilde rebaixa você."
+  },
+  {
+    "topic": "n4-27",
+    "pt": "Bilhete, por favor.",
+    "answer": [
+      "きっぷ",
+      "を",
+      "はいけん",
+      "いたします"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "kippu o haiken itashimasu",
+    "hint": "Honorífico eleva o outro; humilde rebaixa você."
   }
 ];
 
 /** Ids das frases do Tatoeba usadas nos exemplos (para o crédito). */
-export const GRAMMAR_N4_SENTENCE_IDS: readonly number[] = [2684823,189732,204854,92933,8935237,11831405,11852556,2490824,10333259,3552079,11878738,3480582,173469,10712752,79947,1452344,110575,10197580,2048906,10592243,115483,10682600,12135719,1202184,189249,148767,154105,3506608,5692169,136179,80357,12003646,10230338,11706769,6391927,204266,10380252,10179138,109752,153577,10711650,12957260,151482,165152,77478,12508745,165927,11746278,228053,188016,6015,126755,2656835,142246,404561,90960,84989,3073523,12593254,169868,177029,201190,7959060,107639,86361,189727,99656,232414,217027,78415,100750,100545,628655,1062147,196536,9037336,175189,84108,3480369,175172,8098712,2063347,2006376,1680729,4734,12377003,99142,99154,103299,5049];
+export const GRAMMAR_N4_SENTENCE_IDS: readonly number[] = [2684823,189732,204854,92933,8935237,11831405,11852556,2490824,10333259,3552079,11878738,3480582,173469,10712752,79947,1452344,110575,10197580,2048906,10592243,115483,10682600,12135719,1202184,189249,148767,154105,3506608,5692169,136179,80357,12003646,10230338,11706769,6391927,204266,10380252,10179138,109752,153577,10711650,12957260,151482,165152,77478,12508745,165927,11746278,228053,188016,6015,126755,2656835,142246,404561,90960,84989,3073523,12593254,169868,177029,201190,7959060,107639,86361,189727,99656,232414,217027,78415,100750,100545,628655,1062147,196536,9037336,175189,84108,3480369,175172,8098712,2063347,2006376,1680729,4734,12377003,99142,99154,103299,5049,155346,109201,157118,185126,229721,224327,174979,191447,113243,113270,235365,175179,187628,187552,226613,342132,142084];

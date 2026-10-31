@@ -294,4 +294,20 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
     'A negação fica dentro do que se acha: "acho que não vem" é こないとおもう, e não くるとおもわない.',
     'Antes do と entra a forma simples; com substantivo e adjetivo な entra だ (しょうじきだとおもう).',
   ],
+  'n4-24': [
+    'O の depois do verbo pede a forma simples: はしるのがすき (e não はしりますのがすき).',
+    'Com すき, じょうず, へた e こわい o que se gosta ou teme leva が: うたうのがじょうず. Em português a gente diz "gosto de cantar" sem partícula, e isso engana.',
+  ],
+  'n4-25': [
+    '何という lê-se なんという (e não なにという): o なに vira なん antes de と.',
+    'という liga a frase ao substantivo seguinte (ふゆになるというはなし). Em português a ordem é a contrária: "a história de que vem o inverno".',
+  ],
+  'n4-26': [
+    'Não confunda: たべさせる = "fazer alguém comer"; たべさせられる = "ser obrigado a comer". O sujeito muda de quem manda para quem obedece.',
+    'No grupo 1 a forma curta é a comum: ouve-se いかされる mais que いかせられる (mas com verbos em す, como はなす, só vale a longa: はなさせられる). No grupo 2 só existe a longa: たべさせられる.',
+  ],
+  'n4-27': [
+    'O honorífico é para a ação dos outros; para falar de si, use o humilde. Dizer "わたしは いらっしゃいます" para si mesmo soa errado.',
+    'Algumas ações têm uma palavra própria (いく e くる → いらっしゃる, たべる → めしあがる, いう → おっしゃる). Quando existe, ela vale mais do que o padrão お〜になります.',
+  ],
 };

@@ -556,4 +556,100 @@ export const TOPICS = [
       { id: 5049, ja: '寝ようと思う。', furi: '[寝|ね]ようと[思|おも]う。', kana: 'ねよう~と おもう', pt: 'Acho que eu vou dormir.' },
     ],
   },
+  {
+    id: 'n4-24',
+    title: 'Transformar em substantivo: 〜のが e 〜のは',
+    body: [
+      'Com **の** depois de um verbo na **forma simples**, a ação vira uma "coisa": __はしる__ ("correr") → __はしるの__ ("o ato de correr"). Assim o verbo pode ser usado com **が** ou **は**, como em "gosto de correr" ou "nadar é divertido".',
+      {
+        table: [
+          ['#padrão', '#exemplo'],
+          ['verbo + のが + gosto, habilidade, medo', '__はしるのが すき__ (gosto de correr)'],
+          ['verbo + のは + opinião', '__およぐのは おもしろい__ (nadar é divertido)'],
+        ],
+      },
+      'Com palavras como **すき**, **じょうず**, **へた**, **こわい** e **はやい**, a coisa de que se gosta, em que se é bom ou que se teme leva **が**. Com **は**, a frase fala do "ato" como tema e dá uma opinião sobre ele.',
+    ],
+    pattern: '[verbo simples] のが すき / じょうず / こわい · [verbo simples] のは [opinião]',
+    hint: 'Verbo na forma simples + の vira "o ato de...".',
+    examples: [
+      { id: 155346, ja: '私は走るのが好きだ。', furi: '[私|わたし]は[走|はし]るのが[好|す]きだ。', kana: 'わたし~は はしるの~が すきだ', pt: 'Eu gosto de correr.' },
+      { id: 109201, ja: '彼は歌うのが上手だ。', furi: '[彼|かれ]は[歌|うた]うのが[上手|じょう|ず]だ。', kana: 'かれ~は うたうの~が じょうずだ', pt: 'Ele canta bem.' },
+      { id: 157118, ja: '私は行くのが怖い。', furi: '[私|わたし]は[行|い]くのが[怖|こわ]い。', kana: 'わたし~は いくの~が こわい', pt: 'Estou com medo de ir.' },
+      { id: 185126, ja: '海で泳ぐのは面白い。', furi: '[海|うみ]で[泳|およ]ぐのは[面白|おも|しろ]い。', kana: 'うみ~で およぐの~は おもしろい', pt: 'É divertido nadar no mar.' },
+    ],
+  },
+  {
+    id: 'n4-25',
+    title: 'Chamado e "dizem que": 〜という',
+    body: [
+      'O verbo **いう** ("dizer") depois de **と** forma **という**. Ele liga um nome ou uma frase ao que vem depois: "chamado...", "(a notícia) de que...", "o fato de que...".',
+      {
+        table: [
+          ['#uso', '#exemplo'],
+          ['nome: なんという + substantivo', '__なんという とり__ (um pássaro de que nome?)'],
+          ['conteúdo: frase simples + という + substantivo', '__ふゆに なるという はなし__ (a história de que vem o inverno)'],
+          ['fato: frase simples + ということ', '__かつということ__ (o fato de vencer)'],
+        ],
+      },
+      'Para perguntar o nome de algo, use **なんという** + o substantivo (escreve-se 何という): __なんという とり__ é "como se chama esse pássaro?". Já **ということ** funciona como a **の** do tópico anterior, mas para falar de um fato ou de uma ideia inteira.',
+    ],
+    pattern: 'なんという [substantivo] · [forma simples] という [substantivo] · [forma simples] ということ',
+    hint: 'という liga um nome ou uma frase ao substantivo seguinte.',
+    examples: [
+      { id: 229721, ja: 'あれは何という鳥ですか。', furi: 'あれは[何|なん]という[鳥|とり]ですか。', kana: 'あれ~は なん という とり|です~か', pt: 'Que pássaro é esse?' },
+      { id: 224327, ja: 'ここは何という通りですか。', furi: 'ここは[何|なん]という[通|とお]りですか。', kana: 'ここ~は なん という とおり|です~か', pt: 'Qual é o nome desta rua, por favor?' },
+      { id: 174979, ja: '厳しい冬になるという話です。', furi: '[厳|きび]しい[冬|ふゆ]になるという[話|はなし]です。', kana: 'きびしい ふゆ~に なる という はなし|です', pt: 'Eles disseram que vamos ter um inverno duro.' },
+      { id: 191447, ja: '悪が勝つということもあります。', furi: '[悪|あく]が[勝|か]つということもあります。', kana: 'あく~が かつ ということ~も あります', pt: 'O mal às vezes vence.' },
+    ],
+  },
+  {
+    id: 'n4-26',
+    title: 'Ser obrigado a fazer: 〜させられる',
+    body: [
+      'Juntando a forma **させる** ("fazer alguém fazer") com a **passiva** (**られる**), nasce **させられる**: "ser obrigado a fazer", quase sempre contra a vontade. Quem foi obrigado vira o sujeito da frase.',
+      {
+        table: [
+          ['#verbo', '#forma'],
+          ['grupo 1 (godan)', '__いく → いかされる__ · __まつ → またされる__'],
+          ['grupo 2 (ichidan)', '__たべる → たべさせられる__'],
+          ['する', '__する → させられる__'],
+        ],
+      },
+      'Nos verbos do grupo 1, a forma curta **〜される** (__いかされる__) é a mais usada. A frase também aparece com **する**, para um sentimento que é "provocado" em você: __ハラハラさせられた__ ("fiquei com o coração na mão").',
+    ],
+    pattern: '[grupo 2: たべさせられる] · [grupo 1: いかされる] · [する: させられる]',
+    hint: 'Causativa + passiva: "ser obrigado a".',
+    examples: [
+      { id: 113243, ja: '彼はそこに行かされた。', furi: '[彼|かれ]はそこに[行|い]かされた。', kana: 'かれ~は そこ~に いかされた', pt: 'Ele foi feito para ir lá.' },
+      { id: 113270, ja: '彼はそうさせられました。', furi: '[彼|かれ]はそうさせられました。', kana: 'かれ~は そう させられました', pt: 'Obrigaram-no a fazer assim.' },
+      { id: 235365, ja: '３０分近く待たされた。', furi: '[３０|さんじゅっ][分|ぷん][近|ちか]く[待|ま]たされた。', kana: 'さんじゅっぷん ちかく またされた', pt: 'Fizeram-me esperar cerca de 30 minutos.' },
+      { id: 175179, ja: '見ていてハラハラさせられた。', furi: '[見|み]ていてハラハラさせられた。', kana: 'みていて ハラハラ させられた', pt: 'Fiquei nervoso só de assistir a ele.' },
+    ],
+  },
+  {
+    id: 'n4-27',
+    title: 'Falar com respeito: お〜になります e verbos especiais',
+    body: [
+      'O japonês tem uma linguagem de **respeito** (**けいご**) para clientes, professores e pessoas mais velhas. Ela tem dois lados: o **honorífico**, que eleva a ação da **outra pessoa**, e o **humilde**, que rebaixa a **sua própria** ação.',
+      {
+        table: [
+          ['#tipo', '#como é'],
+          ['honorífico (ação do outro)', '__お + verbo sem ます + になります__: __のむ → おのみに なります__'],
+          ['honorífico, verbos especiais', '__いる → いらっしゃいます__ · __たべる → めしあがります__ · __いう → おっしゃいます__'],
+          ['humilde (sua ação)', '__いう → もうします__ · __みる → はいけんします__ · __する → いたします__'],
+        ],
+      },
+      'Nunca use o honorífico para você mesmo: "eu me chamo..." é __もうします__, e "o senhor se chama..." é __おっしゃいます__. Em lojas, o cumprimento é __いらっしゃいませ__ ("bem-vindo"). Estas formas são fixas: vale decorar as principais.',
+    ],
+    pattern: 'お [verbo sem ます] になります · いらっしゃる / めしあがる / おっしゃる · もうす / はいけんする / いたす',
+    hint: 'Honorífico eleva o outro; humilde rebaixa você.',
+    examples: [
+      { id: 187628, ja: '何をお飲みになりますか。', furi: '[何|なに]をお[飲|の]みになりますか。', kana: 'なに~を おのみ に なります~か', pt: 'O que você quer beber?' },
+      { id: 187552, ja: '何を召し上がりますか。', furi: '[何|なに]を[召|め]し[上|あ]がりますか。', kana: 'なに~を めしあがります~か', pt: 'O que você gostaria de comer?' },
+      { id: 226613, ja: 'お母さんはいらっしゃいますか。', furi: 'お[母|かあ]さんはいらっしゃいますか。', kana: 'おかあさん~は いらっしゃいます~か', pt: 'Sua mãe está em casa?' },
+      { id: 342132, ja: 'アンドレアと申します。', furi: 'アンドレアと[申|もう]します。', kana: 'アンドレア~と もうします', pt: 'Eu me chamo Andréa.' },
+      { id: 142084, ja: '切符を拝見いたします。', furi: '[切符|きっ|ぷ]を[拝見|はい|けん]いたします。', kana: 'きっぷ~を はいけん いたします', pt: 'Bilhete, por favor.' },
+    ],
+  },
 ];

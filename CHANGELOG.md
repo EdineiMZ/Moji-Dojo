@@ -2,6 +2,14 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.24.0] - 2026-10-31
+
+Gramática N4: de 23 para 27 tópicos.
+
+- **Quatro tópicos novos:** 〜のが e 〜のは (transformar o verbo em substantivo), 〜という ("chamado", "dizem que" e ということ), 〜させられる (ser obrigado a fazer) e a linguagem de respeito (お〜になります, verbos especiais como いらっしゃる, めしあがる e おっしゃる, e o humilde もうします, はいけんします, いたします).
+- **Frases reais conferidas:** 17 frases novas do Tatoeba (CC BY 2.0 FR), todas conferidas na fonte (id, texto, licença, leitura, furigana e tradução). A conferência achou um erro meu: 何という lê-se なんという, e não なにという; já corrigido nos exemplos e no texto. Cada tópico tem tabela, exercícios de Montar e Lacunas e notas de erros comuns.
+- **Atenção:** as explicações em português foram escritas por IA e ainda não passaram por um falante de japonês. Ficam marcadas "a revisar" no ROADMAP.
+
 ## [2.23.0] - 2026-10-31
 
 A Casa do Mochi (primeira fase).

@@ -1,4 +1,4 @@
-// Tópicos de gramática N3 (n3-1 a n3-15: primeira leva).
+// Tópicos de gramática N3 (n3-1 a n3-15: primeira leva; n3-16 a n3-27: segunda leva).
 //
 // A lista de pontos parte do que o Guia JLPT do Wikibooks (CC BY-SA) e a prática do ensino de japonês tratam como N3; não há lista
 // oficial do JLPT. As explicações são texto próprio, em português, ainda sem revisão por um falante. Os exemplos são frases reais do
@@ -861,6 +861,724 @@ export const TOPICS = [
         "furi": "[面倒|めん|どう]なことになるよ。",
         "kana": "めんどうな こと~に なる~よ",
         "pt": "Você vai se meter em encrenca."
+      }
+    ]
+  },
+  {
+    "id": "n3-16",
+    "title": "Fácil de e difícil de: 〜やすい e 〜にくい",
+    "body": [
+      "Com a raiz do verbo (a forma ます sem o ます), **やすい** diz que a ação é **fácil** ou que a coisa **tende a** acontecer, e **にくい** diz que é **difícil**. As duas viram adjetivos い: __やすかった__, __にくくない__.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "raiz do verbo + やすい",
+            "__まなび やすい__ (fácil de aprender)"
+          ],
+          [
+            "raiz do verbo + やすい",
+            "__つかれ やすい__ (cansa com facilidade)"
+          ],
+          [
+            "raiz do verbo + にくい",
+            "__のみ にくい__ (difícil de engolir)"
+          ],
+          [
+            "raiz do verbo + にくい",
+            "__こたえ にくい__ (difícil de responder)"
+          ]
+        ]
+      },
+      "Quem ou o que sofre a ação é o sujeito da frase, com **は** ou **が**: __えいご は まなびやすい__ (\"o inglês é fácil de aprender\"). Não confunda com __やすい__ escrito 安い (\"barato\"): a leitura é a mesma, mas o primeiro vem depois de um verbo."
+    ],
+    "pattern": "[raiz do verbo] やすい · [raiz do verbo] にくい",
+    "hint": "やすい: fácil de; にくい: difícil de.",
+    "examples": [
+      {
+        "id": 189137,
+        "ja": "英語は学びやすい。",
+        "furi": "[英語|えい|ご]は[学|まな]びやすい。",
+        "kana": "えいご~は まなびやすい",
+        "pt": "O inglês é fácil de aprender."
+      },
+      {
+        "id": 79985,
+        "ja": "目が疲れやすいです。",
+        "furi": "[目|め]が[疲|つか]れやすいです。",
+        "kana": "め~が つかれやすい|です",
+        "pt": "Meus olhos se cansam com facilidade."
+      },
+      {
+        "id": 219292,
+        "ja": "この薬は飲みにくい。",
+        "furi": "この[薬|くすり]は[飲|の]みにくい。",
+        "kana": "この くすり~は のみにくい",
+        "pt": "O remédio é ruim de engolir."
+      },
+      {
+        "id": 101723,
+        "ja": "彼は答えにくい質問をした。",
+        "furi": "[彼|かれ]は[答|こた]えにくい[質問|しつ|もん]をした。",
+        "kana": "かれ~は こたえにくい しつもん~を した",
+        "pt": "Ele fez uma pergunta embaraçosa."
+      }
+    ]
+  },
+  {
+    "id": "n3-17",
+    "title": "Se ou não: 〜かどうか",
+    "body": [
+      "Uma pergunta de sim ou não pode virar parte de outra frase com **かどうか**: \"se ele vem ou não\". Vem depois da **forma simples**, e a frase termina com um verbo como __しらない__ (não sei), __わからない__ (não entendo) ou __ぎもんだ__ (tenho dúvida).",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "forma simples + かどうか",
+            "__くる か どう か しらない__ (não sei se vem)"
+          ],
+          [
+            "substantivo + かどうか",
+            "__ほんとう か どう か__ (se é verdade)"
+          ],
+          [
+            "かどうか + は + frase",
+            "__くる か どう か は もんだいで は ない__ (não importa se vem ou não)"
+          ]
+        ]
+      },
+      "O **か** sozinho serve quando a frase já tem uma palavra de pergunta: __なに を たべる か__ (\"o que comer\"). O **かどうか** é para o \"sim ou não\": é o \"se\" do português."
+    ],
+    "pattern": "[forma simples] かどうか + [知らない / わからない / 問題だ]",
+    "hint": "かどうか: se ... ou não.",
+    "examples": [
+      {
+        "id": 119368,
+        "ja": "彼が来るかどうか知らない。",
+        "furi": "[彼|かれ]が[来|く]るかどうか[知|し]らない。",
+        "kana": "かれ~が くる か どう か しらない",
+        "pt": "Não sei se ele vem."
+      },
+      {
+        "id": 80349,
+        "ja": "明日雨が降るかどうかわからない。",
+        "furi": "[明日|あした][雨|あめ]が[降|ふ]るかどうかわからない。",
+        "kana": "あした あめ~が ふる か どう か わからない",
+        "pt": "Não sei se amanhã vai chover."
+      },
+      {
+        "id": 178848,
+        "ja": "君が来るかどうかは問題ではない。",
+        "furi": "[君|きみ]が[来|く]るかどうかは[問題|もん|だい]ではない。",
+        "kana": "きみ~が くる か どう か~は もんだいで~は ない",
+        "pt": "Não importa se você vem ou não."
+      },
+      {
+        "id": 119369,
+        "ja": "彼が来るかどうか疑問だ。",
+        "furi": "[彼|かれ]が[来|く]るかどうか[疑問|ぎ|もん]だ。",
+        "kana": "かれ~が くる か どう か ぎもんだ",
+        "pt": "Tenho dúvidas se ele virá."
+      }
+    ]
+  },
+  {
+    "id": "n3-18",
+    "title": "Deveria: 〜べき",
+    "body": [
+      "Com **べき** você diz o que se **deve** fazer, o que é o certo. Vem depois do verbo na **forma de dicionário**. É mais forte que **〜ほうがいい**: pode soar como cobrança.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "dicionário + べきだ",
+            "__いう べきだ__ (deve-se dizer)"
+          ],
+          [
+            "する → すべき ou するべき",
+            "__しゃざい すべきだ__ (deveria pedir desculpas)"
+          ],
+          [
+            "べきではない",
+            "__いう べき では ない__ (não se deve dizer)"
+          ]
+        ]
+      },
+      "Com **する** existem duas formas, __すべき__ e __するべき__, e as duas estão certas. Para aconselhar com mais leveza, use **〜ほうがいい**; para obrigação do dia a dia, **〜なければならない**."
+    ],
+    "pattern": "[dicionário] べきだ · [dicionário] べきではない",
+    "hint": "べき: deve, é o certo a fazer.",
+    "examples": [
+      {
+        "id": 144981,
+        "ja": "真実を言うべきだ。",
+        "furi": "[真実|しん|じつ]を[言|い]うべきだ。",
+        "kana": "しんじつ~を いう べきだ",
+        "pt": "Você deveria dizer a verdade."
+      },
+      {
+        "id": 177174,
+        "ja": "君は謝罪すべきだ。",
+        "furi": "[君|きみ]は[謝罪|しゃ|ざい]すべきだ。",
+        "kana": "きみ~は しゃざい すべきだ",
+        "pt": "Você devia se desculpar."
+      },
+      {
+        "id": 3366937,
+        "ja": "辞めるべきだよ。",
+        "furi": "[辞|や]めるべきだよ。",
+        "kana": "やめる べきだ~よ",
+        "pt": "Você deveria sair."
+      },
+      {
+        "id": 2972449,
+        "ja": "禁煙するべきです。",
+        "furi": "[禁煙|きん|えん]するべきです。",
+        "kana": "きんえん する べき|です",
+        "pt": "Você deve parar de fumar."
+      }
+    ]
+  },
+  {
+    "id": "n3-19",
+    "title": "Sem fazer: 〜ずに",
+    "body": [
+      "O **ずに** diz \"**sem fazer**\": a ação não acontece enquanto outra acontece. Ele se forma com a **forma ない sem o ない** + **ずに**. É a versão mais formal (e mais de texto) do **〜ないで** que você já viu.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "verbo (sem ない) + ずに",
+            "__わすれ ずに__ (sem esquecer)"
+          ],
+          [
+            "verbo (sem ない) + ずに",
+            "__ぬが ずに__ (sem tirar)"
+          ],
+          [
+            "する → せずに",
+            "__そうだん せ ずに__ (sem consultar)"
+          ]
+        ]
+      },
+      "A única exceção é **する**: __せずに__, e não __しずに__. Combinações como __〜ずにはいられない__ (\"não consigo deixar de...\") também usam essa forma."
+    ],
+    "pattern": "[verbo, forma ない sem ない] ずに",
+    "hint": "ずに: sem fazer (como ないで, mais formal).",
+    "examples": [
+      {
+        "id": 82564,
+        "ja": "忘れずに電話してね。",
+        "furi": "[忘|わす]れずに[電話|でん|わ]してね。",
+        "kana": "わすれず に でんわ してね",
+        "pt": "Não esqueça de me ligar."
+      },
+      {
+        "id": 1147354,
+        "ja": "誰にも相談せずにやった。",
+        "furi": "[誰|だれ]にも[相談|そう|だん]せずにやった。",
+        "kana": "だれ~に~も そうだん せず に やった",
+        "pt": "Fiz aquilo sem consultar ninguém."
+      },
+      {
+        "id": 157894,
+        "ja": "私は外出せずに家にいた。",
+        "furi": "[私|わたし]は[外出|がい|しゅつ]せずに[家|いえ]にいた。",
+        "kana": "わたし~は がいしゅつ せず に いえ~に いた",
+        "pt": "Eu fiquei em casa ao invés de sair."
+      },
+      {
+        "id": 10840506,
+        "ja": "靴は脱がずにどうぞ。",
+        "furi": "[靴|くつ]は[脱|ぬ]がずにどうぞ。",
+        "kana": "くつ~は ぬがず に どうぞ",
+        "pt": "Por favor, não tire os sapatos."
+      }
+    ]
+  },
+  {
+    "id": "n3-20",
+    "title": "Quero que você faça: 〜てほしい",
+    "body": [
+      "Com **ほしい** depois da forma **て**, você diz o que quer que **outra pessoa** faça. Quem deve fazer vem com **に**. Se o desejo é seu, use **〜たい**; se é do outro, **〜てほしい**.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "verbo て + ほしい",
+            "__うたって ほしい__ (quero que cante)"
+          ],
+          [
+            "pessoa に + verbo て + ほしい",
+            "__あなた に うたって ほしい__ (quero que você cante)"
+          ],
+          [
+            "verbo ない + で + ほしい",
+            "__いわ ないで ほしい__ (não quero que diga)"
+          ]
+        ]
+      },
+      "Para um pedido educado, termine com **〜のですが**: __かえて ほしい のですが__ (\"gostaria que trocasse...\"). Em frases do dia a dia, **ほしい** também aparece como pedido gentil, sem **あなた**."
+    ],
+    "pattern": "[pessoa に] [verbo て] ほしい · [verbo ない] で ほしい",
+    "hint": "てほしい: quero que alguém faça.",
+    "examples": [
+      {
+        "id": 1152237,
+        "ja": "あなたに歌ってほしい。",
+        "furi": "あなたに[歌|うた]ってほしい。",
+        "kana": "あなた~に うたって ほしい",
+        "pt": "Quero que cantes."
+      },
+      {
+        "id": 142463,
+        "ja": "席を替えてほしいのですが。",
+        "furi": "[席|せき]を[替|か]えてほしいのですが。",
+        "kana": "せき~を かえて ほしい|のですが",
+        "pt": "Gostaria de trocar de lugar."
+      },
+      {
+        "id": 9838008,
+        "ja": "私と一緒にいてほしいの。",
+        "furi": "[私|わたし]と[一緒|いっ|しょ]にいてほしいの。",
+        "kana": "わたし~と いっしょ~に いて ほしい~の",
+        "pt": "Quero que fiques comigo."
+      },
+      {
+        "id": 78481,
+        "ja": "卵をゆでてほしいのです。",
+        "furi": "[卵|たまご]をゆでてほしいのです。",
+        "kana": "たまご~を ゆでて ほしい|のです",
+        "pt": "Eu quero um ovo cozido."
+      }
+    ]
+  },
+  {
+    "id": "n3-21",
+    "title": "Tentar e estar para: 〜ようとする",
+    "body": [
+      "Com a **forma volitiva** + **とする**, você diz que alguém **tenta** fazer algo (mas o resultado não está garantido) ou que algo **está para** acontecer.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "grupo 1: u → ō",
+            "__にげる → にげよう__ · __いく → いこう__"
+          ],
+          [
+            "volitiva + と する",
+            "__あけよう と する__ (tenta abrir)"
+          ],
+          [
+            "volitiva + と している",
+            "__しゅっぱつ しよう と している__ (está para partir)"
+          ]
+        ]
+      },
+      "No **ている** o sentido é \"está prestes a\". Não confunda com **〜てみる** (\"experimentar, para ver como é\"): o **ようとする** é um esforço de fazer algo, que pode falhar."
+    ],
+    "pattern": "[forma volitiva] とする · [forma volitiva] としている",
+    "hint": "ようとする: tenta; ようとしている: está para.",
+    "examples": [
+      {
+        "id": 154843,
+        "ja": "私は逃げようとした。",
+        "furi": "[私|わたし]は[逃|に]げようとした。",
+        "kana": "わたし~は にげよう と した",
+        "pt": "Tentei escapar."
+      },
+      {
+        "id": 111759,
+        "ja": "彼はドアを開けようとした。",
+        "furi": "[彼|かれ]はドアを[開|あ]けようとした。",
+        "kana": "かれ~は ドア~を あけよう と した",
+        "pt": "Ele tentou abrir a porta."
+      },
+      {
+        "id": 157582,
+        "ja": "私は曲を覚えようとした。",
+        "furi": "[私|わたし]は[曲|きょく]を[覚|おぼ]えようとした。",
+        "kana": "わたし~は きょく~を おぼえよう と した",
+        "pt": "Tentei aprender a melodia de cor."
+      },
+      {
+        "id": 88749,
+        "ja": "彼女は出発しようとしている。",
+        "furi": "[彼女|かの|じょ]は[出発|しゅっ|ぱつ]しようとしている。",
+        "kana": "かのじょ~は しゅっぱつ しよう と している",
+        "pt": "Ela está para partir."
+      }
+    ]
+  },
+  {
+    "id": "n3-22",
+    "title": "Do jeito que: 〜とおり",
+    "body": [
+      "A palavra **とおり** diz \"**exatamente do jeito que**\". Vem depois de um verbo na forma simples ou de um substantivo com **の**, e pode ser seguida de **に** ou de **だ**.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "verbo + とおりに + ação",
+            "__いう とおり に して__ (faça como eu digo)"
+          ],
+          [
+            "verbo + とおりだ",
+            "__きみ が いう とおりだ__ (é como você diz)"
+          ],
+          [
+            "substantivo + の + とおり",
+            "__つぎ の とおり__ (como segue)"
+          ],
+          [
+            "substantivo + どおり",
+            "__よてい どおり__ (como planejado)"
+          ]
+        ]
+      },
+      "Cuidado: o **とおり** que significa \"rua\" (通り) é outra palavra. Aqui, depois de um verbo, ele quer dizer \"do jeito que\". Depois de um substantivo sem **の**, o som muda para **どおり**."
+    ],
+    "pattern": "[verbo] とおりに · [verbo] とおりだ · [substantivo] の とおり · [substantivo] どおり",
+    "hint": "とおり: exatamente como.",
+    "examples": [
+      {
+        "id": 3491589,
+        "ja": "言うとおりにして。",
+        "furi": "[言|い]うとおりにして。",
+        "kana": "いう とおり に して",
+        "pt": "Faça assim como lhe digo."
+      },
+      {
+        "id": 117604,
+        "ja": "彼の言うとおりだと思う。",
+        "furi": "[彼|かれ]の[言|い]うとおりだと[思|おも]う。",
+        "kana": "かれ~の いう とおりだ と おもう",
+        "pt": "Acho que ele tem razão."
+      },
+      {
+        "id": 140889,
+        "ja": "全く君が言うとおりだ。",
+        "furi": "[全|まった]く[君|きみ]が[言|い]うとおりだ。",
+        "kana": "まったく きみ~が いう とおりだ",
+        "pt": "Você tem toda a razão."
+      },
+      {
+        "id": 117602,
+        "ja": "彼の言うとおりにしなさい。",
+        "furi": "[彼|かれ]の[言|い]うとおりにしなさい。",
+        "kana": "かれ~の いう とおり に しなさい",
+        "pt": "Faz como ele te diz."
+      }
+    ]
+  },
+  {
+    "id": "n3-23",
+    "title": "Toda vez que: 〜たびに e 〜ごとに",
+    "body": [
+      "As duas expressões dizem \"a cada\". O **たびに** vem depois de um verbo (forma de dicionário) ou de um substantivo com **の**: \"toda vez que...\". O **ごとに** vem depois de um substantivo de tempo: \"a cada dia, a cada três dias\".",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "verbo (dicionário) + たびに",
+            "__みる たび に なく__ (choro toda vez que vejo)"
+          ],
+          [
+            "período + ごとに",
+            "__ひ ごと に__ (a cada dia, dia após dia)"
+          ],
+          [
+            "número + período + ごとに",
+            "__みっか ごと に__ (a cada três dias)"
+          ]
+        ]
+      },
+      "Com **ごとに** e uma mudança (\"fica mais quente\", \"melhora\"), o sentido é de **progresso**: \"dia após dia\". O **たびに** é o que se repete toda vez que algo acontece."
+    ],
+    "pattern": "[verbo] たびに · [período] ごとに",
+    "hint": "たびに: toda vez que; ごとに: a cada.",
+    "examples": [
+      {
+        "id": 122929,
+        "ja": "日ごとに暖かくなっている。",
+        "furi": "[日|ひ]ごとに[暖|あたた]かくなっている。",
+        "kana": "ひごと に あたたかく なっている",
+        "pt": "Está ficando mais quente dia após dia."
+      },
+      {
+        "id": 101500,
+        "ja": "彼は日ごとによくなってきている。",
+        "furi": "[彼|かれ]は[日|ひ]ごとによくなってきている。",
+        "kana": "かれ~は ひごと に よく なってきている",
+        "pt": "Ele está melhorando dia após dia."
+      },
+      {
+        "id": 1780326,
+        "ja": "この映画を見るたびに泣く。",
+        "furi": "この[映画|えい|が]を[見|み]るたびに[泣|な]く。",
+        "kana": "この えいが~を みる たび に なく",
+        "pt": "Eu choro toda vez que assisto a este filme."
+      }
+    ]
+  },
+  {
+    "id": "n3-24",
+    "title": "Como e para que: 〜ように",
+    "body": [
+      "O **ように** tem quatro usos que aparecem o tempo todo: \"**como**\" (comparação), \"**do jeito que**\", \"**para que**\" (um desejo ou aviso) e \"**como quiser**\".",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "substantivo + の + ように",
+            "__ゆき の ように しろい__ (branco como a neve)"
+          ],
+          [
+            "verbo (た) + ように",
+            "__いわれた ように せよ__ (faça como lhe dizem)"
+          ],
+          [
+            "verbo ない + ように",
+            "__ころばない ように__ (para não cair)"
+          ],
+          [
+            "adjetivo な + ように",
+            "__すきな ように__ (como quiser)"
+          ]
+        ]
+      },
+      "Com **ないように** (ou o verbo de dicionário) você pede, deseja ou avisa algo: __ふとらない ように__ (\"não engorde\"). Isso é diferente de **〜ようになる** (\"passar a fazer\"), que você viu no N4."
+    ],
+    "pattern": "[substantivo] の ように · [verbo] ように · [verbo ない] ように",
+    "hint": "ように: como, do jeito que, para que.",
+    "examples": [
+      {
+        "id": 141991,
+        "ja": "雪のように白い。",
+        "furi": "[雪|ゆき]のように[白|しろ]い。",
+        "kana": "ゆき~の よう に しろい",
+        "pt": "É branco como a neve."
+      },
+      {
+        "id": 174746,
+        "ja": "言われたようにせよ。",
+        "furi": "[言|い]われたようにせよ。",
+        "kana": "いわれた よう に せよ",
+        "pt": "Faça como lhe dizem."
+      },
+      {
+        "id": 3241561,
+        "ja": "転ばないようにね。",
+        "furi": "[転|ころ]ばないようにね。",
+        "kana": "ころばない よう に~ね",
+        "pt": "Cuidado para não cair!"
+      },
+      {
+        "id": 8531386,
+        "ja": "お好きなように。",
+        "furi": "お[好|す]きなように。",
+        "kana": "お すきな よう に",
+        "pt": "Faça como quiser."
+      }
+    ]
+  },
+  {
+    "id": "n3-25",
+    "title": "Não precisa e nunca: 〜ことはない",
+    "body": [
+      "O **ことはない** nega a coisa toda, e o sentido muda com o verbo antes dele. Com o verbo na **forma de dicionário**, quer dizer \"não há necessidade de\". Com a forma **た**, quer dizer \"nunca fiz\".",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "dicionário + ことはない",
+            "__こわがる こと は ない__ (não há por que temer)"
+          ],
+          [
+            "た + ことはない",
+            "__あった こと は ない__ (nunca encontrei)"
+          ],
+          [
+            "expressão fixa",
+            "__たいした こと は ない__ (não é nada demais)"
+          ]
+        ]
+      },
+      "Na frase \"nunca fiz\", o mais comum é **〜たことがない**. O **ことはない** deixa a frase mais enfática, como numa resposta: \"não, nunca\"."
+    ],
+    "pattern": "[dicionário] ことはない · [た] ことはない",
+    "hint": "ことはない: não precisa; ou nunca.",
+    "examples": [
+      {
+        "id": 187663,
+        "ja": "何も怖がることはない。",
+        "furi": "[何|なに]も[怖|こわ]がることはない。",
+        "kana": "なに~も こわがる こと~は ない",
+        "pt": "Não há o que temer."
+      },
+      {
+        "id": 187667,
+        "ja": "何も心配することはない。",
+        "furi": "[何|なに]も[心配|しん|ぱい]することはない。",
+        "kana": "なに~も しんぱい する こと~は ない",
+        "pt": "Não há nada com que se preocupar."
+      },
+      {
+        "id": 162165,
+        "ja": "私は彼女に会ったことはない。",
+        "furi": "[私|わたし]は[彼女|かの|じょ]に[会|あ]ったことはない。",
+        "kana": "わたし~は かのじょ~に あった こと~は ない",
+        "pt": "Nunca a conheci."
+      },
+      {
+        "id": 137692,
+        "ja": "大したことはないよ。",
+        "furi": "[大|たい]したことはないよ。",
+        "kana": "たいした こと~は ない~よ",
+        "pt": "Não é nada sério."
+      }
+    ]
+  },
+  {
+    "id": "n3-26",
+    "title": "É assim mesmo: 〜ものだ",
+    "body": [
+      "O **ものだ** tem dois usos. O primeiro diz como as coisas **são por natureza** ou como **devem ser**: \"promessas se cumprem\", \"acidentes acontecem\". O segundo, junto de **〜たい**, mostra um **desejo forte**: \"como eu gostaria de...\".",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "dicionário + ものだ",
+            "__まもる ものだ__ (é para ser cumprido)"
+          ],
+          [
+            "dicionário + ものだ",
+            "__おこる ものだ__ (acontece)"
+          ],
+          [
+            "〜たい + ものだ",
+            "__あいたい ものだ__ (como eu gostaria de ver)"
+          ]
+        ]
+      },
+      "Não confunda **ものだ** com **のもの** de \"pertence a\": __あの いえ は わたし の もの だ__ (\"aquela casa é minha\"). Naquele caso, **もの** é uma \"coisa\"."
+    ],
+    "pattern": "[dicionário] ものだ · [〜たい] ものだ",
+    "hint": "ものだ: é assim mesmo; gostaria muito.",
+    "examples": [
+      {
+        "id": 79533,
+        "ja": "約束は守るものだよ。",
+        "furi": "[約束|やく|そく]は[守|まも]るものだよ。",
+        "kana": "やくそく~は まもる ものだ~よ",
+        "pt": "Promessas devem ser mantidas."
+      },
+      {
+        "id": 150823,
+        "ja": "事故は起こるものだ。",
+        "furi": "[事故|じ|こ]は[起|お]こるものだ。",
+        "kana": "じこ~は おこる ものだ",
+        "pt": "Acidentes acontecem."
+      },
+      {
+        "id": 78245,
+        "ja": "留学したいものだ。",
+        "furi": "[留学|りゅう|がく]したいものだ。",
+        "kana": "りゅうがく したい ものだ",
+        "pt": "Eu quero estudar no exterior."
+      },
+      {
+        "id": 118661,
+        "ja": "彼に会いたいものだ。",
+        "furi": "[彼|かれ]に[会|あ]いたいものだ。",
+        "kana": "かれ~に あいたい ものだ",
+        "pt": "Gostaria de me encontrar com ele."
+      }
+    ]
+  },
+  {
+    "id": "n3-27",
+    "title": "Cheio de: 〜だらけ",
+    "body": [
+      "O **だらけ** vem depois de um substantivo e quer dizer \"**cheio de, coberto de**\". Quase sempre fala de algo **indesejado**: lama, sujeira, erros.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "substantivo + だらけ",
+            "__どろ だらけ__ (coberto de lama)"
+          ],
+          [
+            "substantivo + だらけ",
+            "__らくがき だらけ__ (cheio de pichações)"
+          ],
+          [
+            "substantivo + だらけの + substantivo",
+            "__まちがい だらけ の ぶんしょう__ (um texto cheio de erros)"
+          ]
+        ]
+      },
+      "Para coisas boas, o japonês não usa **だらけ**: dizemos __いっぱい__ ou outra palavra. Quem ouve **だらけ** já entende que o que está cobrindo a coisa é ruim."
+    ],
+    "pattern": "[substantivo] だらけ",
+    "hint": "だらけ: cheio de (algo ruim).",
+    "examples": [
+      {
+        "id": 101972,
+        "ja": "彼は泥だらけだった。",
+        "furi": "[彼|かれ]は[泥|どろ]だらけだった。",
+        "kana": "かれ~は どろ だらけだった",
+        "pt": "Ele estava coberto de lama."
+      },
+      {
+        "id": 10212624,
+        "ja": "壁は落書きだらけです。",
+        "furi": "[壁|かべ]は[落書|らく|が]きだらけです。",
+        "kana": "かべ~は らくがき だらけ|です",
+        "pt": "O muro está coberto de grafites."
+      },
+      {
+        "id": 230972,
+        "ja": "あの子はあかだらけだ。",
+        "furi": "あの[子|こ]はあかだらけだ。",
+        "kana": "あの こ~は あか だらけだ",
+        "pt": "A criança está suja."
       }
     ]
   }

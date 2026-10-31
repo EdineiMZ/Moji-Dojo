@@ -2,6 +2,14 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.30.0] - 2026-10-31
+
+Gramática N3: de 15 para 27 tópicos.
+
+- **Doze pontos novos:** 〜やすい e 〜にくい, 〜かどうか, 〜べき, 〜ずに, 〜てほしい, 〜ようとする, 〜とおり, 〜たびに e 〜ごとに, 〜ように, 〜ことはない, 〜ものだ e 〜だらけ. Cada um com explicação em português, tabela, exercícios de Montar e Lacunas e notas de erros comuns.
+- **46 frases novas do Tatoeba** (CC BY 2.0 FR), todas conferidas na fonte (id, texto, licença, leitura, furigana e tradução). A conferência achou um erro meu: 日ごとに lê-se **ひごとに**, e não にちごとに; já corrigido no exemplo e no texto.
+- Os textos ainda precisam da revisão de um falante.
+
 ## [2.29.0] - 2026-10-31
 
 Japonês com leitura nas telas de explicação.

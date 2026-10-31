@@ -370,4 +370,52 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
     'ことになる (decidido por outros ou pelas circunstâncias) é diferente de ことにする (você decide): o sujeito da escolha muda.',
     'ことになった serve para anunciar uma regra ou um fato ("ficou decidido que...") de forma educada, sem dizer quem decidiu.',
   ],
+  'n3-16': [
+    'やすい depois de um verbo (まなびやすい) é "fácil de"; o やすい de 安い é "barato", e a leitura é a mesma. O que vem antes é que diferencia.',
+    'Use a raiz do verbo (a forma ます sem ます): のみにくい, e não のむにくい.',
+  ],
+  'n3-17': [
+    'かどうか traz o "se ou não" de uma pergunta sim/não; para uma palavra de pergunta (なに, どこ), use só か.',
+    'Antes de かどうか vai a forma simples. Com adjetivo な e substantivo não entra だ: ほんとうかどうか.',
+  ],
+  'n3-18': [
+    'べき é forte e pode soar como cobrança. Para aconselhar com leveza, use ほうがいい.',
+    'する tem duas formas, すべき e するべき; as duas são corretas.',
+  ],
+  'n3-19': [
+    'ずに vem da forma ない sem ない: わすれず, ぬがず. A exceção é する, que vira せずに.',
+    'ずに é mais formal que ないで; na conversa casual, ないで é o mais comum.',
+  ],
+  'n3-20': [
+    'てほしい é para o desejo sobre o que outra pessoa faz; para o que você mesmo quer fazer, use たい.',
+    'Quem deve fazer vem com に (あなたに), e não com は ou が.',
+  ],
+  'n3-21': [
+    'ようとする é tentar fazer (com esforço); てみる é experimentar para ver como é.',
+    'Com ている, ようとしている vira "está prestes a", e não "está tentando".',
+  ],
+  'n3-22': [
+    'Depois de verbo, とおり é "do jeito que"; 通り também é "rua", mas é outra palavra.',
+    'Depois de substantivo sem の, o som muda para どおり: よていどおり.',
+  ],
+  'n3-23': [
+    'たびに repete a cada vez que o fato acontece; ごとに conta de tempo em tempo ou de um em um (日ごとに, 3日ごとに).',
+    'Com ごとに + mudança ("fica mais quente"), o sentido é "dia após dia", não "toda vez".',
+  ],
+  'n3-24': [
+    'ように tem vários sentidos: como, do jeito que e para que. A palavra antes dele mostra qual é.',
+    'ないように no fim da frase é um aviso ou um pedido ("não caia"): não é uma ordem seca.',
+  ],
+  'n3-25': [
+    'Com o verbo de dicionário, ことはない é "não precisa"; com た, é "nunca fiz". Preste atenção à forma do verbo.',
+    'Para "nunca fiz" a frase mais comum é たことがない; たことはない soa mais enfática.',
+  ],
+  'n3-26': [
+    'ものだ (é assim mesmo) não é o もの de "pertence a": わたしのもの é "meu".',
+    'たいものだ é um desejo forte, quase uma saudade ("como eu gostaria de...").',
+  ],
+  'n3-27': [
+    'だらけ é para algo ruim e que cobre a coisa toda; para coisas boas, o japonês usa outras palavras.',
+    'だらけ vem direto depois do substantivo, sem の: どろだらけ.',
+  ],
 };

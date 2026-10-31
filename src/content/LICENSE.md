@@ -51,7 +51,7 @@
 
 ## Gramática N3 (`grammarN3.ts`, gerado em `scripts/grammar-n3/`)
 
-- **Lista de pontos:** não existe lista oficial do JLPT. Os 15 pontos partem do que o *JLPT Guide* do Wikibooks (texto sob CC BY-SA, que
+- **Lista de pontos:** não existe lista oficial do JLPT. Os 27 pontos partem do que o *JLPT Guide* do Wikibooks (texto sob CC BY-SA, que
   se baseia nas listas de Jonathan Waller) trata como N3 e do que os cursos de japonês ensinam nesse nível; só os **nomes dos padrões** (fatos)
   foram aproveitados. Nenhum texto do Wikibooks, do JLPT Sensei ou do Bunpro foi copiado.
 - **Explicações:** texto próprio, em português, escrito por IA e **ainda não revisado por um falante**.

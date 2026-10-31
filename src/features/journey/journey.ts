@@ -1,3 +1,4 @@
+import { emptyHome, sanitizeHome, type HomeState } from '../home/home';
 import { buyable, findItem, priceOf, SLOTS, type Slot } from './items';
 
 /**
@@ -69,6 +70,8 @@ export interface JourneyState {
   equipped: Partial<Record<Slot, string>>;
   /** Veste sozinho o item de temporada que o aluno tem, enquanto a época dura. */
   seasonalAuto: boolean;
+  /** A Casa do Mochi: cômodos e móveis comprados. */
+  home: HomeState;
   /** Conquistas ganhas: id → momento. */
   achievements: Record<string, number>;
   /** Contadores de vida (respostas certas, ditados, gravações...). */
@@ -109,6 +112,7 @@ export const emptyJourney = (): JourneyState => ({
   owned: [],
   equipped: {},
   seasonalAuto: true,
+  home: emptyHome(),
   achievements: {},
   counters: {},
   perfectRun: 0,
@@ -175,6 +179,7 @@ export function sanitizeJourney(raw: unknown): JourneyState {
     owned,
     equipped,
     seasonalAuto: raw.seasonalAuto !== false,
+    home: sanitizeHome(raw.home),
     achievements: numberMap(raw.achievements),
     counters: numberMap(raw.counters),
     perfectRun: count(raw.perfectRun),

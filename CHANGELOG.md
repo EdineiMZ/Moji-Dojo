@@ -2,6 +2,16 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.23.0] - 2026-10-31
+
+A Casa do Mochi (primeira fase).
+
+- **Nova aba "Casa" em Meu Mochi:** três cômodos que se compram com pétalas: Quarto (250), Jardim (400, do lado de fora) e Escritório (600). Cada cômodo trancado aparece esmaecido, com o preço e a confirmação de compra.
+- **Móveis:** cada cômodo tem 5 móveis (15 no total), de 90 a 260 pétalas, que só se compram depois do cômodo: caminha, tapete, abajur, estante e janela no Quarto; cerca, canteiro, árvore, laguinho e banco no Jardim; mesa de estudo, quadro de kanji, livros, lanterna de papel e planta no Escritório.
+- **O Mochi mora na casa:** ele aparece no meio do cômodo que você está vendo, com a roupa que está vestindo (o fundo do armário não entra, porque o cômodo já é o cenário).
+- **Backup:** a casa vai junto com o progresso; backups antigos, sem casa, continuam abrindo. Ids desconhecidos e móveis de cômodos que você não tem são descartados.
+- **Ainda não tem:** skins de móveis, mais cômodos e decoração por data ficam para as próximas fases. Os desenhos foram conferidos só numa pré-visualização de navegador.
+
 ## [2.22.0] - 2026-10-31
 
 Cosméticos de 12 datas comemorativas para o Mochi.

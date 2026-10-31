@@ -17,6 +17,7 @@ import type { Loot, Rng } from '@/features/journey/loot';
 import { applyRescue, declineRescue as declineOffer, rescuePassed, resolveRescue } from '@/features/journey/rescue';
 import { trackAnswer, trackDialog, trackExplored, trackLesson, trackNewWords, trackOpen, trackPhrase, trackRecording, trackSession, trackStudyTime, trackTouch, buildContext } from '@/features/journey/track';
 import type { Area } from '@/features/journey/events';
+import { buyFurniture, buyRoom, type HomeBuyError } from '@/features/home/home';
 import { buyItem, dismissToast, emptyJourney, equipItem, sanitizeJourney, unequipSlot, type BuyError, type JourneyState } from '@/features/journey/journey';
 import type { Slot } from '@/features/journey/items';
 import { sanitizeReads } from '@/features/reading/reads';
@@ -65,6 +66,8 @@ export interface ProgressActions {
   unlockConjForms: (now?: number) => void;
   /** Compra um item do Mochi com pétalas. Devolve o motivo de não ter comprado, ou null. */
   buyJourneyItem: (itemId: string, now?: number) => BuyError | null;
+  /** Compra um cômodo ou um móvel da Casa do Mochi com pétalas. Devolve o motivo de não ter comprado, ou null. */
+  buyHomeThing: (kind: 'room' | 'furniture', id: string) => HomeBuyError | null;
   /** Veste um item que a pessoa tem. */
   equipJourneyItem: (itemId: string) => void;
   /** Tira o item de um espaço do Mochi. */
@@ -311,6 +314,18 @@ export function createProgressStore(storage: StateStorage) {
           let failure: BuyError | null = null;
           set((s) => {
             const result = buyItem(s.journey, itemId, new Date(now));
+            if (!result.ok) {
+              failure = result.error;
+              return s;
+            }
+            return { journey: result.state };
+          });
+          return failure;
+        },
+        buyHomeThing: (kind, id) => {
+          let failure: HomeBuyError | null = null;
+          set((s) => {
+            const result = kind === 'room' ? buyRoom(s.journey, id) : buyFurniture(s.journey, id);
             if (!result.ok) {
               failure = result.error;
               return s;

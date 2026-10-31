@@ -59,6 +59,7 @@ const firm = (srs: SrsState, chars: readonly string[]): number => chars.filter((
 /** O caminho N5 → N4 em marcos que o aluno enxerga: quantos kana, palavras e kanji já estão firmes (caixa 3 ou mais). */
 const N5_READINGS = READINGS.filter((t) => levelOf(t) === 'N5');
 const N4_READINGS = READINGS.filter((t) => levelOf(t) === 'N4');
+const N3_READINGS = READINGS.filter((t) => levelOf(t) === 'N3');
 
 export function levelPaths(srs: SrsState, vocab: SrsState, conj: SrsState = {}, mastered: Readonly<Record<string, number>> = {}, reads: Readonly<Record<string, number>> = {}): LevelPath[] {
   const words = learnedWordsByLevel(vocab);
@@ -91,6 +92,7 @@ export function levelPaths(srs: SrsState, vocab: SrsState, conj: SrsState = {}, 
       title: 'Nível N3',
       milestones: [
         { id: 'words3', label: 'Palavras do N3 aprendidas', have: words.n3, goal: N3_WORD_TOTAL },
+        { id: 'reading3', label: 'Textos de leitura do N3 lidos', have: N3_READINGS.filter((t) => reads[t.id] !== undefined).length, goal: N3_READINGS.length },
         { id: 'grammar3', label: 'Tópicos de gramática do N3 dominados (teste)', have: N3_TOPICS.filter((t) => mastered[t.id] !== undefined).length, goal: N3_TOPICS.length },
         { id: 'kanji3', label: 'Kanji do N3 firmes', have: firm(srs, N3_KANJI), goal: N3_KANJI.length },
       ],

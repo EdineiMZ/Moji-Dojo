@@ -18,6 +18,6 @@ describe('textos lidos', () => {
     expect(milestone).toMatchObject({ have: 1, goal: n4.length });
     const n5 = paths.find((p) => p.level === 'N5')?.milestones.find((m) => m.id === 'reading5');
     expect(n5?.have).toBe(0);
-    expect(n5?.goal).toBe(READINGS.length - n4.length);
+    expect(n5?.goal).toBe(READINGS.filter((t) => t.level === undefined).length);
   });
 });

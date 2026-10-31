@@ -13,6 +13,15 @@ describe('textos para ler', () => {
     }
   });
 
+  it('há textos do N3, e eles usam a gramática do N3', () => {
+    const n3 = READINGS.filter((t) => levelOf(t) === 'N3');
+    expect(n3.length).toBeGreaterThanOrEqual(4);
+    const all = n3.flatMap((t) => t.lines.map((l) => l.jp)).join('');
+    for (const pattern of ['ことになりました', 'らしい', 'ところ', 'について', 'おかげ', 'まま', 'せい', 'として', '対して', 'によって', 'ほど', 'さえ', 'はずが', 'うちに', 'っぽい']) {
+      expect(all).toContain(pattern);
+    }
+  });
+
   it('ids únicos e as duas categorias existem', () => {
     expect(new Set(READINGS.map((t) => t.id)).size).toBe(READINGS.length);
     expect(READINGS.some((t) => t.kind === 'texto')).toBe(true);

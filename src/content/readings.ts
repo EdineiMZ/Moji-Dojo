@@ -1,4 +1,4 @@
-// Textos curtos para ler, escritos para o app (N5 e N4), com a tradução de cada frase. NÃO vêm de fonte externa: foram escritos
+// Textos curtos para ler, escritos para o app (N5, N4 e N3), com a tradução de cada frase. NÃO vêm de fonte externa: foram escritos
 // por IA com o vocabulário e a gramática que o app ensina e precisam de revisão por quem fala japonês (ver LICENSE.md).
 // O teste src/content/readings.test.ts garante que as frases sem `parts` só usam palavras do vocabulário do app. Os textos do dia a dia
 // (placas, cardápios, avisos) usam kanji de verdade e trazem `parts`, com a leitura e o significado de cada pedaço.
@@ -27,7 +27,7 @@ export interface ReadingText {
   /** Onde se vê isso na vida real, para as leituras do dia a dia. */
   where?: string;
   /** Nível do JLPT do texto; sem isto, N5. */
-  level?: 'N5' | 'N4';
+  level?: 'N5' | 'N4' | 'N3';
   lines: readonly ReadingLine[];
 }
 
@@ -426,7 +426,57 @@ export const READINGS: readonly ReadingText[] = [
       { jp: '非常ボタンを押せば、助けを呼べます。', pt: 'Se você apertar o botão de emergência, pode chamar ajuda.', parts: [P('非常', 'ひじょう', 'emergência'), P('ボタンを'), P('押せば、', 'おせば', 'se apertar'), P('助け', 'たすけ', 'ajuda'), P('を'), P('呼べます。', 'よべます', 'consegue chamar')] },
     ],
   },
+  {
+    id: 'n3-mudanca-de-cidade',
+    title: 'Mudança de cidade',
+    kind: 'texto',
+    level: 'N3',
+    lines: [
+      { jp: '来月、大阪で働くことになりました。', pt: 'No mês que vem, ficou decidido que vou trabalhar em Osaka.', parts: [P('来月', 'らいげつ', 'mês que vem'), P('、'), P('大阪', 'おおさか', 'Osaka'), P('で'), P('働く', 'はたらく', 'trabalhar'), P('ことになりました。', undefined, 'ficou decidido que')] },
+      { jp: '友だちの話では、大阪は食べ物が安いらしいです。', pt: 'Segundo um amigo, parece que a comida em Osaka é barata.', parts: [P('友だち', 'ともだち', 'amigo'), P('の'), P('話', 'はなし', 'conversa'), P('では、'), P('大阪', 'おおさか', 'Osaka'), P('は'), P('食べ物', 'たべもの', 'comida'), P('が'), P('安い', 'やすい', 'barato'), P('らしいです。', undefined, 'parece que')] },
+      { jp: '今、荷物を整理しているところです。', pt: 'Agora estou no meio de arrumar as bagagens.', parts: [P('今', 'いま', 'agora'), P('、'), P('荷物', 'にもつ', 'bagagem'), P('を'), P('整理', 'せいり', 'arrumação'), P('している', undefined, 'estar fazendo'), P('ところです。', undefined, 'estar no meio de')] },
+      { jp: '新しい仕事について、少し不安です。', pt: 'Estou um pouco ansioso sobre o novo trabalho.', parts: [P('新しい', 'あたらしい', 'novo'), P('仕事', 'しごと', 'trabalho'), P('について、', undefined, 'sobre'), P('少し', 'すこし', 'um pouco'), P('不安', 'ふあん', 'ansiedade'), P('です。')] },
+      { jp: '家族のおかげで、安心しています。', pt: 'Graças à minha família, estou tranquilo.', parts: [P('家族', 'かぞく', 'família'), P('の'), P('おかげで、', undefined, 'graças a'), P('安心', 'あんしん', 'tranquilidade'), P('しています。', undefined, 'estou')] },
+    ],
+  },
+  {
+    id: 'n3-resfriado',
+    title: 'Um resfriado',
+    kind: 'texto',
+    level: 'N3',
+    lines: [
+      { jp: '昨日の夜、窓を開けたまま寝てしまいました。', pt: 'Ontem à noite, acabei dormindo com a janela aberta.', parts: [P('昨日', 'きのう', 'ontem'), P('の'), P('夜', 'よる', 'noite'), P('、'), P('窓', 'まど', 'janela'), P('を'), P('開けた', 'あけた', 'abrir (aberto)'), P('まま', undefined, 'do jeito que está'), P('寝て', 'ねて', 'dormir'), P('しまいました。', undefined, 'acabei por')] },
+      { jp: '朝から熱っぽくて、頭も痛いです。', pt: 'Desde a manhã estou com jeito de febre, e a cabeça também dói.', parts: [P('朝', 'あさ', 'manhã'), P('から'), P('熱っぽくて', 'ねつっぽくて', 'com jeito de febre'), P('、'), P('頭', 'あたま', 'cabeça'), P('も'), P('痛い', 'いたい', 'dolorido'), P('です。')] },
+      { jp: '雨のせいで、病院へ行けませんでした。', pt: 'Por causa da chuva, não consegui ir ao hospital.', parts: [P('雨', 'あめ', 'chuva'), P('の'), P('せいで、', undefined, 'por culpa de'), P('病院', 'びょういん', 'hospital'), P('へ'), P('行けませんでした', 'いけませんでした', 'não pude ir'), P('。')] },
+      { jp: '今日は早く寝て、休むつもりです。', pt: 'Hoje pretendo dormir cedo e descansar.', parts: [P('今日', 'きょう', 'hoje'), P('は'), P('早く', 'はやく', 'cedo'), P('寝て', 'ねて', 'dormir'), P('、'), P('休む', 'やすむ', 'descansar'), P('つもりです。', undefined, 'pretendo')] },
+    ],
+  },
+  {
+    id: 'n3-professor-de-japones',
+    title: 'Professor de japonês',
+    kind: 'texto',
+    level: 'N3',
+    lines: [
+      { jp: '私は日本語の先生として働いています。', pt: 'Trabalho como professor de japonês.', parts: [P('私', 'わたし', 'eu'), P('は'), P('日本語', 'にほんご', 'japonês'), P('の'), P('先生', 'せんせい', 'professor'), P('として', undefined, 'como'), P('働いて', 'はたらいて', 'trabalhar'), P('います。')] },
+      { jp: '生徒に対して、いつもやさしく話します。', pt: 'Com os alunos, falo sempre com gentileza.', parts: [P('生徒', 'せいと', 'aluno'), P('に'), P('対して', 'たいして', 'em relação a'), P('、'), P('いつも', undefined, 'sempre'), P('やさしく', undefined, 'com gentileza'), P('話します', 'はなします', 'falar'), P('。')] },
+      { jp: '人によって、勉強の方法はちがいます。', pt: 'Conforme a pessoa, o método de estudo é diferente.', parts: [P('人', 'ひと', 'pessoa'), P('によって、', undefined, 'conforme'), P('勉強', 'べんきょう', 'estudo'), P('の'), P('方法', 'ほうほう', 'método'), P('は'), P('ちがいます。', undefined, 'é diferente')] },
+      { jp: '続ければ続けるほど、上手になります。', pt: 'Quanto mais você continua, melhor você fica.', parts: [P('続ければ', 'つづければ', 'se continuar'), P('続ける', 'つづける', 'continuar'), P('ほど、', undefined, 'quanto mais'), P('上手', 'じょうず', 'hábil'), P('に'), P('なります。', undefined, 'fica')] },
+      { jp: '水さえあれば、人は何日も生きられます。', pt: 'Se houver ao menos água, uma pessoa consegue viver muitos dias.', parts: [P('水', 'みず', 'água'), P('さえ', undefined, 'ao menos'), P('あれば、', undefined, 'se houver'), P('人', 'ひと', 'pessoa'), P('は'), P('何日', 'なんにち', 'quantos dias'), P('も'), P('生きられます', 'いきられます', 'consegue viver'), P('。')] },
+    ],
+  },
+  {
+    id: 'n3-promessa-esquecida',
+    title: 'A promessa esquecida',
+    kind: 'texto',
+    level: 'N3',
+    lines: [
+      { jp: '彼が約束を忘れるはずがありません。', pt: 'Não é possível que ele tenha esquecido a promessa.', parts: [P('彼', 'かれ', 'ele'), P('が'), P('約束', 'やくそく', 'promessa'), P('を'), P('忘れる', 'わすれる', 'esquecer'), P('はずがありません。', undefined, 'não é possível')] },
+      { jp: '電車が出たところだったので、間に合いませんでした。', pt: 'Como o trem tinha acabado de sair, não deu tempo.', parts: [P('電車', 'でんしゃ', 'trem'), P('が'), P('出た', 'でた', 'sair'), P('ところだったので、', undefined, 'tinha acabado de'), P('間に合いませんでした', 'まにあいませんでした', 'não chegou a tempo'), P('。')] },
+      { jp: '涼しいうちに、早く出かけましょう。', pt: 'Vamos sair logo, enquanto ainda está fresco.', parts: [P('涼しい', 'すずしい', 'fresco'), P('うちに、', undefined, 'enquanto'), P('早く', 'はやく', 'logo'), P('出かけましょう', 'でかけましょう', 'vamos sair'), P('。')] },
+      { jp: '彼は子供っぽいけれど、友だちとしては最高です。', pt: 'Ele é meio infantil, mas como amigo é o melhor.', parts: [P('彼', 'かれ', 'ele'), P('は'), P('子供っぽい', 'こどもっぽい', 'infantil'), P('けれど、', undefined, 'mas'), P('友だち', 'ともだち', 'amigo'), P('として', undefined, 'como'), P('は'), P('最高', 'さいこう', 'o melhor'), P('です。')] },
+    ],
+  },
 ];
 
 /** O nível de um texto (sem `level`, N5). */
-export const levelOf = (text: ReadingText): 'N5' | 'N4' => text.level ?? 'N5';
+export const levelOf = (text: ReadingText): 'N5' | 'N4' | 'N3' => text.level ?? 'N5';

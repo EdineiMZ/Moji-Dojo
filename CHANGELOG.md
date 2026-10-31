@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.28.0] - 2026-10-31
+
+Leitura do N3.
+
+- **Quatro textos do N3:** "Mudança de cidade", "Um resfriado", "Professor de japonês" e "A promessa esquecida", com 〜ことになる, 〜らしい, 〜ところ, 〜について, 〜おかげ e os outros pontos da gramática do N3. Cada frase tem tradução e os pedaços tocáveis, com a leitura e o significado.
+- **Seletor N3 na Leitura** (Frases → Palavras → Leitura), ao lado do N5 e do N4, e a meta "Textos de leitura do N3 lidos" no caminho do N3.
+- **Escritos por IA:** os textos usam só a gramática e o vocabulário que o app ensina e **ainda precisam da revisão de um falante**.
+- **Correção:** no tópico 〜っぽい o exemplo "こども っぽい" tinha um espaço a mais.
+
 ## [2.27.0] - 2026-10-31
 
 Gramática N3: 15 tópicos.

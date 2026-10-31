@@ -783,7 +783,7 @@ export const TOPICS = [
           ]
         ]
       },
-      "É um jeito informal de falar. Em geral dá um tom de crítica ou de impressão, não de elogio: __こども っぽい__ (\"infantil, meio criança\")."
+      "É um jeito informal de falar. Em geral dá um tom de crítica ou de impressão, não de elogio: __こどもっぽい__ (\"infantil, meio criança\")."
     ],
     "pattern": "[raiz do verbo] っぽい · [substantivo] っぽい",
     "hint": "っぽい: com jeito de, tende a.",

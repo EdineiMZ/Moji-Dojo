@@ -2637,7 +2637,7 @@ export const GRAMMAR_N3: readonly GrammarTopic[] = [
             "text": "É um jeito informal de falar. Em geral dá um tom de crítica ou de impressão, não de elogio: "
           },
           {
-            "text": "こども っぽい",
+            "text": "こどもっぽい",
             "ja": true
           },
           {

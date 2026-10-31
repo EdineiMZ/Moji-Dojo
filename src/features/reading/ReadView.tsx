@@ -14,6 +14,7 @@ import { fonts, radii, spacing, useTheme } from '@/theme';
 const LEVELS = [
   { value: 'N5' as const, label: 'N5' },
   { value: 'N4' as const, label: 'N4' },
+  { value: 'N3' as const, label: 'N3' },
 ];
 
 const KINDS = [
@@ -216,7 +217,7 @@ function TextReader({ text, onBack }: { text: ReadingText; onBack: () => void })
 /** Leitura: pequenos textos e leituras do dia a dia, com toque na palavra, leitura sobre o kanji, tradução e áudio. */
 export function ReadView() {
   const [kind, setKind] = useState<ReadingText['kind']>('texto');
-  const [level, setLevel] = useState<'N5' | 'N4'>('N5');
+  const [level, setLevel] = useState<'N5' | 'N4' | 'N3'>('N5');
   const [open, setOpen] = useState<ReadingText | null>(null);
   if (open) return <TextReader text={open} onBack={() => setOpen(null)} />;
 

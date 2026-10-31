@@ -35,7 +35,7 @@ describe('palavras por nível', () => {
 describe('caminho do N3', () => {
   it('conta as palavras e os kanji do N3, e as palavras do N3 não entram no N5 nem no N4', () => {
     const n3 = levelPaths({}, {}).find((p) => p.level === 'N3');
-    expect(n3?.milestones.map((m) => m.id)).toEqual(['words3', 'grammar3', 'kanji3']);
-    expect(n3?.milestones.every((m) => m.goal > 10 && m.have === 0)).toBe(true);
+    expect(n3?.milestones.map((m) => m.id)).toEqual(['words3', 'reading3', 'grammar3', 'kanji3']);
+    expect(n3?.milestones.every((m) => m.goal > 0 && m.have === 0)).toBe(true);
   });
 });

@@ -224,6 +224,10 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
 - `src/features/structure/`: as descrições dos papéis (tema, objeto...) e a frase de exemplo do mapa (わたしは きのう えきで ともだちに ほんを あげました) são **escritas por IA, a revisar.**
 - Nada disso vem de fonte externa: não há licença de terceiros a creditar, mas também não há revisão humana ainda.
 
+## Leitura do N3 (`readings.ts`, `level: 'N3'`)
+
+- Quatro textos corridos (mudança de cidade, um resfriado, professor de japonês e a promessa esquecida), **escritos por IA** para este app com a gramática do N3 (ことになる, らしい, ところ, について, おかげ e せい, まま, として, に対して, によって, ほど, さえ, はずがない, うちに, っぽい). Nada vem de fonte externa. Cada frase traz os pedaços com a leitura e o significado, e **ainda não foi revisada por um falante**.
+
 ## Leitura do N4 (`readings.ts`, `level: 'N4'`)
 
 - Oito textos corridos e três leituras do dia a dia (aviso de atraso do trem, hotel, elevador e terremoto), **escritos por IA** para este app com a gramática do N4 (かもしれません, ことにした, てしまう, ておく, はず, passiva, ば, causativa, ようになる, ために, のに, たら, と, ても). Nada vem de fonte externa: não há licença de terceiros a creditar.

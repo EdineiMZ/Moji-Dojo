@@ -2,6 +2,13 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.21.0] - 2026-10-31
+
+Nove pontos novos de gramática do N4.
+
+- **Gramática N4: de 14 para 23 tópicos.** Novos: ながら (ao mesmo tempo), すぎる (demais), そう (aparência), そうだ (ouvi dizer), ようだ e みたい, あげる/くれる/もらう (e os favores com a forma て), てみる, ないで e と思う. Cada tópico tem tabela, 4 ou 5 frases reais do Tatoeba (CC BY 2.0 FR) com leitura e tradução, exercícios de Montar e Lacunas e notas de erros comuns. Os 90 exemplos do N4 foram conferidos um a um no Tatoeba (id, texto, licença, leitura e tradução).
+- **Revisão pendente:** as explicações são texto próprio, escrito por IA, e continuam a revisar por um falante de japonês.
+
 ## [2.20.0] - 2026-10-31
 
 Esqueleto de carregamento, guia de imersão e de conversa, pacote menor e ferramentas de build e de capturas.

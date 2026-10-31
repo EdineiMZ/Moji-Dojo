@@ -1,4 +1,4 @@
-// Tópicos de gramática N4 (n4-1 a n4-7: primeira leva; n4-8 a n4-14: segunda leva).
+// Tópicos de gramática N4 (n4-1 a n4-7: primeira leva; n4-8 a n4-14: segunda leva; n4-15 a n4-23: terceira leva).
 //
 // As explicações são texto próprio, em português, ainda sem revisão por um falante. Os exemplos são frases reais do Tatoeba
 // (CC BY 2.0 FR), escolhidas pelo id; `ja` é o texto original, `furi` a transcrição do Tatoeba, `pt` uma das traduções do
@@ -335,6 +335,225 @@ export const TOPICS = [
       { id: 6015, ja: 'いくら考えても、わかりません。', furi: 'いくら[考|かんが]えても、わかりません。', kana: 'いくら かんがえても わかりません', pt: 'Não importa o quanto eu pense sobre isso, não consigo entendê-lo.' },
       { id: 126755, ja: '遅くても来ないよりまし。', furi: '[遅|おそ]くても[来|こ]ないよりまし。', kana: 'おそくても こない より まし', pt: 'Antes tarde do que nunca.' },
       { id: 2656835, ja: '水がなくても生きられる。', furi: '[水|みず]がなくても[生|い]きられる。', kana: 'みず~が なくても いきられる', pt: 'Eu posso viver sem água.' },
+    ],
+  },
+  {
+    id: 'n4-15',
+    title: 'Ao mesmo tempo: 〜ながら',
+    body: [
+      'Com **ながら** você diz que duas ações acontecem **ao mesmo tempo**, feitas pela **mesma pessoa**. Tire o **ます** do verbo (a base) e ponha **ながら**. A ação principal fica no fim da frase; a de **ながら** é a que a acompanha.',
+      {
+        table: [
+          ['#verbo', '#base', '#com ながら'],
+          ['#のむ', '__のみ__', '__のみながら__'],
+          ['#たべる', '__たべ__', '__たべながら__'],
+          ['#する', '__し__', '__しながら__'],
+        ],
+      },
+      'Serve para ações que duram um tempo (andar, ouvir, comer, ler). Se as duas ações são de pessoas diferentes, **ながら** não funciona.',
+    ],
+    pattern: '[verbo: base sem ます] ながら、...',
+    hint: 'Duas ações juntas: base do verbo + ながら.',
+    examples: [
+      { id: 142246, ja: '赤ちゃんは泣きながら眠ってしまった。', furi: '[赤|あか]ちゃんは[泣|な]きながら[眠|ねむ]ってしまった。', kana: 'あかちゃん~は なきながら ねむって しまった', pt: 'O bebê chorou até dormir.' },
+      { id: 404561, ja: '私は食事をしながら本を読みました。', furi: '[私|わたし]は[食事|しょく|じ]をしながら[本|ほん]を[読|よ]みました。', kana: 'わたし~は しょくじ~を しながら ほん~を よみました', pt: 'Eu li um livro enquanto comi.' },
+      { id: 90960, ja: '彼女はいつも音楽を聴きながら勉強する。', furi: '[彼女|かの|じょ]はいつも[音楽|おん|がく]を[聴|き]きながら[勉強|べん|きょう]する。', kana: 'かのじょ~は いつも おんがく~を ききながら べんきょうする', pt: 'Ela sempre estuda ouvindo música.' },
+      { id: 84989, ja: '夫は新聞を読みながら、朝ごはんを食べる。', furi: '[夫|おっと]は[新聞|しん|ぶん]を[読|よ]みながら、[朝|あさ]ごはんを[食|た]べる。', kana: 'おっと~は しんぶん~を よみながら あさごはん~を たべる', pt: 'Meu marido toma café da manhã enquanto lê o jornal.' },
+    ],
+  },
+  {
+    id: 'n4-16',
+    title: 'Demais: 〜すぎる',
+    body: [
+      'Com **すぎる** você diz que algo é **demais**, passou do ponto. Verbo: base (sem **ます**) + **すぎる**. Adjetivo い: tira o **い**. Adjetivo な: tira o **な**. O resultado conjuga como verbo: **すぎた**, **すぎない**, **すぎます**.',
+      {
+        table: [
+          ['#o que vem antes', '#como fica', '#exemplo'],
+          ['#verbo', 'base + すぎる', '__たべる__ → __たべすぎる__'],
+          ['#adjetivo い', 'tira い, põe すぎる', '__たかい__ → __たかすぎる__'],
+          ['#adjetivo な', 'tira な, põe すぎる', '__しずか__ → __しずかすぎる__'],
+        ],
+      },
+      'O adjetivo **いい** vira **よすぎる**. Quase sempre é algo ruim por excesso ("caro demais", "bebi demais"). Também se escreve **過ぎる**, como em **たべすぎ** ("exagero ao comer").',
+    ],
+    pattern: '[verbo: base] すぎる · [adjetivo い sem い] すぎる · [adjetivo な sem な] すぎる',
+    hint: 'Excesso: base do verbo ou adjetivo sem い + すぎる.',
+    examples: [
+      { id: 3073523, ja: '高すぎる！', furi: '[高|たか]すぎる！', kana: 'たかすぎる', pt: 'É muito caro!' },
+      { id: 12593254, ja: '水が冷たすぎる。', furi: '[水|みず]が[冷|つめ]たすぎる。', kana: 'みず~が つめたすぎる', pt: 'A água está muito fria.' },
+      { id: 169868, ja: '昨日食べすぎた。', furi: '[昨日|きのう][食|た]べすぎた。', kana: 'きのう たべすぎた', pt: 'Eu comi muito ontem.' },
+      { id: 177029, ja: '働きすぎですよ。', furi: '[働|はたら]きすぎですよ。', kana: 'はたらきすぎ|です~よ', pt: 'Você está trabalhando demais.' },
+    ],
+  },
+  {
+    id: 'n4-17',
+    title: 'Parece que: 〜そうです (aparência)',
+    body: [
+      'Com **そう** você diz como algo **parece** pelo que vê ou sente agora ("tem cara de", "parece que vai"). Verbo: base (sem **ます**) + **そう**. Adjetivo い: tira o **い**. Adjetivo な: tira o **な**.',
+      {
+        table: [
+          ['#o que vem antes', '#como fica', '#exemplo'],
+          ['#verbo', 'base + そう', '__ふる__ → __ふりそう__'],
+          ['#adjetivo い', 'tira い, põe そう', '__おいしい__ → __おいしそう__'],
+          ['#adjetivo な', 'tira な, põe そう', '__げんき__ → __げんきそう__'],
+        ],
+      },
+      'Exceções: **いい** vira **よさそう** e **ない** vira **なさそう**. Para dizer que **não parece** que vai acontecer, use **そうにない**: __きそうにない__.',
+      'Depois de **そう** pode vir **だ** ou **です**, **な** + substantivo (__たのしそうな しごと__) ou **に** + verbo (__たのしそうに__ わらう). Não confunda com o **そうだ** de "ouvi dizer", que é o próximo tópico.',
+    ],
+    pattern: '[verbo: base] そうだ · [adjetivo い sem い] そうだ · [adjetivo な sem な] そうだ',
+    hint: 'Aparência: base ou adjetivo sem い/な + そう.',
+    examples: [
+      { id: 201190, ja: 'どうも雨になりそうです。', furi: 'どうも[雨|あめ]になりそうです。', kana: 'どうも あめ~に なりそう|です', pt: 'Acho que vai chover.' },
+      { id: 7959060, ja: 'このパンおいしそう。', kana: 'この パン おいしそう', pt: 'Este pão parece gostoso.' },
+      { id: 107639, ja: '彼は元気そうだ。', furi: '[彼|かれ]は[元気|げん|き]そうだ。', kana: 'かれ~は げんきそう|だ', pt: 'Ele parece bem.' },
+      { id: 86361, ja: '彼女は来そうにない。', furi: '[彼女|かの|じょ]は[来|き]そうにない。', kana: 'かのじょ~は きそう~に ない', pt: 'Não é provável que ela venha.' },
+    ],
+  },
+  {
+    id: 'n4-18',
+    title: 'Ouvi dizer: 〜そうです (informação de outro)',
+    body: [
+      'Com **そうだ** (formal **そうです**) depois da **forma simples** você conta algo que **ouviu dizer**: "dizem que", "ouvi que". Não é a sua opinião: é informação de segunda mão.',
+      {
+        table: [
+          ['#o que vem antes', '#como fica', '#exemplo'],
+          ['#verbo', 'forma simples + そうだ', '__ふる__ → __ふるそうだ__'],
+          ['#adjetivo い', 'forma simples + そうだ', '__たかい__ → __たかいそうだ__'],
+          ['#substantivo e adjetivo な', '+ だ + そうだ', '__びょうき__ → __びょうきだそうだ__'],
+        ],
+      },
+      'Compare: **ふりそうだ** (base + そう) é "parece que vai chover", pelo que se vê; **ふるそうだ** (forma simples + そう) é "dizem que vai chover". Na conversa, quem ouviu pode acrescentar **ね** para confirmar: __そうですね__.',
+    ],
+    pattern: '[forma simples] そうだ · [substantivo/な] だそうだ',
+    hint: 'Ouvi dizer: forma simples + そうだ.',
+    examples: [
+      { id: 189727, ja: '雨が降るそうだ。', furi: '[雨|あめ]が[降|ふ]るそうだ。', kana: 'あめ~が ふる そう|だ', pt: 'Dizem que vai chover.' },
+      { id: 99656, ja: '彼は名医だそうだ。', furi: '[彼|かれ]は[名医|めい|い]だそうだ。', kana: 'かれ~は めいい だ そう|だ', pt: 'Dizem que ele é um bom médico.' },
+      { id: 232414, ja: 'あなたはピアノをやるそうですね。', kana: 'あなた~は ピアノ~を やる そう|です~ね', pt: 'Ouvi dizer que você toca piano.' },
+      { id: 217027, ja: 'ご病気だったそうですね。', furi: 'ご[病気|びょう|き]だったそうですね。', kana: 'ごびょうき だった そう|です~ね', pt: 'Eu ouvi que você tem estado doente.' },
+    ],
+  },
+  {
+    id: 'n4-19',
+    title: 'Parece ser: 〜ようだ e 〜みたい',
+    body: [
+      '**ようだ** (formal **ようです**) diz que algo **parece** ser assim, com base no que a pessoa observou ou deduziu. Vem depois da forma simples; depois de substantivo leva **の**, e depois de adjetivo な leva **な**.',
+      {
+        table: [
+          ['#o que vem antes', '#como fica', '#exemplo'],
+          ['#verbo e adjetivo い', 'forma simples + ようだ', '__つかれている__ → __つかれているようだ__'],
+          ['#substantivo', '+ の + ようだ', '__びょうき__ → __びょうきのようだ__'],
+          ['#adjetivo な', '+ な + ようだ', '__しずか__ → __しずかなようだ__'],
+        ],
+      },
+      '**みたい** diz o mesmo na conversa, e depois de substantivo ou de adjetivo な não leva **の** nem **な**: __ゆきみたい__. Os dois também comparam: "como", "igual a".',
+    ],
+    pattern: '[forma simples] ようだ · [substantivo] の ようだ · [substantivo] みたい',
+    hint: 'Parece: forma simples + ようだ (substantivo: のようだ; conversa: みたい).',
+    examples: [
+      { id: 78415, ja: '嵐はやんだようだ。', furi: '[嵐|あらし]はやんだようだ。', kana: 'あらし~は やんだ よう|だ', pt: 'Parece que a tempestade acalmou.' },
+      { id: 100750, ja: '彼は疲れているようだ。', furi: '[彼|かれ]は[疲|つか]れているようだ。', kana: 'かれ~は つかれている よう|だ', pt: 'Ele parece cansado.' },
+      { id: 100545, ja: '彼は病気のようだ。', furi: '[彼|かれ]は[病気|びょう|き]のようだ。', kana: 'かれ~は びょうき~の よう|だ', pt: 'Ele parece doente.' },
+      { id: 628655, ja: '雪みたい。', furi: '[雪|ゆき]みたい。', kana: 'ゆき みたい', pt: 'Parece neve.' },
+    ],
+  },
+  {
+    id: 'n4-20',
+    title: 'Dar e receber: あげる, くれる, もらう',
+    body: [
+      'Três verbos de dar e receber, e a diferença é **quem dá** e **quem recebe**. **あげる**: eu (ou alguém do meu lado) dou a outra pessoa. **くれる**: outra pessoa me dá (ou dá a alguém do meu lado). **もらう**: eu recebo de alguém; quem dá vem com **に** ou **から**.',
+      {
+        table: [
+          ['#verbo', '#quem dá', '#quem recebe'],
+          ['#あげる', 'eu / meu lado', 'outra pessoa'],
+          ['#くれる', 'outra pessoa', 'eu / meu lado'],
+          ['#もらう', 'outra pessoa (に/から)', 'eu / meu lado'],
+        ],
+      },
+      'Depois da forma **て**, os mesmos verbos falam de **favores**: **てあげる** (faço por você), **てくれる** (fazem por mim) e **てもらう** (consigo que façam por mim). Com alguém de posição mais alta, **てあげる** soa como se você estivesse fazendo uma gentileza; é melhor oferecer a ajuda de outro jeito.',
+    ],
+    pattern: '[quem dá] は [quem recebe] に [coisa] を あげる · [forma て] あげる / くれる / もらう',
+    hint: 'Dar e receber: あげる (eu dou), くれる (me dão), もらう (eu recebo); com forma て, um favor.',
+    examples: [
+      { id: 1062147, ja: 'この本、君にあげるよ。', furi: 'この[本|ほん]、[君|きみ]にあげるよ。', kana: 'この ほん きみ~に あげる~よ', pt: 'Eu te darei esse livro.' },
+      { id: 196536, ja: 'ボーナスをもらった。', furi: 'ボーナスをもらった。', kana: 'ボーナス~を もらった', pt: 'Ganhei um bônus.' },
+      { id: 9037336, ja: '父が本を買ってくれた。', furi: '[父|ちち]が[本|ほん]を[買|か]ってくれた。', kana: 'ちち~が ほん~を かって くれた', pt: 'Meu pai me comprou um livro.' },
+      { id: 175189, ja: '見せてあげる。', furi: '[見|み]せてあげる。', kana: 'みせて あげる', pt: 'Vou te mostrar.' },
+      { id: 84108, ja: '部屋を掃除してもらった。', furi: '[部屋|へ|や]を[掃除|そう|じ]してもらった。', kana: 'へや~を そうじして もらった', pt: 'Mandei limpar meu quarto.' },
+    ],
+  },
+  {
+    id: 'n4-21',
+    title: 'Experimentar: 〜てみる',
+    body: [
+      'Com **てみる** você diz que vai **experimentar** algo para ver como é: forma **て** + **みる**. No passado, **てみた** ("experimentei"). Para convidar ou pedir, **てみましょう** e **てみて**; para dizer que quer, **てみたい**.',
+      {
+        table: [
+          ['#como fica', '#quer dizer'],
+          ['__やってみる__', 'vou experimentar fazer'],
+          ['__やってみた__', 'experimentei'],
+          ['__やってみたい__', 'quero experimentar'],
+          ['__やってみましょう__', 'vamos experimentar'],
+        ],
+      },
+      'É "experimentar para ver", sem a ideia de esforço difícil. O verbo **みる** aqui costuma se escrever em hiragana.',
+    ],
+    pattern: '[forma て] みる · みた · みたい · みましょう',
+    hint: 'Experimentar: forma て + みる.',
+    examples: [
+      { id: 3480369, ja: 'やってみた。', kana: 'やって みた', pt: 'Tentei.' },
+      { id: 175172, ja: '見てみましょう。', furi: '[見|み]てみましょう。', kana: 'みて みましょう', pt: 'Vamos dar uma olhada.' },
+      { id: 8098712, ja: '明日聞いてみます。', furi: '[明日|あした][聞|き]いてみます。', kana: 'あした きいて みます', pt: 'Vou perguntar a ele amanhã.' },
+      { id: 2063347, ja: 'やってみたい？', kana: 'やって みたい', pt: 'Quer prová-lo?' },
+    ],
+  },
+  {
+    id: 'n4-22',
+    title: 'Não faça: 〜ないで',
+    body: [
+      'A forma **ない** + **で** serve para pedir que alguém **não faça** algo: **ないで** (informal), **ないでください** (educado) e **ないでくれ** (direto). Também liga duas ações dizendo "**sem** fazer a primeira", como em **ないでおく** ("deixar sem fazer").',
+      {
+        table: [
+          ['#verbo', '#pedido de não fazer'],
+          ['#いく', '__いかないで__'],
+          ['#しんぱいする', '__しんぱいしないで__'],
+          ['#さわぐ', '__さわがないでください__'],
+        ],
+      },
+      'Para a negação que fecha a frase ("não vou", "não fiz"), use **ない** ou **ません**; o **で** é o que liga com o que vem depois.',
+    ],
+    pattern: '[verbo: forma ない] で · [verbo: forma ない] でください',
+    hint: 'Pedido de não fazer: forma ない + で (ou でください).',
+    examples: [
+      { id: 2006376, ja: '行かないで。', furi: '[行|い]かないで。', kana: 'いかないで', pt: 'Não vá.' },
+      { id: 1680729, ja: 'ここで騒がないで下さい。', furi: 'ここで[騒|さわ]がないで[下|くだ]さい。', kana: 'ここ~で さわがないで|ください', pt: 'Por favor, não faça barulhos aqui.' },
+      { id: 4734, ja: '心配しないで。', furi: '[心配|しん|ぱい]しないで。', kana: 'しんぱい しないで', pt: 'Não se preocupe.' },
+      { id: 12377003, ja: 'ドアの鍵は掛けないでおいてね。', furi: 'ドアの[鍵|かぎ]は[掛|か]けないでおいてね。', kana: 'ドア~の かぎ~は かけないで おいて~ね', pt: 'Deixe a porta destrancada.' },
+    ],
+  },
+  {
+    id: 'n4-23',
+    title: 'Acho que: 〜と思う',
+    body: [
+      'Com **と思う** (**とおもう**; formal **と思います**) você dá a **sua opinião**: "acho que". Antes do **と** vai a **forma simples** da frase; substantivo e adjetivo な levam **だ**.',
+      {
+        table: [
+          ['#o que vem antes', '#exemplo'],
+          ['#verbo', '__くる__ → __くると おもう__'],
+          ['#negativo', '__こない__ → __こないと おもう__'],
+          ['#substantivo e adjetivo な', '__しょうじき__ → __しょうじきだと おもう__'],
+        ],
+      },
+      'Em japonês a negação fica **dentro** do que se acha: "acho que ele não vem" é __こないと おもう__. Com a forma de vontade (**よう**), vira "estou pensando em": __ねようと おもう__.',
+    ],
+    pattern: '[forma simples] と思う · [substantivo/な] だと思う · [forma よう] と思う',
+    hint: 'Opinião: forma simples + と思う.',
+    examples: [
+      { id: 99142, ja: '彼は来ると思う。', furi: '[彼|かれ]は[来|く]ると[思|おも]う。', kana: 'かれ~は くる~と おもう', pt: 'Eu acho que ele virá.' },
+      { id: 99154, ja: '彼は来ないと思う。', furi: '[彼|かれ]は[来|こ]ないと[思|おも]う。', kana: 'かれ~は こない~と おもう', pt: 'Eu acho que ele não vem.' },
+      { id: 103299, ja: '彼は正直だと思う。', furi: '[彼|かれ]は[正直|しょう|じき]だと[思|おも]う。', kana: 'かれ~は しょうじき だ~と おもう', pt: 'Eu acho ele honesto.' },
+      { id: 5049, ja: '寝ようと思う。', furi: '[寝|ね]ようと[思|おも]う。', kana: 'ねよう~と おもう', pt: 'Acho que eu vou dormir.' },
     ],
   },
 ];

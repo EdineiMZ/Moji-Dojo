@@ -258,4 +258,40 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
     'Com adjetivo い, a forma é くても (たかくても), e não たかいても.',
     'Com substantivo e adjetivo な, a forma é でも (あめでも), e não a forma て.',
   ],
+  'n4-15': [
+    'As duas ações são da mesma pessoa. Para pessoas diferentes, ながら não serve.',
+    'A ação principal é a do fim da frase; a de ながら só acompanha. Em "ouvir música e estudar", o estudo é o principal.',
+  ],
+  'n4-16': [
+    'Com adjetivo い, tira-se o い: たかい vira たかすぎる, e não たかいすぎる.',
+    'すぎる quase sempre diz que algo é ruim por excesso. Para elogiar, use とても ou すごく.',
+  ],
+  'n4-17': [
+    'O adjetivo い perde o い (おいしそう), mas いい vira よさそう e ない vira なさそう.',
+    'Este そう é o que se vê agora. Para "ouvi dizer", use a forma simples antes de そうだ (ふるそうだ).',
+  ],
+  'n4-18': [
+    'Aqui o そうだ vem depois da forma simples inteira (ふるそうだ). Se vier depois da base (ふりそうだ), o sentido muda para "parece que vai".',
+    'Com substantivo e adjetivo な, entra o だ: びょうきだそうです, e não びょうきそうです.',
+  ],
+  'n4-19': [
+    'Com substantivo, ようだ pede の (びょうきのようだ), e com adjetivo な pede な (しずかなようだ). Já o みたい não leva nada: ゆきみたい.',
+    'ようだ tem sempre uma base observada ou deduzida por quem fala. Para algo que você só ouviu, use そうだ.',
+  ],
+  'n4-20': [
+    'あげる é para dar a outra pessoa e くれる é para me darem. Quando o destinatário sou eu, não se usa あげる.',
+    'Com もらう, quem dá vem com に ou から; com くれる, quem dá é o sujeito e leva が ou は.',
+  ],
+  'n4-21': [
+    'てみる é "experimentar para ver", e não "fazer com esforço". A forma é て + みる, e o みる costuma ir em hiragana.',
+    'Para convidar, use てみましょう; para dizer que quer experimentar, てみたい.',
+  ],
+  'n4-22': [
+    'O pedido de não fazer é ない + で (いかないで). Não confunda com ないです, que apenas nega (いらないです).',
+    'No meio da frase, ないで liga duas ações e quer dizer "sem fazer": ないでおく é "deixar sem fazer".',
+  ],
+  'n4-23': [
+    'A negação fica dentro do que se acha: "acho que não vem" é こないとおもう, e não くるとおもわない.',
+    'Antes do と entra a forma simples; com substantivo e adjetivo な entra だ (しょうじきだとおもう).',
+  ],
 };

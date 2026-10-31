@@ -45,7 +45,7 @@ describe('aba Casa', () => {
   });
 
   it('com o cômodo comprado, lista os móveis e deixa comprar', () => {
-    useProgressStore.setState({ journey: { ...emptyJourney(), petals: 300, home: { rooms: ['quarto'], furniture: ['cama'] } } });
+    useProgressStore.setState({ journey: { ...emptyJourney(), petals: 300, home: { ...emptyJourney().home, rooms: ['quarto'], furniture: ['cama'] } } });
     const all = text(render(<HomeView />));
     expect(all).toContain('Caminha');
     expect(all).toContain('Na casa');

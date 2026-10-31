@@ -2,6 +2,14 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.34.0] - 2026-10-31
+
+Casa do Mochi: skins de móveis e cômodos liberados por metas de estudo.
+
+- **Skins de móveis:** 19 móveis (cama, tapete, abajur, sofá, kotatsu, geladeira, banheira, mesa...) têm 3 skins de cor: **Oceano**, **Matcha** e **Lavanda**. Cada skin custa metade do preço do móvel (no mínimo 60 pétalas), vale só para um móvel que você já tem, e depois de comprada dá para trocar de cor, ou voltar ao original, sem custo. Móveis de cor própria (a água do lago, a tela da TV, a árvore) não têm skin. A cor muda só no tom: branco, cinza e traços escuros ficam.
+- **Metas de estudo:** os cômodos agora pedem pétalas **e** uma meta. Quarto e Jardim continuam livres; Escritório pede 20 palavras aprendidas, Varanda 3 tópicos de gramática dominados, Sala 100 palavras aprendidas, Cozinha 7 dias seguidos de estudo e Ofurô 30 dias de estudo. O cômodo trancado mostra a meta, a barra de progresso e só libera o botão de compra quando ela estiver cumprida.
+- **Backup:** as skins vão junto com o progresso; backups antigos sem skins continuam abrindo.
+
 ## [2.33.0] - 2026-10-31
 
 Casa do Mochi: cada peça é uma palavra de japonês.

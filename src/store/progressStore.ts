@@ -17,7 +17,8 @@ import type { Loot, Rng } from '@/features/journey/loot';
 import { applyRescue, declineRescue as declineOffer, rescuePassed, resolveRescue } from '@/features/journey/rescue';
 import { trackAnswer, trackDialog, trackExplored, trackLesson, trackNewWords, trackOpen, trackPhrase, trackRecording, trackSession, trackStudyTime, trackTouch, buildContext } from '@/features/journey/track';
 import type { Area } from '@/features/journey/events';
-import { buyFurniture, buyRoom, type HomeBuyError } from '@/features/home/home';
+import { homeProgressOf } from '@/features/home/goals';
+import { buyFurniture, buyRoom, buySkin, equipSkin, type HomeBuyError } from '@/features/home/home';
 import { buyItem, dismissToast, emptyJourney, equipItem, sanitizeJourney, unequipSlot, type BuyError, type JourneyState } from '@/features/journey/journey';
 import type { Slot } from '@/features/journey/items';
 import { sanitizeReads } from '@/features/reading/reads';
@@ -68,6 +69,10 @@ export interface ProgressActions {
   buyJourneyItem: (itemId: string, now?: number) => BuyError | null;
   /** Compra um cômodo ou um móvel da Casa do Mochi com pétalas. Devolve o motivo de não ter comprado, ou null. */
   buyHomeThing: (kind: 'room' | 'furniture', id: string) => HomeBuyError | null;
+  /** Compra a skin de um móvel que já é seu (e já a coloca nele). */
+  buyHomeSkin: (furnitureId: string, skinId: string) => HomeBuyError | null;
+  /** Troca a skin em uso de um móvel (null = o desenho original). */
+  equipHomeSkin: (furnitureId: string, skinId: string | null) => void;
   /** Veste um item que a pessoa tem. */
   equipJourneyItem: (itemId: string) => void;
   /** Tira o item de um espaço do Mochi. */
@@ -325,7 +330,7 @@ export function createProgressStore(storage: StateStorage) {
         buyHomeThing: (kind, id) => {
           let failure: HomeBuyError | null = null;
           set((s) => {
-            const result = kind === 'room' ? buyRoom(s.journey, id) : buyFurniture(s.journey, id);
+            const result = kind === 'room' ? buyRoom(s.journey, id, homeProgressOf(s)) : buyFurniture(s.journey, id);
             if (!result.ok) {
               failure = result.error;
               return s;
@@ -334,6 +339,19 @@ export function createProgressStore(storage: StateStorage) {
           });
           return failure;
         },
+        buyHomeSkin: (furnitureId, skinId) => {
+          let failure: HomeBuyError | null = null;
+          set((s) => {
+            const result = buySkin(s.journey, furnitureId, skinId);
+            if (!result.ok) {
+              failure = result.error;
+              return s;
+            }
+            return { journey: result.state };
+          });
+          return failure;
+        },
+        equipHomeSkin: (furnitureId, skinId) => set((s) => ({ journey: equipSkin(s.journey, furnitureId, skinId) })),
         equipJourneyItem: (itemId) => set((s) => ({ journey: equipItem(s.journey, itemId) })),
         unequipJourneySlot: (slot) => set((s) => ({ journey: unequipSlot(s.journey, slot) })),
         dismissJourneyToast: (id) => set((s) => ({ journey: dismissToast(s.journey, id) })),

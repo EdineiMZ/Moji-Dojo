@@ -1,4 +1,6 @@
 import type { JourneyState } from '../journey/journey';
+import { goalStatus, type HomeProgress } from './goals';
+import { findSkin, SKINNABLE, skinKey, skinPriceFor } from './skins';
 
 /**
  * A Casa do Mochi: cômodos (de dentro e de fora) comprados com pétalas e, em cada cômodo, móveis também comprados com pétalas.
@@ -82,9 +84,13 @@ export interface HomeState {
   rooms: string[];
   /** Ids dos móveis comprados (cada um dentro do cômodo dele). */
   furniture: string[];
+  /** Skins compradas, como "móvel:skin". */
+  skins: string[];
+  /** A skin que cada móvel está usando (sem entrada = o desenho original). */
+  skin: Record<string, string>;
 }
 
-export const emptyHome = (): HomeState => ({ rooms: [], furniture: [] });
+export const emptyHome = (): HomeState => ({ rooms: [], furniture: [], skins: [], skin: {} });
 
 /** Lê o estado vindo do disco ou de um backup: ids desconhecidos saem, e um móvel só vale se o cômodo dele foi comprado. */
 export function sanitizeHome(raw: unknown): HomeState {
@@ -96,10 +102,17 @@ export function sanitizeHome(raw: unknown): HomeState {
     const piece = findFurniture(id);
     return piece !== undefined && rooms.includes(piece.room);
   });
-  return { rooms, furniture };
+  const skins = read(data.skins).filter((key) => {
+    const [pieceId = '', skinId = ''] = key.split(':');
+    return furniture.includes(pieceId) && SKINNABLE.has(pieceId) && findSkin(skinId) !== undefined;
+  });
+  const on = typeof data.skin === 'object' && data.skin !== null && !Array.isArray(data.skin) ? (data.skin as Record<string, unknown>) : {};
+  const skin: Record<string, string> = {};
+  for (const [pieceId, skinId] of Object.entries(on)) if (typeof skinId === 'string' && skins.includes(skinKey(pieceId, skinId))) skin[pieceId] = skinId;
+  return { rooms, furniture, skins, skin };
 }
 
-export type HomeBuyError = 'unknown' | 'owned' | 'no-room' | 'poor';
+export type HomeBuyError = 'unknown' | 'owned' | 'no-room' | 'poor' | 'goal' | 'no-piece';
 
 export type HomeBuyResult = { ok: true; state: JourneyState } | { ok: false; error: HomeBuyError; state: JourneyState };
 
@@ -108,13 +121,19 @@ export const HOME_BUY_MESSAGES: Readonly<Record<HomeBuyError, string>> = {
   owned: 'Você já tem isso.',
   'no-room': 'Compre o cômodo antes dos móveis dele.',
   poor: 'Faltam pétalas para comprar isso.',
+  goal: 'Cumpra a meta de estudo deste cômodo antes de comprar.',
+  'no-piece': 'Compre o móvel antes da skin dele.',
 };
 
-/** Compra um cômodo com pétalas. */
-export function buyRoom(state: JourneyState, roomId: string): HomeBuyResult {
+/** Compra um cômodo com pétalas. Se ele tem meta de estudo e o progresso é dado, a meta precisa estar cumprida. */
+export function buyRoom(state: JourneyState, roomId: string, progress?: HomeProgress): HomeBuyResult {
   const room = findRoom(roomId);
   if (!room) return { ok: false, error: 'unknown', state };
   if (state.home.rooms.includes(roomId)) return { ok: false, error: 'owned', state };
+  if (progress) {
+    const status = goalStatus(roomId, progress);
+    if (status && !status.met) return { ok: false, error: 'goal', state };
+  }
   if (state.petals < room.price) return { ok: false, error: 'poor', state };
   return { ok: true, state: { ...state, petals: state.petals - room.price, home: { ...state.home, rooms: [...state.home.rooms, roomId] } } };
 }
@@ -127,4 +146,32 @@ export function buyFurniture(state: JourneyState, furnitureId: string): HomeBuyR
   if (!state.home.rooms.includes(piece.room)) return { ok: false, error: 'no-room', state };
   if (state.petals < piece.price) return { ok: false, error: 'poor', state };
   return { ok: true, state: { ...state, petals: state.petals - piece.price, home: { ...state.home, furniture: [...state.home.furniture, furnitureId] } } };
+}
+
+/** Compra a skin de um móvel que já é seu e já a coloca nele. */
+export function buySkin(state: JourneyState, furnitureId: string, skinId: string): HomeBuyResult {
+  const piece = findFurniture(furnitureId);
+  if (!piece || !SKINNABLE.has(furnitureId) || !findSkin(skinId)) return { ok: false, error: 'unknown', state };
+  if (!state.home.furniture.includes(furnitureId)) return { ok: false, error: 'no-piece', state };
+  if (state.home.skins.includes(skinKey(furnitureId, skinId))) return { ok: false, error: 'owned', state };
+  const price = skinPriceFor(piece.price);
+  if (state.petals < price) return { ok: false, error: 'poor', state };
+  return {
+    ok: true,
+    state: {
+      ...state,
+      petals: state.petals - price,
+      home: { ...state.home, skins: [...state.home.skins, skinKey(furnitureId, skinId)], skin: { ...state.home.skin, [furnitureId]: skinId } },
+    },
+  };
+}
+
+/** Troca a skin em uso (null = o desenho original); só vale para o que a pessoa tem. */
+export function equipSkin(state: JourneyState, furnitureId: string, skinId: string | null): JourneyState {
+  if (skinId === null) {
+    const { [furnitureId]: _gone, ...rest } = state.home.skin;
+    return { ...state, home: { ...state.home, skin: rest } };
+  }
+  if (!state.home.skins.includes(skinKey(furnitureId, skinId))) return state;
+  return { ...state, home: { ...state.home, skin: { ...state.home.skin, [furnitureId]: skinId } } };
 }

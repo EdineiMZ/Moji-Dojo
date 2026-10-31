@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Svg, { G } from 'react-native-svg';
-import { AppText, Bold, Button, Card, ChipRow, Mascot, PetalRain } from '@/components';
+import { AppText, Bold, Button, Card, ChipRow, Mascot, PetalRain, ProgressBar } from '@/components';
 import { JpText } from '@/features/annotate/JpText';
 import { useProgressStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
@@ -9,6 +9,8 @@ import { outfit as outfitOf } from '@/features/journey/journey';
 import { useMochiMood } from '@/features/journey/useMochiMood';
 import { FURNITURE_ART, ROOM_BACKGROUND, SCENE_HEIGHT, SCENE_WIDTH } from '../art';
 import { findFurniture, findRoom, furnitureOf, HOME_BUY_MESSAGES, ROOMS, type Furniture, type Room } from '../home';
+import { goalLabel, goalStatus, homeProgressOf } from '../goals';
+import { findSkin, recolor, SKINNABLE, SKINS, skinKey, skinPriceFor } from '../skins';
 import { houseWordOf, wordsOf } from '../words';
 import { VisitView, WordChallenge } from './HouseWords';
 
@@ -21,6 +23,7 @@ const MOCHI_SHARE = 0.38;
 function RoomScene({ room, furniture, locked }: { room: Room; furniture: readonly string[]; locked: boolean }) {
   const { colors } = useTheme();
   const journey = useProgressStore((s) => s.journey);
+  const skinOf = journey.home.skin;
   const felt = useMochiMood();
   const [width, setWidth] = useState(0);
   const mochi = width * MOCHI_SHARE;
@@ -37,7 +40,7 @@ function RoomScene({ room, furniture, locked }: { room: Room; furniture: readonl
       <Svg width="100%" height="100%" viewBox={`0 0 ${SCENE_WIDTH} ${SCENE_HEIGHT}`} preserveAspectRatio="xMidYMid slice" opacity={locked ? 0.45 : 1}>
         {ROOM_BACKGROUND[room.id]}
         {furniture.map((id) => (
-          <G key={id}>{FURNITURE_ART[id]}</G>
+          <G key={id}>{recolor(FURNITURE_ART[id], findSkin(skinOf[id] ?? '')?.shift ?? 0)}</G>
         ))}
       </Svg>
       {locked ? (
@@ -61,6 +64,11 @@ export function HomeView() {
   const { colors } = useTheme();
   const journey = useProgressStore((s) => s.journey);
   const buy = useProgressStore((s) => s.buyHomeThing);
+  const buySkin = useProgressStore((s) => s.buyHomeSkin);
+  const equipSkin = useProgressStore((s) => s.equipHomeSkin);
+  const vocab = useProgressStore((s) => s.vocab);
+  const mastered = useProgressStore((s) => s.mastered);
+  const days = useProgressStore((s) => s.days);
   const learnWords = useProgressStore((s) => s.learnWords);
   const [roomId, setRoomId] = useState(ROOMS[0]?.id ?? 'quarto');
   const [confirming, setConfirming] = useState<string | null>(null);
@@ -99,6 +107,21 @@ export function HomeView() {
     purchase(kind, id, name);
   };
   const ownedWords = wordsOf([...journey.home.rooms, ...journey.home.furniture]);
+  const goal = goalStatus(room.id, homeProgressOf({ vocab, mastered, days }));
+  const wearSkin = (pieceId: string, skinId: string) => {
+    if (skinId === '') {
+      equipSkin(pieceId, null);
+      return;
+    }
+    const owned = journey.home.skins.includes(skinKey(pieceId, skinId));
+    if (owned) {
+      equipSkin(pieceId, journey.home.skin[pieceId] === skinId ? null : skinId);
+      return;
+    }
+    const error = buySkin(pieceId, skinId);
+    setMessage(error ? { text: HOME_BUY_MESSAGES[error], ok: false } : { text: `Skin ${findSkin(skinId)?.name ?? ''} aplicada.`, ok: true });
+    if (!error) setCelebrate((n) => n + 1);
+  };
 
   const options = ROOMS.map((r) => ({ value: r.id, label: `${r.icon} ${r.name}${journey.home.rooms.includes(r.id) ? '' : ' 🔒'}` }));
 
@@ -164,11 +187,22 @@ export function HomeView() {
               <Button label="Voltar" variant="ghost" onPress={() => setConfirming(null)} />
             </Card>
           ) : (
-            <Button
-              label={journey.petals >= room.price ? `Comprar o cômodo por 🌸 ${room.price}` : `Faltam 🌸 ${room.price - journey.petals}`}
-              disabled={journey.petals < room.price}
-              onPress={() => setConfirming(room.id)}
-            />
+  <>
+              {goal ? (
+                <View style={[styles.goal, { borderColor: goal.met ? colors.ok : colors.line, backgroundColor: colors.surface }]}>
+                  <AppText style={styles.name}>{goal.met ? '✓ Meta de estudo cumprida' : 'Meta de estudo para liberar'}</AppText>
+                  <AppText variant="caption" color="muted">
+                    {goalLabel(goal.goal)}: você tem {Math.min(goal.have, goal.goal.goal)} de {goal.goal.goal}.
+                  </AppText>
+                  <ProgressBar value={goal.have / goal.goal.goal} />
+                </View>
+              ) : null}
+              <Button
+                label={goal && !goal.met ? 'Cumpra a meta para comprar' : journey.petals >= room.price ? `Comprar o cômodo por 🌸 ${room.price}` : `Faltam 🌸 ${room.price - journey.petals}`}
+                disabled={(goal !== null && !goal.met) || journey.petals < room.price}
+                onPress={() => setConfirming(room.id)}
+              />
+            </>
           )
         ) : (
           <>
@@ -185,6 +219,7 @@ export function HomeView() {
                 onAsk={() => setConfirming(piece.id)}
                 onCancel={() => setConfirming(null)}
                 onBuy={() => start('furniture', piece.id, piece.name)}
+                skins={{ owned: journey.home.skins, on: journey.home.skin[piece.id], onPick: (skinId) => wearSkin(piece.id, skinId) }}
               />
             ))}
             {ownedWords.length >= 3 ? (
@@ -214,7 +249,35 @@ function HouseWordLine({ id }: { id: string }) {
   );
 }
 
-function FurnitureRow({ piece, has, petals, confirming, onAsk, onCancel, onBuy }: { piece: Furniture; has: boolean; petals: number; confirming: boolean; onAsk: () => void; onCancel: () => void; onBuy: () => void }) {
+interface SkinProps {
+  /** Skins compradas ("móvel:skin"). */
+  owned: readonly string[];
+  /** A skin em uso neste móvel. */
+  on: string | undefined;
+  onPick: (skinId: string) => void;
+}
+
+/** As cores do móvel: o original (grátis) e cada skin, com o preço das que ainda não são suas. */
+function SkinPicker({ piece, skins, petals }: { piece: Furniture; skins: SkinProps; petals: number }) {
+  const price = skinPriceFor(piece.price);
+  const options = [
+    { value: '', label: 'Original' },
+    ...SKINS.map((skin) => {
+      const mine = skins.owned.includes(skinKey(piece.id, skin.id));
+      return { value: skin.id, label: mine ? skin.name : petals >= price ? `${skin.name} 🌸 ${price}` : `${skin.name} 🔒 ${price}` };
+    }),
+  ];
+  return (
+    <View style={styles.skins}>
+      <AppText variant="caption" color="muted">
+        Cores do móvel
+      </AppText>
+      <ChipRow wrap options={options} value={skins.on ?? ''} onChange={(v) => skins.onPick(v)} />
+    </View>
+  );
+}
+
+function FurnitureRow({ piece, has, petals, confirming, onAsk, onCancel, onBuy, skins }: { piece: Furniture; has: boolean; petals: number; confirming: boolean; onAsk: () => void; onCancel: () => void; onBuy: () => void; skins?: SkinProps }) {
   const { colors } = useTheme();
   return (
     <View style={[styles.row, { backgroundColor: colors.surface, borderColor: has ? colors.ok : colors.line }]}>
@@ -224,6 +287,7 @@ function FurnitureRow({ piece, has, petals, confirming, onAsk, onCancel, onBuy }
           {piece.description}
         </AppText>
         {has ? <HouseWordLine id={piece.id} /> : null}
+        {has && skins && SKINNABLE.has(piece.id) ? <SkinPicker piece={piece} skins={skins} petals={petals} /> : null}
         {confirming ? (
           <AppText variant="caption">
             Comprar por 🌸 {piece.price}? Sobram 🌸 {petals - piece.price}.
@@ -254,6 +318,8 @@ const styles = StyleSheet.create({
   lock: { position: 'absolute', alignSelf: 'center', top: '40%', borderRadius: radii.pill, paddingHorizontal: spacing.lg, paddingVertical: spacing.xs },
   titleRow: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: spacing.sm },
   confirm: { gap: spacing.sm },
+  goal: { gap: spacing.xs, borderWidth: 1.5, borderRadius: radii.lg, padding: spacing.md },
+  skins: { gap: spacing.xs, marginTop: spacing.xs },
   row: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, borderWidth: 1.5, borderRadius: radii.lg, padding: spacing.md },
   name: { fontFamily: fonts.bold, fontSize: 16, lineHeight: 22 },
   actions: { gap: spacing.xs },

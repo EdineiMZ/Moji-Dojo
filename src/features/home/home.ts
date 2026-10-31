@@ -11,6 +11,8 @@ export interface Room {
   id: string;
   name: string;
   kind: RoomKind;
+  /** O emoji do cômodo, nos botões. */
+  icon: string;
   price: number;
   description: string;
 }
@@ -24,9 +26,13 @@ export interface Furniture {
 }
 
 export const ROOMS: readonly Room[] = [
-  { id: 'quarto', name: 'Quarto', kind: 'inside', price: 250, description: 'Onde o Mochi dorme e sonha com palavras novas.' },
-  { id: 'jardim', name: 'Jardim', kind: 'outside', price: 400, description: 'Um canto ao ar livre, com sol, flores e uma árvore.' },
-  { id: 'escritorio', name: 'Escritório', kind: 'inside', price: 600, description: 'O cantinho de estudo do Mochi, com mesa, livros e kanji.' },
+  { id: 'quarto', name: 'Quarto', kind: 'inside', icon: '🛏️', price: 250, description: 'Onde o Mochi dorme e sonha com palavras novas.' },
+  { id: 'jardim', name: 'Jardim', kind: 'outside', icon: '🌳', price: 400, description: 'Um canto ao ar livre, com sol, flores e uma árvore.' },
+  { id: 'escritorio', name: 'Escritório', kind: 'inside', icon: '📚', price: 600, description: 'O cantinho de estudo do Mochi, com mesa, livros e kanji.' },
+  { id: 'varanda', name: 'Varanda', kind: 'outside', icon: '🎐', price: 700, description: 'Um deque com vento, chá e o sininho que toca sozinho.' },
+  { id: 'sala', name: 'Sala', kind: 'inside', icon: '🛋️', price: 800, description: 'Sofá, kotatsu e a TV para ver anime sem legenda (quase).' },
+  { id: 'cozinha', name: 'Cozinha', kind: 'inside', icon: '🍳', price: 1000, description: 'Onde o Mochi prepara o arroz e as frutas do dia.' },
+  { id: 'ofuro', name: 'Ofurô', kind: 'inside', icon: '♨️', price: 1200, description: 'Um banho quente de madeira, com vapor e bambu.' },
 ];
 
 export const FURNITURE: readonly Furniture[] = [
@@ -45,6 +51,26 @@ export const FURNITURE: readonly Furniture[] = [
   { id: 'livros', room: 'escritorio', name: 'Pilha de livros', price: 100, description: 'Livros de japonês empilhados.' },
   { id: 'lanterna', room: 'escritorio', name: 'Lanterna de papel', price: 130, description: 'Pendurada no teto, com luz suave.' },
   { id: 'planta', room: 'escritorio', name: 'Planta no vaso', price: 90, description: 'Um pouco de verde para estudar melhor.' },
+  { id: 'grade', room: 'varanda', name: 'Grade branca', price: 100, description: 'A proteção da varanda, com a vista atrás.' },
+  { id: 'furin', room: 'varanda', name: 'Sininho de vento', price: 90, description: 'Um furin de vidro com um papelzinho.' },
+  { id: 'vasos', room: 'varanda', name: 'Vasos de plantas', price: 110, description: 'Dois vasos com flores e folhas.' },
+  { id: 'mesinha-cha', room: 'varanda', name: 'Mesinha de chá', price: 180, description: 'Um bule e uma xícara para o fim da tarde.' },
+  { id: 'lanterna-pedra', room: 'varanda', name: 'Lanterna de pedra', price: 150, description: 'Uma lanterna de pedra com a luzinha acesa.' },
+  { id: 'sofa', room: 'sala', name: 'Sofá roxo', price: 260, description: 'Fofo e grande, cabe o Mochi e um amigo.' },
+  { id: 'kotatsu', room: 'sala', name: 'Kotatsu', price: 220, description: 'A mesinha com cobertor, uma tangerina em cima.' },
+  { id: 'tv', room: 'sala', name: 'Televisão', price: 240, description: 'Para ouvir japonês enquanto descansa.' },
+  { id: 'almofadas', room: 'sala', name: 'Almofadas', price: 90, description: 'Duas almofadas de chão, uma rosa e uma azul.' },
+  { id: 'relogio', room: 'sala', name: 'Relógio de parede', price: 120, description: 'Para lembrar a hora do estudo.' },
+  { id: 'geladeira', room: 'cozinha', name: 'Geladeira', price: 260, description: 'Branca, com um bilhetinho rosa na porta.' },
+  { id: 'fogao', room: 'cozinha', name: 'Fogão e panela', price: 220, description: 'Uma panela fumegando para o jantar.' },
+  { id: 'prateleira-cozinha', room: 'cozinha', name: 'Prateleira de louças', price: 140, description: 'Pratos, tigelas e potes de temperos.' },
+  { id: 'frutas', room: 'cozinha', name: 'Cesta de frutas', price: 90, description: 'Maçã, tangerina e kiwi.' },
+  { id: 'banqueta', room: 'cozinha', name: 'Banqueta', price: 100, description: 'Para sentar enquanto o arroz cozinha.' },
+  { id: 'banheira', room: 'ofuro', name: 'Banheira de madeira', price: 300, description: 'Uma banheira de cedro com água quentinha.' },
+  { id: 'banquinho', room: 'ofuro', name: 'Banquinho e balde', price: 100, description: 'Para se lavar antes de entrar.' },
+  { id: 'toalhas', room: 'ofuro', name: 'Toalhas', price: 90, description: 'Uma rosa e uma azul, penduradas.' },
+  { id: 'bambu', room: 'ofuro', name: 'Bambuzal', price: 150, description: 'Três talos de bambu na parede.' },
+  { id: 'patinho', room: 'ofuro', name: 'Patinho de borracha', price: 80, description: 'O melhor companheiro de banho.' },
 ];
 
 export const findRoom = (id: string): Room | undefined => ROOMS.find((r) => r.id === id);

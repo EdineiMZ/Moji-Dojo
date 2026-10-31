@@ -80,7 +80,7 @@ export function HomeView() {
     setCelebrate((n) => n + 1);
   };
 
-  const options = ROOMS.map((r) => ({ value: r.id, label: `${r.kind === 'inside' ? '🏠' : '🌳'} ${r.name}${journey.home.rooms.includes(r.id) ? '' : ' 🔒'}` }));
+  const options = ROOMS.map((r) => ({ value: r.id, label: `${r.icon} ${r.name}${journey.home.rooms.includes(r.id) ? '' : ' 🔒'}` }));
 
   return (
     <View style={styles.root}>

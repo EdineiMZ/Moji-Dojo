@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.32.0] - 2026-10-31
+
+Casa do Mochi, fase 2: quatro cômodos novos.
+
+- **Varanda** (700 pétalas, de fora), **Sala** (800), **Cozinha** (1.000) e **Ofurô** (1.200): cada um com cenário próprio e 5 móveis, 20 móveis novos no total (de 80 a 300 pétalas). Varanda: grade, sininho de vento, vasos, mesinha de chá e lanterna de pedra. Sala: sofá, kotatsu, televisão, almofadas e relógio. Cozinha: geladeira, fogão com panela, prateleira de louças, cesta de frutas e banqueta. Ofurô: banheira de madeira, banquinho com balde, toalhas, bambuzal e patinho de borracha.
+- Agora são **7 cômodos e 35 móveis**. Cada cômodo ganhou um emoji próprio nos botões (🛏️ 🌳 📚 🎐 🛋️ 🍳 ♨️).
+- As regras não mudam: o cômodo vem antes dos móveis, e a casa vai junto do backup do progresso.
+- **Ainda não foi visto em aparelho:** os desenhos foram conferidos numa prévia no computador (e ajustei bambu, toalhas, cesta de frutas e banqueta, que se sobrepunham).
+
 ## [2.31.0] - 2026-10-31
 
 Mais leitura do N3.

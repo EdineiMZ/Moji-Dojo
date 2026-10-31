@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Circle, Ellipse, G, Path, Rect } from 'react-native-svg';
+import { MORE_BACKGROUND, MORE_FURNITURE } from './artMore';
 
 /**
  * Desenhos da Casa do Mochi. Cada cômodo é uma cena de 320 x 200; o Mochi fica no meio, na frente, então os móveis ficam
@@ -13,7 +14,7 @@ const LINE = '#4A3B5C';
 const stroke = { stroke: LINE, strokeWidth: 2.5, strokeLinejoin: 'round' as const, strokeLinecap: 'round' as const };
 
 /** Fundo de cada cômodo (parede e chão, ou céu e grama). */
-export const ROOM_BACKGROUND: Readonly<Record<string, ReactNode>> = {
+const BASE_BACKGROUND: Readonly<Record<string, ReactNode>> = {
   quarto: (
     <G>
       <Rect x={0} y={0} width={320} height={140} fill="#FDE9D9" />
@@ -42,8 +43,9 @@ export const ROOM_BACKGROUND: Readonly<Record<string, ReactNode>> = {
   ),
 };
 
-/** Cada móvel desenhado no lugar dele no cômodo. */
-export const FURNITURE_ART: Readonly<Record<string, ReactNode>> = {
+export const ROOM_BACKGROUND: Readonly<Record<string, ReactNode>> = { ...BASE_BACKGROUND, ...MORE_BACKGROUND };
+
+const BASE_FURNITURE: Readonly<Record<string, ReactNode>> = {
   // --- Quarto ---
   cama: (
     <G>
@@ -193,3 +195,6 @@ export const FURNITURE_ART: Readonly<Record<string, ReactNode>> = {
     </G>
   ),
 };
+
+/** Cada móvel desenhado no lugar dele no cômodo (fases 1 e 2). */
+export const FURNITURE_ART: Readonly<Record<string, ReactNode>> = { ...BASE_FURNITURE, ...MORE_FURNITURE };

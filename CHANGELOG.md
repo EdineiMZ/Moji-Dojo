@@ -2,6 +2,17 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.26.0] - 2026-10-31
+
+Caminho de metas e simulado do N3, e tom, frequência e frases para as palavras do N3.
+
+- **Simulado do N3:** em Frases → Gramática → Simulado há um terceiro nível. A prova do N3 tem vocabulário, leitura e kanji (a gramática do N3 ainda não existe, então são três seções) e só pergunta o conteúdo do N3.
+- **Metas do N3:** o cartão "Nível" ganhou o caminho do N3, com as palavras do N3 aprendidas e os kanji do N3 firmes.
+- **Tom das palavras do N3:** o acento (Kanjium, CC BY-SA 4.0) agora cobre também o vocabulário do N3.
+- **Frequência e "mais usadas primeiro":** a contagem nas frases do Tatoeba foi refeita com o vocabulário inteiro, então o N3 também pode ser ordenado por uso.
+- **Frases de exemplo:** o banco de frases passou de 3.5 mil para 4.155 frases do Tatoeba (CC BY 2.0 FR), tiradas do banco local, e 819 das 2.072 palavras do N3 já têm ao menos uma frase.
+- **Ainda falta no N3:** gramática, textos de leitura e a revisão por um falante.
+
 ## [2.25.0] - 2026-10-31
 
 Vocabulário N3: 2.072 palavras novas.

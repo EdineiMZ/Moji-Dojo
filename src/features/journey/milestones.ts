@@ -18,7 +18,7 @@ export interface Milestone {
 }
 
 export interface LevelPath {
-  level: 'N5' | 'N4';
+  level: 'N5' | 'N4' | 'N3';
   title: string;
   milestones: Milestone[];
 }
@@ -29,26 +29,29 @@ const N4_KANJI = ALL_KANJI.filter((k) => kanjiLevelOf(k) === 'N4').map((k) => k.
 
 /** As palavras do N4 são as dos grupos "N4: ..."; as demais (inclusive os exemplos dos kana e dos kanji) contam no N5. */
 const N4_WORD_IDS: ReadonlySet<string> = new Set(VOCAB.filter((w) => wordLevelOfGroup(w.group) === 'N4').map((w) => w.id));
-/** As do N3 ainda não têm caminho próprio: ficam fora das contas do N5 e do N4. */
+/** As do N3 têm o caminho delas, e ficam fora das contas do N5 e do N4. */
 const N3_WORD_IDS: ReadonlySet<string> = new Set(VOCAB.filter((w) => wordLevelOfGroup(w.group) === 'N3').map((w) => w.id));
+const N3_KANJI = ALL_KANJI.filter((k) => kanjiLevelOf(k) === 'N3').map((k) => k.char);
 const N3_WORD_TOTAL = VOCAB.filter((w) => N3_WORD_IDS.has(w.id) && !isSecondaryTwin(w.id)).length;
 const N4_WORD_TOTAL = VOCAB.filter((w) => N4_WORD_IDS.has(w.id) && !isSecondaryTwin(w.id)).length;
 
 /** Palavras aprendidas, separadas por nível (cada grupo de gêmeas conta uma vez). */
-export function learnedWordsByLevel(vocab: SrsState): { n5: number; n4: number } {
+export function learnedWordsByLevel(vocab: SrsState): { n5: number; n4: number; n3: number } {
   const distinct = new Set([...learnedWordIds(vocab)].map((id) => twinsOf(id)[0]?.id ?? id));
   let n4 = 0;
   let n5 = 0;
+  let n3 = 0;
   for (const id of distinct) {
     if (N4_WORD_IDS.has(id)) n4++;
-    else if (!N3_WORD_IDS.has(id)) n5++;
+    else if (N3_WORD_IDS.has(id)) n3++;
+    else n5++;
   }
-  return { n5, n4 };
+  return { n5, n4, n3 };
 }
 
 /** Os tópicos de gramática do N4 têm o prefixo "n4-" no id. */
 const N4_TOPICS = ALL_GRAMMAR.filter((t) => t.id.startsWith('n4-'));
-const N5_TOPICS = ALL_GRAMMAR.filter((t) => !t.id.startsWith('n4-'));
+const N5_TOPICS = ALL_GRAMMAR.filter((t) => !t.id.startsWith('n4-') && !t.id.startsWith('n3-'));
 
 const firm = (srs: SrsState, chars: readonly string[]): number => chars.filter((c) => (srs[c]?.b ?? 0) >= FIRM_BOX).length;
 
@@ -80,6 +83,14 @@ export function levelPaths(srs: SrsState, vocab: SrsState, conj: SrsState = {}, 
         { id: 'grammar4', label: 'Tópicos de gramática do N4 dominados (teste)', have: N4_TOPICS.filter((t) => mastered[t.id] !== undefined).length, goal: N4_TOPICS.length },
         { id: 'kanji4', label: 'Kanji do N4 firmes', have: firm(srs, N4_KANJI), goal: n4Total },
         { id: 'reading4', label: 'Textos de leitura do N4 lidos', have: N4_READINGS.filter((t) => reads[t.id] !== undefined).length, goal: N4_READINGS.length },
+      ],
+    },
+    {
+      level: 'N3',
+      title: 'Nível N3',
+      milestones: [
+        { id: 'words3', label: 'Palavras do N3 aprendidas', have: words.n3, goal: N3_WORD_TOTAL },
+        { id: 'kanji3', label: 'Kanji do N3 firmes', have: firm(srs, N3_KANJI), goal: N3_KANJI.length },
       ],
     },
   ];

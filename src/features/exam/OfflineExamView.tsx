@@ -48,7 +48,7 @@ export function OfflineExamView() {
         onChange={(v) => setTimed(v === 'timed')}
       />
       <AppText variant="caption" color="muted">
-        Total: até {size * EXAM_SECTIONS.length} perguntas.{timed ? ` Com tempo, a prova toda tem ${formatClock(examTimeMs(size * EXAM_SECTIONS.length))}; o que ficar sem resposta quando o tempo acabar conta como errado.` : ''} O N4 usa só o conteúdo do N4. As perguntas vêm do vocabulário, dos kanji e das frases de gramática, que ainda não foram revisados por um falante.
+        Total: até {size * EXAM_SECTIONS.length} perguntas.{timed ? ` Com tempo, a prova toda tem ${formatClock(examTimeMs(size * EXAM_SECTIONS.length))}; o que ficar sem resposta quando o tempo acabar conta como errado.` : ''} Cada nível usa só o seu conteúdo. O N3 ainda não tem gramática, então a prova dele tem três seções. As perguntas vêm do vocabulário, dos kanji e das frases de gramática, que ainda não foram revisados por um falante.
       </AppText>
       <Button label="Começar o simulado" onPress={() => setQuestions(buildExam(level, size))} />
     </Card>

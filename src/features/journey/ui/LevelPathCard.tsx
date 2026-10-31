@@ -6,7 +6,7 @@ import { useProgressStore } from '@/store';
 import { spacing } from '@/theme';
 import { levelPaths } from '../milestones';
 
-/** O caminho N5 → N4: quanto de cada marco já está firme (caixa 3 ou mais na revisão). */
+/** O caminho N5 → N4 → N3: quanto de cada marco já está firme (caixa 3 ou mais na revisão). */
 export function LevelPathCard() {
   const router = useRouter();
   const srs = useProgressStore((s) => s.srs);
@@ -18,7 +18,7 @@ export function LevelPathCard() {
   return (
     <Card>
       <AppText variant="title">Caminho por nível</AppText>
-      <AppText color="muted">Do N5 ao N4, em marcos que você enxerga. Conta o que já está firme na revisão.</AppText>
+      <AppText color="muted">Do N5 ao N3, em marcos que você enxerga. Conta o que já está firme na revisão.</AppText>
       {paths.map((path) => (
         <View key={path.level} style={{ gap: spacing.sm }}>
           <AppText variant="caption" color="muted">

@@ -1,15 +1,19 @@
-// Gera src/content/pitch.ts: o acento (queda de tom) das palavras do vocabulário N5 e N4, a partir do Kanjium.
+// Gera src/content/pitch.ts: o acento (queda de tom) das palavras do vocabulário N5, N4 e N3, a partir do Kanjium.
 // Fonte: https://github.com/mifunetoshiro/kanjium (data/source_files/raw/accents.txt), licença CC BY-SA 4.0.
 // Uso: npm run build-pitch   (precisa de internet; o arquivo gerado é versionado, o app não usa a rede)
 import { readFileSync, writeFileSync } from 'node:fs';
 
 const SOURCE = 'https://raw.githubusercontent.com/mifunetoshiro/kanjium/master/data/source_files/raw/accents.txt';
 
-const levelLists = ['n5', 'n4'].map((name) => readFileSync(new URL(`../../src/content/${name}.ts`, import.meta.url), 'utf8')).join('\n');
+const levelLists = ['n5', 'n4', 'n3'].map((name) => readFileSync(new URL(`../../src/content/${name}.ts`, import.meta.url), 'utf8')).join('\n');
 const words = [...levelLists.matchAll(/jp: "([^"]+)", reading: "([^"]+)"/g)].map((m) => ({ jp: m[1], reading: m[2] }));
 // Também as palavras de exemplo dos kanji (日本語, 東京...), que entram no vocabulário vindas de src/data/examples.ts.
 const examples = readFileSync(new URL('../../src/data/examples.ts', import.meta.url), 'utf8');
 words.push(...[...examples.matchAll(/word: "([^"]+)", reading: "([^"]+)"/g)].map((m) => ({ jp: m[1], reading: m[2] })));
+// No vocabulário do app a palavra é única (vale a primeira: os exemplos dos kanji, depois N5, N4 e N3), então só a primeira leitura de cada escrita tem acento.
+const firstOf = new Map();
+for (const w of [...words.slice(-[...examples.matchAll(/word: "([^"]+)", reading: "([^"]+)"/g)].length), ...words]) if (!firstOf.has(w.jp)) firstOf.set(w.jp, w.reading);
+words.splice(0, words.length, ...words.filter((w) => firstOf.get(w.jp) === w.reading));
 
 const res = await fetch(SOURCE);
 if (!res.ok) throw new Error(`${res.status} ${SOURCE}`);

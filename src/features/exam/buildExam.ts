@@ -9,10 +9,10 @@ import { isSecondaryTwin } from '@/features/vocab/twins';
  * Simulado offline: perguntas montadas só com o conteúdo do app (vocabulário, kanji e frases de gramática), sem IA e sem
  * internet. Cada seção tem a própria nota.
  */
-export type ExamLevel = 'N5' | 'N4';
+export type ExamLevel = 'N5' | 'N4' | 'N3';
 export type ExamSection = 'vocab' | 'reading' | 'kanji' | 'grammar';
 
-export const EXAM_LEVELS: readonly ExamLevel[] = ['N5', 'N4'];
+export const EXAM_LEVELS: readonly ExamLevel[] = ['N5', 'N4', 'N3'];
 
 export const EXAM_SECTIONS: readonly { id: ExamSection; label: string; hint: string }[] = [
   { id: 'vocab', label: 'Vocabulário', hint: 'o significado das palavras' },
@@ -62,8 +62,9 @@ function levelKanji(level: ExamLevel) {
   return ALL_KANJI.filter((k) => kanjiLevelOf(k) === level);
 }
 
-/** Os tópicos de gramática do N4 têm o prefixo "n4-" no id. */
-const levelTopics = (level: ExamLevel) => ALL_GRAMMAR.filter((t) => t.id.startsWith('n4-') === (level === 'N4'));
+/** O nível de um tópico de gramática vem do prefixo do id ("n4-", "n3-"); sem prefixo é N5. */
+export const topicLevelOf = (id: string): ExamLevel => (id.startsWith('n3-') ? 'N3' : id.startsWith('n4-') ? 'N4' : 'N5');
+const levelTopics = (level: ExamLevel) => ALL_GRAMMAR.filter((t) => topicLevelOf(t.id) === level);
 
 function vocabQuestions(level: ExamLevel, count: number, rng: Rng): ExamQuestion[] {
   const words = levelWords(level);
@@ -122,7 +123,7 @@ function grammarQuestions(level: ExamLevel, count: number, rng: Rng): ExamQuesti
   return out;
 }
 
-/** O simulado de um nível: `perSection` perguntas em cada seção (a menos que o conteúdo do nível seja menor), seção por seção. */
+/** O simulado de um nível: `perSection` perguntas em cada seção (a menos que o conteúdo do nível seja menor, ou que o nível ainda não tenha a seção, como a gramática do N3), seção por seção. */
 export function buildExam(level: ExamLevel, perSection: number, rng: Rng = Math.random): ExamQuestion[] {
   return [...vocabQuestions(level, perSection, rng), ...readingQuestions(level, perSection, rng), ...kanjiQuestions(level, perSection, rng), ...grammarQuestions(level, perSection, rng)];
 }

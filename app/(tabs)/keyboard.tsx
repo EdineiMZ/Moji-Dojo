@@ -20,7 +20,7 @@ export default function KeyboardScreen() {
   return (
     <Screen>
       <AppText variant="headline">Teclado</AppText>
-      <ChipRow options={VIEWS} value={view} onChange={setView} />
+      <ChipRow wrap options={VIEWS} value={view} onChange={setView} />
       <SwapView viewKey={view}>
         {view === 'guide' ? <GuideView onPractice={() => setView('simulator')} /> : null}
         {view === 'simulator' ? <SimulatorView /> : null}

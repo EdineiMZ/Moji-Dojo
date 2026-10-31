@@ -26,6 +26,8 @@ export interface DayState {
   chest: 'none' | 'ready' | 'opened';
   /** O aviso do baú da semana já foi mostrado hoje (aparece uma vez por dia enquanto estiver pronto). */
   weekAsked: boolean;
+  /** O aluno tocou em "Depois" no baú do dia: ele não reabre sozinho hoje (o cartão da tela inicial ainda abre). */
+  dailyAsked?: boolean;
   /** Lições já concluídas hoje (a repetição vale metade). */
   lessons: string[];
   /** Contadores do dia, para as missões. */
@@ -184,6 +186,7 @@ export function sanitizeJourney(raw: unknown): JourneyState {
       opened: today.opened === true,
       chest: today.chest === 'ready' || today.chest === 'opened' ? today.chest : 'none',
       weekAsked: today.weekAsked === true,
+      ...(today.dailyAsked === true ? { dailyAsked: true } : {}),
       lessons: strings(today.lessons, 200),
       counts: numberMap(today.counts),
       claimed: strings(today.claimed, 20),

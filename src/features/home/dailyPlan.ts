@@ -5,6 +5,8 @@ export interface PlanStep {
   title: string;
   hint: string;
   done: boolean;
+  /** Não há o que fazer neste passo (nada vencido e nenhuma revisão feita hoje): a tela mostra um aviso neutro, sem o selo de feito. */
+  idle: boolean;
   route: PlanRoute;
 }
 
@@ -30,7 +32,8 @@ export function dailyPlan({ counts, dueKana, dueOther }: PlanInput): PlanStep[] 
     {
       id: 'review',
       title: 'Revisar o que venceu',
-      hint: due > 0 ? `${due} para revisar` : 'Nada vencido hoje',
+      hint: due > 0 ? `${due} para revisar` : 'Nada para revisar hoje',
+      idle: due === 0 && n('reviews') === 0,
       done: due === 0 || n('reviews') >= Math.min(PLAN_REVIEW_GOAL, due + n('reviews')),
       // Com mais de um tipo vencido, a revisão mista intercala kana, palavras e verbos.
       route: dueKana > 0 && dueOther > 0 ? '/mixed' : dueKana > 0 ? '/review' : '/(tabs)/phrases',
@@ -39,6 +42,7 @@ export function dailyPlan({ counts, dueKana, dueOther }: PlanInput): PlanStep[] 
       id: 'new',
       title: 'Aprender algo novo',
       hint: 'Uma lição da trilha ou palavras novas',
+      idle: false,
       done: n('lessons') + n('newWords') > 0,
       route: '/(tabs)/trail',
     },
@@ -46,6 +50,7 @@ export function dailyPlan({ counts, dueKana, dueOther }: PlanInput): PlanStep[] 
       id: 'listen',
       title: 'Ouvir',
       hint: 'Um ditado, uma compreensão ou o shadowing',
+      idle: false,
       done: n('listen') > 0 || n('speak') > 0,
       route: '/(tabs)/listen',
     },
@@ -53,6 +58,7 @@ export function dailyPlan({ counts, dueKana, dueOther }: PlanInput): PlanStep[] 
       id: 'phrase',
       title: 'Produzir uma frase',
       hint: 'Montar, traduzir ou escrever uma frase sua',
+      idle: false,
       done: n('phrases') > 0 || n('translate') > 0,
       route: '/(tabs)/phrases',
     },

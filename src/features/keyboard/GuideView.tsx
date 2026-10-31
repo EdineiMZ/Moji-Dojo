@@ -18,8 +18,11 @@ function CrossCell({ char, hint, center }: { char?: string; hint?: string; cente
         { borderColor: center ? colors.primary : colors.line, backgroundColor: center ? colors.primarySoft : colors.surface },
       ]}
     >
-      <AppText style={{ fontFamily: fonts.bold, fontSize: 26, lineHeight: 32 }}>{char}</AppText>
-      <AppText variant="caption" color="muted">
+      {/* A tecla tem tamanho fixo (desenha uma cruz): o texto dela para de crescer com a fonte do sistema um pouco antes. */}
+      <AppText maxFontSizeMultiplier={1.2} style={{ fontFamily: fonts.bold, fontSize: 26, lineHeight: 32 }}>
+        {char}
+      </AppText>
+      <AppText variant="caption" color="muted" maxFontSizeMultiplier={1.2} numberOfLines={1}>
         {hint}
       </AppText>
     </View>

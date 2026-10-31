@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { AppText, Button, Card, ChipRow, Mascot, ProgressBar } from '@/components';
+import { AppText, Button, Card, ChipRow, Collapsible, Mascot, ProgressBar } from '@/components';
 import { VOCAB_GROUPS, type VocabWord } from '@/content';
 import { useNow } from '@/hooks/useNow';
 import { plural } from '@/lib/plural';
@@ -134,18 +134,27 @@ export function VocabView() {
 
       {remaining.length > 0 ? (
         <>
-          <AppText variant="caption" color="muted">
-            ESCOLHA O ASSUNTO
-          </AppText>
-          <ChipRow options={options} value={selected} onChange={setGroup} />
-          <AppText variant="caption" color="muted">
-            SITUAÇÃO DE VIAGEM
-          </AppText>
-          <ChipRow options={situationOptions} value={situation} onChange={setSituation} />
-          <AppText variant="caption" color="muted">
-            ORDEM
-          </AppText>
-          <ChipRow options={STUDY_ORDERS} value={order} onChange={setOrder} />
+          {/* Os três filtros ficam atrás de um toque: o resumo mostra o que está valendo sem ocupar a tela. */}
+          <Collapsible
+            title="Filtrar as palavras novas"
+            hint={[selected, situation, order]
+              .map((value, i) => (i === 0 ? options : i === 1 ? situationOptions : STUDY_ORDERS).find((o) => o.value === value)?.label)
+              .filter(Boolean)
+              .join(' · ')}
+          >
+            <AppText variant="caption" color="muted">
+              ASSUNTO
+            </AppText>
+            <ChipRow options={options} value={selected} onChange={setGroup} />
+            <AppText variant="caption" color="muted">
+              SITUAÇÃO DE VIAGEM
+            </AppText>
+            <ChipRow options={situationOptions} value={situation} onChange={setSituation} />
+            <AppText variant="caption" color="muted">
+              ORDEM
+            </AppText>
+            <ChipRow options={STUDY_ORDERS} value={order} onChange={setOrder} />
+          </Collapsible>
           {newBatch === 0 ? (
             <>
               <AppText color="muted">Você chegou ao limite de palavras novas de hoje. Volte amanhã com a cabeça descansada.</AppText>

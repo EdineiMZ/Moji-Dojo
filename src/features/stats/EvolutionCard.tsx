@@ -26,6 +26,16 @@ export function EvolutionCard({ evolution, answers }: EvolutionCardProps) {
   const recent = evolution.points.slice(-TABLE_DAYS);
   const recentAnswers = answers.slice(-TABLE_DAYS);
 
+  // Sem nenhum dado ainda: uma linha só, em vez de dois gráficos vazios com explicação.
+  if (!evolution.hasData && totalAnswers === 0) {
+    return (
+      <Card enterIndex={2}>
+        <AppText variant="title">Sua evolução</AppText>
+        <AppText color="muted">Os gráficos aparecem depois da primeira lição ou revisão.</AppText>
+      </Card>
+    );
+  }
+
   return (
     <Card enterIndex={2}>
       <AppText variant="title">Sua evolução</AppText>

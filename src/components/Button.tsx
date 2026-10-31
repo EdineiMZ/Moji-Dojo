@@ -4,6 +4,7 @@ import { feedbackTap } from '@/lib/feedback';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 import { SPRING, useMotionEnabled } from './motion';
 import { AppText } from './AppText';
+import { Icon, splitIconLabel } from './Icon';
 
 /** O que o leitor de tela fala: sem o emoji do começo ("🔊 Ouvir" vira "Ouvir"; só "🔊" vira "Ouvir"). */
 export const spokenLabel = (label: string): string => {
@@ -28,6 +29,8 @@ export function Button({ label, onPress, variant = 'primary', disabled = false, 
   const { colors } = useTheme();
   const motion = useMotionEnabled();
   const pressed = useSharedValue(0);
+  // Emoji no começo do rótulo ("🔊 Ouvir") vira um ícone de traço da cor do botão.
+  const { icon, text } = splitIconLabel(label);
 
   const animated = useAnimatedStyle(() => ({
     transform: [{ scale: 1 - 0.03 * pressed.value }, { translateY: 1.5 * pressed.value }],
@@ -42,7 +45,8 @@ export function Button({ label, onPress, variant = 'primary', disabled = false, 
   const palette = {
     primary: { bg: colors.primary, fg: colors.onPrimary, border: 'transparent' },
     soft: { bg: colors.lilacSoft, fg: colors.ink, border: 'transparent' },
-    ghost: { bg: 'transparent', fg: colors.muted, border: colors.line },
+    // O texto do ghost usa a cor principal do texto (não a apagada): "Deixar recomeçar" e "Agora não" ficavam fracos sobre os cartões coloridos.
+    ghost: { bg: 'transparent', fg: colors.ink, border: colors.muted },
   }[variant];
 
   const setPressed = (to: 0 | 1) => {
@@ -71,9 +75,12 @@ export function Button({ label, onPress, variant = 'primary', disabled = false, 
           visual,
         ]}
       >
-        <AppText center style={{ fontFamily: fonts.bold, fontSize: fontSizes.body, color: palette.fg }}>
-          {label}
-        </AppText>
+        {icon ? <Icon name={icon} size={fontSizes.body + 4} color={palette.fg} /> : null}
+        {text ? (
+          <AppText center style={{ fontFamily: fonts.bold, fontSize: fontSizes.body, color: palette.fg }}>
+            {text}
+          </AppText>
+        ) : null}
       </Animated.View>
     </Pressable>
   );
@@ -85,6 +92,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xl,
     borderRadius: radii.pill,
     borderWidth: 1.5,
+    flexDirection: 'row',
+    gap: spacing.sm,
     alignItems: 'center',
     justifyContent: 'center',
   },

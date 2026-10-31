@@ -1,6 +1,7 @@
 import { LESSONS } from '@/content/lessons';
 import { STROKES } from '@/data/strokes';
 import type { Lesson, Script } from '@/data/types';
+import { ALL_KANJI, kanjiLevelOf, type KanjiLevel } from '@/content/kanji';
 import { isSingleChar, SCRIPT_ORDER } from '@/features/catalog';
 
 export type LessonStatus = 'done' | 'open' | 'lock';
@@ -64,4 +65,13 @@ export function findLesson(lessonId: string): { script: Script; index: number; l
     if (lesson) return { script, index, lesson };
   }
   return undefined;
+}
+
+let levelByChar: Map<string, KanjiLevel> | null = null;
+
+/** O nível JLPT de uma lição de kanji (pelo primeiro kanji dela); `null` fora do kanji. */
+export function kanjiLessonLevel(lesson: Lesson): KanjiLevel | null {
+  levelByChar ??= new Map(ALL_KANJI.map((k) => [k.char, kanjiLevelOf(k)]));
+  const first = lesson.items[0];
+  return (first ? levelByChar.get(first) : undefined) ?? null;
 }

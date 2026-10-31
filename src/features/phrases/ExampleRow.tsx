@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { AppText, FuriganaText, PressableScale } from '@/components';
+import { AppText, FuriganaText, Icon, PressableScale } from '@/components';
 import type { PhraseExample } from '@/data/types';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { SPEECH_RATES } from '@/store/settingsStore';
@@ -49,7 +49,7 @@ export function ExampleRow({ example }: { example: PhraseExample }) {
   );
   const speaker = (
     <View style={[styles.speaker, { backgroundColor: colors.primarySoft }]}>
-      <AppText>🔊</AppText>
+      <Icon name="speaker" size={20} color={colors.primaryText} />
     </View>
   );
 

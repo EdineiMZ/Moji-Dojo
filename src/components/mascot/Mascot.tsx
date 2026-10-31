@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, {
   type SharedValue,
   cancelAnimation,
@@ -15,7 +15,7 @@ import { hapticLight } from '@/lib/haptics';
 import { useMotionEnabled } from '../motion';
 import { outfit as outfitOf } from '@/features/journey/journey';
 import { useProgressStore } from '@/store';
-import { MochiArt, type MascotMood, type MochiOutfit } from './MochiArt';
+import { MochiArt, showsBackdrop, type MascotMood, type MochiOutfit } from './MochiArt';
 
 export type { MascotMood };
 
@@ -207,10 +207,19 @@ export function Mascot({ mood = 'neutral', size = 160, outfit, interactive = fal
     ],
   }));
 
+  // Com fundo vestido, o fundo fica parado numa camada de baixo e só o Mochi se mexe por cima.
+  const staticBackdrop = showsBackdrop(size, worn);
   const art = (
-    <Animated.View accessible accessibilityRole="image" accessibilityLabel={MOOD_LABEL[shown]} style={animated}>
-      <MochiArt mood={shown} size={size} outfit={worn} blink={blink} />
-    </Animated.View>
+    <View accessible accessibilityRole="image" accessibilityLabel={MOOD_LABEL[shown]}>
+      {staticBackdrop && (
+        <View style={StyleSheet.absoluteFill} pointerEvents="none">
+          <MochiArt mood={shown} size={size} outfit={worn} layer="backdrop" />
+        </View>
+      )}
+      <Animated.View style={animated}>
+        <MochiArt mood={shown} size={size} outfit={worn} blink={blink} layer={staticBackdrop ? 'mochi' : 'all'} />
+      </Animated.View>
+    </View>
   );
   if (!interactive) return art;
   return (

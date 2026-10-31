@@ -42,6 +42,7 @@ export function GoalsView() {
           Quantas respostas você quer dar por dia? Bater a meta rende 🌸 5.
         </AppText>
         <ChipRow
+          wrap
           options={DAILY_GOALS.map((n) => ({ value: String(n), label: `${n} respostas` }))}
           value={String(journey.dailyGoal)}
           onChange={(v) => updateJourney((j) => ({ ...j, dailyGoal: Number(v) }))}
@@ -151,6 +152,7 @@ export function GoalsView() {
           PALAVRAS E VERBOS NOVOS POR DIA
         </AppText>
         <ChipRow
+          wrap
           options={NEW_OPTIONS.map((n) => ({ value: String(n), label: limitLabel(n, 'novos') }))}
           value={String(limits.newPerDay)}
           onChange={(v) => setLimits({ newPerDay: Number(v) })}
@@ -159,6 +161,7 @@ export function GoalsView() {
           RESPOSTAS DE REVISÃO POR DIA
         </AppText>
         <ChipRow
+          wrap
           options={REVIEW_OPTIONS.map((n) => ({ value: String(n), label: limitLabel(n, 'respostas') }))}
           value={String(limits.reviewsPerDay)}
           onChange={(v) => setLimits({ reviewsPerDay: Number(v) })}

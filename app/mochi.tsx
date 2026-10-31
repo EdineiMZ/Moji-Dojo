@@ -38,6 +38,7 @@ export default function MochiScreen() {
       </View>
       <MochiHeader preview={tab === 'shop' ? preview : null} />
       <ChipRow
+        wrap
         options={TABS}
         value={tab}
         onChange={(next) => {

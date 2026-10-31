@@ -70,4 +70,21 @@ describe('baú do dia', () => {
     expect(text(tree)).toContain('Baú do dia');
     expect(text(tree)).toContain('Abrir o baú');
   });
+  it('"Depois" adia o baú do dia: depois de fechar e abrir o app, ele não reaparece sozinho', () => {
+    useSettingsStore.setState({ profile: { username: 'Ana', onboarded: true, goalMinutes: 15 } });
+    const d = new Date();
+    const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    useProgressStore.setState({ journey: { ...emptyJourney(), today: { ...emptyJourney().today, day: today, opened: true, chest: 'ready' as const } } });
+
+    const first = render(<ChestHost />);
+    expect(text(first)).toContain('Abrir o baú');
+    renderer.act(() => {
+      first.root.findByProps({ accessibilityLabel: 'Depois' }).props.onPress();
+    });
+    expect(useProgressStore.getState().journey.today.dailyAsked).toBe(true);
+    expect(useProgressStore.getState().journey.today.chest).toBe('ready');
+
+    // Um app recém-aberto (estado novo do componente): o baú segue esperando, mas não abre por cima da tela.
+    expect(render(<ChestHost />).toJSON()).toBeNull();
+  });
 });

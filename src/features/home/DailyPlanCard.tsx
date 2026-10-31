@@ -26,7 +26,9 @@ export function DailyPlanCard({ dueKana, now, embedded = false }: { dueKana: num
   );
   // Dentro do cartão "Estudar hoje", que já tem o botão de revisar o kana, esse passo não se repete.
   const steps = dailyPlan({ counts, dueKana, dueOther }).filter((st) => !(embedded && st.id === 'review' && dueKana > 0 && dueOther === 0));
-  const done = steps.filter((s) => s.done).length;
+  // O passo sem nada a fazer (ex.: nenhuma revisão vencida) não entra na conta de passos.
+  const counted = steps.filter((s) => !s.idle);
+  const done = counted.filter((s) => s.done).length;
 
   const body = (
     <>
@@ -46,22 +48,24 @@ export function DailyPlanCard({ dueKana, now, embedded = false }: { dueKana: num
         </View>
       ) : null}
       <AppText color="muted">
-        {done === steps.length ? 'Sessão completa. O resto do dia é bônus.' : `${done} de ${steps.length} passos · uns 15 a 20 minutos`}
+        {done === counted.length ? 'Sessão completa. O resto do dia é bônus.' : `${done} de ${counted.length} passos · uns 15 a 20 minutos`}
       </AppText>
       <View style={styles.list}>
-        {steps.map((step, i) => (
+        {steps.map((step) => (
           <PressableScale
             key={step.id}
             accessibilityRole="button"
-            accessibilityLabel={`${step.title}. ${step.done ? 'Feito' : step.hint}`}
+            accessibilityLabel={`${step.title}. ${step.idle ? step.hint : step.done ? 'Feito' : step.hint}`}
             onPress={() => router.push(step.route)}
-            style={[styles.step, { borderColor: step.done ? colors.ok : colors.line, backgroundColor: step.done ? colors.okSoft : colors.surface }]}
+            style={[styles.step, { borderColor: step.done && !step.idle ? colors.ok : colors.line, backgroundColor: step.done && !step.idle ? colors.okSoft : colors.surface }]}
           >
-            <AppText style={{ fontFamily: fonts.bold }}>{step.done ? '✓' : String(i + 1)}</AppText>
+            <AppText color={step.idle ? 'muted' : 'ink'} style={{ fontFamily: fonts.bold }}>
+              {step.idle ? '–' : step.done ? '✓' : String(counted.indexOf(step) + 1)}
+            </AppText>
             <View style={styles.flex}>
-              <AppText>{step.title}</AppText>
-              <AppText variant="caption" color={step.done ? 'ok' : 'muted'}>
-                {step.done ? 'feito' : step.hint}
+              <AppText color={step.idle ? 'muted' : 'ink'}>{step.title}</AppText>
+              <AppText variant="caption" color={step.done && !step.idle ? 'ok' : 'muted'}>
+                {step.idle ? step.hint : step.done ? 'feito' : step.hint}
               </AppText>
             </View>
           </PressableScale>

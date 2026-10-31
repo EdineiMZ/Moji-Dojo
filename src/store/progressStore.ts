@@ -12,7 +12,7 @@ import { findVerb } from '@/features/conjugation/verbs';
 import { isParticleCard } from '@/features/cloze/particles';
 import { cardKeysFor, learnedWordIds as learnedVocabIds, parseCardKey as parseVocabKey, READINGS_PER_DAY, readingKeysFor } from '@/features/vocab/cards';
 import { findWord } from '@/content';
-import { askedWeekToday, claimWeekChestWithLoot, openDailyChest as openChest } from '@/features/journey/events';
+import { askedDailyToday, askedWeekToday, claimWeekChestWithLoot, openDailyChest as openChest } from '@/features/journey/events';
 import type { Loot, Rng } from '@/features/journey/loot';
 import { applyRescue, declineRescue as declineOffer, rescuePassed, resolveRescue } from '@/features/journey/rescue';
 import { trackAnswer, trackDialog, trackExplored, trackLesson, trackNewWords, trackOpen, trackPhrase, trackRecording, trackSession, trackStudyTime, trackTouch, buildContext } from '@/features/journey/track';
@@ -115,6 +115,7 @@ export interface ProgressActions {
   openDailyChest: (now?: number, rng?: Rng) => Loot | null;
   /** Marca que o aviso do baú da semana já foi mostrado hoje. */
   askWeekChest: () => void;
+  askDailyChest: () => void;
   /** Termina a revisão de resgate: com nota suficiente os dias perdidos viram estudados. */
   finishRescue: (first: number, total: number, now?: number) => void;
   /** Recusa o resgate: a sequência recomeça. */
@@ -492,6 +493,7 @@ export function createProgressStore(storage: StateStorage) {
         },
 
         askWeekChest: () => set((s) => ({ journey: askedWeekToday(s.journey) })),
+        askDailyChest: () => set((s) => ({ journey: askedDailyToday(s.journey) })),
 
         finishRescue: (first, total, now = Date.now()) =>
           set((s) => {

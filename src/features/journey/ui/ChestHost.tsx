@@ -59,7 +59,7 @@ function ChestArt({ opened, rarityGlow }: { opened: boolean; rarityGlow: string 
 /**
  * O baú do dia (ao abrir o app pela primeira vez no dia) e o da semana (quando a meta de dias é batida). Aparece por cima do
  * app: toque em "Abrir" e o sorteio revela pétalas e, às vezes, um item exclusivo, com a raridade e o Mochi vestido com ele.
- * "Depois" deixa o baú esperando (o cartão da tela inicial e a aba de metas reabrem).
+ * "Depois" deixa o baú esperando até o dia seguinte, mesmo se o app for fechado e aberto (o cartão da tela inicial e a aba de metas reabrem).
  */
 export function ChestHost() {
   const { colors } = useTheme();
@@ -69,6 +69,7 @@ export function ChestHost() {
   const openDaily = useProgressStore((s) => s.openDailyChest);
   const claimWeekly = useProgressStore((s) => s.claimWeekChest);
   const askWeek = useProgressStore((s) => s.askWeekChest);
+  const askDaily = useProgressStore((s) => s.askDailyChest);
   const equip = useProgressStore((s) => s.equipJourneyItem);
   const requested = useChestUi((s) => s.requested);
   const clearRequest = useChestUi((s) => s.clear);
@@ -86,7 +87,7 @@ export function ChestHost() {
   if (loot) kind = loot.kind;
   else if (requested === 'daily' && dailyReady) kind = 'daily';
   else if (requested === 'weekly' && weekReady) kind = 'weekly';
-  else if (dailyReady && later !== `${today}:daily`) kind = 'daily';
+  else if (dailyReady && !journey.today.dailyAsked && later !== `${today}:daily`) kind = 'daily';
   else if (!dailyReady && weekReady && !journey.today.weekAsked && later !== `${today}:weekly`) kind = 'weekly';
 
   if (!onboarded || kind === null) return null;
@@ -107,6 +108,7 @@ export function ChestHost() {
   };
   const postpone = () => {
     if (kind === 'weekly') askWeek();
+    else askDaily();
     setLater(`${today}:${kind}`);
     clearRequest();
   };

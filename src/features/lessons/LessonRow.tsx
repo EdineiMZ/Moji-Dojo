@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native';
-import { AppText, Button, Card, PressableScale } from '@/components';
+import { AppText, Button, Card, Icon, PressableScale } from '@/components';
 import type { Lesson } from '@/data/types';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import type { LessonStatus } from './trail';
@@ -25,7 +25,13 @@ export function LessonRow({ lesson, index, status, isNext, onStart, onSkip }: Le
   const preview = lesson.items.slice(0, PREVIEW_COUNT).join(' ') + (lesson.items.length > PREVIEW_COUNT ? ' …' : '');
 
   return (
-    <Card enterIndex={Math.min(index, 8)} tone={isNext ? 'pink' : 'plain'} style={locked && styles.locked}>
+    <Card
+      enterIndex={Math.min(index, 8)}
+      tone={isNext ? 'pink' : 'plain'}
+      style={locked && styles.locked}
+      accessible={locked}
+      accessibilityLabel={locked ? `${lesson.title}. Bloqueada: conclua a anterior` : undefined}
+    >
       <View style={styles.header}>
         <View
           style={[
@@ -33,9 +39,13 @@ export function LessonRow({ lesson, index, status, isNext, onStart, onSkip }: Le
             { backgroundColor: done ? colors.okSoft : locked ? colors.line : colors.primarySoft },
           ]}
         >
-          <AppText style={{ fontFamily: fonts.bold }} color={done ? 'ok' : locked ? 'muted' : 'primary'}>
-            {done ? '✓' : locked ? '🔒' : index + 1}
-          </AppText>
+          {locked ? (
+            <Icon name="lock" size={20} color={colors.muted} />
+          ) : (
+            <AppText style={{ fontFamily: fonts.bold }} color={done ? 'ok' : 'primary'}>
+              {done ? '✓' : index + 1}
+            </AppText>
+          )}
         </View>
         <View style={styles.info}>
           <AppText style={{ fontFamily: fonts.bold }}>{lesson.title}</AppText>
@@ -45,19 +55,15 @@ export function LessonRow({ lesson, index, status, isNext, onStart, onSkip }: Le
         </View>
       </View>
 
+      {/* Lição bloqueada fica só com o cadeado: o aviso e o "Já sei" repetidos em cada linha viravam ruído. */}
+      {locked ? null : (
       <View style={styles.actions}>
-        {locked ? (
-          <AppText variant="caption" color="muted">
-            Bloqueada: conclua a anterior
-          </AppText>
-        ) : (
-          <Button
-            label={done ? 'Rever' : 'Começar'}
-            variant={done ? 'soft' : 'primary'}
-            onPress={onStart}
-            style={styles.small}
-          />
-        )}
+        <Button
+          label={done ? 'Rever' : 'Começar'}
+          variant={done ? 'soft' : 'primary'}
+          onPress={onStart}
+          style={styles.small}
+        />
         {!done && !lesson.review ? (
           <PressableScale accessibilityRole="button" onPress={onSkip} hitSlop={8}>
             <AppText variant="caption" color="primary" style={styles.link}>
@@ -66,6 +72,7 @@ export function LessonRow({ lesson, index, status, isNext, onStart, onSkip }: Le
           </PressableScale>
         ) : null}
       </View>
+      )}
     </Card>
   );
 }
@@ -77,5 +84,5 @@ const styles = StyleSheet.create({
   info: { flex: 1, gap: 2 },
   actions: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: spacing.md },
   small: { minHeight: 42, paddingHorizontal: spacing.lg },
-  link: { textDecorationLine: 'underline', fontFamily: fonts.bold },
+  link: { textDecorationLine: 'underline', fontFamily: fonts.bold, paddingVertical: spacing.sm },
 });

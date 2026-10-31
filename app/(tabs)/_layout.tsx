@@ -38,6 +38,8 @@ export default function TabsLayout() {
         tabBarActiveTintColor: colors.primaryText,
         tabBarInactiveTintColor: colors.muted,
         tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.line },
+        // O rótulo da aba tem tamanho fixo (como na barra do próprio Android): com a fonte do sistema a 1,5×, "Teclado" encostava na borda.
+        tabBarAllowFontScaling: false,
         tabBarLabelStyle: { fontFamily: fonts.bold, fontSize: 12 },
         sceneStyle: { backgroundColor: colors.background },
       }}

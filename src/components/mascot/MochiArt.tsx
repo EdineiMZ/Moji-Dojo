@@ -172,12 +172,40 @@ export type MochiOutfit = Partial<Record<'head' | 'face' | 'neck' | 'back' | 'ti
 /** Abaixo deste tamanho o fundo não aparece (viraria só um quadrado colorido atrás de um Mochi pequeno). */
 const MIN_BACKDROP_SIZE = 110;
 
-export function MochiArt({ mood, size, outfit = {}, blink = false }: { mood: MascotMood; size: number; outfit?: MochiOutfit; blink?: boolean }) {
+/** O fundo só aparece em tamanhos grandes e quando o aluno tem um fundo vestido. */
+export function showsBackdrop(size: number, outfit: MochiOutfit): boolean {
+  return size >= MIN_BACKDROP_SIZE && !!outfit.back;
+}
+
+/**
+ * `layer` separa o fundo do Mochi: o Mascot desenha o fundo parado e anima só o personagem por cima.
+ * 'all' (padrão) desenha os dois juntos.
+ */
+export function MochiArt({
+  mood,
+  size,
+  outfit = {},
+  blink = false,
+  layer = 'all',
+}: {
+  mood: MascotMood;
+  size: number;
+  outfit?: MochiOutfit;
+  blink?: boolean;
+  layer?: 'all' | 'backdrop' | 'mochi';
+}) {
   const armsUp = ARMS_UP.has(mood);
   const tint = (outfit.tint ? TINTS[outfit.tint] : undefined) ?? { body: BODY, pink: PINK };
+  if (layer === 'backdrop') {
+    return (
+      <Svg width={size} height={size * 0.95} viewBox="0 0 200 190">
+        {showsBackdrop(size, outfit) ? accessoryArt('back', outfit.back) : null}
+      </Svg>
+    );
+  }
   return (
     <Svg width={size} height={size * 0.95} viewBox="0 0 200 190">
-      {size >= MIN_BACKDROP_SIZE ? accessoryArt('back', outfit.back) : null}
+      {layer === 'all' && showsBackdrop(size, outfit) ? accessoryArt('back', outfit.back) : null}
       {/* orelhas */}
       <G stroke={LINE} strokeWidth={4} strokeLinejoin="round" fill={tint.body}>
         <Polygon points="46,86 52,32 94,58" />

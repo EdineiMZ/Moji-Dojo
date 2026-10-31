@@ -1,6 +1,6 @@
 # Moji Dojo: roadmap
 
-Versão atual: **2.12.0** (2026-10-28). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
+Versão atual: **2.18.0** (2026-10-30). Este documento diz **onde o app está**, **o que falta validar** e **o que vem depois, por prioridade**. O histórico por versão está no [`CHANGELOG.md`](CHANGELOG.md).
 
 Legenda: ✅ feito · 🟡 em parte · ⬜ pendente. Esforço: **P** = dias, **M** = 1 a 2 semanas, **G** = várias semanas.
 
@@ -104,6 +104,44 @@ Conferido em 2026-10-28: o dicionário só é copiado para a pasta do app quando
 - ✅ **Exportar e importar só as configurações:** em Ajustes → Dados e backup, um código "MDJC1:" com tema, voz, leitura, lembretes, metas e IA. Ficam de fora a chave da IA, o uso do dia, o seu nome e a voz do Android escolhida.
 - ✅ **Temas de cor:** Sakura, Matcha, Oceano e Lavanda, cada um claro e escuro, em Ajustes → Aparência. O contraste de todas as paletas é conferido por teste (WCAG AA).
 
+### 2.19: auditoria de layout e design (emulador, 2026-10-30; entregue na 2.19.0, faltam a sequência e o Início)
+
+Passada de design no emulador (Pixel de 1080 × 2400, Android 16, tema escuro, fonte normal e 1,5×) sobre o APK 2.18.0: Início, Trilha (kana e kanji), uma lição de kanji, Ouvir, Frases, Teclado e Meu Mochi. **Não foram vistos:** tema claro e os outros temas de cor, telas de desenho e de teste, ditado, simulado, loja, câmera, IA e as telas dentro de Ajustes. O número entre parênteses é a prioridade (1 = mais urgente).
+
+**Correções (o que está quebrado ou confuso):**
+
+- ✅ **(1) Chip selecionado escondido sob o degradê de rolagem:** em Meu Mochi o chip ativo "Metas" fica cortado pelo degradê e pela seta `›`; o mesmo acontece com os chips de "Meta do dia" (`20 re›`). O aluno não vê qual aba está aberta. Ao selecionar, rolar a linha até o chip ficar inteiro à vista, ou quebrar em linhas (como já se faz nos Ajustes). *(P)*
+- ✅ **(1) Linhas de chips cortadas em Frases e Teclado:** "Frases" (fonte 1,5×), "Katakana", "Apresentação e bá›", "Mais usadas primeiro›", "Velocid›" aparecem pela metade, e a seta cobre o texto. Mesma regra: quebrar em linhas ou ajustar a rolagem para mostrar o chip ativo. *(P)*
+- ✅ **(1) Tecla central do guia do flick estoura com fonte grande:** "toque · a" quebra e sai da tecla de tamanho fixo (fonte 1,5×). Teclas e rótulos do guia precisam crescer com o texto ou limitar a escala. *(P)*
+- ✅ **(1) Baú do dia reaparece a cada abertura do app:** depois de "Depois", fechar e abrir o app mostrou o mesmo baú outra vez. "Depois" deve adiar até o dia seguinte ou ao menos até a próxima hora. Conferir também se a primeira abertura do dia some depois de aberto. *(P)*
+- ⬜ **(2) Sequência contraditória no Início:** o cartão mostra "1 dia seguido", "Sua sequência de 3 dias está em risco" e "Semana: 4 de 4 dias" ao mesmo tempo. Escolher uma definição, usar o mesmo número nos três lugares e explicar o resto em "Saiba mais". *(P)*
+- ✅ **(2) "Revisar o que venceu: feito" numa conta sem nada vencido:** o passo vem marcado como feito antes de o aluno fazer qualquer coisa, e isso confunde o primeiro dia. Mostrar "Nada para revisar hoje" em cinza, sem o selo verde. *(P)*
+- ⬜ **(2) Telas sem margem para a barra de gestos:** em Meu Mochi o texto de "Missões de hoje" rola por baixo do indicador de gestos do Android. Telas sem a barra de abas precisam do espaço inferior seguro (`safe area`). *(P)*
+- ✅ **(2) Seletor "Velocidade normal / Devagar" no topo de Ouvir e de Frases:** ocupa a primeira linha da tela, quebra em duas linhas com fonte grande e, em Frases, serve só para os áudios. Mover para dentro dos cartões que tocam áudio, ou para uma única opção em Ajustes → Voz. *(P)*
+- ✅ **(3) Barra de abas apertada com fonte grande:** "Teclado" encosta na borda direita a 1,5×. Limitar a escala do rótulo ou abreviar. *(P)*
+
+**Melhorias (funciona, mas dá para ficar mais claro):**
+
+- ✅ **Frases gasta quase metade da tela só em navegação:** velocidade, 3 grupos, uma linha de explicação, 5 recursos, e só depois os filtros de assunto, situação e ordem. O conteúdo começa em 44% da altura. Juntar grupo e recurso numa única linha de abas e mover os filtros para uma folha "Filtrar". *(M)*
+- ⬜ **Início longo e com vários botões primários:** "Salvar a sequência", "Ativar lembretes" e "Abrir o baú do dia" são todos rosa cheios na mesma rolagem, contra a regra de um primário por tela do `docs/DESIGN.md`. Só um destaque por vez; lembretes e baú viram cartões secundários. Considerar uma ordem fixa: estudar → sequência → metas. *(M)*
+- ✅ **Estados vazios que ocupam espaço:** "Sua evolução" mostra dois parágrafos de explicação quando ainda não há dado. Trocar por uma linha ou esconder até haver o primeiro dia. *(P)*
+- ✅ **Trilha repete "Bloqueada: conclua a anterior" e "Já sei: fazer o teste" em cada lição:** vira ruído e o link sublinhado tem área de toque pequena. Mostrar o cadeado sozinho e colocar o teste de nivelamento num único botão no topo da trilha. *(P)*
+- ✅ **Trilha de kanji sem separação por nível:** 90 lições numa lista só, e os 193 kanji do N3 ainda não aparecem. Agrupar por N5, N4 e N3, com a barra de progresso de cada nível. *(M)*
+- ✅ **Emoji misturado com ícones de traço:** 🔒, 🎁, 📷 e 🔊 convivem com os ícones de linha da barra de abas e dos Ajustes, e o emoji muda de aparência a cada versão do Android. Trocar por um conjunto único de ícones (por exemplo `@expo/vector-icons`) e manter emoji só no Mochi. *(M)*
+- ✅ **Contraste:** o botão "Deixar recomeçar" e a engrenagem do cabeçalho (azul-petróleo sobre azul-marinho) ficam fracos no escuro. Conferir pelo contraste WCAG já testado nas paletas. *(P)*
+- ✅ **Cabeçalho do Início com vazio no meio:** título à esquerda, Mochi à direita e um espaço grande entre eles. Aproveitar o espaço (saudação ou a meta do dia) ou aproximar o Mochi do título. *(P)*
+- ✅ **Rolagem horizontal escondida:** os chips de rolagem não avisam que há mais itens além de uma seta pequena. Usar o degradê só nas bordas e mostrar sempre o chip ativo (ver acima). *(P)*
+
+**Adições futuras (ideias vindas da passada, sem prioridade):**
+
+- ⬜ **Teste automatizado de layout com fonte 1,5× e 2×** nas telas principais (capturas comparadas ou testes de tela com `fontScale`), para pegar quebras como as de cima antes de virar APK. *(M)*
+- ⬜ **Modo paisagem e tablet:** as telas só foram vistas em retrato; a lista de Frases e o simulador pedem duas colunas em tela larga. *(M)*
+- ⬜ **Esqueleto de carregamento** em Frases e Vocabulário (listas grandes), no lugar de tela em branco por um instante. *(P)*
+- ⬜ **Ajuste de "Reduzir movimento" no sistema** respeitado também no Mochi e nas animações dos traços (hoje o Mochi só lê o ajuste do app). *(P)*
+- ⬜ **Passada do tema claro e dos 4 temas de cor** com as mesmas capturas, e o resultado guardado em `docs/screenshots`. *(P)*
+- ⬜ **Script de capturas para o emulador:** as capturas desta passada foram à mão com `adb`; vale transformar em `scripts/screenshots` (ver "Capturas de tela automatizadas" em Engenharia). *(P)*
+- ⬜ **APK para o emulador:** o `gerar-apk.bat` gera só `arm64-v8a`, que não abre no emulador x86_64 (o app fecha com `couldn't find DSO to load: libreactnative.so`). Para testar no emulador é preciso `gradlew assembleRelease -PreactNativeArchitectures=x86_64`; criar um `gerar-apk-emulador.bat` com isso, que não copia o resultado para `versoes`. *(P)*
+
 ### 3.0: conteúdo do N4
 
 A maior entrega de aprendizado que falta. Exige conferência de fonte e de licença, e revisão por falante.
@@ -112,6 +150,10 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 - 🟡 **Vocabulário N4 (2.11.0 e 2.15.0):** 629 palavras com leitura, significado, tom (504) e classe (621). A frequência de uso (2.15.0) cobre 618 delas, e 533 têm ao menos uma frase no banco local de frases do Tatoeba. Faltam os áudios de falantes nativos (nenhuma das 360 gravações é do N4) e a revisão dos significados por um falante. *(M)*
 - ✅ **Leitura N4 (2.14.0):** 8 textos corridos e 3 leituras do dia a dia (atraso de trem, hotel, elevador e terremoto), com a gramática do N4 e seletor N5/N4. Escritos por IA, a revisar por um falante; as frases com palavras fora do vocabulário trazem a leitura e o significado de cada pedaço. *(M)*
 - 🟡 **Kanji N3 (2.18.0):** 193 kanji no mesmo formato do N4 (ordem dos traços, leituras on e kun, significado, dica de memória, palavra de exemplo e lições). São os mais frequentes em jornais dentre os do nível 2 da lista antiga do JLPT (KANJIDIC2), que reúne N3 e N2, **não o N3 inteiro**: o JLPT não publica lista oficial e o N3 moderno tem cerca de 370 kanji. Significados, categorias e dicas escritos por IA, a revisar por um falante; as palavras de exemplo e as leituras vêm do JMdict. **Falta:** vocabulário, gramática e simulado do N3, e o caminho de metas do N3 (por isso os kanji N3 ficam fora das metas e das provas do N5 e do N4). *(G)*
+- ⬜ **Fechar o N4 (2026-10-30, plano):** o vocabulário (629), os kanji e a leitura do N4 estão feitos; o que falta é a **gramática** (14 tópicos feitos; ainda ながら, すぎる, ようだ e そうだ, あげる, もらう e くれる, てみる, ないで, と思う com a forma simples, e os demais pontos do N4) e a **revisão dos significados por um falante**. Fontes e regra: japonês só de fonte aberta com licença conferida (Tatoeba, CC BY 2.0 FR, como nos 14 tópicos atuais) e explicação em português escrita aqui e marcada como "escrita por IA, a revisar". *(G)*
+- ⬜ **Vocabulário N3 (2026-10-30, plano):** a lista de partida já está baixada em `scripts/vocab-n3/n3.csv` (2.140 linhas, do mesmo repositório *open-anki-jlpt-decks*, licença MIT, com dados das listas de Jonathan Waller, CC BY; a cadeia de licenças é a do N5 e do N4, descrita em `src/content/LICENSE.md`). Falta repetir o método do N4: limpar e remover duplicados com `scripts/n5Clean.cjs` (no N4, 668 linhas viraram 629 palavras), traduzir para o português em `pt-*.txt`, gerar `src/content/n3.ts` com um `build-n3.mjs`, e acrescentar tom (Kanjium), classe, frequência e frases do Tatoeba. Atenção: a lista mistura as marcas `JLPT_2` e `JLPT_3` da lista antiga, então o recorte "só N3" precisa de uma decisão (ver o aviso nos kanji N3 acima). *(G)*
+- ⬜ **Gramática N3 (2026-10-30, plano):** não achei lista aberta e completa. O que foi conferido: o OpenJLPT (`evanclan/OpenJLPT`, CC BY-SA 4.0 segundo o PyPI) tem só cerca de 20 pontos por nível; o JLPT Sensei e o Bunpro são comerciais e **não podem ser copiados**; o Guia JLPT do Wikibooks lista os pontos do N3 a partir de Jonathan Waller, mas a licença **não foi conferida** (Wikibooks costuma ser CC BY-SA). Caminho: usar só a **lista de nomes dos pontos** (fatos, não texto de ninguém), escrever a explicação em português e buscar as frases no Tatoeba, como no N5 e no N4. Antes de começar, confirmar a licença do Wikibooks. *(G)*
+- ⬜ **Caminho de metas e simulado do N3:** depende das três linhas acima. *(M)*
 - ✅ **Simulado offline (2.15.0):** em Frases → Gramática → Simulado. Provas de N5 e N4 com vocabulário, leitura, kanji e gramática, montadas só com o conteúdo do app (sem IA, sem internet), 5, 8 ou 10 perguntas por seção e nota por seção. Falta um simulado de compreensão de texto e o tempo de prova. *(M)*
 
 ### Motor de aprendizado

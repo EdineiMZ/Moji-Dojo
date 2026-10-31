@@ -41,15 +41,15 @@ export function JourneyCard() {
         <Card tone="lilac" enterIndex={0}>
           <View style={styles.row}>
             <View style={styles.flex}>
-              <AppText variant="title">Sua sequência de {offer.broken} dias está em risco</AppText>
+              <AppText variant="title">Recupere sua sequência de {offer.broken} dias</AppText>
               <AppText>
-                Faltaram {plural(offer.missed.length, 'dia', 'dias')}. Faça uma revisão de 25 perguntas com o que você errou há
-                pouco e, com 70% de acertos, a sequência continua.
+                Você pulou {plural(offer.missed.length, 'dia', 'dias')}. Faça uma revisão de 25 perguntas com o que você errou há
+                pouco e, com 70% de acertos, os {offer.broken} dias voltam a valer.
               </AppText>
             </View>
             <Mascot mood="sad" size={72} />
           </View>
-          <Button label="Salvar a sequência" onPress={() => router.push('/rescue')} />
+          <Button label="Salvar a sequência" variant="soft" onPress={() => router.push('/rescue')} />
           <Button label="Deixar recomeçar" variant="ghost" onPress={declineRescue} />
         </Card>
       ) : null}
@@ -66,7 +66,7 @@ export function JourneyCard() {
             </View>
             <Mascot mood="happy" size={72} />
           </View>
-          <Button label="Revisão leve (10)" onPress={() => router.push({ pathname: '/review', params: { light: '1' } })} />
+          <Button label="Revisão leve (10)" variant="soft" onPress={() => router.push({ pathname: '/review', params: { light: '1' } })} />
           <Button label="Dispensar" variant="ghost" onPress={() => updateJourney((j) => ({ ...j, welcome: 0 }))} />
         </Card>
       ) : null}
@@ -79,6 +79,7 @@ export function JourneyCard() {
           </AppText>
           <Button
             label="Ativar lembretes"
+            variant="soft"
             onPress={() =>
               void requestPermission().then((granted) => setReminders({ enabled: granted, asked: true }))
             }
@@ -99,11 +100,11 @@ export function JourneyCard() {
         </AppText>
         <ProgressBar value={Math.min(answers / journey.dailyGoal, 1)} height={8} />
         <AppText>
-          Missões: <Bold>{claimed}</Bold> de {missions.length} · Semana: <Bold>{ctx.weekDays}</Bold> de {WEEKLY_DAYS_GOAL} dias
+          Missões: <Bold>{claimed}</Bold> de {missions.length} · Estudou em <Bold>{ctx.weekDays}</Bold> de {WEEKLY_DAYS_GOAL} dias da semana
         </AppText>
-        {chest ? <Button label="🎁 Abrir o baú da semana" variant={dailyChest ? 'soft' : 'primary'} onPress={() => requestChest('weekly')} /> : null}
-        {dailyChest ? <Button label="🎁 Abrir o baú do dia" onPress={() => requestChest('daily')} /> : null}
-        <Button label="Ver metas e conquistas" variant="soft" onPress={() => router.push({ pathname: '/mochi', params: { tab: 'goals' } })} />
+        {chest ? <Button label="🎁 Abrir o baú da semana" variant="soft" onPress={() => requestChest('weekly')} /> : null}
+        {dailyChest ? <Button label="🎁 Abrir o baú do dia" variant="soft" onPress={() => requestChest('daily')} /> : null}
+        <Button label="Ver metas e conquistas" variant="ghost" onPress={() => router.push({ pathname: '/mochi', params: { tab: 'goals' } })} />
       </Card>
     </>
   );

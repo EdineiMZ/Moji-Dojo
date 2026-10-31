@@ -175,8 +175,8 @@ export function ShopView({ onPreview }: ShopViewProps) {
 
       <ChipRow options={CATEGORIES} value={category} onChange={(v) => { setCategory(v); setPages(1); }} />
       <View style={styles.filters}>
-        <ChipRow options={SHOWS} value={show} onChange={(v) => { setShow(v); setPages(1); }} />
-        <ChipRow options={SORTS} value={sort} onChange={(v) => { setSort(v); setPages(1); }} />
+        <ChipRow wrap options={SHOWS} value={show} onChange={(v) => { setShow(v); setPages(1); }} />
+        <ChipRow wrap options={SORTS} value={sort} onChange={(v) => { setSort(v); setPages(1); }} />
       </View>
 
       <View ref={previewRef} collapsable={false}>

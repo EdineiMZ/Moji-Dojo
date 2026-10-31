@@ -14,10 +14,13 @@ interface CardProps {
   style?: StyleProp<ViewStyle>;
   /** Transição de layout: quando o cartão muda de tamanho ou posição, anima em vez de pular. */
   layout?: ComponentProps<typeof Animated.View>['layout'];
+  /** Para o leitor de tela ler o cartão inteiro como um item só (ex.: lição bloqueada). */
+  accessible?: boolean;
+  accessibilityLabel?: string;
 }
 
 /** Cartão arredondado com sombra suave; entra deslizando de leve quando recebe `enterIndex`. */
-export function Card({ children, tone = 'plain', enterIndex, layout, style }: CardProps) {
+export function Card({ children, tone = 'plain', enterIndex, layout, style, accessible, accessibilityLabel }: CardProps) {
   const { colors } = useTheme();
   const background = {
     plain: colors.surface,
@@ -38,7 +41,9 @@ export function Card({ children, tone = 'plain', enterIndex, layout, style }: Ca
   // No mesmo nó, o Reanimated avisa que a opacity pode ser sobrescrita pela animação de layout.
   return (
     <Animated.View entering={entering} layout={layout}>
-      <View style={[styles.card, { backgroundColor: background, shadowColor: colors.shadow }, style]}>{children}</View>
+      <View accessible={accessible} accessibilityLabel={accessibilityLabel} style={[styles.card, { backgroundColor: background, shadowColor: colors.shadow }, style]}>
+        {children}
+      </View>
     </Animated.View>
   );
 }

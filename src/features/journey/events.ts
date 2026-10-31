@@ -172,6 +172,7 @@ export function openDailyChest(state: JourneyState, ctx: EventContext, rng: Rng 
 }
 
 /** O aviso do baú da semana já foi mostrado hoje (para não repetir a cada abertura do dia). */
+export const askedDailyToday = (state: JourneyState): JourneyState => (state.today.dailyAsked ? state : { ...state, today: { ...state.today, dailyAsked: true } });
 export const askedWeekToday = (state: JourneyState): JourneyState => (state.today.weekAsked ? state : { ...state, today: { ...state.today, weekAsked: true } });
 
 export interface AnswerEvent {

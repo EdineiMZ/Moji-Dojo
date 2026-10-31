@@ -23,3 +23,16 @@ describe('sessão diária', () => {
     expect(dailyPlan({ counts: { reviews: 3 }, dueKana: 0, dueOther: 0 })[0]?.done).toBe(true);
   });
 });
+
+describe('passo de revisão sem nada a revisar', () => {
+  it('fica neutro (idle), sem contar como feito pelo aluno, quando nada venceu e nada foi revisado', () => {
+    const step = dailyPlan({ counts: {}, dueKana: 0, dueOther: 0 })[0];
+    expect(step?.idle).toBe(true);
+    expect(step?.hint).toBe('Nada para revisar hoje');
+  });
+
+  it('não é idle quando há revisão vencida ou já feita hoje', () => {
+    expect(dailyPlan({ counts: {}, dueKana: 4, dueOther: 0 })[0]?.idle).toBe(false);
+    expect(dailyPlan({ counts: { reviews: 5 }, dueKana: 0, dueOther: 0 })[0]?.idle).toBe(false);
+  });
+});

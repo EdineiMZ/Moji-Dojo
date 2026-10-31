@@ -84,7 +84,7 @@ export function SummaryView() {
 
       <CalendarView days={days} rest={journey.restWeekdays} now={date} />
 
-      <ChipRow options={PERIODS} value={period} onChange={setPeriod} />
+      <ChipRow wrap options={PERIODS} value={period} onChange={setPeriod} />
       <Card enterIndex={1}>
         <AppText variant="title">Retrospectiva</AppText>
         <View style={styles.stats}>

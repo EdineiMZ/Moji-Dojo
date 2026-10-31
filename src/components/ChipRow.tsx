@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, View, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { AppText } from './AppText';
+import { Icon, splitIconLabel } from './Icon';
 import { PressableScale } from './PressableScale';
 
 interface ChipRowProps<T extends string> {
@@ -28,13 +29,16 @@ const withAlpha = (hex: string, alpha: number): string => {
 
 /**
  * Escolha de uma opção entre várias, em chips que rolam na horizontal (ex.: categorias). Quando há mais chips para
- * rolar, uma névoa e uma seta na borda avisam disso.
+ * rolar, uma névoa e uma seta na borda avisam disso; o chip escolhido sempre rola para o meio, inteiro à vista.
  */
 export function ChipRow<T extends string>({ options, value, onChange, wrap = false }: ChipRowProps<T>) {
   const { colors } = useTheme();
   const [viewport, setViewport] = useState(0);
   const [content, setContent] = useState(0);
   const [offset, setOffset] = useState(0);
+  const scrollRef = useRef<ScrollView>(null);
+  // Onde cada chip está (x e largura), para rolar até o escolhido e nunca deixá-lo sob a névoa.
+  const spots = useRef(new Map<string, { x: number; width: number }>());
 
   const onLayout = (e: LayoutChangeEvent) => setViewport(e.nativeEvent.layout.width);
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => setOffset(e.nativeEvent.contentOffset.x);
@@ -45,23 +49,35 @@ export function ChipRow<T extends string>({ options, value, onChange, wrap = fal
   const transparent = withAlpha(colors.background, 0);
   const solid = withAlpha(colors.background, 0.95);
 
+  useEffect(() => {
+    const spot = spots.current.get(value);
+    if (wrap || !spot || viewport === 0) return;
+    const target = Math.max(0, spot.x + spot.width / 2 - viewport / 2);
+    scrollRef.current?.scrollTo({ x: target, animated: true });
+  }, [value, viewport, content, wrap]);
+
   const renderChip = (opt: { value: T; label: string }) => {
     const selected = opt.value === value;
+    const { icon, text } = splitIconLabel(opt.label);
     return (
       <PressableScale
         key={opt.value}
         accessibilityRole="tab"
         accessibilityState={{ selected }}
         onPress={() => onChange(opt.value)}
+        onLayout={(e: LayoutChangeEvent) => spots.current.set(opt.value, { x: e.nativeEvent.layout.x, width: e.nativeEvent.layout.width })}
         haptic
         style={[
           styles.chip,
           { backgroundColor: selected ? colors.primary : colors.surface, borderColor: selected ? colors.primary : colors.line },
         ]}
       >
-        <AppText color={selected ? 'onPrimary' : 'ink'} style={{ fontFamily: fonts.bold }}>
-          {opt.label}
-        </AppText>
+        <View style={styles.chipContent}>
+          {icon ? <Icon name={icon} size={20} color={selected ? colors.onPrimary : colors.ink} /> : null}
+          <AppText color={selected ? 'onPrimary' : 'ink'} style={{ fontFamily: fonts.bold }}>
+            {text}
+          </AppText>
+        </View>
       </PressableScale>
     );
   };
@@ -71,6 +87,7 @@ export function ChipRow<T extends string>({ options, value, onChange, wrap = fal
   return (
     <View onLayout={onLayout}>
       <ScrollView
+        ref={scrollRef}
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.row}
@@ -100,8 +117,10 @@ export function ChipRow<T extends string>({ options, value, onChange, wrap = fal
 
 const styles = StyleSheet.create({
   wrap: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, paddingVertical: spacing.xs },
-  row: { gap: spacing.sm, paddingVertical: spacing.xs },
+  // Folga no fim para o último chip poder sair de baixo da névoa.
+  row: { gap: spacing.sm, paddingVertical: spacing.xs, paddingRight: FADE_WIDTH },
   chip: { borderRadius: radii.pill, borderWidth: 1.5, minHeight: 48, justifyContent: 'center', paddingHorizontal: spacing.lg },
+  chipContent: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs },
   fade: { position: 'absolute', top: 0, bottom: 0, width: FADE_WIDTH, justifyContent: 'center' },
   left: { left: 0, alignItems: 'flex-start' },
   right: { right: 0, alignItems: 'flex-end' },

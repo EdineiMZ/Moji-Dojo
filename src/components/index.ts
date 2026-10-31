@@ -14,6 +14,7 @@ export { FuriganaText } from './FuriganaText';
 export { ChipRow } from './ChipRow';
 export { CountUp } from './CountUp';
 export { PressableScale } from './PressableScale';
+export { Icon, splitIconLabel, type IconName } from './Icon';
 export { Collapsible } from './Collapsible';
 export { LearnMore } from './LearnMore';
 export { ListRow } from './ListRow';

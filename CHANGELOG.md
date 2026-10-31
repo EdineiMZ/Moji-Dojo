@@ -2,6 +2,20 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.19.0] - 2026-10-31
+
+Passada de layout e design da auditoria no emulador: chips, ícones, trilha, Início e fonte grande.
+
+- **Chip escolhido sempre à vista:** nas linhas de chips que rolam, o chip ativo rola para o meio, inteiro, fora da névoa e da seta. Em Meu Mochi, Resumo, Frases, Teclado e Vocabulário as linhas passam a quebrar em várias linhas.
+- **Fonte grande:** a tecla central do guia do flick não estoura mais, e o rótulo da barra de abas tem tamanho fixo ("Teclado" não encosta mais na borda a 1,5×).
+- **Baú do dia:** tocar em "Depois" adia o baú até o dia seguinte, mesmo fechando e abrindo o app. O cartão do Início e a aba de metas ainda o abrem.
+- **Início:** "Revisar o que venceu" sem nada vencido aparece em cinza como "Nada para revisar hoje", fora da conta de passos; a engrenagem de Ajustes ganhou um ícone de traço; "Sua evolução" sem dados vira uma linha só.
+- **Velocidade de fala:** o seletor sai do topo de Ouvir e de Frases e vira uma pílula ao lado do título; o controle completo fica em Ajustes.
+- **Trilha:** o kanji se agrupa por N5, N4 e N3, cada um com a sua barra de progresso; o "Já sei" de cada lição dá lugar a um só botão de nivelamento; a lição bloqueada é lida como um item só.
+- **Ícones:** emoji no começo de botões e chips (🔒, 🎁, 📷, 🔊) vira ícone de traço da cor do botão. O botão "ghost" usa a cor principal do texto, com mais contraste.
+- **Mochi:** o fundo vestido fica parado e só o personagem se anima por cima.
+- **Ainda em aberto (ver ROADMAP 2.19):** a definição única de "dias seguidos" e o excesso de botões primários no Início.
+
 ## [2.18.0] - 2026-10-29
 
 Kanji N3, modo Atendente nos moldes, mais leituras do dia a dia e correção do áudio da tabela.

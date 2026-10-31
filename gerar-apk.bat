@@ -80,12 +80,15 @@ if not "%GRADLE_EXIT%"=="0" goto :erro
 
 rem --- 4. Copiar o resultado para a raiz ---
 echo.
-echo [4/4] Copiando o APK...
-copy /y "android\app\build\outputs\apk\release\app-release.apk" "%APK_NAME%" >nul
+echo [4/4] Copiando o APK para a pasta de versoes...
+rem Pasta sincronizada com o Google Drive. Para usar outra, defina VERSOES_DIR antes de rodar.
+if not defined VERSOES_DIR set "VERSOES_DIR=%~dp0versoes"
+if not exist "%VERSOES_DIR%" mkdir "%VERSOES_DIR%"
+copy /y "android\app\build\outputs\apk\release\app-release.apk" "%VERSOES_DIR%\%APK_NAME%" >nul
 if errorlevel 1 goto :erro
 
 echo.
-echo Pronto: %~dp0%APK_NAME%
+echo Pronto: %VERSOES_DIR%\%APK_NAME%
 echo Copie para o celular e instale ^(permita "apps desconhecidos" se o Android pedir^).
 goto :fim
 

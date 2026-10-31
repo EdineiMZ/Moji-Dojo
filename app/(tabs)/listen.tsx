@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { AppText, ChipRow, Screen, SwapView } from '@/components';
 import { ChartView } from '@/features/chart/ChartView';
 import { ComprehensionView } from '@/features/listen/ComprehensionView';
@@ -8,7 +9,7 @@ import { SpeakView } from '@/features/speak/SpeakView';
 import { EarView } from '@/features/listen/EarView';
 import { RepeatView } from '@/features/listen/RepeatView';
 import { SoundsView } from '@/features/listen/SoundsView';
-import { SpeedControl } from '@/features/speech/SpeedControl';
+import { SpeedPill } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 
 type ListenView = 'sounds' | 'chart' | 'ear' | 'dictation' | 'understand' | 'tone' | 'speak' | 'repeat';
@@ -29,9 +30,11 @@ export default function ListenScreen() {
 
   return (
     <Screen>
-      <AppText variant="headline">Ouvir</AppText>
+      <View style={styles.title}>
+        <AppText variant="headline">Ouvir</AppText>
+        <SpeedPill />
+      </View>
       <VoiceWarning />
-      <SpeedControl />
       <ChipRow options={VIEWS} value={view} onChange={setView} />
       <SwapView viewKey={view}>
         {view === 'sounds' ? <SoundsView /> : null}
@@ -46,3 +49,5 @@ export default function ListenScreen() {
     </Screen>
   );
 }
+
+const styles = StyleSheet.create({ title: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 8 } });

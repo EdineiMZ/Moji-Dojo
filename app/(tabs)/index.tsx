@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { AppText, Mascot, Screen, PressableScale } from '@/components';
+import { AppText, Icon, Mascot, Screen, PressableScale } from '@/components';
 import { JourneyCard } from '@/features/journey/ui/JourneyCard';
 import { useMochiMood } from '@/features/journey/useMochiMood';
 import { PetalsBadge } from '@/features/journey/ui/PetalsBadge';
@@ -15,10 +15,11 @@ import { accuracy, activityStrip, bestStreak, dailyAnswers, evolution } from '@/
 import { StatsCard } from '@/features/stats/StatsCard';
 import { useNow } from '@/hooks/useNow';
 import { useProgressStore, useSettingsStore } from '@/store';
-import { spacing } from '@/theme';
+import { spacing, useTheme } from '@/theme';
 
 export default function HomeScreen() {
   const router = useRouter();
+  const { colors } = useTheme();
   const now = useNow();
   const srs = useProgressStore((s) => s.srs);
   const lessons = useProgressStore((s) => s.lessons);
@@ -51,19 +52,13 @@ export default function HomeScreen() {
           </AppText>
           <View style={styles.badge}>
             <PetalsBadge onPress={() => router.push('/mochi')} />
+            <PressableScale accessibilityRole="button" accessibilityLabel="Ajustes" onPress={() => router.push('/settings')} hitSlop={8} style={styles.gear}>
+              <Icon name="gear" size={26} color={colors.ink} />
+            </PressableScale>
           </View>
         </View>
         <PressableScale accessibilityRole="button" accessibilityLabel="Meu Mochi" onPress={() => router.push('/mochi')}>
-          <Mascot mood={felt.mood} size={96} interactive />
-        </PressableScale>
-        <PressableScale
-          accessibilityRole="button"
-          accessibilityLabel="Ajustes"
-          onPress={() => router.push('/settings')}
-          hitSlop={8}
-          style={styles.gear}
-        >
-          <AppText>⚙️</AppText>
+          <Mascot mood={felt.mood} size={120} interactive />
         </PressableScale>
       </View>
       <TodayCard summary={summary} now={now}>
@@ -85,8 +80,8 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  badge: { alignSelf: 'flex-start', marginTop: spacing.xs },
+  badge: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, marginTop: spacing.xs },
   flex: { flex: 1 },
   header: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
-  gear: { alignSelf: 'flex-start', minWidth: 48, minHeight: 48, alignItems: 'center', justifyContent: 'center' },
+  gear: { minWidth: 48, minHeight: 48, alignItems: 'center', justifyContent: 'center' },
 });

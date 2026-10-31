@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { AppText, ChipRow, Screen, SwapView } from '@/components';
+import { StyleSheet, View } from 'react-native';
+import { AppText, ChipRow, Screen, SegmentedControl, SwapView } from '@/components';
 import { AiStudioView } from '@/features/ai/AiStudioView';
 import { BankView } from '@/features/bank/BankView';
 import { ClozeView } from '@/features/cloze/ClozeView';
@@ -21,7 +22,7 @@ import { LoanwordsView } from '@/features/katakana/LoanwordsView';
 import { MyPhrasesView } from '@/features/myphrases/MyPhrasesView';
 import { TranslateView } from '@/features/translate/TranslateView';
 import { VocabView } from '@/features/vocab/VocabView';
-import { SpeedControl } from '@/features/speech/SpeedControl';
+import { SpeedPill } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 import { useShareStore } from '@/features/share/sharedText';
 import { useSettingsStore } from '@/store';
@@ -93,17 +94,17 @@ export default function PhrasesScreen() {
 
   return (
     <Screen>
-      <AppText variant="headline">Frases</AppText>
+      <View style={styles.title}>
+        <AppText variant="headline">Frases</AppText>
+        <SpeedPill />
+      </View>
       <VoiceWarning />
-      <SpeedControl />
-      <ChipRow
+      {/* Grupo e recurso numa leva só: uma linha de grupos (a dica de cada um fica no rótulo de acessibilidade) e os recursos logo abaixo. */}
+      <SegmentedControl
         options={SECTIONS.map((g) => ({ value: g.value, label: g.label }))}
         value={sectionOf(view)}
         onChange={(section) => setView(sections.find((g) => g.value === section)?.views[0]?.value ?? 'vocab')}
       />
-      <AppText variant="caption" color="muted">
-        {SECTIONS.find((g) => g.value === sectionOf(view))?.hint}
-      </AppText>
       <ChipRow wrap options={sections.find((g) => g.value === sectionOf(view))?.views ?? []} value={view} onChange={setView} />
       <SwapView viewKey={view}>
         {view === 'vocab' ? <VocabView /> : null}
@@ -137,3 +138,5 @@ export default function PhrasesScreen() {
     </Screen>
   );
 }
+
+const styles = StyleSheet.create({ title: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 8 } });

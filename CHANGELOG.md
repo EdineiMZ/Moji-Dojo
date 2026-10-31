@@ -2,6 +2,18 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.20.0] - 2026-10-31
+
+Esqueleto de carregamento, guia de imersão e de conversa, pacote menor e ferramentas de build e de capturas.
+
+- **Fora do app (Frases):** guia de imersão por nível (N5, N4 e N3) com o que ouvir, assistir e ler e como usar as legendas, e um guia de conversa com formas de achar tutor ou parceiro de intercâmbio e o roteiro da primeira conversa. Escrito por IA, a revisar por um falante.
+- **Esqueleto de carregamento:** Palavras, Katakana, Banco e Explorar mostram cartões cinzentos pulsando enquanto a lista é montada, em vez de tela em branco. Fica parado com "reduzir movimento".
+- **Sequência sem contradição:** o cartão de resgate diz "Sua sequência de N dias foi interrompida" e que, sem o resgate, a contagem recomeça do 1; a linha da semana diz "Esta semana (seg. a dom.)".
+- **Pacote menor:** a fonte de cerca de 1 MB do `expo-symbols`, que só as abas nativas do expo-router usam, saiu do pacote.
+- **Build:** `gerar-apk-emulador.bat` gera o APK x86_64 para o emulador sem copiá-lo para `versoes`; com `set ARCHS=armeabi-v7a` o `gerar-apk.bat` gera o APK de 32 bits (`-32bits`).
+- **Capturas:** `npm run screenshots` fotografa as telas principais pelo adb, com `--font 1.5` para fonte grande.
+- **Testes:** teto de escala da fonte nos chips, no guia do flick e no esqueleto a 1,5× e 2×, o `Deferred`, as rotas do script de capturas e o guia de imersão.
+
 ## [2.19.0] - 2026-10-31
 
 Passada de layout e design da auditoria no emulador: chips, ícones, trilha, Início e fonte grande.

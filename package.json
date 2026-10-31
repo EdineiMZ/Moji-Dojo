@@ -1,6 +1,6 @@
 {
   "name": "moji-dojo",
-  "version": "2.19.0",
+  "version": "2.20.0",
   "main": "expo-router/entry",
   "dependencies": {
     "@expo-google-fonts/m-plus-rounded-1c": "^0.4.4",
@@ -69,7 +69,8 @@
     "lint": "expo lint",
     "voicevox:libs": "node scripts/voicevox/setup.mjs libs",
     "voicevox:setup": "node scripts/voicevox/setup.mjs all",
-    "voicevox:catalog": "node scripts/voicevox/catalog.mjs"
+    "voicevox:catalog": "node scripts/voicevox/catalog.mjs",
+    "screenshots": "node scripts/screenshots/capture.mjs"
   },
   "private": true,
   "jest": {

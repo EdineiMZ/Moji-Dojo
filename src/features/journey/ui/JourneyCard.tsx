@@ -41,10 +41,10 @@ export function JourneyCard() {
         <Card tone="lilac" enterIndex={0}>
           <View style={styles.row}>
             <View style={styles.flex}>
-              <AppText variant="title">Recupere sua sequência de {offer.broken} dias</AppText>
+              <AppText variant="title">Sua sequência de {offer.broken} dias foi interrompida</AppText>
               <AppText>
                 Você pulou {plural(offer.missed.length, 'dia', 'dias')}. Faça uma revisão de 25 perguntas com o que você errou há
-                pouco e, com 70% de acertos, os {offer.broken} dias voltam a valer.
+                pouco e, com 70% de acertos, os {offer.broken} dias voltam a valer. Sem isso, a contagem recomeça do 1.
               </AppText>
             </View>
             <Mascot mood="sad" size={72} />
@@ -100,7 +100,7 @@ export function JourneyCard() {
         </AppText>
         <ProgressBar value={Math.min(answers / journey.dailyGoal, 1)} height={8} />
         <AppText>
-          Missões: <Bold>{claimed}</Bold> de {missions.length} · Estudou em <Bold>{ctx.weekDays}</Bold> de {WEEKLY_DAYS_GOAL} dias da semana
+          Missões: <Bold>{claimed}</Bold> de {missions.length} · Esta semana (seg. a dom.): <Bold>{ctx.weekDays}</Bold> de {WEEKLY_DAYS_GOAL} dias de estudo
         </AppText>
         {chest ? <Button label="🎁 Abrir o baú da semana" variant="soft" onPress={() => requestChest('weekly')} /> : null}
         {dailyChest ? <Button label="🎁 Abrir o baú do dia" variant="soft" onPress={() => requestChest('daily')} /> : null}

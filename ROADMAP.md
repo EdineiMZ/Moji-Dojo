@@ -86,8 +86,8 @@ Conferido em 2026-10-28: o dicionário só é copiado para a pasta do app quando
 
 - ⬜ **Dicionário do Open JTalk como download opcional**, junto da primeira voz: tira cerca de 22 MB do APK. Hoje ele também é copiado para a pasta do app na primeira vez (98 MB sem compressão); só copiar quando o VOICEVOX for ativado. *(M)*
 - ⬜ **Medir** a abertura a frio e a memória em aparelho de entrada, e carregar sob demanda os conteúdos grandes. *(M)*
-- ⬜ **32 bits:** hoje o APK é só `arm64-v8a`. Avaliar um APK `armeabi-v7a` separado para aparelhos antigos. *(P)*
-- ⬜ **Analisar o pacote:** a fonte do `expo-symbols` (cerca de 1 MB) vem de dentro do `expo-router` e não é usada. *(P)*
+- ✅ **32 bits:** hoje o APK é só `arm64-v8a`. Avaliar um APK `armeabi-v7a` separado para aparelhos antigos. *(P)* *(2.20.0: `set ARCHS=armeabi-v7a` antes do `gerar-apk.bat` gera `MojiDojo-<versão>-32bits.apk`; falta testar num aparelho de 32 bits.)*
+- ✅ **Analisar o pacote:** a fonte do `expo-symbols` (cerca de 1 MB) vem de dentro do `expo-router` e não é usada. *(P)* *(2.20.0: o `metro.config.js` troca o `expo-symbols` por um módulo vazio; o export do Android passou a sair sem a fonte de 971 KB.)*
 
 ### 2.13: áudio e tema
 
@@ -114,16 +114,16 @@ Passada de design no emulador (Pixel de 1080 × 2400, Android 16, tema escuro, f
 - ✅ **(1) Linhas de chips cortadas em Frases e Teclado:** "Frases" (fonte 1,5×), "Katakana", "Apresentação e bá›", "Mais usadas primeiro›", "Velocid›" aparecem pela metade, e a seta cobre o texto. Mesma regra: quebrar em linhas ou ajustar a rolagem para mostrar o chip ativo. *(P)*
 - ✅ **(1) Tecla central do guia do flick estoura com fonte grande:** "toque · a" quebra e sai da tecla de tamanho fixo (fonte 1,5×). Teclas e rótulos do guia precisam crescer com o texto ou limitar a escala. *(P)*
 - ✅ **(1) Baú do dia reaparece a cada abertura do app:** depois de "Depois", fechar e abrir o app mostrou o mesmo baú outra vez. "Depois" deve adiar até o dia seguinte ou ao menos até a próxima hora. Conferir também se a primeira abertura do dia some depois de aberto. *(P)*
-- ⬜ **(2) Sequência contraditória no Início:** o cartão mostra "1 dia seguido", "Sua sequência de 3 dias está em risco" e "Semana: 4 de 4 dias" ao mesmo tempo. Escolher uma definição, usar o mesmo número nos três lugares e explicar o resto em "Saiba mais". *(P)*
+- ✅ **(2) Sequência contraditória no Início:** o cartão mostra "1 dia seguido", "Sua sequência de 3 dias está em risco" e "Semana: 4 de 4 dias" ao mesmo tempo. Escolher uma definição, usar o mesmo número nos três lugares e explicar o resto em "Saiba mais". *(P)* *(2.20.0: o cartão de resgate diz que a sequência foi interrompida e que a contagem recomeça do 1; a semana vira "Esta semana (seg. a dom.)".)*
 - ✅ **(2) "Revisar o que venceu: feito" numa conta sem nada vencido:** o passo vem marcado como feito antes de o aluno fazer qualquer coisa, e isso confunde o primeiro dia. Mostrar "Nada para revisar hoje" em cinza, sem o selo verde. *(P)*
-- ⬜ **(2) Telas sem margem para a barra de gestos:** em Meu Mochi o texto de "Missões de hoje" rola por baixo do indicador de gestos do Android. Telas sem a barra de abas precisam do espaço inferior seguro (`safe area`). *(P)*
+- ✅ **(2) Telas sem margem para a barra de gestos:** em Meu Mochi o texto de "Missões de hoje" rola por baixo do indicador de gestos do Android. Telas sem a barra de abas precisam do espaço inferior seguro (`safe area`). *(P)* *(Conferido no código na 2.20.0: o `Screen` já soma o espaço inferior seguro; falta só rever no aparelho.)*
 - ✅ **(2) Seletor "Velocidade normal / Devagar" no topo de Ouvir e de Frases:** ocupa a primeira linha da tela, quebra em duas linhas com fonte grande e, em Frases, serve só para os áudios. Mover para dentro dos cartões que tocam áudio, ou para uma única opção em Ajustes → Voz. *(P)*
 - ✅ **(3) Barra de abas apertada com fonte grande:** "Teclado" encosta na borda direita a 1,5×. Limitar a escala do rótulo ou abreviar. *(P)*
 
 **Melhorias (funciona, mas dá para ficar mais claro):**
 
 - ✅ **Frases gasta quase metade da tela só em navegação:** velocidade, 3 grupos, uma linha de explicação, 5 recursos, e só depois os filtros de assunto, situação e ordem. O conteúdo começa em 44% da altura. Juntar grupo e recurso numa única linha de abas e mover os filtros para uma folha "Filtrar". *(M)*
-- ⬜ **Início longo e com vários botões primários:** "Salvar a sequência", "Ativar lembretes" e "Abrir o baú do dia" são todos rosa cheios na mesma rolagem, contra a regra de um primário por tela do `docs/DESIGN.md`. Só um destaque por vez; lembretes e baú viram cartões secundários. Considerar uma ordem fixa: estudar → sequência → metas. *(M)*
+- ✅ **Início longo e com vários botões primários:** "Salvar a sequência", "Ativar lembretes" e "Abrir o baú do dia" são todos rosa cheios na mesma rolagem, contra a regra de um primário por tela do `docs/DESIGN.md`. Só um destaque por vez; lembretes e baú viram cartões secundários. Considerar uma ordem fixa: estudar → sequência → metas. *(M)* *(2.19.0 e 2.20.0: lembretes e baús viraram botões secundários; a ordem fixa do Início ficou para depois.)*
 - ✅ **Estados vazios que ocupam espaço:** "Sua evolução" mostra dois parágrafos de explicação quando ainda não há dado. Trocar por uma linha ou esconder até haver o primeiro dia. *(P)*
 - ✅ **Trilha repete "Bloqueada: conclua a anterior" e "Já sei: fazer o teste" em cada lição:** vira ruído e o link sublinhado tem área de toque pequena. Mostrar o cadeado sozinho e colocar o teste de nivelamento num único botão no topo da trilha. *(P)*
 - ✅ **Trilha de kanji sem separação por nível:** 90 lições numa lista só, e os 193 kanji do N3 ainda não aparecem. Agrupar por N5, N4 e N3, com a barra de progresso de cada nível. *(M)*
@@ -134,13 +134,13 @@ Passada de design no emulador (Pixel de 1080 × 2400, Android 16, tema escuro, f
 
 **Adições futuras (ideias vindas da passada, sem prioridade):**
 
-- ⬜ **Teste automatizado de layout com fonte 1,5× e 2×** nas telas principais (capturas comparadas ou testes de tela com `fontScale`), para pegar quebras como as de cima antes de virar APK. *(M)*
+- ✅ **Teste automatizado de layout com fonte 1,5× e 2×** nas telas principais (capturas comparadas ou testes de tela com `fontScale`), para pegar quebras como as de cima antes de virar APK. *(M)* *(2.20.0: teste de Jest que garante teto de escala nos textos de chips, guia do flick e esqueleto a 1,5× e 2×; ele não mede quebra de linha de verdade, que só aparece em captura (veja `npm run screenshots --font 1.5`).)*
 - ⬜ **Modo paisagem e tablet:** as telas só foram vistas em retrato; a lista de Frases e o simulador pedem duas colunas em tela larga. *(M)*
-- ⬜ **Esqueleto de carregamento** em Frases e Vocabulário (listas grandes), no lugar de tela em branco por um instante. *(P)*
-- ⬜ **Ajuste de "Reduzir movimento" no sistema** respeitado também no Mochi e nas animações dos traços (hoje o Mochi só lê o ajuste do app). *(P)*
+- ✅ **Esqueleto de carregamento** em Frases e Vocabulário (listas grandes), no lugar de tela em branco por um instante. *(P)* *(2.20.0: componentes `Skeleton` e `Deferred`, usados em Palavras, Katakana, Banco e Explorar.)*
+- ✅ **Ajuste de "Reduzir movimento" no sistema** respeitado também no Mochi e nas animações dos traços (hoje o Mochi só lê o ajuste do app). *(P)* *(Conferido na 2.20.0: o Mochi, os traços e as demais animações já leem o ajuste do sistema pelo Reanimated.)*
 - ⬜ **Passada do tema claro e dos 4 temas de cor** com as mesmas capturas, e o resultado guardado em `docs/screenshots`. *(P)*
-- ⬜ **Script de capturas para o emulador:** as capturas desta passada foram à mão com `adb`; vale transformar em `scripts/screenshots` (ver "Capturas de tela automatizadas" em Engenharia). *(P)*
-- ⬜ **APK para o emulador:** o `gerar-apk.bat` gera só `arm64-v8a`, que não abre no emulador x86_64 (o app fecha com `couldn't find DSO to load: libreactnative.so`). Para testar no emulador é preciso `gradlew assembleRelease -PreactNativeArchitectures=x86_64`; criar um `gerar-apk-emulador.bat` com isso, que não copia o resultado para `versoes`. *(P)*
+- ✅ **Script de capturas para o emulador:** as capturas desta passada foram à mão com `adb`; vale transformar em `scripts/screenshots` (ver "Capturas de tela automatizadas" em Engenharia). *(P)* *(2.20.0: `npm run screenshots` (`scripts/screenshots`), com `--font` e `--serial`; ainda não testado num aparelho.)*
+- ✅ **APK para o emulador:** o `gerar-apk.bat` gera só `arm64-v8a`, que não abre no emulador x86_64 (o app fecha com `couldn't find DSO to load: libreactnative.so`). Para testar no emulador é preciso `gradlew assembleRelease -PreactNativeArchitectures=x86_64`; criar um `gerar-apk-emulador.bat` com isso, que não copia o resultado para `versoes`. *(P)* *(2.20.0: `gerar-apk-emulador.bat` (x86_64, sem copiar para `versoes`).)*
 
 ### 3.0: conteúdo do N4
 
@@ -187,12 +187,12 @@ A maior entrega de aprendizado que falta. Exige conferência de fonte e de licen
 - ✅ **Integração contínua:** `.github/workflows/ci.yml` roda `tsc`, lint, Jest e `expo-doctor` a cada push e pull request (conferido numa cópia limpa do repositório).
 - ⬜ **Testes de ponta a ponta** (por exemplo com Maestro) dos fluxos críticos: primeira abertura, uma lição, uma revisão, a compra na loja. *(M)*
 - 🟡 **Dependências em dia:** o Dependabot está configurado (`.github/dependabot.yml`, o Expo em grupo e o SDK só à mão). Falta subir para o Expo SDK 58 quando ele virar `latest` (hoje é `next`; o projeto está no 57.0.31, e o React Native mais novo é o 0.88). *(M)*
-- ⬜ **Capturas de tela automatizadas** para o README a cada versão. *(P)*
+- ✅ **Capturas de tela automatizadas** para o README a cada versão. *(P)* *(2.20.0: o script existe; falta rodá-lo a cada versão e gerar as imagens do README com ele.)*
 
 ### Fora do app (a fluência acontece lá)
 
-- ⬜ **Guia de imersão por nível:** que áudio, vídeo e leitura consumir em cada etapa e como usar legendas em japonês. *(P)*
-- ⬜ **Hábito de conversa:** como achar tutor ou parceiro de intercâmbio e um roteiro para a primeira conversa. *(P)*
+- ✅ **Guia de imersão por nível:** que áudio, vídeo e leitura consumir em cada etapa e como usar legendas em japonês. *(P)* *(2.20.0: Frases → Fora do app, com N5, N4 e N3 (áudio, vídeo, leitura e legendas). Escrito por IA, a revisar por um falante.)*
+- ✅ **Hábito de conversa:** como achar tutor ou parceiro de intercâmbio e um roteiro para a primeira conversa. *(P)* *(2.20.0: Frases → Fora do app, com formas de achar tutor ou parceiro e o roteiro da primeira conversa. Escrito por IA, a revisar por um falante.)*
 
 ## 4. Ideias em aberto
 

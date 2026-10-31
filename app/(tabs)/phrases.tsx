@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { AppText, ChipRow, Screen, SegmentedControl, SwapView } from '@/components';
+import { AppText, ChipRow, Deferred, Screen, SegmentedControl, SwapView } from '@/components';
 import { AiStudioView } from '@/features/ai/AiStudioView';
 import { BankView } from '@/features/bank/BankView';
 import { ClozeView } from '@/features/cloze/ClozeView';
@@ -22,12 +22,13 @@ import { LoanwordsView } from '@/features/katakana/LoanwordsView';
 import { MyPhrasesView } from '@/features/myphrases/MyPhrasesView';
 import { TranslateView } from '@/features/translate/TranslateView';
 import { VocabView } from '@/features/vocab/VocabView';
+import { ImmersionView } from '@/features/immersion/ImmersionView';
 import { SpeedPill } from '@/features/speech/SpeedControl';
 import { VoiceWarning } from '@/features/speech/VoiceWarning';
 import { useShareStore } from '@/features/share/sharedText';
 import { useSettingsStore } from '@/store';
 
-type PhrasesView = 'vocab' | 'cards' | 'scan' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure' | 'frames' | 'explore' | 'exam' | 'ai';
+type PhrasesView = 'vocab' | 'cards' | 'scan' | 'grammar' | 'conjugate' | 'cloze' | 'count' | 'translate' | 'bank' | 'dialog' | 'mine' | 'build' | 'travel' | 'kata' | 'read' | 'structure' | 'frames' | 'explore' | 'exam' | 'immersion' | 'ai';
 
 type Section = 'words' | 'grammar' | 'sentences';
 
@@ -71,6 +72,7 @@ const SECTIONS: readonly { value: Section; label: string; hint: string; views: r
       { value: 'travel', label: 'Viagem' },
       { value: 'explore', label: 'Explorar' },
       { value: 'mine', label: 'Minhas frases' },
+      { value: 'immersion', label: 'Fora do app' },
       { value: 'ai', label: '✨ IA' },
     ],
   },
@@ -107,7 +109,11 @@ export default function PhrasesScreen() {
       />
       <ChipRow wrap options={sections.find((g) => g.value === sectionOf(view))?.views ?? []} value={view} onChange={setView} />
       <SwapView viewKey={view}>
-        {view === 'vocab' ? <VocabView /> : null}
+        {view === 'vocab' ? (
+          <Deferred key="vocab">
+            <VocabView />
+          </Deferred>
+        ) : null}
         {view === 'cards' ? <FlashcardsView /> : null}
         {view === 'grammar' ? (
           <GrammarView
@@ -121,16 +127,29 @@ export default function PhrasesScreen() {
         {view === 'cloze' ? <ClozeView /> : null}
         {view === 'count' ? <CountingView /> : null}
         {view === 'exam' ? <OfflineExamView /> : null}
-        {view === 'kata' ? <LoanwordsView /> : null}
+        {view === 'kata' ? (
+          <Deferred key="kata">
+            <LoanwordsView />
+          </Deferred>
+        ) : null}
         {view === 'read' ? <ReadView /> : null}
         {view === 'scan' ? <ScanView /> : null}
         {view === 'structure' ? <StructureView /> : null}
         {view === 'frames' ? <FramesView /> : null}
         {view === 'translate' ? <TranslateView /> : null}
-        {view === 'bank' ? <BankView /> : null}
+        {view === 'bank' ? (
+          <Deferred key="bank">
+            <BankView />
+          </Deferred>
+        ) : null}
         {view === 'dialog' ? <DialogView /> : null}
-        {view === 'explore' ? <SentencesView /> : null}
+        {view === 'explore' ? (
+          <Deferred key="explore">
+            <SentencesView />
+          </Deferred>
+        ) : null}
         {view === 'mine' ? <MyPhrasesView /> : null}
+        {view === 'immersion' ? <ImmersionView /> : null}
         {view === 'ai' ? <AiStudioView key={shareNonce} /> : null}
         {view === 'build' ? <BuildHub topic={topic} onTopicChange={setTopic} /> : null}
         {view === 'travel' ? <TravelView /> : null}

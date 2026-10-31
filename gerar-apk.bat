@@ -71,14 +71,24 @@ rem --- 3. Compilar o APK de release ---
 echo.
 echo [3/4] Compilando o APK ^(Gradle; o primeiro build baixa dependencias e leva varios minutos^)...
 pushd android
-rem So arm64-v8a (celulares atuais de 64 bits): o APK fica bem menor. Para aparelhos antigos de 32 bits,
-rem troque por arm64-v8a,armeabi-v7a.
-call gradlew.bat assembleRelease -PreactNativeArchitectures=arm64-v8a
+rem Padrao: so arm64-v8a (celulares atuais de 64 bits), que deixa o APK bem menor. Defina ARCHS antes de rodar para mudar:
+rem   set ARCHS=armeabi-v7a             APK so para aparelhos antigos de 32 bits (nome ganha o sufixo -32bits)
+rem   set ARCHS=arm64-v8a,armeabi-v7a   um APK que serve aos dois (bem maior)
+rem O gerar-apk-emulador.bat usa x86_64 e nao copia o resultado para a pasta de versoes.
+if not defined ARCHS set "ARCHS=arm64-v8a"
+echo Arquiteturas: %ARCHS%
+call gradlew.bat assembleRelease -PreactNativeArchitectures=%ARCHS%
 set "GRADLE_EXIT=%errorlevel%"
 popd
 if not "%GRADLE_EXIT%"=="0" goto :erro
 
 rem --- 4. Copiar o resultado para a raiz ---
+if defined SKIP_COPY (
+  echo.
+  echo Pronto: android\app\build\outputs\apk\release\app-release.apk ^(nao copiado para versoes^)
+  goto :fim
+)
+if /i "%ARCHS%"=="armeabi-v7a" set "APK_NAME=%APK_NAME:.apk=-32bits.apk%"
 echo.
 echo [4/4] Copiando o APK para a pasta de versoes...
 rem Pasta sincronizada com o Google Drive. Para usar outra, defina VERSOES_DIR antes de rodar.

@@ -22,3 +22,5 @@ export { SwapView } from './SwapView';
 export { BackLink } from './BackLink';
 export { ReduceMotion } from './motion';
 export { useScrollIntoView } from './ScrollContext';
+export { Skeleton } from './Skeleton';
+export { Deferred } from './Deferred';

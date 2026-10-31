@@ -7,12 +7,10 @@ const seeded = (seed: number) => () => {
 };
 
 describe('simulado offline', () => {
-  it.each(EXAM_LEVELS)('o %s tem as seções do que já existe, com perguntas bem formadas', (level: ExamLevel) => {
+  it.each(EXAM_LEVELS)('o %s tem as quatro seções, com perguntas bem formadas', (level: ExamLevel) => {
     const exam = buildExam(level, 5, seeded(7));
-    // O N3 ainda não tem gramática: só as outras três seções.
-    const sections = EXAM_SECTIONS.filter(({ id }) => level !== 'N3' || id !== 'grammar');
-    expect(exam).toHaveLength(sections.length * 5);
-    for (const { id } of sections) expect(exam.filter((q) => q.section === id)).toHaveLength(5);
+    expect(exam).toHaveLength(20);
+    for (const { id } of EXAM_SECTIONS) expect(exam.filter((q) => q.section === id)).toHaveLength(5);
     for (const q of exam) {
       expect(q.options).toHaveLength(4);
       expect(new Set(q.options).size).toBe(4);

@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.27.0] - 2026-10-31
+
+Gramática N3: 15 tópicos.
+
+- **Quinze pontos do N3:** 〜らしい, 〜について, 〜として, 〜に対して, 〜によって, 〜ほど (incluindo 〜ば〜ほど), 〜わけ (わけがない e わけではない), 〜はずがない, 〜ところだ, 〜うちに, 〜おかげ e 〜せい, 〜まま, 〜さえ, 〜っぽい e 〜ことになる. Cada um tem a explicação em português, tabela, exercícios de Montar e de Lacunas e notas de erros comuns.
+- **Frases reais conferidas:** 55 frases do Tatoeba (CC BY 2.0 FR), conferidas na fonte (id, texto, licença, leitura, furigana e tradução). O furigana segue o do Tatoeba, por kanji.
+- **Fonte da lista:** não existe lista oficial do JLPT; só os nomes dos padrões partem do Guia JLPT do Wikibooks (CC BY-SA) e do que os cursos ensinam no N3. O texto é próprio e **ainda precisa da revisão de um falante**.
+- **Metas e simulado:** o caminho do N3 ganhou a meta de gramática (com o teste de cada tópico), e o simulado do N3 passou a ter as quatro seções.
+
 ## [2.26.0] - 2026-10-31
 
 Caminho de metas e simulado do N3, e tom, frequência e frases para as palavras do N3.

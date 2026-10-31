@@ -7,7 +7,8 @@ describe('gramática N4 (Tatoeba)', () => {
     expect(GRAMMAR_N4.map((t) => t.id)).toEqual(Array.from({ length: GRAMMAR_N4.length }, (_, i) => `n4-${i + 1}`));
     const ids = ALL_GRAMMAR.map((t) => t.id);
     expect(new Set(ids).size).toBe(ids.length);
-    expect(ids.slice(-GRAMMAR_N4.length)).toEqual(GRAMMAR_N4.map((t) => t.id));
+    const first = ids.indexOf(GRAMMAR_N4[0]?.id ?? '');
+    expect(ids.slice(first, first + GRAMMAR_N4.length)).toEqual(GRAMMAR_N4.map((t) => t.id));
   });
 
   it('todo tópico tem texto, esquema, dica e exemplos completos', () => {

@@ -310,4 +310,64 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
     'O honorífico é para a ação dos outros; para falar de si, use o humilde. Dizer "わたしは いらっしゃいます" para si mesmo soa errado.',
     'Algumas ações têm uma palavra própria (いく e くる → いらっしゃる, たべる → めしあがる, いう → おっしゃる). Quando existe, ela vale mais do que o padrão お〜になります.',
   ],
+  'n3-1': [
+    'らしい depois de substantivo pode ser "parece" ou "bem típico de": がくせいらしい é "parece ser estudante" ou "como um bom estudante". O contexto decide.',
+    'Não use らしい para o que você viu e tem certeza: ele marca informação de segunda mão ou uma conclusão por indícios.',
+  ],
+  'n3-2': [
+    'Antes de um substantivo, junte の: ほしについての ほん ("um livro sobre estrelas"), e não ほしについて ほん.',
+    'について é "sobre o assunto"; não é "a respeito de uma pessoa a quem se dirige um sentimento" (isso é にたいして).',
+  ],
+  'n3-3': [
+    'として mostra o papel ("como médico"). Com で ("de médico") a frase muda de sentido e fica sem lógica.',
+    'Depois de として a frase pode elogiar ou criticar o desempenho nesse papel: いしゃとして むのうだ ("como médico, incapaz").',
+  ],
+  'n3-4': [
+    'Escreve-se 対して, mas lê-se たいして: に対して, にたいして.',
+    'にたいして traz o alvo de um sentimento (raiva, carinho, desculpa). Para o assunto de uma conversa, use について.',
+  ],
+  'n3-5': [
+    'によって tem usos diferentes: "depende de" (ひとによって いけんが ちがう) e "feito por" (passiva). O verbo mostra qual é.',
+    'Na passiva, によって é mais formal e usado com obras e fatos; para pessoas comuns, に é o normal.',
+  ],
+  'n3-6': [
+    'Em A は B ほど ~ない o fim da frase é negativo ("A não é tão... quanto B"); sem o negativo, a comparação sai errada.',
+    'Em ~ば ~ほど repita a mesma palavra: はやければ はやい ほど ("quanto mais cedo..."), e não duas palavras diferentes.',
+  ],
+  'n3-7': [
+    'わけがない ("é impossível") não é わけではない ("não é que..."): o primeiro nega com força; o segundo só corrige.',
+    'Na fala, が cai (わけない) e では vira じゃ (わけじゃない). Os dois continuam sendo a mesma estrutura.',
+  ],
+  'n3-8': [
+    'はずがない ("não pode ser") é mais que a negação de はず: はずじゃない pode ser só "não era para ser", mas はずがない é "impossível".',
+    'Depois de substantivo use の: ほんきの はずがない.',
+  ],
+  'n3-9': [
+    'ところだ muda de sentido com a forma do verbo: dicionário = prestes a, ている = no meio de, た = acabou de.',
+    'たところ é "acabou de" por um instante; たばかり admite um tempo mais longo, e a sensação de que foi há pouco é de quem fala.',
+  ],
+  'n3-10': [
+    'Depois de うちに a ação deve valer a pena fazer antes da mudança: あたたかい うちに たべよう, e não frases sem relação com o tempo.',
+    'うちに com substantivo pede の: ひるまの うちに. Sem o の, うち vira "casa".',
+  ],
+  'n3-11': [
+    'おかげで é para um resultado bom; せいで, para um ruim. Trocar os dois muda a mensagem (agradecer ou culpar).',
+    'Em あなたの せいではありません ("não é culpa sua"), o では deixa a frase negativa; sem ele, vira acusação.',
+  ],
+  'n3-12': [
+    'まま costuma vir depois de た: あけた まま ("ficou aberto"). Com forma de dicionário a frase muda de sentido.',
+    'Depois de substantivo use の: ともだちの まま. Com adjetivo な, だ cai: そのまま.',
+  ],
+  'n3-13': [
+    'さえ de "até" (こどもでさえ) e さえ de "basta que" (みずさえ あれば) são usos diferentes; o segundo termina em ば.',
+    'Com verbo, o "basta que" é ます sem ます + さえ すれば: ありさえ すれば.',
+  ],
+  'n3-14': [
+    'っぽい liga à raiz do verbo (わすれ + っぽい) e ao substantivo (ねつ + っぽい); não use depois da forma ます.',
+    'O tom é informal e muitas vezes crítico: こどもっぽい ("meio infantil"). Para elogiar, prefira らしい.',
+  ],
+  'n3-15': [
+    'ことになる (decidido por outros ou pelas circunstâncias) é diferente de ことにする (você decide): o sujeito da escolha muda.',
+    'ことになった serve para anunciar uma regra ou um fato ("ficou decidido que...") de forma educada, sem dizer quem decidiu.',
+  ],
 };

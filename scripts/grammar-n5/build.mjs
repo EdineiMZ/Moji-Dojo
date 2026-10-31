@@ -2,9 +2,9 @@
 import { createRequire } from 'node:module';
 import { writeFileSync } from 'node:fs';
 
-// "node scripts/grammar-n5/build.mjs n4" gera os tópicos do N4 (scripts/grammar-n4/topics.mjs); sem argumento, os do N5.
-const LEVEL = process.argv[2] === 'n4' ? 'N4' : 'N5';
-const { TOPICS } = await import(LEVEL === 'N4' ? '../grammar-n4/topics.mjs' : './topics.mjs');
+// "node scripts/grammar-n5/build.mjs n4" gera os tópicos do N4 (scripts/grammar-n4/topics.mjs), com "n3" os do N3; sem argumento, os do N5.
+const LEVEL = process.argv[2] === 'n3' ? 'N3' : process.argv[2] === 'n4' ? 'N4' : 'N5';
+const { TOPICS } = await import(LEVEL === 'N3' ? '../grammar-n3/topics.mjs' : LEVEL === 'N4' ? '../grammar-n4/topics.mjs' : './topics.mjs');
 
 const require = createRequire(import.meta.url);
 const { parseAnnotation, plainKana } = require('./romaji.cjs');
@@ -135,7 +135,7 @@ const exercises = TOPICS.flatMap((t) =>
 
 const sources = TOPICS.flatMap((t) => t.examples.map((e) => e.id));
 
-const text = `// Gerado por scripts/grammar-n5/build.mjs ${LEVEL === 'N4' ? 'n4' : ''} a partir de scripts/grammar-${LEVEL.toLowerCase()}/topics.mjs. Não edite à mão.
+const text = `// Gerado por scripts/grammar-n5/build.mjs ${LEVEL === 'N5' ? '' : LEVEL.toLowerCase()} a partir de scripts/grammar-${LEVEL.toLowerCase()}/topics.mjs. Não edite à mão.
 // Exemplos: frases do Tatoeba (CC BY 2.0 FR), conferidas por scripts/grammar-n5/verify.mjs. Ver LICENSE.md.
 import type { BuildExercise, GrammarTopic } from '@/data/types';
 

@@ -2,7 +2,7 @@
 // leitura em kana bate com a nossa escrita e a tradução em português é uma das do Tatoeba. Precisa de internet.
 // Uso: npm run verify-grammar
 import { createRequire } from 'node:module';
-const { TOPICS } = await import(process.argv[2] === 'n4' ? '../grammar-n4/topics.mjs' : './topics.mjs');
+const { TOPICS } = await import(process.argv[2] === 'n3' ? '../grammar-n3/topics.mjs' : process.argv[2] === 'n4' ? '../grammar-n4/topics.mjs' : './topics.mjs');
 import { search, sentenceById } from './tatoeba.mjs';
 
 const require = createRequire(import.meta.url);

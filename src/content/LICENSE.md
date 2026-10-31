@@ -49,6 +49,15 @@
 - **As traduções e a classificação por assunto são minhas (de um assistente de IA) e não foram revisadas por
   um falante.** Podem conter erros ou escolhas discutíveis.
 
+## Gramática N3 (`grammarN3.ts`, gerado em `scripts/grammar-n3/`)
+
+- **Lista de pontos:** não existe lista oficial do JLPT. Os 15 pontos partem do que o *JLPT Guide* do Wikibooks (texto sob CC BY-SA, que
+  se baseia nas listas de Jonathan Waller) trata como N3 e do que os cursos de japonês ensinam nesse nível; só os **nomes dos padrões** (fatos)
+  foram aproveitados. Nenhum texto do Wikibooks, do JLPT Sensei ou do Bunpro foi copiado.
+- **Explicações:** texto próprio, em português, escrito por IA e **ainda não revisado por um falante**.
+- **Frases de exemplo:** frases reais do Tatoeba (CC BY 2.0 FR), escolhidas pelo id e conferidas na fonte
+  (`node scripts/grammar-n5/verify.mjs n3`: id, texto, licença, leitura, furigana e tradução).
+
 ## Gramática N4 (`grammarN4.ts`, gerado em `scripts/grammar-n4/`)
 
 - **Texto das explicações:** escrito para este app, em português, **ainda sem revisão por um falante de japonês**.

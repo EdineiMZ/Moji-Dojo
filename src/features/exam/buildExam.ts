@@ -123,7 +123,7 @@ function grammarQuestions(level: ExamLevel, count: number, rng: Rng): ExamQuesti
   return out;
 }
 
-/** O simulado de um nível: `perSection` perguntas em cada seção (a menos que o conteúdo do nível seja menor, ou que o nível ainda não tenha a seção, como a gramática do N3), seção por seção. */
+/** O simulado de um nível: `perSection` perguntas em cada seção (a menos que o conteúdo do nível seja menor), seção por seção. */
 export function buildExam(level: ExamLevel, perSection: number, rng: Rng = Math.random): ExamQuestion[] {
   return [...vocabQuestions(level, perSection, rng), ...readingQuestions(level, perSection, rng), ...kanjiQuestions(level, perSection, rng), ...grammarQuestions(level, perSection, rng)];
 }

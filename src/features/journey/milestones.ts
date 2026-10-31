@@ -51,6 +51,7 @@ export function learnedWordsByLevel(vocab: SrsState): { n5: number; n4: number; 
 
 /** Os tópicos de gramática do N4 têm o prefixo "n4-" no id. */
 const N4_TOPICS = ALL_GRAMMAR.filter((t) => t.id.startsWith('n4-'));
+const N3_TOPICS = ALL_GRAMMAR.filter((t) => t.id.startsWith('n3-'));
 const N5_TOPICS = ALL_GRAMMAR.filter((t) => !t.id.startsWith('n4-') && !t.id.startsWith('n3-'));
 
 const firm = (srs: SrsState, chars: readonly string[]): number => chars.filter((c) => (srs[c]?.b ?? 0) >= FIRM_BOX).length;
@@ -90,6 +91,7 @@ export function levelPaths(srs: SrsState, vocab: SrsState, conj: SrsState = {}, 
       title: 'Nível N3',
       milestones: [
         { id: 'words3', label: 'Palavras do N3 aprendidas', have: words.n3, goal: N3_WORD_TOTAL },
+        { id: 'grammar3', label: 'Tópicos de gramática do N3 dominados (teste)', have: N3_TOPICS.filter((t) => mastered[t.id] !== undefined).length, goal: N3_TOPICS.length },
         { id: 'kanji3', label: 'Kanji do N3 firmes', have: firm(srs, N3_KANJI), goal: N3_KANJI.length },
       ],
     },

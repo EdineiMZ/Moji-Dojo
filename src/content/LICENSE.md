@@ -4,6 +4,12 @@
 > conteúdo escrito por IA por um falante**. A licença do código está em `LICENSE`, na raiz, e as licenças de terceiros estão
 > resumidas em `NOTICE.md`; este arquivo traz o detalhe de cada fonte.
 
+## Palavras da Casa do Mochi (`house.ts`)
+
+- 16 palavras de cômodos e móveis (寝室, ベランダ, 絨毯, 手すり, 風鈴, 植木鉢, 灯籠, こたつ, 座布団, 竹, アヒル, 浴槽, 桶, 花壇, ランプ, 提灯) que as listas do N5, do N4 e do N3 não tinham.
+  Escolhidas por mim entre palavras comuns do dia a dia, sem copiar lista de ninguém; a classe gramatical vem do JMdict, como nas outras. Os significados em
+  português foram escritos por IA e **ainda não foram revisados por um falante**.
+
 ## Lista JLPT N3 (`n3.ts`, gerado em `scripts/vocab-n3/`)
 
 - **Origem direta e licença:** a mesma das listas N5 e N4: projeto *open-anki-jlpt-decks* (licença MIT), arquivo `src/n3.csv`, com dados das

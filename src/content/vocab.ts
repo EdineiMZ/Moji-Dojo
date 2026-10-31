@@ -2,6 +2,7 @@ import { KANA } from '@/data/kana';
 import { KANA_EXAMPLES, KANJI_EXAMPLES } from '@/data/examples';
 import { KANJI, KANJI_CATEGORIES } from '@/data/kanji';
 import { SIMULATOR_WORDS } from '@/data/keyboard';
+import { HOUSE_WORDS } from './house';
 import { N3_WORDS } from './n3';
 import { N4_WORDS } from './n4';
 import { N5_WORDS } from './n5';
@@ -93,6 +94,9 @@ export const buildN3Vocabulary = (): VocabWord[] => fromSource(N3_WORDS);
 
 /** O nível de uma palavra vem do prefixo do grupo ("N4: Verbos"); o que não tem prefixo (kana, kanji, teclado) conta como N5. */
 export const wordLevelOfGroup = (group: string): 'N5' | 'N4' | 'N3' => (group.startsWith('N3:') ? 'N3' : group.startsWith('N4:') ? 'N4' : 'N5');
+
+/** As palavras da Casa do Mochi que as outras listas não tinham (./house.ts), no fim da trilha. */
+export const buildHouseVocabulary = (): VocabWord[] => fromSource(HOUSE_WORDS);
 
 function fromSource(words: readonly SourceWord[]): VocabWord[] {
   return words.map((w): VocabWord => {

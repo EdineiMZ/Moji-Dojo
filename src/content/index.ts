@@ -1,10 +1,10 @@
 import type { VocabGroup, VocabWord } from './types';
-import { buildHtmlVocabulary, buildN3Vocabulary, buildN4Vocabulary, buildN5Vocabulary, mergeVocabulary } from './vocab';
+import { buildHouseVocabulary, buildHtmlVocabulary, buildN3Vocabulary, buildN4Vocabulary, buildN5Vocabulary, mergeVocabulary } from './vocab';
 
 export type { VocabGroup, VocabKind, VocabWord } from './types';
 
 /** Todo o vocabulário do app, na ordem de estudo: o inicial e depois a lista N5, a N4 e a N3. */
-export const VOCAB: readonly VocabWord[] = mergeVocabulary(buildHtmlVocabulary(), buildN5Vocabulary(), buildN4Vocabulary(), buildN3Vocabulary());
+export const VOCAB: readonly VocabWord[] = mergeVocabulary(buildHtmlVocabulary(), buildN5Vocabulary(), buildN4Vocabulary(), buildN3Vocabulary(), buildHouseVocabulary());
 
 const WORD_BY_ID: ReadonlyMap<string, VocabWord> = new Map(VOCAB.map((w) => [w.id, w]));
 

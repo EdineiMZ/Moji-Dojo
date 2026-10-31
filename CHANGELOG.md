@@ -2,6 +2,16 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.33.0] - 2026-10-31
+
+Casa do Mochi: cada peça é uma palavra de japonês.
+
+- **Palavra para comprar:** cada cômodo e cada móvel tem uma palavra (cama = ベッド, mesa = 机, geladeira = 冷蔵庫, banheira = 浴槽...). Antes de a compra se concluir, você vê o japonês grande, a leitura, o romaji (conforme os Ajustes), ouve e escolhe o significado. Errar só deixa tentar de novo; acertar conclui a compra.
+- **Direto para as revisões:** a palavra aprendida entra nos cartões de vocabulário (como qualquer palavra nova), então volta na revisão espaçada. Na linha de cada móvel comprado aparece a palavra, com a leitura e o significado.
+- **Visita guiada:** com 3 palavras da casa, um botão leva a uma rodada de 5 perguntas (japonês → significado e significado → japonês), com som. Cada primeira resposta vale como uma revisão do vocabulário, com as mesmas regras (pétalas, sequência, desafio da semana).
+- **16 palavras novas no vocabulário** (grupo "Casa do Mochi"): 寝室, ベランダ, 絨毯, 手すり, 風鈴, 植木鉢, 灯籠, こたつ, 座布団, 竹, アヒル, 浴槽, 桶, 花壇, ランプ e 提灯. Significados escritos por IA, a revisar por um falante.
+- **Ainda não visto no aparelho:** a visita e o desafio foram cobertos por testes, mas não abri esta versão em tela.
+
 ## [2.32.0] - 2026-10-31
 
 Casa do Mochi, fase 2: quatro cômodos novos.

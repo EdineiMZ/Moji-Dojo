@@ -2,12 +2,15 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Svg, { G } from 'react-native-svg';
 import { AppText, Bold, Button, Card, ChipRow, Mascot, PetalRain } from '@/components';
+import { JpText } from '@/features/annotate/JpText';
 import { useProgressStore } from '@/store';
 import { fonts, radii, spacing, useTheme } from '@/theme';
 import { outfit as outfitOf } from '@/features/journey/journey';
 import { useMochiMood } from '@/features/journey/useMochiMood';
 import { FURNITURE_ART, ROOM_BACKGROUND, SCENE_HEIGHT, SCENE_WIDTH } from '../art';
 import { findFurniture, findRoom, furnitureOf, HOME_BUY_MESSAGES, ROOMS, type Furniture, type Room } from '../home';
+import { houseWordOf, wordsOf } from '../words';
+import { VisitView, WordChallenge } from './HouseWords';
 
 const KIND_LABELS = { inside: 'Dentro de casa', outside: 'Do lado de fora' } as const;
 
@@ -58,10 +61,13 @@ export function HomeView() {
   const { colors } = useTheme();
   const journey = useProgressStore((s) => s.journey);
   const buy = useProgressStore((s) => s.buyHomeThing);
+  const learnWords = useProgressStore((s) => s.learnWords);
   const [roomId, setRoomId] = useState(ROOMS[0]?.id ?? 'quarto');
   const [confirming, setConfirming] = useState<string | null>(null);
   const [message, setMessage] = useState<{ text: string; ok: boolean } | null>(null);
   const [celebrate, setCelebrate] = useState(0);
+  const [challenge, setChallenge] = useState<{ kind: 'room' | 'furniture'; id: string; name: string } | null>(null);
+  const [visiting, setVisiting] = useState(false);
 
   const room = findRoom(roomId) ?? ROOMS[0];
   if (!room) return null;
@@ -76,9 +82,23 @@ export function HomeView() {
       setMessage({ text: HOME_BUY_MESSAGES[error], ok: false });
       return;
     }
-    setMessage({ text: kind === 'room' ? `${name} é seu! Agora é só mobiliar.` : `${name} já está no cômodo.`, ok: true });
+    const word = houseWordOf(id);
+    if (word) learnWords([word.id]);
+    const learned = word ? ` Palavra nova: ${word.jp}${word.reading !== word.jp ? ` (${word.reading})` : ''}, ${word.meaning}. Ela já está nas suas revisões.` : '';
+    setMessage({ text: (kind === 'room' ? `${name} é seu! Agora é só mobiliar.` : `${name} já está no cômodo.`) + learned, ok: true });
     setCelebrate((n) => n + 1);
   };
+
+  /** Comprar: se a peça tem palavra, primeiro a pessoa aprende a palavra; a compra só acontece depois de acertar. */
+  const start = (kind: 'room' | 'furniture', id: string, name: string) => {
+    if (houseWordOf(id)) {
+      setConfirming(null);
+      setChallenge({ kind, id, name });
+      return;
+    }
+    purchase(kind, id, name);
+  };
+  const ownedWords = wordsOf([...journey.home.rooms, ...journey.home.furniture]);
 
   const options = ROOMS.map((r) => ({ value: r.id, label: `${r.icon} ${r.name}${journey.home.rooms.includes(r.id) ? '' : ' 🔒'}` }));
 
@@ -104,57 +124,93 @@ export function HomeView() {
 
       <RoomScene room={room} furniture={mine} locked={!owned} />
 
-      <View style={styles.titleRow}>
-        <AppText variant="title">{room.name}</AppText>
-        <AppText variant="caption" color="muted">
-          {KIND_LABELS[room.kind]}
-        </AppText>
-      </View>
-      <AppText color="muted">{room.description}</AppText>
-
-      {message ? (
-        <AppText color={message.ok ? 'ok' : 'bad'} accessibilityLiveRegion="polite">
-          {message.text}
-        </AppText>
+      {visiting ? <VisitView owned={ownedWords} onExit={() => setVisiting(false)} /> : null}
+      {challenge && houseWordOf(challenge.id) ? (
+        <WordChallenge
+          word={houseWordOf(challenge.id) as NonNullable<ReturnType<typeof houseWordOf>>}
+          name={challenge.name}
+          onCancel={() => setChallenge(null)}
+          onDone={() => {
+            const done = challenge;
+            setChallenge(null);
+            purchase(done.kind, done.id, done.name);
+          }}
+        />
       ) : null}
 
-      {!owned ? (
-        confirming === room.id ? (
-          <Card enterIndex={0} style={styles.confirm}>
-            <AppText center>
-              Comprar <Bold>{room.name}</Bold> por 🌸 {room.price}? Sobram 🌸 {journey.petals - room.price}.
-            </AppText>
-            <Button label="Confirmar a compra" onPress={() => purchase('room', room.id, room.name)} />
-            <Button label="Voltar" variant="ghost" onPress={() => setConfirming(null)} />
-          </Card>
-        ) : (
-          <Button
-            label={journey.petals >= room.price ? `Comprar o cômodo por 🌸 ${room.price}` : `Faltam 🌸 ${room.price - journey.petals}`}
-            disabled={journey.petals < room.price}
-            onPress={() => setConfirming(room.id)}
-          />
-        )
-      ) : (
+      {visiting || challenge ? null : (
         <>
+        <View style={styles.titleRow}>
+          <AppText variant="title">{room.name}</AppText>
           <AppText variant="caption" color="muted">
-            {mine.length} de {pieces.length} móveis
+            {KIND_LABELS[room.kind]}
           </AppText>
-          {pieces.map((piece) => (
-            <FurnitureRow
-              key={piece.id}
-              piece={piece}
-              has={mine.includes(piece.id)}
-              petals={journey.petals}
-              confirming={confirming === piece.id}
-              onAsk={() => setConfirming(piece.id)}
-              onCancel={() => setConfirming(null)}
-              onBuy={() => purchase('furniture', piece.id, piece.name)}
+        </View>
+        <AppText color="muted">{room.description}</AppText>
+
+        {message ? (
+          <AppText color={message.ok ? 'ok' : 'bad'} accessibilityLiveRegion="polite">
+            {message.text}
+          </AppText>
+        ) : null}
+
+        {!owned ? (
+          confirming === room.id ? (
+            <Card enterIndex={0} style={styles.confirm}>
+              <AppText center>
+                Comprar <Bold>{room.name}</Bold> por 🌸 {room.price}? Sobram 🌸 {journey.petals - room.price}.
+              </AppText>
+              <Button label="Confirmar a compra" onPress={() => start('room', room.id, room.name)} />
+              <Button label="Voltar" variant="ghost" onPress={() => setConfirming(null)} />
+            </Card>
+          ) : (
+            <Button
+              label={journey.petals >= room.price ? `Comprar o cômodo por 🌸 ${room.price}` : `Faltam 🌸 ${room.price - journey.petals}`}
+              disabled={journey.petals < room.price}
+              onPress={() => setConfirming(room.id)}
             />
-          ))}
+          )
+        ) : (
+          <>
+            <AppText variant="caption" color="muted">
+              {mine.length} de {pieces.length} móveis
+            </AppText>
+            {pieces.map((piece) => (
+              <FurnitureRow
+                key={piece.id}
+                piece={piece}
+                has={mine.includes(piece.id)}
+                petals={journey.petals}
+                confirming={confirming === piece.id}
+                onAsk={() => setConfirming(piece.id)}
+                onCancel={() => setConfirming(null)}
+                onBuy={() => start('furniture', piece.id, piece.name)}
+              />
+            ))}
+            {ownedWords.length >= 3 ? (
+              <Button label={`Visita guiada: as ${ownedWords.length} palavras da casa`} variant="soft" onPress={() => setVisiting(true)} />
+            ) : (
+              <AppText variant="caption" color="muted">
+                Com 3 palavras da casa, o Mochi te leva numa visita guiada para revisar todas.
+              </AppText>
+            )}
+          </>
+        )}
         </>
       )}
       {celebrate > 0 ? <PetalRain key={celebrate} count={16} /> : null}
     </View>
+  );
+}
+
+/** A palavra de uma peça que já está na casa, com como se lê e o significado. */
+function HouseWordLine({ id }: { id: string }) {
+  const word = houseWordOf(id);
+  if (!word) return null;
+  return (
+    <JpText variant="caption">
+      {`Palavra: ${word.jp}${word.reading !== word.jp ? ` (${word.reading})` : ''} · ${word.meaning}`}
+    </JpText>
   );
 }
 
@@ -167,6 +223,7 @@ function FurnitureRow({ piece, has, petals, confirming, onAsk, onCancel, onBuy }
         <AppText variant="caption" color="muted">
           {piece.description}
         </AppText>
+        {has ? <HouseWordLine id={piece.id} /> : null}
         {confirming ? (
           <AppText variant="caption">
             Comprar por 🌸 {piece.price}? Sobram 🌸 {petals - piece.price}.

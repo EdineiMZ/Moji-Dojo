@@ -22,6 +22,8 @@ export interface PairItem {
   script: 'pair';
   /** Leitura em kana, quando a palavra tem kanji: é o que a voz fala e o que a explicação mostra. */
   reading?: string;
+  /** Como a palavra aparece na tela quando difere de `char` (sufixos: "〜にくい"). `char` continua sendo a identidade. */
+  display?: string;
   /** Romaji da palavra, para a ajuda "Ver romaji" antes de responder. */
   romaji?: string;
   /** Cartão de revisão a que a pergunta pertence, quando o item não basta para saber (ex.: verbo + forma). */
@@ -36,6 +38,9 @@ export interface PairItem {
 
 /** O que uma pergunta pode ter como resposta: um caractere estudado ou uma palavra de par difícil. */
 export type QuizItem = StudyItem | PairItem;
+
+/** O texto do item na tela: o `display` de uma palavra ("〜にくい") ou o próprio caractere. */
+export const shownChar = (item: QuizItem): string => (item.script === 'pair' ? (item.display ?? item.char) : item.char);
 
 export const isStudyItem = (item: QuizItem): item is StudyItem => item.script !== 'pair';
 

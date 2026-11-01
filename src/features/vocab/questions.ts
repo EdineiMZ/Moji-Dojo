@@ -2,14 +2,21 @@ import { VOCAB, type VocabWord } from '@/content';
 import { shuffle, type Direction, type PairItem, type Question, type Rng } from '@/features/quiz/quiz';
 import { cardKey, parseCardKey, type CardDir } from './cards';
 import { sharesSense } from './senses';
+import { displayOf, explainWord } from './wordInfoText';
 
 /** A palavra no formato que o quiz entende: o japonês, o significado e a leitura (para a voz). */
-export const toQuizItem = (word: VocabWord): PairItem => ({
-  char: word.jp,
-  label: word.meaning,
-  script: 'pair',
-  ...(word.reading !== word.jp ? { reading: word.reading } : {}),
-});
+export const toQuizItem = (word: VocabWord): PairItem => {
+  const explain = explainWord(word);
+  const display = displayOf(word);
+  return {
+    char: word.jp,
+    label: word.meaning,
+    script: 'pair',
+    ...(word.reading !== word.jp ? { reading: word.reading } : {}),
+    ...(display !== word.jp ? { display } : {}),
+    ...(explain ? { explain } : {}),
+  };
+};
 
 const DIRECTION: Readonly<Record<CardDir, Direction>> = { jm: 'k2r', mj: 'r2k', au: 'audio', rd: 'k2r' };
 

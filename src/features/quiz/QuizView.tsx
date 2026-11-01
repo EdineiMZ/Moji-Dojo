@@ -38,6 +38,7 @@ import {
   isStudyItem,
   quizResult,
   resolveQuestion,
+  shownChar,
   startQuiz,
   type AnswerOutcome,
   type Question,
@@ -241,7 +242,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
                 ) : (
                   <>
                     <AppText variant="glyph" center style={promptGlyphStyle(current.item.char)}>
-                      {current.item.char}
+                      {shownChar(current.item)}
                     </AppText>
                     {current.item.script === 'pair' && current.item.reading ? (
                       <WordHelp
@@ -261,7 +262,7 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
                 <OptionButton
                   key={`${current.item.char}-${opt.char}`}
                   index={i}
-                  label={toChar ? opt.char : opt.label}
+                  label={toChar ? shownChar(opt) : opt.label}
                   glyph={toChar && [...opt.char].length <= 8}
                   state={stateOf(opt.char)}
                   onPress={() => pick(opt.char)}

@@ -14,6 +14,7 @@ import {
   vocabCounts,
 } from './cards';
 import { buildVocabOptions, buildVocabQuestions, questionCardKey, toQuizItem } from './questions';
+import { explainWord } from './wordInfoText';
 import { DISTINCT_WORDS, fromTwins, isSecondaryTwin, twinsOf } from './twins';
 
 /** Sorteio repetível: sequência fixa de números em [0, 1). */
@@ -22,8 +23,9 @@ const seeded = (seed: number) => () => {
   return seed / 4294967296;
 };
 
-const kanaWord = VOCAB.find((w) => isKanaOnly(w)) as (typeof VOCAB)[number];
-const kanjiWord = VOCAB.find((w) => !isKanaOnly(w)) as (typeof VOCAB)[number];
+// Palavras sem extras (exemplo, outros sentidos, sufixo): a explicação simples vale para elas.
+const kanaWord = VOCAB.find((w) => isKanaOnly(w) && explainWord(w) === undefined) as (typeof VOCAB)[number];
+const kanjiWord = VOCAB.find((w) => !isKanaOnly(w) && explainWord(w) === undefined) as (typeof VOCAB)[number];
 const NOW = 1_800_000_000_000;
 
 describe('cartões', () => {

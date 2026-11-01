@@ -274,3 +274,8 @@ A palavra de exemplo de cada kana e kanji e as palavras do simulador de teclado 
 2. **Créditos que a licença de cada fonte exige:** manter em **Ajustes → Sobre** e em `NOTICE.md` a menção ao KanjiVG, ao JMdict e KANJIDIC2 (EDRDG, https://www.edrdg.org/edrdg/licence.html), ao Kanjium, ao Tatoeba (com o link de cada frase), às listas de Jonathan Waller e aos falantes do Lingua Libre. Se as frases ou os áudios forem copiados para fora do app (um site, por exemplo), levar o crédito e o link junto.
 3. **Termos do site do VOICEVOX (lidos em 2026-10-27):** os "Termos de uso do software" tratam do programa VOICEVOX (uso livre, sem redistribuir o software sem autorização, sem engenharia reversa, crédito obrigatório) e não falam das amostras de áudio do site. O áudio gerado é regido pelos termos de cada personagem, que permitem o uso com o crédito "VOICEVOX:nome"; o app mostra esse crédito ao tocar a amostra e só a busca quando a pessoa pede, sem guardar nem redistribuir.
 4. Conferir a tela **Ajustes → Sobre** e este arquivo e atualizar o texto se alguma fonte mudar.
+
+## Exemplos dos sufixos (`wordExtras.ts`)
+
+- **Frases de exemplo:** 10 frases reais do **Tatoeba** (https://tatoeba.org), todas sob **CC BY 2.0 FR**, usadas como exemplo de uso de sufixos e auxiliares (〜にくい, 〜やすい, 〜がち, 〜だらけ, 〜っぽい, 〜みたい, 〜まみれ, 〜ずつ, 〜ごと, はず). Cada uma guarda o número da frase; os autores aparecem em `https://tatoeba.org/sentences/show/<id>`. A frase em japonês e a tradução são as do Tatoeba, sem alteração.
+- **Alterações feitas neste projeto:** a leitura em kana de 4 frases (〜がち, 〜っぽい, 〜ずつ, 〜ごと) foi escrita à mão a partir do texto e **precisa de revisão por um falante**; as das outras 6 vêm do banco de frases já conferido.

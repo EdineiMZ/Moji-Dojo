@@ -1,3 +1,4 @@
+import { displayOf, exampleOf, otherSensesOf } from './wordInfoText';
 import { useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { AppText, Bold, Button, Card } from '@/components';
@@ -28,6 +29,8 @@ export function WordCard({ word, enterIndex }: WordCardProps) {
   const showReading = word.reading !== word.jp;
   const accent = fromTwins(word, accentOf);
   const kind = wordClass(word);
+  const extraExample = exampleOf(word);
+  const others = otherSensesOf(word);
   const examples = fromTwins(word, (w) => { const found = examplesFor(w.id); return found.length > 0 ? found : undefined; }) ?? [];
   const { colors } = useTheme();
   const note = useProgressStore((s) => s.wordNotes[word.id]);
@@ -37,7 +40,7 @@ export function WordCard({ word, enterIndex }: WordCardProps) {
 
   return (
     <Card {...(enterIndex === undefined ? {} : { enterIndex })}>
-      <AppText style={styles.jp}>{word.jp}</AppText>
+      <AppText style={styles.jp}>{displayOf(word)}</AppText>
       {kind ? (
         <AppText variant="caption" color="muted">
           {kind}
@@ -46,6 +49,28 @@ export function WordCard({ word, enterIndex }: WordCardProps) {
       {showReading ? <AppText color="muted">{word.reading}</AppText> : null}
       {word.romaji ? <RomajiLine text={word.romaji} /> : null}
       <AppText variant="title">{word.meaning}</AppText>
+      {extraExample ? (
+        <View style={styles.kanji}>
+          <AppText variant="caption" color="muted">
+            Exemplo
+          </AppText>
+          <AppText>{extraExample.jp}</AppText>
+          {extraExample.reading !== extraExample.jp ? <AppText color="muted">{extraExample.reading}</AppText> : null}
+          <AppText color="muted">{extraExample.pt}</AppText>
+        </View>
+      ) : null}
+      {others.length > 0 ? (
+        <View style={styles.kanji}>
+          <AppText variant="caption" color="muted">
+            Outros sentidos de {word.reading}
+          </AppText>
+          {others.map((w) => (
+            <AppText key={w.id}>
+              {displayOf(w)} = {w.meaning}
+            </AppText>
+          ))}
+        </View>
+      ) : null}
       {accent !== undefined && moras(word.reading).length >= 2 ? <PitchGraph reading={word.reading} accent={accent} caption /> : null}
       {breakdown.length > 0 ? (
         <View style={styles.kanji}>

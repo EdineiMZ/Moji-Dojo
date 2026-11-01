@@ -36,7 +36,7 @@
 559|M|forma; formalidade; formato
 560|M|continuação
 561|L|lã de tricô
-562|M|longitude
+562|M|longitude (geográfica)
 563|M|sistema; linhagem
 564|M|artes do espetáculo
 565|M|corrida de cavalos
@@ -94,7 +94,7 @@
 620|M|desculpa; pretexto
 621|E|assim; com isso
 623|P|público; população
-624|L|perfume
+624|L|perfume (fragrância)
 626|M|mérito; feito notável
 627|C|raio de luz
 628|A|alto (edifício de muitos andares)
@@ -110,7 +110,7 @@
 638|S|união; fusão
 639|S|ensino médio (colégio)
 640|S|anúncio oficial; divulgação
-641|C|mineral
+641|C|mineral (da terra)
 642|S|serviço público
 643|M|item; tópico
 644|C|folhas de outono (momiji)
@@ -277,7 +277,7 @@
 819|L|garagem
 820|P|cobrador; condutor (de trem)
 821|M|desenho do natural; esboço
-822|S|editorial
+822|S|editorial (de jornal)
 823|C|soluço
 824|L|obturador; persiana de enrolar
 825|V|chupar; mastigar

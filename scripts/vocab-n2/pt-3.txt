@@ -53,7 +53,7 @@
 1050|L|depósito; armazém
 1051|M|mútuo; recíproco
 1052|M|criação; obra original
-1053|S|funeral
+1053|S|funeral; cerimônia fúnebre
 1054|S|construção naval
 1055|A|barulhento; agitado
 1056|M|aumento; crescimento

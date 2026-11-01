@@ -336,7 +336,7 @@
 403|M|sublinhado
 404|M|aceleração
 405|M|aceleração (medida)
-406|M|katakana
+406|M|katakana (silabário)
 407|V|ficar arrumado; resolver-se
 408|M|torrão; bloco
 409|V|endurecer; firmar-se

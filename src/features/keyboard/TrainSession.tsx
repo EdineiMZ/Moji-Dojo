@@ -144,7 +144,7 @@ export function TrainSession({ mode, extras, series = 'punct' }: TrainSessionPro
             <Bold>{item.text}</Bold> {item.meaning}
           </AppText>
 
-          <View style={[styles.display, { backgroundColor: colors.background, borderColor: colors.line }]}>
+          <View style={[styles.display, { backgroundColor: colors.background, borderColor: colors.field }]}>
             {typed.length === 0 ? (
               <AppText color="muted">Use o teclado abaixo</AppText>
             ) : (

@@ -83,6 +83,6 @@ const styles = StyleSheet.create({
   badge: { width: 40, height: 40, borderRadius: radii.pill, alignItems: 'center', justifyContent: 'center' },
   info: { flex: 1, gap: 2 },
   actions: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: spacing.md },
-  small: { minHeight: 42, paddingHorizontal: spacing.lg },
+  small: { minHeight: 44, paddingHorizontal: spacing.lg },
   link: { textDecorationLine: 'underline', fontFamily: fonts.bold, paddingVertical: spacing.sm },
 });

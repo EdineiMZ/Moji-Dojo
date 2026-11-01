@@ -156,7 +156,7 @@ export function AiSettingsCard() {
             placeholder={hasKey ? 'Cole uma nova chave para trocar' : 'Cole a chave aqui'}
             placeholderTextColor={colors.muted}
             accessibilityLabel={`Chave de API do ${info.label}`}
-            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
           />
           <View style={styles.buttons}>
             <Button label="Salvar chave" onPress={saveKey} disabled={draft.trim().length === 0} style={styles.flex} />
@@ -192,7 +192,7 @@ export function AiSettingsCard() {
             autoCapitalize="none"
             autoCorrect={false}
             accessibilityLabel="Nome do modelo"
-            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
           />
           <AppText variant="caption" color="muted">
             {isCustom ? 'O nome do modelo como o seu servidor o conhece (por exemplo, o que o "ollama list" mostra).' : `O padrão é um modelo barato e rápido. Sugestões: ${info.models.join(', ')}.`}

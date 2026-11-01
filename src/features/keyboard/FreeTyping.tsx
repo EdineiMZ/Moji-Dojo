@@ -16,7 +16,7 @@ export function FreeTyping() {
   return (
     <Card enterIndex={0}>
       <AppText color="muted">Escreva o que quiser com o teclado de flick. Se o que digitar for uma palavra que o app conhece, ela aparece embaixo.</AppText>
-      <View style={[styles.display, { backgroundColor: colors.background, borderColor: colors.line }]}>
+      <View style={[styles.display, { backgroundColor: colors.background, borderColor: colors.field }]}>
         {buffer ? <AppText style={styles.typed}>{buffer}</AppText> : <AppText color="muted">Use o teclado abaixo</AppText>}
       </View>
       {romaji ? (

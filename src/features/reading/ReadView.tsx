@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
   ruby: { fontSize: 11, lineHeight: 14 },
   jp: { fontSize: 24, lineHeight: 34, borderRadius: radii.md },
   actions: { flexDirection: 'row', gap: spacing.sm, flexWrap: 'wrap', alignItems: 'center' },
-  small: { minHeight: 40 },
+  small: { minHeight: 44 },
   panel: { gap: spacing.sm },
   panelHead: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: spacing.sm },
   item: { paddingVertical: spacing.sm, gap: 2 },

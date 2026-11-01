@@ -130,7 +130,7 @@ export function ScanView() {
             multiline
             onFocus={(e) => scrollIntoView(e.target)}
             accessibilityLabel="Texto reconhecido na foto"
-            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
           />
           <AppText variant="caption" color="muted">
             TOQUE NAS PALAVRAS

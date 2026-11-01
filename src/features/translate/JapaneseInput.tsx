@@ -49,11 +49,11 @@ export function JapaneseInput({ value, onChange, onSubmit, disabled = false }: J
           placeholderTextColor={colors.muted}
           accessibilityLabel="Digite em japonês"
           onSubmitEditing={onSubmit}
-          style={[styles.field, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+          style={[styles.field, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
         />
       ) : (
         <>
-          <View style={[styles.display, { backgroundColor: colors.background, borderColor: colors.line }]}>
+          <View style={[styles.display, { backgroundColor: colors.background, borderColor: colors.field }]}>
             {value ? (
               <AppText style={styles.typed}>{value}</AppText>
             ) : (

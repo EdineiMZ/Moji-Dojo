@@ -94,7 +94,7 @@ export function OnboardingView({ onFinish }: { onFinish: () => void }) {
             accessibilityLabel="Seu nome"
             returnKeyType="done"
             onSubmitEditing={() => canAdvance(id, answers) && next()}
-            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
           />
           <AppText variant="caption" color="muted">
             O nome fica só no seu aparelho. O Mochi usa nas mensagens e nos lembretes.
@@ -167,7 +167,7 @@ export function OnboardingView({ onFinish }: { onFinish: () => void }) {
                 value={String(answers.timeIndex)}
                 onChange={(v) => patch({ timeIndex: Number(v) })}
               />
-              <View style={[styles.examples, { backgroundColor: colors.background, borderColor: colors.line }]}>
+              <View style={[styles.examples, { backgroundColor: colors.background, borderColor: colors.field }]}>
                 <AppText variant="caption" color="muted">
                   ASSIM VÃO APARECER
                 </AppText>

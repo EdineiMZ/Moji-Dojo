@@ -18,7 +18,7 @@ export function SettingsBackupCard() {
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
 
-  const input = [styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }];
+  const input = [styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }];
 
   const generate = () => setCode(exportSettings(useSettingsStore.getState()));
 

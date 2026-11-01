@@ -74,7 +74,7 @@ export function ExportCard() {
             selectTextOnFocus
             value={code}
             accessibilityLabel="Código de backup gerado"
-            style={[styles.code, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+            style={[styles.code, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
           />
           <Button label="Compartilhar código" onPress={share} />
           <Button label="Fechar" variant="ghost" onPress={() => setCode(null)} />

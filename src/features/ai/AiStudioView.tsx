@@ -133,7 +133,7 @@ function ExplainTextCard({ initial, onUsed }: { initial: string; onUsed: () => v
         placeholderTextColor={colors.muted}
         onFocus={(e) => scrollIntoView(e.target)}
         accessibilityLabel="Texto em japonês para explicar"
-        style={[styles.input, styles.multiline, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+        style={[styles.input, styles.multiline, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
       />
       <AppText variant="caption" color="muted">
         {source.length} de {MAX_TEXT_LENGTH} letras

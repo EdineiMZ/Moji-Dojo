@@ -216,7 +216,7 @@ export function VoicePacks() {
         placeholderTextColor={colors.muted}
         accessibilityLabel="Buscar personagem para baixar"
         returnKeyType="search"
-        style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+        style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
       />
       {searching && shown.length === 0 ? <AppText color="muted">Nenhum personagem com esse nome.</AppText> : null}
       {shown.map((pack) => (

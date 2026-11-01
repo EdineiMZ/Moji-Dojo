@@ -21,7 +21,7 @@ interface StatsCardProps {
 function Tile({ value, suffix, label }: { value: number | null; suffix?: string; label: string }) {
   const { colors } = useTheme();
   return (
-    <View style={[styles.tile, { backgroundColor: colors.background, borderColor: colors.line }]}>
+    <View style={[styles.tile, { backgroundColor: colors.background, borderColor: colors.field }]}>
       {value === null ? (
         <AppText style={styles.tileValue}>—</AppText>
       ) : (
@@ -92,5 +92,5 @@ const styles = StyleSheet.create({
   strip: { flexDirection: 'row', justifyContent: 'space-between' },
   stripDay: { alignItems: 'center', gap: 2, flex: 1 },
   stripBox: { width: 16, height: 16, borderRadius: 5, borderWidth: 2 },
-  stripLetter: { fontSize: 10, lineHeight: 12 },
+  stripLetter: { fontSize: 12, lineHeight: 16 },
 });

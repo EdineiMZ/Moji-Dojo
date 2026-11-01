@@ -80,7 +80,7 @@ function SentenceBlocks({ phrase, blocks }: { phrase: TravelPhrase; blocks: read
       <RomajiLine text={phrase.romaji} />
       <AppText color="muted">{phrase.pt}</AppText>
       {block ? (
-        <View style={[styles.explain, { backgroundColor: colors.background, borderColor: colors.line }]}>
+        <View style={[styles.explain, { backgroundColor: colors.background, borderColor: colors.field }]}>
           <AppText>
             <Bold>{block.text}</Bold> · {ROLES[block.role].label}
           </AppText>

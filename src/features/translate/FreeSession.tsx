@@ -123,7 +123,7 @@ export function FreeSession({ items, title, onResult, onExit, again }: FreeSessi
             placeholder="escreva o que entendeu (opcional)"
             placeholderTextColor={colors.muted}
             accessibilityLabel="Escreva o que entendeu"
-            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
           />
           <Button label="Ver a tradução" silent onPress={() => setRevealed(true)} />
         </>

@@ -42,7 +42,16 @@ const ALL_PALETTES: readonly [string, Palette][] = [
   ]),
 ];
 
+/** Contorno de campo: componente de interface, precisa de 3:1 (WCAG 1.4.11). */
+const FIELD_BACKDROPS: readonly (keyof Palette)[] = ['background', 'surface'];
+
 describe.each(ALL_PALETTES)('contraste do tema %s', (_name, palette) => {
+  it.each(FIELD_BACKDROPS)('o contorno dos campos sobre %s tem pelo menos 3:1', (bg) => {
+    expect(contrast(palette.field, palette[bg] as string)).toBeGreaterThanOrEqual(3);
+  });
+  it.each(['background', 'surface'] as const)('o âmbar de texto sobre %s tem pelo menos 4,5:1', (bg) => {
+    expect(contrast(palette.warnText, palette[bg])).toBeGreaterThanOrEqual(4.5);
+  });
   it.each(TEXT_PAIRS)('%s sobre %s tem pelo menos 4,5:1', (fg, bg) => {
     expect(contrast(palette[fg] as string, palette[bg] as string)).toBeGreaterThanOrEqual(4.5);
   });

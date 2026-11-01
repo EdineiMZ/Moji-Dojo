@@ -76,7 +76,7 @@ export function RegisterCard() {
         placeholderTextColor={colors.muted}
         onFocus={(e) => scrollIntoView(e.target)}
         accessibilityLabel="Frase para reescrever em três registros"
-        style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+        style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
       />
       <Button label={busy ? 'Reescrevendo...' : '✨ Mostrar as três formas'} onPress={run} disabled={busy || input.trim().length === 0} />
       {message ? (

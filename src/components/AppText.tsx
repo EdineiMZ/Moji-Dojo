@@ -27,8 +27,8 @@ const MAX_SCALE: Record<TextVariant, number> = { body: 1.8, caption: 1.8, title:
 /** Texto com a fonte e as cores do tema. Use no lugar do Text puro. */
 export function AppText({ variant = 'body', color = 'ink', center, style, ...rest }: AppTextProps) {
   const { colors } = useTheme();
-  // O rosa como texto usa a versão com contraste (no tema claro, o `primary` puro fica claro demais).
-  const textColor = color === 'primary' ? colors.primaryText : colors[color];
+  // Rosa e âmbar como texto usam a versão com contraste (no tema claro, o puro fica claro demais).
+  const textColor = color === 'primary' ? colors.primaryText : color === 'warn' ? colors.warnText : colors[color];
   return (
     <Text
       maxFontSizeMultiplier={MAX_SCALE[variant]}

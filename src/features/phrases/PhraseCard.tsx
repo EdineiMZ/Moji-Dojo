@@ -100,7 +100,7 @@ export function PhraseCard({ phrase, breakdown = false, rating, enterIndex }: Ph
 const styles = StyleSheet.create({
   jp: { fontFamily: fonts.bold, fontSize: 22, lineHeight: 30 },
   row: { flexDirection: 'row', gap: spacing.sm, flexWrap: 'wrap' },
-  small: { minHeight: 42, paddingHorizontal: spacing.lg },
+  small: { minHeight: 44, paddingHorizontal: spacing.lg },
   rating: { gap: spacing.xs },
   breakdown: { gap: spacing.sm },
   table: { borderWidth: 1, borderRadius: radii.md, overflow: 'hidden' },

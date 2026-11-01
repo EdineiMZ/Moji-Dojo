@@ -77,7 +77,7 @@ export function WordCard({ word, enterIndex }: WordCardProps) {
             placeholder="Sua dica para lembrar esta palavra"
             placeholderTextColor={colors.muted}
             accessibilityLabel="Sua dica de memória"
-            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
           />
           <View style={styles.row}>
             <Button

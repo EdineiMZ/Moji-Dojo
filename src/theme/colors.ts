@@ -26,13 +26,17 @@ export interface Palette {
   bad: string;
   badSoft: string;
   warn: string;
+  /** O âmbar quando é texto sobre fundo claro (o `warn` puro tem menos de 3:1 ali). */
+  warnText: string;
+  /** Contorno de campos de texto e controles: pelo menos 3:1 com o fundo e com o cartão (WCAG 1.4.11). Calculado por tema. */
+  field: string;
   /** Cor das marcas dos gráficos (linhas e barras): contraste de pelo menos 3:1 com o cartão. */
   chart: string;
   /** Cor da sombra suave dos cartões. */
   shadow: string;
 }
 
-export const lightPalette: Palette = {
+const lightBase: Omit<Palette, 'field'> = {
   background: '#FFF8F3',
   backgroundGradient: ['#FFF1F5', '#EEF6FF'],
   surface: '#FFFFFF',
@@ -52,12 +56,13 @@ export const lightPalette: Palette = {
   bad: '#CA2443',
   badSoft: '#FFE4E9',
   warn: '#D98E1F',
+  warnText: '#8A5600',
   chart: '#D4487A',
   shadow: '#B58AA5',
 };
 
 /** Modo escuro: céu noturno de Tóquio. */
-export const darkPalette: Palette = {
+const darkBase: Omit<Palette, 'field'> = {
   background: '#12122B',
   backgroundGradient: ['#1B1740', '#0D1230'],
   surface: '#1F1F45',
@@ -77,9 +82,36 @@ export const darkPalette: Palette = {
   bad: '#FF8498',
   badSoft: '#4A1F2C',
   warn: '#F2BC5E',
+  warnText: '#F2BC5E',
   chart: '#FF9EC4',
   shadow: '#000000',
 };
+
+const channel = (hex: string, i: number) => parseInt(hex.slice(i, i + 2), 16);
+const luminance = (hex: string): number => {
+  const [r = 0, g = 0, b = 0] = [1, 3, 5].map((i) => channel(hex, i) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+const contrastOf = (a: string, b: string): number => {
+  const [hi = 0, lo = 0] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+};
+const mix = (from: string, to: string, t: number): string =>
+  `#${[1, 3, 5].map((i) => Math.round(channel(from, i) * (1 - t) + channel(to, i) * t).toString(16).padStart(2, '0')).join('')}`;
+
+/** O tom mais suave entre o fundo e o `muted` que ainda dá 3:1 com o fundo e com o cartão: contorno visível sem pesar no visual. */
+function fieldColor(p: Omit<Palette, 'field'>): string {
+  for (let t = 0.3; t < 1; t += 0.05) {
+    const c = mix(p.background, p.muted, t);
+    if (contrastOf(c, p.background) >= 3.05 && contrastOf(c, p.surface) >= 3.05) return c;
+  }
+  return p.muted;
+}
+
+const withField = (p: Omit<Palette, 'field'>): Palette => ({ ...p, field: fieldColor(p) });
+
+export const lightPalette: Palette = withField(lightBase);
+export const darkPalette: Palette = withField(darkBase);
 
 /** Temas de cor: o "tema" claro/escuro continua à parte (cada tema de cor tem as duas versões). */
 export type ColorTheme = 'sakura' | 'matcha' | 'oceano' | 'lavanda';
@@ -119,5 +151,5 @@ export function paletteFor(theme: ColorTheme, isDark: boolean): Palette {
   const base = isDark ? darkPalette : lightPalette;
   if (theme === 'sakura') return base;
   const accent = ACCENTS[theme];
-  return { ...base, ...(isDark ? accent.dark : accent.light) };
+  return withField({ ...base, ...(isDark ? accent.dark : accent.light) });
 }

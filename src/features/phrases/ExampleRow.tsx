@@ -59,7 +59,7 @@ export function ExampleRow({ example }: { example: PhraseExample }) {
         accessibilityRole="button"
         accessibilityLabel={`Ouvir ${example.jp}`}
         onPress={play}
-        style={[styles.row, { backgroundColor: colors.background, borderColor: colors.line }]}
+        style={[styles.row, { backgroundColor: colors.background, borderColor: colors.field }]}
       >
         {speaker}
         <View style={styles.text}>{body}</View>
@@ -68,7 +68,7 @@ export function ExampleRow({ example }: { example: PhraseExample }) {
   }
 
   return (
-    <View style={[styles.row, { backgroundColor: colors.background, borderColor: colors.line }]}>
+    <View style={[styles.row, { backgroundColor: colors.background, borderColor: colors.field }]}>
       <PressableScale accessibilityRole="button" accessibilityLabel={`Ouvir ${example.jp}`} onPress={play}>
         {speaker}
       </PressableScale>
@@ -93,6 +93,6 @@ const styles = StyleSheet.create({
     borderRadius: radii.md,
     borderWidth: 1,
   },
-  speaker: { width: 40, height: 40, borderRadius: radii.pill, alignItems: 'center', justifyContent: 'center' },
+  speaker: { width: 44, height: 44, borderRadius: radii.pill, alignItems: 'center', justifyContent: 'center' },
   text: { flex: 1, gap: 1 },
 });

@@ -106,7 +106,7 @@ export function RemindersCard() {
             }}
           />
           {examples.length > 0 ? (
-            <View style={[styles.examples, { backgroundColor: colors.background, borderColor: colors.line }]}>
+            <View style={[styles.examples, { backgroundColor: colors.background, borderColor: colors.field }]}>
               <AppText variant="caption" color="muted">
                 ASSIM VÃO APARECER
               </AppText>

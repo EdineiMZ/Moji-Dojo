@@ -72,7 +72,7 @@ function Picker({ onPick }: { onPick: (s: Scenario) => void }) {
         placeholder="Onde você está e com quem fala?"
         placeholderTextColor={colors.muted}
         accessibilityLabel="Descrição da sua cena de conversa"
-        style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+        style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
       />
       <Button label="Começar a minha cena" variant="soft" onPress={() => onPick(customScenario(custom))} disabled={custom.trim().length < 5} />
       <AiDisclaimer />

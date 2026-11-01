@@ -194,7 +194,7 @@ export function MyVoices() {
             placeholderTextColor={colors.muted}
             accessibilityLabel="Buscar voz"
             returnKeyType="search"
-            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
           />
           <ChipRow
             wrap

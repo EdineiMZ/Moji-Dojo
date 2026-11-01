@@ -86,7 +86,7 @@ export function ChallengeView() {
         placeholderTextColor={colors.muted}
         accessibilityLabel="Digite em japonês"
         onSubmitEditing={check}
-        style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+        style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
       />
       <Button label="Conferir" silent onPress={check} />
 

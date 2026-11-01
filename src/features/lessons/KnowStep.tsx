@@ -54,7 +54,7 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
         <View
           style={[
             styles.glyphBox,
-            { width: glyphSize, height: glyphSize, backgroundColor: colors.background, borderColor: colors.line },
+            { width: glyphSize, height: glyphSize, backgroundColor: colors.background, borderColor: colors.field },
           ]}
         >
           {strokes && !isCombo(item) ? (

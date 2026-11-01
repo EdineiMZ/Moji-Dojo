@@ -135,7 +135,7 @@ export function AiExplain({ context, allowQuestion = false, label = '💡 Por qu
           placeholder="Sua dúvida (opcional)"
           placeholderTextColor={colors.muted}
           accessibilityLabel="Sua dúvida para a IA"
-          style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+          style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
         />
       ) : null}
       <Button label={busy ? 'Pensando...' : answer ? 'Perguntar de novo' : allowQuestion ? 'Perguntar à IA' : 'Explicar'} variant="soft" onPress={run} disabled={busy} />

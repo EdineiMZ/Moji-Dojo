@@ -162,7 +162,7 @@ export function MyPhrasesView() {
           placeholder="Eu moro em São Paulo."
           placeholderTextColor={colors.muted}
           accessibilityLabel="O que a frase quer dizer, em português"
-          style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+          style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
         />
 
         <AppText variant="caption" color="muted">

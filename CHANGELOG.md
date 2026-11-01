@@ -2,6 +2,16 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.38.1] - 2026-11-01
+
+Auditoria de design (acessibilidade e consistência), com as skills de design.
+
+- **Contorno dos campos de texto:** os 20 campos do app tinham borda com 1,2 a 1,5 de contraste sobre o fundo, quase invisível, principalmente no tema claro. Agora usam um token novo, `field`, calculado para cada um dos 8 temas (claro e escuro dos 4 temas de cor) para dar pelo menos 3:1 com o fundo e com o cartão (WCAG 1.4.11), mantendo o tom suave.
+- **Âmbar como texto:** a dica da palavra errada na Casa e o aviso dos termos das vozes usavam o âmbar puro (2,7:1 no tema claro). Texto `warn` agora usa `warnText` (6:1 no claro; no escuro continua o mesmo).
+- **Alvos de toque de 44 pt:** o alto-falante dos exemplos (40), os botões pequenos de lição, de frase e de leitura (40 a 42) foram para 44.
+- **Letras da sequência semanal:** de 10 para 12 pt.
+- **Testes:** o teste de contraste dos temas agora também confere o contorno dos campos (3:1) e o âmbar de texto (4,5:1) nos 10 temas.
+
 ## [2.38.0] - 2026-11-01
 
 Vocabulário N1: 2.641 palavras novas.

@@ -130,7 +130,7 @@ function Explorer() {
             placeholder="ex.: biblioteca"
             placeholderTextColor={colors.muted}
             accessibilityLabel="Procurar em português"
-            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+            style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
           />
         )}
         <Button label="Sortear frases" variant="soft" onPress={shuffle} />

@@ -98,7 +98,7 @@ export function ShadowRecorder({ say }: ShadowRecorderProps) {
 
   return (
     <View style={styles.root}>
-      <View style={[styles.wave, { backgroundColor: colors.background, borderColor: colors.line }]} accessibilityLabel="Onda da sua gravação">
+      <View style={[styles.wave, { backgroundColor: colors.background, borderColor: colors.field }]} accessibilityLabel="Onda da sua gravação">
         {bars.length === 0 ? (
           <AppText color="muted">{recording ? 'Gravando...' : 'Grave a sua voz para ver a onda'}</AppText>
         ) : (

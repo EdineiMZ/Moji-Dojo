@@ -79,7 +79,7 @@ export function ConversionSession() {
         <Bold>{item.meaning}</Bold>: digite <Bold>{item.reading}</Bold>
       </AppText>
 
-      <View style={[styles.display, { backgroundColor: colors.background, borderColor: colors.line }]}>
+      <View style={[styles.display, { backgroundColor: colors.background, borderColor: colors.field }]}>
         <AppText style={styles.typed} color={buffer && progress.correct < [...buffer].length ? 'bad' : 'ink'}>
           {buffer || ' '}
         </AppText>

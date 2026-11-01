@@ -45,7 +45,7 @@ export function ProfileCard() {
         placeholderTextColor={colors.muted}
         accessibilityLabel="Seu nome"
         returnKeyType="done"
-        style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.line }]}
+        style={[styles.input, { color: colors.ink, backgroundColor: colors.background, borderColor: colors.field }]}
       />
 
       <AppText variant="caption" color="muted">

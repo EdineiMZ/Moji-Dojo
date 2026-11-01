@@ -12,11 +12,12 @@ export function PracticeCard() {
   const router = useRouter();
   const confusions = useProgressStore((s) => s.confusions);
   const srs = useProgressStore((s) => s.srs);
+  const lessons = useProgressStore((s) => s.lessons);
   const pairs = useMemo(() => confusedPairs(confusions), [confusions]);
   const words = useMemo(() => {
-    const known = knownKana(Object.keys(srs));
+    const known = knownKana(Object.keys(srs), lessons);
     return known.size >= MIN_KNOWN_FOR_WORDS ? readableWords(known).length : 0;
-  }, [srs]);
+  }, [srs, lessons]);
   if (pairs.length === 0 && words < 4) return null;
   return (
     <Card>

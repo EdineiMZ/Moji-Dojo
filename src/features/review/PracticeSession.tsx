@@ -26,9 +26,9 @@ const COPY: Record<PracticeKind, { title: string; empty: string }> = {
 };
 
 function buildQuestions(kind: PracticeKind): Question[] {
-  const { confusions, srs } = useProgressStore.getState();
+  const { confusions, srs, lessons } = useProgressStore.getState();
   if (kind === 'confusions') return buildConfusedQuestions(confusedPairs(confusions), Math.random, 2).slice(0, 12);
-  return buildReadQuestions(knownKana(Object.keys(srs)));
+  return buildReadQuestions(knownKana(Object.keys(srs), lessons));
 }
 
 /**

@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.42.2] - 2026-11-01
+
+Ajustes no treino "Ler palavras": só o que você já aprendeu, as básicas primeiro e uma dica quando o sinal pede.
+
+- **Kana pequenos só depois da lição:** palavras com ゃ/ゅ/ょ só entram depois de concluída a lição da trilha daquele grupo (Combinações 1 a 4, em hiragana e em katakana). O っ/ッ, que nenhuma lição ensina sozinho, só entra depois da lição "Combinações 1" da escrita. Antes, bastava saber o つ, e いっそ aparecia para quem só tinha vogais, K, S, T e N. A mesma regra vale para as palavras misturadas na revisão.
+- **Básicas primeiro:** as palavras são ordenadas por nível JLPT (N5, depois N4, N3...) e, dentro do nível, pelas mais usadas (frequência em frases do Tatoeba). Cada rodada sorteia entre as 30 do topo, então ねこ, いぬ e さかな vêm antes das raras. As alternativas erradas ainda podem vir de qualquer palavra que você consegue ler.
+- **Dica depois da resposta:** quando a palavra tem っ, kana pequeno ou ー, a explicação traz uma dica curta (ex.: "o っ dobra a consoante seguinte (isso)").
+- **Testes:** `practice.test.ts` cobre a liberação por lição, a prioridade por nível e as dicas.
+
 ## [2.42.1] - 2026-11-01
 
 Tela de exercício mais limpa, sem rolar a página.

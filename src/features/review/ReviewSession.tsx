@@ -14,7 +14,7 @@ import { useProgressStore, useSettingsStore } from '@/store';
 import { spacing } from '@/theme';
 import { pickExtraReviewChars, reviewTitle, REVIEW_GOOD_PCT } from './session';
 import { PracticeCard } from './PracticeCard';
-import { withWordQuestions } from './readWords';
+import { knownKana, withWordQuestions } from './readWords';
 import { dueChars } from './srs';
 
 const isKnown = (char: string): boolean => findItem(char) !== undefined;
@@ -127,12 +127,12 @@ function ReviewRun({ extra, light, unlimited, onExit, onDone, onDrawingChange, o
   // responder (ou mudar o ajuste) não altera a sessão em andamento.
   const [writeEnabled] = useState(() => useSettingsStore.getState().writeInReview);
   const [questions] = useState(() => {
-    const { srs } = useProgressStore.getState();
+    const { srs, lessons } = useProgressStore.getState();
     const chars = extra
       ? pickExtraReviewChars(srs, isKnown)
       : dueChars(srs, Date.now(), isKnown).slice(0, batchWithin(light ? REVIEW_LIGHT_BATCH : REVIEW_BATCH, unlimited ? Infinity : currentRoom().reviewsLeft));
     const known = new Set(Object.keys(srs));
-    return withWordQuestions(buildReviewQuestions(chars, Math.random, { write: writeEnabled, known }), known);
+    return withWordQuestions(buildReviewQuestions(chars, Math.random, { write: writeEnabled, known }), knownKana(Object.keys(srs), lessons));
   });
 
   const hasQuestions = questions.length > 0;

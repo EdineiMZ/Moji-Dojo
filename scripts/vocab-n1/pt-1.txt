@@ -1,0 +1,450 @@
+1|M|revelação (de filme)
+2|M|princípio; regra geral
+3|M|ponto de vista
+4|D|local; no próprio lugar
+5|M|limite; restrição
+6|M|origem; ponto de partida
+7|M|original; fonte
+8|M|bomba atômica
+9|M|texto original
+10|A|rigoroso; estrito
+11|A|sensato; prudente
+12|M|economia; poupança
+13|C|petróleo bruto
+14|M|uso duplo; multiuso
+15|M|poder; autoridade
+16|M|debate; opinião pública
+17|M|falecido; o finado
+18|M|vocabulário; glossário
+19|V|apaixonar-se; amar
+20|M|primeiro (em ordem); casca
+22|M|boa vontade; favor
+23|M|ato; conduta
+24|M|acordo; consentimento
+25|M|engenharia
+26|M|protesto; objeção
+27|M|consulta; conferência
+28|L|Palácio Imperial
+29|S|prosperidade econômica
+30|S|mineração
+31|S|empreendimento; indústria
+32|D|planalto
+33|E|alternadamente; mutuamente
+34|E|com brilho intenso
+35|M|arqueologia
+36|M|trabalho manual; manobra
+37|S|cultivo; lavoura
+38|L|mina
+39|S|curso rápido; treinamento
+40|M|declaração oral
+41|S|dedução; abatimento
+42|S|negociação
+43|A|nobre; refinado
+44|M|melhoria; progresso
+45|M|marcha; desfile
+46|F|especiarias
+47|C|precipitação; chuva
+48|C|enchente; inundação
+49|M|síntese; sintético
+50|E|abertamente
+51|M|disputa; resistência
+52|M|plano; concepção
+53|M|recuo; retrocesso
+54|M|brilho; lustro
+55|S|empresa pública
+56|A|em boa forma; satisfatório
+57|A|oral; verbal
+58|M|leitura (de livro, aula)
+59|S|assinatura (de revista, jornal)
+60|S|compra
+61|S|reconhecimento oficial
+62|S|despesas de luz e combustível
+63|S|compra; consumo
+64|M|boa fama; popularidade
+65|S|entrega; emissão (de documento)
+66|S|convocação pública
+67|A|engenhoso; hábil
+68|S|uso público; serviço público
+69|S|varejo
+70|M|eficiência
+71|S|público (mantido pelo governo local)
+72|S|escolta; guarda
+73|L|canto; esquina
+74|A|de pequena estatura
+75|S|cheque
+76|M|produto nacional
+77|M|nacional; estatal
+78|M|confissão
+79|M|defesa nacional
+80|M|propriedade estatal
+81|L|paraíso
+82|S|ONU (Nações Unidas)
+83|M|marrom-escuro
+84|M|origem da palavra; etimologia
+85|M|sensação; estado de espírito
+86|M|conhecimento; noções
+87|M|atenção; propósito
+88|V|ter em mente; esforçar-se por
+89|M|vontade; intenção
+90|V|planejar; aspirar a
+91|A|encorajador; tranquilizador
+92|A|desamparado; inseguro
+93|M|tentativa; experimento
+94|V|tentar; testar
+95|A|agradável; prazeroso
+96|M|erro; margem de erro
+98|P|órfão
+99|V|complicar-se; piorar
+100|V|coar; filtrar
+101|C|copa de árvore; ponta do galho
+102|M|individualidade; personalidade
+103|S|registro civil de família
+104|T|antiguidade
+105|L|kotatsu (mesa aquecida)
+106|V|ser exigente com; fixar-se em
+107|M|exagero
+108|M|truque; macete
+109|A|engraçado; cômico
+110|S|relações diplomáticas
+111|L|antiguidade; objeto de coleção
+112|M|fixação; fixo
+113|M|assunto; questão
+114|M|solidão; isolamento
+115|E|todos; sem exceção
+116|M|recado
+117|E|especialmente; sobretudo
+118|E|em pedacinhos
+119|A|agradável; desejável
+120|L|tabuleiro de go
+121|M|individual; caso a caso
+122|V|enganar; falsificar
+123|A|modesto; cuidadoso
+124|M|comercial (de TV)
+125|V|incluir; colocar (sentimento)
+126|M|comentário
+127|V|trancar-se; ficar recluso
+128|A|próprio; característico
+129|M|calendário
+130|V|concentrar; esmerar-se
+131|E|olhe; veja
+132|M|isolamento
+133|V|aprender com a experiência; ficar enjoado
+134|V|enrijecer; ser exigente com detalhes
+135|M|paciência; persistência
+136|M|base; fundamento
+137|M|mestiço; mistura de raças
+138|M|contato; lente de contato
+139|C|inseto
+140|M|raiz; base profunda
+141|M|confusão; mistura
+142|M|contraste
+143|M|controle
+144|L|compasso; bússola
+145|M|base; fundamento
+146|M|riqueza; bens
+147|M|reencontro
+148|M|desastre; calamidade
+149|C|bactéria; germe
+150|M|trabalho artesanal; truque
+151|S|mineração; extração
+152|M|ciclo
+153|S|votação
+154|S|reconstrução
+155|M|reprodução; recriação
+156|S|fonte de recursos
+157|S|estoque
+158|S|rentabilidade; lucro
+159|M|tamanho
+160|M|reprodução (de áudio); regeneração
+161|S|economia; finanças
+162|M|o melhor possível
+163|S|adoção; aprovação
+164|S|cultivo
+165|M|recaída; reaparecimento
+166|C|célula
+167|S|contratação; adoção
+168|V|interromper; bloquear
+169|V|cantar (pássaros); gorjear
+170|V|ser nítido; brilhar; estar afiado
+171|L|vara; pau (para estender roupa)
+172|V|prosperar; florescer
+173|M|diferença (de valor)
+175|M|parada de mão
+176|E|antes; anteriormente
+177|S|fraude; golpe
+178|S|corte; redução
+179|M|erro; equívoco
+180|M|estratégia; operação
+181|M|grito
+182|V|oferecer; dedicar; erguer
+183|V|aproximar-se de (um ponto)
+184|M|instrução; ordem
+185|V|apresentar; estender; entregar
+186|V|atrapalhar; impedir
+187|V|conceder; ensinar
+188|V|esfregar; acariciar
+189|E|certamente; sem dúvida
+190|V|firmar-se; ficar definido
+191|V|decidir; determinar
+192|M|mesa-redonda; simpósio
+193|A|grosseiro; tosco
+194|L|artigos diversos
+195|M|assassinato
+196|V|imaginar; deduzir
+197|M|conversa fiada
+198|E|de repente; num instante
+199|V|sentir-se renovado
+200|V|compreender; ter um despertar
+202|M|coordenadas
+203|E|não tanto; nem tanto
+204|V|matar aula; enrolar no trabalho
+205|M|estado; maneira; senhor(a) (sufixo)
+206|M|calafrio; frio
+207|P|samurai (guerreiro japonês)
+208|E|como se; com todo gosto
+209|M|ação; efeito; função
+210|V|raptar; sequestrar
+211|V|atrapalhar; fazer mal a
+212|M|ácido
+213|C|montanhas
+214|S|Câmara dos Conselheiros (Japão)
+215|S|licença-maternidade
+216|E|obrigado
+217|S|dinheiro restante
+218|T|pós-parto
+219|A|cruel; severo
+220|S|produção; rendimento
+221|M|consulta; referência
+222|M|visita (humilde)
+223|S|saldo (bancário)
+224|P|Papai Noel
+225|L|cais; píer
+226|M|elogio; louvor
+227|D|encosta da montanha
+228|S|departamento de obstetrícia e ginecologia
+229|M|produto; resultado
+230|C|cordilheira
+231|M|acabamento; resultado final
+232|M|toque final
+233|V|terminar; finalizar
+234|S|criação (de animais)
+235|E|à força; insistindo
+236|M|assento; folha
+237|R|jeans
+238|V|abastecer-se; comprar estoque
+239|V|forçar; obrigar
+240|C|maré
+241|S|odontologia
+242|M|ego; si mesmo
+243|M|consciência; autoconsciência
+244|M|mecanismo; truque
+245|V|armar; montar; provocar
+246|E|no entanto; todavia
+247|M|cor; colorido
+248|L|local de cerimônia
+249|M|costume; tradição
+250|S|negócio; empreendimento
+251|M|desprezo; desdém
+252|M|histórico; currículo
+253|M|trajeto; caminho
+254|A|sujo; nojento
+255|S|companhia teatral
+256|M|incentivo; encorajamento
+257|P|convidado
+258|C|fera; animal selvagem
+259|M|decisão; voto
+260|M|decisão; determinação
+261|C|tuberculose
+262|M|resolução; deliberação
+263|M|combinação; união
+264|S|balanço contábil; fechamento de contas
+265|S|mensalidade escolar
+266|S|final (de campeonato)
+267|C|cristal; cristalização
+268|S|formação (de grupo)
+269|M|união; solidariedade
+270|E|abatido; muito magro
+271|M|decisão; resolução
+272|S|pagamento mensal parcelado
+273|M|escassez; falta
+274|V|chutar; dar um pontapé
+275|V|falar mal de
+276|A|esfumaçado; constrangedor
+277|V|soltar fumaça; ficar enevoado
+279|P|vassalo; servo
+280|C|diarreia
+281|M|autoridade; prestígio
+282|S|dupla ocupação
+283|M|forma original; forma base
+284|M|protótipo; modelo
+285|M|poder; competência
+286|M|atual; em vigor
+287|M|bem de saúde; vivo e bem
+288|M|obra original
+289|P|promotor público
+290|C|átomo
+291|P|governante; chefe de Estado
+292|M|texto original; livro no original
+293|M|concurso com prêmio
+294|M|saudável; sadio
+295|C|elemento (químico)
+296|M|simpatia; sintonia; adesão
+297|E|de jeito nenhum (com negativo)
+298|A|dinâmico
+299|A|precioso; nobre
+300|A|precioso; nobre
+301|M|igualdade; mesmo nível
+302|A|imponente; magnífico
+303|V|valorizar; estimar
+304|E|de algum jeito; dar um jeito
+305|S|investimento; aplicação
+306|S|introdução; implantação
+307|P|a pessoa em questão
+308|S|anexado (a uma carta)
+309|M|fuga
+310|C|hibernação
+311|M|aliança; liga
+312|E|ao que parece; de algum modo
+313|M|força motriz; potência
+314|S|registro; cadastro
+315|M|debate; discussão
+316|V|afastar-se; ir ficando longe
+317|D|desvio; caminho mais longo
+318|M|tom
+319|E|de qualquer jeito; com tendência a
+320|V|censurar; repreender
+321|E|às vezes; de vez em quando
+322|V|ser interrompido; cessar
+323|V|afiar; amolar; polir
+324|M|talento especial
+325|M|ditadura
+326|M|produto típico da região
+327|A|original; próprio
+328|M|reportagem especial; edição especial
+329|S|monopólio
+330|M|originalidade; criatividade
+331|M|pontos marcados; placar
+332|S|envio especial; enviado
+333|A|característico; peculiar
+334|C|espinho
+335|V|realizar; concluir
+336|E|longe de; muito pelo contrário
+337|T|idade (de casar); adolescência
+338|M|trancar as portas
+339|D|a caminho; no meio do caminho
+340|M|base; fundação
+341|V|interromper-se; cessar
+342|S|patente; licença especial
+343|M|privilégio
+344|E|na hora; de imediato
+345|E|de repente
+346|L|alça; maçaneta
+347|M|ruptura; avanço
+348|D|aterro; barranco
+349|S|comunicado; registro
+350|V|atrasar; estagnar
+351|V|arrumar; ajustar; preparar
+353|V|recitar; proclamar
+354|P|senhor feudal
+355|L|ringue (de sumô); arena
+356|L|porta
+357|L|vala; fosso; distância
+358|M|a pé; caminhada
+359|S|obras públicas
+360|V|fazer-se de bobo; fingir ignorância
+361|A|escasso; pobre
+362|M|riqueza; fortuna
+363|V|ser rico; abundar
+364|S|ambos trabalharem para sustentar a casa
+365|V|acompanhar; trazer consigo
+366|S|casal que trabalha fora
+367|M|seco; frio (de modo prático)
+368|S|lavagem a seco
+369|P|motorista; chave de fenda
+370|L|restaurante com acesso para carros
+371|M|problema; encrenca
+372|L|transistor (peça eletrônica)
+373|E|por ora; antes de mais nada
+374|M|tratamento; manuseio
+375|V|tratar; manejar; negociar
+376|L|torii (portal de santuário xintoísta)
+377|M|troca
+378|V|dedicar-se a; enfrentar
+379|S|fiscalização; controle
+380|V|reprimir; fiscalizar
+381|V|investigar; interrogar
+382|V|cobrar; arrecadar
+383|V|encaminhar; anunciar (alguém)
+384|V|instalar; obter consentimento
+385|V|remover; tirar
+386|S|transação; negócio
+387|V|cercar; rodear
+388|V|misturar; juntar
+389|V|recuperar; retomar
+390|V|encomendar; mandar vir
+391|M|broca; exercício repetitivo
+393|V|derreter; encantar-se
+394|M|insensibilidade
+395|E|terrível; absurdo
+396|M|esquecimento súbito
+397|S|atacadista
+398|S|gabinete; governo
+399|E|de ... a; ou
+400|M|segredo
+401|M|íntimo; pensamento secreto
+402|M|órgão interno; embutido
+403|M|jogo noturno (beisebol)
+404|D|interior; parte interna
+405|M|guerra civil
+406|D|interior (do país); região do interior
+407|C|muda de arroz
+408|E|ainda mais
+409|L|pia
+410|E|comprido; demorado
+411|D|ponto médio; meio
+412|C|beira d'água; praia
+413|V|lamentar; queixar-se
+414|V|abandonar; largar
+415|P|casamenteiro; intermediário
+416|A|ameno; harmonioso
+417|M|resquícios; saudade
+418|M|compaixão; piedade
+419|A|lamentável; vergonhoso
+420|A|compassivo
+421|V|repreender; censurar
+422|A|famoso; renomado
+423|C|avalanche (de neve)
+424|V|afeiçoar-se (a pessoa ou animal)
+425|V|dar nome; batizar
+426|A|casual; despreocupado
+427|E|por favor; faça o favor
+428|E|acima de tudo; o melhor
+429|L|guardanapo
+430|L|crachá; etiqueta com nome
+431|A|com cheiro de peixe ou sangue
+432|A|morno; tíbio
+433|M|carne e osso; corpo vivo
+434|C|chumbo
+435|A|liso; macio
+436|V|lamber; subestimar; passar por (experiência)
+437|A|sedutor; melancólico
+438|V|atormentar; incomodar
+439|M|preocupação; angústia
+440|E|e (formal)
+441|V|ser composto de; sustentar-se; ser viável
+442|E|tanto quanto possível
+443|M|costume; familiaridade
+444|A|excessivamente íntimo; abusado
+445|E|(como) nada; de forma alguma
+446|M|absurdo; sem sentido
+447|E|um pouco; de algum modo
+448|E|isso e aquilo
+449|E|qualquer coisa
+450|M|carga; bagagem
+451|V|parecer-se muito
+452|C|espinha; acne
+453|V|prosperar; ficar movimentado
+454|M|ódio
+455|P|parente consanguíneo
+456|C|o corpo; carne
+457|V|fugir; sair correndo

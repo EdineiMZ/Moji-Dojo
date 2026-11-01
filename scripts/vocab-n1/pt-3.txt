@@ -1,0 +1,450 @@
+917|M|participação; envolvimento
+918|M|tolerância; generosidade
+919|E|originalmente; por natureza
+920|S|visualização; assistir (espetáculo)
+921|M|costume; precedente
+922|T|60º aniversário
+923|M|presença; dignidade
+924|M|alívio; atenuação
+925|S|projeto de lei
+926|M|dano; perigo
+927|S|planejamento; projeto
+928|M|padrão; norma
+929|V|vestir-se com requinte
+930|M|constrangimento; cerimônia
+931|A|despreocupado; à vontade
+932|M|crise
+933|M|compreensão auditiva
+934|M|efeito; eficácia
+935|S|retorno a Tóquio
+936|M|peça de teatro
+937|S|fundo; fundação
+938|M|comédia
+939|S|decisão; resolução (de assembleia)
+940|S|abstenção (de votar)
+941|P|casado
+942|A|afetado; pedante
+943|S|registro; menção
+945|M|temperamento; caráter
+946|T|data fixada; prazo
+947|V|ranger; rangir
+948|L|prédio do parlamento
+949|M|descrição
+950|C|clima; condições meteorológicas
+951|V|ferir-se; ficar magoado
+952|V|ferir; magoar
+953|M|sacrifício
+954|X|navio a vapor
+955|S|doação
+956|S|falsificação
+957|P|nobre; aristocrata
+958|M|tema de discussão; pauta
+959|V|forjar; treinar; disciplinar
+960|M|índole; bom coração
+962|E|exatamente; direitinho
+963|A|metódico; pontual
+964|E|exatamente; em ponto
+965|E|exatamente; com precisão
+966|E|claramente; de forma categórica
+967|M|regulamento; disposição
+968|D|ponto de partida
+969|M|órbita; trilha
+970|M|habilidade técnica
+971|M|modelo; norma
+972|M|elegância; distinção
+973|M|espírito; caráter típico
+974|M|ondulação; relevo
+975|M|escala; porte
+976|M|capricho; humor instável
+977|A|muito sério; sincero
+978|T|fim do período; final do semestre
+979|A|constrangido; envergonhado
+980|S|assinatura (com o nome)
+981|M|contrato; estatuto
+982|M|adaptação (para teatro ou cinema)
+983|M|inversão; reviravolta
+984|M|roteiro
+985|A|delicado; frágil
+986|A|objetivo
+987|M|pegar; capturar (bola)
+988|M|carreira
+989|S|socorro; reforço
+990|S|licença escolar; trancamento de matrícula
+991|M|último; definitivo
+992|A|apertado; formal
+993|C|bulbo (de planta)
+994|S|socorro; assistência
+995|P|garçom
+996|S|merenda escolar; refeição servida
+997|M|trégua
+998|L|palácio
+999|P|velho amigo
+1000|M|pobreza; miséria
+1001|M|contribuição
+1002|M|forte (prefixo)
+1003|M|fanático; louco por algo
+1004|M|maravilha; milagre
+1005|M|disciplina; matéria de ensino
+1006|S|associação; sociedade
+1007|S|ensino misto
+1008|M|empatia; ressonância
+1009|M|circunstâncias; condição de vida
+1010|M|lição; moral
+1011|S|execução forçada
+1012|A|firme; linha-dura
+1013|L|material didático
+1014|M|má colheita
+1015|P|comerciante; fornecedor
+1016|S|treinamento; instrução
+1017|M|nostalgia; saudade de casa
+1018|S|magistério; carreira docente
+1019|V|divertir-se; entregar-se ao prazer
+1020|M|obrigação; coerção
+1021|S|administração pública
+1022|M|realização; desempenho
+1023|M|coexistência
+1024|M|acordo; pacto
+1025|M|terra natal; região de origem
+1026|M|ameaça; coação
+1027|S|negócios; atividades; tarefas
+1028|M|ressonância; simpatia
+1029|D|terra natal
+1030|A|intenso; forte
+1031|M|república; cooperação
+1032|M|limite; restrição
+1033|A|extremo
+1034|M|residência
+1035|M|recusa; rejeição
+1036|X|barco de pesca
+1037|D|vila de pescadores
+1038|M|recusa; veto
+1039|M|tolerância; permissão
+1040|A|limpo; puro; casto
+1041|A|esplêndido; vistoso
+1042|E|somente; apenas (depois de verbo)
+1043|M|obrigação social; dívida de gratidão
+1044|M|troca; mudança (de modo)
+1045|C|corrente atmosférica
+1046|M|intervalo; interrupção
+1047|M|dúvida; suspeita
+1048|E|extremamente (formal)
+1049|C|miopia
+1050|A|urgente; emergencial
+1051|D|subúrbio; arredores
+1052|M|equilíbrio
+1053|V|proibir
+1054|M|diligência; aplicação
+1055|M|exame cuidadoso; seleção criteriosa
+1056|S|serviço; trabalho
+1057|M|tabu; proibido
+1058|S|trabalho; labor
+1059|M|quiz
+1060|V|divergir; não coincidir
+1061|M|espaço
+1062|M|fome
+1063|D|divisão; lote; seção
+1064|D|trecho; seção
+1065|C|caule; haste
+1066|M|pausa; fim; ponto final
+1067|V|passar por baixo de; contornar
+1068|M|sorteio; loteria
+1069|M|sorteio
+1070|A|que dá cócegas
+1071|M|queixa; resmungo
+1072|V|cantarolar; recitar baixinho
+1073|C|bico (de ave)
+1074|V|apodrecer; deteriorar
+1075|V|derrubar; virar de cabeça para baixo
+1076|E|nitidamente; com clareza
+1077|M|refração; curvatura
+1078|E|firmemente; muito mais
+1079|L|colar
+1080|L|coleira
+1081|V|incluir; inserir
+1082|V|combinar; juntar
+1083|L|armazém; depósito
+1084|M|cinza (cor)
+1085|L|guindaste
+1086|P|especialista; profissional
+1087|M|saldo positivo; lucro
+1088|X|navio de guerra
+1089|M|assuntos militares
+1090|P|monarca; soberano
+1091|M|multidão
+1092|M|multidão
+1093|M|armamento
+1094|R|uniforme militar
+1095|M|arte; talento; número artístico
+1096|M|decurso; andamento
+1097|A|ágil; leve; animado
+1098|M|vigilância; alerta
+1099|E|atenciosamente (fim de carta formal)
+1100|M|redução; alívio
+1101|S|publicação (em jornal ou revista)
+1102|M|inclinação; declive
+1103|M|formação
+1104|M|situação; perspectivas
+1105|A|irrefletido; precipitado
+1106|M|pena; castigo
+1107|S|despesas; custos
+1108|P|inspetor de polícia
+1109|M|conversão; mudança de direção
+1110|S|mudança de endereço
+1111|S|transferência (de filial ou local de trabalho)
+1112|S|inspeção; verificação
+1113|M|fonte de energia; botão de ligar
+1114|M|paraíso; céu
+1115|P|gênio
+1116|M|desastre natural
+1117|M|exposição; mostra
+1118|M|lenda; tradição
+1119|M|linha pontilhada
+1120|V|virar; mudar de direção
+1121|V|virar; mudar de direção
+1122|C|corpo celeste
+1123|M|transmissão; comunicação
+1124|C|céu e terra; universo
+1125|E|de jeito nenhum; absolutamente
+1126|S|transferência de cargo
+1127|M|vista; perspectiva
+1128|M|herdado; trazido de fora
+1129|M|queda; decadência
+1130|V|consultar; pedir informações
+1131|M|este; nosso (prefixo)
+1132|C|tronco; corpo
+1133|M|concordância; mesmo significado
+1134|S|mobilização
+1135|M|concordância; mesma opinião
+1136|L|cerâmica
+1137|M|debate; discussão
+1138|M|motivo; razão
+1139|M|grau; categoria
+1140|M|mesma série; mesma classe
+1141|M|morar juntos
+1142|S|ida à escola
+1143|M|integração; unificação
+1144|M|tendência; movimento
+1145|S|investimento
+1146|M|simpatia; compaixão
+1147|L|dojo; sala de artes marciais
+1148|S|regulamentação; controle
+1149|S|eleição; vitória em sorteio
+1150|M|fuga
+1151|M|comando; liderança
+1152|M|alcance; chegada
+1153|M|governo; domínio
+1154|V|dividir; separar; comandar
+1155|S|fundos; capital
+1156|M|eixo; haste
+1157|V|fracassar; errar feio
+1158|M|estrutura; mecanismo
+1159|S|pena de morte
+1160|V|ficar úmido; mofar
+1161|S|execução; entrada em vigor
+1162|M|pensamento
+1163|M|orientação; tendência
+1164|M|gosto; preferência
+1165|M|item; ponto; assunto
+1166|L|tabela de horários
+1167|M|inferno
+1168|M|diferença de fuso horário
+1169|E|livremente; à vontade
+1170|S|inspeção; visita de inspeção
+1171|S|bens; patrimônio
+1172|M|apoio
+1173|M|independência; autonomia
+1174|S|entregar-se à polícia
+1175|M|bordado
+1177|S|demissão; renúncia ao cargo
+1178|M|gota
+1179|M|sistema
+1180|V|afundar (algo); submergir
+1181|L|instalação; estabelecimento
+1182|T|antecipadamente; de antemão
+1183|P|filho (honorífico)
+1184|M|continuação; duração
+1185|M|amor-próprio; orgulho
+1186|V|ter afeição por; admirar
+1187|M|segunda intenção
+1188|M|base; preparação
+1189|V|ficar íntimo; familiarizar-se
+1190|M|investigação prévia
+1191|M|simpatia; amabilidade
+1192|M|relação; parentesco
+1193|M|intervalo
+1194|E|ousar; fazer de propósito
+1195|V|olhar para cima; respeitar; pedir
+1196|M|sujeira; imundície
+1197|M|déficit; prejuízo
+1198|V|revelar; passar a noite em claro
+1199|V|ficar vermelho; corar
+1200|M|subida; renda; fim (do jogo)
+1201|M|resignação; conformismo
+1202|L|acelerador
+1203|A|exagerado; abusivo
+1204|C|queixo
+1205|M|anseio; admiração
+1206|C|cânhamo; linho
+1207|C|mancha de nascença; hematoma
+1208|A|vergonhoso; desprezível
+1209|V|enganar
+1210|A|vívido; nítido
+1211|V|zombar de; escarnecer
+1212|E|sem querer ofender; perdão por
+1213|M|sabor; apreciação
+1214|V|apressar-se; impacientar-se
+1215|V|desbotar; perder a cor
+1217|V|valer a pena; merecer
+1218|M|piora; agravamento
+1219|M|tratamento; manejo
+1220|A|rápido demais; insuficiente
+1221|E|facilmente; sem rodeios
+1222|S|mediação; intermediação
+1223|M|dominar; esmagar
+1224|M|pressão; opressão
+1225|V|encomendar sob medida
+1226|M|pressão; força
+1227|M|expectativa; confiança
+1228|M|destinado a (em carta)
+1229|M|ideograma usado apenas pelo som
+1230|P|herdeiro; sucessor
+1231|M|deixar para depois
+1232|M|pintura a óleo
+1233|M|abordagem
+1234|M|ao contrário; inverso
+1235|V|comportar-se como mimado; aproveitar-se da bondade
+1236|L|equipamento de chuva
+1237|M|sabor adocicado
+1238|P|amador
+1239|L|rede
+1240|V|manipular; controlar
+1241|V|temer; duvidar
+1242|A|incerto; vago
+1243|M|erro; falta
+1244|V|errar; cometer um erro
+1245|M|passo; trajetória; história
+1246|V|caminhar
+1247|E|antecipadamente; previamente
+1248|V|devastar; invadir
+1249|M|disputa; briga
+1250|V|renovar-se; ficar formal
+1251|A|bruto; rude
+1252|P|árabe
+1253|C|granizo
+1254|M|estado; situação
+1255|E|tal como é; francamente
+1256|V|ser comum; ser banal
+1257|C|álcali
+1258|M|alumínio
+1259|M|hora
+1260|V|juntar; unir
+1261|M|conjunto; total
+1262|M|bis; pedido de repetição
+1263|M|assassinato (político)
+1264|M|cálculo mental
+1265|M|insinuação; sugestão
+1266|V|preocupar-se; ponderar
+1267|M|repouso
+1268|E|como era de esperar
+1269|A|irresponsável; aleatório
+1270|M|desculpa; justificativa
+1271|E|sim; Jesus
+1272|M|fuga de casa
+1273|V|manter vivo; aproveitar
+1274|E|como; de que modo
+1275|E|de fato; realmente
+1276|M|objeção; protesto
+1277|M|razão de viver
+1278|M|mal-entendido; desencontro
+1279|V|entusiasmar-se
+1280|M|criação; formação
+1281|E|muitos; numerosos
+1282|V|arranjar (flores)
+1283|M|opinião diferente
+1284|M|intenção; disposição
+1285|M|transição; migração
+1286|E|vamos lá; chegada a hora decisiva
+1287|M|migração; imigração
+1288|R|traje; fantasia
+1289|V|mexer; manusear
+1290|M|sexo oposto
+1291|L|ruínas
+1292|M|dependência
+1293|S|consignação; confiar a alguém
+1294|E|muito; extremamente
+1295|M|promoção; sucesso na carreira
+1296|S|elaboração de questões
+1297|S|mobilização; partida para ação
+1298|S|despesa; gasto
+1299|S|exposição de obras; exibir
+1300|M|liderança; conduzir
+1301|P|responsável; encarregado
+1302|P|líder; dirigente
+1303|M|defesa
+1304|M|técnica; método
+1305|C|árvores e arbustos
+1306|M|estabelecimento; criação (de recorde)
+1307|X|trem semi-expresso
+1308|V|seguir; aplicar-se a
+1309|S|delegacia; departamento
+1310|C|doença
+1311|M|prova; comprovante
+1312|P|senhorita; moça
+1313|M|posição superior
+1314|S|apresentação (de espetáculo)
+1315|D|cidade ao pé do castelo
+1316|S|eliminação; apagamento
+1317|D|céu; alta atmosfera
+1318|M|choque; impacto
+1319|S|testemunho; depoimento
+1320|M|prova; evidência
+1321|S|conferência; verificação
+1322|M|detalhe; pormenor
+1323|M|subida; ascensão
+1324|S|promoção (de cargo)
+1325|V|dizer-se; chamar a si mesmo de
+1326|M|situação; estado de coisas
+1327|M|notícia; paradeiro
+1328|M|consentimento
+1329|M|emoção; atmosfera
+1331|M|símbolo
+1332|S|pediatria
+1333|P|empregado; criado
+1334|M|paixão; entusiasmo
+1335|M|concessão; acordo
+1336|S|tratado; pacto
+1337|M|vitória; triunfo
+1338|M|desembarque
+1339|M|destilação
+1340|M|incentivo; estímulo
+1341|M|show; espetáculo
+1342|M|exclusão; exceção
+1343|P|funcionário; membro da equipe
+1344|S|colônia
+1345|S|atribuições (do cargo)
+1346|E|senhores!; prezados
+1347|M|conselho; sugestão
+1348|X|andar devagar (veículo)
+1349|M|paradeiro; localização
+1350|M|posse; porte
+1351|M|pertencer a; vinculado a
+1352|M|tratamento; medida (a ser tomada)
+1353|E|sempre; o tempo todo
+1354|M|determinado; fixado
+1355|M|renda; rendimento
+1356|M|punição
+1357|M|primeira edição
+1358|M|resenha de livro
+1359|M|descarte; punição; providência
+1360|P|povo comum
+1361|S|assuntos gerais
+1362|M|posse; propriedade
+1363|M|investigação; exame
+1364|M|independência; autossuficiência
+1365|V|anotar; registrar
+1366|M|ordem; instrução
+1368|M|formação de batalha; acampamento
+1369|M|evolução
+1370|M|personalidade; caráter
+1371|M|deliberação
+1372|P|recém-casado

@@ -10,6 +10,14 @@
   Escolhidas por mim entre palavras comuns do dia a dia, sem copiar lista de ninguém; a classe gramatical vem do JMdict, como nas outras. Os significados em
   português foram escritos por IA e **ainda não foram revisados por um falante**.
 
+## Lista JLPT N1 (`n1.ts`, gerado em `scripts/vocab-n1/`)
+
+- **Origem direta e licença:** a mesma das outras listas: projeto *open-anki-jlpt-decks* (licença MIT), arquivo `src/n1.csv`, com dados das listas de Jonathan Waller
+  (tanos.co.uk), sob CC BY (crédito em Ajustes → Créditos e licenças).
+- **Alterações feitas neste projeto:** as mesmas do N2 (formas alternativas reduzidas à primeira, repetidas descartadas, e fora as palavras que já estão nas listas de baixo).
+  **Não é o N1 oficial** (o JLPT não publica lista). O significado em português foi escrito por IA a partir do inglês da lista e **ainda não foi revisado por um falante**.
+  A classe vem do JMdict e o tom, do Kanjium.
+
 ## Lista JLPT N2 (`n2.ts`, gerado em `scripts/vocab-n2/`)
 
 - **Origem direta e licença:** a mesma das listas N5, N4 e N3: projeto *open-anki-jlpt-decks* (licença MIT), arquivo `src/n2.csv`, com dados das listas de

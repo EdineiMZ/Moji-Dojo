@@ -1,0 +1,450 @@
+1373|S|avaliação; exame; julgamento
+1374|P|pessoa talentosa
+1375|P|cavalheiro
+1376|M|verdade; realidade
+1377|P|fiel; crente
+1378|L|pérola
+1379|M|avanço; expansão
+1380|M|estado de espírito; sentimento
+1381|P|novato; novo rosto
+1382|A|sagrado; santo
+1383|M|amizade; boa vontade entre países
+1384|M|a verdade; o fato real
+1385|A|rápido; ágil
+1386|C|corpo humano
+1387|S|construção nova
+1388|M|suicídio duplo
+1389|M|oferecimento; presente
+1390|M|progresso; avanço
+1391|L|templo; santuário
+1392|M|progresso (andamento)
+1393|M|vibração; oscilação
+1394|P|calouro
+1395|M|confiança; voto de confiança
+1396|M|mistério
+1397|M|paciência; perseverança
+1398|P|povo
+1399|M|invasão; agressão
+1400|S|consulta e tratamento médico
+1402|C|nascente (de rio)
+1403|M|impulso; propulsão
+1404|M|tocar instrumento de sopro
+1405|M|suposição; conjectura
+1406|L|arrozal inundado
+1407|M|raciocínio; dedução; romance policial
+1408|M|numeral (palavra)
+1409|M|adoração; veneração
+1410|V|instalar; montar
+1411|V|colocar; assentar
+1412|A|refrescante; revigorante
+1413|M|socorro; salvação
+1414|V|pegar com concha ou colher; escavar
+1415|A|saudável; vigoroso
+1416|V|enxaguar
+1417|M|progresso; avanço
+1418|M|barra (de calça ou saia)
+1419|L|estúdio
+1420|M|vapor; aquecimento
+1421|S|greve
+1422|S|greve (abreviado)
+1423|L|canudo
+1424|L|estroboscópio; flash eletrônico
+1425|A|ágil; esperto
+1426|A|rápido; ágil
+1427|E|direto ao ponto; francamente
+1428|L|mola
+1429|M|espaço
+1430|E|encharcado
+1431|L|carro esportivo
+1432|V|clarear; aguçar (o ouvido); fazer pose séria
+1433|V|clarear; aguçar (o ouvido)
+1434|V|terminar; resolver; dispensar
+1435|A|rápido; imediato
+1436|R|calça social
+1437|E|em fileira
+1438|E|arrastando; fungando
+1439|M|desvio; diferença; descompasso
+1440|M|desencontro; cruzar sem se encontrar
+1441|V|gastar-se (por atrito); desgastar-se
+1442|E|sem problemas; esbelto
+1443|M|crescimento; desenvolvimento
+1444|M|crescimento; criação
+1445|M|resultados; frutos
+1446|M|resposta certa; solução
+1447|M|justiça; retidão
+1448|M|meios de vida; sustento
+1449|M|governo; poder político
+1450|C|constelação
+1451|M|sanção; punição
+1452|M|política; medida política
+1453|M|vida e morte
+1454|M|imobilidade; repouso
+1455|A|sincero; honesto
+1456|M|maturidade
+1457|M|juventude
+1458|M|pureza; inocência
+1459|M|Bíblia
+1460|A|normal
+1461|V|controlar; dominar
+1462|A|ordenado; organizado
+1463|R|traje de gala
+1464|A|grandioso; suntuoso
+1465|M|bem e mal; puro e impuro
+1466|M|elaboração; instituição (de lei)
+1467|M|estático
+1468|S|siderurgia
+1469|C|tempo bom; céu limpo
+1470|A|justo; legítimo
+1471|R|uniforme
+1472|M|conquista; subjugação
+1473|M|método de fabricação; receita
+1474|A|preciso; minucioso
+1475|S|repartição de impostos
+1476|M|restrição; limitação
+1477|M|influência; poder
+1478|M|ficar em fila; alinhar-se
+1479|S|liquidação; promoção
+1480|V|apressar; pressionar
+1481|P|filho (meu filho)
+1482|M|dever; obrigação
+1483|M|seção
+1484|M|elogio falso; cumprimento
+1485|S|domicílio; família (unidade doméstica)
+1486|M|correção; ajuste
+1487|M|geração
+1488|S|incisão; abertura
+1489|M|sexo
+1490|A|urgente; premente
+1491|M|contato
+1492|M|conjunção
+1493|S|instalação; criação
+1494|M|meio-termo; mistura
+1495|M|definição; configuração
+1496|M|persuasão
+1497|A|doloroso; angustiante
+1498|M|esgotado (livro fora de catálogo)
+1499|S|fundação; criação (de instituição)
+1500|M|ataque; ofensiva
+1501|F|gelatina
+1502|M|cerimônia
+1503|M|opinião pública
+1505|M|fibra; têxtil
+1506|M|recuperação completa
+1507|M|missão religiosa
+1508|M|declaração; proclamação
+1509|M|danos de guerra
+1510|M|especialização
+1511|M|tática
+1512|M|senso; bom gosto
+1513|M|mergulho
+1514|M|auge; apogeu
+1515|P|antecessor; geração anterior
+1516|E|outro dia; recentemente
+1517|M|chegada em primeiro lugar
+1518|M|premissa; pressuposto
+1519|A|congênito; inato
+1520|M|futuro; perspectivas
+1521|M|batalha; combate
+1522|M|infiltração
+1523|X|navio
+1524|M|aniquilação
+1525|M|uso exclusivo
+1526|M|ocupação; posse
+1527|A|bom; virtuoso
+1528|M|potencial bélico
+1529|M|precedente
+1530|M|adequação; proporção
+1531|S|assembleia geral
+1532|S|lançamento (de jornal ou revista)
+1533|C|árvores variadas
+1534|A|urgente
+1536|M|reforço; aumento
+1537|S|envio de dinheiro
+1538|M|rodar; percurso (de veículo)
+1539|M|síntese; geral
+1540|S|busca; procura (de desaparecido)
+1541|P|ministro das Finanças
+1542|M|ornamento; decoração
+1543|M|promoção; aumento
+1544|M|relativo
+1545|A|grandioso; majestoso
+1546|M|tumulto; distúrbio
+1547|M|acidente; naufrágio
+1548|M|preço de mercado; estimativa
+1549|M|equipamento
+1550|M|fundação; criação
+1551|V|acrescentar; anexar; acompanhar
+1552|F|molho
+1553|E|imediatamente; na hora
+1554|M|promoção; aceleração
+1555|V|ajustar-se a; basear-se em
+1556|M|restrição; limitação
+1557|M|lado; aspecto
+1558|V|prejudicar; danificar
+1559|D|por aí; em algum lugar
+1560|M|matéria-prima; tema
+1561|M|obstrução; impedimento
+1562|S|processo judicial
+1563|M|criação; crescimento
+1564|M|medida; providência
+1565|R|meias
+1566|A|seco; frio; brusco
+1567|E|virar o rosto; ignorar
+1568|V|equipar; instalar
+1569|V|estar dotado de
+1570|V|estar dotado de
+1571|V|elevar-se; erguer-se
+1572|M|simplicidade; ingenuidade
+1573|V|desobedecer; ir contra
+1574|V|ser tingido
+1575|V|tingir
+1576|V|arquear; curvar
+1577|L|trenó
+1579|E|por isso; portanto
+1580|M|solo
+1581|M|conjunto; jogo completo
+1582|A|rude; descuidado
+1583|M|perda; prejuízo
+1584|M|continuação; sobrevivência
+1585|M|dúzia
+1586|M|resposta; tratamento (de uma situação)
+1588|M|degeneração
+1589|E|em geral; basicamente
+1590|M|constituição física
+1591|M|grande soma de dinheiro
+1592|M|tratamento; condições (de trabalho)
+1593|M|confronto
+1594|M|experiência vivida
+1595|M|oposição; rivalidade
+1596|M|extermínio; eliminação
+1597|M|o grande público
+1598|M|lidar com; enfrentar
+1599|S|aposentadoria
+1600|V|intitular
+1601|M|postura; preparação
+1602|M|diálogo; conversa
+1603|A|ousado; audacioso
+1604|M|igualdade; paridade
+1605|M|estragado; arruinado
+1606|S|inadimplência; atraso no pagamento
+1607|M|contraste; comparação
+1608|P|datilógrafo
+1609|E|em grande parte; bastante
+1610|M|fezes
+1611|M|falar em nome de outro
+1612|A|muito esperado
+1613|M|roteiro; libreto
+1614|L|temporizador
+1615|M|negligência; preguiça
+1616|M|momento oportuno; timing
+1617|M|tempo; marca de tempo
+1618|A|oportuno
+1619|M|encontro pessoal; frente a frente
+1620|M|substituição
+1621|M|força física
+1622|L|azulejo; ladrilho
+1623|M|conversa; diálogo
+1624|V|aguentar; suportar
+1626|V|extinguir-se; cessar
+1627|V|extinguir-se; cessar
+1628|M|solução; saída (de um impasse)
+1629|M|fogueira
+1630|M|conciliação; ceder
+1631|A|robusto; forte
+1632|M|habilidade; destreza
+1633|M|comprimento; altura
+1634|M|golpe; dano; rebatida (beisebol)
+1635|M|acordo; fechamento de negociação
+1636|M|obra ruim
+1637|M|adição (matemática)
+1638|M|regra da maioria
+1639|M|ajuda; auxílio
+1640|V|dedicar-se a; envolver-se
+1641|V|flutuar; pairar
+1642|V|ir embora; partir
+1643|V|passar por (de passagem); dar uma parada
+1644|M|colo (abraço de criança)
+1645|A|habilidoso; saudável
+1646|M|fuga
+1647|V|escapar de; sair de
+1648|M|realização; conclusão
+1649|M|desligamento; saída (de organização)
+1650|E|se for assim
+1651|V|pagar adiantado por outro
+1652|M|posição oficial; princípio de fachada
+1653|V|oferecer (com respeito)
+1654|E|se for assim
+1655|M|verbo transitivo
+1656|V|conseguir chegar; chegar a custo
+1657|V|seguir (caminho); rastrear
+1658|V|atar em feixe; reger
+1659|E|folgado; largo (roupa)
+1660|M|por outro lado; o outro lado
+1661|A|ocupado
+1662|V|receber; conceder (arcaico)
+1663|M|alma; espírito
+1664|M|acúmulo; ponto de encontro
+1665|V|receber; ser agraciado com
+1666|V|manter; preservar
+1667|A|fácil; simples
+1668|M|diversidade; variedade
+1669|A|pesado; sem energia
+1670|M|frouxidão; relaxamento
+1671|V|afrouxar; relaxar
+1672|V|pender; gotejar
+1673|P|artista; celebridade
+1674|L|torre
+1675|M|único; simples
+1676|M|tanka (poema de 31 sílabas)
+1677|L|maca
+1678|M|pavio curto; impaciência
+1679|M|união; solidariedade
+1680|M|exploração; expedição
+1681|M|afirmação categórica
+1682|M|encurtamento; abreviação
+1683|E|decididamente; sem dúvida
+1684|C|carbono
+1685|S|faculdade de curta duração
+1686|A|monótono
+1687|M|individual; solitário
+1688|P|dono da casa; marido (informal)
+1689|C|onda curta
+1690|C|proteína
+1691|L|caminhão basculante
+1692|M|seção transversal
+1693|M|elasticidade; flexibilidade
+1694|M|segurança pública; ordem
+1695|M|trabalho em equipe
+1696|M|troca; mudança
+1697|V|trocar; mudar
+1698|S|pecuária
+1699|M|animal; droga! (xingamento)
+1700|M|acúmulo; armazenamento
+1701|M|relevo; topografia
+1702|M|inteligência; intelecto
+1703|C|leite; seio
+1704|V|encolher; ficar mais curto
+1705|M|ordem; regularidade
+1706|M|asfixia
+1707|A|intelectual
+1708|M|início; começo (de uma obra)
+1709|M|coloração
+1710|M|sentar-se
+1711|M|atenção; foco
+1712|X|pouso
+1713|S|início de obras
+1714|L|sala de estar (estilo japonês)
+1715|M|cerimônia do chá
+1716|V|mimar; paparicar
+1717|M|canal (de TV)
+1718|M|cambalhota; looping
+1719|S|retransmissão
+1720|M|conselho; aviso
+1721|M|calúnia; difamação
+1722|M|centro; núcleo
+1723|S|sorteio
+1724|M|interrupção
+1725|M|intoxicação
+1726|D|meio da encosta
+1727|M|neutralidade
+1728|M|neutralização
+1729|M|escrito por (sufixo)
+1730|C|intestino
+1731|C|borboleta
+1732|M|super-; ultra- (prefixo)
+1733|S|assinatura (de contrato ou tratado)
+1734|C|audição
+1735|P|chefe; secretário (de governo)
+1736|S|assistir a aula como ouvinte
+1737|S|cobrança; arrecadação
+1738|L|estetoscópio
+1739|S|mediação; arbitragem
+1740|M|duplicação; repetição
+1741|M|longa (obra)
+1742|A|útil; prático
+1743|M|culinária; preparo
+1744|M|harmonia
+1745|E|com frequência
+1746|M|confrontar; enfrentar
+1747|M|obra; livro escrito
+1748|M|poupança
+1749|M|intuição
+1750|A|famoso; renomado
+1751|E|de relance; de passagem
+1753|L|pá de lixo
+1754|S|salário; remuneração
+1755|M|precipitação; sedimentação
+1756|M|naufrágio; afundamento
+1757|M|silêncio
+1758|M|exposição; exibição
+1759|M|investigação; apuração
+1760|M|perseguição
+1761|M|exílio; expulsão
+1762|V|gastar; dedicar (tempo, dinheiro)
+1763|M|queda (de avião)
+1764|V|sentir intensamente; perceber bem
+1765|A|comum; normal
+1766|A|intenso; profundo
+1767|L|bengala
+1768|M|utilidade; uso
+1769|V|servir; trabalhar para
+1770|V|governar; administrar
+1771|M|instante; momento breve
+1772|A|convencional; banal
+1773|M|junta; emenda
+1774|V|esgotar-se; acabar
+1775|V|esgotar; dedicar-se a
+1776|E|profundamente; de fato
+1777|M|estrutura; aparência; confecção
+1778|M|estrutura; aparência; confecção
+1779|V|remendar; consertar
+1780|V|acrescentar
+1781|V|informar; anunciar
+1782|M|coerência; consistência
+1783|L|tubo; cano
+1785|V|cutucar; provocar
+1786|V|ter cuidado; ser discreto
+1787|V|escorar; endurecer; teimar
+1788|V|ser adequado para; dar conta
+1789|S|local de trabalho
+1790|E|esforçando-se; fazendo o possível
+1791|C|tsunami
+1792|V|beliscar
+1794|V|recrutar; intensificar-se
+1795|C|saliva; cuspe
+1796|V|murmurar; resmungar
+1797|A|redondo; arredondado
+1798|V|fechar os olhos
+1799|L|jarro; pote
+1800|C|botão (de flor)
+1801|V|estender-se; formar fileira
+1802|V|atravessar; perfurar; manter-se firme
+1803|V|enfileirar; juntar
+1804|L|sino de templo
+1805|L|alça de trem ou ônibus
+1806|M|auxílio; tratamento (médico)
+1807|M|definição
+1808|S|oferta; patrocínio
+1809|M|cooperação; parceria
+1810|M|aparência; decoro
+1811|M|apresentação; exibição
+1812|L|lenço de papel
+1813|F|prato do dia; refeição de preço fixo
+1814|M|correção
+1815|M|estagnação; congestionamento
+1816|L|mansão
+1817|S|idade de aposentadoria
+1818|L|dique; barragem
+1819|M|tarde demais
+1820|A|enorme
+1821|M|pista; indício
+1822|V|cuidar de; lidar com
+1823|M|trabalho; esforço; número de passos
+1824|A|fácil; simples; barato
+1825|M|adaptação
+1826|M|conforme apropriado
+1827|M|aptidão
+1828|M|furúnculo; erupção
+1829|M|jeito; habilidade
+1830|V|topar com; encontrar por acaso
+1831|M|procedimento; sequência de passos

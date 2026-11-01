@@ -1,0 +1,450 @@
+1832|L|algemas
+1834|M|decoração
+1835|D|perto; à mão
+1836|E|com certeza; sem dúvida (equivocado)
+1837|M|aço e ferro
+1838|M|esboço; desenho
+1839|V|dedicar-se por inteiro a
+1840|D|topo; cume
+1841|L|barra fixa (ginástica)
+1842|M|recomeço; retoque
+1843|C|palma da mão
+1844|M|providências; arranjos; busca policial
+1845|M|plano; arranjos prévios
+1846|M|guia; orientação
+1847|M|modelo; exemplo
+1848|M|preparativos; arranjos
+1849|D|à mão; ao alcance
+1850|M|demonstração
+1851|V|refletir (luz); devolver
+1852|M|telex
+1853|M|divisão de tarefas
+1854|M|céu; paraíso
+1855|D|campo; zona rural
+1856|M|o mundo; o país todo
+1857|M|rotação; reviravolta
+1858|T|feriados seguidos
+1859|L|fogão; faixa; alcance
+1860|T|dia após dia
+1861|M|solidariedade
+1862|X|carro alugado
+1863|P|companheiros; turma
+1864|M|raio X
+1865|S|federação
+1866|S|liga; aliança
+1867|M|senilidade; decadência da velhice
+1868|M|leitura em voz alta
+1869|M|desperdício
+1870|M|esforço; trabalho
+1871|X|teleférico
+1872|L|corda
+1873|E|bom; decente (com negativo)
+1874|A|direto; explícito; evidente
+1875|A|romântico
+1876|M|debate; discussão
+1877|M|lógica
+1878|C|planeta
+1879|M|arte; técnica; golpe
+1880|E|de propósito; dando-se ao trabalho
+1881|A|incômodo; trabalhoso
+1882|C|ave migratória
+1883|M|watt (unidade de potência)
+1884|M|desculpa; pedido de perdão
+1885|M|texto em japonês
+1886|C|palha
+1887|M|por cento (décimo)
+1888|S|cota; distribuição
+1889|V|furar fila; intrometer-se
+1890|P|vilão; patife
+1892|V|progredir (trabalho)
+1893|A|efêmero; passageiro
+1894|A|bobo; ridículo
+1895|S|revogação; rompimento (de tratado)
+1896|V|arrancar; descascar
+1897|M|perseguição
+1898|A|fraco; frágil
+1899|M|confissão
+1900|A|vago; impreciso
+1901|L|bomba
+1902|M|explosão; detonação
+1903|M|revelação; exposição
+1904|V|encorajar; animar
+1905|V|esforçar-se; empenhar-se
+1906|V|descascar; desbotar
+1907|V|transformar-se; disfarçar-se
+1908|S|envio (de pessoas); missão
+1909|M|vergonha
+1911|R|pijama
+1912|V|corar de timidez; ter acanhamento
+1913|V|ter vergonha
+1914|M|intermediação; fazer de ponte
+1915|V|quicar; animar-se; esbanjar
+1916|M|dano; avaria
+1918|C|descalço
+1919|V|cumprir; realizar
+1920|F|mel
+1921|L|pachinko
+1922|M|castigo; pena
+1923|M|crescimento (físico)
+1924|M|germinação
+1925|S|escavação; descoberta (de talento)
+1926|M|fala; opinião manifestada
+1927|L|distintivo; broche
+1928|M|ocorrência; surgimento
+1929|V|confeccionar; preparar
+1930|S|troca de usado por novo
+1931|M|enfraquecimento; declínio
+1933|L|casa dos pais
+1934|S|desclassificação
+1935|M|pergunta; indagação
+1936|M|queda de posição; perda de poder
+1937|P|empresário
+1938|A|chique
+1939|E|com calma; detalhadamente
+1940|M|disciplina; educação (boas maneiras)
+1941|V|educar; disciplinar
+1942|M|prática; colocar em prática
+1943|A|simples; modesto
+1944|M|realidade; situação real
+1945|M|desequilíbrio
+1946|M|ciúme
+1947|M|custo real
+1948|M|apontamento; indicação
+1949|M|rotação (do planeta)
+1950|M|verbo auxiliar
+1951|A|gracioso; recatado
+1952|V|murchar; secar
+1953|M|roteiro
+1954|A|flexível; maleável
+1955|M|dejetos humanos
+1956|P|proprietário de terras
+1957|V|superar; aguentar
+1958|C|grama; relva
+1959|X|primeiro trem
+1960|S|otorrinolaringologia
+1961|M|bens pessoais
+1962|A|obstinado; persistente
+1963|M|justiça; administração judiciária
+1964|M|resolução; arrumação final
+1965|V|penetrar; encharcar
+1966|M|missão; incumbência
+1967|D|local; da região
+1968|M|campo de visão; perspectiva
+1969|M|fraco; leve (sufixo)
+1970|M|vida social
+1971|M|jazz
+1972|M|recusa
+1973|L|casa fornecida pela empresa
+1974|E|alguns; um pouco
+1975|L|shamisen
+1976|D|declive; superfície inclinada
+1977|C|cascalho; pedregulho
+1978|V|fazer piada; ser elegante
+1979|R|jaqueta
+1980|M|salto
+1981|M|jumbo; gigante
+1982|M|gênero
+1985|M|propriedade privada
+1986|M|seita; escola
+1987|S|lucro; rendimento
+1988|M|estudo; instrução
+1989|M|ciclo; período
+1990|S|Câmara dos Deputados
+1991|S|emprego; início do trabalho
+1992|P|funcionário; empregado
+1993|M|totalização
+1994|M|ataque; assalto
+1995|S|receita e despesa
+1996|E|do começo ao fim
+1997|S|mestrado
+1998|M|dedicar-se a (profissão)
+1999|T|o dia todo
+2000|M|plenitude; riqueza
+2001|M|coleta; coleção
+2002|D|cruzamento
+2003|M|apego; obsessão
+2005|A|flexível
+2007|M|acomodação; internação
+2008|E|até agora; tradicional
+2009|P|segurança; porteiro
+2010|M|ser o protagonista
+2011|M|subjetividade
+2012|M|treino; prática ascética
+2013|S|cursinho; escola de reforço
+2014|M|celebração; felicitações
+2015|M|destino
+2016|M|artesanato
+2017|M|soberania
+2018|S|organização; patrocínio
+2019|S|cobertura jornalística; coleta de dados
+2020|M|propósito; sentido
+2021|M|variedade
+2022|F|alimento básico
+2023|P|protagonista
+2024|M|sujeito; parte principal
+2025|M|tema; motivo central
+2026|M|apresentação; participação em espetáculo
+2027|M|hemorragia
+2028|M|aparição
+2029|M|parto
+2030|S|ir ao trabalho
+2031|M|nascimento
+2033|M|quantidade mínima
+2034|F|almoço
+2035|M|proporção
+2036|M|cansaço
+2037|A|sensível
+2038|M|pobreza; carência
+2039|M|qualidade
+2040|A|pobre; escasso
+2041|M|variedade; espécie
+2042|M|dica
+2043|M|frequência
+2044|M|pobreza
+2045|M|garra; luta
+2046|L|arquivo; pasta
+2047|P|fã
+2048|M|súbito; inesperado
+2049|L|filtro
+2050|M|selo; lacre
+2051|M|bloqueio
+2052|L|moinho de vento
+2053|M|costume
+2054|M|costumes; moral
+2055|R|botas
+2056|M|clima; características naturais
+2057|M|moda passageira; boom
+2058|M|espuma; forma
+2059|P|subordinado
+2060|A|indispensável
+2061|E|folgado demais
+2062|A|de mau agouro
+2063|M|recessão
+2064|L|pano de prato
+2065|M|composto; complexo
+2066|M|bem-estar; assistência social
+2067|M|máscara; disfarce
+2068|V|inchar; fazer beicinho
+2069|M|crise econômica
+2070|V|entregar-se a; absorver-se
+2071|V|envelhecer
+2072|P|milionário
+2073|M|decreto; proclamação
+2074|L|campainha
+2075|M|dívida
+2076|M|ausência
+2077|A|apropriado; digno
+2078|M|irregularidade
+2079|M|ferimento
+2080|M|insulto; desprezo
+2081|A|suspeito; duvidoso
+2082|M|marasmo; fraco desempenho
+2083|M|armamento
+2085|M|ônus; carga
+2086|M|mau estado; desempenho ruim
+2087|M|ressurgimento; retomada
+2088|M|polêmica; debate público
+2089|M|restauração
+2090|M|reconstrução; renascimento
+2091|M|mercadorias; suprimentos
+2092|L|estátua de Buda
+2093|M|objeto; corpo
+2094|M|fervura; agitação
+2095|A|injusto; indevido
+2096|M|imóvel; propriedade imobiliária
+2097|M|segurança; sem riscos
+2098|S|ir para o novo posto
+2099|M|apodrecimento; corrupção
+2100|M|má fama
+2101|M|descontentamento
+2102|M|universal
+2103|V|basear-se em; levar em conta
+2104|V|entrar em; ir a fundo
+2105|M|desconhecido; incerto
+2106|M|setor; departamento; categoria
+2107|M|sustento; manutenção
+2108|E|cambaleando; tonto
+2109|E|balançando; passeando sem rumo
+2110|V|olhar para trás; rever
+2111|M|ponto de partida; emissão (de letra de câmbio)
+2112|M|delinquente; defeito
+2113|C|flutuabilidade
+2114|M|poder militar; força
+2115|M|touro
+2116|V|fazer tremer
+2117|M|falta de educação; rudeza
+2118|M|apêndice; suplemento
+2119|M|frente; recepção
+2120|M|indignação; revolta
+2121|M|patrimônio cultural
+2122|M|divisão do trabalho
+2123|M|língua escrita; japonês literário
+2124|M|dispersão; descentralização
+2125|M|numerador; molécula
+2126|M|extravio; perda
+2127|M|jorro; esguicho
+2128|M|documento; texto escrito
+2129|M|disputa; conflito
+2130|E|em abundância; à vontade
+2131|M|divisão (de tarefas ou custos)
+2132|M|luta árdua; esforço intenso
+2133|M|distribuição
+2134|M|denominador
+2135|M|pó fino
+2136|M|separação
+2137|M|divisão; cisão
+2138|M|par; dupla
+2139|M|armas
+2140|M|ficar sem palavras; ficar embaraçado
+2141|S|fechamento; encerramento
+2142|P|soldado
+2143|M|normal; habitual
+2144|M|quadrado (unidade de área)
+2145|M|paralelo; lado a lado
+2146|M|base; baixo (instrumento)
+2147|M|ficar farto; recuar de susto
+2148|E|bajulando; morrendo de fome
+2149|M|o melhor; colete
+2150|M|best-seller (livro mais vendido)
+2151|V|estar distante; afastar-se
+2153|V|humilhar-se; ser modesto
+2154|M|justificativa; desculpa
+2155|M|mudança; reforma
+2156|M|devolução; restituição
+2157|M|conveniência; comodidade
+2158|M|preconceito
+2159|S|defesa; advocacia
+2160|M|pagamento (de dívida)
+2161|M|indenização; ressarcimento
+2162|M|mudança; transição
+2163|M|resposta
+2164|M|mudança; flutuação
+2165|M|debate; argumentação
+2166|C|espiga
+2167|S|cuidado de crianças; creche
+2168|M|boicote
+2169|M|ponto
+2170|S|projeto de lei
+2171|M|defesa; proteção
+2172|M|prevenção de incêndios
+2173|M|colapso; desintegração
+2174|M|obstrução; perturbação
+2175|M|direito; jurisprudência
+2176|M|feudal
+2177|M|boa colheita
+2178|M|plano; medida
+2179|M|serviço; prestação de serviço
+2180|M|método; forma
+2181|M|radiação; emissão
+2182|M|radioatividade
+2183|M|remuneração; recompensa
+2184|M|liberação; emissão
+2185|V|informar; noticiar
+2186|V|informar; noticiar
+2187|M|fiação; indústria de fios
+2188|A|atônito; pasmo
+2189|M|abandono; deixar como está
+2190|M|expansão; inchaço
+2191|L|tribunal; sala de audiências
+2192|M|reportagem; noticiário
+2193|M|começo; abertura
+2194|M|revolta; motim
+2195|M|prêmio; recompensa
+2196|C|tempestade; vendaval
+2197|V|enterrar; sepultar
+2198|V|jogar para dentro
+2199|V|jogar fora; abandonar
+2200|M|violência
+2201|M|saturação
+2202|L|mangueira
+2203|M|pausa; pose
+2204|L|salão; buraco
+2205|M|manter aquecido; isolamento térmico
+2206|M|captura
+2207|M|guarda; armazenamento
+2208|M|reposição; abastecimento
+2209|M|reforço
+2210|S|arrecadação de fundos
+2211|P|pastor; clérigo
+2212|S|caça à baleia
+2213|V|ficar caduco; desbotar
+2214|S|seguro; garantia
+2215|S|escola onde se estudou (alma mater)
+2216|M|país de origem
+2217|V|vangloriar-se; orgulhar-se
+2218|V|descosturar-se; abrir um sorriso
+2219|M|seco (prefixo)
+2220|M|posição
+2221|L|roupa estendida para secar
+2222|M|conservador; manutenção
+2223|M|reposição; complemento
+2224|M|ajuda; auxílio
+2225|M|pavimentação
+2226|M|complemento; suplemento
+2227|L|cemitério
+2228|M|crise; ataque (de doença)
+2229|M|confisco
+2230|M|início; lançamento (de um grupo)
+2231|L|bule; pote; panela
+2232|C|bochecha
+2233|E|aos poucos; aqui e ali
+2234|M|ruína; decadência
+2236|V|conceder; aplicar; realizar
+2237|D|margem (de lago ou rio)
+2238|V|resmungar; queixar-se
+2239|V|ficar embaçado; desfocar
+2240|M|descanso; recuperação (da saúde)
+2241|P|prisioneiro de guerra
+2242|M|volt; parafuso
+2243|V|arruinar-se; perecer
+2244|V|destruir; arruinar
+2245|M|autêntico; em grande escala
+2246|L|prédio principal
+2247|M|seriedade; de verdade
+2248|M|país de origem
+2249|M|essência; natureza verdadeira
+2250|M|corpo principal; substância
+2251|M|verdadeira intenção; opinião sincera
+2252|M|instinto
+2253|M|lugar de origem; autêntico
+2254|L|bomba (de água ou ar)
+2255|M|texto principal; corpo do texto
+2256|M|nome verdadeiro
+2257|M|marca; sinal
+2258|M|meu (prefixo)
+2259|L|microfone
+2260|M|tesouro enterrado; reservas no subsolo
+2261|V|dançar; esvoaçar
+2262|D|logo acima
+2263|S|pré-venda
+2264|M|prefácio; introdução
+2265|V|confiar; deixar a cargo
+2266|V|derrotar; vencer
+2267|V|prover; custear
+2268|A|confuso; que gera engano
+2269|V|distrair-se; misturar-se
+2270|M|sinceridade; devoção
+2271|V|ficar confuso; atrapalhar-se
+2272|M|verdade; fidelidade
+2273|E|de fato; realmente (muito educado)
+2274|E|sem dúvida; evidentemente
+2275|V|superar; ser melhor que
+2276|M|aumento; melhor (sufixo)
+2277|V|misturar; trocar (palavras ou golpes)
+2278|D|logo abaixo
+2279|E|ainda mais; quanto mais
+2280|V|cruzar-se; relacionar-se
+2281|M|anestesia
+2282|V|montar; cavalgar; estender-se por
+2283|M|encontro marcado
+2284|A|ansioso (para que chegue)
+2285|V|esperar ansiosamente
+2286|E|variado; cada um diferente
+2287|M|fim da vida; últimos momentos
+2288|E|em duas metades iguais
+2289|M|alvo
+2290|M|conclusão; coerência
+2291|M|resumo; arremate
+2292|V|escapar de; livrar-se de
+2293|M|convite
+2294|M|piscada; cintilar

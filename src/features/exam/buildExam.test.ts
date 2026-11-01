@@ -9,8 +9,8 @@ const seeded = (seed: number) => () => {
 describe('simulado offline', () => {
   it.each(EXAM_LEVELS)('o %s tem as seções que o nível já tem, com perguntas bem formadas', (level: ExamLevel) => {
     const exam = buildExam(level, 5, seeded(7));
-    // O N2 ainda só tem vocabulário (e a leitura das palavras): sem kanji nem gramática próprios.
-    const sections = EXAM_SECTIONS.filter(({ id }) => level !== 'N2' || id === 'vocab' || id === 'reading');
+    // O N2 e o N1 ainda só têm vocabulário (e a leitura das palavras): sem kanji nem gramática próprios.
+    const sections = EXAM_SECTIONS.filter(({ id }) => (level !== 'N2' && level !== 'N1') || id === 'vocab' || id === 'reading');
     expect(exam).toHaveLength(sections.length * 5);
     for (const { id } of sections) expect(exam.filter((q) => q.section === id)).toHaveLength(5);
     for (const q of exam) {

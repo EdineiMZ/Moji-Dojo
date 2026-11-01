@@ -1,0 +1,450 @@
+458|T|sol poente (do oeste)
+459|V|borrar-se; espalhar-se (tinta)
+460|M|imitação; falsificado
+461|T|dia e noite; sempre
+462|S|embalagem (de bagagem)
+463|V|carregar nos ombros; assumir (responsabilidade)
+464|V|embotar-se; enfraquecer
+465|E|apesar de; mesmo assim
+466|M|nuance
+467|M|novo (prefixo)
+468|S|obtenção; aquisição
+469|S|premiação; ser classificado (em concurso)
+470|M|banho
+471|C|urina
+472|M|reconhecimento; percepção
+473|M|gravidez
+474|S|dever; missão; tarefa
+475|S|nomeação
+476|V|omitir; saltar
+477|V|escapulir; destacar-se
+478|P|dono; senhor
+479|C|pântano; lagoa
+480|M|timbre (de som)
+481|M|valor; mérito
+482|M|negativo (de foto)
+483|V|colocar para dormir; deixar fermentar
+484|L|chave de fenda
+485|V|retorcer-se; entortar
+486|V|invejar; sentir ciúmes
+487|V|pedir manhosamente; implorar
+488|M|zelo; entusiasmo
+489|C|água fervendo
+490|M|valor calórico
+491|M|viscosidade; persistência
+492|V|ser pegajoso; persistir
+493|S|desconto
+494|S|preparativos nos bastidores
+495|A|com sono
+496|V|amassar; elaborar; aprimorar
+497|M|cuidado; sentimento; desejo
+498|M|cumprimentos de Ano-Novo
+499|M|desejo ardente; anseio
+500|M|nome de era; número do ano
+501|M|combustão
+502|M|mais velho; seniority
+503|M|combustível
+504|C|anel de crescimento (da árvore)
+505|M|neurose
+506|S|agricultura
+507|L|fazenda; sítio
+508|L|terra agrícola
+509|S|pagamento; entrega
+510|V|deixar escapar; perder (oportunidade)
+511|V|escapar; fugir
+512|M|todas as casas da fila; uniformemente
+513|A|desejável
+514|V|tomar à força; apoderar-se
+515|A|tranquilo; sossegado
+516|V|insultar; xingar
+517|M|total acumulado
+518|V|engolir; compreender
+519|V|embarcar; entrar (em carro); invadir
+520|M|lâmina; fio da espada
+521|M|grupo; facção
+522|L|bar
+523|M|compreensão; domínio (do assunto)
+525|S|descarte; abandono
+526|S|distribuição; racionamento
+527|C|germes; bactérias
+528|P|cônjuge
+529|M|prezado (início de carta formal)
+530|M|plano de fundo; cenário
+531|D|atrás; retaguarda
+532|S|abolição; revogação
+533|V|tomar emprestado (humilde)
+534|M|exclusão; rejeição
+535|S|indenização; reparação
+536|S|escoamento; drenagem
+537|M|derrota na guerra
+538|S|disposição; distribuição (de pessoas ou coisas)
+539|S|distribuição (de folhetos etc.)
+540|S|rateio; distribuição
+541|M|derrota
+542|M|ampliação; aumento
+543|M|consideração; cuidado
+544|M|arranjo; sequência (de dados)
+545|M|destruição
+546|V|tratar com carinho; consolar
+547|E|sem distinção; de modo geral
+548|A|notável; marcante
+549|P|todos os presentes
+550|M|uma parte; uma porção
+551|M|despedida; separação
+552|M|um lado; por outro lado
+553|M|olhada; relance
+554|A|uniforme; igual
+555|A|uniforme; igual
+556|M|uma série; uma sequência
+557|E|todos juntos; de uma vez
+558|E|de uma só vez; de um gole
+559|E|de um só golpe; de uma vez
+560|M|olhada; à primeira vista
+561|E|sem exceção; tudo
+562|M|concentração total; de todo o coração
+563|E|em vez disso; melhor ainda
+564|M|mudança completa
+565|M|intenção; propósito
+566|V|conduzir (negócio); realizar (cerimônia)
+567|V|desafiar
+568|C|relâmpago
+569|M|oração; prece
+570|C|ronco
+571|E|agora (já tarde); depois de tudo
+572|E|ainda; até agora
+573|P|imigrante; emigrante
+574|E|a contragosto
+575|A|vulgar; mesquinho
+576|E|terrivelmente; estranhamente
+577|A|desagradável; indecente
+578|M|vontade; ambição
+579|M|poder; força
+580|R|roupas
+581|M|opinião contrária; objeção
+582|L|carimbo; selo (hanko)
+583|M|melancolia; tristeza
+584|P|aposentado; recluso
+585|X|trevo rodoviário
+586|M|internacional
+587|L|interfone
+588|P|intelectual
+589|M|informação; balcão de informações
+590|M|inflação
+591|V|passar (em exame)
+592|M|acolhimento; aceitação
+593|V|aceitar; acolher
+594|V|herdar; suceder
+595|V|aceitar (pedido); receber (inscrição)
+596|V|aparar; interpretar; receber
+597|M|passivo; voz passiva
+598|M|responsabilidade; encargo
+599|M|movimento; tendência
+601|P|mentiroso
+602|M|cochilo
+603|V|confessar; abrir-se
+604|V|encerrar; interromper
+605|M|negação; forma negativa
+606|V|dedicar-se a; cravar
+607|L|leque (uchiwa)
+608|M|detalhamento; discriminação
+609|M|cópia
+610|M|queixa; processo
+611|A|enfadonho; aborrecido
+612|V|olhar para baixo; baixar a cabeça
+613|A|vazio; oco
+615|M|habilidade; competência
+616|T|tempo chuvoso
+617|V|instar; estimular
+618|M|presunção; vaidade
+619|E|por natureza; de nascença
+620|V|embutir; implantar
+621|F|umeboshi (ameixa em conserva)
+622|M|avesso; ao contrário
+623|S|liquidação; promoção
+624|V|lançar à venda; tornar-se famoso
+625|V|ficar úmido; beneficiar-se
+626|M|caso extraconjugal; infidelidade
+627|V|exceder; superar
+628|V|estar plantado
+629|S|administração; gestão
+630|E|enjoado; farto
+631|S|transporte; frete
+632|S|frete; tarifa
+633|E|e assim por diante; etc.
+634|S|transporte; carregamento
+635|M|destino; fado
+636|S|transporte
+637|M|uso; aplicação
+638|S|correio aéreo
+639|M|administrado por (sufixo)
+640|M|letras inglesas
+641|M|projeção
+642|M|imagem
+643|P|herói
+644|C|líquido
+645|M|consulta; leitura (de documentos)
+646|C|presa; caça; troféu
+647|R|gola; colarinho
+648|A|elegante
+649|M|harmonia; suavidade
+650|L|varanda de madeira (engawa)
+651|D|costa; litoral
+652|A|indireto; eufemístico
+653|M|direção; encenação
+654|P|engenheiro
+655|V|representar; interpretar (papel)
+656|V|representar; interpretar (papel)
+657|D|ao longo da linha de trem
+658|M|proposta de casamento
+659|D|local distante
+660|A|harmonioso; pacífico
+661|V|encurralar; empurrar para dentro
+662|V|expulsar; botar para fora
+663|E|em; no (formal)
+664|V|envelhecer
+665|M|emergência; primeiros socorros
+666|M|ouro
+667|S|visita médica a domicílio
+668|S|inscrição; candidatura
+669|E|ei!
+670|M|a maior parte; quase todos
+671|A|de porte grande; estampa grande
+672|A|exagerado
+673|M|resumo; linhas gerais
+674|C|céu
+675|M|automático
+676|E|em grande escala; drástico
+677|A|aproximado; grosseiro
+678|C|enchente
+679|M|público; oficial
+680|V|cometer (crime ou erro); violar
+681|V|invadir; violar (direitos)
+682|M|covardia; timidez
+683|V|atrasar
+684|A|solene; majestoso
+685|M|conduta; ação
+686|V|pagar (para alguém); oferecer um agrado
+687|V|acalmar-se; ficar no lugar
+688|V|acomodar-se; ser entregue
+689|V|ficar em paz; acalmar-se
+690|M|parto
+691|V|impor a própria vontade
+692|V|empurrar para dentro; amontoar
+693|V|poupar; lamentar; valorizar
+694|V|avançar em massa; ondular
+695|C|macho (animal)
+696|M|elogio falso; lisonja
+697|V|atacar
+698|E|no mais tardar
+699|M|medo; receio
+700|V|ficar sem jeito; agradecer com humildade
+701|V|bajular; adular
+702|V|ficar deprimido; cair em
+703|M|calma; serenidade
+704|C|folhas caídas
+705|M|segundo (em ordem); curioso (de sabor estranho)
+706|M|recado; mandado
+707|A|assustador; temível
+708|M|desistir (por impossível)
+709|E|com timidez; hesitante
+710|V|ameaçar; intimidar
+711|V|visitar
+712|P|acompanhante; séquito
+713|V|enfraquecer; decair
+714|M|da mesma idade
+715|E|naturalmente; por si
+716|V|assustar-se; ter medo
+717|A|enorme; imenso
+719|V|trazer; ter (qualidade); estar encarregado de
+720|P|mãe (informal)
+721|M|memória; lembrança; confiança
+722|M|brinde; algo a mais
+723|L|santuário xintoísta
+724|L|fralda
+725|M|ideia; sugestão repentina
+726|M|encanto; aspecto; teor
+727|V|dirigir-se a; ir para
+728|V|dar valor a; respeitar
+729|V|dar valor a; respeitar
+730|P|pai (informal); velho
+731|E|e; assim como
+732|V|chegar a; alcançar
+733|M|ocasião; momento
+734|L|jaula; cela
+735|M|orientação
+736|V|dobrar para trás; voltar
+737|L|tecido
+738|P|eu (informal, masculino)
+739|A|tolo; bobo
+740|M|negligência; descuido
+741|M|carregar nas costas
+742|M|online
+743|A|manso; moderado
+745|L|tapete (carpete)
+746|M|mundo; meio; reino
+748|M|piora; mudança para pior
+749|S|transporte marítimo
+750|S|moeda estrangeira
+751|M|reforma; inovação
+752|C|concha
+753|M|aparência externa; fachada
+754|M|classe; categoria; posto
+755|D|estreito; canal (marítimo)
+756|S|entrevista; coletiva
+757|S|cuidados com idosos; enfermagem
+758|S|realização (de evento ou exposição)
+759|S|recolhimento; recuperação
+760|S|reforma; reparo
+761|M|monstro
+762|S|cancelamento; suspensão
+763|P|ministro das Relações Exteriores
+764|V|prejudicar; ofender
+765|M|visão geral; resumo
+766|S|envio; redirecionamento
+767|M|camada social; hierarquia
+768|S|desbravamento; cultivo de novas terras
+769|S|conversa; reunião (entre autoridades)
+770|S|revisão (de tabela, regra)
+771|S|revisão (de texto)
+772|P|guia
+773|D|estrada principal; rodovia
+774|M|corresponder a; ser relativo a
+775|D|na rua; nas ruas
+776|L|guia (livro)
+777|S|intervenção
+778|M|conceito; noção
+779|S|desenvolvimento; exploração
+780|M|altitude (acima do nível do mar)
+781|M|cuidado de doente
+782|M|dissecação; autópsia
+783|M|vindo de fora; ambulatório
+784|S|circulação (de documento)
+785|M|esboço; resumo
+786|C|corrente oceânica
+787|M|melhoria; aperfeiçoamento
+788|M|circuito (elétrico)
+789|X|rota marítima
+790|V|refletir sobre; considerar
+791|V|olhar para trás; rever
+792|M|expressão do rosto
+793|M|extracurricular (fora da grade)
+794|V|erguer; hastear; expor
+795|C|calcanhar
+796|V|anotar; tomar nota (ditado)
+797|V|mexer; revolver; perturbar
+798|V|passar vergonha; suar
+800|M|artes e ciências; artes liberais
+801|M|diferença; disparidade
+802|M|dispersão; difusão
+803|P|bacharel
+804|M|vários tipos; todo tipo de
+805|T|a cada duas semanas
+806|M|convicção; certeza
+807|M|inovação; renovação
+808|M|teoria; doutrina
+809|M|fixação; decisão definitiva
+810|F|coquetel
+811|S|obtenção; conquista
+812|M|partitura
+813|S|garantia; obtenção segura
+814|M|revolução
+815|M|estabelecimento; consolidação
+816|M|aposta; jogo de azar
+817|S|crédito (a prazo)
+818|L|cabide; suporte
+819|C|penhasco
+820|M|corrida (a passo ligeiro)
+821|S|finanças domésticas
+822|M|corrida (brincadeira)
+823|S|processamento; transformação
+824|M|combinação química
+825|V|ser volumoso
+826|V|acumular-se; aumentar (despesas)
+827|M|escrita em tópicos; itemização
+829|A|fraco; tênue
+830|V|ficar enevoado; embaçar
+832|C|Marte
+833|C|fóssil
+834|C|rios
+835|R|fibra sintética
+836|M|despovoamento
+837|M|um (prefixo); metade de um par
+838|M|fala truncada (de estrangeiro)
+839|V|inclinar; dedicar (esforços)
+840|V|endurecer; reforçar; fixar
+841|D|ao lado; ao mesmo tempo que
+842|L|canteiro de flores
+843|C|animais domésticos; gado
+844|E|e ainda; além disso
+845|E|desolado; de coração partido
+846|M|coral; canto coletivo
+847|E|firme; sólido
+848|M|concordância; coincidência
+849|E|firmemente; robusto
+850|E|já; uma vez; antigamente
+851|L|cozinha; modo próprio; egoísmo
+852|M|corte; redução
+853|A|ativo; animado
+854|S|fusão; incorporação
+855|M|categoria
+856|V|realizar-se (desejo)
+857|V|realizar; atender (pedido)
+858|L|martelo
+859|E|não conseguir; não ser páreo para
+860|S|adesão; ingresso
+861|E|previamente; já há algum tempo
+862|V|proteger; defender
+863|S|ações; sociedade anônima
+864|V|ter reação alérgica; ser influenciado
+865|C|pólen
+866|S|moeda; dinheiro
+867|V|montar; assumir uma postura
+868|A|superlotado
+869|V|arrancar mordendo; roer
+870|S|volta por cima
+871|P|fotógrafo; câmera
+872|F|mingau de arroz
+873|M|compleição; porte físico
+874|V|enroscar-se; enredar-se
+875|E|temporariamente; supondo que
+876|S|ficha clínica; prontuário
+877|L|garagem
+878|M|excesso de trabalho
+879|E|por pouco; a custo
+880|V|trocar (palavras, cumprimentos); esquivar
+881|E|alternadamente
+882|M|simplicidade; simplificado
+883|S|irrigação
+884|S|oftalmologia
+885|C|globo ocular
+886|L|brinquedo
+887|A|conciso; breve
+888|M|restituição; retorno
+889|S|enfermagem
+890|M|palavra de origem chinesa
+891|A|teimoso; obstinado
+892|M|recomendação; conselho
+893|M|conversão (de moeda ou unidade)
+894|S|vigilância; observação
+895|M|costume; hábito tradicional
+896|P|espectadores; público
+897|S|formulário de inscrição
+898|M|interferência; intervenção
+899|A|robusto; resistente
+900|M|sensação ao toque
+901|A|essencial; crucial
+902|A|essencial; crucial
+903|S|imposto aduaneiro; tarifa
+904|C|rocha
+905|M|infecção; contágio
+906|X|linha principal; via principal
+907|A|simples; sóbrio
+908|M|ponto de vista
+909|M|sensibilidade
+910|S|colar em prova; fraude
+911|T|primeiro ano (de uma era)
+912|P|executivo; dirigente
+913|A|perfeito; impecável
+914|M|perdão; tolerância
+915|M|emoção profunda; comoção
+916|S|convite; aliciamento

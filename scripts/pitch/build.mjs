@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 
 const SOURCE = 'https://raw.githubusercontent.com/mifunetoshiro/kanjium/master/data/source_files/raw/accents.txt';
 
-const levelLists = ['n5', 'n4', 'n3', 'house', 'n2'].map((name) => readFileSync(new URL(`../../src/content/${name}.ts`, import.meta.url), 'utf8')).join('\n');
+const levelLists = ['n5', 'n4', 'n3', 'house', 'n2', 'n1'].map((name) => readFileSync(new URL(`../../src/content/${name}.ts`, import.meta.url), 'utf8')).join('\n');
 const words = [...levelLists.matchAll(/jp: "([^"]+)", reading: "([^"]+)"/g)].map((m) => ({ jp: m[1], reading: m[2] }));
 // Também as palavras de exemplo dos kanji (日本語, 東京...), que entram no vocabulário vindas de src/data/examples.ts.
 const examples = readFileSync(new URL('../../src/data/examples.ts', import.meta.url), 'utf8');

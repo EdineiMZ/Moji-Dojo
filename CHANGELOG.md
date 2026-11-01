@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.38.0] - 2026-11-01
+
+Vocabulário N1: 2.641 palavras novas.
+
+- **Palavras do N1:** a lista N1 do *open-anki-jlpt-decks* (MIT) entra com leitura, significado em português, classe (JMdict), tom (Kanjium), frequência e frases do Tatoeba, em grupos "N1: ...". Ficaram de fora as que já estão nas outras listas.
+- **Não é o N1 oficial:** o JLPT não publica lista. Os significados foram escritos por IA e **ainda precisam de revisão por um falante**.
+- **Metas e simulado:** o caminho "Nível N1" mostra as palavras do N1 aprendidas, e o simulado ganhou o N1 (só com vocabulário e leitura das palavras, porque o N1 ainda não tem gramática nem kanji próprios).
+- O app passa a ter cerca de 7.800 palavras; as do N1 aparecem por último na trilha e ficam fora das contas dos outros níveis.
+
 ## [2.37.0] - 2026-11-01
 
 Vocabulário N2: 1.730 palavras novas.

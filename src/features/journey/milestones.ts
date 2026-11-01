@@ -18,7 +18,7 @@ export interface Milestone {
 }
 
 export interface LevelPath {
-  level: 'N5' | 'N4' | 'N3' | 'N2';
+  level: 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
   title: string;
   milestones: Milestone[];
 }
@@ -34,24 +34,28 @@ const N3_WORD_IDS: ReadonlySet<string> = new Set(VOCAB.filter((w) => wordLevelOf
 /** As do N2 também. */
 const N2_WORD_IDS: ReadonlySet<string> = new Set(VOCAB.filter((w) => wordLevelOfGroup(w.group) === 'N2').map((w) => w.id));
 const N2_WORD_TOTAL = VOCAB.filter((w) => N2_WORD_IDS.has(w.id) && !isSecondaryTwin(w.id)).length;
+const N1_WORD_IDS: ReadonlySet<string> = new Set(VOCAB.filter((w) => wordLevelOfGroup(w.group) === 'N1').map((w) => w.id));
+const N1_WORD_TOTAL = VOCAB.filter((w) => N1_WORD_IDS.has(w.id) && !isSecondaryTwin(w.id)).length;
 const N3_KANJI = ALL_KANJI.filter((k) => kanjiLevelOf(k) === 'N3').map((k) => k.char);
 const N3_WORD_TOTAL = VOCAB.filter((w) => N3_WORD_IDS.has(w.id) && !isSecondaryTwin(w.id)).length;
 const N4_WORD_TOTAL = VOCAB.filter((w) => N4_WORD_IDS.has(w.id) && !isSecondaryTwin(w.id)).length;
 
 /** Palavras aprendidas, separadas por nível (cada grupo de gêmeas conta uma vez). */
-export function learnedWordsByLevel(vocab: SrsState): { n5: number; n4: number; n3: number; n2: number } {
+export function learnedWordsByLevel(vocab: SrsState): { n5: number; n4: number; n3: number; n2: number; n1: number } {
   const distinct = new Set([...learnedWordIds(vocab)].map((id) => twinsOf(id)[0]?.id ?? id));
   let n4 = 0;
   let n5 = 0;
   let n3 = 0;
   let n2 = 0;
+  let n1 = 0;
   for (const id of distinct) {
     if (N4_WORD_IDS.has(id)) n4++;
     else if (N3_WORD_IDS.has(id)) n3++;
     else if (N2_WORD_IDS.has(id)) n2++;
+    else if (N1_WORD_IDS.has(id)) n1++;
     else n5++;
   }
-  return { n5, n4, n3, n2 };
+  return { n5, n4, n3, n2, n1 };
 }
 
 /** Os tópicos de gramática do N4 têm o prefixo "n4-" no id. */
@@ -75,7 +79,7 @@ export function levelPaths(srs: SrsState, vocab: SrsState, conj: SrsState = {}, 
       title: 'Nível N5',
       milestones: [
         { id: 'kana', label: 'Hiragana e katakana firmes', have: firm(srs, KANA.map((i) => i.char)), goal: KANA.length },
-        { id: 'words', label: 'Palavras do vocabulário aprendidas', have: words.n5, goal: DISTINCT_WORDS - N4_WORD_TOTAL - N3_WORD_TOTAL - N2_WORD_TOTAL },
+        { id: 'words', label: 'Palavras do vocabulário aprendidas', have: words.n5, goal: DISTINCT_WORDS - N4_WORD_TOTAL - N3_WORD_TOTAL - N2_WORD_TOTAL - N1_WORD_TOTAL },
         { id: 'verbs', label: 'Verbos com a conjugação em estudo', have: learnedVerbIds(conj).size, goal: VERBS.length },
         { id: 'grammar', label: 'Tópicos de gramática dominados (teste)', have: N5_TOPICS.filter((t) => mastered[t.id] !== undefined).length, goal: N5_TOPICS.length },
         { id: 'kanji5', label: 'Kanji do N5 firmes', have: firm(srs, N5_KANJI), goal: N5_KANJI.length },
@@ -106,6 +110,11 @@ export function levelPaths(srs: SrsState, vocab: SrsState, conj: SrsState = {}, 
       level: 'N2',
       title: 'Nível N2',
       milestones: [{ id: 'words2', label: 'Palavras do N2 aprendidas', have: words.n2, goal: N2_WORD_TOTAL }],
+    },
+    {
+      level: 'N1',
+      title: 'Nível N1',
+      milestones: [{ id: 'words1', label: 'Palavras do N1 aprendidas', have: words.n1, goal: N1_WORD_TOTAL }],
     },
   ];
 }

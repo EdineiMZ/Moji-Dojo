@@ -1,0 +1,391 @@
+2295|C|paralisia; dormência
+2296|E|coberto de (sufixo)
+2297|C|sobrancelha
+2298|L|bola (de pano)
+2299|E|inteiro; por inteiro
+2300|E|completamente; totalmente
+2301|E|completamente; inteiro
+2302|V|arredondar; enrolar
+2303|C|lua cheia
+2304|M|unânime; todo o público
+2305|D|bem em frente
+2306|A|perfeitamente redondo
+2307|A|perfeitamente redondo
+2309|M|encontro para casamento arranjado
+2310|V|trocar olhares; adiar
+2311|V|deixar passar; não perceber
+2312|A|não civilizado; primitivo
+2313|M|paladar
+2314|C|tronco (de árvore)
+2315|A|feio; indecoroso
+2316|M|perspectiva; expectativa
+2317|P|solteiro (não casado)
+2318|A|inexperiente; imaturo
+2319|M|partícula; fragmento mínimo
+2320|M|umidade
+2321|M|erro de impressão
+2322|A|miserável; maltrapilho
+2323|P|senhora (Mrs.)
+2324|V|exibir; ostentar
+2325|M|espetáculo; atração
+2327|V|satisfazer; preencher
+2328|V|desarrumar; perturbar
+2329|V|ficar desordenado; perturbar-se
+2330|A|desconhecido; inexplorado
+2331|A|próximo de si; familiar
+2332|V|guiar; orientar
+2333|M|aglomeração; densidade
+2334|A|estreito; íntimo
+2335|M|densidade
+2336|S|orçamento; estimativa
+2337|M|indefinido; pendente
+2338|M|perspectiva; visão
+2339|V|considerar como; tomar como
+2340|M|nascente; origem
+2341|V|seguir o exemplo
+2342|M|aparência; jeito de vestir
+2343|D|pico; cume
+2344|M|situação pessoal; futuro
+2345|V|deixar passar; não aproveitar
+2346|M|objetos pessoais; coisas de uso diário
+2347|V|escolher o momento apropriado
+2348|M|vista; paisagem
+2349|M|gesto
+2350|C|pulso; pulsação
+2351|M|música
+2352|M|apego; arrependimento
+2353|V|contemplar; olhar ao longe
+2354|L|pensão familiar (minshuku)
+2355|M|povo; etnia
+2356|M|costumes populares; folclore
+2357|M|sem sentido
+2358|M|clima; atmosfera
+2359|A|calado; de poucas palavras
+2360|P|genro
+2361|M|inválido; sem efeito
+2362|M|silêncio
+2363|A|inocente; ingênuo
+2364|V|arrancar; depenar
+2365|M|conclusão; laço; união
+2366|M|ligação; relação
+2367|V|ligar-se; estar relacionado
+2368|V|ligar; atar; relacionar
+2369|M|sem fio; rádio
+2370|M|desperdício de dinheiro
+2371|M|sem permissão
+2372|M|ignorância
+2373|A|absurdo; irracional
+2374|A|confuso; absurdo
+2375|A|vazio; vão
+2376|M|pesar; arrependimento
+2377|M|incompetência
+2378|E|sem critério; à toa
+2379|M|inútil; desnecessário
+2380|M|irregularidade; manchas
+2381|V|aglomerar-se; enxamear
+2382|E|é claro; naturalmente
+2383|M|produto famoso da região
+2384|M|nome; denominação
+2385|M|acerto (no alvo)
+2386|A|evidente; claro
+2387|M|lista de nomes
+2388|M|honra; prestígio
+2389|M|clareza
+2390|A|alegre; claro
+2391|S|fabricante
+2392|M|peso
+2393|M|bênção; graça
+2394|V|abençoar; ter piedade de
+2395|A|notável; brilhante
+2396|V|despertar; acordar
+2397|V|chamar; vestir (honorífico)
+2398|C|fêmea (animal)
+2399|M|olhar; expressão dos olhos
+2400|M|queda; destruição
+2401|M|mídia
+2402|M|meta; perspectiva
+2403|M|escala; graduação
+2404|M|melodia
+2405|S|visita; entrevista
+2406|S|isenção; dispensa
+2407|V|dar para; estar de frente para
+2408|M|honra; reputação
+2411|V|criar; estabelecer
+2412|V|propor; sugerir
+2413|S|inscrição; pedido
+2414|S|pedido; solicitação
+2415|V|apresentar-se para informar; oferecer
+2416|M|defeito; objeção
+2417|M|ponto cego
+2418|A|violento; feroz
+2419|L|motel
+2420|V|debater-se; esforçar-se
+2421|M|catálogo; lista
+2422|M|plano; intenção
+2423|M|maquete; modelo
+2424|M|busca às cegas; tateio
+2425|E|por acaso; talvez
+2426|E|ou; ou então
+2427|V|trazer; causar
+2428|M|assunto do momento
+2430|E|exclusivamente; principalmente
+2431|V|receber bem; hospedar
+2432|V|ser popular; fazer sucesso
+2433|L|monitor
+2434|M|curiosidade; excentricidade
+2435|A|insatisfatório; que deixa a desejar
+2436|E|já; agora
+2437|M|modelo; exemplo
+2438|M|imitação; cópia
+2439|V|brigar; entrar em disputa
+2441|C|coxa
+2442|V|realizar (evento); sentir (vontade)
+2443|V|deixar vazar; revelar
+2444|V|animar-se; empolgar-se; crescer
+2445|V|vazar; escoar
+2446|V|vazar; escapar
+2447|A|frágil; quebradiço
+2448|E|completamente; em cheio
+2449|C|flecha
+2450|D|ao ar livre; campo aberto
+2452|L|roupa de cama
+2453|M|cargo; posição
+2454|S|prefeitura (da cidade ou vila)
+2455|E|muito; surpreendentemente
+2456|L|mansão
+2457|V|criar; sustentar; cultivar
+2458|M|ambição
+2459|A|com cara de barato
+2460|V|descansar; dar descanso
+2461|M|selvagem; silvestre
+2462|P|sujeito; cara (vulgar)
+2463|M|escuridão; mercado clandestino
+2464|V|adoecer; estar doente
+2465|A|complicado; confuso
+2466|V|levar a cabo; completar
+2467|V|conseguir realizar
+2468|V|suavizar; aliviar
+2469|M|jovem
+2471|M|superioridade; vantagem
+2472|M|melancolia; depressão
+2473|A|benéfico; proveitoso
+2474|M|superioridade
+2475|A|corajoso; valente
+2476|T|anoitecer; entardecer
+2477|S|financiamento; empréstimo
+2478|V|possuir; ter
+2479|M|superioridade; vantagem de força
+2480|M|prioridade
+2481|M|orientação; condução
+2482|M|flexibilidade; adaptabilidade; crédito
+2483|M|graça; elegância
+2484|A|promissor
+2485|M|nomadismo
+2486|C|pôr do sol avermelhado
+2487|A|influente; forte
+2488|C|fantasma
+2489|M|tentação
+2491|V|entortar; deformar-se
+2492|V|sacudir; balançar
+2494|M|folga; margem; tranquilidade
+2495|A|único; singular
+2496|R|uniforme
+2497|V|apontar com o dedo
+2498|L|arco
+2499|V|balançar; vacilar
+2500|V|afrouxar; ficar frouxo
+2501|V|afrouxar; reduzir a velocidade
+2502|A|suave; brando; lento
+2503|M|fator principal; causa principal
+2504|C|solução (líquido)
+2505|M|assunto; negócio a tratar
+2506|S|proteção; cuidados especiais
+2507|L|formulário
+2508|M|estilo; forma
+2509|V|exigir; precisar
+2510|M|pedido; solicitação
+2511|M|aspecto; fisionomia
+2512|L|artigos; materiais
+2513|M|estilo ocidental
+2514|M|modo de usar; instruções
+2515|M|pedido; reivindicação
+2516|T|tempo livre; lazer
+2517|M|pressentimento
+2518|M|entretenimento; número de variedade
+2519|S|depósito bancário
+2520|M|ganância; desejo
+2521|M|opressão; repressão
+2522|L|banheiro (de banho)
+2523|M|controle; contenção
+2524|A|ganancioso
+2525|M|desejo; ambição
+2527|M|previsão; profecia
+2528|P|yokozuna (grande campeão de sumô)
+2529|M|sujeira; mancha
+2530|E|certo!; está bem!
+2531|E|certo!; está bem!
+2532|M|bom e mau; qualidade
+2533|M|olhar para o lado; distração
+2534|M|espaço; margem; possibilidade
+2535|E|portanto; por isso
+2536|S|partido governista
+2537|V|chamar para parar; deter
+2538|M|ficar acordado até tarde
+2539|T|alta noite
+2540|E|bastante; muito
+2541|V|ler em voz alta; fazer chamada
+2542|M|próximo de; inclinado para
+2543|V|encostar-se; apoiar-se; depender
+2545|V|enfraquecer; ficar em apuros
+2546|M|comparecimento (a evento)
+2547|F|arroz (prato)
+2548|S|pecuária leiteira
+2549|M|queda; descida
+2550|M|otimismo
+2551|L|lâmpada; rampa
+2552|M|abuso; uso excessivo
+2553|M|liderança; vantagem; palheta
+2554|M|teoria; argumento; pretexto
+2555|S|juros
+2556|M|lucro
+2557|M|razão; racionalidade
+2558|S|juros
+2559|M|sólido; tridimensional
+2560|M|cubo
+2561|S|legislação
+2562|M|vantagem; ponto a favor
+2563|M|saque; pilhagem
+2564|M|abreviação; sigla
+2565|S|circulação (de dinheiro ou mercadorias); distribuição
+2566|D|área; domínio
+2567|M|compreensão; consentimento
+2568|D|águas territoriais
+2569|M|extremos; polos
+2570|A|satisfatório; favorável
+2571|M|bom senso
+2572|M|boa qualidade
+2573|M|ciência; consentimento
+2574|M|consciência (moral)
+2575|D|território; domínio
+2576|D|território
+2577|M|compatibilidade; coexistência
+2578|P|passageiro
+2579|L|passaporte
+2580|M|histórico; currículo; registro
+2581|M|teoria
+2582|S|silvicultura
+2583|M|tipo; classe; espécie
+2584|M|analogia
+2585|M|semelhante
+2586|A|frouxo; relaxado
+2587|A|cruel; insensível
+2588|M|refrigeração
+2589|M|frieza; indiferença
+2590|M|corrida; renda
+2591|M|regular; titular
+2592|M|aula
+2593|P|dama
+2594|L|alavanca; fígado
+2595|M|amor; romance
+2596|L|bateria
+2597|L|taco; cuba
+2598|M|início de doença
+2599|M|algo que se ouve pela primeira vez
+2600|M|fim; limite
+2601|V|acabar; exaurir-se
+2602|V|ficar exausto
+2603|X|viatura de polícia
+2604|E|muito; extremamente
+2605|A|brilhante; espetacular
+2606|C|pétala
+2607|A|brilhante; vistoso
+2608|V|impedir; barrar
+2609|D|praia
+2610|D|beira-mar
+2611|V|encaixar-se; cair em
+2612|V|antecipar; acelerar
+2613|M|raiva
+2614|D|campo aberto; terreno baldio
+2615|E|apreensivo; com o coração na mão
+2616|V|espalhar; distribuir
+2617|L|cartaz; aviso
+2618|E|longe; muito mais
+2619|M|explosão; ruptura
+2620|V|inchar (inflamação)
+2621|M|prosperidade
+2622|M|gravura
+2623|L|cabide
+2624|M|antipatia; ressentimento
+2625|M|eco; repercussão
+2626|M|furo (de pneu); punk
+2627|M|contra-ataque
+2628|S|sentença; decisão judicial
+2629|M|reflexo
+2630|M|prosperidade; sucesso (de negócio)
+2631|M|reprodução; propagação
+2632|V|ser contrário a; opor-se
+2633|M|julgamento; decisão
+2634|P|todas as pessoas; dez mil pessoas
+2635|T|últimos anos de vida
+2636|M|reação; resposta
+2637|A|para tudo; onipotente
+2638|M|fração; incompleto
+2639|M|repulsão; oposição
+2640|M|rebelião
+2641|M|transbordamento; inundação
+2642|M|beleza
+2643|E|além disso; consequentemente
+2644|C|vírus
+2645|L|sala de espera (dos bastidores)
+2646|V|reter-se; anotar; conter-se
+2647|M|pessimismo
+2648|V|retirar-se; recolher
+2649|V|liderar; comandar
+2650|V|provocar; causar
+2651|V|baixar; reduzir
+2652|V|arrastar; prolongar
+2653|V|retirar; adotar; retirar-se
+2654|S|rejeição (de proposta)
+2655|E|geralmente; no dia a dia
+2656|A|longo; antigo
+2657|A|trágico; lastimável
+2658|M|negócios
+2659|M|peso específico
+2660|M|arte; belas-artes
+2661|P|secretário(a)
+2662|M|sorriso
+2664|A|secreto; discreto
+2665|V|mergulhar; encharcar
+2666|E|exclusivamente; com dedicação
+2667|P|canhoto
+2668|V|arranhar
+2669|M|matéria obrigatória
+2670|E|encharcado
+2671|M|inevitável; necessário
+2672|M|igualar-se a; rivalizar com
+2673|M|um fôlego; uma pausa
+2674|M|sombra de pessoa; vulto
+2675|M|personalidade; caráter
+2677|T|uma época; certa vez
+2678|P|refém
+2679|E|com dedicação total; uma linha
+2680|M|olhar de outros; atenção pública
+2681|M|data marcada
+2682|C|filhote de ave; boneca hina
+2683|M|festival das meninas (Hinamatsuri)
+2684|D|lugar ao sol
+2685|M|crítica; censura
+2686|M|evacuação; refúgio
+2687|M|bandeira do Japão
+2688|C|faísca
+2689|M|rachadura; fissura
+2690|M|grito; guincho
+2691|V|zombar; provocar; só olhar sem comprar
+2692|M|queimadura de sol
+2693|M|lema; slogan
+2694|M|descrição; representação
+2695|E|por acaso; possivelmente
+2696|M|panfleto; folheto
+2697|A|plano; chato
+2698|M|último lugar
+2699|M|proporção; razão

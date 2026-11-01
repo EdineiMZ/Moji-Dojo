@@ -107,9 +107,11 @@ export const isLeech = (entry: SrsEntry): boolean => (entry.l ?? 0) >= LEECH_LAP
 /**
  * Na "revisão extra" só as respostas erradas mexem no agendamento:
  * acertar de primeira não adianta a próxima revisão.
+ * Acertar de primeira com a dica do modo write conta como acerto, mas também não avança a caixa.
+ * (Se já tinha errado antes, a repetição segue a regra normal: é a caixa 1, então nada avança.)
  */
-export const shouldApplyReviewAnswer = (extra: boolean, ok: boolean, firstTry: boolean): boolean =>
-  !extra || !ok || !firstTry;
+export const shouldApplyReviewAnswer = (extra: boolean, ok: boolean, firstTry: boolean, hinted = false): boolean =>
+  hinted && ok && firstTry ? false : !extra || !ok || !firstTry;
 
 /** Caracteres vencidos, do mais atrasado para o menos. `isKnown` ignora chaves que não existem mais. */
 export function dueChars(srs: SrsState, now: number, isKnown: (char: string) => boolean = () => true): string[] {

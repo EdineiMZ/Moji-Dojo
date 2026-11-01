@@ -62,9 +62,9 @@ export function MixedReview({ onExit }: { onExit: () => void }) {
       key={attempt}
       questions={questions}
       title="Revisão mista"
-      onAnswer={(question, correct, firstTry) => {
+      onAnswer={(question, correct, firstTry, hinted) => {
         const { kind, key } = mixedKind(question);
-        if (kind === 'kana') recordReviewAnswer(key, correct, firstTry, false, undefined, question.direction === 'write');
+        if (kind === 'kana') recordReviewAnswer(key, correct, firstTry, false, undefined, question.direction === 'write', hinted);
         else if (kind === 'vocab') recordVocabAnswer(key, correct, firstTry);
         else recordConjAnswer(key, correct, firstTry);
       }}

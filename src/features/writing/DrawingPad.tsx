@@ -24,6 +24,8 @@ interface DrawingPadProps {
   /** Modelo do caractere: aparece cinza, com os números, se `showModel`. */
   model?: StrokeData;
   showModel?: boolean;
+  /** Opacidade do modelo cinza (1 = cheio). Baixa no traçado guiado, para o caractere ficar "de fundo". */
+  modelOpacity?: number;
   /** Depois de conferir: pinta cada traço do modelo (verde = certo, vermelho = o resto). */
   verdicts?: readonly StrokeVerdict[];
   disabled?: boolean;
@@ -41,6 +43,7 @@ export function DrawingPad({
   onStrokeEnd,
   model,
   showModel = false,
+  modelOpacity = 1,
   verdicts,
   disabled = false,
   onDrawingChange,
@@ -122,7 +125,7 @@ export function DrawingPad({
                       key={`m-${i}`}
                       d={d}
                       stroke={stroke}
-                      strokeOpacity={verdict ? 0.7 : 1}
+                      strokeOpacity={verdict ? 0.7 : modelOpacity}
                       strokeWidth={MODEL_WIDTH}
                       strokeLinecap="round"
                       strokeLinejoin="round"

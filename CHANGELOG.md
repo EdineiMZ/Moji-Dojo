@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.39.0] - 2026-11-01
+
+Modo "Desenhe o símbolo" (revisão write) com ajudas para quem não lembra o caractere.
+
+- **Não lembro:** botão ao lado de Desfazer/Limpar. Conta como erro no SRS (a mesma regra do erro normal: volta para a caixa 1 e a pergunta reaparece 2 ou 3 depois), mostra a animação da ordem dos traços e pede um traçado guiado por cima do modelo em transparência. O traçado guiado não vale nota.
+- **Dica:** revela só o primeiro traço (animado) e o resto é de memória. Acertar com a dica conta como acerto, mas a caixa não avança nem o agendamento muda. Usar a dica e errar é erro normal.
+- **Erro mostra o desenho ao lado do certo:** depois de qualquer erro (inclusive nota abaixo do corte), o desenho do usuário aparece lado a lado com o caractere certo animado.
+- **Testes:** `writeAssist.test.ts` cobre a regra do SRS do "Não lembro" e da "Dica" com relógio congelado (fake timers).
+
 ## [2.38.3] - 2026-11-01
 
 Passada visual dos 8 temas no celular (4 cores, claro e escuro): todos legíveis.

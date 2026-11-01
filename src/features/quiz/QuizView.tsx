@@ -23,7 +23,8 @@ import {
 import { AiExplain } from '@/features/ai/AiParts';
 import { pronunciationText } from '@/features/catalog';
 import { speakJapanese } from '@/features/speech/voiceStore';
-import { isPassing, writePassScore, type WritingScore } from '@/features/writing/score';
+import { writeVerdict, type WriteAction } from '@/features/writing/assist';
+import { writePassScore } from '@/features/writing/score';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { feedbackCorrect, feedbackWrong } from '@/lib/feedback';
@@ -43,7 +44,7 @@ import {
   type QuizResult,
   type QuizState,
 } from './quiz';
-import { WriteQuestion } from './WriteQuestion';
+import { WriteQuestion, type WriteResult } from './WriteQuestion';
 
 /** Tamanho do texto do enunciado: caractere ou sílaba grande; palavra de vocabulário, menor para caber em uma linha. */
 function promptGlyphStyle(text: string): { fontSize: number; lineHeight: number } {
@@ -58,8 +59,11 @@ const WRITE_ADVANCE_MS = 2200;
 interface QuizViewProps {
   questions: readonly Question[];
   title: string;
-  /** Chamado a cada resposta; `firstTry` é falso nas perguntas repetidas depois de um erro. */
-  onAnswer?: (question: Question, correct: boolean, firstTry: boolean) => void;
+  /**
+   * Chamado a cada resposta; `firstTry` é falso nas perguntas repetidas depois de um erro.
+   * `hinted`: acertou um desenho com a dica (conta como acerto, mas o SRS não avança a caixa).
+   */
+  onAnswer?: (question: Question, correct: boolean, firstTry: boolean, hinted?: boolean) => void;
   onDone: (result: QuizResult) => void;
   /** Avisa quando o dedo começa/termina um traço, para a tela travar a rolagem. */
   onDrawingChange?: (drawing: boolean) => void;
@@ -70,8 +74,8 @@ interface Answered {
   chosen: string;
   correct: boolean;
   feedback: Feedback;
-  /** Nota do desenho (só nas perguntas write). */
-  score?: WritingScore;
+  /** Como o desenho terminou (só nas perguntas write). */
+  write?: WriteResult;
 }
 
 /**
@@ -129,11 +133,11 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
   };
 
   /** Parte comum a qualquer resposta: estado, feedback, vibração, animação e avanço automático. */
-  const settle = (outcome: AnswerOutcome, chosen: string, score?: WritingScore) => {
+  const settle = (outcome: AnswerOutcome, chosen: string, write?: WriteResult, hinted = false) => {
     setQuiz(outcome.state);
-    setAnswered({ chosen, correct: outcome.correct, feedback: buildFeedback(current.item, outcome.correct, chosen), ...(score ? { score } : {}) });
+    setAnswered({ chosen, correct: outcome.correct, feedback: buildFeedback(current.item, outcome.correct, chosen), ...(write ? { write } : {}) });
     setMood(outcome.correct ? 'happy' : 'sad');
-    onAnswer?.(current, outcome.correct, outcome.firstTry);
+    onAnswer?.(current, outcome.correct, outcome.firstTry, hinted);
 
     if (outcome.correct) {
       feedbackCorrect();
@@ -162,10 +166,15 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
     settle(answerQuestion(quiz, char), char);
   };
 
-  /** Desenho conferido: a nota decide (70% ou mais); ordem e direção dos traços são só feedback. */
-  const submitWriting = (score: WritingScore) => {
+  /**
+   * Desenho conferido (a nota decide; ordem e direção dos traços são só feedback) ou "Não lembro"
+   * (sempre erro, igual a errar o desenho: volta para a caixa 1 e a pergunta reaparece).
+   */
+  const submitWriting = (action: WriteAction) => {
     if (answered) return;
-    settle(resolveQuestion(quiz, isPassing(score, writePassScore(useProgressStore.getState().srs[current.item.char]?.b))), '', score);
+    const { correct, hinted } = writeVerdict(action, writePassScore(useProgressStore.getState().srs[current.item.char]?.b));
+    const write: WriteResult = action.kind === 'giveUp' ? { kind: 'gaveUp' } : { kind: 'scored', score: action.score, correct };
+    settle(resolveQuestion(quiz, correct), '', write, hinted);
   };
 
   const toChar = current.direction === 'r2k' || isAudio;
@@ -197,8 +206,8 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
             <WriteQuestion
               key={step}
               item={current.item}
-              score={answered?.score ?? null}
-              onCheck={submitWriting}
+              result={answered?.write ?? null}
+              onAction={submitWriting}
               onDrawingChange={onDrawingChange}
             />
           </Animated.View>

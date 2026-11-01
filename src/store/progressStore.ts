@@ -45,7 +45,7 @@ export interface ProgressActions {
   /** Conta um acerto/erro de qualquer quiz e marca o dia como estudado. */
   recordAnswer: (char: string, ok: boolean, now?: number, drawn?: boolean) => void;
   /** Resposta numa revisão: além das estatísticas, reagenda o caractere. */
-  recordReviewAnswer: (char: string, ok: boolean, firstTry: boolean, extra: boolean, now?: number, drawn?: boolean) => void;
+  recordReviewAnswer: (char: string, ok: boolean, firstTry: boolean, extra: boolean, now?: number, drawn?: boolean, hinted?: boolean) => void;
   /** Marca um desafio de digitação (chave = a palavra-alvo) como feito e marca o dia. */
   completeChallenge: (word: string, now?: number) => void;
   /** Guarda a autoavaliação de uma frase do Repetir (chave = a frase em japonês) e marca o dia. */
@@ -229,11 +229,11 @@ export function createProgressStore(storage: StateStorage) {
             };
           }),
 
-        recordReviewAnswer: (char, ok, firstTry, extra, now = Date.now(), drawn = false) =>
+        recordReviewAnswer: (char, ok, firstTry, extra, now = Date.now(), drawn = false, hinted = false) =>
           set((s) => {
             const prev = s.stats[char] ?? { c: 0, w: 0 };
             const entry = s.srs[char];
-            const reschedule = entry !== undefined && shouldApplyReviewAnswer(extra, ok, firstTry);
+            const reschedule = entry !== undefined && shouldApplyReviewAnswer(extra, ok, firstTry, hinted);
             const days = markDay(s.days, new Date(now));
             return {
               stats: { ...s.stats, [char]: ok ? { ...prev, c: prev.c + 1 } : { ...prev, w: prev.w + 1 } },

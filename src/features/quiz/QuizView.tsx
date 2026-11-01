@@ -44,6 +44,7 @@ import {
   type QuizResult,
   type QuizState,
 } from './quiz';
+import { MnemonicNote } from './MnemonicNote';
 import { WriteQuestion, type WriteResult } from './WriteQuestion';
 
 /** Tamanho do texto do enunciado: caractere ou sílaba grande; palavra de vocabulário, menor para caber em uma linha. */
@@ -163,6 +164,8 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
 
   const pick = (char: string) => {
     if (answered) return;
+    // O que foi trocado pelo quê alimenta o treino de pares confusos (kana trocado por outro kana).
+    if (char !== current.item.char && isStudyItem(current.item)) useProgressStore.getState().recordConfusion(current.item.char, char);
     settle(answerQuestion(quiz, char), char);
   };
 
@@ -261,7 +264,9 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
         >
           <AppText color={answered.correct ? 'ok' : 'bad'}>{answered.feedback.text}</AppText>
           {answered.feedback.why ? <AppText>O que mudou: {answered.feedback.why}</AppText> : null}
-          {answered.feedback.hint ? (
+          {!answered.correct && isStudyItem(current.item) ? (
+            <MnemonicNote char={current.item.char} {...(answered.feedback.hint ? { fallback: answered.feedback.hint } : {})} />
+          ) : answered.feedback.hint ? (
             <AppText variant="caption" color="muted">
               Para lembrar: {answered.feedback.hint}
             </AppText>

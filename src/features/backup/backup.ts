@@ -1,6 +1,7 @@
 import { LESSONS } from '@/content/lessons';
 import { findItem } from '@/features/catalog';
 import type { CharStats, ProgressSnapshot } from '@/features/progress/types';
+import { sanitizeConfusions } from '@/features/review/confusions';
 import { LAST_BOX, type SrsEntry } from '@/features/review/srs';
 import { MAX_HISTORY_DAYS, type DayActivity } from '@/features/stats/metrics';
 import { findWord } from '@/content';
@@ -271,7 +272,16 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
     };
   }
 
-  return { value: { history: recent, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases, typing: sanitizeTyping(root.typing), reads: sanitizeReads(root.reads) }, ignored };
+  const charNotes: Record<string, string> = {};
+  for (const [char, v] of Object.entries(recordField(root, 'charNotes'))) {
+    if (findItem(char) === undefined || typeof v !== 'string' || v.trim().length === 0 || v.length > MAX_NOTE_LENGTH) {
+      ignored++;
+      continue;
+    }
+    charNotes[char] = v.trim();
+  }
+
+  return { value: { history: recent, shadow, challenges, vocab, conj, particles, wordNotes, charNotes, confusions: sanitizeConfusions(root.confusions), journey, mastered, myPhrases, typing: sanitizeTyping(root.typing), reads: sanitizeReads(root.reads) }, ignored };
 }
 
 /**
@@ -387,6 +397,8 @@ export function exportBackup(progress: ProgressSnapshot & ProgressExtras, now: D
     conj: progress.conj,
     particles: progress.particles,
     wordNotes: progress.wordNotes,
+    charNotes: progress.charNotes,
+    confusions: progress.confusions,
     journey: progress.journey,
     mastered: progress.mastered,
     myPhrases: progress.myPhrases,

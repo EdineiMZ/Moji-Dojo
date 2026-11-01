@@ -40,3 +40,17 @@ export function writeVerdict(action: WriteAction, need: number): WriteVerdict {
   const correct = isPassing(action.score, need);
   return { correct, hinted: correct && action.hinted };
 }
+
+/**
+ * "Rodinhas" do desenho, que saem conforme a caixa do SRS:
+ * - trace (caixa 1, caractere novo): o modelo aparece em transparência para traçar por cima;
+ * - first (caixa 2): o primeiro traço já vem desenhado e o resto é de memória;
+ * - memory (caixa 3 em diante): de memória, como sempre (aqui o botão "Dica" fica disponível).
+ * São apoio automático, não o botão "Dica": acertar assim ainda avança a caixa, que é como a pessoa sai da rodinha.
+ */
+export type WriteAssist = 'trace' | 'first' | 'memory';
+
+export function assistFor(box: number | undefined): WriteAssist {
+  if (box === undefined || box <= 1) return 'trace';
+  return box === 2 ? 'first' : 'memory';
+}

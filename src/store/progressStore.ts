@@ -6,6 +6,8 @@ import { MATURE_BOX } from '@/features/journey/skills';
 import { answerReview, boostSkippedItems, learnItems, shouldApplyReviewAnswer, type SrsEntry, type SrsState } from '@/features/review/srs';
 import { addActivity, type ActivityHistory } from '@/features/stats/metrics';
 import { markDay } from '@/features/streak/days';
+import { findItem } from '@/features/catalog';
+import { addConfusion, sanitizeConfusions, type Confusions } from '@/features/review/confusions';
 import { checkPhrase, newPhraseId, type MyPhrase, type MyPhrases, type PhraseProblem } from '@/features/myphrases/phrases';
 import { cardKeysFor as verbCardKeys, extraKeysFor as verbExtraKeys, EXTRA_PER_DAY, learnedVerbIds } from '@/features/conjugation/cards';
 import { findVerb } from '@/features/conjugation/verbs';
@@ -90,6 +92,10 @@ export interface ProgressActions {
   updateJourney: (change: (journey: JourneyState) => JourneyState) => void;
   /** Guarda a dica de memória de uma palavra (texto vazio apaga). Devolve false se o texto é longo demais. */
   setWordNote: (wordId: string, note: string) => boolean;
+  /** Guarda a historinha de um caractere escrita pela pessoa (texto vazio volta à do app). Devolve false se não vale. */
+  setCharNote: (char: string, note: string) => boolean;
+  /** Anota que `correct` foi trocado por `chosen` num quiz (base do treino de pares confusos). */
+  recordConfusion: (correct: string, chosen: string) => void;
   /** Resposta numa revisão de partículas (chave = a partícula): reagenda e marca o dia. */
   recordParticleAnswer: (particle: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Resposta numa revisão de conjugação (chave = "verbo|forma"): reagenda e marca o dia. */
@@ -165,6 +171,10 @@ export interface ProgressExtras {
   journey: JourneyState;
   /** Dica de memória escrita pela pessoa, por palavra (a chave é o id da palavra). */
   wordNotes: Readonly<Record<string, string>>;
+  /** Mnemônico escrito pela pessoa, por caractere: aparece no lugar do pronto quando ela erra. */
+  charNotes: Readonly<Record<string, string>>;
+  /** O que foi trocado pelo quê nos quizzes: { certo: { marcado: vezes } }. */
+  confusions: Confusions;
   /** Revisão espaçada das partículas, por cartão (a própria partícula). Quem nunca foi revisada está sempre vencida. */
   particles: SrsState;
   /** Tópicos de gramática dominados (mini-teste aprovado), pelo id, com o momento da aprovação. */
@@ -197,6 +207,8 @@ export function createProgressStore(storage: StateStorage) {
         conj: {},
         particles: {},
         wordNotes: {},
+        charNotes: {},
+        confusions: {},
         journey: emptyJourney(),
         mastered: {},
         myPhrases: {},
@@ -388,6 +400,24 @@ export function createProgressStore(storage: StateStorage) {
         unequipJourneySlot: (slot) => set((s) => ({ journey: unequipSlot(s.journey, slot) })),
         dismissJourneyToast: (id) => set((s) => ({ journey: dismissToast(s.journey, id) })),
         updateJourney: (change) => set((s) => ({ journey: change(s.journey) })),
+
+        setCharNote: (char, note) => {
+          const text = note.trim();
+          if (text.length > MAX_NOTE_LENGTH || findItem(char) === undefined) return false;
+          set((s) => {
+            const charNotes = { ...s.charNotes };
+            if (text) charNotes[char] = text;
+            else delete charNotes[char];
+            return { charNotes };
+          });
+          return true;
+        },
+
+        recordConfusion: (correct, chosen) =>
+          set((s) => {
+            const confusions = addConfusion(s.confusions, correct, chosen);
+            return confusions === s.confusions ? s : { confusions };
+          }),
 
         setWordNote: (wordId, note) => {
           const text = note.trim();
@@ -591,10 +621,10 @@ export function createProgressStore(storage: StateStorage) {
             stats: snapshot.stats,
             days: snapshot.days,
             history: extras?.history ?? {},
-            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, particles: extras.particles, wordNotes: extras.wordNotes, journey: extras.journey, mastered: extras.mastered, myPhrases: extras.myPhrases, typing: extras.typing, reads: extras.reads } : {}),
+            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, particles: extras.particles, wordNotes: extras.wordNotes, charNotes: extras.charNotes, confusions: extras.confusions, journey: extras.journey, mastered: extras.mastered, myPhrases: extras.myPhrases, typing: extras.typing, reads: extras.reads } : {}),
           }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, journey: emptyJourney(), mastered: {}, myPhrases: {}, typing: EMPTY_TYPING, reads: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, charNotes: {}, confusions: {}, journey: emptyJourney(), mastered: {}, myPhrases: {}, typing: EMPTY_TYPING, reads: {} }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
@@ -603,10 +633,10 @@ export function createProgressStore(storage: StateStorage) {
         // O que vem do disco passa pela leitura segura: estado salvo por uma versão antiga ganha os campos novos.
         merge: (persisted, current) => {
           const saved = (persisted ?? {}) as Partial<ProgressState> & { journey?: unknown };
-          return { ...current, ...saved, journey: sanitizeJourney(saved.journey), typing: sanitizeTyping((saved as { typing?: unknown }).typing), reads: sanitizeReads((saved as { reads?: unknown }).reads) };
+          return { ...current, ...saved, journey: sanitizeJourney(saved.journey), typing: sanitizeTyping((saved as { typing?: unknown }).typing), confusions: sanitizeConfusions((saved as { confusions?: unknown }).confusions), charNotes: saved.charNotes ?? {}, reads: sanitizeReads((saved as { reads?: unknown }).reads) };
         },
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, wordNotes, journey, mastered, myPhrases, typing, reads }) => ({
+        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, wordNotes, charNotes, confusions, journey, mastered, myPhrases, typing, reads }) => ({
           srs,
           lessons,
           stats,
@@ -618,6 +648,8 @@ export function createProgressStore(storage: StateStorage) {
           conj,
           particles,
           wordNotes,
+          charNotes,
+          confusions,
           journey,
           mastered,
           myPhrases,

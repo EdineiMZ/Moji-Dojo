@@ -5,7 +5,7 @@ import { pronunciationText, type StudyItem } from '@/features/catalog';
 import { formatReadings } from '@/features/lessons/knowText';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import type { Point } from '@/features/strokes/svgPath';
-import { HINT_REVEAL_MS, hintModel, hintStroke, type WriteAction } from '@/features/writing/assist';
+import { assistFor, HINT_REVEAL_MS, hintModel, hintStroke, type WriteAction } from '@/features/writing/assist';
 import { DrawingPad } from '@/features/writing/DrawingPad';
 import { DrawingPreview } from '@/features/writing/DrawingPreview';
 import { strokeModel } from '@/features/writing/model';
@@ -42,20 +42,26 @@ export function WriteQuestion({ item, result, onAction, onDrawingChange }: Write
   const { width } = useWindowDimensions();
   const { colors } = useTheme();
   const motion = useMotionEnabled();
-  const [strokes, setStrokes] = useState<Point[][]>([]);
+  const model = strokeModel(item.char);
+  const box = useProgressStore((s) => s.srs[item.char]?.b);
+  const assist = assistFor(box);
+  /** Caixa 2: o primeiro traço já vem no desenho (como a dica, mas sem custo). */
+  const [strokes, setStrokes] = useState<Point[][]>(() => {
+    const first = assist === 'first' && model ? hintStroke(model) : null;
+    return first ? [first] : [];
+  });
   const [notice, setNotice] = useState<string | null>(null);
   const [hint, setHint] = useState<HintState>('off');
   const [phase, setPhase] = useState<GuidePhase>('watch');
   const [replay, setReplay] = useState(0);
   const [traced, setTraced] = useState<Point[][]>([]);
   const hintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const model = strokeModel(item.char);
-  const need = writePassScore(useProgressStore((s) => s.srs[item.char]?.b));
+  const need = writePassScore(box);
   const locked = result !== null;
   const size = Math.min(width - spacing.lg * 4, MAX_PAD);
   const half = Math.floor((size - spacing.md) / 2);
   /** O traço da dica faz parte do desenho: Desfazer/Limpar não o tiram. */
-  const base = hint === 'on' ? 1 : 0;
+  const base = hint === 'on' || (assist === 'first' && strokes.length > 0 && model !== undefined) ? 1 : 0;
 
   useEffect(
     () => () => {
@@ -192,6 +198,8 @@ export function WriteQuestion({ item, result, onAction, onDrawingChange }: Write
               strokes={strokes}
               onStrokeEnd={(stroke) => setStrokes((prev) => [...prev, stroke])}
               model={model}
+              showModel={assist === 'trace' && !locked}
+              modelOpacity={GUIDE_OPACITY}
               verdicts={result?.kind === 'scored' ? result.score.strokes : undefined}
               disabled={locked || hint === 'playing'}
               onDrawingChange={onDrawingChange}
@@ -222,13 +230,15 @@ export function WriteQuestion({ item, result, onAction, onDrawingChange }: Write
               onPress={() => setStrokes((prev) => prev.slice(0, base))}
               style={styles.small}
             />
-            <Button
-              label="💡 Dica"
-              variant="soft"
-              disabled={!model || hint !== 'off' || strokes.length > 0}
-              onPress={useHint}
-              style={styles.small}
-            />
+            {assist === 'memory' ? (
+              <Button
+                label="💡 Dica"
+                variant="soft"
+                disabled={!model || hint !== 'off' || strokes.length > 0}
+                onPress={useHint}
+                style={styles.small}
+              />
+            ) : null}
           </View>
           <View style={styles.row}>
             <Button label="Não lembro" variant="ghost" disabled={hint === 'playing'} onPress={giveUp} style={styles.small} />
@@ -240,8 +250,11 @@ export function WriteQuestion({ item, result, onAction, onDrawingChange }: Write
             </AppText>
           ) : (
             <AppText variant="caption" color="muted" center>
+              {assist === 'trace' ? 'Caractere novo: trace por cima do modelo, na ordem dos números. ' : ''}
+              {assist === 'first' ? 'O primeiro traço já está feito: continue de memória. ' : ''}
               Para acertar: {need}% de semelhança ou mais (sobe conforme você pratica este caractere). Tamanho e posição não importam.
-              {'\n'}Dica mostra só o primeiro traço (acertar assim não sobe de caixa). “Não lembro” conta como erro e ensina o caractere.
+              {'\n'}
+              {assist === 'memory' ? 'Dica mostra só o primeiro traço (acertar assim não sobe de caixa). ' : ''}“Não lembro” conta como erro e ensina o caractere.
             </AppText>
           )}
         </>

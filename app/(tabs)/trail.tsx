@@ -7,6 +7,8 @@ import type { Script } from '@/data/types';
 import { SCRIPT_NAMES, SCRIPT_ORDER } from '@/features/catalog';
 import { LessonRow } from '@/features/lessons/LessonRow';
 import { kanjiLessonLevel, lessonStatus, nextLessonIndex, nextLessonOverall, trailProgress } from '@/features/lessons/trail';
+import { BrakeNotice } from '@/features/review/BrakeNotice';
+import { PracticeCard } from '@/features/review/PracticeCard';
 import { useProgressStore } from '@/store';
 import { spacing } from '@/theme';
 
@@ -37,6 +39,8 @@ export default function TrailScreen() {
   return (
     <Screen>
       <AppText variant="headline">Trilha</AppText>
+      <BrakeNotice />
+      <PracticeCard />
       <SegmentedControl options={SCRIPT_OPTIONS} value={script} onChange={setScript} />
 
       <View style={{ gap: spacing.xs }}>

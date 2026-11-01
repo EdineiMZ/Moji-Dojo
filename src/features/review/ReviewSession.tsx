@@ -126,7 +126,7 @@ function ReviewRun({ extra, light, unlimited, onExit, onDone, onDrawingChange, o
     const chars = extra
       ? pickExtraReviewChars(srs, isKnown)
       : dueChars(srs, Date.now(), isKnown).slice(0, batchWithin(light ? REVIEW_LIGHT_BATCH : REVIEW_BATCH, unlimited ? Infinity : currentRoom().reviewsLeft));
-    return buildReviewQuestions(chars, Math.random, { write: writeEnabled });
+    return buildReviewQuestions(chars, Math.random, { write: writeEnabled, known: new Set(Object.keys(srs)) });
   });
 
   const hasQuestions = questions.length > 0;

@@ -132,7 +132,7 @@ describe('vocabulário no backup (MDJ1)', () => {
     store.getState().learnWords([kana.id], NOW);
     store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }); // sem extras = formato antigo
     expect(Object.keys(store.getState().vocab)).toHaveLength(3);
-    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, journey: emptyJourney(), mastered: {}, myPhrases: {}, typing: EMPTY_TYPING, reads: {} });
+    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, charNotes: {}, confusions: {}, journey: emptyJourney(), mastered: {}, myPhrases: {}, typing: EMPTY_TYPING, reads: {} });
     expect(store.getState().vocab).toEqual({});
   });
 });
@@ -146,7 +146,7 @@ describe('cartões de leitura', () => {
     const store = createProgressStore(memoryStorage());
     // Simula quem aprendeu antes: só os cartões jm e mj.
     const old = Object.fromEntries(withKanji.flatMap((w) => [[`${w.id}|jm`, { b: 2, due: NOW_MS }], [`${w.id}|mj`, { b: 2, due: NOW_MS }]]));
-    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: old, conj: {}, particles: {}, wordNotes: {}, journey: emptyJourney(), mastered: {}, myPhrases: {}, typing: EMPTY_TYPING, reads: {} });
+    store.getState().replaceProgress({ srs: {}, lessons: {}, stats: {}, days: [] }, { history: {}, shadow: {}, challenges: {}, vocab: old, conj: {}, particles: {}, wordNotes: {}, charNotes: {}, confusions: {}, journey: emptyJourney(), mastered: {}, myPhrases: {}, typing: EMPTY_TYPING, reads: {} });
     store.getState().unlockVocabReadings(NOW_MS);
     const readings = Object.entries(store.getState().vocab).filter(([key]) => key.endsWith('|rd'));
     expect(readings).toHaveLength(9);

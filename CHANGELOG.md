@@ -2,6 +2,18 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.40.0] - 2026-11-01
+
+Seis melhorias para fixar os kana, a maioria montada com o que a pessoa realmente erra.
+
+- **Pares confusos (treino extra):** o app passa a guardar "o que era" e "o que você marcou" quando um kana é trocado por outro, e monta sozinho a lista dos pares que você mais troca (さ e ち). Um exercício só deles, lado a lado: escute o som e escolha qual é qual. Aparece na Trilha, em "Treinos extras", quando há pares. As confusões entram no backup.
+- **Desenho com rodinhas:** o modo "Desenhe o símbolo" acompanha a caixa do SRS. Caixa 1 (caractere novo): o modelo aparece em transparência para traçar por cima. Caixa 2: o primeiro traço já vem feito. Caixa 3 em diante: de memória, com o botão "Dica". As rodinhas são apoio automático e acertar com elas ainda avança a caixa (a "Dica" manual continua sem avançar).
+- **Mnemônico na hora do erro, que você reescreve:** ao errar um caractere, aparece a historinha dele e o botão "Escrever a minha historinha". A sua passa a valer no lugar da pronta nos erros seguintes; dá para voltar à do app. Entra no backup.
+- **Ler palavras:** depois de cerca de três linhas de kana, um treino com palavras curtas feitas só dos kana que você já aprendeu (ねこ, さかな...): leia e escolha o significado. Não mexe no agendamento.
+- **Alternativas parecidas:** os sósias visuais (さ com ち e き, ぬ com め etc.) entram primeiro entre as alternativas, desde que você já conheça o caractere. Lista de sósias ganhou o par さ e ち.
+- **Freio quando o acerto cai:** se o acerto dos últimos 3 dias fica abaixo de 60% (com pelo menos 20 respostas) ou há 6 itens teimosos ou mais, a Trilha sugere revisar antes de uma lição nova. É só uma sugestão: nunca bloqueia.
+- **Testes:** `practice.test.ts` e `newFeatures.test.ts` cobrem confusões, palavras legíveis, sósias, mnemônico próprio, rodinhas e o freio.
+
 ## [2.39.0] - 2026-11-01
 
 Modo "Desenhe o símbolo" (revisão write) com ajudas para quem não lembra o caractere.

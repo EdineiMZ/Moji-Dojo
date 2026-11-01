@@ -1,5 +1,6 @@
 import type { MinimalPair, PhraseExample } from '@/data/types';
-import { ALL_ITEMS, getItem, type StudyItem } from '@/features/catalog';
+import { ALL_ITEMS, findItem, getItem, type StudyItem } from '@/features/catalog';
+import { lookalikesOf } from '@/features/chart/lookalikes';
 import { isWritable } from '@/features/writing/model';
 
 /** Gerador de números em [0, 1). Injetável para os testes serem determinísticos. */
@@ -55,12 +56,30 @@ export function shuffle<T>(list: readonly T[], rng: Rng = Math.random): T[] {
 }
 
 /**
- * Item certo + 3 distratores. Prefere o `pool`; se faltar, completa com itens do
- * mesmo grupo e depois da mesma escrita. Nunca repete a mesma resposta na tela.
+ * Item certo + 3 distratores. Os sósias visuais do item (さ com ち e き) entram primeiro, até 2, porque é essa
+ * diferença que precisa ser treinada; o resto vem do `pool` e, se faltar, de itens do mesmo grupo e depois da
+ * mesma escrita. Nunca repete a mesma resposta na tela.
  */
-export function buildOptions(item: StudyItem, pool: readonly StudyItem[], rng: Rng = Math.random): StudyItem[] {
+/** Quantos sósias visuais entram, no máximo, nas alternativas. */
+const MAX_LOOKALIKES = 2;
+
+export function buildOptions(
+  item: StudyItem,
+  pool: readonly StudyItem[],
+  rng: Rng = Math.random,
+  known?: ReadonlySet<string>,
+): StudyItem[] {
   const usable = (x: StudyItem) => x.char !== item.char && x.label !== item.label;
-  let candidates = shuffle(pool.filter(usable), rng);
+  const twins = shuffle(
+    lookalikesOf(item.char)
+      .map((c) => findItem(c))
+      .filter(
+        (x): x is StudyItem =>
+          x !== undefined && x.script === item.script && usable(x) && (known?.has(x.char) || pool.includes(x)),
+      ),
+    rng,
+  ).slice(0, MAX_LOOKALIKES);
+  let candidates = [...twins, ...shuffle(pool.filter((x) => usable(x) && !twins.includes(x)), rng)];
   if (candidates.length < 3) {
     const sameGroup = ALL_ITEMS.filter(
       (x) => x.script === item.script && x.group === item.group && usable(x) && !candidates.includes(x),
@@ -113,6 +132,8 @@ export const WRITE_SHARE = 0.2;
 export interface ReviewOptions {
   /** Inclui a direção write (desenhar o símbolo). Itens sem traços, como きゃ, nunca a recebem. */
   write?: boolean;
+  /** Caracteres que a pessoa já conhece: os sósias deles podem aparecer como alternativa mesmo fora do grupo. */
+  known?: ReadonlySet<string>;
 }
 
 /**
@@ -131,7 +152,7 @@ export function buildReviewQuestions(
 
     const direction: Direction = rng() < (item.script === 'kanji' ? 0.7 : 0.6) ? 'k2r' : 'r2k';
     const pool = ALL_ITEMS.filter((x) => x.script === item.script && x.group === item.group);
-    return { item, direction, options: buildOptions(item, pool, rng), retry: false };
+    return { item, direction, options: buildOptions(item, pool, rng, options.known), retry: false };
   });
   return shuffle(questions, rng);
 }

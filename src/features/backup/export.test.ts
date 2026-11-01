@@ -26,7 +26,7 @@ const progress = {
   conj: { '食べる|te': { b: 3, due: 1_800_000_300_000 } },
   particles: { を: { b: 2, due: 1_800_000_400_000 } },
   journey: sanitizeJourney({ petals: 42, xp: 120, owned: ['boina', 'sininho'], equipped: { head: 'boina' }, achievements: { 'streak-7': 1_800_000_000_000 } }),
-  wordNotes: { 学校: 'がっこう = escola; 学 (estudar) + 校 (escola)' },
+  wordNotes: { 学校: 'がっこう = escola; 学 (estudar) + 校 (escola)' }, charNotes: {}, confusions: {},
   mastered: { g4: 1_800_000_400_000 },
   reads: { 'n4-doente': 1_800_000_450_000 },
   typing: { keys: { か: { ok: 3, bad: 1, ms: 900 } }, levelDone: { '1': 4 }, chars: 20, ms: 8000, best: 210 },
@@ -45,7 +45,7 @@ describe('exportBackup', () => {
     if (!result.ok) throw new Error(`esperava sucesso, veio ${result.error}`);
     expect(result.source).toBe('app');
     expect(result.snapshot).toEqual({ srs: progress.srs, lessons: progress.lessons, stats: progress.stats, days: progress.days });
-    expect(result.extras).toEqual({ history: progress.history, shadow: progress.shadow, challenges: progress.challenges, vocab: progress.vocab, conj: progress.conj, particles: progress.particles, wordNotes: progress.wordNotes, journey: progress.journey, mastered: progress.mastered, myPhrases: progress.myPhrases, typing: progress.typing, reads: progress.reads });
+    expect(result.extras).toEqual({ history: progress.history, shadow: progress.shadow, challenges: progress.challenges, vocab: progress.vocab, conj: progress.conj, particles: progress.particles, wordNotes: progress.wordNotes, charNotes: progress.charNotes, confusions: progress.confusions, journey: progress.journey, mastered: progress.mastered, myPhrases: progress.myPhrases, typing: progress.typing, reads: progress.reads });
     expect(result.summary).toEqual({ lessons: 1, reviews: 2, characters: 2, days: 2, ignored: 0, words: 1, phrases: 1 });
   });
 
@@ -79,7 +79,7 @@ describe('exportBackup', () => {
 
     const b = createProgressStore(memoryStorage());
     b.getState().replaceProgress(parsed.snapshot, parsed.extras);
-    const keep = ({ srs, lessons, stats, days, history, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases, typing }: ProgressState) => ({ srs, lessons, stats, days, history, shadow, challenges, vocab, conj, particles, wordNotes, journey, mastered, myPhrases, typing });
+    const keep = ({ srs, lessons, stats, days, history, shadow, challenges, vocab, conj, particles, wordNotes, charNotes, confusions, journey, mastered, myPhrases, typing }: ProgressState) => ({ srs, lessons, stats, days, history, shadow, challenges, vocab, conj, particles, wordNotes, charNotes, confusions, journey, mastered, myPhrases, typing });
     expect(keep(b.getState())).toEqual(keep(a.getState()));
   });
 });
@@ -116,7 +116,7 @@ describe('parseBackup: backup do app (MDJ1)', () => {
       vocab: {},
       conj: {},
       particles: {},
-      wordNotes: {},
+      wordNotes: {}, charNotes: {}, confusions: {},
       journey: emptyJourney(),
       mastered: {},
       myPhrases: {},
@@ -164,7 +164,7 @@ describe('replaceProgress com extras', () => {
     store.getState().rateShadow('antiga', 'bad', NOW.getTime());
     store.getState().replaceProgress(
       { srs: {}, lessons: {}, stats: {}, days: [] },
-      { history: progress.history, shadow: progress.shadow, challenges: progress.challenges, vocab: progress.vocab, conj: progress.conj, particles: progress.particles, wordNotes: progress.wordNotes, journey: progress.journey, mastered: progress.mastered, myPhrases: progress.myPhrases, typing: progress.typing, reads: progress.reads },
+      { history: progress.history, shadow: progress.shadow, challenges: progress.challenges, vocab: progress.vocab, conj: progress.conj, particles: progress.particles, wordNotes: progress.wordNotes, charNotes: progress.charNotes, confusions: progress.confusions, journey: progress.journey, mastered: progress.mastered, myPhrases: progress.myPhrases, typing: progress.typing, reads: progress.reads },
     );
     expect(store.getState().shadow).toEqual(progress.shadow);
     expect(store.getState().challenges).toEqual(progress.challenges);

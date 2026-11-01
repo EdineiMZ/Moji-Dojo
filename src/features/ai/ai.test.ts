@@ -271,7 +271,7 @@ describe('a chave de API fica fora do backup', () => {
       vocab: {},
       conj: {},
       particles: {},
-      wordNotes: {},
+      wordNotes: {}, charNotes: {}, confusions: {},
       journey: emptyJourney(),
       mastered: {},
       myPhrases: {},

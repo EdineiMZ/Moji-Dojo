@@ -65,6 +65,7 @@ function ThemedStack() {
         <Stack.Screen name="lesson/[id]" />
         <Stack.Screen name="review" />
         <Stack.Screen name="mixed" />
+        <Stack.Screen name="practice" />
         <Stack.Screen name="placement" />
         <Stack.Screen name="welcome" options={{ gestureEnabled: false, animation: 'fade' }} />
         <Stack.Screen name="settings/index" />

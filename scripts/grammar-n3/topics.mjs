@@ -1,4 +1,4 @@
-// Tópicos de gramática N3 (n3-1 a n3-15: primeira leva; n3-16 a n3-27: segunda leva).
+// Tópicos de gramática N3 (n3-1 a n3-15: primeira leva; n3-16 a n3-27: segunda leva; n3-28 a n3-31: terceira leva).
 //
 // A lista de pontos parte do que o Guia JLPT do Wikibooks (CC BY-SA) e a prática do ensino de japonês tratam como N3; não há lista
 // oficial do JLPT. As explicações são texto próprio, em português, ainda sem revisão por um falante. Os exemplos são frases reais do
@@ -866,9 +866,9 @@ export const TOPICS = [
   },
   {
     "id": "n3-16",
-    "title": "Fácil de e difícil de: 〜やすい e 〜にくい",
+    "title": "Não aguento: 〜てたまらない",
     "body": [
-      "Com a raiz do verbo (a forma ます sem o ます), **やすい** diz que a ação é **fácil** ou que a coisa **tende a** acontecer, e **にくい** diz que é **difícil**. As duas viram adjetivos い: __やすかった__, __にくくない__.",
+      "O **〜てたまらない** diz que uma sensação ou um sentimento é **forte demais para suportar**: dor, calor, vontade. Vem a forma **て** de um adjetivo ou do **〜たい** + **たまらない**.",
       {
         "table": [
           [
@@ -876,55 +876,48 @@ export const TOPICS = [
             "#exemplo"
           ],
           [
-            "raiz do verbo + やすい",
-            "__まなび やすい__ (fácil de aprender)"
+            "adjetivo い (くて) + たまらない",
+            "__いたくて たまらない__ (a dor é insuportável)"
           ],
           [
-            "raiz do verbo + やすい",
-            "__つかれ やすい__ (cansa com facilidade)"
+            "adjetivo い (くて) + たまらない",
+            "__あつくて たまらない__ (o calor é insuportável)"
           ],
           [
-            "raiz do verbo + にくい",
-            "__のみ にくい__ (difícil de engolir)"
+            "adjetivo な (で) + たまらない",
+            "__しんぱいで たまらない__ (estou preocupadíssimo)"
           ],
           [
-            "raiz do verbo + にくい",
-            "__こたえ にくい__ (difícil de responder)"
+            "〜たくて + たまらない",
+            "__いきたくて たまらない__ (estou louco para ir)"
           ]
         ]
       },
-      "Quem ou o que sofre a ação é o sujeito da frase, com **は** ou **が**: __えいご は まなびやすい__ (\"o inglês é fácil de aprender\"). Não confunda com __やすい__ escrito 安い (\"barato\"): a leitura é a mesma, mas o primeiro vem depois de um verbo."
+      "Só se usa para a sensação de **quem fala**: dor, calor, desejo. Para dizer o mesmo de outra pessoa, o japonês muda a forma (__いたがっている__)."
     ],
-    "pattern": "[raiz do verbo] やすい · [raiz do verbo] にくい",
-    "hint": "やすい: fácil de; にくい: difícil de.",
+    "pattern": "[adjetivo い, くて] たまらない · [adjetivo な, で] たまらない · [〜たくて] たまらない",
+    "hint": "てたまらない: insuportável, forte demais.",
     "examples": [
       {
-        "id": 189137,
-        "ja": "英語は学びやすい。",
-        "furi": "[英語|えい|ご]は[学|まな]びやすい。",
-        "kana": "えいご~は まなびやすい",
-        "pt": "O inglês é fácil de aprender."
+        "id": 125692,
+        "ja": "痛くてたまらない。",
+        "furi": "[痛|いた]くてたまらない。",
+        "kana": "いたくて たまらない",
+        "pt": "Eu não suporto a dor."
       },
       {
-        "id": 79985,
-        "ja": "目が疲れやすいです。",
-        "furi": "[目|め]が[疲|つか]れやすいです。",
-        "kana": "め~が つかれやすい|です",
-        "pt": "Meus olhos se cansam com facilidade."
+        "id": 147456,
+        "ja": "暑くてたまらない。",
+        "furi": "[暑|あつ]くてたまらない。",
+        "kana": "あつくて たまらない",
+        "pt": "Eu não suporto este calor."
       },
       {
-        "id": 219292,
-        "ja": "この薬は飲みにくい。",
-        "furi": "この[薬|くすり]は[飲|の]みにくい。",
-        "kana": "この くすり~は のみにくい",
-        "pt": "O remédio é ruim de engolir."
-      },
-      {
-        "id": 101723,
-        "ja": "彼は答えにくい質問をした。",
-        "furi": "[彼|かれ]は[答|こた]えにくい[質問|しつ|もん]をした。",
-        "kana": "かれ~は こたえにくい しつもん~を した",
-        "pt": "Ele fez uma pergunta embaraçosa."
+        "id": 11016725,
+        "ja": "足が痛くてたまらない。",
+        "furi": "[足|あし]が[痛|いた]くてたまらない。",
+        "kana": "あし~が いたくて たまらない",
+        "pt": "Meus pés estão me matando."
       }
     ]
   },
@@ -1579,6 +1572,232 @@ export const TOPICS = [
         "furi": "あの[子|こ]はあかだらけだ。",
         "kana": "あの こ~は あか だらけだ",
         "pt": "A criança está suja."
+      }
+    ]
+  },
+  {
+    "id": "n3-28",
+    "title": "Para mim, para você: 〜にとって",
+    "body": [
+      "O **にとって** mostra de **quem é o ponto de vista**: \"para as pessoas\", \"para mim\". Vem depois da pessoa ou da coisa, e a frase termina com uma **avaliação** (importante, necessário, estranho, difícil).",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "pessoa + にとって",
+            "__にんげん にとって たいせつだ__ (é importante para as pessoas)"
+          ],
+          [
+            "pessoa + にとっては",
+            "__わたし にとって は おかしい__ (para mim é estranho)"
+          ],
+          [
+            "coisa + にとって",
+            "__りょうり にとって ひつようだ__ (é necessário para a culinária)"
+          ]
+        ]
+      },
+      "Não é o \"para\" de **receber** algo (aí se usa **に**) nem o de **objetivo** (**〜のために**). O **にとって** só pede um julgamento."
+    ],
+    "pattern": "[pessoa/coisa] にとって [avaliação]",
+    "hint": "にとって: do ponto de vista de, para.",
+    "examples": [
+      {
+        "id": 143754,
+        "ja": "水は人間にとって大切だ。",
+        "furi": "[水|みず]は[人間|にん|げん]にとって[大切|たい|せつ]だ。",
+        "kana": "みず~は にんげん にとって たいせつだ",
+        "pt": "A água é importante para as pessoas."
+      },
+      {
+        "id": 188602,
+        "ja": "塩は料理にとって必要な物だ。",
+        "furi": "[塩|しお]は[料理|りょう|り]にとって[必要|ひつ|よう]な[物|もの]だ。",
+        "kana": "しお~は りょうり にとって ひつような ものだ",
+        "pt": "O sal é necessário para cozinhar."
+      },
+      {
+        "id": 602868,
+        "ja": "私にとっては少しおかしいです。",
+        "furi": "[私|わたし]にとっては[少|すこ]しおかしいです。",
+        "kana": "わたし にとって~は すこし おかしい|です",
+        "pt": "É um pouco estranho para mim."
+      },
+      {
+        "id": 205147,
+        "ja": "それは私にとって意外な話だった。",
+        "furi": "それは[私|わたし]にとって[意外|い|がい]な[話|はなし]だった。",
+        "kana": "それ~は わたし にとって いがいな はなしだった",
+        "pt": "Isto foi uma revelação para mim."
+      }
+    ]
+  },
+  {
+    "id": "n3-29",
+    "title": "Não dá para não: 〜ずにはいられない",
+    "body": [
+      "O **〜ずにはいられない** diz que a pessoa **não consegue evitar** algo: rir, chorar, pensar. Vem a **forma ない sem o ない** + **ずにはいられない**; com **する**, vira __せずには__.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "verbo (sem ない) + ずにはいられない",
+            "__なか ずには いられない__ (não consigo evitar chorar)"
+          ],
+          [
+            "verbo (sem ない) + ずにはいられない",
+            "__わらわ ずには いられない__ (não dá para não rir)"
+          ],
+          [
+            "する → せずには",
+            "__しんぱい せずには いられない__ (não consigo deixar de me preocupar)"
+          ]
+        ]
+      },
+      "É uma reação **do coração**, um impulso, e não uma obrigação. Não use para o que se **deve** fazer (aí é __〜なければならない__)."
+    ],
+    "pattern": "[verbo, forma ない sem ない] ずにはいられない",
+    "hint": "ずにはいられない: não consigo evitar.",
+    "examples": [
+      {
+        "id": 10946675,
+        "ja": "泣かずにはいられないよ。",
+        "furi": "[泣|な]かずにはいられないよ。",
+        "kana": "なかず に~は いられない~よ",
+        "pt": "Não posso evitar o choro."
+      },
+      {
+        "id": 204561,
+        "ja": "それを笑わずにはいられない。",
+        "furi": "それを[笑|わら]わずにはいられない。",
+        "kana": "それ~を わらわず に~は いられない",
+        "pt": "Não tem como não rir disso."
+      },
+      {
+        "id": 160448,
+        "ja": "私はそう思わずにはいられない。",
+        "furi": "[私|わたし]はそう[思|おも]わずにはいられない。",
+        "kana": "わたし~は そう おもわず に~は いられない",
+        "pt": "Não consigo deixar de pensar que é de facto esse o caso."
+      }
+    ]
+  },
+  {
+    "id": "n3-30",
+    "title": "Além de e exceto: 〜のほか e ほかに",
+    "body": [
+      "A palavra **ほか** (também escrita 他) quer dizer \"**outro**\" e \"**além de**\". Ela aparece em três usos comuns.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "ほかの + substantivo",
+            "__ほかの を みせて ください__ (mostre outro)"
+          ],
+          [
+            "A の ほかは B",
+            "__にちようび の ほかは はたらく__ (trabalho todos os dias, menos domingo)"
+          ],
+          [
+            "ほかに + frase",
+            "__ほかに いたい ところは ありますか__ (dói em mais algum lugar?)"
+          ]
+        ]
+      },
+      "O **〜のほかは** costuma levar uma frase de **exceção** (\"exceto\"). O **ほかに** soma mais coisas (\"além disso, mais\")."
+    ],
+    "pattern": "ほかの [substantivo] · [A] のほかは [B] · ほかに [frase]",
+    "hint": "ほか: outro, além de, exceto.",
+    "examples": [
+      {
+        "id": 196433,
+        "ja": "ほかのを見せてください。",
+        "furi": "ほかのを[見|み]せてください。",
+        "kana": "ほか~の~を みせて ください",
+        "pt": "Por favor me mostre outro."
+      },
+      {
+        "id": 154677,
+        "ja": "私は日曜日のほかは毎日働く。",
+        "furi": "[私|わたし]は[日曜日|にち|よう|び]のほかは[毎日|まい|にち][働|はたら]く。",
+        "kana": "わたし~は にちようび~の ほか~は まいにち はたらく",
+        "pt": "Eu trabalho todos os dias, exceto domingo."
+      },
+      {
+        "id": 196436,
+        "ja": "ほかに痛いところはありますか。",
+        "furi": "ほかに[痛|いた]いところはありますか。",
+        "kana": "ほか~に いたい ところ~は あります~か",
+        "pt": "Você sente dor em alguma outra parte de seu corpo?"
+      }
+    ]
+  },
+  {
+    "id": "n3-31",
+    "title": "Que...! e \"uma coisa como\": 〜なんて",
+    "body": [
+      "O **なんて** tem dois usos. O primeiro é uma **exclamação**: \"**que** bonito!\". Vem antes de um adjetivo, e a frase termina com __のだろう__, __んだ__ ou __なの__. O segundo é falar de algo com **desdém ou surpresa**: \"uma coisa como a vida sem você\", \"apetite, nem pensar\".",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "なんて + adjetivo + のだろう",
+            "__かれ は なんて おおきい のだろう__ (como ele é alto!)"
+          ],
+          [
+            "なんて + adjetivo + んだ",
+            "__きみ は なんて しんせつな んだ__ (como você é gentil!)"
+          ],
+          [
+            "substantivo + なんて + negativo",
+            "__しょくよく なんて ありません__ (apetite? nenhum)"
+          ]
+        ]
+      },
+      "Atenção: __なんて いったの__ (\"o que ele disse?\") é outra coisa: aí **なんて** quer dizer \"o quê\". E o **なんて** de desdém soa informal e pode ser grosseiro com quem ouve."
+    ],
+    "pattern": "なんて [adjetivo] のだろう · [substantivo] なんて [negativo]",
+    "hint": "なんて: que...! ou uma coisa como...",
+    "examples": [
+      {
+        "id": 111389,
+        "ja": "彼はなんて大きいのだろう。",
+        "furi": "[彼|かれ]はなんて[大|おお]きいのだろう。",
+        "kana": "かれ~は なんて おおきい のだろう",
+        "pt": "Como ele é alto!"
+      },
+      {
+        "id": 177591,
+        "ja": "君はなんて親切なんだ。",
+        "furi": "[君|きみ]はなんて[親切|しん|せつ]なんだ。",
+        "kana": "きみ~は なんて しんせつな んだ",
+        "pt": "Como você é gentil!"
+      },
+      {
+        "id": 145768,
+        "ja": "食欲なんてありません。",
+        "furi": "[食欲|しょく|よく]なんてありません。",
+        "kana": "しょくよく なんて ありません",
+        "pt": "Estou sem apetite."
+      },
+      {
+        "id": 178728,
+        "ja": "君なしの生活なんて考えられない。",
+        "furi": "[君|きみ]なしの[生活|せい|かつ]なんて[考|かんが]えられない。",
+        "kana": "きみ なし~の せいかつ なんて かんがえられない",
+        "pt": "Não consigo pensar na vida sem você."
       }
     ]
   }

@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.36.0] - 2026-11-01
+
+Gramática: 4 tópicos novos no N4 e 4 no N3 (e um tópico repetido sai).
+
+- **N4 (agora 31 tópicos):** 〜てある (já está feito), 〜までに (prazo), 〜なさい (ordem firme) e pedir um favor com 〜てくれませんか e 〜ていただけませんか.
+- **N3 (agora 31 tópicos):** 〜にとって, 〜ずにはいられない, ほか (〜のほか e ほかに) e 〜なんて. O tópico 〜やすい e 〜にくい do N3 (que o N5 já tinha) saiu e deu lugar a 〜てたまらない.
+- **Frases reais conferidas:** as 41 frases novas são do Tatoeba (CC BY 2.0 FR), todas conferidas na fonte (id, texto, licença, leitura, furigana e tradução).
+- **N4 e N3 fechados no que dá fazer sem um falante:** vocabulário, kanji, gramática, leitura, metas e simulado. O que falta é a revisão por um falante, que o ROADMAP segue marcando.
+
 ## [2.35.0] - 2026-11-01
 
 Casa do Mochi, fase 3: decorações de datas e clima.

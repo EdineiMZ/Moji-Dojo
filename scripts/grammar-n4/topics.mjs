@@ -1,4 +1,4 @@
-// Tópicos de gramática N4 (n4-1 a n4-7: primeira leva; n4-8 a n4-14: segunda leva; n4-15 a n4-23: terceira leva).
+// Tópicos de gramática N4 (n4-1 a n4-7: primeira leva; n4-8 a n4-14: segunda leva; n4-15 a n4-23: terceira leva; n4-28 a n4-31: quinta leva).
 //
 // As explicações são texto próprio, em português, ainda sem revisão por um falante. Os exemplos são frases reais do Tatoeba
 // (CC BY 2.0 FR), escolhidas pelo id; `ja` é o texto original, `furi` a transcrição do Tatoeba, `pt` uma das traduções do
@@ -651,5 +651,245 @@ export const TOPICS = [
       { id: 342132, ja: 'アンドレアと申します。', furi: 'アンドレアと[申|もう]します。', kana: 'アンドレア~と もうします', pt: 'Eu me chamo Andréa.' },
       { id: 142084, ja: '切符を拝見いたします。', furi: '[切符|きっ|ぷ]を[拝見|はい|けん]いたします。', kana: 'きっぷ~を はいけん いたします', pt: 'Bilhete, por favor.' },
     ],
+  },
+  {
+    "id": "n4-28",
+    "title": "Já está feito: 〜てある",
+    "body": [
+      "Com **〜てある** você diz que alguém fez algo **de propósito** e que o resultado **continua lá**: \"a reserva está feita\", \"o mapa está colado na parede\". Vem a forma **て** de um verbo (que tem objeto) + **ある**, e o objeto vira o sujeito, com **が** ou **は**.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "verbo (tem objeto) て + ある",
+            "__よやく して ある__ (a reserva está feita)"
+          ],
+          [
+            "objeto が + verbo て + ある",
+            "__ほん が おいて ある__ (há um livro posto ali)"
+          ],
+          [
+            "compare: 〜ている",
+            "__ドア が あいて いる__ (a porta está aberta, sem dizer quem abriu)"
+          ]
+        ]
+      },
+      "O **〜てある** pensa em quem preparou a coisa; o **〜ている** só descreve o estado. Por isso, com verbos que não têm objeto (abrir sozinho, quebrar), o certo é **〜ている**."
+    ],
+    "pattern": "[objeto] が [verbo て] ある",
+    "hint": "てある: alguém fez, e continua assim.",
+    "examples": [
+      {
+        "id": 78990,
+        "ja": "予約してある。",
+        "furi": "[予約|よ|やく]してある。",
+        "kana": "よやく して ある",
+        "pt": "Tenho uma reserva."
+      },
+      {
+        "id": 991942,
+        "ja": "地図は壁に貼ってある。",
+        "furi": "[地図|ち|ず]は[壁|かべ]に[貼|は]ってある。",
+        "kana": "ちず~は かべ~に はって ある",
+        "pt": "O mapa está na parede."
+      },
+      {
+        "id": 183426,
+        "ja": "机の上に本が置いてある。",
+        "furi": "[机|つくえ]の[上|うえ]に[本|ほん]が[置|お]いてある。",
+        "kana": "つくえ~の うえ~に ほん~が おいて ある",
+        "pt": "Há um livro sobre a mesa."
+      }
+    ]
+  },
+  {
+    "id": "n4-29",
+    "title": "Até quando: 〜までに",
+    "body": [
+      "O **までに** marca um **prazo**: a ação acontece **uma vez**, em qualquer momento **antes** daquele ponto. Vem depois de uma hora ou de um dia.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "hora ou dia + までに + ação",
+            "__ろくじ までに もどります__ (volto até as seis)"
+          ],
+          [
+            "compare: まで + ação contínua",
+            "__ろくじ まで まちます__ (espero até as seis)"
+          ],
+          [
+            "pergunta",
+            "__いつ までに ひつようですか__ (para quando você precisa?)"
+          ]
+        ]
+      },
+      "Se a ação **dura** até aquele momento, é **まで**. Se ela só precisa estar **pronta** antes dele, é **までに**."
+    ],
+    "pattern": "[hora/dia] までに [ação única]",
+    "hint": "までに: prazo, até lá a ação já aconteceu.",
+    "examples": [
+      {
+        "id": 1055803,
+        "ja": "六時までに戻ります。",
+        "furi": "[六|ろく][時|じ]までに[戻|もど]ります。",
+        "kana": "ろくじ まで~に もどります",
+        "pt": "Voltarei lá pelas seis."
+      },
+      {
+        "id": 5326,
+        "ja": "土曜日までに本を返さなければなりません。",
+        "furi": "[土曜日|ど|よう|び]までに[本|ほん]を[返|かえ]さなければなりません。",
+        "kana": "どようび まで~に ほん~を かえさなければ なりません",
+        "pt": "Tenho que devolver o livro antes de sábado."
+      },
+      {
+        "id": 228790,
+        "ja": "いつまでに必要ですか。",
+        "furi": "いつまでに[必要|ひつ|よう]ですか。",
+        "kana": "いつ まで~に ひつよう|です~か",
+        "pt": "Para quando você precisa?"
+      },
+      {
+        "id": 231529,
+        "ja": "明日までに本を返しなさい。",
+        "furi": "[明日|あした]までに[本|ほん]を[返|かえ]しなさい。",
+        "kana": "あした まで~に ほん~を かえしなさい",
+        "pt": "Por favor, devolva o livro até amanhã."
+      }
+    ]
+  },
+  {
+    "id": "n4-30",
+    "title": "Mandar com firmeza: 〜なさい",
+    "body": [
+      "A forma **〜なさい** é uma **ordem** firme, mas sem grosseria, que vem de quem está **acima**: pais, professores, avisos de prova. Vem a **raiz do verbo** (a forma ます sem ます) + **なさい**.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "raiz do verbo + なさい",
+            "__おき なさい__ (acorde)"
+          ],
+          [
+            "raiz do verbo + なさい",
+            "__かえり なさい__ (volte para casa)"
+          ],
+          [
+            "expressões fixas com なさい",
+            "__ごめんなさい__ (desculpe) · __おやすみなさい__ (boa noite) · __おかえりなさい__ (bem-vindo de volta)"
+          ]
+        ]
+      },
+      "Com colegas e clientes não se usa **なさい**. Para pedir com educação, use **〜てください**, que você já conhece."
+    ],
+    "pattern": "[raiz do verbo] なさい",
+    "hint": "なさい: ordem firme de quem está acima.",
+    "examples": [
+      {
+        "id": 182972,
+        "ja": "起きなさい！",
+        "furi": "[起|お]きなさい！",
+        "kana": "おき なさい",
+        "pt": "Acorda!"
+      },
+      {
+        "id": 194029,
+        "ja": "もう遅いからテレビを消しなさい。",
+        "furi": "もう[遅|おそ]いからテレビを[消|け]しなさい。",
+        "kana": "もう おそい から テレビ~を けしなさい",
+        "pt": "É tarde, então desligue a TV."
+      },
+      {
+        "id": 204648,
+        "ja": "それをテーブルの上に置きなさい。",
+        "furi": "それをテーブルの[上|うえ]に[置|お]きなさい。",
+        "kana": "それ~を テーブル~の うえ~に おきなさい",
+        "pt": "Coloque-o sobre a mesa."
+      },
+      {
+        "id": 141756,
+        "ja": "先生にあなたの名前を言いなさい。",
+        "furi": "[先生|せん|せい]にあなたの[名前|な|まえ]を[言|い]いなさい。",
+        "kana": "せんせい~に あなた~の なまえ~を いいなさい",
+        "pt": "Diga o seu nome ao professor."
+      }
+    ]
+  },
+  {
+    "id": "n4-31",
+    "title": "Pedir um favor: 〜てくれませんか e 〜ていただけませんか",
+    "body": [
+      "Para pedir um **favor** com educação, pergunte de forma **negativa**: \"você não poderia...?\". O **〜てくれませんか** é gentil; o **〜ていただけませんか** é mais formal, para clientes, superiores e desconhecidos.",
+      {
+        "table": [
+          [
+            "#padrão",
+            "#exemplo"
+          ],
+          [
+            "verbo て + くれませんか",
+            "__おしえて くれません か__ (você pode me ensinar?)"
+          ],
+          [
+            "verbo て + いただけませんか",
+            "__あけて いただけません か__ (o senhor poderia abrir?)"
+          ],
+          [
+            "entre amigos",
+            "__てつだって くれない?__ (me ajuda?)"
+          ]
+        ]
+      },
+      "É a pergunta **negativa** (**ませんか**) que deixa o pedido suave. Com **〜てください** o pedido fica mais direto; use-o quando a situação for simples."
+    ],
+    "pattern": "[verbo て] くれませんか · [verbo て] いただけませんか",
+    "hint": "てくれませんか: pedido gentil; ていただけませんか: mais formal.",
+    "examples": [
+      {
+        "id": 148503,
+        "ja": "手伝ってくれませんか。",
+        "furi": "[手伝|て|つだ]ってくれませんか。",
+        "kana": "てつだって くれません~か",
+        "pt": "Você me ajuda?"
+      },
+      {
+        "id": 123567,
+        "ja": "道を教えてくれませんか。",
+        "furi": "[道|みち]を[教|おし]えてくれませんか。",
+        "kana": "みち~を おしえて くれません~か",
+        "pt": "Você pode me mostrar o caminho?"
+      },
+      {
+        "id": 148507,
+        "ja": "手伝っていただけませんか。",
+        "furi": "[手伝|て|つだ]っていただけませんか。",
+        "kana": "てつだって いただけません~か",
+        "pt": "Você me ajuda, por favor?"
+      },
+      {
+        "id": 140380,
+        "ja": "窓を開けていただけませんか。",
+        "furi": "[窓|まど]を[開|あ]けていただけませんか。",
+        "kana": "まど~を あけて いただけません~か",
+        "pt": "Você poderia abrir a janela?"
+      },
+      {
+        "id": 124844,
+        "ja": "電気をつけていただけませんか。",
+        "furi": "[電気|でん|き]をつけていただけませんか。",
+        "kana": "でんき~を つけて いただけません~か",
+        "pt": "Você faria a gentileza de acender as luzes?"
+      }
+    ]
   },
 ];

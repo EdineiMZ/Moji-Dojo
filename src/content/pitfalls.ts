@@ -310,6 +310,22 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
     'O honorífico é para a ação dos outros; para falar de si, use o humilde. Dizer "わたしは いらっしゃいます" para si mesmo soa errado.',
     'Algumas ações têm uma palavra própria (いく e くる → いらっしゃる, たべる → めしあがる, いう → おっしゃる). Quando existe, ela vale mais do que o padrão お〜になります.',
   ],
+  'n4-28': [
+    'てある é para o que alguém fez de propósito e continua assim; ている só descreve o estado (ドアがあいている).',
+    'O objeto leva が (ほんが おいてある), e não を.',
+  ],
+  'n4-29': [
+    'までに é prazo (uma ação antes daquele ponto); まで é a ação que dura até lá. ろくじまでに もどる ≠ ろくじまで まつ.',
+    'Depois de までに a ação é pontual (voltar, entregar, terminar), não contínua.',
+  ],
+  'n4-30': [
+    'なさい vem da raiz do verbo (おき, かえり), sem ます.',
+    'É ordem de quem está acima; com colegas e clientes, use てください.',
+  ],
+  'n4-31': [
+    'O ませんか negativo é o que deixa o pedido suave: てくれませんか, e não só てくれますか.',
+    'Para clientes e superiores prefira ていただけませんか.',
+  ],
   'n3-1': [
     'らしい depois de substantivo pode ser "parece" ou "bem típico de": がくせいらしい é "parece ser estudante" ou "como um bom estudante". O contexto decide.',
     'Não use らしい para o que você viu e tem certeza: ele marca informação de segunda mão ou uma conclusão por indícios.',
@@ -371,8 +387,8 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
     'ことになった serve para anunciar uma regra ou um fato ("ficou decidido que...") de forma educada, sem dizer quem decidiu.',
   ],
   'n3-16': [
-    'やすい depois de um verbo (まなびやすい) é "fácil de"; o やすい de 安い é "barato", e a leitura é a mesma. O que vem antes é que diferencia.',
-    'Use a raiz do verbo (a forma ます sem ます): のみにくい, e não のむにくい.',
+    'てたまらない é para a sensação de quem fala (dor, calor, vontade); de outra pessoa, o japonês muda a forma.',
+    'Antes dele vai a forma て: いたくて, しんぱいで, いきたくて.',
   ],
   'n3-17': [
     'かどうか traz o "se ou não" de uma pergunta sim/não; para uma palavra de pergunta (なに, どこ), use só か.',
@@ -417,5 +433,21 @@ export const TOPIC_PITFALLS: Readonly<Record<string, readonly string[]>> = {
   'n3-27': [
     'だらけ é para algo ruim e que cobre a coisa toda; para coisas boas, o japonês usa outras palavras.',
     'だらけ vem direto depois do substantivo, sem の: どろだらけ.',
+  ],
+  'n3-28': [
+    'にとって pede uma avaliação no fim (大切, 必要, 難しい), e não um verbo de ação.',
+    'Para o objetivo use のために; para quem recebe algo, a partícula é に.',
+  ],
+  'n3-29': [
+    'ずにはいられない é um impulso do coração, não uma obrigação.',
+    'A forma é ない sem ない + ず (なかず, わらわず); com する, é せず.',
+  ],
+  'n3-30': [
+    'のほかは costuma levar uma exceção; ほかに soma mais coisas.',
+    'ほかの + substantivo é "outro"; é só ほか, sem の, antes de に.',
+  ],
+  'n3-31': [
+    'なんて de exclamação vai antes do adjetivo; o de desdém vai depois do substantivo e pede negativo.',
+    'なんていったの ("o que ele disse") é outra coisa: aí なんて é "o quê".',
   ],
 };

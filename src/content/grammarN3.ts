@@ -2858,59 +2858,45 @@ export const GRAMMAR_N3: readonly GrammarTopic[] = [
   },
   {
     "id": "n3-16",
-    "title": "Fácil de e difícil de: 〜やすい e 〜にくい",
+    "title": "Não aguento: 〜てたまらない",
     "body": [
       {
         "kind": "p",
         "runs": [
           {
-            "text": "Com a raiz do verbo (a forma ます sem o ます), "
+            "text": "O "
           },
           {
-            "text": "やすい",
+            "text": "〜てたまらない",
             "bold": true
           },
           {
-            "text": " diz que a ação é "
+            "text": " diz que uma sensação ou um sentimento é "
           },
           {
-            "text": "fácil",
+            "text": "forte demais para suportar",
             "bold": true
           },
           {
-            "text": " ou que a coisa "
+            "text": ": dor, calor, vontade. Vem a forma "
           },
           {
-            "text": "tende a",
+            "text": "て",
             "bold": true
           },
           {
-            "text": " acontecer, e "
+            "text": " de um adjetivo ou do "
           },
           {
-            "text": "にくい",
+            "text": "〜たい",
             "bold": true
           },
           {
-            "text": " diz que é "
+            "text": " + "
           },
           {
-            "text": "difícil",
+            "text": "たまらない",
             "bold": true
-          },
-          {
-            "text": ". As duas viram adjetivos い: "
-          },
-          {
-            "text": "やすかった",
-            "ja": true
-          },
-          {
-            "text": ", "
-          },
-          {
-            "text": "にくくない",
-            "ja": true
           },
           {
             "text": "."
@@ -2932,37 +2918,37 @@ export const GRAMMAR_N3: readonly GrammarTopic[] = [
           ],
           [
             {
-              "text": "raiz do verbo + やすい"
+              "text": "adjetivo い (くて) + たまらない"
             },
             {
-              "text": "まなび やすい (fácil de aprender)",
+              "text": "いたくて たまらない (a dor é insuportável)",
               "ja": true
             }
           ],
           [
             {
-              "text": "raiz do verbo + やすい"
+              "text": "adjetivo い (くて) + たまらない"
             },
             {
-              "text": "つかれ やすい (cansa com facilidade)",
+              "text": "あつくて たまらない (o calor é insuportável)",
               "ja": true
             }
           ],
           [
             {
-              "text": "raiz do verbo + にくい"
+              "text": "adjetivo な (で) + たまらない"
             },
             {
-              "text": "のみ にくい (difícil de engolir)",
+              "text": "しんぱいで たまらない (estou preocupadíssimo)",
               "ja": true
             }
           ],
           [
             {
-              "text": "raiz do verbo + にくい"
+              "text": "〜たくて + たまらない"
             },
             {
-              "text": "こたえ にくい (difícil de responder)",
+              "text": "いきたくて たまらない (estou louco para ir)",
               "ja": true
             }
           ]
@@ -2972,134 +2958,75 @@ export const GRAMMAR_N3: readonly GrammarTopic[] = [
         "kind": "p",
         "runs": [
           {
-            "text": "Quem ou o que sofre a ação é o sujeito da frase, com "
+            "text": "Só se usa para a sensação de "
           },
           {
-            "text": "は",
+            "text": "quem fala",
             "bold": true
           },
           {
-            "text": " ou "
+            "text": ": dor, calor, desejo. Para dizer o mesmo de outra pessoa, o japonês muda a forma ("
           },
           {
-            "text": "が",
-            "bold": true
-          },
-          {
-            "text": ": "
-          },
-          {
-            "text": "えいご は まなびやすい",
+            "text": "いたがっている",
             "ja": true
           },
           {
-            "text": " (\"o inglês é fácil de aprender\"). Não confunda com "
-          },
-          {
-            "text": "やすい",
-            "ja": true
-          },
-          {
-            "text": " escrito 安い (\"barato\"): a leitura é a mesma, mas o primeiro vem depois de um verbo."
+            "text": ")."
           }
         ]
       }
     ],
-    "pattern": "[raiz do verbo] やすい · [raiz do verbo] にくい",
+    "pattern": "[adjetivo い, くて] たまらない · [adjetivo な, で] たまらない · [〜たくて] たまらない",
     "examples": [
       {
-        "jp": "えいごは まなびやすい",
+        "jp": "いたくて たまらない",
         "ruby": [
           {
-            "text": "英語",
-            "reading": "えいご"
+            "text": "痛",
+            "reading": "いた"
           },
           {
-            "text": "は"
-          },
-          {
-            "text": "学",
-            "reading": "まな"
-          },
-          {
-            "text": "びやすい。"
+            "text": "くてたまらない。"
           }
         ],
-        "romaji": "eigo wa manabiyasui",
-        "pt": "O inglês é fácil de aprender."
+        "romaji": "itakute tamaranai",
+        "pt": "Eu não suporto a dor."
       },
       {
-        "jp": "めが つかれやすいです",
+        "jp": "あつくて たまらない",
         "ruby": [
           {
-            "text": "目",
-            "reading": "め"
+            "text": "暑",
+            "reading": "あつ"
+          },
+          {
+            "text": "くてたまらない。"
+          }
+        ],
+        "romaji": "atsukute tamaranai",
+        "pt": "Eu não suporto este calor."
+      },
+      {
+        "jp": "あしが いたくて たまらない",
+        "ruby": [
+          {
+            "text": "足",
+            "reading": "あし"
           },
           {
             "text": "が"
           },
           {
-            "text": "疲",
-            "reading": "つか"
+            "text": "痛",
+            "reading": "いた"
           },
           {
-            "text": "れやすいです。"
+            "text": "くてたまらない。"
           }
         ],
-        "romaji": "me ga tsukareyasui desu",
-        "pt": "Meus olhos se cansam com facilidade."
-      },
-      {
-        "jp": "この くすりは のみにくい",
-        "ruby": [
-          {
-            "text": "この"
-          },
-          {
-            "text": "薬",
-            "reading": "くすり"
-          },
-          {
-            "text": "は"
-          },
-          {
-            "text": "飲",
-            "reading": "の"
-          },
-          {
-            "text": "みにくい。"
-          }
-        ],
-        "romaji": "kono kusuri wa nominikui",
-        "pt": "O remédio é ruim de engolir."
-      },
-      {
-        "jp": "かれは こたえにくい しつもんを した",
-        "ruby": [
-          {
-            "text": "彼",
-            "reading": "かれ"
-          },
-          {
-            "text": "は"
-          },
-          {
-            "text": "答",
-            "reading": "こた"
-          },
-          {
-            "text": "えにくい"
-          },
-          {
-            "text": "質問",
-            "reading": "しつもん"
-          },
-          {
-            "text": "をした。"
-          }
-        ],
-        "romaji": "kare wa kotaenikui shitsumon o shita",
-        "pt": "Ele fez uma pergunta embaraçosa."
+        "romaji": "ashi ga itakute tamaranai",
+        "pt": "Meus pés estão me matando."
       }
     ]
   },
@@ -5336,6 +5263,822 @@ export const GRAMMAR_N3: readonly GrammarTopic[] = [
         "pt": "A criança está suja."
       }
     ]
+  },
+  {
+    "id": "n3-28",
+    "title": "Para mim, para você: 〜にとって",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O "
+          },
+          {
+            "text": "にとって",
+            "bold": true
+          },
+          {
+            "text": " mostra de "
+          },
+          {
+            "text": "quem é o ponto de vista",
+            "bold": true
+          },
+          {
+            "text": ": \"para as pessoas\", \"para mim\". Vem depois da pessoa ou da coisa, e a frase termina com uma "
+          },
+          {
+            "text": "avaliação",
+            "bold": true
+          },
+          {
+            "text": " (importante, necessário, estranho, difícil)."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "padrão",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "pessoa + にとって"
+            },
+            {
+              "text": "にんげん にとって たいせつだ (é importante para as pessoas)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "pessoa + にとっては"
+            },
+            {
+              "text": "わたし にとって は おかしい (para mim é estranho)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "coisa + にとって"
+            },
+            {
+              "text": "りょうり にとって ひつようだ (é necessário para a culinária)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Não é o \"para\" de "
+          },
+          {
+            "text": "receber",
+            "bold": true
+          },
+          {
+            "text": " algo (aí se usa "
+          },
+          {
+            "text": "に",
+            "bold": true
+          },
+          {
+            "text": ") nem o de "
+          },
+          {
+            "text": "objetivo",
+            "bold": true
+          },
+          {
+            "text": " ("
+          },
+          {
+            "text": "〜のために",
+            "bold": true
+          },
+          {
+            "text": "). O "
+          },
+          {
+            "text": "にとって",
+            "bold": true
+          },
+          {
+            "text": " só pede um julgamento."
+          }
+        ]
+      }
+    ],
+    "pattern": "[pessoa/coisa] にとって [avaliação]",
+    "examples": [
+      {
+        "jp": "みずは にんげん にとって たいせつだ",
+        "ruby": [
+          {
+            "text": "水",
+            "reading": "みず"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "人間",
+            "reading": "にんげん"
+          },
+          {
+            "text": "にとって"
+          },
+          {
+            "text": "大切",
+            "reading": "たいせつ"
+          },
+          {
+            "text": "だ。"
+          }
+        ],
+        "romaji": "mizu wa ningen nitotte taisetsuda",
+        "pt": "A água é importante para as pessoas."
+      },
+      {
+        "jp": "しおは りょうり にとって ひつような ものだ",
+        "ruby": [
+          {
+            "text": "塩",
+            "reading": "しお"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "料理",
+            "reading": "りょうり"
+          },
+          {
+            "text": "にとって"
+          },
+          {
+            "text": "必要",
+            "reading": "ひつよう"
+          },
+          {
+            "text": "な"
+          },
+          {
+            "text": "物",
+            "reading": "もの"
+          },
+          {
+            "text": "だ。"
+          }
+        ],
+        "romaji": "shio wa ryōri nitotte hitsuyōna monoda",
+        "pt": "O sal é necessário para cozinhar."
+      },
+      {
+        "jp": "わたし にとっては すこし おかしいです",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "にとっては"
+          },
+          {
+            "text": "少",
+            "reading": "すこ"
+          },
+          {
+            "text": "しおかしいです。"
+          }
+        ],
+        "romaji": "watashi nitotte wa sukoshi okashii desu",
+        "pt": "É um pouco estranho para mim."
+      },
+      {
+        "jp": "それは わたし にとって いがいな はなしだった",
+        "ruby": [
+          {
+            "text": "それは"
+          },
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "にとって"
+          },
+          {
+            "text": "意外",
+            "reading": "いがい"
+          },
+          {
+            "text": "な"
+          },
+          {
+            "text": "話",
+            "reading": "はなし"
+          },
+          {
+            "text": "だった。"
+          }
+        ],
+        "romaji": "sore wa watashi nitotte igaina hanashidatta",
+        "pt": "Isto foi uma revelação para mim."
+      }
+    ]
+  },
+  {
+    "id": "n3-29",
+    "title": "Não dá para não: 〜ずにはいられない",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O "
+          },
+          {
+            "text": "〜ずにはいられない",
+            "bold": true
+          },
+          {
+            "text": " diz que a pessoa "
+          },
+          {
+            "text": "não consegue evitar",
+            "bold": true
+          },
+          {
+            "text": " algo: rir, chorar, pensar. Vem a "
+          },
+          {
+            "text": "forma ない sem o ない",
+            "bold": true
+          },
+          {
+            "text": " + "
+          },
+          {
+            "text": "ずにはいられない",
+            "bold": true
+          },
+          {
+            "text": "; com "
+          },
+          {
+            "text": "する",
+            "bold": true
+          },
+          {
+            "text": ", vira "
+          },
+          {
+            "text": "せずには",
+            "ja": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "padrão",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "verbo (sem ない) + ずにはいられない"
+            },
+            {
+              "text": "なか ずには いられない (não consigo evitar chorar)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "verbo (sem ない) + ずにはいられない"
+            },
+            {
+              "text": "わらわ ずには いられない (não dá para não rir)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "する → せずには"
+            },
+            {
+              "text": "しんぱい せずには いられない (não consigo deixar de me preocupar)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "É uma reação "
+          },
+          {
+            "text": "do coração",
+            "bold": true
+          },
+          {
+            "text": ", um impulso, e não uma obrigação. Não use para o que se "
+          },
+          {
+            "text": "deve",
+            "bold": true
+          },
+          {
+            "text": " fazer (aí é "
+          },
+          {
+            "text": "〜なければならない",
+            "ja": true
+          },
+          {
+            "text": ")."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo, forma ない sem ない] ずにはいられない",
+    "examples": [
+      {
+        "jp": "なかず には いられないよ",
+        "ruby": [
+          {
+            "text": "泣",
+            "reading": "な"
+          },
+          {
+            "text": "かずにはいられないよ。"
+          }
+        ],
+        "romaji": "nakazu ni wa irarenai yo",
+        "pt": "Não posso evitar o choro."
+      },
+      {
+        "jp": "それを わらわず には いられない",
+        "ruby": [
+          {
+            "text": "それを"
+          },
+          {
+            "text": "笑",
+            "reading": "わら"
+          },
+          {
+            "text": "わずにはいられない。"
+          }
+        ],
+        "romaji": "sore o warawazu ni wa irarenai",
+        "pt": "Não tem como não rir disso."
+      },
+      {
+        "jp": "わたしは そう おもわず には いられない",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "はそう"
+          },
+          {
+            "text": "思",
+            "reading": "おも"
+          },
+          {
+            "text": "わずにはいられない。"
+          }
+        ],
+        "romaji": "watashi wa sō omowazu ni wa irarenai",
+        "pt": "Não consigo deixar de pensar que é de facto esse o caso."
+      }
+    ]
+  },
+  {
+    "id": "n3-30",
+    "title": "Além de e exceto: 〜のほか e ほかに",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "A palavra "
+          },
+          {
+            "text": "ほか",
+            "bold": true
+          },
+          {
+            "text": " (também escrita 他) quer dizer \""
+          },
+          {
+            "text": "outro",
+            "bold": true
+          },
+          {
+            "text": "\" e \""
+          },
+          {
+            "text": "além de",
+            "bold": true
+          },
+          {
+            "text": "\". Ela aparece em três usos comuns."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "padrão",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "ほかの + substantivo"
+            },
+            {
+              "text": "ほかの を みせて ください (mostre outro)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "A の ほかは B"
+            },
+            {
+              "text": "にちようび の ほかは はたらく (trabalho todos os dias, menos domingo)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "ほかに + frase"
+            },
+            {
+              "text": "ほかに いたい ところは ありますか (dói em mais algum lugar?)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O "
+          },
+          {
+            "text": "〜のほかは",
+            "bold": true
+          },
+          {
+            "text": " costuma levar uma frase de "
+          },
+          {
+            "text": "exceção",
+            "bold": true
+          },
+          {
+            "text": " (\"exceto\"). O "
+          },
+          {
+            "text": "ほかに",
+            "bold": true
+          },
+          {
+            "text": " soma mais coisas (\"além disso, mais\")."
+          }
+        ]
+      }
+    ],
+    "pattern": "ほかの [substantivo] · [A] のほかは [B] · ほかに [frase]",
+    "examples": [
+      {
+        "jp": "ほかのを みせて ください",
+        "ruby": [
+          {
+            "text": "ほかのを"
+          },
+          {
+            "text": "見",
+            "reading": "み"
+          },
+          {
+            "text": "せてください。"
+          }
+        ],
+        "romaji": "hoka no o misete kudasai",
+        "pt": "Por favor me mostre outro."
+      },
+      {
+        "jp": "わたしは にちようびの ほかは まいにち はたらく",
+        "ruby": [
+          {
+            "text": "私",
+            "reading": "わたし"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "日曜日",
+            "reading": "にちようび"
+          },
+          {
+            "text": "のほかは"
+          },
+          {
+            "text": "毎日",
+            "reading": "まいにち"
+          },
+          {
+            "text": "働",
+            "reading": "はたら"
+          },
+          {
+            "text": "く。"
+          }
+        ],
+        "romaji": "watashi wa nichiyōbi no hoka wa mainichi hataraku",
+        "pt": "Eu trabalho todos os dias, exceto domingo."
+      },
+      {
+        "jp": "ほかに いたい ところは ありますか",
+        "ruby": [
+          {
+            "text": "ほかに"
+          },
+          {
+            "text": "痛",
+            "reading": "いた"
+          },
+          {
+            "text": "いところはありますか。"
+          }
+        ],
+        "romaji": "hoka ni itai tokoro wa arimasu ka",
+        "pt": "Você sente dor em alguma outra parte de seu corpo?"
+      }
+    ]
+  },
+  {
+    "id": "n3-31",
+    "title": "Que...! e \"uma coisa como\": 〜なんて",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O "
+          },
+          {
+            "text": "なんて",
+            "bold": true
+          },
+          {
+            "text": " tem dois usos. O primeiro é uma "
+          },
+          {
+            "text": "exclamação",
+            "bold": true
+          },
+          {
+            "text": ": \""
+          },
+          {
+            "text": "que",
+            "bold": true
+          },
+          {
+            "text": " bonito!\". Vem antes de um adjetivo, e a frase termina com "
+          },
+          {
+            "text": "のだろう",
+            "ja": true
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "んだ",
+            "ja": true
+          },
+          {
+            "text": " ou "
+          },
+          {
+            "text": "なの",
+            "ja": true
+          },
+          {
+            "text": ". O segundo é falar de algo com "
+          },
+          {
+            "text": "desdém ou surpresa",
+            "bold": true
+          },
+          {
+            "text": ": \"uma coisa como a vida sem você\", \"apetite, nem pensar\"."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "padrão",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "なんて + adjetivo + のだろう"
+            },
+            {
+              "text": "かれ は なんて おおきい のだろう (como ele é alto!)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "なんて + adjetivo + んだ"
+            },
+            {
+              "text": "きみ は なんて しんせつな んだ (como você é gentil!)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "substantivo + なんて + negativo"
+            },
+            {
+              "text": "しょくよく なんて ありません (apetite? nenhum)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Atenção: "
+          },
+          {
+            "text": "なんて いったの",
+            "ja": true
+          },
+          {
+            "text": " (\"o que ele disse?\") é outra coisa: aí "
+          },
+          {
+            "text": "なんて",
+            "bold": true
+          },
+          {
+            "text": " quer dizer \"o quê\". E o "
+          },
+          {
+            "text": "なんて",
+            "bold": true
+          },
+          {
+            "text": " de desdém soa informal e pode ser grosseiro com quem ouve."
+          }
+        ]
+      }
+    ],
+    "pattern": "なんて [adjetivo] のだろう · [substantivo] なんて [negativo]",
+    "examples": [
+      {
+        "jp": "かれは なんて おおきい のだろう",
+        "ruby": [
+          {
+            "text": "彼",
+            "reading": "かれ"
+          },
+          {
+            "text": "はなんて"
+          },
+          {
+            "text": "大",
+            "reading": "おお"
+          },
+          {
+            "text": "きいのだろう。"
+          }
+        ],
+        "romaji": "kare wa nante ōkii nodarō",
+        "pt": "Como ele é alto!"
+      },
+      {
+        "jp": "きみは なんて しんせつな んだ",
+        "ruby": [
+          {
+            "text": "君",
+            "reading": "きみ"
+          },
+          {
+            "text": "はなんて"
+          },
+          {
+            "text": "親切",
+            "reading": "しんせつ"
+          },
+          {
+            "text": "なんだ。"
+          }
+        ],
+        "romaji": "kimi wa nante shinsetsuna nda",
+        "pt": "Como você é gentil!"
+      },
+      {
+        "jp": "しょくよく なんて ありません",
+        "ruby": [
+          {
+            "text": "食欲",
+            "reading": "しょくよく"
+          },
+          {
+            "text": "なんてありません。"
+          }
+        ],
+        "romaji": "shokuyoku nante arimasen",
+        "pt": "Estou sem apetite."
+      },
+      {
+        "jp": "きみ なしの せいかつ なんて かんがえられない",
+        "ruby": [
+          {
+            "text": "君",
+            "reading": "きみ"
+          },
+          {
+            "text": "なしの"
+          },
+          {
+            "text": "生活",
+            "reading": "せいかつ"
+          },
+          {
+            "text": "なんて"
+          },
+          {
+            "text": "考",
+            "reading": "かんが"
+          },
+          {
+            "text": "えられない。"
+          }
+        ],
+        "romaji": "kimi nashi no seikatsu nante kangaerarenai",
+        "pt": "Não consigo pensar na vida sem você."
+      }
+    ]
   }
 ];
 
@@ -6240,67 +6983,19 @@ export const BUILD_N3: readonly BuildExercise[] = [
   },
   {
     "topic": "n3-16",
-    "pt": "O inglês é fácil de aprender.",
+    "pt": "Meus pés estão me matando.",
     "answer": [
-      "えいご",
-      "は",
-      "まなびやすい"
-    ],
-    "extra": [
-      "を",
-      "も"
-    ],
-    "romaji": "eigo wa manabiyasui",
-    "hint": "やすい: fácil de; にくい: difícil de."
-  },
-  {
-    "topic": "n3-16",
-    "pt": "Meus olhos se cansam com facilidade.",
-    "answer": [
-      "め",
+      "あし",
       "が",
-      "つかれやすいです"
+      "いたくて",
+      "たまらない"
     ],
     "extra": [
       "に",
       "で"
     ],
-    "romaji": "me ga tsukareyasui desu",
-    "hint": "やすい: fácil de; にくい: difícil de."
-  },
-  {
-    "topic": "n3-16",
-    "pt": "O remédio é ruim de engolir.",
-    "answer": [
-      "この",
-      "くすり",
-      "は",
-      "のみにくい"
-    ],
-    "extra": [
-      "を",
-      "も"
-    ],
-    "romaji": "kono kusuri wa nominikui",
-    "hint": "やすい: fácil de; にくい: difícil de."
-  },
-  {
-    "topic": "n3-16",
-    "pt": "Ele fez uma pergunta embaraçosa.",
-    "answer": [
-      "かれ",
-      "は",
-      "こたえにくい",
-      "しつもん",
-      "を",
-      "した"
-    ],
-    "extra": [
-      "も",
-      "の"
-    ],
-    "romaji": "kare wa kotaenikui shitsumon o shita",
-    "hint": "やすい: fácil de; にくい: difícil de."
+    "romaji": "ashi ga itakute tamaranai",
+    "hint": "てたまらない: insuportável, forte demais."
   },
   {
     "topic": "n3-17",
@@ -7007,8 +7702,255 @@ export const BUILD_N3: readonly BuildExercise[] = [
     ],
     "romaji": "ano ko wa aka darakeda",
     "hint": "だらけ: cheio de (algo ruim)."
+  },
+  {
+    "topic": "n3-28",
+    "pt": "A água é importante para as pessoas.",
+    "answer": [
+      "みず",
+      "は",
+      "にんげん",
+      "にとって",
+      "たいせつだ"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "mizu wa ningen nitotte taisetsuda",
+    "hint": "にとって: do ponto de vista de, para."
+  },
+  {
+    "topic": "n3-28",
+    "pt": "O sal é necessário para cozinhar.",
+    "answer": [
+      "しお",
+      "は",
+      "りょうり",
+      "にとって",
+      "ひつような",
+      "ものだ"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "shio wa ryōri nitotte hitsuyōna monoda",
+    "hint": "にとって: do ponto de vista de, para."
+  },
+  {
+    "topic": "n3-28",
+    "pt": "É um pouco estranho para mim.",
+    "answer": [
+      "わたし",
+      "にとって",
+      "は",
+      "すこし",
+      "おかしいです"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "watashi nitotte wa sukoshi okashii desu",
+    "hint": "にとって: do ponto de vista de, para."
+  },
+  {
+    "topic": "n3-28",
+    "pt": "Isto foi uma revelação para mim.",
+    "answer": [
+      "それ",
+      "は",
+      "わたし",
+      "にとって",
+      "いがいな",
+      "はなしだった"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "sore wa watashi nitotte igaina hanashidatta",
+    "hint": "にとって: do ponto de vista de, para."
+  },
+  {
+    "topic": "n3-29",
+    "pt": "Não posso evitar o choro.",
+    "answer": [
+      "なかず",
+      "に",
+      "は",
+      "いられない",
+      "よ"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "nakazu ni wa irarenai yo",
+    "hint": "ずにはいられない: não consigo evitar."
+  },
+  {
+    "topic": "n3-29",
+    "pt": "Não tem como não rir disso.",
+    "answer": [
+      "それ",
+      "を",
+      "わらわず",
+      "に",
+      "は",
+      "いられない"
+    ],
+    "extra": [
+      "で",
+      "も"
+    ],
+    "romaji": "sore o warawazu ni wa irarenai",
+    "hint": "ずにはいられない: não consigo evitar."
+  },
+  {
+    "topic": "n3-29",
+    "pt": "Não consigo deixar de pensar que é de facto esse o caso.",
+    "answer": [
+      "わたし",
+      "は",
+      "そう",
+      "おもわず",
+      "に",
+      "は",
+      "いられない"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "watashi wa sō omowazu ni wa irarenai",
+    "hint": "ずにはいられない: não consigo evitar."
+  },
+  {
+    "topic": "n3-30",
+    "pt": "Por favor me mostre outro.",
+    "answer": [
+      "ほか",
+      "の",
+      "を",
+      "みせて",
+      "ください"
+    ],
+    "extra": [
+      "は",
+      "に"
+    ],
+    "romaji": "hoka no o misete kudasai",
+    "hint": "ほか: outro, além de, exceto."
+  },
+  {
+    "topic": "n3-30",
+    "pt": "Eu trabalho todos os dias, exceto domingo.",
+    "answer": [
+      "わたし",
+      "は",
+      "にちようび",
+      "の",
+      "ほか",
+      "は",
+      "まいにち",
+      "はたらく"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "watashi wa nichiyōbi no hoka wa mainichi hataraku",
+    "hint": "ほか: outro, além de, exceto."
+  },
+  {
+    "topic": "n3-30",
+    "pt": "Você sente dor em alguma outra parte de seu corpo?",
+    "answer": [
+      "ほか",
+      "に",
+      "いたい",
+      "ところ",
+      "は",
+      "あります",
+      "か"
+    ],
+    "extra": [
+      "で",
+      "を"
+    ],
+    "romaji": "hoka ni itai tokoro wa arimasu ka",
+    "hint": "ほか: outro, além de, exceto."
+  },
+  {
+    "topic": "n3-31",
+    "pt": "Como ele é alto!",
+    "answer": [
+      "かれ",
+      "は",
+      "なんて",
+      "おおきい",
+      "のだろう"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kare wa nante ōkii nodarō",
+    "hint": "なんて: que...! ou uma coisa como..."
+  },
+  {
+    "topic": "n3-31",
+    "pt": "Como você é gentil!",
+    "answer": [
+      "きみ",
+      "は",
+      "なんて",
+      "しんせつな",
+      "んだ"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "kimi wa nante shinsetsuna nda",
+    "hint": "なんて: que...! ou uma coisa como..."
+  },
+  {
+    "topic": "n3-31",
+    "pt": "Estou sem apetite.",
+    "answer": [
+      "しょくよく",
+      "なんて",
+      "ありません"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "shokuyoku nante arimasen",
+    "hint": "なんて: que...! ou uma coisa como..."
+  },
+  {
+    "topic": "n3-31",
+    "pt": "Não consigo pensar na vida sem você.",
+    "answer": [
+      "きみ",
+      "なし",
+      "の",
+      "せいかつ",
+      "なんて",
+      "かんがえられない"
+    ],
+    "extra": [
+      "は",
+      "を"
+    ],
+    "romaji": "kimi nashi no seikatsu nante kangaerarenai",
+    "hint": "なんて: que...! ou uma coisa como..."
   }
 ];
 
 /** Ids das frases do Tatoeba usadas nos exemplos (para o crédito). */
-export const GRAMMAR_N3_SENTENCE_IDS: readonly number[] = [100541,79709,108153,90133,158200,112236,218242,883097,110065,90817,11977679,110066,87698,108056,4897810,94795,144656,102896,148574,107998,102981,139697,3555706,12022251,2190027,213803,3455723,81586,121048,120899,120848,107131,104631,124805,77487,82003,188334,179920,168056,4760435,10784642,2043892,99535,10284360,174541,96075,12453472,10516148,168690,100010,2422273,138015,8760370,11294717,80195,189137,79985,219292,101723,119368,80349,178848,119369,144981,177174,3366937,2972449,82564,1147354,157894,10840506,1152237,142463,9838008,78481,154843,111759,157582,88749,3491589,117604,140889,117602,122929,101500,1780326,141991,174746,3241561,8531386,187663,187667,162165,137692,79533,150823,78245,118661,101972,10212624,230972];
+export const GRAMMAR_N3_SENTENCE_IDS: readonly number[] = [100541,79709,108153,90133,158200,112236,218242,883097,110065,90817,11977679,110066,87698,108056,4897810,94795,144656,102896,148574,107998,102981,139697,3555706,12022251,2190027,213803,3455723,81586,121048,120899,120848,107131,104631,124805,77487,82003,188334,179920,168056,4760435,10784642,2043892,99535,10284360,174541,96075,12453472,10516148,168690,100010,2422273,138015,8760370,11294717,80195,125692,147456,11016725,119368,80349,178848,119369,144981,177174,3366937,2972449,82564,1147354,157894,10840506,1152237,142463,9838008,78481,154843,111759,157582,88749,3491589,117604,140889,117602,122929,101500,1780326,141991,174746,3241561,8531386,187663,187667,162165,137692,79533,150823,78245,118661,101972,10212624,230972,143754,188602,602868,205147,10946675,204561,160448,196433,154677,196436,111389,177591,145768,178728];

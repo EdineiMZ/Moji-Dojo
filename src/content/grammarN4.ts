@@ -6029,6 +6029,847 @@ export const GRAMMAR_N4: readonly GrammarTopic[] = [
         "pt": "Bilhete, por favor."
       }
     ]
+  },
+  {
+    "id": "n4-28",
+    "title": "Já está feito: 〜てある",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com "
+          },
+          {
+            "text": "〜てある",
+            "bold": true
+          },
+          {
+            "text": " você diz que alguém fez algo "
+          },
+          {
+            "text": "de propósito",
+            "bold": true
+          },
+          {
+            "text": " e que o resultado "
+          },
+          {
+            "text": "continua lá",
+            "bold": true
+          },
+          {
+            "text": ": \"a reserva está feita\", \"o mapa está colado na parede\". Vem a forma "
+          },
+          {
+            "text": "て",
+            "bold": true
+          },
+          {
+            "text": " de um verbo (que tem objeto) + "
+          },
+          {
+            "text": "ある",
+            "bold": true
+          },
+          {
+            "text": ", e o objeto vira o sujeito, com "
+          },
+          {
+            "text": "が",
+            "bold": true
+          },
+          {
+            "text": " ou "
+          },
+          {
+            "text": "は",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "padrão",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "verbo (tem objeto) て + ある"
+            },
+            {
+              "text": "よやく して ある (a reserva está feita)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "objeto が + verbo て + ある"
+            },
+            {
+              "text": "ほん が おいて ある (há um livro posto ali)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "compare: 〜ている"
+            },
+            {
+              "text": "ドア が あいて いる (a porta está aberta, sem dizer quem abriu)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O "
+          },
+          {
+            "text": "〜てある",
+            "bold": true
+          },
+          {
+            "text": " pensa em quem preparou a coisa; o "
+          },
+          {
+            "text": "〜ている",
+            "bold": true
+          },
+          {
+            "text": " só descreve o estado. Por isso, com verbos que não têm objeto (abrir sozinho, quebrar), o certo é "
+          },
+          {
+            "text": "〜ている",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "pattern": "[objeto] が [verbo て] ある",
+    "examples": [
+      {
+        "jp": "よやく して ある",
+        "ruby": [
+          {
+            "text": "予約",
+            "reading": "よやく"
+          },
+          {
+            "text": "してある。"
+          }
+        ],
+        "romaji": "yoyaku shite aru",
+        "pt": "Tenho uma reserva."
+      },
+      {
+        "jp": "ちずは かべに はって ある",
+        "ruby": [
+          {
+            "text": "地図",
+            "reading": "ちず"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "壁",
+            "reading": "かべ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "貼",
+            "reading": "は"
+          },
+          {
+            "text": "ってある。"
+          }
+        ],
+        "romaji": "chizu wa kabe ni hatte aru",
+        "pt": "O mapa está na parede."
+      },
+      {
+        "jp": "つくえの うえに ほんが おいて ある",
+        "ruby": [
+          {
+            "text": "机",
+            "reading": "つくえ"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "上",
+            "reading": "うえ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "本",
+            "reading": "ほん"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "置",
+            "reading": "お"
+          },
+          {
+            "text": "いてある。"
+          }
+        ],
+        "romaji": "tsukue no ue ni hon ga oite aru",
+        "pt": "Há um livro sobre a mesa."
+      }
+    ]
+  },
+  {
+    "id": "n4-29",
+    "title": "Até quando: 〜までに",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "O "
+          },
+          {
+            "text": "までに",
+            "bold": true
+          },
+          {
+            "text": " marca um "
+          },
+          {
+            "text": "prazo",
+            "bold": true
+          },
+          {
+            "text": ": a ação acontece "
+          },
+          {
+            "text": "uma vez",
+            "bold": true
+          },
+          {
+            "text": ", em qualquer momento "
+          },
+          {
+            "text": "antes",
+            "bold": true
+          },
+          {
+            "text": " daquele ponto. Vem depois de uma hora ou de um dia."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "padrão",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "hora ou dia + までに + ação"
+            },
+            {
+              "text": "ろくじ までに もどります (volto até as seis)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "compare: まで + ação contínua"
+            },
+            {
+              "text": "ろくじ まで まちます (espero até as seis)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "pergunta"
+            },
+            {
+              "text": "いつ までに ひつようですか (para quando você precisa?)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Se a ação "
+          },
+          {
+            "text": "dura",
+            "bold": true
+          },
+          {
+            "text": " até aquele momento, é "
+          },
+          {
+            "text": "まで",
+            "bold": true
+          },
+          {
+            "text": ". Se ela só precisa estar "
+          },
+          {
+            "text": "pronta",
+            "bold": true
+          },
+          {
+            "text": " antes dele, é "
+          },
+          {
+            "text": "までに",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "pattern": "[hora/dia] までに [ação única]",
+    "examples": [
+      {
+        "jp": "ろくじ までに もどります",
+        "ruby": [
+          {
+            "text": "六",
+            "reading": "ろく"
+          },
+          {
+            "text": "時",
+            "reading": "じ"
+          },
+          {
+            "text": "までに"
+          },
+          {
+            "text": "戻",
+            "reading": "もど"
+          },
+          {
+            "text": "ります。"
+          }
+        ],
+        "romaji": "rokuji made ni modorimasu",
+        "pt": "Voltarei lá pelas seis."
+      },
+      {
+        "jp": "どようび までに ほんを かえさなければ なりません",
+        "ruby": [
+          {
+            "text": "土曜日",
+            "reading": "どようび"
+          },
+          {
+            "text": "までに"
+          },
+          {
+            "text": "本",
+            "reading": "ほん"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "返",
+            "reading": "かえ"
+          },
+          {
+            "text": "さなければなりません。"
+          }
+        ],
+        "romaji": "doyōbi made ni hon o kaesanakereba narimasen",
+        "pt": "Tenho que devolver o livro antes de sábado."
+      },
+      {
+        "jp": "いつ までに ひつようですか",
+        "ruby": [
+          {
+            "text": "いつまでに"
+          },
+          {
+            "text": "必要",
+            "reading": "ひつよう"
+          },
+          {
+            "text": "ですか。"
+          }
+        ],
+        "romaji": "itsu made ni hitsuyō desu ka",
+        "pt": "Para quando você precisa?"
+      },
+      {
+        "jp": "あした までに ほんを かえしなさい",
+        "ruby": [
+          {
+            "text": "明日",
+            "reading": "あした"
+          },
+          {
+            "text": "までに"
+          },
+          {
+            "text": "本",
+            "reading": "ほん"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "返",
+            "reading": "かえ"
+          },
+          {
+            "text": "しなさい。"
+          }
+        ],
+        "romaji": "ashita made ni hon o kaeshinasai",
+        "pt": "Por favor, devolva o livro até amanhã."
+      }
+    ]
+  },
+  {
+    "id": "n4-30",
+    "title": "Mandar com firmeza: 〜なさい",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "A forma "
+          },
+          {
+            "text": "〜なさい",
+            "bold": true
+          },
+          {
+            "text": " é uma "
+          },
+          {
+            "text": "ordem",
+            "bold": true
+          },
+          {
+            "text": " firme, mas sem grosseria, que vem de quem está "
+          },
+          {
+            "text": "acima",
+            "bold": true
+          },
+          {
+            "text": ": pais, professores, avisos de prova. Vem a "
+          },
+          {
+            "text": "raiz do verbo",
+            "bold": true
+          },
+          {
+            "text": " (a forma ます sem ます) + "
+          },
+          {
+            "text": "なさい",
+            "bold": true
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "padrão",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "raiz do verbo + なさい"
+            },
+            {
+              "text": "おき なさい (acorde)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "raiz do verbo + なさい"
+            },
+            {
+              "text": "かえり なさい (volte para casa)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "expressões fixas com なさい"
+            },
+            {
+              "text": "ごめんなさい (desculpe) · おやすみなさい (boa noite) · おかえりなさい (bem-vindo de volta)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Com colegas e clientes não se usa "
+          },
+          {
+            "text": "なさい",
+            "bold": true
+          },
+          {
+            "text": ". Para pedir com educação, use "
+          },
+          {
+            "text": "〜てください",
+            "bold": true
+          },
+          {
+            "text": ", que você já conhece."
+          }
+        ]
+      }
+    ],
+    "pattern": "[raiz do verbo] なさい",
+    "examples": [
+      {
+        "jp": "おき なさい",
+        "ruby": [
+          {
+            "text": "起",
+            "reading": "お"
+          },
+          {
+            "text": "きなさい！"
+          }
+        ],
+        "romaji": "oki nasai",
+        "pt": "Acorda!"
+      },
+      {
+        "jp": "もう おそい から テレビを けしなさい",
+        "ruby": [
+          {
+            "text": "もう"
+          },
+          {
+            "text": "遅",
+            "reading": "おそ"
+          },
+          {
+            "text": "いからテレビを"
+          },
+          {
+            "text": "消",
+            "reading": "け"
+          },
+          {
+            "text": "しなさい。"
+          }
+        ],
+        "romaji": "mō osoi kara terebi o keshinasai",
+        "pt": "É tarde, então desligue a TV."
+      },
+      {
+        "jp": "それを テーブルの うえに おきなさい",
+        "ruby": [
+          {
+            "text": "それをテーブルの"
+          },
+          {
+            "text": "上",
+            "reading": "うえ"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "置",
+            "reading": "お"
+          },
+          {
+            "text": "きなさい。"
+          }
+        ],
+        "romaji": "sore o tēburu no ue ni okinasai",
+        "pt": "Coloque-o sobre a mesa."
+      },
+      {
+        "jp": "せんせいに あなたの なまえを いいなさい",
+        "ruby": [
+          {
+            "text": "先生",
+            "reading": "せんせい"
+          },
+          {
+            "text": "にあなたの"
+          },
+          {
+            "text": "名前",
+            "reading": "なまえ"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "言",
+            "reading": "い"
+          },
+          {
+            "text": "いなさい。"
+          }
+        ],
+        "romaji": "sensei ni anata no namae o iinasai",
+        "pt": "Diga o seu nome ao professor."
+      }
+    ]
+  },
+  {
+    "id": "n4-31",
+    "title": "Pedir um favor: 〜てくれませんか e 〜ていただけませんか",
+    "body": [
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "Para pedir um "
+          },
+          {
+            "text": "favor",
+            "bold": true
+          },
+          {
+            "text": " com educação, pergunte de forma "
+          },
+          {
+            "text": "negativa",
+            "bold": true
+          },
+          {
+            "text": ": \"você não poderia...?\". O "
+          },
+          {
+            "text": "〜てくれませんか",
+            "bold": true
+          },
+          {
+            "text": " é gentil; o "
+          },
+          {
+            "text": "〜ていただけませんか",
+            "bold": true
+          },
+          {
+            "text": " é mais formal, para clientes, superiores e desconhecidos."
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "rows": [
+          [
+            {
+              "text": "padrão",
+              "header": true
+            },
+            {
+              "text": "exemplo",
+              "header": true
+            }
+          ],
+          [
+            {
+              "text": "verbo て + くれませんか"
+            },
+            {
+              "text": "おしえて くれません か (você pode me ensinar?)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "verbo て + いただけませんか"
+            },
+            {
+              "text": "あけて いただけません か (o senhor poderia abrir?)",
+              "ja": true
+            }
+          ],
+          [
+            {
+              "text": "entre amigos"
+            },
+            {
+              "text": "てつだって くれない? (me ajuda?)",
+              "ja": true
+            }
+          ]
+        ]
+      },
+      {
+        "kind": "p",
+        "runs": [
+          {
+            "text": "É a pergunta "
+          },
+          {
+            "text": "negativa",
+            "bold": true
+          },
+          {
+            "text": " ("
+          },
+          {
+            "text": "ませんか",
+            "bold": true
+          },
+          {
+            "text": ") que deixa o pedido suave. Com "
+          },
+          {
+            "text": "〜てください",
+            "bold": true
+          },
+          {
+            "text": " o pedido fica mais direto; use-o quando a situação for simples."
+          }
+        ]
+      }
+    ],
+    "pattern": "[verbo て] くれませんか · [verbo て] いただけませんか",
+    "examples": [
+      {
+        "jp": "てつだって くれませんか",
+        "ruby": [
+          {
+            "text": "手伝",
+            "reading": "てつだ"
+          },
+          {
+            "text": "ってくれませんか。"
+          }
+        ],
+        "romaji": "tetsudatte kuremasen ka",
+        "pt": "Você me ajuda?"
+      },
+      {
+        "jp": "みちを おしえて くれませんか",
+        "ruby": [
+          {
+            "text": "道",
+            "reading": "みち"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "教",
+            "reading": "おし"
+          },
+          {
+            "text": "えてくれませんか。"
+          }
+        ],
+        "romaji": "michi o oshiete kuremasen ka",
+        "pt": "Você pode me mostrar o caminho?"
+      },
+      {
+        "jp": "てつだって いただけませんか",
+        "ruby": [
+          {
+            "text": "手伝",
+            "reading": "てつだ"
+          },
+          {
+            "text": "っていただけませんか。"
+          }
+        ],
+        "romaji": "tetsudatte itadakemasen ka",
+        "pt": "Você me ajuda, por favor?"
+      },
+      {
+        "jp": "まどを あけて いただけませんか",
+        "ruby": [
+          {
+            "text": "窓",
+            "reading": "まど"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "開",
+            "reading": "あ"
+          },
+          {
+            "text": "けていただけませんか。"
+          }
+        ],
+        "romaji": "mado o akete itadakemasen ka",
+        "pt": "Você poderia abrir a janela?"
+      },
+      {
+        "jp": "でんきを つけて いただけませんか",
+        "ruby": [
+          {
+            "text": "電気",
+            "reading": "でんき"
+          },
+          {
+            "text": "をつけていただけませんか。"
+          }
+        ],
+        "romaji": "denki o tsukete itadakemasen ka",
+        "pt": "Você faria a gentileza de acender as luzes?"
+      }
+    ]
   }
 ];
 
@@ -7504,8 +8345,268 @@ export const BUILD_N4: readonly BuildExercise[] = [
     ],
     "romaji": "kippu o haiken itashimasu",
     "hint": "Honorífico eleva o outro; humilde rebaixa você."
+  },
+  {
+    "topic": "n4-28",
+    "pt": "Tenho uma reserva.",
+    "answer": [
+      "よやく",
+      "して",
+      "ある"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "yoyaku shite aru",
+    "hint": "てある: alguém fez, e continua assim."
+  },
+  {
+    "topic": "n4-28",
+    "pt": "O mapa está na parede.",
+    "answer": [
+      "ちず",
+      "は",
+      "かべ",
+      "に",
+      "はって",
+      "ある"
+    ],
+    "extra": [
+      "を",
+      "も"
+    ],
+    "romaji": "chizu wa kabe ni hatte aru",
+    "hint": "てある: alguém fez, e continua assim."
+  },
+  {
+    "topic": "n4-28",
+    "pt": "Há um livro sobre a mesa.",
+    "answer": [
+      "つくえ",
+      "の",
+      "うえ",
+      "に",
+      "ほん",
+      "が",
+      "おいて",
+      "ある"
+    ],
+    "extra": [
+      "は",
+      "を"
+    ],
+    "romaji": "tsukue no ue ni hon ga oite aru",
+    "hint": "てある: alguém fez, e continua assim."
+  },
+  {
+    "topic": "n4-29",
+    "pt": "Voltarei lá pelas seis.",
+    "answer": [
+      "ろくじ",
+      "まで",
+      "に",
+      "もどります"
+    ],
+    "extra": [
+      "から",
+      "で"
+    ],
+    "romaji": "rokuji made ni modorimasu",
+    "hint": "までに: prazo, até lá a ação já aconteceu."
+  },
+  {
+    "topic": "n4-29",
+    "pt": "Tenho que devolver o livro antes de sábado.",
+    "answer": [
+      "どようび",
+      "まで",
+      "に",
+      "ほん",
+      "を",
+      "かえさなければ",
+      "なりません"
+    ],
+    "extra": [
+      "から",
+      "で"
+    ],
+    "romaji": "doyōbi made ni hon o kaesanakereba narimasen",
+    "hint": "までに: prazo, até lá a ação já aconteceu."
+  },
+  {
+    "topic": "n4-29",
+    "pt": "Para quando você precisa?",
+    "answer": [
+      "いつ",
+      "まで",
+      "に",
+      "ひつようです",
+      "か"
+    ],
+    "extra": [
+      "から",
+      "で"
+    ],
+    "romaji": "itsu made ni hitsuyō desu ka",
+    "hint": "までに: prazo, até lá a ação já aconteceu."
+  },
+  {
+    "topic": "n4-29",
+    "pt": "Por favor, devolva o livro até amanhã.",
+    "answer": [
+      "あした",
+      "まで",
+      "に",
+      "ほん",
+      "を",
+      "かえしなさい"
+    ],
+    "extra": [
+      "から",
+      "で"
+    ],
+    "romaji": "ashita made ni hon o kaeshinasai",
+    "hint": "までに: prazo, até lá a ação já aconteceu."
+  },
+  {
+    "topic": "n4-30",
+    "pt": "É tarde, então desligue a TV.",
+    "answer": [
+      "もう",
+      "おそい",
+      "から",
+      "テレビ",
+      "を",
+      "けしなさい"
+    ],
+    "extra": [
+      "まで",
+      "に"
+    ],
+    "romaji": "mō osoi kara terebi o keshinasai",
+    "hint": "なさい: ordem firme de quem está acima."
+  },
+  {
+    "topic": "n4-30",
+    "pt": "Coloque-o sobre a mesa.",
+    "answer": [
+      "それ",
+      "を",
+      "テーブル",
+      "の",
+      "うえ",
+      "に",
+      "おきなさい"
+    ],
+    "extra": [
+      "は",
+      "で"
+    ],
+    "romaji": "sore o tēburu no ue ni okinasai",
+    "hint": "なさい: ordem firme de quem está acima."
+  },
+  {
+    "topic": "n4-30",
+    "pt": "Diga o seu nome ao professor.",
+    "answer": [
+      "せんせい",
+      "に",
+      "あなた",
+      "の",
+      "なまえ",
+      "を",
+      "いいなさい"
+    ],
+    "extra": [
+      "で",
+      "は"
+    ],
+    "romaji": "sensei ni anata no namae o iinasai",
+    "hint": "なさい: ordem firme de quem está acima."
+  },
+  {
+    "topic": "n4-31",
+    "pt": "Você me ajuda?",
+    "answer": [
+      "てつだって",
+      "くれません",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "tetsudatte kuremasen ka",
+    "hint": "てくれませんか: pedido gentil; ていただけませんか: mais formal."
+  },
+  {
+    "topic": "n4-31",
+    "pt": "Você pode me mostrar o caminho?",
+    "answer": [
+      "みち",
+      "を",
+      "おしえて",
+      "くれません",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "michi o oshiete kuremasen ka",
+    "hint": "てくれませんか: pedido gentil; ていただけませんか: mais formal."
+  },
+  {
+    "topic": "n4-31",
+    "pt": "Você me ajuda, por favor?",
+    "answer": [
+      "てつだって",
+      "いただけません",
+      "か"
+    ],
+    "extra": [
+      "を",
+      "に"
+    ],
+    "romaji": "tetsudatte itadakemasen ka",
+    "hint": "てくれませんか: pedido gentil; ていただけませんか: mais formal."
+  },
+  {
+    "topic": "n4-31",
+    "pt": "Você poderia abrir a janela?",
+    "answer": [
+      "まど",
+      "を",
+      "あけて",
+      "いただけません",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "mado o akete itadakemasen ka",
+    "hint": "てくれませんか: pedido gentil; ていただけませんか: mais formal."
+  },
+  {
+    "topic": "n4-31",
+    "pt": "Você faria a gentileza de acender as luzes?",
+    "answer": [
+      "でんき",
+      "を",
+      "つけて",
+      "いただけません",
+      "か"
+    ],
+    "extra": [
+      "に",
+      "は"
+    ],
+    "romaji": "denki o tsukete itadakemasen ka",
+    "hint": "てくれませんか: pedido gentil; ていただけませんか: mais formal."
   }
 ];
 
 /** Ids das frases do Tatoeba usadas nos exemplos (para o crédito). */
-export const GRAMMAR_N4_SENTENCE_IDS: readonly number[] = [2684823,189732,204854,92933,8935237,11831405,11852556,2490824,10333259,3552079,11878738,3480582,173469,10712752,79947,1452344,110575,10197580,2048906,10592243,115483,10682600,12135719,1202184,189249,148767,154105,3506608,5692169,136179,80357,12003646,10230338,11706769,6391927,204266,10380252,10179138,109752,153577,10711650,12957260,151482,165152,77478,12508745,165927,11746278,228053,188016,6015,126755,2656835,142246,404561,90960,84989,3073523,12593254,169868,177029,201190,7959060,107639,86361,189727,99656,232414,217027,78415,100750,100545,628655,1062147,196536,9037336,175189,84108,3480369,175172,8098712,2063347,2006376,1680729,4734,12377003,99142,99154,103299,5049,155346,109201,157118,185126,229721,224327,174979,191447,113243,113270,235365,175179,187628,187552,226613,342132,142084];
+export const GRAMMAR_N4_SENTENCE_IDS: readonly number[] = [2684823,189732,204854,92933,8935237,11831405,11852556,2490824,10333259,3552079,11878738,3480582,173469,10712752,79947,1452344,110575,10197580,2048906,10592243,115483,10682600,12135719,1202184,189249,148767,154105,3506608,5692169,136179,80357,12003646,10230338,11706769,6391927,204266,10380252,10179138,109752,153577,10711650,12957260,151482,165152,77478,12508745,165927,11746278,228053,188016,6015,126755,2656835,142246,404561,90960,84989,3073523,12593254,169868,177029,201190,7959060,107639,86361,189727,99656,232414,217027,78415,100750,100545,628655,1062147,196536,9037336,175189,84108,3480369,175172,8098712,2063347,2006376,1680729,4734,12377003,99142,99154,103299,5049,155346,109201,157118,185126,229721,224327,174979,191447,113243,113270,235365,175179,187628,187552,226613,342132,142084,78990,991942,183426,1055803,5326,228790,231529,182972,194029,204648,141756,148503,123567,148507,140380,124844];

@@ -123,7 +123,9 @@ interface TestAttemptProps {
 }
 
 function TestAttempt({ lesson, title, onAnswer, onDone, onActiveChange }: TestAttemptProps) {
-  const [questions] = useState(() => buildLessonQuestions(lesson.items, lesson.review === true));
+  const [questions] = useState(() =>
+    buildLessonQuestions(lesson.items, lesson.review === true, Math.random, new Set(Object.keys(useProgressStore.getState().srs))),
+  );
 
   // Enquanto as perguntas estão na tela há um teste em andamento; ao ir para o resultado, não mais.
   useEffect(() => {

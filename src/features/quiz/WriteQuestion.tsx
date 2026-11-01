@@ -77,7 +77,7 @@ export function WriteQuestion({ item, result, onAction, onDrawingChange }: Write
       return;
     }
     setNotice(null);
-    onAction({ kind: 'check', score: scoreWriting(model, strokes), hinted: hint !== 'off' });
+    onAction({ kind: 'check', score: scoreWriting(model, strokes), hinted: hint !== 'off', drawing: strokes });
   };
 
   const useHint = () => {
@@ -230,6 +230,9 @@ export function WriteQuestion({ item, result, onAction, onDrawingChange }: Write
               onPress={() => setStrokes((prev) => prev.slice(0, base))}
               style={styles.small}
             />
+            <Button label="Não lembro" variant="ghost" disabled={hint === 'playing'} onPress={giveUp} style={styles.small} />
+          </View>
+          <View style={styles.row}>
             {assist === 'memory' ? (
               <Button
                 label="💡 Dica"
@@ -239,9 +242,6 @@ export function WriteQuestion({ item, result, onAction, onDrawingChange }: Write
                 style={styles.small}
               />
             ) : null}
-          </View>
-          <View style={styles.row}>
-            <Button label="Não lembro" variant="ghost" disabled={hint === 'playing'} onPress={giveUp} style={styles.small} />
             <Button label="Conferir" disabled={hint === 'playing'} onPress={check} style={styles.small} />
           </View>
           {notice ? (

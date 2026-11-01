@@ -67,3 +67,21 @@ export function buildReadQuestions(known: ReadonlySet<string>, rng: Rng = Math.r
       return { item, direction: 'k2r' as const, options: shuffle([item, ...distractors], rng), retry: false };
     });
 }
+
+/** Quantas palavras entram, no máximo, numa revisão normal. */
+export const WORDS_IN_REVIEW = 3;
+/** A revisão precisa ter pelo menos isto de perguntas de kana para ganhar palavras (sem encher sessões curtas). */
+const MIN_QUESTIONS_FOR_WORDS = 6;
+
+/**
+ * Revisão com contexto: depois de algumas linhas de kana aprendidas, mistura até 3 palavras curtas (feitas só de
+ * kana já conhecidos) entre as perguntas de kana. Palavras não têm cartão de kana: quem grava a resposta
+ * deve tratá-las à parte (`isStudyItem` falso).
+ */
+export function withWordQuestions(questions: readonly Question[], known: ReadonlySet<string>, rng: Rng = Math.random): Question[] {
+  if (known.size < MIN_KNOWN_FOR_WORDS || questions.length < MIN_QUESTIONS_FOR_WORDS) return [...questions];
+  const words = buildReadQuestions(known, rng, WORDS_IN_REVIEW);
+  const out = [...questions];
+  for (const w of words) out.splice(Math.floor(rng() * (out.length + 1)), 0, w);
+  return out;
+}

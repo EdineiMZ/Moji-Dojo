@@ -2,6 +2,17 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.41.0] - 2026-11-01
+
+Acabamento das melhorias da 2.40.0: elas passam a aparecer em mais lugares do app.
+
+- **Palavras na revisão:** a revisão normal mistura até 3 palavras curtas (feitas só de kana que você já conhece) entre as perguntas de kana. As palavras não têm cartão no SRS: contam só no histórico do dia.
+- **Sósias nas lições, no ouvido e nos cartões:** o teste das lições e o treino de ouvido também priorizam alternativas parecidas com o caractere (só de kana já conhecidos).
+- **Confusão no desenho:** quando o desenho errado lembra claramente outro kana (com folga sobre o pedido), o par entra na lista de pares confusos, como nos erros de múltipla escolha.
+- **Historinha nos cartões:** ao virar um cartão de kana, aparece o mnemônico (o seu, se você escreveu um).
+- **Freio:** o aviso de "revisar antes de uma lição nova" aparece também dentro da lição.
+- **Testes:** `newFeatures.test.ts` cobre as palavras na revisão e o palpite do desenho.
+
 ## [2.40.0] - 2026-11-01
 
 Seis melhorias para fixar os kana, a maioria montada com o que a pessoa realmente erra.

@@ -23,7 +23,7 @@ import {
 import { AiExplain } from '@/features/ai/AiParts';
 import { pronunciationText } from '@/features/catalog';
 import { speakJapanese } from '@/features/speech/voiceStore';
-import { writeVerdict, type WriteAction } from '@/features/writing/assist';
+import { guessDrawn, writeVerdict, type WriteAction } from '@/features/writing/assist';
 import { writePassScore } from '@/features/writing/score';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
@@ -176,6 +176,12 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
   const submitWriting = (action: WriteAction) => {
     if (answered) return;
     const { correct, hinted } = writeVerdict(action, writePassScore(useProgressStore.getState().srs[current.item.char]?.b));
+    // Errou o desenho: se ele lembra mais outro kana, anota a troca (alimenta o treino de pares confusos).
+    if (action.kind === 'check' && !correct && action.drawing && isStudyItem(current.item)) {
+      const need = writePassScore(useProgressStore.getState().srs[current.item.char]?.b);
+      const guess = guessDrawn(current.item.char, action.drawing, action.score.pct, need);
+      if (guess) useProgressStore.getState().recordConfusion(current.item.char, guess);
+    }
     const write: WriteResult = action.kind === 'giveUp' ? { kind: 'gaveUp' } : { kind: 'scored', score: action.score, correct };
     settle(resolveQuestion(quiz, correct), '', write, hinted);
   };

@@ -64,7 +64,7 @@ export function EarView() {
   const start = (selected: EarMode) => {
     setResult(null);
     const questions =
-      selected === 'pairs' ? buildPairQuestions(MINIMAL_PAIRS) : buildEarQuestions(kanaPool(selected).items);
+      selected === 'pairs' ? buildPairQuestions(MINIMAL_PAIRS) : buildEarQuestions(kanaPool(selected).items, Math.random, undefined, new Set(Object.keys(useProgressStore.getState().srs)));
     setRun({ questions, mode: selected });
   };
 

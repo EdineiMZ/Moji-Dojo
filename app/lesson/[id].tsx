@@ -4,6 +4,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { AppText, BackLink, Card, Confetti, Mascot, PetalRain, Screen, SwapView } from '@/components';
 import { SCRIPT_NAMES } from '@/features/catalog';
 import { KnowStep } from '@/features/lessons/KnowStep';
+import { BrakeNotice } from '@/features/review/BrakeNotice';
 import { StepsBar, type LessonStep } from '@/features/lessons/StepsBar';
 import { NO_CELEBRATION, TestStep, type Celebration } from '@/features/lessons/TestStep';
 import { findLesson, lessonHasWriting, type NextLesson } from '@/features/lessons/trail';
@@ -71,6 +72,7 @@ function LessonFlow({ lesson: { script, index, lesson }, skip }: LessonFlowProps
           {step === 'know' ? (
             <>
               <VoiceWarning />
+              <BrakeNotice />
               <KnowStep
                 items={lesson.items}
                 pos={pos}

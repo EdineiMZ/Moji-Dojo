@@ -10,6 +10,7 @@ import { ProgressCard } from '@/features/home/ProgressCard';
 import { buildTodaySummary, scriptProgress } from '@/features/home/summary';
 import { TodayCard } from '@/features/home/TodayCard';
 import { LeechCard } from '@/features/leeches/LeechCard';
+import { BrakeNotice } from '@/features/review/BrakeNotice';
 import { EvolutionCard } from '@/features/stats/EvolutionCard';
 import { accuracy, activityStrip, bestStreak, dailyAnswers, evolution } from '@/features/stats/metrics';
 import { StatsCard } from '@/features/stats/StatsCard';
@@ -64,6 +65,7 @@ export default function HomeScreen() {
       <TodayCard summary={summary} now={now}>
         <DailyPlanCard embedded dueKana={summary.dueCount} now={now} />
       </TodayCard>
+      <BrakeNotice />
       <JourneyCard />
       <StatsCard
         streak={summary.streak}

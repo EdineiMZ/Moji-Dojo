@@ -1,18 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, Mascot } from '@/components';
-import { findItem } from '@/features/catalog';
+import { findItem, getItem } from '@/features/catalog';
 import { REVIEW_BATCH, REVIEW_LIGHT_BATCH } from '@/features/home/summary';
 import { batchWithin } from '@/features/limits/limits';
 import { currentRoom } from '@/features/limits/useRoom';
 import { resultMood } from '@/features/lessons/resultCopy';
-import { buildReviewQuestions, type QuizResult } from '@/features/quiz/quiz';
+import { buildReviewQuestions, isStudyItem, type QuizResult } from '@/features/quiz/quiz';
 import { QuizView } from '@/features/quiz/QuizView';
 import { ResultCard } from '@/features/quiz/ResultCard';
 import { feedbackComplete } from '@/lib/feedback';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { spacing } from '@/theme';
 import { pickExtraReviewChars, reviewIntro, reviewTitle, REVIEW_GOOD_PCT } from './session';
+import { PracticeCard } from './PracticeCard';
+import { withWordQuestions } from './readWords';
 import { dueChars } from './srs';
 
 const isKnown = (char: string): boolean => findItem(char) !== undefined;
@@ -95,6 +97,7 @@ export function ReviewSession({ extra, light = false, unlimited = false, onExit,
       total={outcome.total}
       wrong={outcome.wrong}
       wrongLabel="Para ficar de olho:"
+      wrongText={(c) => (isKnown(c) ? `${c} ${getItem(c).label}` : c)}
       passed={good}
       mood={resultMood(good, pct)}
     >
@@ -102,6 +105,7 @@ export function ReviewSession({ extra, light = false, unlimited = false, onExit,
         {outcome.remaining > 0 ? <Button label={`Revisar mais (${Math.min(outcome.remaining, REVIEW_BATCH)})`} onPress={again} /> : null}
         <Button label="Continuar" variant={outcome.remaining > 0 ? 'soft' : 'primary'} onPress={onExit} />
       </View>
+      <PracticeCard />
     </ResultCard>
   );
 }
@@ -118,6 +122,7 @@ interface ReviewRunProps {
 
 function ReviewRun({ extra, light, unlimited, onExit, onDone, onDrawingChange, onActiveChange }: ReviewRunProps) {
   const recordReviewAnswer = useProgressStore((s) => s.recordReviewAnswer);
+  const recordDrill = useProgressStore((s) => s.recordDrill);
   // Os caracteres e o sorteio dos tipos de pergunta são feitos uma vez, ao abrir:
   // responder (ou mudar o ajuste) não altera a sessão em andamento.
   const [writeEnabled] = useState(() => useSettingsStore.getState().writeInReview);
@@ -126,7 +131,8 @@ function ReviewRun({ extra, light, unlimited, onExit, onDone, onDrawingChange, o
     const chars = extra
       ? pickExtraReviewChars(srs, isKnown)
       : dueChars(srs, Date.now(), isKnown).slice(0, batchWithin(light ? REVIEW_LIGHT_BATCH : REVIEW_BATCH, unlimited ? Infinity : currentRoom().reviewsLeft));
-    return buildReviewQuestions(chars, Math.random, { write: writeEnabled, known: new Set(Object.keys(srs)) });
+    const known = new Set(Object.keys(srs));
+    return withWordQuestions(buildReviewQuestions(chars, Math.random, { write: writeEnabled, known }), known);
   });
 
   const hasQuestions = questions.length > 0;
@@ -149,6 +155,7 @@ function ReviewRun({ extra, light, unlimited, onExit, onDone, onDrawingChange, o
             : 'Tudo em dia! Quando houver revisões vencidas, elas aparecem aqui.'}
         </AppText>
         <Button label="Voltar" onPress={onExit} />
+        <PracticeCard />
       </Card>
     );
   }
@@ -159,7 +166,14 @@ function ReviewRun({ extra, light, unlimited, onExit, onDone, onDrawingChange, o
       <QuizView
         questions={questions}
         title={reviewTitle(extra)}
-        onAnswer={(q, ok, firstTry, hinted) => recordReviewAnswer(q.item.char, ok, firstTry, extra, undefined, q.direction === 'write', hinted)}
+        onAnswer={(q, ok, firstTry, hinted) => {
+          // Palavra para ler: não tem cartão no SRS, só entra no histórico do dia.
+          if (!isStudyItem(q.item)) {
+            if (firstTry) recordDrill(ok, 'kana');
+            return;
+          }
+          recordReviewAnswer(q.item.char, ok, firstTry, extra, undefined, q.direction === 'write', hinted);
+        }}
         onDone={onDone}
         onDrawingChange={onDrawingChange}
       />

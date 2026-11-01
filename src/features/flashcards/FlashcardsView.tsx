@@ -1,4 +1,7 @@
 import { useMemo, useState } from 'react';
+import { findItem } from '@/features/catalog';
+import { mnemonicFor } from '@/features/quiz/explain';
+import { MnemonicNote } from '@/features/quiz/MnemonicNote';
 import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, ChipRow, Mascot, PressableScale } from '@/components';
 import { resultMood } from '@/features/lessons/resultCopy';
@@ -68,6 +71,13 @@ function Menu({ onStart }: { onStart: (cards: FlashCard[]) => void }) {
       />
     </Card>
   );
+}
+
+/** A historinha pronta do caractere, se existir (a da pessoa tem prioridade dentro do MnemonicNote). */
+function mnemonicProps(char: string): { fallback?: string } {
+  const item = findItem(char);
+  const hint = item ? mnemonicFor(item) : undefined;
+  return hint ? { fallback: hint } : {};
 }
 
 function Session({ cards, onExit }: { cards: FlashCard[]; onExit: () => void }) {
@@ -183,6 +193,9 @@ function Session({ cards, onExit }: { cards: FlashCard[]; onExit: () => void }) 
         ) : null}
       </PressableScale>
       {card.say ? <Button label="🔊 Ouvir" variant="soft" onPress={() => say(card)} /> : null}
+      {flipped && card.grade?.kind === 'kana' && findItem(card.grade.char) ? (
+        <MnemonicNote char={card.grade.char} {...mnemonicProps(card.grade.char)} />
+      ) : null}
       {flipped ? (
         <View style={styles.row}>
           <Button label={learning ? 'Pular' : 'Não sabia'} variant="soft" style={styles.flex} onPress={() => answer(false)} />

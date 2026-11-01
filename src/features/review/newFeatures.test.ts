@@ -1,7 +1,11 @@
 import { LOOKALIKES, lookalikesOf } from '@/features/chart/lookalikes';
 import { ALL_ITEMS, getItem } from '@/features/catalog';
-import { buildOptions, buildReviewQuestions, type Rng } from '@/features/quiz/quiz';
-import { assistFor } from '@/features/writing/assist';
+import { STROKES } from '@/data/strokes';
+import { buildEarQuestions, buildLessonQuestions, buildOptions, buildReviewQuestions, isStudyItem, type Rng } from '@/features/quiz/quiz';
+import { flattenPath } from '@/features/strokes/svgPath';
+import { scoreWriting } from '@/features/writing/score';
+import { WORDS_IN_REVIEW, withWordQuestions } from './readWords';
+import { assistFor, guessDrawn } from '@/features/writing/assist';
 import { createProgressStore } from '@/store/progressStore';
 import { BRAKE_LEECHES, BRAKE_MIN_ANSWERS, brakeFor, recentAccuracy } from './brake';
 
@@ -133,5 +137,63 @@ describe('freio quando o acerto cai (item 6)', () => {
     const good = { '2026-10-22': day(30, 28) };
     expect(brakeFor(good, BRAKE_LEECHES - 1, NOW)).toBeNull();
     expect(brakeFor(good, BRAKE_LEECHES, NOW)?.reason).toBe('leeches');
+  });
+});
+
+describe('o que foi desenhado errado vira confusão (item 1)', () => {
+  const perfect = (char: string) => STROKES[char]!.p.map(flattenPath);
+  const scribble = [[[5, 5], [20, 8], [10, 25], [30, 30]]] as unknown as ReturnType<typeof perfect>;
+
+  it('pediu さ e desenhou um ち certinho: acha o ち', () => {
+    const own = scoreWriting(STROKES['さ']!, perfect('ち')).pct;
+    expect(own).toBeLessThan(70);
+    expect(guessDrawn('さ', perfect('ち'), own, 70)).toBe('ち');
+  });
+
+  it('um rabisco não lembra nenhum outro kana: nada é anotado', () => {
+    const own = scoreWriting(STROKES['さ']!, scribble).pct;
+    expect(guessDrawn('さ', scribble, own, 70)).toBeNull();
+    expect(guessDrawn('さ', [], 0, 70)).toBeNull();
+  });
+
+  it('só vale para kana (kanji não tem lista de confusões)', () => {
+    expect(guessDrawn('水', perfect('あ'), 0, 70)).toBeNull();
+  });
+});
+
+describe('palavras dentro da revisão normal (item 4)', () => {
+  const hira = [...'あいうえおかきくけこさしすせそたちつてとなにぬねの'];
+  const known = new Set(hira);
+  const base = hira.slice(0, 8).map((c) => ({ item: getItem(c), direction: 'k2r' as const, options: [], retry: false }));
+
+  it('mistura até 3 palavras entre as perguntas de kana, sem tirar nenhuma', () => {
+    const out = withWordQuestions(base, known, seeded(3));
+    expect(out).toHaveLength(base.length + WORDS_IN_REVIEW);
+    expect(out.filter((q) => !isStudyItem(q.item))).toHaveLength(WORDS_IN_REVIEW);
+    for (const q of base) expect(out).toContain(q);
+  });
+
+  it('com poucos kana conhecidos, ou revisão curta, nada muda', () => {
+    expect(withWordQuestions(base, new Set(hira.slice(0, 5)), seeded(3))).toEqual(base);
+    expect(withWordQuestions(base.slice(0, 3), known, seeded(3))).toEqual(base.slice(0, 3));
+  });
+});
+
+describe('sósias nas lições e no ouvido (item 5)', () => {
+  it('na lição, os sósias que a pessoa já conhece entram como alternativa', () => {
+    const known = new Set(['ち', 'き']);
+    for (let seed = 1; seed <= 15; seed++) {
+      const qs = buildLessonQuestions(['さ', 'か', 'た', 'な'], false, seeded(seed), known);
+      const q = qs.find((x) => x.item.char === 'さ' && x.direction === 'k2r')!;
+      expect(q.options.map((o) => o.char)).toEqual(expect.arrayContaining(['さ', 'ち', 'き']));
+    }
+  });
+
+  it('no ouvido também', () => {
+    const known = new Set(['ち', 'き']);
+    const pool = ['さ', 'か', 'た', 'な'].map(getItem);
+    const qs = buildEarQuestions(pool, seeded(2), 8, known).filter((q) => q.item.char === 'さ');
+    expect(qs.length).toBeGreaterThan(0);
+    for (const q of qs) expect(q.options.map((o) => o.char)).toEqual(expect.arrayContaining(['ち', 'き']));
   });
 });

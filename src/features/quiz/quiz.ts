@@ -107,12 +107,17 @@ const REVIEW_LESSON_MAX = 20;
  * Teste de uma lição. Lição normal: cada caractere nos dois sentidos.
  * Lição de revisão: até 20 caracteres, só no sentido caractere → som.
  */
-export function buildLessonQuestions(chars: readonly string[], isReview: boolean, rng: Rng = Math.random): Question[] {
+export function buildLessonQuestions(
+  chars: readonly string[],
+  isReview: boolean,
+  rng: Rng = Math.random,
+  known?: ReadonlySet<string>,
+): Question[] {
   const items = chars.map(getItem);
   const make = (item: StudyItem, direction: Direction): Question => ({
     item,
     direction,
-    options: buildOptions(item, items, rng),
+    options: buildOptions(item, items, rng, known),
     retry: false,
   });
   if (isReview) {
@@ -173,11 +178,12 @@ export function buildEarQuestions(
   pool: readonly StudyItem[],
   rng: Rng = Math.random,
   count: number = EAR_QUESTIONS,
+  known?: ReadonlySet<string>,
 ): Question[] {
   return sampleCycle(pool, count, rng).map((item) => ({
     item,
     direction: 'audio',
-    options: buildOptions(item, pool, rng),
+    options: buildOptions(item, pool, rng, known),
     retry: false,
   }));
 }

@@ -1,6 +1,8 @@
 import type { StrokeData } from '@/data/types';
 import { flattenPath, type Point } from '@/features/strokes/svgPath';
-import { isPassing, type WritingScore } from './score';
+import { ALL_ITEMS, findItem } from '@/features/catalog';
+import { strokeModel } from './model';
+import { isPassing, scoreWriting, type WritingScore } from './score';
 
 /**
  * Ajudas do modo "Desenhe o símbolo" para quem não lembra o caractere.
@@ -24,7 +26,7 @@ export function hintStroke(model: StrokeData): Point[] | null {
 
 /** O que o usuário fez na pergunta: conferiu o desenho (com ou sem dica) ou desistiu. */
 export type WriteAction =
-  | { kind: 'check'; score: WritingScore; hinted: boolean }
+  | { kind: 'check'; score: WritingScore; hinted: boolean; /** O desenho, para descobrir o que foi confundido. */ drawing?: readonly (readonly Point[])[] }
   | { kind: 'giveUp' };
 
 export interface WriteVerdict {
@@ -53,4 +55,26 @@ export type WriteAssist = 'trace' | 'first' | 'memory';
 export function assistFor(box: number | undefined): WriteAssist {
   if (box === undefined || box <= 1) return 'trace';
   return box === 2 ? 'first' : 'memory';
+}
+
+/** O desenho tem de lembrar mais o outro caractere do que o pedido, com folga, para valer como confusão. */
+const GUESS_MARGIN = 10;
+
+/**
+ * Qual kana a pessoa provavelmente desenhou, quando errou o pedido? Compara o desenho com os outros kana da mesma
+ * escrita e devolve o que mais combina, se ele passaria na nota (`need`) e superar o pedido por uma margem.
+ * É o que alimenta a lista de pares confusos também nos erros de desenho. Null se nenhum combina.
+ */
+export function guessDrawn(char: string, drawing: readonly (readonly Point[])[], ownPct: number, need: number): string | null {
+  const asked = findItem(char);
+  if (!asked || (asked.script !== 'hira' && asked.script !== 'kata') || drawing.length === 0) return null;
+  let best: { char: string; pct: number } | null = null;
+  for (const other of ALL_ITEMS) {
+    if (other.script !== asked.script || other.char === char) continue;
+    const model = strokeModel(other.char);
+    if (!model) continue;
+    const pct = scoreWriting(model, drawing as Point[][]).pct;
+    if (pct >= need && pct >= ownPct + GUESS_MARGIN && (!best || pct > best.pct)) best = { char: other.char, pct };
+  }
+  return best?.char ?? null;
 }

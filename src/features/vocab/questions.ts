@@ -1,6 +1,7 @@
 import { VOCAB, type VocabWord } from '@/content';
 import { shuffle, type Direction, type PairItem, type Question, type Rng } from '@/features/quiz/quiz';
 import { cardKey, parseCardKey, type CardDir } from './cards';
+import { sharesSense } from './senses';
 
 /** A palavra no formato que o quiz entende: o japonês, o significado e a leitura (para a voz). */
 export const toQuizItem = (word: VocabWord): PairItem => ({
@@ -15,12 +16,27 @@ const DIRECTION: Readonly<Record<CardDir, Direction>> = { jm: 'k2r', mj: 'r2k', 
 /** Quantas moras tem a leitura, grosso modo (para escolher alternativas do mesmo tamanho). */
 const size = (word: VocabWord): number => [...word.reading].length;
 
+/** Por que uma palavra não serve de alternativa errada. `dir` só importa no ouvido: aí o homófono também seria certo. */
+export function clashesWith(word: VocabWord, candidate: VocabWord, dir?: CardDir): boolean {
+  if (candidate.id === word.id || candidate.jp === word.jp) return true;
+  if (sharesSense(word, candidate)) return true;
+  return dir === 'au' && candidate.reading === word.reading;
+}
+
+export interface VocabOptions {
+  options: PairItem[];
+  /** Quantas alternativas erradas vieram do mesmo grupo ou da mesma escrita (as preferidas). Menos de 3 = pool reduzido. */
+  preferred: number;
+}
+
 /**
- * A palavra certa + 3 distratores. Prefere palavras do mesmo grupo e depois da mesma escrita. Nunca repete
- * o significado nem a palavra na tela (senão haveria duas respostas certas).
+ * A palavra certa + 3 distratores. Prefere palavras do mesmo grupo e depois da mesma escrita; só amplia para o
+ * vocabulário inteiro quando esses não bastam (então são sempre 4 alternativas). Nunca oferece como errada uma palavra
+ * que divide um sentido com a certa ("odioso; detestável" × "odioso"), nem, no ouvido, uma com a mesma leitura.
  */
-export function buildVocabOptions(word: VocabWord, rng: Rng = Math.random): PairItem[] {
+export function buildVocabOptionsDetailed(word: VocabWord, rng: Rng = Math.random, dir?: CardDir): VocabOptions {
   const others = VOCAB.filter((w) => w.id !== word.id);
+  const near = (w: VocabWord): boolean => w.group === word.group || w.kind === word.kind;
   const ordered = [
     ...shuffle(others.filter((w) => w.group === word.group), rng),
     ...shuffle(others.filter((w) => w.group !== word.group && w.kind === word.kind), rng),
@@ -28,14 +44,18 @@ export function buildVocabOptions(word: VocabWord, rng: Rng = Math.random): Pair
   ];
   const meanings = new Set([word.meaning]);
   const picked: VocabWord[] = [];
+  let preferred = 0;
   for (const candidate of ordered) {
     if (picked.length === 3) break;
-    if (meanings.has(candidate.meaning)) continue;
+    if (meanings.has(candidate.meaning) || clashesWith(word, candidate, dir)) continue;
     meanings.add(candidate.meaning);
     picked.push(candidate);
+    if (near(candidate)) preferred++;
   }
-  return shuffle([word, ...picked], rng).map(toQuizItem);
+  return { options: shuffle([word, ...picked], rng).map(toQuizItem), preferred };
 }
+
+export const buildVocabOptions = (word: VocabWord, rng: Rng = Math.random, dir?: CardDir): PairItem[] => buildVocabOptionsDetailed(word, rng, dir).options;
 
 /**
  * Pergunta de leitura: a palavra com kanji e quatro leituras. As erradas são leituras de outras palavras com kanji,
@@ -101,7 +121,7 @@ export function buildVocabQuestions(keys: readonly string[], rng: Rng = Math.ran
     questions.push({
       item: toQuizItem(card.word),
       direction: DIRECTION[card.dir],
-      options: buildVocabOptions(card.word, rng),
+      options: buildVocabOptions(card.word, rng, card.dir),
       retry: false,
     });
   }

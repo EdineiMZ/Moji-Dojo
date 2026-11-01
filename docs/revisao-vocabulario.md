@@ -1,0 +1,769 @@
+# Revisão do vocabulário
+
+Gerado por `npm run audit-vocab` (`src/features/vocab/audit.ts`). Não edite à mão.
+
+## Resumo
+
+- Palavras analisadas: **7894**
+- Pool de alternativas reduzido (menos de 3 alternativas do mesmo grupo ou escrita; usam o vocabulário inteiro): **0**
+- Sem 3 alternativas válidas em nenhum lugar: **0**
+- Pares do mesmo grupo com um sentido em comum e significados diferentes (o filtro antigo deixava passar): **2012**
+- Leituras com mais de uma escrita e sentidos diferentes (homófonos): **587**
+- Sufixos, prefixos, auxiliares e contadores: **121**
+- Palavras só de kana que são terminações e podem virar "〜xxx": **18**
+
+## Pool reduzido
+
+Nenhuma.
+
+## Terminações escritas sem "〜"
+
+- おはよう (おはよう) = bom dia [Teclado]
+- ずつ (ずつ) = cada, por vez [Expressões e palavras de ligação]
+- そう (そう) = sim, é assim [Expressões e palavras de ligação]
+- はず (はず) = deve ser; é de se esperar [N4: Expressões e palavras de ligação]
+- ごちそう (ごちそう) = banquete; refeição oferecida [N4: Comida e bebida]
+- やすい (やすい) = fácil de (fazer) [N4: Expressões e palavras de ligação]
+- にくい (にくい) = difícil de (fazer) [N4: Expressões e palavras de ligação]
+- ごと (ごと) = inteiro; com tudo (sufixo) [N2: Expressões e palavras de ligação]
+- がち (がち) = ter tendência a [N2: Expressões e palavras de ligação]
+- だらけ (だらけ) = cheio de (algo ruim) [N2: Expressões e palavras de ligação]
+- ぽい (ぽい) = com jeito de; meio (sufixo) [N2: Expressões e palavras de ligação]
+- みたい (みたい) = parece com; como [N2: Expressões e palavras de ligação]
+- ばからしい (ばからしい) = absurdo; ridículo [N2: Adjetivos]
+- いやらしい (いやらしい) = desagradável; indecente [N1: Adjetivos]
+- たやすい (たやすい) = fácil; simples [N1: Adjetivos]
+- またがる (またがる) = montar; cavalgar; estender-se por [N1: Verbos]
+- まみれ (まみれ) = coberto de (sufixo) [N1: Expressões e palavras de ligação]
+- みすぼらしい (みすぼらしい) = miserável; maltrapilho [N1: Adjetivos]
+
+## Sufixos, prefixos, auxiliares e contadores
+
+- お (お) = prefixo de respeito (お〜) [Expressões e palavras de ligação]
+- 回 (かい) = vezes (contador de ocorrências) [Números]
+- 階 (かい) = andar (contador de pisos) [Números]
+- か月 (かげつ) = meses (contador) [Números]
+- 個 (こ) = contador de coisas pequenas [Números]
+- 冊 (さつ) = contador de livros [Números]
+- 週間 (しゅうかん) = semanas (contador) [Números]
+- 人 (じん) = pessoas (contador); pessoa de (país) [Números]
+- 台 (だい) = contador de veículos e máquinas [Números]
+- たち (たち) = sufixo de plural (pessoas) [Expressões e palavras de ligação]
+- 日 (にち) = dia do mês; dias (contador) [Dias e tempo]
+- 杯 (はい) = contador de copos e xícaras [Números]
+- 匹 (ひき) = contador de animais pequenos [Números]
+- 分 (ふん) = minutos (contador) [Dias e tempo]
+- 枚 (まい) = contador de coisas planas [Números]
+- 氏 (し) = sobrenome (formal); senhor(a) (sufixo) [N3: Pessoas]
+- 棟 (とう) = edifício; prédio (contador) [N3: Coisas e lugares]
+- 敗 (はい) = derrotas (contador) [N3: Ideias e sentimentos]
+- ごと (ごと) = inteiro; com tudo (sufixo) [N2: Expressões e palavras de ligação]
+- 式 (しき) = cerimônia; estilo (sufixo) [N2: Ideias e sentimentos]
+- いち (いち) = número um; primeiro (prefixo) [N2: Ideias e sentimentos]
+- 園 (えん) = jardim; parque (sufixo) [N2: Coisas e lugares]
+- おしまい (おしまい) = acabar; terminar (sufixo) [N2: Expressões e palavras de ligação]
+- 化 (か) = tornar-se; transformar (sufixo) [N2: Ideias e sentimentos]
+- 科 (か) = família; departamento; curso (sufixo) [N2: Ideias e sentimentos]
+- 画 (が) = desenho; quadro; traço (sufixo) [N2: Ideias e sentimentos]
+- 難い (がたい) = difícil de (sufixo) [N2: Expressões e palavras de ligação]
+- 刊 (かん) = edição (de publicação; sufixo) [N2: Sociedade e trabalho]
+- 巻 (かん) = volume (de livro; contador) [N2: Ideias e sentimentos]
+- 館 (かん) = edifício; casa de (sufixo) [N2: Coisas e lugares]
+- 感 (かん) = sensação; sentimento (sufixo) [N2: Ideias e sentimentos]
+- 期 (き) = período; fase (sufixo) [N2: Tempo e datas]
+- 器 (き) = aparelho; instrumento (sufixo) [N2: Coisas e lugares]
+- 機 (き) = máquina (sufixo) [N2: Coisas e lugares]
+- 教 (きょう) = religião; ensino (sufixo) [N2: Ideias e sentimentos]
+- 行 (ぎょう) = linha; fila (contador) [N2: Ideias e sentimentos]
+- 業 (ぎょう) = tipo de negócio; ramo (sufixo) [N2: Sociedade e trabalho]
+- 系 (けい) = sistema; linhagem (sufixo) [N2: Ideias e sentimentos]
+- 圏 (けん) = zona; área; esfera (sufixo) [N2: Posição e direção]
+- 校 (こう) = escola (contador) [N2: Sociedade e trabalho]
+- 号 (ごう) = número (de revista; contador); nome de navio [N2: Ideias e sentimentos]
+- 毎 (ごと) = cada; todo (prefixo) [N2: Tempo e datas]
+- 産 (さん) = produzido em (sufixo) [N2: Sociedade e trabalho]
+- 史 (し) = história de (sufixo) [N2: Ideias e sentimentos]
+- 室 (しつ) = cômodo (contador) [N2: Coisas e lugares]
+- 社 (しゃ) = empresa (contador) [N2: Sociedade e trabalho]
+- 集 (しゅう) = coleção de (sufixo) [N2: Ideias e sentimentos]
+- 省 (しょう) = ministério (sufixo) [N2: Sociedade e trabalho]
+- 商 (しょう) = comércio; negociante (sufixo) [N2: Sociedade e trabalho]
+- 勝 (しょう) = vitórias (contador) [N2: Ideias e sentimentos]
+- 条 (じょう) = artigo; cláusula (contador) [N2: Ideias e sentimentos]
+- 済 (ずみ) = já pronto; concluído (sufixo) [N2: Ideias e sentimentos]
+- 船 (せん) = navios (contador) [N2: Transporte e viagem]
+- 戦 (せん) = partidas; combates (contador) [N2: Ideias e sentimentos]
+- 艘 (そう) = navios pequenos (contador) [N2: Transporte e viagem]
+- 団 (だん) = grupo; time (sufixo) [N2: Pessoas]
+- 着 (ちゃく) = roupas (contador); chegada (sufixo) [N2: Roupas e compras]
+- 庁 (ちょう) = repartição; agência (sufixo) [N2: Sociedade e trabalho]
+- 長 (ちょう) = líder; chefe (sufixo) [N2: Pessoas]
+- 帳 (ちょう) = caderno (sufixo) [N2: Coisas e lugares]
+- 通 (つう) = cartas (contador) [N2: Ideias e sentimentos]
+- 遣い (づかい) = uso de (sufixo) [N2: Ideias e sentimentos]
+- 付 (つき) = com; acompanhado de (sufixo) [N2: Ideias e sentimentos]
+- 等 (とう) = classe; grau (sufixo) [N2: Ideias e sentimentos]
+- 年生 (ねんせい) = ano escolar (contador) [N2: Ideias e sentimentos]
+- 泊 (はく) = noites de hospedagem (contador) [N2: Tempo e datas]
+- 発 (はつ) = tiros (contador) [N2: Ideias e sentimentos]
+- 番目 (ばんめ) = -ésimo (sufixo ordinal) [N2: Ideias e sentimentos]
+- 費 (ひ) = custo de (sufixo) [N2: Sociedade e trabalho]
+- 病 (びょう) = doença (sufixo) [N2: Natureza e corpo]
+- 部 (ぶ) = parte; seção (sufixo) [N2: Ideias e sentimentos]
+- 遍 (へん) = vezes (contador) [N2: Tempo e datas]
+- 弁 (べん) = discurso; dialeto (sufixo) [N2: Ideias e sentimentos]
+- 歩 (ほ) = passos (contador) [N2: Ideias e sentimentos]
+- ぽい (ぽい) = com jeito de; meio (sufixo) [N2: Expressões e palavras de ligação]
+- 向け (むけ) = destinado a (sufixo) [N2: Expressões e palavras de ligação]
+- もち (もち) = pessoa que tem (sufixo) [N2: Pessoas]
+- 問 (もん) = perguntas (contador) [N2: Ideias e sentimentos]
+- 流 (りゅう) = estilo; escola; maneira (sufixo) [N2: Ideias e sentimentos]
+- 料 (りょう) = tarifa; taxa (sufixo) [N2: Sociedade e trabalho]
+- 論 (ろん) = teoria; debate (sufixo) [N2: Ideias e sentimentos]
+- 幾 (いく) = vários (prefixo) [N2: Expressões e palavras de ligação]
+- 御 (おん) = prefixo honorífico [N2: Ideias e sentimentos]
+- 各 (かく) = cada (prefixo) [N2: Ideias e sentimentos]
+- 共産 (きょうさん) = comunista (prefixo) [N2: Ideias e sentimentos]
+- 現 (げん) = atual; vigente (prefixo) [N2: Ideias e sentimentos]
+- 高 (こう) = alto (prefixo) [N2: Ideias e sentimentos]
+- 再 (さい) = re- (de novo; prefixo) [N2: Ideias e sentimentos]
+- 最 (さい) = o mais (prefixo) [N2: Ideias e sentimentos]
+- 重 (じゅう) = pesado (prefixo) [N2: Ideias e sentimentos]
+- 初 (しょ) = primeiro (prefixo) [N2: Ideias e sentimentos]
+- 諸 (しょ) = vários (prefixo) [N2: Ideias e sentimentos]
+- 総 (そう) = total; geral (prefixo) [N2: Ideias e sentimentos]
+- 第 (だい) = -º (prefixo ordinal) [N2: Ideias e sentimentos]
+- 短 (たん) = curto (prefixo) [N2: Ideias e sentimentos]
+- 低 (てい) = baixo (prefixo) [N2: Ideias e sentimentos]
+- 同 (どう) = mesmo (prefixo) [N2: Ideias e sentimentos]
+- 反 (はん) = anti- (prefixo) [N2: Ideias e sentimentos]
+- 非 (ひ) = não-; anti- (prefixo) [N2: Ideias e sentimentos]
+- 副 (ふく) = vice (prefixo) [N2: Ideias e sentimentos]
+- 古 (ふる) = velho (prefixo) [N2: Ideias e sentimentos]
+- 防 (ぼう) = prevenção (sufixo) [N2: Ideias e sentimentos]
+- 未 (み) = ainda não (prefixo) [N2: Ideias e sentimentos]
+- ミリ (ミリ) = mili- (prefixo) [N2: Ideias e sentimentos]
+- 翌 (よく) = seguinte (prefixo) [N2: Tempo e datas]
+- 両 (りょう) = ambos (prefixo) [N2: Ideias e sentimentos]
+- 我 (わが) = nosso (prefixo) [N2: Ideias e sentimentos]
+- 様 (さま) = estado; maneira; senhor(a) (sufixo) [N1: Ideias e sentimentos]
+- ニュー (ニュー) = novo (prefixo) [N1: Ideias e sentimentos]
+- 営 (えい) = administrado por (sufixo) [N1: Ideias e sentimentos]
+- 片 (かた) = um (prefixo); metade de um par [N1: Ideias e sentimentos]
+- 強 (きょう) = forte (prefixo) [N1: Ideias e sentimentos]
+- 当 (とう) = este; nosso (prefixo) [N1: Ideias e sentimentos]
+- 著 (ちょ) = escrito por (sufixo) [N1: Ideias e sentimentos]
+- 超 (ちょう) = super-; ultra- (prefixo) [N1: Ideias e sentimentos]
+- 助動詞 (じょどうし) = verbo auxiliar [N1: Ideias e sentimentos]
+- 弱 (じゃく) = fraco; leve (sufixo) [N1: Ideias e sentimentos]
+- 干し (ほし) = seco (prefixo) [N1: Ideias e sentimentos]
+- マイ (マイ) = meu (prefixo) [N1: Ideias e sentimentos]
+- 増し (まし) = aumento; melhor (sufixo) [N1: Ideias e sentimentos]
+- まみれ (まみれ) = coberto de (sufixo) [N1: Expressões e palavras de ligação]
+
+## Sentidos em comum no mesmo grupo (primeiros 300)
+
+- 五つ (いつつ) = cinco (coisas) [Números]  ×  五 (ご) = cinco [Números]
+- 九つ (ここのつ) = nove (coisas) [Números]  ×  九 (きゅう) = nove [Números]
+- 七つ (ななつ) = sete (coisas) [Números]  ×  七 (しち) = sete [Números]
+- 二つ (ふたつ) = dois (coisas) [Números]  ×  二 (に) = dois [Números]
+- 三つ (みっつ) = três (coisas) [Números]  ×  三 (さん) = três [Números]
+- 六つ (むっつ) = seis (coisas) [Números]  ×  六 (ろく) = seis [Números]
+- 八つ (やっつ) = oito (coisas) [Números]  ×  八 (はち) = oito [Números]
+- 四つ (よっつ) = quatro (coisas) [Números]  ×  四 (し) = quatro [Números]
+- 回 (かい) = vezes (contador de ocorrências) [Números]  ×  度 (ど) = vezes; graus; pontos [Números]
+- 午前 (ごぜん) = manhã (da manhã); a.m. [Dias e tempo]  ×  朝 (あさ) = manhã [Dias e tempo]
+- 夜 (よる) = noite [Dias e tempo]  ×  晩 (ばん) = noite (entardecer) [Dias e tempo]
+- おばあさん (おばあさん) = avó; senhora idosa [Pessoas e escola]  ×  おじいさん (おじいさん) = avô; senhor idoso [Pessoas e escola]
+- 家族 (かぞく) = família [Pessoas e escola]  ×  家庭 (かてい) = lar; família [Pessoas e escola]
+- 出かける (でかける) = sair (de casa); partir [Verbos]  ×  出る (でる) = sair; aparecer [Verbos]
+- 切る (きる) = cortar; desligar (telefone) [Verbos]  ×  消す (けす) = apagar; desligar [Verbos]
+- 取る (とる) = fazer (uma matéria); tirar (nota); pegar [Verbos]  ×  脱ぐ (ぬぐ) = tirar (roupa) [Verbos]
+- 取る (とる) = fazer (uma matéria); tirar (nota); pegar [Verbos]  ×  撮る (とる) = tirar (foto); filmar [Verbos]
+- 働く (はたらく) = trabalhar [Verbos]  ×  勤める (つとめる) = trabalhar (em uma empresa) [Verbos]
+- 脱ぐ (ぬぐ) = tirar (roupa) [Verbos]  ×  撮る (とる) = tirar (foto); filmar [Verbos]
+- かける (かける) = telefonar, ligar; sentar-se [Verbos]  ×  座る (すわる) = sentar-se [Verbos]
+- 開く (あく) = abrir (algo que se abre sozinho) [Verbos]  ×  開ける (あける) = abrir (algo) [Verbos]
+- 開く (あく) = abrir (algo que se abre sozinho) [Verbos]  ×  差す (さす) = estender (mão); abrir (guarda-chuva) [Verbos]
+- 開ける (あける) = abrir (algo) [Verbos]  ×  差す (さす) = estender (mão); abrir (guarda-chuva) [Verbos]
+- 暑い (あつい) = quente (clima) [Adjetivos]  ×  熱い (あつい) = quente (coisas) [Adjetivos]
+- 大きい (おおきい) = grande [Adjetivos]  ×  大きな (おおきな) = grande (antes de substantivo) [Adjetivos]
+- 寒い (さむい) = frio (clima) [Adjetivos]  ×  冷たい (つめたい) = frio (coisas, pessoas) [Adjetivos]
+- 小さい (ちいさい) = pequeno [Adjetivos]  ×  小さな (ちいさな) = pequeno (antes de substantivo) [Adjetivos]
+- つまらない (つまらない) = chato; sem importância [Adjetivos]  ×  うるさい (うるさい) = barulhento; chato [Adjetivos]
+- 黒い (くろい) = preto; escuro [Adjetivos]  ×  暗い (くらい) = escuro; sombrio [Adjetivos]
+- 薄い (うすい) = fino; fraco (claro) [Adjetivos]  ×  弱い (よわい) = fraco [Adjetivos]
+- 映画 (えいが) = filme [Coisas e lugares]  ×  フィルム (フィルム) = filme (rolo) [Coisas e lugares]
+- 誰 (だれ) = quem [Expressões e palavras de ligação]  ×  どなた (どなた) = quem (educado) [Expressões e palavras de ligação]
+- どこ (どこ) = onde [Expressões e palavras de ligação]  ×  どちら (どちら) = qual (dos dois); onde (educado) [Expressões e palavras de ligação]
+- どれ (どれ) = qual (de vários) [Expressões e palavras de ligação]  ×  どちら (どちら) = qual (dos dois); onde (educado) [Expressões e palavras de ligação]
+- どれ (どれ) = qual (de vários) [Expressões e palavras de ligação]  ×  どの (どの) = qual [Expressões e palavras de ligação]
+- ちょっと (ちょっと) = um pouco; um momento [Expressões e palavras de ligação]  ×  少し (すこし) = um pouco [Expressões e palavras de ligação]
+- どちら (どちら) = qual (dos dois); onde (educado) [Expressões e palavras de ligação]  ×  どの (どの) = qual [Expressões e palavras de ligação]
+- こちら (こちら) = esta pessoa (educado); por aqui [Expressões e palavras de ligação]  ×  こっち (こっち) = esta pessoa; por aqui; este lado [Expressões e palavras de ligação]
+- いかが (いかが) = como; que tal [Expressões e palavras de ligação]  ×  どう (どう) = como [Expressões e palavras de ligação]
+- じゃ (じゃ) = então, bem [Expressões e palavras de ligação]  ×  それでは (それでは) = então, bem... [Expressões e palavras de ligação]
+- それでは (それでは) = então, bem... [Expressões e palavras de ligação]  ×  では (では) = então, bem [Expressões e palavras de ligação]
+- 鳴る (なる) = soar; tocar (sino, telefone) [N4: Verbos]  ×  触る (さわる) = tocar; encostar [N4: Verbos]
+- 沸く (わく) = ferver; esquentar [N4: Verbos]  ×  沸かす (わかす) = ferver (água) [N4: Verbos]
+- 折る (おる) = quebrar (algo comprido); dobrar [N4: Verbos]  ×  壊す (こわす) = quebrar (algo); estragar [N4: Verbos]
+- 折る (おる) = quebrar (algo comprido); dobrar [N4: Verbos]  ×  折れる (おれる) = quebrar; dobrar; ceder; virar (esquina) [N4: Verbos]
+- うかがう (うかがう) = perguntar (humilde) [N4: Verbos]  ×  伺う (うかがう) = visitar; perguntar; ouvir (humilde) [N4: Verbos]
+- うかがう (うかがう) = perguntar (humilde) [N4: Verbos]  ×  尋ねる (たずねる) = perguntar; visitar [N4: Verbos]
+- 壊す (こわす) = quebrar (algo); estragar [N4: Verbos]  ×  壊れる (こわれる) = quebrar-se; estragar [N4: Verbos]
+- 壊す (こわす) = quebrar (algo); estragar [N4: Verbos]  ×  折れる (おれる) = quebrar; dobrar; ceder; virar (esquina) [N4: Verbos]
+- 止む (やむ) = parar (chuva, vento); cessar [N4: Verbos]  ×  止める (やめる) = parar; desistir de [N4: Verbos]
+- 拾う (ひろう) = pegar do chão; achar [N4: Verbos]  ×  思う (おもう) = pensar; achar [N4: Verbos]
+- 焼く (やく) = assar; grelhar; queimar [N4: Verbos]  ×  焼ける (やける) = queimar; assar [N4: Verbos]
+- 壊れる (こわれる) = quebrar-se; estragar [N4: Verbos]  ×  割れる (われる) = quebrar-se; rachar [N4: Verbos]
+- 落る (おちる) = cair [N4: Verbos]  ×  倒れる (たおれる) = desabar; cair [N4: Verbos]
+- 起こす (おこす) = acordar alguém; levantar [N4: Verbos]  ×  立てる (たてる) = levantar; erguer; fazer (barulho) [N4: Verbos]
+- 思う (おもう) = pensar; achar [N4: Verbos]  ×  考える (かんがえる) = pensar; considerar [N4: Verbos]
+- 申し上げる (もうしあげる) = dizer (humilde) [N4: Verbos]  ×  申す (もうす) = dizer (muito humilde) [N4: Verbos]
+- 申し上げる (もうしあげる) = dizer (humilde) [N4: Verbos]  ×  おっしゃる (おっしゃる) = dizer (honorífico) [N4: Verbos]
+- 迎える (むかえる) = receber; ir buscar; acolher [N4: Verbos]  ×  受ける (うける) = prestar (exame); receber [N4: Verbos]
+- 迎える (むかえる) = receber; ir buscar; acolher [N4: Verbos]  ×  もらう (もらう) = receber [N4: Verbos]
+- 受ける (うける) = prestar (exame); receber [N4: Verbos]  ×  もらう (もらう) = receber [N4: Verbos]
+- 無くなる (なくなる) = acabar; sumir; perder-se [N4: Verbos]  ×  済む (すむ) = terminar; acabar [N4: Verbos]
+- しまう (しまう) = acabar fazendo; terminar de [N4: Verbos]  ×  おわる (おわる) = terminar de (fazer) [N4: Verbos]
+- 驚く (おどろく) = surpreender-se; assustar-se [N4: Verbos]  ×  びっくりする (びっくりする) = assustar-se [N4: Verbos]
+- 届ける (とどける) = entregar; levar [N4: Verbos]  ×  連れる (つれる) = levar (uma pessoa) [N4: Verbos]
+- 申す (もうす) = dizer (muito humilde) [N4: Verbos]  ×  おっしゃる (おっしゃる) = dizer (honorífico) [N4: Verbos]
+- 暮れる (くれる) = escurecer; terminar (dia) [N4: Verbos]  ×  済む (すむ) = terminar; acabar [N4: Verbos]
+- 伺う (うかがう) = visitar; perguntar; ouvir (humilde) [N4: Verbos]  ×  尋ねる (たずねる) = perguntar; visitar [N4: Verbos]
+- 伺う (うかがう) = visitar; perguntar; ouvir (humilde) [N4: Verbos]  ×  訪ねる (たずねる) = visitar [N4: Verbos]
+- 変える (かえる) = mudar; alterar [N4: Verbos]  ×  変わる (かわる) = mudar; transformar-se [N4: Verbos]
+- 見える (みえる) = ser visto; aparecer; chegar (educado) [N4: Verbos]  ×  見つかる (みつかる) = ser encontrado; aparecer [N4: Verbos]
+- 尋ねる (たずねる) = perguntar; visitar [N4: Verbos]  ×  訪ねる (たずねる) = visitar [N4: Verbos]
+- 負ける (まける) = perder (jogo); ser derrotado [N4: Verbos]  ×  落す (おとす) = deixar cair; perder [N4: Verbos]
+- 下りる (おりる) = descer [N4: Verbos]  ×  下る (さがる) = descer; baixar; recuar [N4: Verbos]
+- 下る (さがる) = descer; baixar; recuar [N4: Verbos]  ×  下げる (さげる) = baixar; pendurar [N4: Verbos]
+- 必ず (かならず) = sem falta; com certeza [N4: Expressões e palavras de ligação]  ×  是非 (ぜひ) = com certeza; sem falta [N4: Expressões e palavras de ligação]
+- 必ず (かならず) = sem falta; com certeza [N4: Expressões e palavras de ligação]  ×  きっと (きっと) = com certeza; sem dúvida [N4: Expressões e palavras de ligação]
+- 気 (き) = ânimo; espírito; atenção [N4: Expressões e palavras de ligação]  ×  注意 (ちゅうい) = cuidado; atenção; aviso [N4: Expressões e palavras de ligação]
+- つもり (つもり) = intenção; plano [N4: Expressões e palavras de ligação]  ×  予定 (よてい) = plano; programação [N4: Expressões e palavras de ligação]
+- つもり (つもり) = intenção; plano [N4: Expressões e palavras de ligação]  ×  計画 (けいかく) = plano; planejar [N4: Expressões e palavras de ligação]
+- 注意 (ちゅうい) = cuidado; atenção; aviso [N4: Expressões e palavras de ligação]  ×  世話 (せわ) = cuidar de; cuidado [N4: Expressões e palavras de ligação]
+- だから (だから) = por isso; então [N4: Expressões e palavras de ligação]  ×  それで (それで) = então; por causa disso [N4: Expressões e palavras de ligação]
+- 用事 (ようじ) = assunto a resolver; compromisso [N4: Expressões e palavras de ligação]  ×  約束 (やくそく) = combinado; promessa; compromisso [N4: Expressões e palavras de ligação]
+- 気分 (きぶん) = sensação; humor; disposição [N4: Expressões e palavras de ligação]  ×  気持ち (きもち) = sentimento; sensação [N4: Expressões e palavras de ligação]
+- そんな (そんな) = desse tipo; assim [N4: Expressões e palavras de ligação]  ×  あんな (あんな) = assim (aquele tipo) [N4: Expressões e palavras de ligação]
+- そんな (そんな) = desse tipo; assim [N4: Expressões e palavras de ligação]  ×  こう (こう) = assim; deste modo [N4: Expressões e palavras de ligação]
+- 準備 (じゅんび) = preparação; preparar [N4: Expressões e palavras de ligação]  ×  用意 (ようい) = preparação; preparativos [N4: Expressões e palavras de ligação]
+- 答 (こたえ) = resposta [N4: Expressões e palavras de ligação]  ×  返事 (へんじ) = resposta; retorno [N4: Expressões e palavras de ligação]
+- 予定 (よてい) = plano; programação [N4: Expressões e palavras de ligação]  ×  計画 (けいかく) = plano; planejar [N4: Expressões e palavras de ligação]
+- 用意 (ようい) = preparação; preparativos [N4: Expressões e palavras de ligação]  ×  支度 (したく) = preparativos; preparar-se [N4: Expressões e palavras de ligação]
+- 遠慮 (えんりょ) = reserva; hesitação; abster-se [N4: Expressões e palavras de ligação]  ×  予約 (よやく) = reserva [N4: Expressões e palavras de ligação]
+- 理由 (りゆう) = razão; motivo [N4: Expressões e palavras de ligação]  ×  訳 (わけ) = razão; motivo; explicação [N4: Expressões e palavras de ligação]
+- あんな (あんな) = assim (aquele tipo) [N4: Expressões e palavras de ligação]  ×  こう (こう) = assim; deste modo [N4: Expressões e palavras de ligação]
+- 中々 (なかなか) = bastante; muito [N4: Expressões e palavras de ligação]  ×  随分 (ずいぶん) = bastante; muito (extremamente) [N4: Expressões e palavras de ligação]
+- 中々 (なかなか) = bastante; muito [N4: Expressões e palavras de ligação]  ×  十分 (じゅうぶん) = suficiente; bastante [N4: Expressões e palavras de ligação]
+- 中々 (なかなか) = bastante; muito [N4: Expressões e palavras de ligação]  ×  大分 (だいぶ) = bastante; consideravelmente [N4: Expressões e palavras de ligação]
+- 随分 (ずいぶん) = bastante; muito (extremamente) [N4: Expressões e palavras de ligação]  ×  十分 (じゅうぶん) = suficiente; bastante [N4: Expressões e palavras de ligação]
+- 随分 (ずいぶん) = bastante; muito (extremamente) [N4: Expressões e palavras de ligação]  ×  大分 (だいぶ) = bastante; consideravelmente [N4: Expressões e palavras de ligação]
+- 是非 (ぜひ) = com certeza; sem falta [N4: Expressões e palavras de ligação]  ×  きっと (きっと) = com certeza; sem dúvida [N4: Expressões e palavras de ligação]
+- 十分 (じゅうぶん) = suficiente; bastante [N4: Expressões e palavras de ligação]  ×  大分 (だいぶ) = bastante; consideravelmente [N4: Expressões e palavras de ligação]
+- 返事 (へんじ) = resposta; retorno [N4: Expressões e palavras de ligação]  ×  帰り (かえり) = volta; retorno [N4: Expressões e palavras de ligação]
+- 産業 (さんぎょう) = indústria; setor produtivo [N4: Expressões e palavras de ligação]  ×  工業 (こうぎょう) = indústria (manufatura) [N4: Expressões e palavras de ligação]
+- 説明 (せつめい) = explicação [N4: Expressões e palavras de ligação]  ×  訳 (わけ) = razão; motivo; explicação [N4: Expressões e palavras de ligação]
+- それほど (それほど) = nesse grau; tanto assim [N4: Expressões e palavras de ligação]  ×  そんなに (そんなに) = tanto assim; desse jeito [N4: Expressões e palavras de ligação]
+- 贈り物 (おくりもの) = presente [N4: Coisas e lugares]  ×  プレゼント (プレゼント) = presente; mimo [N4: Coisas e lugares]
+- 線 (せん) = linha; traço [N4: Coisas e lugares]  ×  糸 (いと) = linha; fio [N4: Coisas e lugares]
+- 大事 (だいじ) = importante; sério [N4: Adjetivos]  ×  真面目 (まじめ) = sério; dedicado [N4: Adjetivos]
+- 悲しい (かなしい) = triste [N4: Adjetivos]  ×  寂しい (さびしい) = solitário; triste [N4: Adjetivos]
+- 親切 (しんせつ) = gentil; bondoso [N4: Adjetivos]  ×  優しい (やさしい) = gentil; fácil [N4: Adjetivos]
+- 熱心 (ねっしん) = entusiasmado; dedicado [N4: Adjetivos]  ×  真面目 (まじめ) = sério; dedicado [N4: Adjetivos]
+- おかしい (おかしい) = estranho; engraçado [N4: Adjetivos]  ×  変 (へん) = esquisito; estranho [N4: Adjetivos]
+- よろしい (よろしい) = bom; certo (educado) [N4: Adjetivos]  ×  正しい (ただしい) = certo; correto [N4: Adjetivos]
+- 優しい (やさしい) = gentil; fácil [N4: Adjetivos]  ×  簡単 (かんたん) = simples; fácil [N4: Adjetivos]
+- 夫 (おっと) = marido [N4: Pessoas e escola]  ×  ご主人 (ごしゅじん) = marido (de outra pessoa) [N4: Pessoas e escola]
+- 祖母 (そぼ) = avó [N4: Pessoas e escola]  ×  祖父 (そふ) = avô [N4: Pessoas e escola]
+- お嬢さん (おじょうさん) = filha (de outra pessoa) [N4: Pessoas e escola]  ×  娘 (むすめ) = filha [N4: Pessoas e escola]
+- 子 (こ) = criança; filho(a) [N4: Pessoas e escola]  ×  息子 (むすこ) = filho (próprio) [N4: Pessoas e escola]
+- 子 (こ) = criança; filho(a) [N4: Pessoas e escola]  ×  お子さん (おこさん) = filho (de outra pessoa) [N4: Pessoas e escola]
+- 息子 (むすこ) = filho (próprio) [N4: Pessoas e escola]  ×  お子さん (おこさん) = filho (de outra pessoa) [N4: Pessoas e escola]
+- 最近 (さいきん) = ultimamente; recentemente [N4: Dias e tempo]  ×  この間 (このあいだ) = outro dia; recentemente [N4: Dias e tempo]
+- 最近 (さいきん) = ultimamente; recentemente [N4: Dias e tempo]  ×  この頃 (このごろ) = ultimamente; hoje em dia [N4: Dias e tempo]
+- 毛 (け) = pelo; cabelo (de corpo ou animal) [N4: Natureza e corpo]  ×  髪 (かみ) = cabelo [N4: Natureza e corpo]
+- 作法 (さほう) = etiqueta; boas maneiras [N3: Sociedade e trabalho]  ×  票 (ひょう) = voto; etiqueta [N3: Sociedade e trabalho]
+- 参加 (さんか) = participação [N3: Sociedade e trabalho]  ×  出場 (しゅつじょう) = participação (em competição) [N3: Sociedade e trabalho]
+- 支給 (しきゅう) = pagamento; fornecimento [N3: Sociedade e trabalho]  ×  支払 (しはらい) = pagamento [N3: Sociedade e trabalho]
+- 支給 (しきゅう) = pagamento; fornecimento [N3: Sociedade e trabalho]  ×  供給 (きょうきゅう) = fornecimento; oferta [N3: Sociedade e trabalho]
+- 支給 (しきゅう) = pagamento; fornecimento [N3: Sociedade e trabalho]  ×  代金 (だいきん) = preço; pagamento [N3: Sociedade e trabalho]
+- 支出 (ししゅつ) = despesa; gasto [N3: Sociedade e trabalho]  ×  消費 (しょうひ) = consumo; gasto [N3: Sociedade e trabalho]
+- 支出 (ししゅつ) = despesa; gasto [N3: Sociedade e trabalho]  ×  費用 (ひよう) = custo; despesa [N3: Sociedade e trabalho]
+- 実行 (じっこう) = execução; pôr em prática [N3: Sociedade e trabalho]  ×  実施 (じっし) = implementação; execução [N3: Sociedade e trabalho]
+- 実行 (じっこう) = execução; pôr em prática [N3: Sociedade e trabalho]  ×  決行 (けっこう) = execução (com determinação) [N3: Sociedade e trabalho]
+- 実施 (じっし) = implementação; execução [N3: Sociedade e trabalho]  ×  決行 (けっこう) = execução (com determinação) [N3: Sociedade e trabalho]
+- 支配 (しはい) = domínio; controle [N3: Sociedade e trabalho]  ×  規制 (きせい) = regulamento; controle [N3: Sociedade e trabalho]
+- 支払 (しはらい) = pagamento [N3: Sociedade e trabalho]  ×  代金 (だいきん) = preço; pagamento [N3: Sociedade e trabalho]
+- 借金 (しゃっきん) = dívida [N3: Sociedade e trabalho]  ×  借り (かり) = empréstimo; dívida [N3: Sociedade e trabalho]
+- 州 (しゅう) = estado; província [N3: Sociedade e trabalho]  ×  国家 (こっか) = país; nação; Estado [N3: Sociedade e trabalho]
+- 収穫 (しゅうかく) = colheita [N3: Sociedade e trabalho]  ×  作物 (さくもつ) = colheita; plantação [N3: Sociedade e trabalho]
+- 収穫 (しゅうかく) = colheita [N3: Sociedade e trabalho]  ×  採集 (さいしゅう) = coleta; colheita [N3: Sociedade e trabalho]
+- 集団 (しゅうだん) = grupo; coletivo [N3: Sociedade e trabalho]  ×  集まり (あつまり) = reunião; encontro; grupo [N3: Sociedade e trabalho]
+- 集団 (しゅうだん) = grupo; coletivo [N3: Sociedade e trabalho]  ×  団体 (だんたい) = grupo; organização [N3: Sociedade e trabalho]
+- 集団 (しゅうだん) = grupo; coletivo [N3: Sociedade e trabalho]  ×  班 (はん) = grupo; equipe [N3: Sociedade e trabalho]
+- 出版 (しゅっぱん) = publicação [N3: Sociedade e trabalho]  ×  発行 (はっこう) = emissão; publicação [N3: Sociedade e trabalho]
+- 出版 (しゅっぱん) = publicação [N3: Sociedade e trabalho]  ×  発表 (はっぴょう) = anúncio; apresentação; publicação [N3: Sociedade e trabalho]
+- 使用 (しよう) = uso; emprego [N3: Sociedade e trabalho]  ×  職 (しょく) = emprego; ocupação [N3: Sociedade e trabalho]
+- 使用 (しよう) = uso; emprego [N3: Sociedade e trabalho]  ×  勤め (つとめ) = trabalho; emprego [N3: Sociedade e trabalho]
+- 商売 (しょうばい) = comércio; negócio [N3: Sociedade e trabalho]  ×  営業 (えいぎょう) = negócio; funcionamento (de loja) [N3: Sociedade e trabalho]
+- 商売 (しょうばい) = comércio; negócio [N3: Sociedade e trabalho]  ×  企業 (きぎょう) = empresa; negócio [N3: Sociedade e trabalho]
+- 職 (しょく) = emprego; ocupação [N3: Sociedade e trabalho]  ×  勤め (つとめ) = trabalho; emprego [N3: Sociedade e trabalho]
+- 診察 (しんさつ) = consulta médica; exame [N3: Sociedade e trabalho]  ×  検査 (けんさ) = inspeção; exame [N3: Sociedade e trabalho]
+- 審判 (しんぱん) = árbitro; julgamento [N3: Sociedade e trabalho]  ×  裁判 (さいばん) = julgamento; processo [N3: Sociedade e trabalho]
+- 請求 (せいきゅう) = pedido; cobrança; reivindicação [N3: Sociedade e trabalho]  ×  依頼 (いらい) = pedido; encomenda [N3: Sociedade e trabalho]
+- 請求 (せいきゅう) = pedido; cobrança; reivindicação [N3: Sociedade e trabalho]  ×  要求 (ようきゅう) = exigência; pedido [N3: Sociedade e trabalho]
+- 請求 (せいきゅう) = pedido; cobrança; reivindicação [N3: Sociedade e trabalho]  ×  注文 (ちゅうもん) = pedido; encomenda [N3: Sociedade e trabalho]
+- 制限 (せいげん) = limite; restrição [N3: Sociedade e trabalho]  ×  拘束 (こうそく) = restrição; limitação [N3: Sociedade e trabalho]
+- 制度 (せいど) = sistema; instituição [N3: Sociedade e trabalho]  ×  機関 (きかん) = instituição; órgão; motor [N3: Sociedade e trabalho]
+- 整理 (せいり) = organização; arrumação [N3: Sociedade e trabalho]  ×  片付け (かたづけ) = arrumação; término [N3: Sociedade e trabalho]
+- 整理 (せいり) = organização; arrumação [N3: Sociedade e trabalho]  ×  機構 (きこう) = organização; mecanismo [N3: Sociedade e trabalho]
+- 整理 (せいり) = organização; arrumação [N3: Sociedade e trabalho]  ×  組織 (そしき) = organização; estrutura; tecido [N3: Sociedade e trabalho]
+- 整理 (せいり) = organização; arrumação [N3: Sociedade e trabalho]  ×  団体 (だんたい) = grupo; organização [N3: Sociedade e trabalho]
+- 世間 (せけん) = mundo; sociedade [N3: Sociedade e trabalho]  ×  世の中 (よのなか) = sociedade; mundo [N3: Sociedade e trabalho]
+- 集まり (あつまり) = reunião; encontro; grupo [N3: Sociedade e trabalho]  ×  会合 (かいごう) = reunião; encontro [N3: Sociedade e trabalho]
+- 集まり (あつまり) = reunião; encontro; grupo [N3: Sociedade e trabalho]  ×  団体 (だんたい) = grupo; organização [N3: Sociedade e trabalho]
+- 集まり (あつまり) = reunião; encontro; grupo [N3: Sociedade e trabalho]  ×  班 (はん) = grupo; equipe [N3: Sociedade e trabalho]
+- 依頼 (いらい) = pedido; encomenda [N3: Sociedade e trabalho]  ×  要求 (ようきゅう) = exigência; pedido [N3: Sociedade e trabalho]
+- 営業 (えいぎょう) = negócio; funcionamento (de loja) [N3: Sociedade e trabalho]  ×  企業 (きぎょう) = empresa; negócio [N3: Sociedade e trabalho]
+- 援助 (えんじょ) = ajuda; apoio [N3: Sociedade e trabalho]  ×  応援 (おうえん) = apoio; torcida [N3: Sociedade e trabalho]
+- 援助 (えんじょ) = ajuda; apoio [N3: Sociedade e trabalho]  ×  手伝い (てつだい) = ajuda; ajudante [N3: Sociedade e trabalho]
+- 会計 (かいけい) = contabilidade; conta (pagamento) [N3: Sociedade e trabalho]  ×  勘定 (かんじょう) = conta; cálculo [N3: Sociedade e trabalho]
+- 価格 (かかく) = preço; valor [N3: Sociedade e trabalho]  ×  代金 (だいきん) = preço; pagamento [N3: Sociedade e trabalho]
+- 貸し (かし) = empréstimo (o que se emprestou) [N3: Sociedade e trabalho]  ×  借り (かり) = empréstimo; dívida [N3: Sociedade e trabalho]
+- 軍 (ぐん) = exército; forças [N3: Sociedade e trabalho]  ×  軍隊 (ぐんたい) = exército; tropas [N3: Sociedade e trabalho]
+- 景気 (けいき) = economia; situação dos negócios [N3: Sociedade e trabalho]  ×  節約 (せつやく) = economia; poupança [N3: Sociedade e trabalho]
+- 建設 (けんせつ) = construção [N3: Sociedade e trabalho]  ×  建築 (けんちく) = arquitetura; construção [N3: Sociedade e trabalho]
+- 交換 (こうかん) = troca; câmbio [N3: Sociedade e trabalho]  ×  両替 (りょうがえ) = câmbio; troca de dinheiro [N3: Sociedade e trabalho]
+- 広告 (こうこく) = propaganda; anúncio [N3: Sociedade e trabalho]  ×  宣伝 (せんでん) = propaganda; divulgação [N3: Sociedade e trabalho]
+- 広告 (こうこく) = propaganda; anúncio [N3: Sociedade e trabalho]  ×  発表 (はっぴょう) = anúncio; apresentação; publicação [N3: Sociedade e trabalho]
+- 作業 (さぎょう) = trabalho; operação [N3: Sociedade e trabalho]  ×  労働 (ろうどう) = trabalho; mão de obra [N3: Sociedade e trabalho]
+- 作業 (さぎょう) = trabalho; operação [N3: Sociedade e trabalho]  ×  勤め (つとめ) = trabalho; emprego [N3: Sociedade e trabalho]
+- 作物 (さくもつ) = colheita; plantação [N3: Sociedade e trabalho]  ×  採集 (さいしゅう) = coleta; colheita [N3: Sociedade e trabalho]
+- 要求 (ようきゅう) = exigência; pedido [N3: Sociedade e trabalho]  ×  注文 (ちゅうもん) = pedido; encomenda [N3: Sociedade e trabalho]
+- 労働 (ろうどう) = trabalho; mão de obra [N3: Sociedade e trabalho]  ×  勤め (つとめ) = trabalho; emprego [N3: Sociedade e trabalho]
+- 刊行 (かんこう) = publicação [N3: Sociedade e trabalho]  ×  発行 (はっこう) = emissão; publicação [N3: Sociedade e trabalho]
+- 刊行 (かんこう) = publicação [N3: Sociedade e trabalho]  ×  発表 (はっぴょう) = anúncio; apresentação; publicação [N3: Sociedade e trabalho]
+- 機構 (きこう) = organização; mecanismo [N3: Sociedade e trabalho]  ×  組織 (そしき) = organização; estrutura; tecido [N3: Sociedade e trabalho]
+- 機構 (きこう) = organização; mecanismo [N3: Sociedade e trabalho]  ×  団体 (だんたい) = grupo; organização [N3: Sociedade e trabalho]
+- 節約 (せつやく) = economia; poupança [N3: Sociedade e trabalho]  ×  貯金 (ちょきん) = poupança (em banco) [N3: Sociedade e trabalho]
+- 組織 (そしき) = organização; estrutura; tecido [N3: Sociedade e trabalho]  ×  団体 (だんたい) = grupo; organização [N3: Sociedade e trabalho]
+- 代金 (だいきん) = preço; pagamento [N3: Sociedade e trabalho]  ×  値 (ね) = preço; valor [N3: Sociedade e trabalho]
+- 代表 (だいひょう) = representante; delegação [N3: Sociedade e trabalho]  ×  代理 (だいり) = representante; procuração; substituto [N3: Sociedade e trabalho]
+- 団体 (だんたい) = grupo; organização [N3: Sociedade e trabalho]  ×  班 (はん) = grupo; equipe [N3: Sociedade e trabalho]
+- チーム (チーム) = time; equipe [N3: Sociedade e trabalho]  ×  班 (はん) = grupo; equipe [N3: Sociedade e trabalho]
+- 提出 (ていしゅつ) = entrega; apresentação [N3: Sociedade e trabalho]  ×  配達 (はいたつ) = entrega [N3: Sociedade e trabalho]
+- 提出 (ていしゅつ) = entrega; apresentação [N3: Sociedade e trabalho]  ×  発表 (はっぴょう) = anúncio; apresentação; publicação [N3: Sociedade e trabalho]
+- 破産 (はさん) = falência [N3: Sociedade e trabalho]  ×  倒産 (とうさん) = falência (de empresa) [N3: Sociedade e trabalho]
+- 発行 (はっこう) = emissão; publicação [N3: Sociedade e trabalho]  ×  発表 (はっぴょう) = anúncio; apresentação; publicação [N3: Sociedade e trabalho]
+- 報告 (ほうこく) = relatório; informe [N3: Sociedade e trabalho]  ×  申告 (しんこく) = declaração; relatório [N3: Sociedade e trabalho]
+- 保証 (ほしょう) = garantia [N3: Sociedade e trabalho]  ×  保障 (ほしょう) = garantia; segurança [N3: Sociedade e trabalho]
+- 申告 (しんこく) = declaração; relatório [N3: Sociedade e trabalho]  ×  声明 (せいめい) = declaração; comunicado [N3: Sociedade e trabalho]
+- 更に (さらに) = além disso; ainda mais [N3: Expressões e palavras de ligação]  ×  しかも (しかも) = além disso; e ainda por cima [N3: Expressões e palavras de ligação]
+- 更に (さらに) = além disso; ainda mais [N3: Expressões e palavras de ligação]  ×  一層 (いっそう) = ainda mais [N3: Expressões e palavras de ligação]
+- 更に (さらに) = além disso; ainda mais [N3: Expressões e palavras de ligação]  ×  そのうえ (そのうえ) = além disso [N3: Expressões e palavras de ligação]
+- 更に (さらに) = além disso; ainda mais [N3: Expressões e palavras de ligação]  ×  それと (それと) = e; além disso [N3: Expressões e palavras de ligação]
+- 更に (さらに) = além disso; ainda mais [N3: Expressões e palavras de ligação]  ×  なお (なお) = ainda; além disso [N3: Expressões e palavras de ligação]
+- しかも (しかも) = além disso; e ainda por cima [N3: Expressões e palavras de ligação]  ×  そのうえ (そのうえ) = além disso [N3: Expressões e palavras de ligação]
+- しかも (しかも) = além disso; e ainda por cima [N3: Expressões e palavras de ligação]  ×  それと (それと) = e; além disso [N3: Expressões e palavras de ligação]
+- しかも (しかも) = além disso; e ainda por cima [N3: Expressões e palavras de ligação]  ×  なお (なお) = ainda; além disso [N3: Expressões e palavras de ligação]
+- 直 (じき) = logo; em breve [N3: Expressões e palavras de ligação]  ×  そのうち (そのうち) = em breve; mais cedo ou mais tarde [N3: Expressões e palavras de ligação]
+- したがって (したがって) = portanto; consequentemente [N3: Expressões e palavras de ligação]  ×  ですから (ですから) = por isso; portanto [N3: Expressões e palavras de ligação]
+- 実際 (じっさい) = na verdade; de fato [N3: Expressões e palavras de ligação]  ×  実に (じつに) = realmente; de fato [N3: Expressões e palavras de ligação]
+- 実際 (じっさい) = na verdade; de fato [N3: Expressões e palavras de ligação]  ×  実は (じつは) = na verdade; para dizer a verdade [N3: Expressões e palavras de ligação]
+- 実に (じつに) = realmente; de fato [N3: Expressões e palavras de ligação]  ×  全く (まったく) = realmente; completamente [N3: Expressões e palavras de ligação]
+- しばしば (しばしば) = frequentemente; muitas vezes [N3: Expressões e palavras de ligação]  ×  たびたび (たびたび) = muitas vezes; repetidamente [N3: Expressões e palavras de ligação]
+- 少々 (しょうしょう) = um pouco (formal) [N3: Expressões e palavras de ligação]  ×  やや (やや) = um pouco; ligeiramente [N3: Expressões e palavras de ligação]
+- 少々 (しょうしょう) = um pouco (formal) [N3: Expressões e palavras de ligação]  ×  多少 (たしょう) = um pouco; mais ou menos [N3: Expressões e palavras de ligação]
+- すなわち (すなわち) = ou seja; isto é [N3: Expressões e palavras de ligação]  ×  つまり (つまり) = ou seja; em resumo [N3: Expressões e palavras de ligação]
+- 全て (すべて) = tudo; todos [N3: Expressões e palavras de ligação]  ×  何でも (なんでも) = tudo; qualquer coisa [N3: Expressões e palavras de ligação]
+- すみません (すみません) = desculpe; com licença [N3: Expressões e palavras de ligação]  ×  ごめんなさい (ごめんなさい) = desculpe; sinto muito [N3: Expressões e palavras de ligação]
+- あるいは (あるいは) = ou; talvez [N3: Expressões e palavras de ligação]  ×  かもしれない (かもしれない) = talvez; pode ser [N3: Expressões e palavras de ligação]
+- あるいは (あるいは) = ou; talvez [N3: Expressões e palavras de ligação]  ×  もしかすると (もしかすると) = talvez; quem sabe [N3: Expressões e palavras de ligação]
+- あるいは (あるいは) = ou; talvez [N3: Expressões e palavras de ligação]  ×  ことによると (ことによると) = talvez; dependendo da situação [N3: Expressões e palavras de ligação]
+- 一度に (いちどに) = de uma vez; ao mesmo tempo [N3: Expressões e palavras de ligação]  ×  同時 (どうじ) = ao mesmo tempo [N3: Expressões e palavras de ligação]
+- 一体 (いったい) = afinal; em geral [N3: Expressões e palavras de ligação]  ×  結局 (けっきょく) = no fim das contas; afinal [N3: Expressões e palavras de ligação]
+- いつでも (いつでも) = a qualquer hora; sempre [N3: Expressões e palavras de ligação]  ×  常に (つねに) = sempre (formal) [N3: Expressões e palavras de ligação]
+- うっかり (うっかり) = sem querer; distraidamente [N3: Expressões e palavras de ligação]  ×  思わず (おもわず) = sem querer; involuntariamente [N3: Expressões e palavras de ligação]
+- うっかり (うっかり) = sem querer; distraidamente [N3: Expressões e palavras de ligação]  ×  ふと (ふと) = de repente; sem querer [N3: Expressões e palavras de ligação]
+- 大いに (おおいに) = muito; bastante [N3: Expressões e palavras de ligação]  ×  かなり (かなり) = bastante; consideravelmente [N3: Expressões e palavras de ligação]
+- 大いに (おおいに) = muito; bastante [N3: Expressões e palavras de ligação]  ×  相当 (そうとう) = bastante; considerável [N3: Expressões e palavras de ligação]
+- 思わず (おもわず) = sem querer; involuntariamente [N3: Expressões e palavras de ligação]  ×  ふと (ふと) = de repente; sem querer [N3: Expressões e palavras de ligação]
+- およそ (およそ) = cerca de; aproximadamente [N3: Expressões e palavras de ligação]  ×  約 (やく) = aproximadamente; cerca de [N3: Expressões e palavras de ligação]
+- およそ (およそ) = cerca de; aproximadamente [N3: Expressões e palavras de ligação]  ×  ほぼ (ほぼ) = quase; aproximadamente [N3: Expressões e palavras de ligação]
+- かなり (かなり) = bastante; consideravelmente [N3: Expressões e palavras de ligação]  ×  相当 (そうとう) = bastante; considerável [N3: Expressões e palavras de ligação]
+- かもしれない (かもしれない) = talvez; pode ser [N3: Expressões e palavras de ligação]  ×  もしかすると (もしかすると) = talvez; quem sabe [N3: Expressões e palavras de ligação]
+- かもしれない (かもしれない) = talvez; pode ser [N3: Expressões e palavras de ligação]  ×  ことによると (ことによると) = talvez; dependendo da situação [N3: Expressões e palavras de ligação]
+- きちんと (きちんと) = direitinho; corretamente [N3: Expressões e palavras de ligação]  ×  ちゃんと (ちゃんと) = direito; corretamente [N3: Expressões e palavras de ligação]
+- 急に (きゅうに) = de repente [N3: Expressões e palavras de ligação]  ×  ばったり (ばったり) = de repente (encontrar) [N3: Expressões e palavras de ligação]
+- 急に (きゅうに) = de repente [N3: Expressões e palavras de ligação]  ×  ふと (ふと) = de repente; sem querer [N3: Expressões e palavras de ligação]
+- 偶然 (ぐうぜん) = por acaso; casualmente [N3: Expressões e palavras de ligação]  ×  万一 (まんいち) = por acaso; se por acaso [N3: Expressões e palavras de ligação]
+- 偶然 (ぐうぜん) = por acaso; casualmente [N3: Expressões e palavras de ligação]  ×  偶々 (たまたま) = por acaso [N3: Expressões e palavras de ligação]
+- ざっと (ざっと) = mais ou menos; por alto [N3: Expressões e palavras de ligação]  ×  多少 (たしょう) = um pouco; mais ou menos [N3: Expressões e palavras de ligação]
+- さっぱり (さっぱり) = refrescado; leve; simples [N3: Expressões e palavras de ligação]  ×  単なる (たんなる) = mero; simples [N3: Expressões e palavras de ligação]
+- さて (さて) = bem; então [N3: Expressões e palavras de ligação]  ×  そこで (そこで) = então; por isso [N3: Expressões e palavras de ligação]
+- 万一 (まんいち) = por acaso; se por acaso [N3: Expressões e palavras de ligação]  ×  偶々 (たまたま) = por acaso [N3: Expressões e palavras de ligação]
+- もしかすると (もしかすると) = talvez; quem sabe [N3: Expressões e palavras de ligação]  ×  ことによると (ことによると) = talvez; dependendo da situação [N3: Expressões e palavras de ligação]
+- 尤も (もっとも) = com razão; no entanto [N3: Expressões e palavras de ligação]  ×  だけど (だけど) = mas; no entanto [N3: Expressões e palavras de ligação]
+- やがて (やがて) = logo; em breve [N3: Expressões e palavras de ligação]  ×  そのうち (そのうち) = em breve; mais cedo ou mais tarde [N3: Expressões e palavras de ligação]
+- 約 (やく) = aproximadamente; cerca de [N3: Expressões e palavras de ligação]  ×  ほぼ (ほぼ) = quase; aproximadamente [N3: Expressões e palavras de ligação]
+- やや (やや) = um pouco; ligeiramente [N3: Expressões e palavras de ligação]  ×  多少 (たしょう) = um pouco; mais ou menos [N3: Expressões e palavras de ligação]
+- 要するに (ようするに) = em resumo; resumindo [N3: Expressões e palavras de ligação]  ×  つまり (つまり) = ou seja; em resumo [N3: Expressões e palavras de ligação]
+- 僅か (わずか) = apenas; pouco [N3: Expressões e palavras de ligação]  ×  ただ (ただ) = de graça; apenas [N3: Expressões e palavras de ligação]
+- 僅か (わずか) = apenas; pouco [N3: Expressões e palavras de ligação]  ×  只 (ただ) = de graça; apenas [N3: Expressões e palavras de ligação]
+- 僅か (わずか) = apenas; pouco [N3: Expressões e palavras de ligação]  ×  単に (たんに) = simplesmente; apenas [N3: Expressões e palavras de ligação]
+- 依然 (いぜん) = ainda; como antes [N3: Expressões e palavras de ligação]  ×  なお (なお) = ainda; além disso [N3: Expressões e palavras de ligação]
+- 個々 (ここ) = cada um; individualmente [N3: Expressões e palavras de ligação]  ×  それぞれ (それぞれ) = cada um; respectivamente [N3: Expressões e palavras de ligação]
+- そこで (そこで) = então; por isso [N3: Expressões e palavras de ligação]  ×  ですから (ですから) = por isso; portanto [N3: Expressões e palavras de ligação]
+- そのうえ (そのうえ) = além disso [N3: Expressões e palavras de ligação]  ×  それと (それと) = e; além disso [N3: Expressões e palavras de ligação]
+- そのうえ (そのうえ) = além disso [N3: Expressões e palavras de ligação]  ×  なお (なお) = ainda; além disso [N3: Expressões e palavras de ligação]
+- それと (それと) = e; além disso [N3: Expressões e palavras de ligação]  ×  なお (なお) = ainda; além disso [N3: Expressões e palavras de ligação]
+- だが (だが) = mas; porém [N3: Expressões e palavras de ligação]  ×  だけど (だけど) = mas; no entanto [N3: Expressões e palavras de ligação]
+- だが (だが) = mas; porém [N3: Expressões e palavras de ligação]  ×  だって (だって) = mas; porque; até mesmo [N3: Expressões e palavras de ligação]
+- だが (だが) = mas; porém [N3: Expressões e palavras de ligação]  ×  ところが (ところが) = porém; mas [N3: Expressões e palavras de ligação]
+- だけど (だけど) = mas; no entanto [N3: Expressões e palavras de ligação]  ×  だって (だって) = mas; porque; até mesmo [N3: Expressões e palavras de ligação]
+- だけど (だけど) = mas; no entanto [N3: Expressões e palavras de ligação]  ×  ところが (ところが) = porém; mas [N3: Expressões e palavras de ligação]
+- ただ (ただ) = de graça; apenas [N3: Expressões e palavras de ligação]  ×  単に (たんに) = simplesmente; apenas [N3: Expressões e palavras de ligação]
+- 只 (ただ) = de graça; apenas [N3: Expressões e palavras de ligação]  ×  単に (たんに) = simplesmente; apenas [N3: Expressões e palavras de ligação]
+- 唯 (ただ) = mero; simplesmente [N3: Expressões e palavras de ligação]  ×  単なる (たんなる) = mero; simples [N3: Expressões e palavras de ligação]
+- 唯 (ただ) = mero; simplesmente [N3: Expressões e palavras de ligação]  ×  単に (たんに) = simplesmente; apenas [N3: Expressões e palavras de ligação]
+- だって (だって) = mas; porque; até mesmo [N3: Expressões e palavras de ligação]  ×  ところが (ところが) = porém; mas [N3: Expressões e palavras de ligação]
+- だって (だって) = mas; porque; até mesmo [N3: Expressões e palavras de ligação]  ×  なぜなら (なぜなら) = porque [N3: Expressões e palavras de ligação]
+- たとえ (たとえ) = mesmo que; ainda que [N3: Expressões e palavras de ligação]  ×  ところで (ところで) = a propósito; mesmo que [N3: Expressões e palavras de ligação]
+- 突然 (とつぜん) = de repente [N3: Expressões e palavras de ligação]  ×  ばったり (ばったり) = de repente (encontrar) [N3: Expressões e palavras de ligação]
+- 突然 (とつぜん) = de repente [N3: Expressões e palavras de ligação]  ×  ふと (ふと) = de repente; sem querer [N3: Expressões e palavras de ligação]
+- ばったり (ばったり) = de repente (encontrar) [N3: Expressões e palavras de ligação]  ×  ふと (ふと) = de repente; sem querer [N3: Expressões e palavras de ligação]
+- 冷ます (さます) = esfriar (algo); deixar esfriar [N3: Verbos]  ×  冷める (さめる) = esfriar; perder o efeito [N3: Verbos]
+- 冷ます (さます) = esfriar (algo); deixar esfriar [N3: Verbos]  ×  冷やす (ひやす) = esfriar; refrigerar [N3: Verbos]
+- 覚ます (さます) = despertar (alguém); acordar [N3: Verbos]  ×  覚める (さめる) = acordar; despertar [N3: Verbos]
+- 冷める (さめる) = esfriar; perder o efeito [N3: Verbos]  ×  冷やす (ひやす) = esfriar; refrigerar [N3: Verbos]
+- 従う (したがう) = obedecer; seguir (regras) [N3: Verbos]  ×  沿う (そう) = seguir (ao longo de) [N3: Verbos]
+- 支払う (しはらう) = pagar [N3: Verbos]  ×  納める (おさめる) = pagar; entregar; guardar [N3: Verbos]
+- 示す (しめす) = mostrar; indicar [N3: Verbos]  ×  表す (あらわす) = expressar; mostrar [N3: Verbos]
+- 示す (しめす) = mostrar; indicar [N3: Verbos]  ×  指す (さす) = apontar; indicar [N3: Verbos]
+- しゃべる (しゃべる) = falar; tagarelar; conversar [N3: Verbos]  ×  話し合う (はなしあう) = conversar; discutir [N3: Verbos]
+- 生じる (しょうじる) = surgir; ocorrer; produzir-se [N3: Verbos]  ×  現れる (あらわれる) = aparecer; surgir [N3: Verbos]
+- 生じる (しょうじる) = surgir; ocorrer; produzir-se [N3: Verbos]  ×  起こる (おこる) = acontecer; ocorrer [N3: Verbos]
+- 救う (すくう) = salvar; socorrer [N3: Verbos]  ×  助ける (たすける) = ajudar; salvar [N3: Verbos]
+- 優れる (すぐれる) = destacar-se; ser excelente [N3: Verbos]  ×  映える (はえる) = brilhar; destacar-se [N3: Verbos]
+- 過ごす (すごす) = passar (tempo); levar a vida [N3: Verbos]  ×  越す (こす) = passar; ultrapassar; mudar-se [N3: Verbos]
+- 過ごす (すごす) = passar (tempo); levar a vida [N3: Verbos]  ×  経つ (たつ) = passar (o tempo) [N3: Verbos]
+- 過ごす (すごす) = passar (tempo); levar a vida [N3: Verbos]  ×  経る (へる) = passar (tempo); atravessar [N3: Verbos]
+- 済ませる (すませる) = terminar; resolver [N3: Verbos]  ×  終える (おえる) = terminar; acabar [N3: Verbos]
+- 済ませる (すませる) = terminar; resolver [N3: Verbos]  ×  解く (とく) = desatar; resolver [N3: Verbos]
+- ずれる (ずれる) = desviar-se; sair do lugar [N3: Verbos]  ×  外れる (はずれる) = soltar-se; sair do lugar; errar o alvo [N3: Verbos]
+- 遭う (あう) = encontrar (algo ruim); sofrer [N3: Verbos]  ×  お目に掛かる (おめにかかる) = encontrar (alguém); ver (humilde) [N3: Verbos]
+- 遭う (あう) = encontrar (algo ruim); sofrer [N3: Verbos]  ×  苦しむ (くるしむ) = sofrer; angustiar-se [N3: Verbos]
+- 飽きる (あきる) = cansar-se de; enjoar [N3: Verbos]  ×  酔う (よう) = embriagar-se; enjoar (transporte) [N3: Verbos]
+- 揚げる (あげる) = fritar; levantar [N3: Verbos]  ×  挙げる (あげる) = levantar; citar (exemplo) [N3: Verbos]
+- 揚げる (あげる) = fritar; levantar [N3: Verbos]  ×  持ち上げる (もちあげる) = levantar; elogiar (para agradar) [N3: Verbos]
+- 挙げる (あげる) = levantar; citar (exemplo) [N3: Verbos]  ×  持ち上げる (もちあげる) = levantar; elogiar (para agradar) [N3: Verbos]
+- 預かる (あずかる) = guardar (para alguém); tomar conta [N3: Verbos]  ×  収める (おさめる) = guardar; obter; entregar [N3: Verbos]
+- 預かる (あずかる) = guardar (para alguém); tomar conta [N3: Verbos]  ×  納める (おさめる) = pagar; entregar; guardar [N3: Verbos]
+- 預かる (あずかる) = guardar (para alguém); tomar conta [N3: Verbos]  ×  溜める (ためる) = acumular; guardar [N3: Verbos]
+
+## Mesma leitura, escritas e sentidos diferentes (primeiros 300)
+
+- あさ = manhã  /  朝 = manhã  /  麻 = cânhamo; linho
+- えき = estação  /  駅 = estação  /  液 = líquido
+- おかし = doce  /  お菓子 = doces, petiscos
+- くつ = sapato  /  靴 = sapatos
+- しお = sal  /  塩 = sal  /  潮 = maré
+- せんせい = professor  /  先生 = professor  /  専制 = despotismo
+- つき = lua  /  付 = com; acompanhado de (sufixo)
+- とり = pássaro  /  鳥 = pássaro, ave
+- のり = alga  /  糊 = cola; goma
+- はな = flor  /  花 = flor  /  鼻 = nariz
+- へや = quarto  /  部屋 = quarto, cômodo
+- ほし = estrela  /  星 = estrela  /  干し = seco (prefixo)
+- むし = inseto  /  虫 = inseto  /  無視 = ignorar; desconsiderar
+- め = olho  /  目 = olho  /  芽 = broto
+- よる = noite  /  夜 = noite  /  寄る = passar em; dar uma parada  /  因る = vir de; depender de; causar
+- るす = fora de casa  /  留守 = ausência; não estar em casa
+- ごはん = arroz, refeição  /  御飯 = arroz (cozido); refeição
+- じかん = tempo  /  時間 = tempo; hora (duração)
+- ぞう = elefante  /  象 = elefante  /  像 = estátua; imagem
+- かんぱい = saúde!  /  乾杯 = brinde; saúde!
+- さんぽ = passeio  /  散歩 = passeio, caminhada
+- きょう = hoje  /  今日 = hoje  /  教 = religião; ensino (sufixo)  /  強 = forte (prefixo)  /  狂 = fanático; louco por algo
+- しゃしん = foto  /  写真 = foto, fotografia
+- おちゃ = chá  /  お茶 = chá (verde)
+- 雨 = chuva  /  飴 = bala, doce duro
+- さくら = cerejeira  /  桜 = cerejeira; flor de cerejeira
+- きって = selo  /  切手 = selo (postal)
+- 今 = agora  /  居間 = sala de estar
+- 何 = o quê  /  難 = dificuldade; defeito
+- はい = sim  /  杯 = contador de copos e xícaras  /  灰 = cinza  /  肺 = pulmão  /  敗 = derrotas (contador)
+- 半 = meio; e meia (hora)  /  班 = grupo; equipe  /  判 = formato (de papel ou livro)  /  版 = edição  /  反 = anti- (prefixo)
+- 帽子 = chapéu, boné  /  防止 = prevenção
+- うち = casa; minha casa  /  内 = dentro; interior
+- 寝る = dormir; ir para a cama  /  練る = amassar; elaborar; aprimorar
+- 早い = cedo  /  速い = rápido
+- よく = frequentemente; bem  /  翌 = seguinte (prefixo)  /  欲 = ganância; desejo
+- 昨日 = ontem  /  機能 = função; capacidade
+- 公園 = parque  /  講演 = palestra; conferência  /  公演 = apresentação pública
+- ここ = aqui  /  個々 = cada um; individualmente
+- 先週 = semana passada  /  専修 = especialização
+- そこ = aí, esse lugar  /  底 = fundo; sola
+- 町 = cidade, vila  /  街 = cidade; rua; bairro
+- 暑い = quente (clima)  /  熱い = quente (coisas)  /  厚い = grosso, espesso
+- 安い = barato  /  やすい = fácil de (fazer)
+- 漢字 = kanji  /  感じ = sensação; impressão; jeito
+- 立つ = ficar de pé, levantar-se  /  建つ = ser construído; erguer-se  /  経つ = passar (o tempo)  /  断つ = cortar; interromper
+- 電気 = eletricidade; luz elétrica  /  伝記 = biografia
+- かぶる = pôr na cabeça (chapéu)  /  被る = vestir (na cabeça); ficar coberto
+- 着る = vestir, usar (roupa)  /  切る = cortar; desligar (telefone)  /  きる = conseguir terminar; levar até o fim  /  斬る = decapitar; matar à espada
+- 知る = saber, conhecer  /  汁 = caldo; sopa
+- 父 = meu pai  /  乳 = leite; seio
+- はく = calçar, vestir (peças de baixo)  /  掃く = varrer  /  吐く = vomitar; soltar (ar)  /  泊 = noites de hospedagem (contador)
+- 一人 = uma pessoa; sozinho  /  独り = sozinho; solteiro
+- 所 = lugar  /  ところ = prestes a (fazer)
+- 箸 = hashi, pauzinhos  /  橋 = ponte  /  端 = ponta; borda
+- 弾く = tocar (instrumento de corda, piano)  /  引く = puxar; subtrair
+- 秋 = outono  /  空き = vaga; espaço livre
+- かかる = levar, demorar (tempo, dinheiro)  /  罹る = contrair (doença); ficar doente
+- なる = tornar-se, virar  /  鳴る = soar; tocar (sino, telefone)  /  生る = dar frutos
+- 春 = primavera  /  貼る = colar, afixar
+- 取る = fazer (uma matéria); tirar (nota); pegar  /  撮る = tirar (foto); filmar  /  採る = adotar (medida); colher  /  捕る = pegar; capturar (peixe)
+- 習う = aprender (com alguém)  /  倣う = imitar; seguir o exemplo
+- 風邪 = resfriado, gripe  /  風 = vento
+- 歯 = dente  /  葉 = folha  /  刃 = lâmina; fio da espada  /  派 = grupo; facção
+- 服 = roupa  /  吹く = soprar (vento)  /  拭く = enxugar; limpar  /  福 = sorte; felicidade  /  副 = vice (prefixo)
+- 物 = coisa (objeto)  /  者 = pessoa
+- 五日 = cinco dias; dia 5 do mês  /  いつか = algum dia; uma vez
+- 両親 = pais (pai e mãe)  /  良心 = consciência (moral)
+- 絵 = pintura, desenho, quadro  /  柄 = cabo; punho
+- そば = perto, ao lado; soba (macarrão)  /  蕎麦 = soba (macarrão de trigo-sarraceno)
+- 出す = tirar para fora; entregar  /  だす = começar a (fazer)
+- 道 = caminho, rua; direção  /  未知 = desconhecido; inexplorado
+- 紙 = papel  /  髪 = cabelo  /  神 = deus  /  加味 = toque; tempero
+- する = fazer; usar (acessórios)  /  刷る = imprimir  /  擦る = esfregar; roçar
+- 後 = depois; mais tarde  /  跡 = marca; vestígio; cicatriz
+- 押す = empurrar, apertar, carimbar  /  雄 = macho (animal)
+- 咲く = florescer  /  裂く = rasgar; dividir  /  昨 = último; passado (ano)  /  作 = obra; safra  /  策 = plano; medida; política  /  柵 = cerca; grade
+- かける = telefonar, ligar; sentar-se  /  掛ける = pôr (óculos); pendurar  /  欠ける = faltar; estar quebrado (lasca)  /  駆ける = correr (galopar)  /  賭ける = apostar; arriscar
+- 晴れる = ficar ensolarado, abrir o tempo  /  腫れる = inchar (inflamação)
+- また = e também; de novo  /  股 = coxa; virilha
+- 置く = pôr, colocar  /  億 = cem milhões  /  奥 = interior; parte de dentro
+- 木 = árvore; madeira  /  気 = ânimo; espírito; atenção  /  期 = período; fase (sufixo)  /  器 = aparelho; instrumento (sufixo)  /  機 = máquina (sufixo)
+- 会う = encontrar, ver (alguém)  /  合う = combinar; encaixar; dar certo  /  遭う = encontrar (algo ruim); sofrer
+- 赤 = vermelho (cor)  /  垢 = sujeira; imundície
+- 開く = abrir (algo que se abre sozinho)  /  空く = abrir; ficar vago  /  悪 = mal; vício
+- 開ける = abrir (algo)  /  明ける = amanhecer; começar (ano novo)
+- 上げる = levantar, erguer; dar  /  あげる = dar  /  揚げる = fritar; levantar  /  挙げる = levantar; citar (exemplo)
+- 暖かい = quente, agradável (clima)  /  温かい = morno; quente (agradável)
+- 在る = haver, existir, estar (coisas)  /  有る = ter; haver, existir  /  或 = um certo; algum
+- 行く = ir  /  幾 = vários (prefixo)
+- 一 = um  /  位置 = posição; localização  /  いち = número um; primeiro (prefixo)
+- 嫌 = desagradável; que não se gosta  /  否 = não; negativo
+- 居る = estar, existir (seres vivos)  /  要る = precisar, ser necessário  /  煎る = torrar; assar  /  炒る = tostar (na panela); torrar
+- 円 = iene  /  縁 = laço; destino; relação  /  園 = jardim; parque (sufixo)
+- お = prefixo de respeito (お〜)  /  尾 = cauda; rabo
+- 多い = muitos, numeroso  /  おおい = ei!
+- 伯母さん = tia  /  小母さん = tia; senhora
+- 降りる = descer (de um veículo)  /  下りる = descer
+- 終る = terminar, acabar  /  おわる = terminar de (fazer)
+- 回 = vezes (contador de ocorrências)  /  階 = andar (contador de pisos)  /  貝 = concha; molusco  /  界 = mundo; meio; reino
+- 階段 = escada  /  会談 = conversa; reunião (entre autoridades)
+- 買う = comprar  /  飼う = criar (animal de estimação); ter
+- 返す = devolver  /  帰す = mandar de volta; deixar voltar
+- 帰る = voltar, ir para casa  /  変える = mudar; alterar  /  代える = trocar; substituir  /  替える = trocar; mudar  /  換える = trocar; converter  /  反る = empenar; curvar-se para trás
+- 書く = escrever  /  掻く = coçar  /  欠く = faltar; carecer de  /  核 = núcleo; centro  /  格 = categoria; posição; caso (gramática)  /  各 = cada (prefixo)  /  かく = passar vergonha; suar
+- 方 = pessoa (forma educada); maneira  /  型 = modelo; tipo; molde  /  肩 = ombro  /  片 = um (prefixo); metade de um par
+- 片仮名 = katakana  /  かたかな = katakana (silabário)
+- 家庭 = lar; família  /  仮定 = suposição; hipótese  /  過程 = processo  /  課程 = curso; currículo
+- 川 = rio  /  河 = rio  /  皮 = pele; couro  /  革 = couro
+- 聞く = ouvir, escutar; perguntar  /  効く = fazer efeito; ser eficaz
+- 九 = nove  /  急 = urgente; repentino; íngreme  /  旧 = ex-; antigo  /  級 = classe; nível; grau  /  球 = esfera; bola
+- 暗い = escuro; sombrio  /  くらい = mais ou menos, cerca de (quantidade)  /  位 = nível; posição; mais ou menos
+- 結構 = ótimo; suficiente; bastante  /  決行 = execução (com determinação)
+- 個 = contador de coisas pequenas  /  子 = criança; filho(a)  /  故 = falecido; o finado
+- 五 = cinco  /  語 = língua; palavra  /  碁 = go (jogo de tabuleiro)
+- 歳 = anos de idade  /  際 = ocasião; momento  /  再 = re- (de novo; prefixo)  /  最 = o mais (prefixo)
+- 差す = estender (mão); abrir (guarda-chuva)  /  刺す = picar; espetar; ferroar  /  指す = apontar; indicar  /  挿す = inserir; enfiar  /  注す = pôr (líquido); servir  /  射す = incidir (luz); entrar (raios de sol)  /  さす = abrir (guarda-chuva); segurar (guarda-chuva)
+- 冊 = contador de livros  /  札 = nota; cédula
+- さん = Sr., Sra. (tratamento)  /  三 = três  /  産 = produzido em (sufixo)  /  酸 = ácido
+- 四 = quatro  /  市 = cidade  /  氏 = sobrenome (formal); senhor(a) (sufixo)  /  詩 = poema; poesia  /  死 = morte  /  史 = história de (sufixo)
+- 時 = horas (hora do relógio)  /  字 = letra; caractere
+- 下 = embaixo, abaixo  /  舌 = língua (órgão)
+- 閉める = fechar  /  締める = apertar, amarrar (gravata)  /  占める = ocupar; representar (uma parte)  /  湿る = ficar úmido; umedecer  /  しめる = ficar úmido; ficar molhado
+- 十 = dez  /  中 = durante, em todo o  /  銃 = arma de fogo  /  住 = moradia; viver  /  重 = pesado (prefixo)
+- 週間 = semanas (contador)  /  習慣 = costume; hábito
+- 白 = branco (cor)  /  城 = castelo
+- 人 = pessoas (contador); pessoa de (país)  /  陣 = formação de batalha; acampamento
+- 吸う = inspirar; fumar; sugar  /  数 = número; quantidade
+- 好き = gostar; favorito  /  隙 = brecha; momento de descuido
+- すぎ = depois de (tempo); demais (excesso)  /  杉 = cedro japonês
+- 住む = morar  /  済む = terminar; acabar  /  澄む = ficar claro; ficar límpido
+- 背 = altura (estatura); costas  /  正 = correto; positivo  /  生 = vida; nascimento  /  性 = sexo; natureza; gênero  /  姓 = sobrenome  /  所為 = culpa; motivo (de algo ruim)
+- 千 = mil  /  線 = linha; traço  /  船 = navios (contador)  /  戦 = partidas; combates (contador)  /  栓 = rolha; tampa
+- 洗濯 = lavagem de roupa  /  選択 = escolha; seleção
+- そう = sim, é assim  /  相 = aspecto; fase  /  沿う = seguir (ao longo de)  /  添う = acompanhar; atender  /  僧 = monge  /  艘 = navios pequenos (contador)  /  総 = total; geral (prefixo)
+- 台 = contador de veículos e máquinas  /  大 = grande  /  題 = título; tema  /  第 = -º (prefixo ordinal)
+- たて = comprimento, altura (vertical)  /  盾 = escudo
+- 着く = chegar  /  点く = acender; ligar  /  付く = ficar preso; pegar; estar ligado a  /  就く = assumir (cargo); tomar (assento)  /  突く = empurrar; cutucar; golpear
+- つける = ligar (luz); acender  /  漬ける = pôr de molho; conservar em conserva  /  付ける = pôr; anexar; acrescentar  /  着ける = vestir; chegar (a um lugar)
+- 勤める = trabalhar (em uma empresa)  /  務める = servir; desempenhar função  /  努める = esforçar-se; tentar
+- 戸 = porta (estilo japonês)  /  と = e
+- どう = como  /  銅 = cobre  /  同 = mesmo (prefixo)  /  胴 = tronco; corpo
+- 年 = ano; idade  /  都市 = cidade; urbano
+- どの = qual  /  殿 = senhor (em envelope)
+- 止まる = parar  /  泊まる = hospedar-se; pernoitar
+- 鳴く = cantar, fazer som (animal)  /  泣く = chorar
+- 無くす = perder (algo)  /  亡くす = perder (alguém por morte)
+- 二 = dois  /  荷 = carga; bagagem
+- 登る = subir, escalar  /  上る = subir; escalar  /  昇る = subir; nascer (o sol)
+- 乗る = subir (em veículo), andar de, embarcar  /  載る = ser publicado; constar
+- 八 = oito  /  鉢 = vaso; tigela
+- 話す = falar  /  離す = separar; soltar  /  放す = soltar; libertar
+- 晩 = noite (entardecer)  /  番 = número (ordem); ...º
+- 降る = cair (chuva, neve)  /  振る = agitar; balançar; salpicar  /  古 = velho (prefixo)
+- 辺 = arredores, vizinhança  /  変 = esquisito; estranho  /  遍 = vezes (contador)
+- 待つ = esperar  /  松 = pinheiro
+- 見る = ver, olhar  /  診る = examinar (paciente)
+- 向こう = do outro lado, lá  /  無効 = inválido; sem efeito
+- 村 = vila, aldeia  /  斑 = irregularidade; manchas
+- 門 = portão  /  問 = perguntas (contador)
+- 屋 = loja de...  /  矢 = flecha
+- 易しい = fácil, simples  /  優しい = gentil; fácil
+- 零 = zero  /  例 = exemplo; caso  /  礼 = agradecimento; reverência
+- 沸く = ferver; esquentar  /  湧く = brotar; jorrar; ferver  /  枠 = moldura; limite
+- 意見 = opinião; ideia  /  異見 = opinião diferente
+- 折る = quebrar (algo comprido); dobrar  /  おる = estar (muito humilde)  /  織る = tecer
+- うかがう = perguntar (humilde)  /  伺う = visitar; perguntar; ouvir (humilde)
+- 怒る = ficar bravo; dar bronca  /  起こる = acontecer; ocorrer
+- 止む = parar (chuva, vento); cessar  /  病む = adoecer; estar doente
+- 柔らかい = macio; mole (textura)  /  軟らかい = macio; mole; tenro
+- 拾う = pegar do chão; achar  /  疲労 = cansaço
+- 郊外 = subúrbio; arredores da cidade  /  公害 = poluição; dano público
+- うん = sim (informal); tá  /  運 = sorte; destino
+- 焼く = assar; grelhar; queimar  /  役 = papel; função (teatro); cargo  /  約 = aproximadamente; cerca de
+- 点 = ponto; nota  /  天 = céu; paraíso
+- 機会 = oportunidade; chance  /  機械 = máquina; maquinaria  /  器械 = instrumento; aparelho
+- 建てる = construir  /  立てる = levantar; erguer; fazer (barulho)
+- 地震 = terremoto  /  自身 = a própria pessoa; si mesmo
+- 止める = parar; desistir de  /  辞める = deixar (emprego); sair; demitir-se
+- 人口 = população  /  人工 = artificial
+- 触る = tocar; encostar  /  障る = atrapalhar; fazer mal a
+- 用事 = assunto a resolver; compromisso  /  幼児 = criança pequena; bebê
+- 故障 = defeito; pane  /  胡椒 = pimenta-do-reino
+- 無くなる = acabar; sumir; perder-se  /  亡くなる = falecer
+- 事 = coisa; fato  /  琴 = koto (harpa japonesa)
+- 治る = melhorar; curar-se  /  直る = ser consertado
+- 事故 = acidente  /  自己 = si mesmo; o eu
+- 辞典 = dicionário; enciclopédia  /  自転 = rotação (do planeta)
+- くれる = dar (a mim); fazer por mim  /  暮れる = escurecer; terminar (dia)
+- 確か = se bem me lembro; certo  /  たしか = certo; se bem me lembro
+- 乾く = secar  /  渇く = ter sede; ficar seco
+- 石 = pedra  /  医師 = médico  /  意思 = intenção; vontade  /  意志 = vontade; determinação
+- 用 = assunto; coisa a fazer  /  酔う = embriagar-se; enjoar (transporte)
+- 用意 = preparação; preparativos  /  容易 = fácil; simples
+- 探す = procurar  /  捜す = procurar; buscar
+- 火 = fogo  /  灯 = luz  /  碑 = monumento de pedra  /  費 = custo de (sufixo)  /  非 = não-; anti- (prefixo)
+- 通う = frequentar; ir e voltar  /  歌謡 = canção popular
+- 招待 = convite; convidar  /  正体 = verdadeira natureza; identidade
+- 急行 = trem expresso  /  休講 = aula cancelada
+- 校長 = diretor de escola  /  好調 = em boa forma; satisfatório
+- 科学 = ciência  /  化学 = química
+- 写す = copiar; fotografar  /  映す = projetar; refletir
+- 火事 = incêndio  /  家事 = tarefas domésticas
+- 教会 = igreja  /  境界 = fronteira; limite  /  協会 = associação; sociedade
+- 生産 = produção; produzir  /  精算 = acerto de contas
+- 釣る = pescar  /  吊る = pendurar
+- 打つ = bater; golpear  /  討つ = atacar; vingar  /  撃つ = atirar; disparar
+- 謝る = pedir desculpas  /  誤る = errar; cometer um erro
+- 隅 = canto  /  墨 = tinta (nanquim)
+- 最近 = ultimamente; recentemente  /  細菌 = bactéria; germe
+- 血 = sangue  /  地 = terra
+- 電灯 = lâmpada elétrica  /  伝統 = tradição
+- 講堂 = auditório  /  行動 = ação; comportamento
+- こう = assim; deste modo  /  校 = escola (contador)  /  高 = alto (prefixo)  /  甲 = primeiro (em ordem); casca
+- 変わる = mudar; transformar-se  /  代る = substituir; trocar de lugar com
+- 以外 = exceto; além de  /  意外 = inesperado; surpreendente
+- 島 = ilha  /  縞 = listra
+- 以上 = mais de; isso é tudo  /  異常 = anormalidade; algo estranho
+- 堅 = duro; firme; sólido  /  堅い = duro; firme  /  硬い = duro; rígido
+- 危険 = perigo; risco  /  棄権 = abstenção (de votar)
+- 送る = enviar; mandar  /  贈る = presentear; enviar
+- 尋ねる = perguntar; visitar  /  訪ねる = visitar
+- 放送 = transmissão; transmitir  /  包装 = embalagem; embrulho
+- 講義 = aula expositiva; palestra  /  抗議 = protesto; objeção
+- 高校 = ensino médio; colégio  /  孝行 = piedade filial; respeito aos pais
+- 似る = parecer-se com  /  煮る = cozinhar; ferver
+- 慣れる = acostumar-se  /  馴れる = acostumar-se; domesticar-se
+- 普通 = comum; normal  /  不通 = interrupção; suspenso (trens)
+- 席 = assento; lugar  /  咳 = tosse
+- 最も = o mais; muito mais  /  尤も = com razão; no entanto
+- 汽車 = trem a vapor  /  記者 = repórter; jornalista
+- 注射 = injeção  /  駐車 = estacionamento
+- 君 = você (informal, para homens)  /  気味 = tendência a; um tanto
+- 工業 = indústria (manufatura)  /  鉱業 = mineração  /  興業 = empreendimento; indústria
+- 移る = mudar-se; transferir-se  /  写る = sair (em foto); ser projetado  /  映る = refletir-se; aparecer (em foto)
+- 工場 = fábrica  /  向上 = melhoria; progresso
+- 植える = plantar  /  飢える = passar fome; morrer de fome
+- 勝つ = vencer; ganhar  /  且つ = e ainda; além disso
+- 別れる = separar-se; despedir-se  /  分かれる = dividir-se; ramificar-se
+- にくい = difícil de (fazer)  /  憎い = odioso; detestável
+- 糸 = linha; fio  /  意図 = intenção; propósito
+- 冷ます = esfriar (algo); deixar esfriar  /  覚ます = despertar (alguém); acordar
+- 冷める = esfriar; perder o efeito  /  覚める = acordar; despertar
+- 去る = ir embora; deixar  /  猿 = macaco
+- 参加 = participação  /  酸化 = oxidação
+- 賛成 = aprovação; concordância  /  酸性 = acidez
+- 四角 = quadrado  /  資格 = qualificação; requisito  /  視覚 = visão
+- 四季 = as quatro estações  /  指揮 = comando; direção  /  式 = cerimônia; estilo (sufixo)
+- 直 = logo; em breve  /  時期 = época; período  /  磁気 = magnetismo  /  磁器 = porcelana
+- 支給 = pagamento; fornecimento  /  至急 = urgente; com urgência
+- 質 = qualidade; natureza  /  室 = cômodo (contador)
+- 支店 = filial  /  視点 = ponto de vista
+- 自動 = automático  /  児童 = criança (em idade escolar)
+- 死亡 = morte; falecimento  /  脂肪 = gordura  /  志望 = desejo; aspiração
+- 週 = semana  /  州 = estado; província  /  衆 = pessoas; multidão  /  集 = coleção de (sufixo)  /  宗 = seita; escola
+- 就職 = conseguir emprego  /  修飾 = ornamento; modificação (gramática)
+- 重体 = estado grave (doença)  /  渋滞 = congestionamento; atraso
+- 使用 = uso; emprego  /  私用 = uso pessoal  /  仕様 = jeito; especificação
+- 小 = pequeno  /  章 = capítulo; seção  /  賞 = prêmio  /  省 = ministério (sufixo)  /  商 = comércio; negociante (sufixo)  /  勝 = vitórias (contador)  /  症 = doença  /  証 = prova; comprovante
+- 障害 = obstáculo; deficiência  /  生涯 = vida inteira
+- 上京 = ir para a capital (Tóquio)  /  状況 = situação; estado de coisas
+- 商人 = comerciante  /  承認 = aprovação; reconhecimento
+- 商品 = mercadoria; produto  /  賞品 = prêmio (objeto)
+- 証明 = prova; comprovação  /  照明 = iluminação
+- 食料 = alimentos; mantimentos  /  食糧 = provisões; mantimentos
+- 女子 = mulher; menina  /  女史 = senhora (título)  /  助詞 = partícula (gramática)
+- 信仰 = fé; crença  /  進行 = avanço; progresso  /  新興 = emergente; em ascensão  /  振興 = promoção; fomento
+- 深刻 = grave; sério  /  申告 = declaração; relatório
+- 身長 = altura (do corpo)  /  慎重 = cuidadoso; prudente
+- 心理 = psicologia; estado de espírito  /  真理 = verdade
+- 巣 = ninho  /  酢 = vinagre
+- 推薦 = recomendação  /  水洗 = descarga (privada); lavar com água
+- 救う = salvar; socorrer  /  すくう = pegar com concha ou colher; escavar
+- 進める = avançar; fazer progredir  /  勧める = aconselhar; recomendar
+- 性格 = personalidade; caráter  /  正確 = preciso; exato
+- 世紀 = século  /  正規 = regular; oficial
+- 成功 = sucesso  /  精巧 = elaborado; delicado
+- 成長 = crescimento  /  生長 = crescimento (de planta)
+- 青年 = jovem; rapaz  /  成年 = maioridade
+- 生命 = vida  /  声明 = declaração; comunicado  /  姓名 = nome completo
+- 整理 = organização; arrumação  /  生理 = fisiologia; menstruação
+- 暖まる = esquentar; aquecer-se  /  温まる = aquecer-se; esquentar
+- 暖める = esquentar (um ambiente)  /  温める = esquentar (comida); aquecer
+- 辺り = arredores; redondezas  /  当り = acerto; sucesso
+- 当てる = acertar; aplicar; atingir  /  宛てる = endereçar; dirigir a
+- 油 = óleo  /  脂 = gordura
+- 表す = expressar; mostrar  /  現す = revelar; mostrar-se  /  著す = escrever; publicar (obra)  /  あらわす = escrever; publicar (obra)
+- 胃 = estômago  /  異 = diferença (de opinião)  /  意 = vontade
+- 委員 = membro de comitê  /  医院 = clínica; consultório
+- 行き = ida  /  息 = respiração; fôlego  /  粋 = chique; elegante
+- 維持 = manutenção; conservação  /  意地 = teimosia; orgulho; força de vontade
+- 以前 = antes; no passado  /  依然 = ainda; como antes
+- 一体 = afinal; em geral  /  一帯 = toda a região
+- 移動 = movimento; deslocamento  /  異動 = transferência; mudança (de cargo)
+- 従兄弟 = primo  /  従姉妹 = prima
+- 以来 = desde; a partir de  /  依頼 = pedido; encomenda
+- 医療 = tratamento médico  /  衣料 = roupas; vestuário
+- 有無 = sim ou não; existência  /  産む = dar à luz; produzir
+- 王 = rei  /  追う = perseguir; ir atrás de  /  負う = carregar; dever
+- 収める = guardar; obter; entregar  /  納める = pagar; entregar; guardar  /  治める = governar; administrar
+

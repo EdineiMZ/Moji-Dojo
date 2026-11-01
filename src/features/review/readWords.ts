@@ -1,4 +1,5 @@
 import { VOCAB } from '@/content';
+import { sharesSense } from '@/features/vocab/senses';
 import { WORD_FREQUENCY } from '@/content/frequency';
 import { wordLevelOfGroup } from '@/content/vocab';
 import { LESSONS } from '@/data/lessons';
@@ -124,8 +125,9 @@ export function buildReadQuestions(known: ReadonlySet<string>, rng: Rng = Math.r
   return shuffle(top, rng)
     .slice(0, count)
     .map((item) => {
+      // Nunca uma alternativa que divide um sentido com a certa (vale também para o fim da lista).
       const distractors = shuffle(
-        items.filter((x) => x.label !== item.label),
+        items.filter((x) => x.label !== item.label && !sharesSense({ meaning: x.label }, { meaning: item.label })),
         rng,
       ).slice(0, 3);
       return { item, direction: 'k2r' as const, options: shuffle([item, ...distractors], rng), retry: false };

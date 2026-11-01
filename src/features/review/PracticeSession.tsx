@@ -14,15 +14,13 @@ import { REVIEW_GOOD_PCT } from './session';
 
 export type PracticeKind = 'confusions' | 'words';
 
-const COPY: Record<PracticeKind, { title: string; intro: string; empty: string }> = {
+const COPY: Record<PracticeKind, { title: string; empty: string }> = {
   confusions: {
     title: 'Pares confusos',
-    intro: 'Os pares que você mais troca, lado a lado: escute o som e escolha qual é qual.',
     empty: 'Ainda não há pares confusos. Eles aparecem aqui quando você trocar um kana por outro nos exercícios.',
   },
   words: {
     title: 'Ler palavras',
-    intro: 'Palavras curtas feitas só com os kana que você já aprendeu. Leia e escolha o significado.',
     empty: 'Ainda não há palavras para ler. Elas aparecem depois que você aprender mais algumas linhas de kana.',
   },
 };
@@ -89,7 +87,6 @@ export function PracticeSession({ kind, onExit }: { kind: PracticeKind; onExit: 
 
   return (
     <View style={styles.run}>
-      <AppText color="muted">{copy.intro}</AppText>
       <QuizView
         key={attempt}
         questions={questions}

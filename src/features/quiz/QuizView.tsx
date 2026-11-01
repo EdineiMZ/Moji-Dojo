@@ -29,7 +29,7 @@ import { useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
 import { feedbackCorrect, feedbackWrong } from '@/lib/feedback';
 import { radii, spacing, useTheme } from '@/theme';
-import { autoAdvanceMs, buildFeedback, readAdvanceMs, type Feedback } from './explain';
+import { autoAdvanceMs, buildFeedback, type Feedback } from './explain';
 import { OptionButton, type OptionState } from './OptionButton';
 import {
   advance,
@@ -56,8 +56,6 @@ function promptGlyphStyle(text: string): { fontSize: number; lineHeight: number 
 
 /** Depois de acertar um desenho há mais o que olhar (o modelo e os traços), então espera mais. */
 const WRITE_ADVANCE_MS = 2200;
-/** Ouvido, acerto: tempo para ouvir de novo antes de seguir sozinho. */
-const AUDIO_ADVANCE_MS = 2200;
 
 interface QuizViewProps {
   questions: readonly Question[];
@@ -96,7 +94,6 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
   const [step, setStep] = useState(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const speed = useSettingsStore((s) => s.speechSpeed);
-  const autoAdvance = useSettingsStore((s) => s.autoAdvance);
   const shake = useSharedValue(0);
   const pop = useSharedValue(1);
 
@@ -114,11 +111,6 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
     // Só quando a pergunta muda (step): mudar a velocidade no meio não deve tocar de novo.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
-
-  const cancelAuto = () => {
-    if (timer.current) clearTimeout(timer.current);
-    timer.current = null;
-  };
 
   const cardMotion = useAnimatedStyle(() => ({
     transform: [{ translateX: shake.value }, { scale: pop.value }],
@@ -144,24 +136,19 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
   /** Parte comum a qualquer resposta: estado, feedback, vibração, animação e avanço automático. */
   const settle = (outcome: AnswerOutcome, chosen: string, write?: WriteResult, hinted = false) => {
     setQuiz(outcome.state);
-    const feedback = buildFeedback(current.item, outcome.correct, chosen);
-    setAnswered({ chosen, correct: outcome.correct, feedback, ...(write ? { write } : {}) });
+    setAnswered({ chosen, correct: outcome.correct, feedback: buildFeedback(current.item, outcome.correct, chosen), ...(write ? { write } : {}) });
     setMood(outcome.correct ? 'happy' : 'sad');
     onAnswer?.(current, outcome.correct, outcome.firstTry, hinted);
 
     if (outcome.correct) {
       feedbackCorrect();
       if (motion) pop.set(withSequence(withSpring(1.025, SPRING), withSpring(1, SPRING)));
-      // No ouvido a pessoa pode querer ouvir de novo antes de seguir: sem "Avançar sozinho", só avança no toque.
+      // No ouvido o usuário pode querer ouvir de novo antes de seguir: só avança no toque.
       if (!isAudio) {
         timer.current = setTimeout(() => proceed(outcome.state), isWrite ? WRITE_ADVANCE_MS : autoAdvanceMs(current.item));
-      } else if (autoAdvance) {
-        timer.current = setTimeout(() => proceed(outcome.state), AUDIO_ADVANCE_MS);
       }
     } else {
       feedbackWrong();
-      // Errou: avança depois de um tempo para ler (o desenho ao lado do certo pede um pouco mais). Tocar na explicação cancela.
-      if (autoAdvance) timer.current = setTimeout(() => proceed(outcome.state), readAdvanceMs(feedback, isWrite ? WRITE_ADVANCE_MS : 0));
       if (motion) {
         shake.set(
           withSequence(
@@ -288,8 +275,6 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
       {answered ? (
         <Animated.View
           accessibilityLiveRegion="polite"
-          // Mexer na explicação (historinha, IA) cancela o avanço sozinho: a pessoa está lendo ou escrevendo.
-          onTouchStart={cancelAuto}
           entering={FadeInDown.duration(240).reduceMotion(ReduceMotion.System)}
           style={[styles.feedback, { backgroundColor: answered.correct ? colors.okSoft : colors.badSoft }]}
         >

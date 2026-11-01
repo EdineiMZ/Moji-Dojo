@@ -12,7 +12,7 @@ import { ResultCard } from '@/features/quiz/ResultCard';
 import { feedbackComplete } from '@/lib/feedback';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { spacing } from '@/theme';
-import { pickExtraReviewChars, reviewIntro, reviewTitle, REVIEW_GOOD_PCT } from './session';
+import { pickExtraReviewChars, reviewTitle, REVIEW_GOOD_PCT } from './session';
 import { PracticeCard } from './PracticeCard';
 import { withWordQuestions } from './readWords';
 import { dueChars } from './srs';
@@ -162,7 +162,6 @@ function ReviewRun({ extra, light, unlimited, onExit, onDone, onDrawingChange, o
 
   return (
     <View style={styles.run}>
-      <AppText color="muted">{reviewIntro(extra, writeEnabled)}</AppText>
       <QuizView
         questions={questions}
         title={reviewTitle(extra)}

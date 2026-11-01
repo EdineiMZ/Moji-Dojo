@@ -22,12 +22,5 @@ export function pickExtraReviewChars(
 
 export const reviewTitle = (extra: boolean): string => (extra ? 'Revisão extra' : 'Revisão do dia');
 
-export function reviewIntro(extra: boolean, writeEnabled = false): string {
-  const base = extra
-    ? 'Treino extra com os caracteres mais fracos. Não adianta as revisões, só reforça.'
-    : 'Caracteres de várias lições, misturados. Acertou de primeira: ele só volta daqui a alguns dias. Errou: volta amanhã.';
-  return writeEnabled ? `${base} Em algumas perguntas você vai desenhar o símbolo.` : base;
-}
-
 /** A revisão "passa" (cor verde e comemoração) com 80% ou mais de acerto na primeira tentativa. */
 export const REVIEW_GOOD_PCT = 80;

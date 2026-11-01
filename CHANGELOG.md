@@ -2,6 +2,14 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.42.1] - 2026-11-01
+
+Tela de exercício mais limpa, sem rolar a página.
+
+- **Removido o "Avançar sozinho"** (da 2.42.0): estava instável. A opção em Ajustes > Revisões saiu e tudo volta ao que era: o acerto passa sozinho, e depois de errar (e no ouvido e no desenho) a próxima pergunta vem no toque em "Continuar".
+- **Sem texto de introdução acima das perguntas:** o parágrafo sob o título da revisão ("Treino extra com os caracteres mais fracos...", "Caracteres de várias lições...") e os dos treinos extras (Pares confusos, Ler palavras) saíram, para a pergunta e as alternativas caberem na tela sem rolar. A tela "Salvar a sequência" mantém a linha com a meta de acerto.
+- **Testes:** ajustados para a ausência do texto e da opção.
+
 ## [2.42.0] - 2026-11-01
 
 Avançar sozinho nas trilhas e nas revisões: sem rolar a tela para achar o "Continuar".

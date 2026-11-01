@@ -47,8 +47,6 @@ export interface SettingsData {
   retention: number;
   /** Nas revisões, algumas perguntas pedem para desenhar o símbolo. */
   writeInReview: boolean;
-  /** Avança sozinho depois de errar, no ouvido e no desenho (o acerto sempre avança sozinho). */
-  autoAdvance: boolean;
   speechSpeed: SpeechSpeed;
   /** Vibração leve ao acertar, errar e em alguns toques. */
   hapticsEnabled: boolean;
@@ -95,7 +93,6 @@ export interface SettingsActions {
   setTypingGoal: (value: number) => void;
   setRetention: (value: number) => void;
   setWriteInReview: (value: boolean) => void;
-  setAutoAdvance: (value: boolean) => void;
   setSpeechSpeed: (value: SpeechSpeed) => void;
   setHapticsEnabled: (value: boolean) => void;
   setSoundEnabled: (value: boolean) => void;
@@ -130,7 +127,6 @@ export const DEFAULT_SETTINGS: SettingsData = {
   typingGoal: DEFAULT_TYPING_GOAL,
   retention: DEFAULT_RETENTION,
   writeInReview: true,
-  autoAdvance: true,
   speechSpeed: 'normal',
   hapticsEnabled: true,
   soundEnabled: true,
@@ -167,7 +163,6 @@ export function createSettingsStore(storage: StateStorage) {
         setTypingGoal: (value) => set({ typingGoal: sanitizeTypingGoal(value) }),
         setRetention: (value) => set({ retention: sanitizeRetention(value) }),
         setWriteInReview: (value) => set({ writeInReview: value }),
-        setAutoAdvance: (value) => set({ autoAdvance: value }),
         setSpeechSpeed: (value) => set({ speechSpeed: value }),
         setHapticsEnabled: (value) => set({ hapticsEnabled: value }),
         setSoundEnabled: (value) => set({ soundEnabled: value }),
@@ -213,13 +208,12 @@ export function createSettingsStore(storage: StateStorage) {
             aiUsage: sanitizeUsage(saved.aiUsage),
           };
         },
-        partialize: ({ themeMode, colorTheme, typingGoal, retention, writeInReview, autoAdvance, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
+        partialize: ({ themeMode, colorTheme, typingGoal, retention, writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
           themeMode,
           colorTheme,
           typingGoal,
           retention,
           writeInReview,
-          autoAdvance,
           speechSpeed,
           hapticsEnabled,
           soundEnabled,

@@ -9,8 +9,6 @@ export function ReviewSettingsCard() {
   const { colors } = useTheme();
   const writeInReview = useSettingsStore((s) => s.writeInReview);
   const setWriteInReview = useSettingsStore((s) => s.setWriteInReview);
-  const autoAdvance = useSettingsStore((s) => s.autoAdvance);
-  const setAutoAdvance = useSettingsStore((s) => s.setAutoAdvance);
   const retention = useSettingsStore((s) => s.retention);
   const setRetention = useSettingsStore((s) => s.setRetention);
 
@@ -33,26 +31,6 @@ export function ReviewSettingsCard() {
           value={writeInReview}
           onValueChange={setWriteInReview}
           accessibilityLabel="Escrever nas revisões"
-          trackColor={{ false: colors.line, true: colors.primary }}
-          thumbColor={colors.surface}
-        />
-      </View>
-      <View style={styles.row}>
-        <View style={styles.flex}>
-          <AppText>Avançar sozinho</AppText>
-          <AppText variant="caption" color="muted">
-            Passa para a próxima pergunta depois de errar, no ouvido e no desenho, sem precisar rolar a tela.
-          </AppText>
-          <LearnMore>
-            <AppText variant="caption" color="muted">
-              O acerto já avança sozinho. Com esta opção, o erro também avança depois de um tempo para ler a explicação (maior quando o texto é longo). Tocar na explicação cancela a espera, e o botão Continuar pula a espera. Desligue para avançar só no toque.
-            </AppText>
-          </LearnMore>
-        </View>
-        <Switch
-          value={autoAdvance}
-          onValueChange={setAutoAdvance}
-          accessibilityLabel="Avançar sozinho"
           trackColor={{ false: colors.line, true: colors.primary }}
           thumbColor={colors.surface}
         />

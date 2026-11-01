@@ -1,5 +1,5 @@
 import { DAY_MS, type SrsState } from './srs';
-import { EXTRA_REVIEW_SIZE, pickExtraReviewChars, reviewIntro, reviewTitle } from './session';
+import { EXTRA_REVIEW_SIZE, pickExtraReviewChars, reviewTitle } from './session';
 
 const NOW = new Date(2026, 9, 22, 10).getTime();
 const entry = (b: number) => ({ b, due: NOW + b * DAY_MS });
@@ -42,10 +42,8 @@ describe('pickExtraReviewChars', () => {
 });
 
 describe('textos', () => {
-  it('título e introdução mudam entre revisão do dia e extra', () => {
+  it('o título muda entre revisão do dia e extra', () => {
     expect(reviewTitle(false)).toBe('Revisão do dia');
     expect(reviewTitle(true)).toBe('Revisão extra');
-    expect(reviewIntro(true)).toContain('mais fracos');
-    expect(reviewIntro(false)).toContain('volta amanhã');
   });
 });

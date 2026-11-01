@@ -17,6 +17,7 @@ import type { Loot, Rng } from '@/features/journey/loot';
 import { applyRescue, declineRescue as declineOffer, rescuePassed, resolveRescue } from '@/features/journey/rescue';
 import { trackAnswer, trackDialog, trackExplored, trackLesson, trackNewWords, trackOpen, trackPhrase, trackRecording, trackSession, trackStudyTime, trackTouch, buildContext } from '@/features/journey/track';
 import type { Area } from '@/features/journey/events';
+import { buyDecor, buyWeather, setWeather, type DecorBuyError, type WeatherBuyError } from '@/features/home/decor';
 import { homeProgressOf } from '@/features/home/goals';
 import { buyFurniture, buyRoom, buySkin, equipSkin, type HomeBuyError } from '@/features/home/home';
 import { buyItem, dismissToast, emptyJourney, equipItem, sanitizeJourney, unequipSlot, type BuyError, type JourneyState } from '@/features/journey/journey';
@@ -73,6 +74,12 @@ export interface ProgressActions {
   buyHomeSkin: (furnitureId: string, skinId: string) => HomeBuyError | null;
   /** Troca a skin em uso de um móvel (null = o desenho original). */
   equipHomeSkin: (furnitureId: string, skinId: string | null) => void;
+  /** Compra uma decoração de data (só na época; `now` é a data de hoje). */
+  buyHomeDecor: (decorId: string, now?: number) => DecorBuyError | null;
+  /** Compra um clima da casa (e já o liga). */
+  buyHomeWeather: (weatherId: string) => WeatherBuyError | null;
+  /** Liga um clima que a pessoa tem (null = automático). */
+  setHomeWeather: (weatherId: string | null) => void;
   /** Veste um item que a pessoa tem. */
   equipJourneyItem: (itemId: string) => void;
   /** Tira o item de um espaço do Mochi. */
@@ -352,6 +359,31 @@ export function createProgressStore(storage: StateStorage) {
           return failure;
         },
         equipHomeSkin: (furnitureId, skinId) => set((s) => ({ journey: equipSkin(s.journey, furnitureId, skinId) })),
+        buyHomeDecor: (decorId, now = Date.now()) => {
+          let failure: DecorBuyError | null = null;
+          set((s) => {
+            const result = buyDecor(s.journey, decorId, new Date(now));
+            if (!result.ok) {
+              failure = result.error;
+              return s;
+            }
+            return { journey: result.state };
+          });
+          return failure;
+        },
+        buyHomeWeather: (weatherId) => {
+          let failure: WeatherBuyError | null = null;
+          set((s) => {
+            const result = buyWeather(s.journey, weatherId);
+            if (!result.ok) {
+              failure = result.error;
+              return s;
+            }
+            return { journey: result.state };
+          });
+          return failure;
+        },
+        setHomeWeather: (weatherId) => set((s) => ({ journey: setWeather(s.journey, weatherId) })),
         equipJourneyItem: (itemId) => set((s) => ({ journey: equipItem(s.journey, itemId) })),
         unequipJourneySlot: (slot) => set((s) => ({ journey: unequipSlot(s.journey, slot) })),
         dismissJourneyToast: (id) => set((s) => ({ journey: dismissToast(s.journey, id) })),

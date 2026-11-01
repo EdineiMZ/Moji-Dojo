@@ -2,7 +2,7 @@
   "expo": {
     "name": "Moji Dojo",
     "slug": "moji-dojo",
-    "version": "2.34.0",
+    "version": "2.35.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -33,7 +33,7 @@
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.SYSTEM_ALERT_WINDOW"
       ],
-      "versionCode": 23400
+      "versionCode": 23500
     },
     "plugins": [
       "expo-router",

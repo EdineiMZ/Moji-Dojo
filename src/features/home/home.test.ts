@@ -1,5 +1,7 @@
 import { addPetals, emptyJourney, sanitizeJourney } from '../journey/journey';
 import { FURNITURE_ART, ROOM_BACKGROUND } from './art';
+import { buyDecor, buyWeather, DECOR, daysUntilOpen, decorAvailable, findDecor, inWindow, nextDecor, setWeather, timeOfDay, WEATHERS } from './decor';
+import { DECOR_ART, WEATHER_ART } from './artDecor';
 import { goalLabel, goalStatus, homeProgressOf, ROOM_GOALS } from './goals';
 import { buyFurniture, buyRoom, buySkin, equipSkin, FURNITURE, findFurniture, findRoom, furnitureOf, ROOMS, sanitizeHome } from './home';
 import { recolor, shiftHex, SKINNABLE, skinKey, skinPriceFor } from './skins';
@@ -52,15 +54,15 @@ describe('Casa do Mochi', () => {
   });
 
   it('sanitizeHome descarta ids desconhecidos e móveis de cômodos que não são seus', () => {
-    expect(sanitizeHome(null)).toEqual({ rooms: [], furniture: [], skins: [], skin: {} });
-    expect(sanitizeHome({ rooms: ['quarto', 'quarto', 'x', 3], furniture: ['cama', 'mesa', 'y'] })).toEqual({ rooms: ['quarto'], furniture: ['cama'], skins: [], skin: {} });
+    expect(sanitizeHome(null)).toEqual({ rooms: [], furniture: [], skins: [], skin: {}, decor: [], weathers: [], weather: null });
+    expect(sanitizeHome({ rooms: ['quarto', 'quarto', 'x', 3], furniture: ['cama', 'mesa', 'y'] })).toEqual({ rooms: ['quarto'], furniture: ['cama'], skins: [], skin: {}, decor: [], weathers: [], weather: null });
   });
 
   it('a casa sobrevive ao backup e a um estado antigo sem casa', () => {
     const state = buyFurniture(buyRoom(rich(), 'jardim').state, 'arvore').state;
-    expect(sanitizeJourney(JSON.parse(JSON.stringify(state))).home).toEqual({ rooms: ['jardim'], furniture: ['arvore'], skins: [], skin: {} });
+    expect(sanitizeJourney(JSON.parse(JSON.stringify(state))).home).toEqual({ rooms: ['jardim'], furniture: ['arvore'], skins: [], skin: {}, decor: [], weathers: [], weather: null });
     const { home: _home, ...old } = emptyJourney();
-    expect(sanitizeJourney(old).home).toEqual({ rooms: [], furniture: [], skins: [], skin: {} });
+    expect(sanitizeJourney(old).home).toEqual({ rooms: [], furniture: [], skins: [], skin: {}, decor: [], weathers: [], weather: null });
   });
 
   it('o cômodo com meta só é vendido com a meta cumprida', () => {
@@ -107,7 +109,7 @@ describe('Casa do Mochi', () => {
     const bed = buyFurniture(buyRoom(rich(), 'quarto').state, 'cama').state;
     const state = buySkin(bed, 'cama', 'lavanda').state;
     expect(sanitizeJourney(JSON.parse(JSON.stringify(state))).home).toMatchObject({ skins: [skinKey('cama', 'lavanda')], skin: { cama: 'lavanda' } });
-    expect(sanitizeHome({ rooms: ['quarto'], furniture: [], skins: ['cama:lavanda'], skin: { cama: 'lavanda' } })).toEqual({ rooms: ['quarto'], furniture: [], skins: [], skin: {} });
+    expect(sanitizeHome({ rooms: ['quarto'], furniture: [], skins: ['cama:lavanda'], skin: { cama: 'lavanda' } })).toEqual({ rooms: ['quarto'], furniture: [], skins: [], skin: {}, decor: [], weathers: [], weather: null });
     expect(sanitizeHome({ rooms: ['quarto'], furniture: ['cama'], skins: ['cama:xxx', 'arvore:oceano'], skin: { cama: 'xxx' } }).skins).toEqual([]);
   });
 
@@ -128,5 +130,69 @@ describe('Casa do Mochi', () => {
     }
     expect(recolor(FURNITURE_ART.cama, 0)).toBe(FURNITURE_ART.cama);
     expect(JSON.stringify(recolor(FURNITURE_ART.cama, 180))).not.toBe(JSON.stringify(FURNITURE_ART.cama));
+  });
+
+  it('toda decoração de data tem desenho, cômodo que existe e janela de datas; todo clima tem desenho', () => {
+    expect(DECOR).toHaveLength(12);
+    expect(new Set(DECOR.map((d) => d.id)).size).toBe(12);
+    for (const d of DECOR) {
+      expect(findRoom(d.room)).toBeDefined();
+      expect(DECOR_ART[d.id]).toBeDefined();
+      expect(d.price).toBeGreaterThan(0);
+    }
+    for (const w of WEATHERS) expect(WEATHER_ART[w.id]).toBeDefined();
+  });
+
+  it('a decoração só está à venda na época, inclusive a que cruza o fim do ano', () => {
+    const daruma = findDecor('daruma');
+    const abobora = findDecor('abobora');
+    expect(daruma && decorAvailable(daruma, new Date(2026, 11, 30))).toBe(true);
+    expect(daruma && decorAvailable(daruma, new Date(2027, 0, 3))).toBe(true);
+    expect(daruma && decorAvailable(daruma, new Date(2027, 0, 8))).toBe(false);
+    expect(abobora && decorAvailable(abobora, new Date(2026, 9, 31))).toBe(true);
+    expect(abobora && decorAvailable(abobora, new Date(2026, 5, 1))).toBe(false);
+    expect(inWindow([12, 28], [1, 7], 6, 15)).toBe(false);
+  });
+
+  it('compra a decoração só na época, com o cômodo e pétalas, e ela fica para sempre', () => {
+    const halloween = new Date(2026, 9, 31);
+    expect(buyDecor(rich(), 'abobora', halloween)).toMatchObject({ ok: false, error: 'no-room' });
+    const kitchen = buyRoom(rich(), 'cozinha').state;
+    expect(buyDecor(kitchen, 'abobora', new Date(2026, 5, 1))).toMatchObject({ ok: false, error: 'out-of-season' });
+    expect(buyDecor({ ...kitchen, petals: 5 }, 'abobora', halloween)).toMatchObject({ ok: false, error: 'poor' });
+    const bought = buyDecor(kitchen, 'abobora', halloween);
+    expect(bought.ok).toBe(true);
+    expect(bought.state.petals).toBe(kitchen.petals - (findDecor('abobora')?.price ?? 0));
+    expect(buyDecor(bought.state, 'abobora', halloween)).toMatchObject({ ok: false, error: 'owned' });
+    expect(buyDecor(kitchen, 'nada', halloween)).toMatchObject({ ok: false, error: 'unknown' });
+    // Depois da data ela continua na casa e no backup.
+    expect(sanitizeJourney(JSON.parse(JSON.stringify(bought.state))).home.decor).toEqual(['abobora']);
+    expect(sanitizeHome({ rooms: [], decor: ['abobora'] }).decor).toEqual([]);
+  });
+
+  it('diz em quantos dias a decoração volta e qual abre primeiro', () => {
+    const hanami = findDecor('galho-sakura');
+    expect(hanami && daysUntilOpen(hanami, new Date(2026, 2, 5))).toBe(5);
+    expect(hanami && daysUntilOpen(hanami, new Date(2026, 2, 15))).toBe(0);
+    expect(nextDecor(new Date(2026, 10, 10)).decor.id).toBe('guirlanda-natal');
+    expect(nextDecor(new Date(2026, 9, 31))).toMatchObject({ days: 0 });
+  });
+
+  it('o clima é comprado uma vez, já fica ligado, e dá para voltar ao automático', () => {
+    expect(buyWeather(rich(), 'tufao')).toMatchObject({ ok: false, error: 'unknown' });
+    expect(buyWeather({ ...rich(), petals: 1 }, 'chuva')).toMatchObject({ ok: false, error: 'poor' });
+    const rain = buyWeather(rich(), 'chuva');
+    expect(rain.ok).toBe(true);
+    expect(rain.state.home.weather).toBe('chuva');
+    expect(buyWeather(rain.state, 'chuva')).toMatchObject({ ok: false, error: 'owned' });
+    expect(setWeather(rain.state, null).home.weather).toBeNull();
+    expect(setWeather(setWeather(rain.state, null), 'chuva').home.weather).toBe('chuva');
+    expect(setWeather(rain.state, 'neve')).toBe(rain.state);
+    expect(sanitizeHome({ weathers: ['chuva', 'x'], weather: 'neve' })).toMatchObject({ weathers: ['chuva'], weather: null });
+  });
+
+  it('a luz da casa segue a hora do dia', () => {
+    const at = (h: number) => timeOfDay(new Date(2026, 9, 31, h, 30));
+    expect([at(5), at(6), at(7), at(12), at(16), at(17), at(18), at(19), at(23), at(3)]).toEqual(['dawn', 'dawn', 'day', 'day', 'day', 'dusk', 'dusk', 'night', 'night', 'night']);
   });
 });

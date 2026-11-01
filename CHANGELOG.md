@@ -2,6 +2,16 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.35.0] - 2026-11-01
+
+Casa do Mochi, fase 3: decorações de datas e clima.
+
+- **12 decorações de datas**, uma para cada data comemorativa dos cosméticos, cada uma em um cômodo: guirlanda de Natal (Sala), daruma (Escritório, Ano-Novo), máscara de oni (Quarto, Setsubun), varal de corações (Cozinha, Namorados), hinadan (Escritório, Hinamatsuri), galho de sakura e koinobori (Jardim, Hanami e Dia das Crianças), bandeirinhas e bambu de Tanabata (Varanda), lanternas de festival (Sala, Natsu-matsuri), lua de Tsukimi (Ofurô) e abóbora de Halloween (Cozinha). Cada uma só **se compra na época** (as mesmas janelas dos cosméticos), precisa do cômodo comprado e fica na casa para sempre. Fora da época a lista diz em quantos dias ela volta.
+- **Luz da hora do dia:** a casa muda sozinha conforme o relógio do celular: amanhecer (5h às 7h), dia, entardecer (17h às 19h) e noite (com estrelas nos cômodos de fora). A descrição da cena para o leitor de tela também diz a hora e o clima.
+- **Clima:** em "Clima da casa", Automático (só a luz) ou **chuva** (120 pétalas), **neve** (180), **pétalas de sakura** (150) e **vaga-lumes** (150), que se compram uma vez e ficam em todos os cômodos. Comprar já liga; dá para voltar ao automático.
+- Tudo vai junto no backup do progresso, e backups antigos continuam abrindo.
+- Os desenhos foram conferidos numa prévia no computador; ainda não foram vistos no aparelho.
+
 ## [2.34.0] - 2026-10-31
 
 Casa do Mochi: skins de móveis e cômodos liberados por metas de estudo.

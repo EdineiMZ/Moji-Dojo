@@ -1,4 +1,5 @@
 import type { JourneyState } from '../journey/journey';
+import { findDecor, findWeather } from './decor';
 import { goalStatus, type HomeProgress } from './goals';
 import { findSkin, SKINNABLE, skinKey, skinPriceFor } from './skins';
 
@@ -88,9 +89,15 @@ export interface HomeState {
   skins: string[];
   /** A skin que cada móvel está usando (sem entrada = o desenho original). */
   skin: Record<string, string>;
+  /** Decorações de datas compradas. */
+  decor: string[];
+  /** Climas comprados. */
+  weathers: string[];
+  /** O clima ligado (null = automático: só a hora do dia). */
+  weather: string | null;
 }
 
-export const emptyHome = (): HomeState => ({ rooms: [], furniture: [], skins: [], skin: {} });
+export const emptyHome = (): HomeState => ({ rooms: [], furniture: [], skins: [], skin: {}, decor: [], weathers: [], weather: null });
 
 /** Lê o estado vindo do disco ou de um backup: ids desconhecidos saem, e um móvel só vale se o cômodo dele foi comprado. */
 export function sanitizeHome(raw: unknown): HomeState {
@@ -109,7 +116,13 @@ export function sanitizeHome(raw: unknown): HomeState {
   const on = typeof data.skin === 'object' && data.skin !== null && !Array.isArray(data.skin) ? (data.skin as Record<string, unknown>) : {};
   const skin: Record<string, string> = {};
   for (const [pieceId, skinId] of Object.entries(on)) if (typeof skinId === 'string' && skins.includes(skinKey(pieceId, skinId))) skin[pieceId] = skinId;
-  return { rooms, furniture, skins, skin };
+  const decor = read(data.decor).filter((id) => {
+    const piece = findDecor(id);
+    return piece !== undefined && rooms.includes(piece.room);
+  });
+  const weathers = read(data.weathers).filter((id) => findWeather(id) !== undefined);
+  const weather = typeof data.weather === 'string' && weathers.includes(data.weather) ? data.weather : null;
+  return { rooms, furniture, skins, skin, decor, weathers, weather };
 }
 
 export type HomeBuyError = 'unknown' | 'owned' | 'no-room' | 'poor' | 'goal' | 'no-piece';

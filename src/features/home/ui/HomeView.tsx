@@ -8,6 +8,8 @@ import { fonts, radii, spacing, useTheme } from '@/theme';
 import { outfit as outfitOf } from '@/features/journey/journey';
 import { useMochiMood } from '@/features/journey/useMochiMood';
 import { FURNITURE_ART, ROOM_BACKGROUND, SCENE_HEIGHT, SCENE_WIDTH } from '../art';
+import { DECOR_ART, lightOverlay, WEATHER_ART } from '../artDecor';
+import { DECOR_BUY_MESSAGES, daysUntilOpen, decorAvailable, decorOf, findWeather, TIME_LABELS, timeOfDay, WEATHERS, type Decor } from '../decor';
 import { findFurniture, findRoom, furnitureOf, HOME_BUY_MESSAGES, ROOMS, type Furniture, type Room } from '../home';
 import { goalLabel, goalStatus, homeProgressOf } from '../goals';
 import { findSkin, recolor, SKINNABLE, SKINS, skinKey, skinPriceFor } from '../skins';
@@ -24,6 +26,9 @@ function RoomScene({ room, furniture, locked }: { room: Room; furniture: readonl
   const { colors } = useTheme();
   const journey = useProgressStore((s) => s.journey);
   const skinOf = journey.home.skin;
+  const time = timeOfDay(new Date());
+  const weather = journey.home.weather;
+  const decorHere = journey.home.decor.filter((id) => decorOf(room.id).some((d) => d.id === id));
   const felt = useMochiMood();
   const [width, setWidth] = useState(0);
   const mochi = width * MOCHI_SHARE;
@@ -33,7 +38,7 @@ function RoomScene({ room, furniture, locked }: { room: Room; furniture: readonl
   return (
     <View
       accessible
-      accessibilityLabel={locked ? `${room.name}, ainda trancado` : `${room.name}, com ${furniture.length} ${furniture.length === 1 ? 'móvel' : 'móveis'}`}
+      accessibilityLabel={locked ? `${room.name}, ainda trancado` : `${room.name}, com ${furniture.length} ${furniture.length === 1 ? 'móvel' : 'móveis'}, no ${TIME_LABELS[time]}${weather ? `, com ${findWeather(weather)?.name.toLowerCase() ?? 'clima'}` : ''}`}
       onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
       style={[styles.scene, { borderColor: colors.line, aspectRatio: SCENE_WIDTH / SCENE_HEIGHT }]}
     >
@@ -42,6 +47,11 @@ function RoomScene({ room, furniture, locked }: { room: Room; furniture: readonl
         {furniture.map((id) => (
           <G key={id}>{recolor(FURNITURE_ART[id], findSkin(skinOf[id] ?? '')?.shift ?? 0)}</G>
         ))}
+        {decorHere.map((id) => (
+          <G key={id}>{DECOR_ART[id]}</G>
+        ))}
+        {locked || !weather ? null : <G opacity={room.kind === 'inside' ? 0.6 : 1}>{WEATHER_ART[weather]}</G>}
+        {locked ? null : lightOverlay(time, room.kind === 'outside')}
       </Svg>
       {locked ? (
         <View style={[styles.lock, { backgroundColor: colors.surface }]}>
@@ -66,6 +76,9 @@ export function HomeView() {
   const buy = useProgressStore((s) => s.buyHomeThing);
   const buySkin = useProgressStore((s) => s.buyHomeSkin);
   const equipSkin = useProgressStore((s) => s.equipHomeSkin);
+  const buyDecor = useProgressStore((s) => s.buyHomeDecor);
+  const buyWeather = useProgressStore((s) => s.buyHomeWeather);
+  const setWeather = useProgressStore((s) => s.setHomeWeather);
   const vocab = useProgressStore((s) => s.vocab);
   const mastered = useProgressStore((s) => s.mastered);
   const days = useProgressStore((s) => s.days);
@@ -108,6 +121,24 @@ export function HomeView() {
   };
   const ownedWords = wordsOf([...journey.home.rooms, ...journey.home.furniture]);
   const goal = goalStatus(room.id, homeProgressOf({ vocab, mastered, days }));
+  const pickDecor = (decor: Decor) => {
+    const error = buyDecor(decor.id);
+    setMessage(error ? { text: DECOR_BUY_MESSAGES[error], ok: false } : { text: `${decor.name} está na casa. Fica para sempre, mesmo depois da data.`, ok: true });
+    if (!error) setCelebrate((n) => n + 1);
+  };
+  const pickWeather = (id: string) => {
+    if (id === '') {
+      setWeather(null);
+      return;
+    }
+    if (journey.home.weathers.includes(id)) {
+      setWeather(id);
+      return;
+    }
+    const error = buyWeather(id);
+    setMessage(error ? { text: HOME_BUY_MESSAGES[error], ok: false } : { text: `${findWeather(id)?.name ?? 'Clima'} ligado na casa.`, ok: true });
+    if (!error) setCelebrate((n) => n + 1);
+  };
   const wearSkin = (pieceId: string, skinId: string) => {
     if (skinId === '') {
       equipSkin(pieceId, null);
@@ -222,6 +253,7 @@ export function HomeView() {
                 skins={{ owned: journey.home.skins, on: journey.home.skin[piece.id], onPick: (skinId) => wearSkin(piece.id, skinId) }}
               />
             ))}
+            <DecorSection room={room} owned={journey.home.decor} petals={journey.petals} onBuy={pickDecor} />
             {ownedWords.length >= 3 ? (
               <Button label={`Visita guiada: as ${ownedWords.length} palavras da casa`} variant="soft" onPress={() => setVisiting(true)} />
             ) : (
@@ -231,9 +263,64 @@ export function HomeView() {
             )}
           </>
         )}
+        <WeatherSection weathers={journey.home.weathers} on={journey.home.weather} petals={journey.petals} onPick={pickWeather} />
         </>
       )}
       {celebrate > 0 ? <PetalRain key={celebrate} count={16} /> : null}
+    </View>
+  );
+}
+
+/** As decorações de datas deste cômodo: as que já são suas, as que estão à venda agora e as que voltam na época. */
+function DecorSection({ room, owned, petals, onBuy }: { room: Room; owned: readonly string[]; petals: number; onBuy: (decor: Decor) => void }) {
+  const { colors } = useTheme();
+  const today = new Date();
+  const here = decorOf(room.id);
+  if (here.length === 0) return null;
+  return (
+    <View style={styles.skins}>
+      <AppText style={styles.name}>Decoração de datas</AppText>
+      {here.map((decor) => {
+        const mine = owned.includes(decor.id);
+        const open = decorAvailable(decor, today);
+        const days = daysUntilOpen(decor, today);
+        return (
+          <View key={decor.id} style={[styles.row, { backgroundColor: colors.surface, borderColor: mine ? colors.ok : open ? colors.primary : colors.line }]}>
+            <View style={styles.flex}>
+              <AppText style={styles.name}>{decor.name}</AppText>
+              <AppText variant="caption" color="muted">
+                {decor.occasion} · {decor.description}
+              </AppText>
+            </View>
+            {mine ? (
+              <AppText color="ok">✓ Na casa</AppText>
+            ) : open ? (
+              <Button label={petals >= decor.price ? `🌸 ${decor.price}` : `Faltam ${decor.price - petals}`} variant="soft" disabled={petals < decor.price} onPress={() => onBuy(decor)} />
+            ) : (
+              <AppText variant="caption" color="muted">
+                Volta em {days} {days === 1 ? 'dia' : 'dias'}
+              </AppText>
+            )}
+          </View>
+        );
+      })}
+    </View>
+  );
+}
+
+/** O clima da casa: automático (a luz segue a hora do dia) ou um dos climas comprados. */
+function WeatherSection({ weathers, on, petals, onPick }: { weathers: readonly string[]; on: string | null; petals: number; onPick: (id: string) => void }) {
+  const options = [
+    { value: '', label: '🕒 Automático' },
+    ...WEATHERS.map((w) => ({ value: w.id, label: weathers.includes(w.id) ? `${w.emoji} ${w.name}` : petals >= w.price ? `${w.emoji} ${w.name} 🌸 ${w.price}` : `${w.emoji} ${w.name} 🔒 ${w.price}` })),
+  ];
+  return (
+    <View style={styles.skins}>
+      <AppText style={styles.name}>Clima da casa</AppText>
+      <AppText variant="caption" color="muted">
+        A luz da casa segue a hora do dia do seu celular (amanhecer, dia, entardecer e noite). Os climas ficam por cima, em todos os cômodos.
+      </AppText>
+      <ChipRow wrap options={options} value={on ?? ''} onChange={onPick} />
     </View>
   );
 }

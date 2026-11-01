@@ -2,6 +2,15 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.42.0] - 2026-11-01
+
+Avançar sozinho nas trilhas e nas revisões: sem rolar a tela para achar o "Continuar".
+
+- **Avançar sozinho:** depois de errar, a próxima pergunta aparece sozinha depois de um tempo para ler a explicação (de 3 a 9 segundos, maior quando o texto é longo; no desenho, mais 2 s para olhar o seu traço ao lado do certo). No ouvido, o acerto avança depois de 2 s (dá para ouvir de novo antes). O acerto já avançava sozinho nos outros exercícios.
+- **Sem pressa quando você mexe:** tocar na explicação (escrever a sua historinha, chamar a IA) cancela a espera, e o botão "Continuar" continua lá para pular a espera.
+- **Ajustes > Revisões > Avançar sozinho:** liga ou desliga (vem ligado). Entra no backup das configurações.
+- **Testes:** `explain.test.ts` cobre o tempo de leitura (mínimo, máximo, texto longo e tempo extra).
+
 ## [2.41.1] - 2026-11-01
 
 Correção de layout e ajuda de pronúncia no treino "Ler palavras".

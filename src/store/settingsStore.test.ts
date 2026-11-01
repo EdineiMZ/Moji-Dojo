@@ -37,6 +37,7 @@ describe('settingsStore', () => {
       typingGoal: 100,
       retention: 0.9,
       writeInReview: false,
+      autoAdvance: true,
       speechSpeed: 'normal',
       hapticsEnabled: true,
       soundEnabled: true,

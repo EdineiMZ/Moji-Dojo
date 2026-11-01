@@ -37,5 +37,14 @@ export function buildFeedback(item: QuizItem, correct: boolean, chosen?: string)
   return { correct, text, ...(hint ? { hint } : {}), ...(why ? { why } : {}) };
 }
 
+/**
+ * Tempo até avançar sozinho depois de um erro (ou do ouvido): o suficiente para ler a explicação, que varia de tamanho.
+ * `extra` soma tempo para olhar algo a mais, como o desenho ao lado do certo.
+ */
+export function readAdvanceMs(feedback: Feedback, extra = 0): number {
+  const chars = feedback.text.length + (feedback.why?.length ?? 0) + (feedback.hint?.length ?? 0);
+  return Math.min(9000, 3000 + chars * 45) + extra;
+}
+
 /** Tempo até avançar sozinho depois de um acerto (kanji tem mais texto para ler). */
 export const autoAdvanceMs = (item: QuizItem): number => (item.script === 'kanji' ? 1200 : 800);

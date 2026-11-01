@@ -68,6 +68,7 @@ const READERS: { readonly [K in keyof ExportedSettings]: (v: unknown) => Exporte
   typingGoal: (v) => (typeof v === 'number' && sanitizeTypingGoal(v) === v ? v : undefined),
   retention: (v) => (typeof v === 'number' && sanitizeRetention(v) === v ? v : undefined),
   writeInReview: bool,
+  autoAdvance: bool,
   speechSpeed: oneOf<SpeechSpeed>(['normal', 'slow']),
   hapticsEnabled: bool,
   soundEnabled: bool,

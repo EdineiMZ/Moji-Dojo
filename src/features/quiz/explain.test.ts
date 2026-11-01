@@ -1,7 +1,7 @@
 import { ALL_KANJI } from '@/content/kanji';
 import { KANJI_HINTS } from '@/data/hints';
 import { getItem } from '@/features/catalog';
-import { autoAdvanceMs, buildFeedback, explainItem } from './explain';
+import { autoAdvanceMs, buildFeedback, explainItem, readAdvanceMs } from './explain';
 
 describe('explainItem', () => {
   it('kana: romaji e a palavra de exemplo', () => {
@@ -45,5 +45,17 @@ describe('buildFeedback', () => {
 describe('autoAdvanceMs', () => {
   it('kanji espera mais que kana', () => {
     expect(autoAdvanceMs(getItem('水'))).toBeGreaterThan(autoAdvanceMs(getItem('か')));
+  });
+});
+
+describe('readAdvanceMs', () => {
+  const fb = (text: string, hint?: string) => ({ correct: false, text, ...(hint ? { hint } : {}) });
+  it('dá no mínimo 3 s e no máximo 9 s para ler, e mais tempo para textos maiores', () => {
+    expect(readAdvanceMs(fb('あ = a'))).toBeGreaterThanOrEqual(3000);
+    expect(readAdvanceMs(fb('x'.repeat(2000)))).toBe(9000);
+    expect(readAdvanceMs(fb('x'.repeat(40), 'y'.repeat(40)))).toBeGreaterThan(readAdvanceMs(fb('x'.repeat(40))));
+  });
+  it('soma o tempo extra (ex.: olhar o desenho ao lado do certo)', () => {
+    expect(readAdvanceMs(fb('a'), 2200)).toBe(readAdvanceMs(fb('a')) + 2200);
   });
 });

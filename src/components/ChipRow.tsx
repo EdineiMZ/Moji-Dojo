@@ -69,7 +69,7 @@ export function ChipRow<T extends string>({ options, value, onChange, wrap = fal
         haptic
         style={[
           styles.chip,
-          { backgroundColor: selected ? colors.primary : colors.surface, borderColor: selected ? colors.primary : colors.line },
+          { backgroundColor: selected ? colors.primary : colors.surface, borderColor: selected ? colors.primary : colors.field },
         ]}
       >
         <View style={styles.chipContent}>

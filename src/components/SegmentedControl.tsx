@@ -34,7 +34,7 @@ export function SegmentedControl<T extends string>({ options, value, onChange }:
   const indicator = useAnimatedStyle(() => ({ transform: [{ translateX: x.value }] }));
 
   return (
-    <View style={[styles.track, { backgroundColor: colors.surface, borderColor: colors.line }]}>
+    <View style={[styles.track, { backgroundColor: colors.surface, borderColor: colors.field }]}>
       <View style={styles.row} onLayout={(e: LayoutChangeEvent) => setRowWidth(e.nativeEvent.layout.width)}>
         {rowWidth > 0 ? (
           <Animated.View

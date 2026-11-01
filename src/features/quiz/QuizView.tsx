@@ -46,9 +46,17 @@ import {
   type QuizState,
 } from './quiz';
 import { MnemonicNote } from './MnemonicNote';
+import { vocabWordOf, wordMnemonicFallback } from '@/features/vocab/kanjiWords';
 import { WriteQuestion, type WriteResult } from './WriteQuestion';
 
 /** Tamanho do texto do enunciado: caractere ou sílaba grande; palavra de vocabulário, menor para caber em uma linha. */
+/** A historinha pronta da palavra (pelos kanji dela), no formato das props do MnemonicNote. */
+function wordFallbackProps(item: { script: string; char: string }): { fallback?: string } {
+  const word = vocabWordOf(item);
+  const fallback = word ? wordMnemonicFallback(word) : undefined;
+  return fallback ? { fallback } : {};
+}
+
 function promptGlyphStyle(text: string): { fontSize: number; lineHeight: number } {
   const length = [...text].length;
   const size = length <= 2 ? 96 : length <= 4 ? 64 : length <= 6 ? 48 : 36;
@@ -283,6 +291,8 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
           {answered.feedback.why ? <AppText>O que mudou: {answered.feedback.why}</AppText> : null}
           {!answered.correct && isStudyItem(current.item) ? (
             <MnemonicNote char={current.item.char} {...(answered.feedback.hint ? { fallback: answered.feedback.hint } : {})} />
+          ) : !answered.correct && vocabWordOf(current.item) ? (
+            <MnemonicNote char={current.item.char} kind="word" {...wordFallbackProps(current.item)} />
           ) : answered.feedback.hint ? (
             <AppText variant="caption" color="muted">
               Para lembrar: {answered.feedback.hint}

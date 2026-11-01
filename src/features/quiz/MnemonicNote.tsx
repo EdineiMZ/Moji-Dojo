@@ -6,8 +6,10 @@ import { useProgressStore } from '@/store';
 import { fonts, fontSizes, radii, spacing, useTheme } from '@/theme';
 
 interface MnemonicNoteProps {
-  /** O caractere que a pessoa errou. */
+  /** O caractere (ou a palavra, com `kind="word"`) que a pessoa errou. */
   char: string;
+  /** Caractere (historinha em `charNotes`) ou palavra do vocabulário (em `wordNotes`). */
+  kind?: 'char' | 'word';
   /** A historinha pronta do app, se existir. */
   fallback?: string;
 }
@@ -16,10 +18,10 @@ interface MnemonicNoteProps {
  * Mnemônico na hora do erro: mostra a historinha da pessoa (se ela escreveu uma) ou a do app, e deixa reescrever.
  * A que a gente mesmo inventa gruda mais, então a dela passa a valer no lugar da pronta, em todos os erros seguintes.
  */
-export function MnemonicNote({ char, fallback }: MnemonicNoteProps) {
+export function MnemonicNote({ char, kind = 'char', fallback }: MnemonicNoteProps) {
   const { colors } = useTheme();
-  const note = useProgressStore((s) => s.charNotes[char]);
-  const setCharNote = useProgressStore((s) => s.setCharNote);
+  const note = useProgressStore((s) => (kind === 'word' ? s.wordNotes[char] : s.charNotes[char]));
+  const setCharNote = useProgressStore((s) => (kind === 'word' ? s.setWordNote : s.setCharNote));
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState('');
 

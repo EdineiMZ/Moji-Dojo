@@ -94,6 +94,16 @@ describe('palavras que dá para ler', () => {
     expect(buildReadQuestions(new Set(['あ']), seeded(1))).toEqual([]); // poucas palavras para 4 alternativas
   });
 
+  it('cada palavra traz o romaji (para "Ver romaji") e a explicação depois da resposta o mostra', () => {
+    const qs = buildReadQuestions(known, seeded(7), 10);
+    for (const q of qs) {
+      expect(q.item.script).toBe('pair');
+      if (q.item.script !== 'pair') continue;
+      expect(q.item.romaji).toMatch(/^[a-zāīūēō' -]+$/i);
+      expect(q.item.explain).toContain(`(${q.item.romaji})`);
+    }
+  });
+
   it('knownKana ignora chaves que não são caracteres do app', () => {
     expect([...knownKana(['あ', 'xyz', 'ね'])].sort()).toEqual(['あ', 'ね'].sort());
     expect(findItem('あ')).toBeDefined();

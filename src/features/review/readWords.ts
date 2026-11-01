@@ -1,5 +1,6 @@
 import { VOCAB } from '@/content';
 import { findItem } from '@/features/catalog';
+import { kanaToRomaji } from '@/lib/romaji';
 import { shuffle, type PairItem, type Question, type Rng } from '@/features/quiz/quiz';
 
 /** Quantos kana a pessoa precisa conhecer para as palavras valerem a pena (cerca de três linhas). */
@@ -53,7 +54,10 @@ export function buildReadQuestions(known: ReadonlySet<string>, rng: Rng = Math.r
   const byMeaning = new Map<string, PairItem>();
   for (const w of readableWords(known)) {
     const meaning = w.meaning.trim();
-    if (!byMeaning.has(meaning)) byMeaning.set(meaning, { char: w.jp, label: meaning, script: 'pair', reading: w.reading });
+    if (!byMeaning.has(meaning)) {
+      const romaji = w.romaji ?? kanaToRomaji(w.reading);
+      byMeaning.set(meaning, { char: w.jp, label: meaning, script: 'pair', reading: w.reading, romaji, explain: `${w.jp} (${romaji}) = ${meaning}` });
+    }
   }
   const items = [...byMeaning.values()];
   if (items.length < 4) return [];

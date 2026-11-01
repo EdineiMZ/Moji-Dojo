@@ -68,7 +68,7 @@ export function OptionButton({ index, label, glyph, state, onPress }: OptionButt
           </AppText>
         </View>
         <AppText
-          style={{ fontFamily: fonts.bold, fontSize: glyph ? 30 : 18, lineHeight: glyph ? 38 : 24 }}
+          style={{ flex: 1, flexShrink: 1, fontFamily: fonts.bold, fontSize: glyph ? 30 : 18, lineHeight: glyph ? 38 : 24 }}
           color={state === 'right' ? 'ok' : state === 'wrong' ? 'bad' : 'ink'}
         >
           {label}

@@ -22,6 +22,8 @@ export interface PairItem {
   script: 'pair';
   /** Leitura em kana, quando a palavra tem kanji: é o que a voz fala e o que a explicação mostra. */
   reading?: string;
+  /** Romaji da palavra, para a ajuda "Ver romaji" antes de responder. */
+  romaji?: string;
   /** Cartão de revisão a que a pergunta pertence, quando o item não basta para saber (ex.: verbo + forma). */
   key?: string;
   /** Frase mostrada como explicação depois da resposta, no lugar de "palavra = rótulo". */

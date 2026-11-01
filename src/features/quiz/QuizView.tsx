@@ -239,9 +239,19 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
                     {current.item.label}
                   </AppText>
                 ) : (
-                  <AppText variant="glyph" center style={promptGlyphStyle(current.item.char)}>
-                    {current.item.char}
-                  </AppText>
+                  <>
+                    <AppText variant="glyph" center style={promptGlyphStyle(current.item.char)}>
+                      {current.item.char}
+                    </AppText>
+                    {current.item.script === 'pair' && current.item.reading ? (
+                      <WordHelp
+                        key={step}
+                        reading={pronunciationText(current.item)}
+                        romaji={current.item.romaji}
+                        rate={SPEECH_RATES[speed]}
+                      />
+                    ) : null}
+                  </>
                 )}
               </Card>
             </Animated.View>
@@ -289,7 +299,27 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
 }
 
 
+/** Ajuda de uma palavra: ouvir como se fala e, se quiser, ver o romaji antes de responder. */
+function WordHelp({ reading, romaji, rate }: { reading: string; romaji: string | undefined; rate: number }) {
+  const [shown, setShown] = useState(false);
+  return (
+    <View style={styles.help}>
+      <View style={styles.helpRow}>
+        <Button label="🔊 Ouvir" variant="soft" onPress={() => speakJapanese(reading, rate)} />
+        {romaji && !shown ? <Button label="Ver romaji" variant="soft" onPress={() => setShown(true)} /> : null}
+      </View>
+      {romaji && shown ? (
+        <AppText variant="headline" center>
+          {romaji}
+        </AppText>
+      ) : null}
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  help: { alignSelf: 'stretch', alignItems: 'center', gap: spacing.sm },
+  helpRow: { flexDirection: 'row', gap: spacing.sm, justifyContent: 'center' },
   root: { gap: spacing.lg },
   flex: { flex: 1 },
   top: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },

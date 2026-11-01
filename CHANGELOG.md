@@ -2,6 +2,14 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.41.1] - 2026-11-01
+
+Correção de layout e ajuda de pronúncia no treino "Ler palavras".
+
+- **Layout das alternativas:** o texto de uma alternativa longa (ex.: "kotatsu (mesa baixa com cobertor aquecido)") passava da borda do cartão e ficava cortado. Agora o texto quebra em linhas dentro do botão, em todos os exercícios de múltipla escolha do app.
+- **Ler palavras com pronúncia:** o cartão da palavra ganhou "🔊 Ouvir" (a voz fala a leitura, na velocidade dos Ajustes) e "Ver romaji" (mostra a leitura em romaji se você não souber, sem mexer na nota). Depois da resposta, a explicação traz o romaji da palavra (こたつ (kotatsu) = ...).
+- **Testes:** `practice.test.ts` confere o romaji e a explicação de cada palavra.
+
 ## [2.41.0] - 2026-11-01
 
 Acabamento das melhorias da 2.40.0: elas passam a aparecer em mais lugares do app.

@@ -9,10 +9,10 @@ import { isSecondaryTwin } from '@/features/vocab/twins';
  * Simulado offline: perguntas montadas só com o conteúdo do app (vocabulário, kanji e frases de gramática), sem IA e sem
  * internet. Cada seção tem a própria nota.
  */
-export type ExamLevel = 'N5' | 'N4' | 'N3';
+export type ExamLevel = 'N5' | 'N4' | 'N3' | 'N2';
 export type ExamSection = 'vocab' | 'reading' | 'kanji' | 'grammar';
 
-export const EXAM_LEVELS: readonly ExamLevel[] = ['N5', 'N4', 'N3'];
+export const EXAM_LEVELS: readonly ExamLevel[] = ['N5', 'N4', 'N3', 'N2'];
 
 export const EXAM_SECTIONS: readonly { id: ExamSection; label: string; hint: string }[] = [
   { id: 'vocab', label: 'Vocabulário', hint: 'o significado das palavras' },
@@ -63,7 +63,7 @@ function levelKanji(level: ExamLevel) {
 }
 
 /** O nível de um tópico de gramática vem do prefixo do id ("n4-", "n3-"); sem prefixo é N5. */
-export const topicLevelOf = (id: string): ExamLevel => (id.startsWith('n3-') ? 'N3' : id.startsWith('n4-') ? 'N4' : 'N5');
+export const topicLevelOf = (id: string): ExamLevel => (id.startsWith('n2-') ? 'N2' : id.startsWith('n3-') ? 'N3' : id.startsWith('n4-') ? 'N4' : 'N5');
 const levelTopics = (level: ExamLevel) => ALL_GRAMMAR.filter((t) => topicLevelOf(t.id) === level);
 
 function vocabQuestions(level: ExamLevel, count: number, rng: Rng): ExamQuestion[] {

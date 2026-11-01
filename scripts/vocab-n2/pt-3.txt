@@ -1,0 +1,470 @@
+991|S|fabricação; produção
+992|S|produção (de filme, obra)
+994|M|cópia a limpo
+995|P|jovens; adolescentes
+996|M|número inteiro
+997|S|limpeza
+998|M|sobrevivência; existência
+999|C|crescimento (de planta)
+1000|S|partido político
+1002|M|desempenho; capacidade (de máquina)
+1003|S|manutenção; revisão
+1004|M|componente; ingrediente
+1005|M|sexo; gênero
+1006|M|quadrado (figura)
+1007|L|portão principal
+1008|M|formação; conclusão; estabelecimento
+1009|T|era cristã (d.C.)
+1010|V|carregar nas costas; assumir (um peso)
+1011|C|equador
+1012|E|com muito esforço; tão esperado; justamente
+1013|M|aproximação
+1014|V|lidar com; ter contato com
+1015|E|diligentemente; sem parar
+1016|X|conexão; baldeação
+1017|L|louça; porcelana
+1018|E|a qualquer custo; sem falta
+1019|V|aproximar-se; pressionar
+1020|S|seminário (aula)
+1021|E|pelo menos
+1023|L|cimento
+1024|M|fala; texto (de peça ou filme)
+1025|L|rolha; tampa
+1027|T|antes e depois; frente e verso
+1029|M|obras completas
+1031|L|leque dobrável
+1032|M|despotismo
+1033|T|dois meses atrás
+1034|T|duas semanas atrás
+1035|P|antepassado
+1036|D|ponta; extremidade
+1037|M|centímetro
+1039|D|cabeça (da fila); liderança
+1040|M|o todo; geral
+1041|L|ventilador
+1042|M|lavar o rosto
+1043|M|toda a força
+1044|X|linha férrea; trilhos
+1045|M|total; geral (prefixo)
+1046|M|diferença; discrepância
+1047|E|aliás; por falar nisso
+1048|L|pano de chão
+1049|M|aumento e diminuição; variação
+1050|L|depósito; armazém
+1051|M|mútuo; recíproco
+1052|M|criação; obra original
+1053|S|funeral
+1054|S|construção naval
+1055|A|barulhento; agitado
+1056|M|aumento; crescimento
+1057|E|devagarinho; com cuidado
+1058|S|despedida
+1059|R|zori (sandálias japonesas)
+1060|P|primeiro-ministro
+1061|S|custo de envio; porte
+1062|V|pertencer a
+1063|E|um após o outro
+1064|S|entrega expressa
+1065|M|medição
+1066|M|levantamento topográfico
+1067|M|velocidade
+1068|M|talento; aptidão
+1069|P|antepassados
+1070|A|desatento; precipitado
+1071|A|franco; sincero
+1072|A|franco; direto
+1073|T|naquela época
+1074|E|por isso; por esse motivo
+1075|E|além disso; outros
+1077|V|barbear; raspar
+1078|E|e apesar disso
+1079|E|nesse caso; então
+1080|E|que pena; isso não é bom
+1081|V|desviar-se; sair do assunto
+1083|L|ábaco
+1084|V|saber; conhecer (humilde)
+1085|V|saber; conhecer (humilde)
+1086|M|perdas e ganhos; vantagens e desvantagens
+1087|M|-º (prefixo ordinal)
+1088|L|pneu
+1089|E|em primeiro lugar; antes de tudo
+1090|S|pós-graduação
+1091|P|carpinteiro
+1092|M|sistema; organização
+1093|L|tambor
+1094|M|medida; contramedida
+1095|E|não muito; nada demais
+1097|M|tamanho; grande e pequeno
+1098|M|sistema; estrutura; ordem
+1099|M|volume; capacidade
+1100|E|muito; extremamente
+1101|M|ginástica
+1103|C|árvore grande
+1105|M|pronome
+1106|M|diagrama; horário (de trens)
+1107|L|diamante
+1108|L|disco de telefone; mostrador
+1109|M|oposição; confronto
+1110|S|plantio de arroz
+1111|E|constantemente
+1112|M|elipse
+1114|V|arar; cultivar
+1115|C|cachoeira
+1116|V|guardar; armazenar; juntar
+1117|C|bambu
+1118|E|cheguei (ao voltar para casa)
+1119|E|porém; no entanto
+1121|V|parar de andar; deter-se
+1122|E|num instante; de repente
+1124|M|descarrilamento; desvio do assunto
+1125|A|adequado; apropriado
+1126|V|comparar; dar como exemplo
+1127|A|confiável; promissor
+1129|M|duplo
+1130|L|barragem; represa
+1131|M|suspiro
+1132|V|hesitar
+1133|A|desleixado; desorganizado
+1134|V|bastar; valer a pena
+1135|M|curto (prefixo)
+1136|M|fase; etapa; nível
+1137|T|curto prazo
+1138|L|mina de carvão
+1139|M|defeito; ponto fraco
+1140|L|cômoda; armário de roupas
+1141|C|água doce
+1142|S|corte de água
+1143|M|singular (número)
+1144|L|conjunto habitacional
+1145|M|conclusão; afirmação categórica
+1146|M|curta (história, filme)
+1147|L|arrozal
+1148|V|jurar; prometer
+1149|C|água subterrânea
+1150|E|em breve; logo
+1151|V|aproximar; chegar perto
+1152|V|aproximar-se
+1153|A|encorajador; poderoso
+1154|V|rasgar em pedaços; colher (fruta)
+1155|C|constituição geológica
+1156|P|conhecido; amigo
+1157|D|zona; região
+1158|V|encolher; contrair-se
+1159|V|encurtar; encolher
+1160|V|ficar ondulado; encaracolar
+1161|M|gorjeta; microchip
+1162|D|ponto; local (no mapa)
+1163|M|nome de lugar
+1164|A|marrom
+1165|E|passo a passo; sem parar
+1166|D|meio; intermediário
+1167|T|dez dias do meio do mês
+1168|A|abstrato
+1169|T|Idade Média
+1170|M|neutro; neutralidade
+1171|D|no meio do caminho
+1172|P|meia-idade
+1173|L|giz
+1175|M|excesso
+1176|M|escultura; entalhe
+1177|M|ponto forte; qualidade
+1178|P|filha mais velha
+1179|M|ajuste; regulagem
+1180|M|regulagem; controle
+1181|M|vantagens e desvantagens; comprimento
+1182|D|topo; cume
+1183|P|filho mais velho
+1184|M|retângulo
+1185|F|tempero; condimento
+1186|T|logo depois
+1187|M|linha reta
+1188|T|logo antes
+1189|X|ligação direta
+1190|C|corrente contínua
+1191|S|armazenamento; conservação
+1192|M|ângulo reto
+1193|M|diâmetro
+1194|V|espalhar; deixar bagunçado
+1195|V|ficar bagunçado
+1196|L|papel higiênico; lenço de papel
+1197|S|acréscimo; adição
+1198|E|oportunidade; de passagem
+1199|M|moeda corrente
+1201|V|levar a; dar acesso a
+1202|S|aviso; notificação
+1203|L|caderneta bancária
+1205|M|uso corrente; validade
+1206|D|passagem; corredor
+1207|D|fim (de rua); fundo
+1208|V|bater contra; dar de cara com
+1209|T|tempo; dias e anos
+1212|V|enfiar; meter
+1213|V|servir; desempenhar função
+1214|V|esforçar-se; tentar
+1215|L|corda grossa
+1216|M|ligação; relação
+1218|M|grão
+1219|V|esmagar; arruinar
+1220|V|ser esmagado; falir
+1221|V|tropeçar
+1222|V|tropeçar; dar um tropeção
+1223|V|entupir; ficar cheio
+1225|C|unha
+1226|M|brilho; lustro
+1227|M|firmeza; atitude confiante
+1228|V|equilibrar-se; combinar
+1229|V|pendurar
+1230|V|pendurar
+1231|M|tema
+1232|L|banheiro; local para lavar as mãos
+1233|M|baixo (prefixo)
+1234|M|lotação; número fixo de pessoas
+1235|S|preço fixo
+1236|M|queda; declínio
+1237|S|passe de transporte (mensal)
+1238|T|dia de folga regular (da loja)
+1239|M|suspensão; parada
+1240|X|parada (de trem ou ônibus)
+1242|M|entrada e saída; vaivém
+1243|D|entrada e saída
+1244|D|entrada e saída
+1245|S|manutenção; cuidados
+1246|M|ficar pronto; resultado final
+1247|V|ficar pronto; ficar acabado
+1248|A|preciso; exato
+1249|A|preciso; exato
+1250|C|pulso (do braço)
+1251|M|irregularidade; desnível
+1252|A|razoável; conveniente
+1253|A|conveniente; razoável
+1254|P|discípulo; aprendiz
+1255|M|bobagem; ao acaso
+1256|L|caderneta; agenda
+1257|L|ponte de ferro
+1258|S|trâmites; procedimento
+1259|L|arma de fogo; espingarda
+1260|L|quadra de tênis
+1261|L|toalhinha (tenugui)
+1262|D|diante de; este lado
+1263|S|recepção (recepcionar alguém)
+1264|V|receber; ir ao encontro de
+1265|V|iluminar
+1266|V|brilhar
+1267|M|desenvolvimento; expansão
+1268|M|biografia
+1269|L|lâmpada
+1270|M|pontuação; nota
+1271|M|contágio
+1272|L|pilha; bateria
+1273|L|poste de luz ou telefone
+1274|E|aqui e ali; pouco a pouco
+1275|E|de um lugar a outro
+1276|P|imperador do Japão
+1277|C|onda eletromagnética
+1278|M|tempo (andamento)
+1279|C|corrente elétrica
+1280|M|energia elétrica
+1281|S|consulta; pedido de informação
+1282|L|cobre
+1283|M|mesmo (prefixo)
+1284|E|de nada
+1285|M|unificação; uniformidade
+1286|M|mesmo nível; aposição
+1287|D|passo de montanha; ponto crítico
+1288|M|estatística
+1289|M|movimento; ação
+1290|D|leste e oeste; o país inteiro
+1291|T|dia marcado; o próprio dia
+1292|S|carta ao editor; colaboração do leitor
+1293|M|entrada em cena; aparição
+1294|E|de qualquer modo; afinal
+1295|L|farol
+1296|S|roubo; furto
+1297|S|plantão; vez de serviço
+1298|M|divisão em partes iguais
+1299|A|transparente
+1300|F|querosene
+1302|M|conto de fadas
+1303|V|passar por acaso
+1304|V|derreter; dissolver
+1305|V|ficar pontudo; afiar
+1306|E|coração acelerado; palpitando
+1307|A|especial; singular
+1308|M|característica; traço
+1309|M|específico; determinado
+1310|S|promoção; liquidação
+1311|V|misturar-se; integrar-se
+1313|V|tirar do caminho; afastar
+1314|L|nicho da sala (tokonoma)
+1315|D|aqui e ali; alguns trechos
+1316|D|centro da cidade
+1317|L|armário embutido
+1318|E|há muito tempo; já faz tempo
+1319|E|de repente; em massa
+1320|V|ficar em ordem; ficar pronto
+1321|V|ficar; permanecer
+1322|V|gritar
+1323|M|senhor (em envelope)
+1324|V|pular para dentro; entrar correndo
+1327|E|seja como for; de qualquer jeito
+1328|V|capturar; agarrar
+1329|V|colher; adotar; incorporar
+1330|V|cancelar
+1331|V|tirar; retirar
+1332|V|adotar (medida); colher
+1333|V|pegar; capturar (peixe)
+1334|L|tigela grande; donburi
+1335|S|clínica geral; medicina interna
+1336|M|ramal (telefone)
+1337|R|náilon
+1339|M|reconciliação
+1340|V|arrastar-se; prolongar-se
+1342|C|dedo médio
+1343|P|bom amigo; amigo íntimo
+1344|V|consolar
+1346|V|realizar; fazer
+1347|M|adivinha
+1348|A|suave; em declive suave
+1349|A|saudoso; querido
+1350|V|acariciar; afagar
+1351|D|na diagonal
+1352|E|de qualquer modo; afinal
+1353|E|de qualquer modo; afinal
+1354|E|fulano e sicrano; o quê?
+1355|E|por favor; de qualquer modo
+1356|A|atrevido; petulante
+1357|A|atrevido; petulante
+1358|C|fileira de árvores
+1359|V|imitar; seguir o exemplo
+1361|C|polo sul; Antártida
+1362|E|por algum motivo; sem saber por quê
+1363|E|nada (com negativo); realmente
+1364|E|realmente; extremamente
+1365|M|número
+1366|D|América do Sul
+1367|D|sul e norte
+1368|V|cheirar; ter perfume
+1369|V|deixar escapar; soltar
+1370|A|odioso; detestável
+1371|V|odiar
+1372|A|odioso; irritante
+1373|E|sorrindo
+1374|V|turvar-se; ficar sujo
+1375|C|arco-íris
+1376|T|data e hora
+1377|L|artigos de uso diário
+1378|M|rotina diária
+1379|M|programação; cronograma
+1380|A|embotado; lento
+1381|S|entrada em uma empresa
+1382|P|esposa
+1383|V|encarar com raiva; vigiar
+1385|M|súbito; repentino
+1386|V|costurar
+1387|L|parafuso
+1388|V|torcer
+1389|R|colar
+1390|V|aquecer
+1391|R|pijama
+1392|R|pijama
+1393|M|alvo; objetivo
+1394|V|mirar; ter como alvo
+1395|T|ano; ano fiscal
+1396|S|produtos agrícolas
+1397|D|vila agrícola
+1398|M|concentração; densidade
+1399|S|agrotóxico
+1400|M|eficiência
+1401|L|serra
+1402|E|sem exceção; completamente
+1403|X|subida; trem para Tóquio
+1404|L|cola; goma
+1405|X|baldeação
+1406|X|baldeação; troca
+1407|X|passar da estação
+1409|E|devagar; arrastado
+1410|A|despreocupado; descuidado
+1412|M|cinza (cor)
+1413|M|haicai
+1414|L|quiosque; lojinha
+1415|E|tchau
+1416|S|compra e venda
+1417|V|rastejar; engatinhar
+1418|V|arrancar; descolar
+1419|V|arrancar; descascar; descolar
+1420|A|absurdo; ridículo
+1421|L|balança
+1422|M|náusea
+1423|E|com clareza e rapidez
+1425|L|engrenagem
+1426|L|balde
+1427|V|ficar preso entre
+1428|V|prender entre; inserir
+1429|L|escada de mão
+1430|E|em primeiro lugar
+1431|E|em primeiro lugar
+1432|E|muito prazer
+1433|M|diagonal; inclinado
+1435|M|padrão; modelo
+1436|R|roupa de baixo
+1437|E|como esperado; de fato
+1438|E|como esperado; de fato
+1439|L|vaso; tigela
+1441|-|
+1442|M|demonstração; exibição
+1443|M|fundo; atrás
+1444|M|ideia; modo de pensar
+1445|S|geração (de energia)
+1446|S|lançamento à venda
+1448|M|conversa; diálogo
+1449|M|conversa; discussão
+1450|V|dirigir a palavra
+1451|M|linha ocupada
+1452|A|extremo; excessivo
+1453|M|fogos de artifício
+1454|P|noiva
+1455|L|mola
+1456|V|pular; saltar
+1457|M|fragmento; caco
+1458|M|escovar os dentes; pasta de dente
+1459|V|encaixar; vestir
+1460|M|fala rápida
+1461|V|depositar; pagar
+1462|V|reembolsar
+1463|L|arame
+1464|V|ficar animado; entusiasmar-se
+1465|M|anti- (prefixo)
+1466|M|reflexo; influência
+1467|M|raio
+1468|L|carimbo (hanko)
+1469|E|viva!
+1470|P|juiz (de tribunal)
+1472|D|número da casa; endereço
+1473|R|calça; cueca
+1474|L|banda; faixa
+1475|C|península
+1476|L|volante; maçaneta
+1477|M|não-; anti- (prefixo)
+1478|D|exposição ao sol; local ensolarado
+1479|X|viagem de ida e volta no dia
+1480|E|relativamente
+1481|C|sombra
+1482|E|brilhando; reluzente
+1483|V|assumir; encarregar-se
+1484|V|dar meia-volta; voltar
+1485|M|subtração
+1486|V|tirar; sacar; retirar
+1487|V|reter; dissuadir
+1488|A|covarde; injusto
+1489|M|empate
+1490|M|empate
+1491|C|luz do sol
+1492|C|luz do sol
+1493|C|cotovelo
+1494|L|pistola
+1495|M|vitamina
+1496|E|justo; bem ajustado
+1497|V|ficar preso; ficar enroscado
+1498|M|anotação; escrita
+1499|V|virar do avesso; derrubar
+1500|V|ser virado; tombar

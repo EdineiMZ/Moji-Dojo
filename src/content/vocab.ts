@@ -3,6 +3,7 @@ import { KANA_EXAMPLES, KANJI_EXAMPLES } from '@/data/examples';
 import { KANJI, KANJI_CATEGORIES } from '@/data/kanji';
 import { SIMULATOR_WORDS } from '@/data/keyboard';
 import { HOUSE_WORDS } from './house';
+import { N2_WORDS } from './n2';
 import { N3_WORDS } from './n3';
 import { N4_WORDS } from './n4';
 import { N5_WORDS } from './n5';
@@ -93,7 +94,11 @@ export const buildN4Vocabulary = (): VocabWord[] => fromSource(N4_WORDS);
 export const buildN3Vocabulary = (): VocabWord[] => fromSource(N3_WORDS);
 
 /** O nível de uma palavra vem do prefixo do grupo ("N4: Verbos"); o que não tem prefixo (kana, kanji, teclado) conta como N5. */
-export const wordLevelOfGroup = (group: string): 'N5' | 'N4' | 'N3' => (group.startsWith('N3:') ? 'N3' : group.startsWith('N4:') ? 'N4' : 'N5');
+export const wordLevelOfGroup = (group: string): 'N5' | 'N4' | 'N3' | 'N2' =>
+  group.startsWith('N2:') ? 'N2' : group.startsWith('N3:') ? 'N3' : group.startsWith('N4:') ? 'N4' : 'N5';
+
+/** Lista JLPT N2 (scripts/vocab-n2/, gerada em ./n2.ts): só o que não está nas listas de baixo, em grupos com o prefixo "N2:". */
+export const buildN2Vocabulary = (): VocabWord[] => fromSource(N2_WORDS);
 
 /** As palavras da Casa do Mochi que as outras listas não tinham (./house.ts), no fim da trilha. */
 export const buildHouseVocabulary = (): VocabWord[] => fromSource(HOUSE_WORDS);

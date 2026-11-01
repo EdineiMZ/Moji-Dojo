@@ -1,0 +1,381 @@
+1501|S|mudança de casa
+1502|V|recuar; afundar; ficar para dentro
+1503|P|autor; escritor
+1504|M|artigos de primeira necessidade
+1506|C|dedo indicador
+1507|E|de modo geral; resumidamente
+1508|D|movimento de pedestres
+1509|E|por enquanto; de início
+1510|C|pupila (do olho)
+1511|M|pausa; descanso rápido
+1512|M|monólogo; falar sozinho
+1513|E|sozinho; sem intervenção; naturalmente
+1514|L|vinil
+1515|M|ironia; sarcasmo
+1516|T|data; dias
+1517|T|data (de evento); dia
+1518|V|torcer; girar
+1519|T|pôr do sol
+1520|T|nascer do sol
+1521|C|eco; som que ressoa
+1522|V|ressoar; afetar
+1523|C|pele
+1525|L|enciclopédia
+1526|L|enciclopédia
+1527|M|beleza; estética (cuidados de beleza)
+1528|L|capa (de livro)
+1529|L|sinal; placa de sinalização
+1530|M|padrão; nível médio
+1531|M|amostra; espécime
+1532|M|crítica; comentário
+1533|L|edifício
+1534|M|soneca
+1536|M|amplitude; largura
+1537|L|praça
+1538|A|amplo; espaçoso
+1539|M|rosa (cor)
+1540|L|papel de carta
+1541|L|conserva em vidro
+1542|L|zíper
+1543|L|balão
+1544|M|azar; infortúnio
+1546|M|irregularidade
+1547|M|difusão; popularização
+1548|D|arredores; proximidades
+1549|M|vice (prefixo)
+1550|M|advérbio
+1551|S|cópia; duplicata
+1552|M|plural
+1553|V|incluir
+1554|V|inflar; encher
+1555|V|inchar; encher-se
+1556|A|sujo; anti-higiênico
+1557|V|ficar tarde; avançar (noite)
+1558|M|sinal; símbolo
+1559|P|marido e mulher; casal
+1560|V|ficar obstruído; ficar ocupado
+1561|V|tapar; bloquear
+1562|V|brincar; fazer palhaçada
+1563|M|falta de notícias
+1564|P|samurai
+1565|M|radical (de kanji)
+1567|L|porta de correr de papel (fusuma)
+1568|M|anexo; afiliado
+1569|M|anexo; afiliado
+1570|L|tampa
+1572|A|perigoso; inseguro
+1573|E|resmungando
+1574|S|correio marítimo
+1575|L|peças; acessórios
+1576|C|nevasca
+1577|P|pai e mãe; pais
+1578|X|passagem de nível
+1579|D|sopé (da montanha)
+1580|L|frigideira
+1581|R|blusa
+1582|V|pendurar; balançar
+1583|L|escova
+1584|X|plataforma (de estação)
+1585|M|livre; independente
+1586|M|furigana (leitura sobre o kanji)
+1587|V|virar-se; olhar para trás
+1588|L|impresso; folha de exercícios
+1589|M|velho (prefixo)
+1591|D|terra natal
+1592|V|comportar-se; agir
+1593|R|broche
+1594|M|programa
+1595|L|furoshiki (pano de embrulho)
+1596|E|fofo; macio; leve
+1597|C|erupção
+1598|M|análise; desmontagem
+1599|M|literatura; belas-letras
+1600|M|literatura; documentos de referência
+1601|L|chafariz; fonte
+1602|M|fração (matemática)
+1603|M|estilo de escrita
+1604|M|distribuição
+1605|L|papelaria; material de escritório
+1606|M|contexto
+1607|M|quantidade
+1608|M|classificação
+1609|S|encerramento (de reunião)
+1610|A|calmo; indiferente
+1611|M|em paralelo; ao mesmo tempo
+1612|T|dia útil
+1613|P|soldado
+1614|A|comum; medíocre
+1615|C|planície
+1616|V|ficar amassado; afundar
+1617|C|umbigo
+1618|V|separar; afastar
+1619|L|casa de campo; casa de veraneio
+1620|E|separadamente
+1621|P|veterano; experiente
+1622|X|helicóptero
+1623|S|edição; compilação
+1624|L|banheiro; sanitário
+1625|L|alicate
+1626|S|bônus; gratificação
+1627|M|prevenção (sufixo)
+1628|L|telescópio
+1629|D|direção; rumo
+1630|L|vassoura
+1631|M|dialeto
+1632|P|monge budista
+1633|M|prevenção
+1634|M|diretriz; política
+1636|M|lei; regra
+1637|L|atadura; bandagem
+1638|A|enorme; vasto
+1639|L|faca de cozinha
+1640|M|equação
+1641|S|prevenção de crimes
+1642|D|direção; região
+1643|P|menino; garotinho
+1644|V|jogar; largar
+1645|A|alegre; radiante
+1647|L|fazenda; pasto
+1648|S|pecuária
+1649|S|saúde pública; higiene
+1650|S|recrutamento; inscrição
+1651|V|secar; pôr para secar
+1652|L|cartaz; pôster
+1653|C|polo norte
+1654|P|filho (de outra pessoa; garoto)
+1656|V|cavar; escavar
+1657|V|entalhar; esculpir
+1658|L|trapo; roupa velha
+1659|T|Obon (festival dos mortos); bandeja
+1660|C|bacia (entre montanhas)
+1661|E|apenas; mero
+1662|S|sede; matriz
+1663|E|por natureza; originalmente
+1664|E|mais ou menos; razoável
+1666|M|número de folhas ou peças planas
+1667|E|toda vez; sempre
+1668|V|enrolar; dar voltas
+1669|L|travesseiro
+1670|V|dobrar; curvar
+1671|E|confuso; sem saber o que fazer
+1672|M|atrito; fricção
+1673|V|misturar-se
+1674|V|misturar-se
+1675|R|máscara
+1676|V|misturar; mexer
+1677|V|pisar por cima; cruzar
+1678|V|ultrapassar com um passo; atravessar; abranger
+1679|L|sala de espera
+1680|V|combinar de encontrar
+1681|D|esquina
+1682|E|escuridão total
+1683|E|preto como carvão
+1684|E|azul-escuro; pálido (de susto)
+1685|E|em primeiro lugar; antes de tudo
+1686|E|branquíssimo
+1687|V|venerar (um deus); consagrar
+1688|D|guichê; balcão
+1689|V|imitar; copiar
+1690|C|pálpebra
+1691|R|cachecol
+1692|E|logo; em pouco tempo
+1693|E|logo; em pouco tempo
+1694|M|maratona
+1695|A|raro; incomum
+1696|D|desvio; volta
+1697|M|lotado; sem lugares
+1698|L|apartamento (condomínio)
+1699|M|nota máxima
+1700|M|ainda não (prefixo)
+1701|V|olhar para cima; admirar
+1702|V|acompanhar na despedida; deixar passar
+1703|V|olhar de cima
+1704|M|aparência exterior
+1705|C|lua crescente
+1706|C|cabo (na costa)
+1707|A|miserável; lastimável
+1708|A|miserável; infeliz
+1709|L|máquina de costura
+1710|E|por si mesmo; pessoalmente
+1711|R|roupa de banho; maiô
+1712|L|loja
+1713|M|título; manchete
+1714|D|itinerário; trajeto
+1715|A|vergonhoso; feio
+1716|V|fitar; olhar fixamente
+1717|V|rever; reavaliar
+1718|V|acostumar-se a ver
+1719|A|feio
+1720|V|dar frutos; amadurecer
+1721|M|posição social; condição
+1722|M|amostra
+1723|V|visitar (doente); perguntar pela saúde
+1724|M|menos de; abaixo de
+1725|M|sobrenome
+1726|M|mili- (prefixo)
+1728|M|privado; civil
+1729|M|democrático
+1730|M|canção folclórica
+1731|M|infinito
+1732|M|liso; de uma cor só
+1734|M|contradição
+1735|M|incontáveis; infinitos
+1736|M|roxo; violeta
+1737|M|bando; rebanho; multidão
+1738|P|sobrinha
+1740|M|obra-prima
+1743|D|lugar famoso; ponto turístico
+1744|M|superstição
+1745|V|ordenar; nomear
+1746|M|produto típico; especialidade
+1747|M|cada um; individualmente
+1748|V|ser abençoado com; ser rico em
+1749|V|dar a volta; circular
+1750|V|ter como alvo; mirar
+1751|L|despertador
+1752|E|no momento; atualmente
+1753|M|marca; sinal de referência
+1754|V|chamar atenção; destacar-se
+1755|A|bagunçado; sem sentido
+1756|E|notavelmente; de forma marcante
+1757|A|feliz; auspicioso
+1758|M|cardápio
+1759|C|tontura
+1760|M|critério; referência
+1761|S|isenção de impostos
+1762|M|área; superfície
+1764|A|trabalhoso; chato
+1765|L|motor
+1766|V|dar lucro; ser lucrativo
+1767|V|ganhar dinheiro; lucrar
+1768|E|sinto muito; imperdoável
+1769|L|madeira; lenha
+1770|M|índice; sumário
+1771|V|mergulhar; esconder-se
+1772|E|talvez; quem sabe
+1773|V|encostar-se; apoiar-se
+1774|V|encostar-se; apoiar-se
+1775|A|moderno
+1776|F|bolinho de arroz (mochi)
+1777|P|modelo
+1778|E|originalmente; desde o início
+1779|L|depósito; despensa
+1780|V|contar; mostrar; indicar
+1781|L|régua; medida
+1782|A|terrível; tremendo
+1783|X|monotrilho
+1785|V|massagear; esfregar; amassar
+1786|V|queimar
+1787|M|evento; festividade
+1788|V|servir (comida); empilhar; prescrever
+1789|M|perguntas e respostas; diálogo
+1790|A|exigente; criterioso
+1791|A|barulhento; ruidoso
+1792|T|noturno; à noite
+1793|L|chaleira
+1795|P|ator
+1796|S|repartição pública
+1797|P|funcionário público
+1798|L|medicamentos; produtos químicos
+1799|M|dever; função
+1800|C|queimadura
+1801|X|trem noturno; viagem noturna
+1802|L|seta
+1803|E|às cegas; sem critério
+1804|L|farmácia
+1805|V|derrotar; acabar com
+1806|E|afinal; como se esperava
+1807|P|senhorio; proprietário
+1808|V|rasgar
+1809|E|inevitável; não tem jeito
+1810|A|macio; mole; tenro
+1811|L|parque de diversões
+1812|S|jornal da tarde
+1814|S|envio pelo correio
+1815|C|chuva de fim de tarde
+1816|C|sol poente
+1817|A|calmo; sem pressa
+1818|S|pago; com cobrança
+1819|R|yukata (quimono de verão)
+1820|M|paradeiro; destino
+1821|C|vapor (de água quente)
+1822|S|transfusão de sangue
+1823|S|transporte
+1824|M|descuido; desatenção
+1825|L|xícara de chá
+1826|L|xícara de chá
+1827|A|frouxo; folgado; lento
+1828|C|lava
+1830|M|termo; vocabulário técnico
+1831|M|resumo; essência
+1832|P|criança pequena; bebê
+1833|M|capacidade; volume
+1834|A|infantil; imaturo
+1835|S|jardim de infância
+1836|M|uso; utilidade
+1837|L|loja de roupas
+1838|M|nutriente
+1839|M|lã de ovelha
+1840|E|finalmente; a duras penas
+1841|M|essência; jeito (de fazer)
+1842|T|seguinte (prefixo)
+1843|A|ganancioso
+1844|A|excessivo; desnecessário; a mais
+1845|V|mandar; enviar
+1846|V|sujar; manchar
+1848|D|outro lugar; fora
+1849|D|cruzamento; encruzilhada
+1850|P|bêbado
+1851|M|preparação; reserva
+1852|V|chamar; dirigir-se a; fazer apelo
+1853|V|chamar; convocar
+1854|V|ressuscitar; reviver
+1855|V|alegrar-se
+1856|S|vinda ao Japão
+1857|S|reprovação; ser reprovado
+1858|T|hora do rush
+1859|M|coluna (de jornal); campo
+1860|F|almoço
+1861|M|corrida; camiseta regata
+1862|A|violento; grosseiro
+1863|M|ciências (matéria)
+1864|M|vantagens e desvantagens; interesses
+1865|M|ritmo
+1866|M|litro
+1867|M|relatório; trabalho escrito
+1868|L|fita; laço
+1869|V|abreviar
+1870|C|bacia (de rio)
+1872|M|ambos (prefixo)
+1873|D|os dois lados
+1874|P|pescador
+1875|P|cônsul
+1876|S|recibo; quitação
+1877|M|temporário; extraordinário
+1878|S|zelador; ficar de guarda da casa
+1880|M|nota zero
+1881|S|congelamento
+1882|R|capa de chuva
+1883|M|recreação
+1884|M|lazer
+1885|C|arquipélago
+1886|L|tijolo
+1887|M|união; aliança
+1888|L|lente
+1889|M|alfabeto romano (rōmaji)
+1890|L|vela
+1891|S|gravação (de áudio)
+1892|L|armário com chave
+1893|L|saguão
+1894|V|discutir; debater
+1895|M|estilo japonês
+1896|M|japonês-inglês
+1897|M|nosso (prefixo)
+1899|A|jovial; juvenil
+1900|V|pedir desculpas
+1901|R|roupa japonesa
+1902|E|relativamente
+1903|M|divisão (matemática)
+1904|E|relativamente
+1905|S|desconto
+1906|R|vestido de uma peça

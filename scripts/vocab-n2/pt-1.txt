@@ -1,0 +1,440 @@
+1|E|inteiro; com tudo (sufixo)
+2|V|abrir (guarda-chuva); segurar (guarda-chuva)
+3|M|cerimônia; estilo (sufixo)
+5|M|número um; primeiro (prefixo)
+6|L|jardim; parque (sufixo)
+7|E|acabar; terminar (sufixo)
+10|M|tornar-se; transformar (sufixo)
+11|M|família; departamento; curso (sufixo)
+13|M|desenho; quadro; traço (sufixo)
+15|E|difícil de (sufixo)
+16|E|ter tendência a
+17|S|edição (de publicação; sufixo)
+19|M|volume (de livro; contador)
+20|L|edifício; casa de (sufixo)
+21|M|sensação; sentimento (sufixo)
+22|T|período; fase (sufixo)
+23|L|aparelho; instrumento (sufixo)
+24|L|máquina (sufixo)
+26|M|religião; ensino (sufixo)
+27|M|linha; fila (contador)
+28|S|tipo de negócio; ramo (sufixo)
+29|E|conseguir terminar; levar até o fim
+34|M|sistema; linhagem (sufixo)
+35|D|zona; área; esfera (sufixo)
+36|S|escola (contador)
+38|M|número (de revista; contador); nome de navio
+40|T|cada; todo (prefixo)
+42|S|produzido em (sufixo)
+43|M|história de (sufixo)
+46|T|-ésima hora de aula
+47|L|cômodo (contador)
+51|S|empresa (contador)
+54|M|coleção de (sufixo)
+58|S|ministério (sufixo)
+59|S|comércio; negociante (sufixo)
+60|M|vitórias (contador)
+61|M|artigo; cláusula (contador)
+66|M|já pronto; concluído (sufixo)
+68|X|navios (contador)
+69|M|partidas; combates (contador)
+71|D|ao longo de
+72|X|navios pequenos (contador)
+74|E|cheio de (algo ruim)
+75|P|grupo; time (sufixo)
+76|R|roupas (contador); chegada (sufixo)
+77|S|repartição; agência (sufixo)
+78|M|trilhão
+79|P|líder; chefe (sufixo)
+80|L|caderno (sufixo)
+81|D|quadra; quarteirão (de endereço)
+82|M|cartas (contador)
+83|M|uso de (sufixo)
+84|M|com; acompanhado de (sufixo)
+87|M|gota
+90|M|classe; grau (sufixo)
+94|E|prestes a (fazer)
+96|M|ano escolar (contador)
+97|T|noites de hospedagem (contador)
+98|M|tiros (contador)
+99|M|-ésimo (sufixo ordinal)
+100|S|custo de (sufixo)
+101|C|doença (sufixo)
+102|M|parte; seção (sufixo)
+105|T|vezes (contador)
+106|M|discurso; dialeto (sufixo)
+107|M|passos (contador)
+108|E|com jeito de; meio (sufixo)
+109|E|lado (na comparação)
+110|E|parece com; como
+111|E|destinado a (sufixo)
+113|P|pessoa que tem (sufixo)
+114|M|perguntas (contador)
+117|M|estilo; escola; maneira (sufixo)
+118|S|tarifa; taxa (sufixo)
+119|D|território
+121|M|teoria; debate (sufixo)
+124|M|ideia
+125|A|vago; ambíguo
+126|V|abanar; usar leque
+127|A|pálido
+128|V|ficar chocado; ficar pasmo
+129|M|sotaque; acento
+130|C|bocejo
+131|E|até o fim; insistentemente
+132|T|seguinte; próximo
+133|T|madrugada; amanhecer
+134|V|ansiar por; ter admiração por
+135|P|dorminhoco
+136|C|pegadas
+137|D|aos pés; ao redor dos pés
+138|V|saborear; apreciar
+142|D|aqui e ali
+143|A|descarado; atrevido
+144|S|compressão
+145|M|endereço (do destinatário)
+146|V|aplicar-se a; encaixar-se em
+147|V|aplicar; adaptar
+148|V|comportar-se com violência; debater-se
+150|V|tostar; assar levemente
+151|V|transbordar
+152|L|veneziana de correr
+153|V|mimar; estragar (com mimos)
+154|V|sobrar; exceder
+155|M|tricô
+156|M|tricô; trama
+157|V|tricotar
+158|A|perigoso; crítico
+159|A|suspeito; duvidoso
+160|A|áspero; bruto; selvagem
+161|A|grosso; áspero
+162|M|resumo; sinopse
+164|E|de novo; novamente
+165|V|mudar; reformar; corrigir
+166|V|escrever; publicar (obra)
+167|A|grato; agradecido
+168|E|isso e aquilo
+169|V|ficar tempestuoso; ficar áspero; arruinar-se
+170|A|agitado; apressado
+172|A|simples; sem cuidado
+174|L|antena
+175|V|começar a falar; sugerir
+176|V|mandar; ordenar
+177|M|significado; importância
+178|E|vivamente; cheio de vida
+179|E|de repente
+180|E|vários (prefixo)
+181|S|criação de filhos
+182|E|um pouco; de certa forma
+183|M|arranjo de flores (ikebana)
+184|T|depois disto; daqui em diante
+185|M|igual (sinal de =)
+186|T|a partir de; daqui para frente
+187|A|corajoso; valente
+188|M|comida, roupa e moradia
+189|E|um por um; individualmente
+190|E|provisoriamente; por ora
+191|E|ainda mais; muito mais
+192|A|de primeira classe; de alto nível
+194|T|dois anos atrás (anteontem de ano)
+195|E|ao mesmo tempo; de uma vez
+196|E|por um momento; uma vez
+197|M|fixo; regular
+198|E|vá e volte bem (a quem sai)
+199|E|já volto (ao sair)
+200|E|já volto (ao sair, formal)
+201|E|vá e volte bem (a quem sai)
+202|S|mudança (de endereço ou de local)
+203|L|poço
+204|M|latitude
+205|V|ser arrogante; pavonear-se
+206|V|ter aversão; mostrar relutância
+207|E|cada vez mais; finalmente
+208|V|torrar; assar
+209|V|tostar (na panela); torrar
+210|L|recipiente
+211|L|tinta
+212|C|gravidade
+213|P|mulher
+214|R|lã
+215|P|garçonete
+216|C|plantas de jardim; plantas em vaso
+217|V|passar fome; morrer de fome
+218|V|flutuar; vir à mente
+219|V|fazer flutuar; exprimir (no rosto)
+220|V|flutuar
+221|V|ouvir; saber (humilde)
+222|S|recibo
+223|V|encarregar-se de
+224|A|um pouco escuro; sombrio
+225|V|diluir
+226|S|reunião preparatória; combinação
+227|V|negar; desmentir
+229|F|udon
+230|V|assentir com a cabeça
+233|V|respeitar; honrar
+234|V|virar do avesso; virar (algo)
+235|L|porta dos fundos
+236|V|prever; adivinhar
+237|M|ressentimento
+238|V|guardar rancor; culpar
+239|V|invejar
+240|S|vendas; faturamento
+241|S|vendas; faturamento
+242|S|esgotado (à venda)
+243|V|esgotar-se
+244|S|vendas
+245|S|vendas; procura
+246|E|andando sem rumo
+248|L|canal
+249|E|muito; bastante
+250|M|frase em inglês
+251|M|inglês-japonês (dicionário)
+252|E|deixe-me ver; bem...
+253|C|líquido
+254|M|etiqueta; boas maneiras
+255|L|tinta (para pintura)
+256|R|avental
+257|A|grande; ilustre; admirável
+258|S|banquete; festa
+259|M|horticultura; jardinagem
+260|M|teatro (peça)
+261|M|circunferência
+262|X|passeio escolar; excursão
+263|M|prolongamento; extensão
+264|L|chaminé
+265|M|orquestra
+266|M|automação
+267|V|perseguir; correr atrás
+268|V|ultrapassar
+269|L|óleo
+271|P|princesa
+272|V|responder a; atender a
+273|S|recepção (de visitas)
+274|S|atendimento; trato com clientes
+275|X|ida e volta
+276|D|Europa e América; Ocidente
+277|M|aplicação; uso prático
+278|A|aproximado; rústico
+279|L|rua principal
+280|E|aproximadamente
+281|E|bem-vindo de volta
+282|E|por favor, sente-se
+283|E|graças a você (resposta a um cumprimento)
+284|F|acompanhamento (prato para o arroz)
+285|E|por favor, não se incomode
+286|V|rezar; venerar
+287|F|repetição; mais uma porção
+288|V|compensar; suprir
+289|E|sinto muito (ao ouvir uma notícia ruim)
+290|D|ao ar livre
+291|M|parte em kana que acompanha o kanji (okurigana)
+292|E|cuide-se; passe bem
+293|V|negligenciar; descuidar
+294|V|segurar; conter; apertar
+295|E|antes de você; com licença (na frente)
+297|P|tio (mais novo que o pai ou a mãe)
+298|A|lamentável; que dá pena
+299|P|tio; senhor de meia-idade
+300|P|tio; senhor de meia-idade
+301|P|tio; senhor de meia-idade
+302|E|com licença (ao entrar)
+303|E|muito obrigado por tudo
+304|E|melhoras; cuide-se
+305|V|acalmar-se; instalar-se
+306|S|saída; passeio
+307|P|empregada; ajudante doméstica
+308|V|ameaçar; assustar
+309|M|objeto perdido
+310|V|surpreender; assustar
+311|E|por favor
+312|E|cada um; respectivamente
+313|P|tia (mais velha que o pai ou a mãe)
+314|P|tia (mais nova que o pai ou a mãe)
+315|P|tia; senhora
+316|E|bom dia
+317|M|visita a um templo ou santuário
+318|E|desculpe a espera
+319|E|aguarde um momento, por favor
+320|E|desculpe a demora
+321|A|feliz; digno de parabéns
+322|A|inesperado
+323|E|com todas as forças; plenamente
+324|V|ficar convencido de; meter na cabeça
+325|E|com todas as forças; plenamente
+326|E|com toda a força; ao máximo
+327|A|pesado; sério
+328|E|férias; boa noite
+329|F|lanche entre as refeições
+330|C|dedão; polegar
+331|L|órgão (instrumento)
+332|M|prefixo honorífico
+333|M|bênção; benefício
+334|L|estufa
+335|L|fonte termal; onsen
+336|C|zona temperada
+337|S|prezados senhores (em carta a empresa)
+338|P|mulher
+340|M|curva (estrada); bola curva
+343|S|abertura de reunião
+344|L|salão de reuniões
+345|S|catraca; verificação de bilhetes
+346|S|dissolução; dispersão
+347|C|banho de mar
+348|M|número de vezes; frequência
+349|S|cartela de passagens
+350|S|revisão; emenda
+351|C|tempo bom; céu limpo
+352|S|explicação; comentário
+353|S|reforma; remodelação
+354|X|abertura (de via ou linha)
+355|M|rotação; giro
+356|M|resposta; solução
+357|M|resposta; réplica
+358|D|exterior; externo
+359|S|libertação; emancipação
+360|S|abertura; liberação
+361|C|oceano
+362|M|introdução; visão geral
+363|E|pelo contrário; em vez disso
+364|L|casa; edifício
+365|V|envolver-se; relacionar-se
+366|S|correspondência registrada
+367|M|ditado
+368|L|cerca viva; sebe
+369|M|limite; o máximo possível
+370|M|cada (prefixo)
+371|A|imaginário; fictício
+372|P|cada um; individual
+373|M|ampliação; expansão
+374|M|ciência; erudição
+375|D|cada região; vários lugares
+376|M|ampliação; expansão
+377|M|ângulo
+378|M|ano escolar; série
+380|A|especial; excepcional
+381|M|probabilidade
+382|M|capacidade escolar; conhecimentos
+383|M|multiplicação
+384|M|multiplicação (em kana)
+385|S|aprovação; adoção (de proposta)
+386|C|cratera (de vulcão)
+387|M|queda; descida
+390|C|vulcão
+391|E|certamente (atendimento a cliente)
+392|S|empréstimo (de livros, etc.)
+393|M|erro; culpa; negligência
+394|C|fruta; fruto
+395|L|quarto para alugar
+396|L|casa para alugar
+397|D|ponto; trecho; lugar
+398|M|trecho; ponto (leitura em kana)
+399|A|excessivo; demais
+400|V|roer; mordiscar
+401|S|tributação; cobrança de imposto
+402|L|fita cassete
+403|M|sublinhado
+404|M|aceleração
+405|M|aceleração (medida)
+406|M|katakana
+407|V|ficar arrumado; resolver-se
+408|M|torrão; bloco
+409|V|endurecer; firmar-se
+410|X|ida (só ida)
+411|V|inclinar-se
+412|V|ser unilateral; inclinar-se para um lado
+413|M|disciplina; matéria de estudo
+414|S|congresso científico
+416|M|classe; turma
+417|V|carregar nos ombros
+418|M|parênteses; colchetes
+419|M|tipo de impressão; letra de forma
+420|E|por conta própria
+422|M|vitalidade; energia
+424|M|kana
+425|M|ortografia em kana
+427|M|aquecimento
+428|V|acumular funções; servir também de
+429|L|capa; cobertura
+430|M|maioria (mais da metade)
+431|C|mofo; bolor
+432|V|cobrir; pôr por cima
+433|L|panela de ferro; chaleira
+434|E|não tem problema; não me importo
+435|L|papel descartado
+436|P|deus; divindade
+437|L|navalha; lâmina
+438|F|chiclete
+439|S|carga; frete
+442|M|cor; colarinho
+443|V|zombar; provocar
+444|A|vazio; oco
+445|L|cartas de baralho (karuta)
+446|V|murchar; secar (planta)
+447|M|caloria
+448|V|querer bem; mimar
+450|S|ordem de pagamento; câmbio
+451|L|telha
+453|M|ventilação
+454|M|emoção profunda
+455|D|Kansai (região de Osaka)
+456|T|dia de Ano-Novo
+457|M|apreciação; contemplação
+458|V|sentir; perceber
+459|M|indireto
+462|M|observação (científica)
+463|C|zona fria
+464|M|equívoco; entendimento errado
+465|S|órgão público
+466|L|comida enlatada; lata
+467|L|pilha seca
+468|D|Kanto (região de Tóquio)
+469|M|ideia; noção; senso
+470|M|brinde; saúde!
+471|L|placa; letreiro
+472|S|cuidado de doente
+473|L|coroa; guirlanda
+474|M|dicionário chinês-japonês
+475|C|pressão atmosférica
+476|R|troca de roupa; roupa de reserva
+477|V|trocar de roupa
+478|X|locomotiva
+479|M|fome (calamidade); escassez
+480|L|instrumento; utensílio
+482|M|símbolo; código
+483|V|picar; talhar; gravar
+484|M|cerimônia; ritual
+485|M|padrão; critério
+486|M|padrão; critério
+487|T|ato de levantar-se
+488|V|vestir (alguém)
+489|M|fundamento; base
+490|D|base
+491|E|motivo; ensejo; deixa
+492|E|motivo; ensejo; oportunidade
+493|E|apertado; cheio
+494|M|alicerce; base
+495|L|lugar de hóspedes; poltronas de clientes
+496|L|sala de visitas
+497|P|gangue
+498|L|campus
+499|S|folga; fechamento (da loja ou do negócio)
+500|S|aula cancelada
+502|S|salário; remuneração
+503|M|descanso; recuperação
+504|A|puro; claro; nobre
+505|M|reforço; fortalecimento
+506|M|fronteira; limite
+507|M|comunista (prefixo)
+508|M|evento; cerimônia
+509|M|sentir-se constrangido; lamentar incomodar
+510|M|cultura; formação; erudição
+511|M|fila; procissão; matriz
+512|S|pesca (setor)
+513|M|curva (linha)
+514|M|ordem; regra; disciplina
+515|V|decapitar; matar à espada
+516|E|ter cuidado; prestar atenção
+518|C|peixe-dourado
+519|L|ar-condicionado
+520|D|zona; área

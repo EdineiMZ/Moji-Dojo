@@ -1,0 +1,440 @@
+522|M|número par
+523|M|fantasia; devaneio
+524|C|ar; céu
+525|L|prego
+526|V|dividir; pontuar; marcar
+527|L|pente
+528|C|espirro
+529|S|reclamação; queixa
+530|M|esforço; sofrimento (para conseguir algo)
+531|L|lixo; resto
+532|V|desmanchar; trocar (dinheiro); derrubar
+533|C|dedo anelar
+534|V|desmoronar; desfazer-se
+535|V|quebrar; esmagar
+536|V|quebrar-se; despedaçar-se
+537|V|cansar-se; gastar-se
+538|A|sem valor; bobo; ruim
+540|C|lábio
+541|R|batom
+542|V|grudar; colar-se
+543|V|colar; juntar
+544|A|enfadonho; repetitivo; carregado (sabor)
+545|M|sinais de pontuação
+546|V|distribuir; entregar
+547|M|engenho; jeito; ideia para melhorar
+548|M|divisão; classificação
+549|M|combinação
+550|V|montar; construir
+551|V|lamentar; arrepender-se
+552|S|lavagem a seco; lavanderia
+553|V|envolver; embrulhar
+554|E|por favor, muito mesmo (pedido insistente)
+556|M|prática; treino
+557|M|linguagem honorífica
+558|L|lâmpada fluorescente
+559|M|forma; formalidade; formato
+560|M|continuação
+561|L|lã de tricô
+562|M|longitude
+563|M|sistema; linhagem
+564|M|artes do espetáculo
+565|M|corrida de cavalos
+566|S|segurança; vigilância
+567|M|adjetivo
+568|M|adjetivo nominal (adjetivo な)
+569|S|departamento de cirurgia
+570|L|pele (de animal); pelagem
+571|M|aumento súbito
+572|X|descer (do veículo)
+573|T|últimos dez dias do mês
+574|L|esgoto; água servida
+575|V|raspar; cortar aos poucos
+576|M|dígito; casa decimal
+577|R|geta (tamancos de madeira)
+578|C|pressão arterial
+579|S|salário mensal
+580|M|obra-prima
+581|T|fim do mês
+582|M|sinal; indício
+583|A|vulgar; grosseiro
+585|A|esfumaçado; com fumaça
+586|A|íngreme; severo
+587|M|atual; vigente (prefixo)
+588|S|visita de estudo
+589|A|modesto; humilde
+590|M|manuscrito
+591|M|lugar de origem
+592|M|origem; primitivo
+593|S|treinamento
+594|A|rigoroso; severo
+595|M|modéstia; humildade
+596|S|prefeitura (sede da província)
+597|M|limite
+598|E|de fato; realmente
+599|L|microscópio
+600|A|esforçado; com empenho
+601|M|princípio; teoria
+602|M|matéria-prima
+605|M|percurso; curso (de refeição)
+606|M|coro
+607|A|querido; que se sente saudade
+608|M|alto (prefixo)
+609|P|operário de fábrica
+610|A|forçado; insistente
+611|M|poluição; dano público
+612|A|de alta classe; de primeira
+613|M|público; coletivo
+614|M|artesanato
+615|M|piedade filial; respeito aos pais
+616|M|cruzamento
+617|P|palestrante; professor convidado
+618|S|obra
+619|M|fórmula; oficial
+620|M|desculpa; pretexto
+621|E|assim; com isso
+623|P|público; população
+624|L|perfume
+626|M|mérito; feito notável
+627|C|raio de luz
+628|A|alto (edifício de muitos andares)
+629|M|estrutura; construção
+630|S|troca; revezamento
+631|S|revezamento; turno; substituição
+632|L|terra cultivável
+633|X|meios de transporte
+634|L|pátio da escola
+635|M|afirmação; resposta positiva
+636|M|altitude; avançado
+637|M|de alto nível
+638|S|união; fusão
+639|S|ensino médio (colégio)
+640|S|anúncio oficial; divulgação
+641|C|mineral
+642|S|serviço público
+643|M|item; tópico
+644|C|folhas de outono (momiji)
+646|A|racional
+647|M|intercâmbio; corrente alternada
+648|S|confluência; junção
+649|M|efeito; eficácia
+650|V|queimar; chamuscar
+651|P|rei
+652|M|nacionalidade
+653|S|nacional; público (do governo)
+654|E|obrigado pelo esforço
+655|V|queimar-se; ficar queimado
+656|V|congelar de frio; ficar gelado
+657|M|ideia de onde está; pista
+658|V|entender; estar a par
+659|L|assento; banco
+660|L|assento; banco
+661|V|sentar-se
+662|M|tabela dos 50 sons do japonês
+663|V|fabricar; preparar
+665|M|indivíduo
+666|E|obrigado pela refeição
+667|E|eu é que agradeço (retribuição de cumprimento)
+668|S|mesada; dinheiro de bolso
+669|P|cozinheiro; torneira
+670|E|escondido; às escondidas
+671|M|clássico; obra clássica
+672|V|deixar recado
+673|M|jeito de falar; vocabulário
+674|T|outro dia; há pouco
+675|M|falta de contato por muito tempo
+676|L|borracha
+677|E|desculpe; dispensado (ao recusar)
+678|E|com licença (ao chegar a uma casa)
+679|C|dedo mindinho
+680|V|aguentar; suportar
+681|M|diversão; entretenimento
+682|E|olhe; veja (honorífico)
+683|M|coleção
+684|V|fazer rolar
+685|V|rolar; cair rolando
+686|M|azul-marinho
+688|M|concurso; competição
+689|L|concreto
+690|M|mistura
+691|L|tomada elétrica
+692|M|cardápio; menu
+693|E|boa noite
+694|S|clube; círculo (de interesse)
+695|M|re- (de novo; prefixo)
+696|M|o mais (prefixo)
+697|S|estar matriculado na escola
+698|E|repetidamente; várias vezes
+699|T|feriado nacional; dia de festa
+700|S|cobrança; insistência
+701|S|correção; atribuição de nota
+702|M|calamidade; desgraça
+703|M|costura
+704|L|madeira; lenha
+705|L|sirene
+706|D|ao contrário; de cabeça para baixo
+707|D|ao contrário; de cabeça para baixo
+708|V|procurar; buscar
+709|V|voltar ao passado; subir (rio)
+710|L|bar; taverna
+711|T|três dias atrás
+712|T|há pouco
+713|M|índice (de livro)
+714|P|autor; artista
+715|S|eliminação; exclusão
+716|S|elaboração; preparo
+717|S|fabricação; produção
+718|V|sondar; procurar; investigar
+719|V|sussurrar
+721|L|colher
+722|L|sala de tatame
+723|M|inconveniente; impedimento
+724|M|dedução; saldo
+725|F|sashimi (peixe cru fatiado)
+727|E|realmente; como era de esperar
+728|M|fotografia; filmagem
+729|C|ruído; barulho de fundo
+730|E|depressa; rapidamente
+731|E|imediatamente; sem demora
+732|M|ferrugem
+733|V|enferrujar
+734|L|almofada de chão
+735|V|atrapalhar; impedir
+736|E|adeus
+737|P|empregado de empresa (assalariado)
+738|A|barulhento
+739|A|fresco; revigorante
+740|M|triângulo
+741|M|aritmética
+743|D|local de produção
+744|M|amostra
+745|C|floresta de montanha
+746|M|temporada (esportiva)
+747|L|lençol
+748|V|ficar pronto; ficar acabado
+749|T|três dias depois de hoje (depois de depois de amanhã)
+750|L|templo
+751|E|em silêncio absoluto
+752|S|autodefesa
+753|F|salgado (sabor)
+754|A|salgado
+755|P|apresentador; mestre de cerimônias
+757|A|quadrado
+758|E|não tem jeito
+759|M|horário (das aulas)
+761|L|terreno
+762|V|estender; forrar
+763|V|crescer espesso
+764|S|trazer consigo
+765|L|ímã
+766|M|arredondamento (de números)
+767|E|o tempo todo; continuamente
+768|M|estudo por conta própria
+769|V|acalmar-se; silenciar
+770|M|postura; atitude
+771|M|ciências naturais
+772|M|velocidade por hora
+773|P|descendente
+774|M|cadáver
+775|M|rascunho
+776|L|casa própria
+777|D|parte antiga da cidade (shitamachi)
+778|S|autogoverno; autonomia
+780|M|sensação concreta; percepção
+782|A|insistente; teimoso; enjoativo
+783|S|prática; estágio
+784|S|resultado real; realizações
+786|S|ato de escrever; redação (de obra)
+787|M|objeto real; coisa verdadeira
+788|C|rabo (de animal)
+789|M|uso prático
+791|M|exemplo
+792|E|com licença; desculpe
+793|M|desilusão amorosa
+794|S|designação; indicação
+795|X|ferrovia particular
+797|V|amarrar; atar
+798|D|chão; base
+799|V|ficar dormente
+800|S|papel-moeda; cédula
+801|V|murchar
+802|V|murchar (flor, esperança)
+803|V|torcer; espremer; reduzir
+804|M|listra
+806|E|profundamente; de coração
+807|M|nome completo
+808|T|prazo final
+809|T|prazo final; encerramento
+810|V|encerrar; fechar de vez
+811|E|consegui!; boa!
+812|V|ficar úmido; ficar molhado
+813|D|chão; superfície da terra
+814|P|jornalista
+815|M|ciências sociais
+816|V|agachar-se
+817|L|torneira
+818|M|ponto fraco
+819|L|garagem
+820|P|cobrador; condutor (de trem)
+821|M|desenho do natural; esboço
+822|S|editorial
+823|C|soluço
+824|L|obturador; persiana de enrolar
+825|V|chupar; mastigar
+826|L|roda
+827|M|piada; trocadilho
+828|M|jokenpô (pedra, papel e tesoura)
+829|M|pesado (prefixo)
+830|S|reunião; assembleia
+831|L|moradia; residência
+832|S|cobrança de dinheiro
+833|M|reunião; ponto de encontro
+834|M|caligrafia
+835|S|conserto; reparo
+837|L|tapete
+838|X|terminal; última parada
+839|M|ponto principal; ênfase
+840|S|posse (em cargo)
+841|D|arredores; periferia
+842|P|diretor; alto executivo
+843|M|fim; término
+844|M|peso
+845|C|gravidade
+846|M|expressão idiomática; palavra composta de kanji
+847|T|feriado nacional
+848|M|redução
+849|S|prestar exame
+850|M|sujeito (gramática)
+851|P|marido (próprio)
+852|S|ir ao trabalho; estar no trabalho
+853|M|predicado
+854|S|viagem de negócios
+855|M|duração da vida
+856|P|papel principal; protagonista
+857|L|fone (de telefone)
+858|M|circulação; ciclo
+859|P|policial
+860|E|em ordem; um depois do outro
+861|M|ordem; sequência; procedimento
+862|A|puro de coração
+863|A|puro; genuíno
+864|M|primeiro (prefixo)
+865|M|vários (prefixo)
+868|M|digestão
+869|P|aluno do ensino fundamental I
+870|E|não tem jeito; não vale a pena
+871|M|xogi (xadrez japonês)
+872|C|vapor
+873|L|régua
+874|M|nível avançado; superior
+875|S|comércio; negócios
+876|A|passivo
+877|S|prêmio em dinheiro
+878|D|alto e baixo; para cima e para baixo
+879|L|porta de papel de correr (shoji)
+880|S|empresa comercial
+881|X|embarque (em trem ou carro)
+882|T|primeiros dez dias do mês
+883|M|decimal; fração
+884|V|surgir; ocorrer
+885|S|loja; casa comercial
+886|M|foco; ponto central
+887|M|desinfecção
+888|M|vitória ou derrota
+889|C|evaporação; desaparecimento sem explicação
+891|A|refinado; elegante
+892|M|disputa; partida
+893|M|urina (informal)
+894|L|quartel de bombeiros
+895|M|peso líquido
+896|D|frente
+897|M|desgaste; consumo
+899|M|nível elementar
+900|P|professor assistente
+901|F|sal de cozinha
+902|P|artesão
+903|S|local de trabalho
+904|T|primeiros dez dias do mês
+905|L|livro; publicação
+906|L|louça; talheres
+907|S|loja
+908|L|livraria
+909|M|caligrafia (shodō)
+910|M|noções básicas
+911|C|cabelo branco
+912|M|série
+913|P|conhecido; conhecida
+914|S|particular (privado)
+915|S|material; dados
+916|F|caldo; sopa
+917|P|amador; leigo
+918|C|ruga; dobra
+919|M|miolo; núcleo; pavio
+920|X|Shinkansen (trem-bala)
+921|C|vácuo
+922|S|recursos humanos; pessoal
+923|M|corpo e mente
+924|V|acreditar; confiar
+925|S|requerimento; pedido
+926|M|artificial; sintético
+927|L|cama
+928|S|diagnóstico
+929|S|invasão
+930|M|ciências humanas
+931|M|vida humana
+932|T|alta madrugada
+933|C|floresta; bosque
+934|P|parente
+935|X|rumo; direção (de navio ou avião)
+936|M|mito; lenda
+938|S|pesca e produtos do mar
+939|S|ato de cozinhar
+940|C|vapor de água
+941|C|hidrogênio
+942|M|vertical; perpendicular
+943|M|estimativa; suposição
+944|C|gota de água
+945|L|cantil; garrafa de água
+946|M|ensaio; crônica
+947|C|umidade; teor de água
+948|M|horizontal; nível
+949|C|horizonte
+950|C|superfície da água
+951|T|quarta-feira
+952|A|descarado; atrevido
+953|E|o tempo todo; muito mais
+954|P|filho caçula
+955|R|lenço de pescoço
+956|M|livro ilustrado; guia ilustrado
+957|M|brecha; momento de descuido
+958|C|cedro japonês
+959|M|gostos e desgostos
+960|M|questão de gosto
+961|V|ficar transparente
+962|D|fresta; abertura
+963|S|escola
+964|E|pelo menos
+965|M|figura geométrica
+966|L|sino pequeno
+967|V|refrescar-se
+968|M|começo; largada
+969|P|aeromoça
+970|E|de modo claro; aliviado
+971|M|palco; etapa
+972|R|meias (femininas finas)
+973|M|parada
+974|A|obediente; dócil
+975|M|cabeça; cérebro
+976|L|alto-falante
+977|M|gráfico; diagrama
+978|A|elegante; esbelto
+979|L|moradia
+980|E|desculpe
+981|M|sumô
+982|L|slide
+983|V|deslocar; adiar
+984|E|em fileira
+985|R|chinelos
+987|A|esperto (no mau sentido); desonesto
+988|M|medida; dimensão
+990|S|alfândega

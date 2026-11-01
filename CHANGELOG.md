@@ -2,6 +2,12 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.38.3] - 2026-11-01
+
+Passada visual dos 8 temas no celular (4 cores, claro e escuro): todos legíveis.
+
+- **Seletor de cores (Ajustes > Aparência):** o emoji ficava ao lado do nome na opção selecionada e em cima nas outras, apertado e inconsistente. Agora o emoji fica sempre em cima do texto, em todas as opções, e o leitor de tela fala só o nome.
+
 ## [2.38.2] - 2026-11-01
 
 - **Chips e controle segmentado:** as opções não selecionadas (meta por dia, dia de folga, filtros) só tinham a borda fraca como limite; agora usam o contorno `field` (3:1), conferido no celular.

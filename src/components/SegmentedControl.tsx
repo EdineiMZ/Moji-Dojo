@@ -44,22 +44,31 @@ export function SegmentedControl<T extends string>({ options, value, onChange }:
         ) : null}
         {options.map((opt) => {
           const selected = opt.value === value;
+          // Emoji no começo do rótulo ("🌸 Sakura") fica sempre em cima do texto, igual em todas as opções; antes quebrava só nas mais estreitas.
+          const [, emoji, text] = /^(\p{Extended_Pictographic}️?)\s+(.+)$/u.exec(opt.label) ?? [];
           return (
             <PressableScale
               key={opt.value}
               accessibilityRole="tab"
               accessibilityState={{ selected }}
+              accessibilityLabel={opt.label.replace(/^\p{Extended_Pictographic}️?\s+/u, '')}
               onPress={() => onChange(opt.value)}
               scaleTo={0.97}
               haptic
               style={styles.segment}
             >
+              {emoji ? (
+                <AppText center style={styles.emoji} importantForAccessibility="no" accessibilityElementsHidden>
+                  {emoji}
+                </AppText>
+              ) : null}
               <AppText
                 center
+                numberOfLines={1}
                 style={{ fontFamily: fonts.bold, fontSize: fontSizes.body - 1 }}
                 color={selected ? 'onPrimary' : 'muted'}
               >
-                {opt.label}
+                {emoji ? text : opt.label}
               </AppText>
             </PressableScale>
           );
@@ -73,5 +82,6 @@ const styles = StyleSheet.create({
   track: { borderRadius: radii.pill, borderWidth: 1.5, padding: spacing.xs },
   row: { flexDirection: 'row' },
   indicator: { position: 'absolute', top: 0, bottom: 0, left: 0, borderRadius: radii.pill },
+  emoji: { fontSize: 18, lineHeight: 22 },
   segment: { flex: 1, minHeight: 48, justifyContent: 'center', borderRadius: radii.pill },
 });

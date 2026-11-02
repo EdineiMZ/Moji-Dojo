@@ -265,7 +265,7 @@ Arquivos abaixo da média:
 | # | Estado | Como |
 |---|---|---|
 | F1 | aberto | 真中, 沿い, 遣い, 初: leituras de sufixo ou escrita incomum, a decidir com um falante |
-| F2 | aberto | exemplos de kanji com kanji ainda não ensinados |
+| F2 | feito | a lição do kanji avisa quais kanji da palavra de exemplo ainda não foram vistos (e quais o app não ensina) |
 | F3 | feito | g1: "está" só para estado, lugar remete ao tópico 7 |
 | F4 | feito | g9: aviso de que きれい termina em い mas é do tipo な |
 | F5 | feito | g7 avisa do が e o tópico 11 o explica (g39 movido) |

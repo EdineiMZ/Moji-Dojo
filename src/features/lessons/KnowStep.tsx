@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import { AppText, Bold, Button, Card, StrokeAnimation, PressableScale } from '@/components';
 import { KANJI_HINTS_EXTRA } from '@/content/kanjiHints';
-import { kanaExampleFor, kanjiExampleFor } from './examples';
+import { kanaExampleFor, kanjiExampleFor, laterKanjiIn, laterKanjiNote } from './examples';
 import { KANA_MNEMONICS, KANJI_HINTS } from '@/data/hints';
 import { STROKES } from '@/data/strokes';
 import { getItem, pronunciationText } from '@/features/catalog';
@@ -38,6 +38,7 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
 
   const kanaExample = kanaExampleFor(char);
   const kanjiExample = kanjiExampleFor(char);
+  const laterNote = kanjiExample ? laterKanjiNote(laterKanjiIn(kanjiExample.word, char)) : undefined;
   const moreWords = item.script === 'kanji' ? otherWordsWithKanji(char, kanjiExample?.word) : [];
 
   return (
@@ -81,6 +82,11 @@ export function KnowStep({ items, pos, onPosChange, finishLabel, onFinish }: Kno
                     <Bold>{kanjiExample.word}</Bold> ({kanjiExample.reading}) {kanjiExample.meaning} 🔊
                   </AppText>
                 </PressableScale>
+              ) : null}
+              {laterNote ? (
+                <AppText variant="caption" color="muted" center>
+                  {laterNote}
+                </AppText>
               ) : null}
               {moreWords.length > 0 ? (
                 <View style={styles.moreWords}>

@@ -51,6 +51,13 @@ export interface Question {
   options: readonly QuizItem[];
   /** Pergunta repetida por ter sido errada antes. */
   retry: boolean;
+  /**
+   * Como a pergunta é respondida quando não é por alternativas: `build` monta a palavra com `tiles`, `type` a digita no teclado de
+   * flick. Em ambos o item é a palavra (o significado aparece, a escrita é a resposta). Sem isto, é por alternativas.
+   */
+  mode?: 'build' | 'type';
+  /** As peças da montagem (modo `build`). */
+  tiles?: readonly { id: number; text: string }[];
 }
 
 export function shuffle<T>(list: readonly T[], rng: Rng = Math.random): T[] {

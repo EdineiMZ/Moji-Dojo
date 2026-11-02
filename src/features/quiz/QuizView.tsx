@@ -45,8 +45,12 @@ import {
   type QuizResult,
   type QuizState,
 } from './quiz';
+import { BuildWordQuestion } from './BuildWordQuestion';
 import { MnemonicNote } from './MnemonicNote';
+import { TypeWordQuestion } from './TypeWordQuestion';
+import { findWord } from '@/content';
 import { vocabWordOf, wordMnemonicFallback } from '@/features/vocab/kanjiWords';
+import { typedMatches } from '@/features/vocab/variants';
 import { WriteQuestion, type WriteResult } from './WriteQuestion';
 
 /** Tamanho do texto do enunciado: caractere ou sílaba grande; palavra de vocabulário, menor para caber em uma linha. */
@@ -195,6 +199,17 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
     settle(resolveQuestion(quiz, correct), '', write, hinted);
   };
 
+  /**
+   * Palavra montada com peças ou digitada: confere com a palavra do cartão. Errar é como errar uma alternativa (a pergunta volta
+   * mais adiante e o cartão vai para a caixa 1); "Não sei" (texto vazio) conta como erro e mostra a resposta.
+   */
+  const submitWord = (text: string) => {
+    if (answered) return;
+    const word = findWord(current.item.char);
+    const correct = word !== undefined && text !== '' && typedMatches(word, text);
+    settle(resolveQuestion(quiz, correct), text);
+  };
+
   const toChar = current.direction === 'r2k' || isAudio;
   const stateOf = (char: string): OptionState => {
     if (!answered) return 'idle';
@@ -219,7 +234,15 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
       </View>
 
       <SwapView viewKey={step} kind="slide" style={styles.root}>
-        {isWrite && isStudyItem(current.item) ? (
+        {current.mode === 'build' && current.tiles ? (
+          <Animated.View style={cardMotion}>
+            <BuildWordQuestion key={step} meaning={current.item.label} tiles={current.tiles} locked={answered !== null} onSubmit={submitWord} />
+          </Animated.View>
+        ) : current.mode === 'type' ? (
+          <Animated.View style={cardMotion}>
+            <TypeWordQuestion key={step} meaning={current.item.label} locked={answered !== null} onSubmit={submitWord} />
+          </Animated.View>
+        ) : isWrite && isStudyItem(current.item) ? (
           <Animated.View style={cardMotion}>
             <WriteQuestion
               key={step}

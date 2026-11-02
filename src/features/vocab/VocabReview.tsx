@@ -36,7 +36,7 @@ const describeWord = (id: string): string => {
 function buildQuestions(keys: readonly string[] | undefined): Question[] {
   const { vocab } = useProgressStore.getState();
   const chosen = keys ?? dueCards(vocab, Date.now());
-  return buildVocabQuestions(chosen.slice(0, VOCAB_REVIEW_BATCH));
+  return buildVocabQuestions(chosen.slice(0, VOCAB_REVIEW_BATCH), Math.random, vocab);
 }
 
 /** Revisão do vocabulário: o quiz com os cartões e o resultado. Cada resposta reagenda o cartão. */

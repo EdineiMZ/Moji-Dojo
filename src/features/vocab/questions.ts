@@ -1,8 +1,10 @@
 import { VOCAB, type VocabWord } from '@/content';
 import { shuffle, type Direction, type PairItem, type Question, type Rng } from '@/features/quiz/quiz';
+import type { SrsState } from '@/features/review/srs';
 import { cardKey, parseCardKey, type CardDir } from './cards';
 import { lookalikesOf } from '@/features/chart/lookalikes';
 import { sharesSense } from './senses';
+import { buildTiles, variantFor } from './variants';
 import { displayOf, explainWord } from './wordInfoText';
 
 /** A palavra no formato que o quiz entende: o japonês, o significado e a leitura (para a voz). */
@@ -132,8 +134,12 @@ function spreadSameWord(questions: Question[]): Question[] {
   return out;
 }
 
-/** Perguntas de revisão a partir das chaves dos cartões; chaves que não valem mais são ignoradas. */
-export function buildVocabQuestions(keys: readonly string[], rng: Rng = Math.random): Question[] {
+/**
+ * Perguntas de revisão a partir das chaves dos cartões; chaves que não valem mais são ignoradas. Com o estado da revisão
+ * (`states`), o cartão "significado → escrita" de uma palavra só de kana muda conforme a caixa: escolher, montar com peças e,
+ * nas caixas altas, digitar (ver `variantFor`). Sem ele, tudo é por alternativas.
+ */
+export function buildVocabQuestions(keys: readonly string[], rng: Rng = Math.random, states: SrsState = {}): Question[] {
   const questions: Question[] = [];
   for (const key of keys) {
     const card = parseCardKey(key);
@@ -144,6 +150,18 @@ export function buildVocabQuestions(keys: readonly string[], rng: Rng = Math.ran
         direction: 'k2r',
         options: buildReadingOptions(card.word, rng),
         retry: false,
+      });
+      continue;
+    }
+    const variant = variantFor(card.word, card.dir, states[key]?.b);
+    if (variant !== 'choice') {
+      questions.push({
+        item: toQuizItem(card.word),
+        direction: DIRECTION[card.dir],
+        options: [],
+        retry: false,
+        mode: variant,
+        ...(variant === 'build' ? { tiles: buildTiles(card.word.jp, rng) } : {}),
       });
       continue;
     }

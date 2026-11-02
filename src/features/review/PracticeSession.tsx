@@ -17,7 +17,7 @@ export type PracticeKind = 'confusions' | 'words';
 const COPY: Record<PracticeKind, { title: string; empty: string }> = {
   confusions: {
     title: 'Pares confusos',
-    empty: 'Ainda não há pares confusos. Eles aparecem aqui quando você trocar um kana por outro nos exercícios.',
+    empty: 'Ainda não há pares confusos. Eles aparecem aqui quando você trocar um kana ou um kanji por outro nos exercícios.',
   },
   words: {
     title: 'Ler palavras',

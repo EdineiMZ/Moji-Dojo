@@ -3,7 +3,7 @@ import { shuffle, type Question, type Rng } from '@/features/quiz/quiz';
 
 /**
  * Confusões: "o que era" → "o que você marcou" → quantas vezes. Com isso o app monta sozinho a lista de pares
- * problemáticos (さ e ち) e um exercício só deles.
+ * problemáticos (さ e ち, 大 e 犬) e um exercício só deles.
  */
 export type Confusions = Readonly<Record<string, Readonly<Record<string, number>>>>;
 
@@ -13,12 +13,13 @@ export const CONFUSION_PAIRS = 8;
 const MAX_KEYS = 300;
 const MAX_COUNT = 999;
 
+/** Kana ou kanji: o que se pode trocar por outro da mesma escrita (さ × ち, 大 × 犬). */
 const isKana = (c: string): boolean => {
   const item = findItem(c);
-  return item !== undefined && (item.script === 'hira' || item.script === 'kata');
+  return item !== undefined && (item.script === 'hira' || item.script === 'kata' || item.script === 'kanji');
 };
 
-/** Soma uma confusão. Só vale kana trocado por outro kana da mesma escrita; o resto é ignorado. */
+/** Soma uma confusão. Só vale kana trocado por kana, ou kanji por kanji, da mesma escrita; o resto é ignorado. */
 export function addConfusion(confusions: Confusions, correct: string, chosen: string): Confusions {
   if (correct === chosen || !isKana(correct) || !isKana(chosen)) return confusions;
   if (findItem(correct)?.script !== findItem(chosen)?.script) return confusions;
@@ -92,7 +93,8 @@ export function sanitizeConfusions(raw: unknown): Confusions {
     if (!isKana(correct) || typeof row !== 'object' || row === null || Array.isArray(row)) continue;
     const clean: Record<string, number> = {};
     for (const [chosen, n] of Object.entries(row as Record<string, unknown>)) {
-      if (chosen === correct || !isKana(chosen) || typeof n !== 'number' || !Number.isFinite(n) || n < 1) continue;
+      if (chosen === correct || !isKana(chosen) || findItem(chosen)?.script !== findItem(correct)?.script) continue;
+      if (typeof n !== 'number' || !Number.isFinite(n) || n < 1) continue;
       clean[chosen] = Math.min(MAX_COUNT, Math.floor(n));
     }
     if (Object.keys(clean).length > 0) out[correct] = clean;

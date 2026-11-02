@@ -7,7 +7,7 @@ import { scoreWriting } from '@/features/writing/score';
 import { WORDS_IN_REVIEW, withWordQuestions } from './readWords';
 import { assistFor, guessDrawn } from '@/features/writing/assist';
 import { createProgressStore } from '@/store/progressStore';
-import { addConfusion, buildConfusedQuestions, confusedPairs, type Confusions } from './confusions';
+import { addConfusion, buildConfusedQuestions, confusedPairs, sanitizeConfusions, type Confusions } from './confusions';
 import { BRAKE_LEECHES, BRAKE_MIN_ANSWERS, brakeFor, recentAccuracy } from './brake';
 
 const seeded = (seed: number): Rng => {
@@ -243,5 +243,44 @@ describe('freio: contar dias do calendário, não blocos de 24 h (F15)', () => {
   it('em Auckland (horário de verão começa em 27/9) vale o mesmo', () => {
     const history = Object.fromEntries([day('2026-09-26', 10, 10), day('2026-09-27', 10, 0), day('2026-09-28', 10, 0)]);
     expect(recentAccuracy(history, new Date(2026, 8, 28, 0, 30))).toEqual({ pct: 33, answers: 30 });
+  });
+});
+
+describe('pares confusos de kanji', () => {
+  it('registra 大 trocado por 犬 e junta os dois sentidos no mesmo par, sem misturar com kana', () => {
+    let c: Confusions = {};
+    c = addConfusion(c, '大', '犬');
+    c = addConfusion(c, '犬', '大');
+    c = addConfusion(c, '大', '犬');
+    c = addConfusion(c, '大', 'さ'); // kanji × kana: escritas diferentes, ignorado
+    expect(c).toEqual({ 大: { 犬: 2 }, 犬: { 大: 1 } });
+    expect(confusedPairs(c)).toEqual([{ a: '大', b: '犬', count: 3 }]);
+  });
+
+  it('kana e kanji dividem a lista, do mais confundido ao menos', () => {
+    let c: Confusions = {};
+    for (let i = 0; i < 3; i++) c = addConfusion(c, '問', '間');
+    c = addConfusion(c, 'さ', 'ち');
+    expect(confusedPairs(c).map((p) => `${p.a}${p.b}`)).toEqual(['問間', 'さち']);
+  });
+
+  it('o exercício mostra o significado e pede o kanji entre os dois', () => {
+    const questions = buildConfusedQuestions([{ a: '大', b: '犬', count: 3 }], () => 0.3, 2);
+    expect(questions).toHaveLength(2);
+    for (const q of questions) {
+      expect(q.direction).toBe('r2k');
+      expect(q.options.map((o) => o.char).sort()).toEqual(['大', '犬']);
+      expect(q.item.char === '大' || q.item.char === '犬').toBe(true);
+    }
+    expect(new Set(questions.map((q) => q.item.char))).toEqual(new Set(['大', '犬']));
+  });
+
+  it('o registro da loja vale para kanji e sobrevive à leitura segura do disco e do backup', () => {
+    const store = createProgressStore({ getItem: () => null, setItem: () => undefined, removeItem: () => undefined });
+    store.getState().recordConfusion('大', '犬');
+    store.getState().recordConfusion('大', '犬');
+    expect(store.getState().confusions).toEqual({ 大: { 犬: 2 } });
+    expect(sanitizeConfusions(JSON.parse(JSON.stringify(store.getState().confusions)))).toEqual({ 大: { 犬: 2 } });
+    expect(sanitizeConfusions({ 大: { 犬: 2, さ: 1, nada: 4 }, ZZ: { 大: 1 }, さ: { 大: 1 } })).toEqual({ 大: { 犬: 2 } });
   });
 });

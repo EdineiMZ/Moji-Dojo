@@ -36,12 +36,22 @@ export interface ConfusedPair {
   count: number;
 }
 
-/** Pares mais confundidos, do maior para o menor; a ordem dentro do par é estável. */
+/**
+ * O treino mostra o som e pede o kana certo. Dois kana com o mesmo som (じ e ぢ, ず e づ) não se separam assim: ficam fora da
+ * lista, para não ocuparem as vagas dos pares que o exercício consegue treinar.
+ */
+const trainableBySound = (a: string, b: string): boolean => {
+  const ia = findItem(a);
+  const ib = findItem(b);
+  return ia !== undefined && ib !== undefined && ia.label !== ib.label;
+};
+
+/** Pares mais confundidos que o exercício consegue treinar, do maior para o menor; a ordem dentro do par é estável. */
 export function confusedPairs(confusions: Confusions, limit: number = CONFUSION_PAIRS): ConfusedPair[] {
   const merged = new Map<string, ConfusedPair>();
   for (const [correct, row] of Object.entries(confusions)) {
     for (const [chosen, n] of Object.entries(row)) {
-      if (!(n > 0) || !isKana(correct) || !isKana(chosen)) continue;
+      if (!(n > 0) || !isKana(correct) || !isKana(chosen) || !trainableBySound(correct, chosen)) continue;
       const [a, b] = correct < chosen ? [correct, chosen] : [chosen, correct];
       const key = `${a}|${b}`;
       const prev = merged.get(key);
@@ -60,7 +70,7 @@ export function buildConfusedQuestions(pairs: readonly ConfusedPair[], rng: Rng 
   for (const { a, b } of pairs) {
     const ia = findItem(a);
     const ib = findItem(b);
-    if (!ia || !ib || ia.label === ib.label) continue;
+    if (!ia || !ib || !trainableBySound(a, b)) continue;
     const order: [StudyItem, StudyItem][] = [
       [ia, ib],
       [ib, ia],

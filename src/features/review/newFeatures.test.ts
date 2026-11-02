@@ -7,6 +7,7 @@ import { scoreWriting } from '@/features/writing/score';
 import { WORDS_IN_REVIEW, withWordQuestions } from './readWords';
 import { assistFor, guessDrawn } from '@/features/writing/assist';
 import { createProgressStore } from '@/store/progressStore';
+import { addConfusion, buildConfusedQuestions, confusedPairs, type Confusions } from './confusions';
 import { BRAKE_LEECHES, BRAKE_MIN_ANSWERS, brakeFor, recentAccuracy } from './brake';
 
 const seeded = (seed: number): Rng => {
@@ -195,5 +196,52 @@ describe('sósias nas lições e no ouvido (item 5)', () => {
     const qs = buildEarQuestions(pool, seeded(2), 8, known).filter((q) => q.item.char === 'さ');
     expect(qs.length).toBeGreaterThan(0);
     for (const q of qs) expect(q.options.map((o) => o.char)).toEqual(expect.arrayContaining(['ち', 'き']));
+  });
+});
+
+describe('pares confusos: mesmo som (F14)', () => {
+  it('じ/ぢ e ず/づ, mesmo sendo os mais trocados, não ocupam as vagas dos pares treináveis', () => {
+    let c: Confusions = {};
+    for (let i = 0; i < 20; i++) c = addConfusion(c, 'じ', 'ぢ');
+    for (let i = 0; i < 15; i++) c = addConfusion(c, 'ず', 'づ');
+    c = addConfusion(c, 'さ', 'ち');
+    c = addConfusion(c, 'ぬ', 'め');
+    c = addConfusion(c, 'ぬ', 'め');
+    const pairs = confusedPairs(c, 2);
+    expect(pairs.map((p) => `${p.a}${p.b}`)).toEqual(['ぬめ', 'さち']);
+    expect(pairs.map((p) => p.count)).toEqual([2, 1]);
+  });
+
+  it('se só há pares de mesmo som, a lista fica vazia e o exercício não monta nada', () => {
+    let c: Confusions = {};
+    c = addConfusion(c, 'ヂ', 'ジ');
+    c = addConfusion(c, 'じ', 'ぢ');
+    expect(confusedPairs(c)).toEqual([]);
+    expect(buildConfusedQuestions([{ a: 'じ', b: 'ぢ', count: 3 }])).toEqual([]);
+  });
+
+  it('o registro continua guardando a confusão (serve ao desenho e às estatísticas), só o treino por som a ignora', () => {
+    expect(addConfusion({}, 'じ', 'ぢ')).toEqual({ じ: { ぢ: 1 } });
+  });
+});
+
+describe('freio: contar dias do calendário, não blocos de 24 h (F15)', () => {
+  const day = (iso: string, answers: number, correct: number) => [iso, { answers, correct, learned: 0 }] as const;
+
+  it('atravessa o início do horário de verão (dia de 23 h) sem pular um dia', () => {
+    // 8/3/2026 tem 23 h em fusos com horário de verão dos EUA; de 9/3 às 0h30, "24 h atrás" cai em 7/3 e pulava o dia 8.
+    const history = Object.fromEntries([day('2026-03-07', 10, 10), day('2026-03-08', 10, 0), day('2026-03-09', 10, 0)]);
+    expect(recentAccuracy(history, new Date(2026, 2, 9, 0, 30))).toEqual({ pct: 33, answers: 30 });
+  });
+
+  it('atravessa o fim do horário de verão (dia de 25 h) sem repetir um dia', () => {
+    const history = Object.fromEntries([day('2026-10-31', 10, 10), day('2026-11-01', 10, 0), day('2026-11-02', 10, 0)]);
+    expect(recentAccuracy(history, new Date(2026, 10, 2, 23, 30))).toEqual({ pct: 33, answers: 30 });
+    expect(recentAccuracy(history, new Date(2026, 10, 2, 0, 30))).toEqual({ pct: 33, answers: 30 });
+  });
+
+  it('em Auckland (horário de verão começa em 27/9) vale o mesmo', () => {
+    const history = Object.fromEntries([day('2026-09-26', 10, 10), day('2026-09-27', 10, 0), day('2026-09-28', 10, 0)]);
+    expect(recentAccuracy(history, new Date(2026, 8, 28, 0, 30))).toEqual({ pct: 33, answers: 30 });
   });
 });

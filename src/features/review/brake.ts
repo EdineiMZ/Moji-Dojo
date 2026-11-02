@@ -10,8 +10,6 @@ export const BRAKE_ACCURACY_PCT = 60;
 /** Itens teimosos a partir dos quais o app sugere revisar antes de uma lição nova. */
 export const BRAKE_LEECHES = 6;
 
-const DAY_MS = 86_400_000;
-
 export interface Brake {
   /** Por que o app sugere frear. */
   reason: 'accuracy' | 'leeches';
@@ -23,8 +21,10 @@ export interface Brake {
 export function recentAccuracy(history: ActivityHistory, now: Date, days: number = BRAKE_DAYS): { pct: number; answers: number } | null {
   let answers = 0;
   let correct = 0;
-  for (let i = 0; i < days; i++) {
-    const day = history[formatDay(new Date(now.getTime() - i * DAY_MS))];
+  // Recua dia a dia no calendário local: subtrair 24 h pularia ou repetiria um dia na troca do horário de verão.
+  const cursor = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  for (let i = 0; i < days; i++, cursor.setDate(cursor.getDate() - 1)) {
+    const day = history[formatDay(cursor)];
     if (!day) continue;
     answers += day.answers;
     correct += day.correct;

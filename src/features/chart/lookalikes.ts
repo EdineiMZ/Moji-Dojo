@@ -1,3 +1,5 @@
+import { KANJI_LOOKALIKES } from '@/data/lookalikesKanji';
+
 /**
  * Kana que se parecem e como diferenciá-los. Texto próprio, em português, sobre o traçado de cada letra (o que o aluno vê no
  * papel). `script` diz se são hiragana ou katakana.
@@ -26,12 +28,14 @@ export const LOOKALIKES: readonly Lookalike[] = [
   { id: 'nu-su', script: 'kata', chars: ['ヌ', 'ス'], tip: 'O ヌ tem um traço a mais, curto, cruzando no meio; o ス não.' },
 ];
 
-/** Os sósias de um caractere (os outros das listas em que ele aparece), sem repetir. */
+
+/** Os sósias de um caractere (os outros das listas em que ele aparece e, nos kanji, os calculados pelos traços), sem repetir. */
 export function lookalikesOf(char: string): string[] {
   const out: string[] = [];
   for (const group of LOOKALIKES) {
     if (!group.chars.includes(char)) continue;
     for (const c of group.chars) if (c !== char && !out.includes(c)) out.push(c);
   }
+  for (const c of KANJI_LOOKALIKES[char] ?? []) if (!out.includes(c)) out.push(c);
   return out;
 }

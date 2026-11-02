@@ -99,3 +99,38 @@ describe('auditoria do vocabulário', () => {
     fs.writeFileSync(path.join(__dirname, '../../../docs/revisao-vocabulario.md'), renderAudit(audit), 'utf8');
   });
 });
+
+describe('palavras de escrita parecida como alternativas', () => {
+  const { looksLike } = require('./questions') as typeof import('./questions');
+  const find = (jp: string) => VOCAB.find((w) => w.jp === jp) as (typeof VOCAB)[number];
+
+  it('um caractere diferente, ou só kanji parecidos, conta; igual, de outro tamanho ou muito diferente não', () => {
+    expect(looksLike(find('持つ'), find('待つ'))).toBe(true);
+    expect(looksLike(find('持つ'), find('持つ'))).toBe(false);
+    expect(looksLike(find('持つ'), find('学校'))).toBe(false);
+    expect(looksLike(find('日本'), find('日本語'))).toBe(false);
+  });
+
+  it('ao escolher o japonês ou ouvir, as parecidas entram primeiro (até 2); ao escolher o significado, não importa', () => {
+    const word = find('持つ');
+    const sameShape = VOCAB.filter((w) => w.id !== word.id && looksLike(word, w) && !sharesSense(word, w));
+    expect(sameShape.length).toBeGreaterThan(0);
+    for (let i = 1; i <= 25; i++) {
+      const options = buildVocabOptions(word, seeded(i), 'mj').map((o) => o.char);
+      const hits = options.filter((c) => sameShape.some((w) => w.jp === c)).length;
+      expect(hits).toBe(Math.min(2, sameShape.length));
+      expect(options).toHaveLength(4);
+    }
+  });
+
+  it('as parecidas continuam passando pela regra dos sentidos', () => {
+    for (let i = 0; i < 300; i++) {
+      const word = VOCAB[(i * 23) % VOCAB.length] as (typeof VOCAB)[number];
+      const options = buildVocabOptions(word, seeded(i + 7), 'mj');
+      for (const o of options) {
+        if (o.char === word.jp) continue;
+        expect(sharesSense(word, findWord(o.char) as (typeof VOCAB)[number])).toBe(false);
+      }
+    }
+  });
+});

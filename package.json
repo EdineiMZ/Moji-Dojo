@@ -54,6 +54,7 @@
     "build-n5": "node scripts/build-n5.mjs",
     "build-grammar": "node scripts/grammar-n5/build.mjs",
     "build-travel": "node scripts/travel/build.mjs",
+    "build-kanji-lookalikes": "node scripts/kanji-lookalikes/build.mjs",
     "audit-vocab": "node scripts/vocab-audit.cjs",
     "verify-japanese": "node scripts/verify-japanese/run.mjs",
     "verify-grammar": "node scripts/grammar-n5/verify.mjs",

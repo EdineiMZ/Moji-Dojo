@@ -1,6 +1,7 @@
 import { VOCAB, type VocabWord } from '@/content';
 import { shuffle, type Direction, type PairItem, type Question, type Rng } from '@/features/quiz/quiz';
 import { cardKey, parseCardKey, type CardDir } from './cards';
+import { lookalikesOf } from '@/features/chart/lookalikes';
 import { sharesSense } from './senses';
 import { displayOf, explainWord } from './wordInfoText';
 
@@ -23,11 +24,28 @@ const DIRECTION: Readonly<Record<CardDir, Direction>> = { jm: 'k2r', mj: 'r2k', 
 /** Quantas moras tem a leitura, grosso modo (para escolher alternativas do mesmo tamanho). */
 const size = (word: VocabWord): number => [...word.reading].length;
 
+/** Quantas palavras de escrita parecida entram, no máximo, nas alternativas. */
+const MAX_LOOK_ALIKE_WORDS = 2;
+
 /** Por que uma palavra não serve de alternativa errada. `dir` só importa no ouvido: aí o homófono também seria certo. */
 export function clashesWith(word: VocabWord, candidate: VocabWord, dir?: CardDir): boolean {
   if (candidate.id === word.id || candidate.jp === word.jp) return true;
   if (sharesSense(word, candidate)) return true;
   return dir === 'au' && candidate.reading === word.reading;
+}
+
+/**
+ * A palavra `candidate` se parece, escrita, com `word`: mesmo número de caracteres e só um deles diferente (さかな × さかね,
+ * 持つ × 待つ), ou todos iguais menos kanji que se parecem (大 × 犬). É o erro que quem lê de relance comete.
+ */
+export function looksLike(word: VocabWord, candidate: VocabWord): boolean {
+  const a = [...word.jp];
+  const b = [...candidate.jp];
+  if (a.length !== b.length || a.length < 2) return false;
+  const diff: number[] = [];
+  for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) diff.push(i);
+  if (diff.length === 0) return false;
+  return diff.length === 1 || diff.every((i) => lookalikesOf(a[i] as string).includes(b[i] as string));
 }
 
 export interface VocabOptions {
@@ -43,11 +61,15 @@ export interface VocabOptions {
  */
 export function buildVocabOptionsDetailed(word: VocabWord, rng: Rng = Math.random, dir?: CardDir): VocabOptions {
   const others = VOCAB.filter((w) => w.id !== word.id);
-  const near = (w: VocabWord): boolean => w.group === word.group || w.kind === word.kind;
+  const near = (w: VocabWord): boolean => w.group === word.group || w.kind === word.kind || looksLike(word, w);
+  // Escrita parecida (só vale quando a pessoa olha a escrita: escolher o japonês ou ouvir e escolher).
+  const visual = dir === 'mj' || dir === 'au';
+  const twins = visual ? shuffle(others.filter((w) => looksLike(word, w) && !clashesWith(word, w, dir)), rng).slice(0, MAX_LOOK_ALIKE_WORDS) : [];
   const ordered = [
-    ...shuffle(others.filter((w) => w.group === word.group), rng),
-    ...shuffle(others.filter((w) => w.group !== word.group && w.kind === word.kind), rng),
-    ...shuffle(others.filter((w) => w.group !== word.group && w.kind !== word.kind), rng),
+    ...twins,
+    ...shuffle(others.filter((w) => w.group === word.group && !twins.includes(w)), rng),
+    ...shuffle(others.filter((w) => w.group !== word.group && w.kind === word.kind && !twins.includes(w)), rng),
+    ...shuffle(others.filter((w) => w.group !== word.group && w.kind !== word.kind && !twins.includes(w)), rng),
   ];
   const meanings = new Set([word.meaning]);
   const picked: VocabWord[] = [];

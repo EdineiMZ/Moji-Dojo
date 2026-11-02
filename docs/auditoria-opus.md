@@ -68,7 +68,7 @@ Revisor: Claude (Opus 5.5). Nenhum arquivo do app foi alterado; só este relató
 |---|---|---|
 | (a) de fonte | Escrita e leitura das listas JLPT (`n1.ts`–`n5.ts`: escrita/leitura da lista; inglês do JMdict/listas abertas) | 7.788 palavras |
 | (a) | Kanji: leituras on/kun (KANJIDIC2/JMdict) e ordem dos traços (KanjiVG) | 477 kanji, 227 kana |
-| (a) | Frases de exemplo da gramática N5 (tópicos 11+), N4 e N3, do banco de frases e dos sufixos: texto e tradução do Tatoeba | ver 1.2.3 |
+| (a) | Frases de exemplo da gramática N5 (tópicos 11+), N4 e N3, do banco de frases (5.231) e dos sufixos: texto e tradução do Tatoeba | ver 1.2.3 |
 | (a) | Tom (Kanjium), frequência (Tatoeba), áudio (Lingua Libre) | não auditados aqui (o tom já foi checado contra o UniDic, ROADMAP item 4) |
 | (b) à mão / IA | Significados em português do vocabulário (traduzidos do inglês) | 7.788 |
 | (b) | Explicações de gramática (113 tópicos), armadilhas (`pitfalls.ts`), exercícios "Montar" (376) | |
@@ -96,7 +96,10 @@ Scripts (fora do repositório, na pasta temporária da sessão): `jmdict.cjs`, `
 
 #### 1.2.3 Frases × Tatoeba (API ao vivo)
 
-(ver a seção preenchida abaixo, "Resultado do Tatoeba")
+- **Amostra conferida na API do Tatoeba (ao vivo, 2026-11-01): 631 frases.** Todas as 242 frases de exemplo da gramática N5 (tópicos 11+), N4 e N3 e os 10 exemplos de sufixos (`wordExtras.ts`) mais 1 frase em cada 25 do banco de frases (210).
+- **Resultado:** 0 frases inexistentes, **0 divergências no japonês**, **0 divergências na tradução** (cada tradução do app é uma das traduções em português da frase no Tatoeba) e **0 licenças diferentes de CC BY 2.0 FR**. 3 consultas falharam por rede e não foram repetidas.
+- **O que isso não prova:** que o texto do Tatoeba é natural ou que a tradução escolhida é a melhor. É o que os itens F6 e o Anexo C apontam (tradução em português de Portugal ou que muda o sentido, embora seja fiel ao Tatoeba).
+- **Banco de frases:** só 1/25 foi conferido (210 de 5.231); as outras 5.021 são do mesmo gerador e não foram checadas uma a uma.
 
 ### 1.3 Grupo (b): revisão manual
 

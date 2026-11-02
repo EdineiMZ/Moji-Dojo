@@ -14,6 +14,7 @@ import { ChestHost } from '@/features/journey/ui/ChestHost';
 import { ToastHost } from '@/features/journey/ui/ToastHost';
 import { useAiQueueSync } from '@/features/ai/useAiQueueSync';
 import { useReminderSync } from '@/features/reminders/useReminderSync';
+import { useLeechTrend } from '@/features/review/useLeechTrend';
 import { remainingLoadingMs } from '@/lib/loading';
 import { useProgressStore } from '@/store';
 import { playSfx, preloadSfx } from '@/lib/sfx';
@@ -81,6 +82,7 @@ function ThemedStack() {
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts(fontAssets);
   useReminderSync();
+  useLeechTrend();
   useWidgetSync();
   useShareReceiver();
   useAiQueueSync();

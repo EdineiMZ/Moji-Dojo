@@ -7,6 +7,7 @@ import { answerReview, boostSkippedItems, learnItems, shouldApplyReviewAnswer, t
 import { addActivity, type ActivityHistory } from '@/features/stats/metrics';
 import { markDay } from '@/features/streak/days';
 import { findItem } from '@/features/catalog';
+import { recordLeechCount, sanitizeLeechTrend, type LeechTrend } from '@/features/review/brake';
 import { migrateVocabCards, migrateWordNotes } from '@/features/vocab/renamed';
 import { addConfusion, sanitizeConfusions, type Confusions } from '@/features/review/confusions';
 import { checkPhrase, newPhraseId, type MyPhrase, type MyPhrases, type PhraseProblem } from '@/features/myphrases/phrases';
@@ -97,6 +98,8 @@ export interface ProgressActions {
   setCharNote: (char: string, note: string) => boolean;
   /** Anota que `correct` foi trocado por `chosen` num quiz (base do treino de pares confusos). */
   recordConfusion: (correct: string, chosen: string) => void;
+  /** Guarda quantos itens teimosos havia hoje (o freio compara com os dias anteriores). */
+  setLeechCount: (day: string, count: number) => void;
   /** Resposta numa revisão de partículas (chave = a partícula): reagenda e marca o dia. */
   recordParticleAnswer: (particle: string, ok: boolean, firstTry: boolean, now?: number) => void;
   /** Resposta numa revisão de conjugação (chave = "verbo|forma"): reagenda e marca o dia. */
@@ -188,7 +191,12 @@ export interface ProgressExtras {
   reads: Readonly<Record<string, number>>;
 }
 
-export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions;
+/** Contagem diária de itens teimosos (para medir o crescimento): derivada, fica fora do backup. */
+export interface LeechTrendState {
+  leechTrend: LeechTrend;
+}
+
+export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions & LeechTrendState;
 
 export const PROGRESS_STORAGE_KEY = 'moji-dojo-progress';
 
@@ -210,6 +218,7 @@ export function createProgressStore(storage: StateStorage) {
         wordNotes: {},
         charNotes: {},
         confusions: {},
+        leechTrend: {},
         journey: emptyJourney(),
         mastered: {},
         myPhrases: {},
@@ -413,6 +422,11 @@ export function createProgressStore(storage: StateStorage) {
           });
           return true;
         },
+
+        setLeechCount: (day, count) => set((s) => {
+          const leechTrend = recordLeechCount(s.leechTrend, day, count);
+          return leechTrend === s.leechTrend ? s : { leechTrend };
+        }),
 
         recordConfusion: (correct, chosen) =>
           set((s) => {
@@ -622,10 +636,11 @@ export function createProgressStore(storage: StateStorage) {
             stats: snapshot.stats,
             days: snapshot.days,
             history: extras?.history ?? {},
+            leechTrend: {}, // a contagem era do progresso antigo
             ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, particles: extras.particles, wordNotes: extras.wordNotes, charNotes: extras.charNotes, confusions: extras.confusions, journey: extras.journey, mastered: extras.mastered, myPhrases: extras.myPhrases, typing: extras.typing, reads: extras.reads } : {}),
           }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, charNotes: {}, confusions: {}, journey: emptyJourney(), mastered: {}, myPhrases: {}, typing: EMPTY_TYPING, reads: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, charNotes: {}, confusions: {}, journey: emptyJourney(), mastered: {}, myPhrases: {}, typing: EMPTY_TYPING, reads: {}, leechTrend: {} }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
@@ -634,10 +649,10 @@ export function createProgressStore(storage: StateStorage) {
         // O que vem do disco passa pela leitura segura: estado salvo por uma versão antiga ganha os campos novos.
         merge: (persisted, current) => {
           const saved = (persisted ?? {}) as Partial<ProgressState> & { journey?: unknown };
-          return { ...current, ...saved, journey: sanitizeJourney(saved.journey), typing: sanitizeTyping((saved as { typing?: unknown }).typing), confusions: sanitizeConfusions((saved as { confusions?: unknown }).confusions), vocab: migrateVocabCards(saved.vocab ?? current.vocab), wordNotes: migrateWordNotes(saved.wordNotes ?? current.wordNotes), charNotes: saved.charNotes ?? {}, reads: sanitizeReads((saved as { reads?: unknown }).reads) };
+          return { ...current, ...saved, journey: sanitizeJourney(saved.journey), typing: sanitizeTyping((saved as { typing?: unknown }).typing), confusions: sanitizeConfusions((saved as { confusions?: unknown }).confusions), vocab: migrateVocabCards(saved.vocab ?? current.vocab), wordNotes: migrateWordNotes(saved.wordNotes ?? current.wordNotes), charNotes: saved.charNotes ?? {}, reads: sanitizeReads((saved as { reads?: unknown }).reads), leechTrend: sanitizeLeechTrend((saved as { leechTrend?: unknown }).leechTrend) };
         },
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, wordNotes, charNotes, confusions, journey, mastered, myPhrases, typing, reads }) => ({
+        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, wordNotes, charNotes, confusions, journey, mastered, myPhrases, typing, reads, leechTrend }) => ({
           srs,
           lessons,
           stats,
@@ -656,6 +671,7 @@ export function createProgressStore(storage: StateStorage) {
           myPhrases,
           typing,
           reads,
+          leechTrend,
         }),
       },
     ),

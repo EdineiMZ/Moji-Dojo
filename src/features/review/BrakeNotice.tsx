@@ -15,9 +15,10 @@ export function BrakeNotice() {
   const vocab = useProgressStore((s) => s.vocab);
   const conj = useProgressStore((s) => s.conj);
   const particles = useProgressStore((s) => s.particles);
+  const trend = useProgressStore((s) => s.leechTrend);
   const brake = useMemo(
-    () => brakeFor(history, findLeeches({ srs, vocab, conj, particles }).length),
-    [history, srs, vocab, conj, particles],
+    () => brakeFor(history, findLeeches({ srs, vocab, conj, particles }).length, new Date(), trend),
+    [history, srs, vocab, conj, particles, trend],
   );
   if (!brake) return null;
   return (

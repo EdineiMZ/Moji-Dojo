@@ -544,7 +544,7 @@ export const TOPICS = [
       {
         table: [
           ['#forma', '#educada', '#simples', '#como sai'],
-          ['#presente', '__たべます__', '__たべる__', 'dicionário (a forma que você já viu em まえに)'],
+          ['#presente', '__たべます__', '__たべる__', 'dicionário (a forma básica do verbo)'],
           ['#negativa', '__たべません__', '__たべない__', 'a forma ない (veja Conjugar)'],
           ['#passado', '__たべました__', '__たべた__', 'a forma た (veja Conjugar)'],
         ],

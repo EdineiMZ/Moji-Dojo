@@ -2,6 +2,7 @@ import { LESSONS } from '@/content/lessons';
 import { findItem } from '@/features/catalog';
 import type { CharStats, ProgressSnapshot } from '@/features/progress/types';
 import { sanitizeConfusions } from '@/features/review/confusions';
+import { currentWordId, freshestCard, migrateVocabKey } from '@/features/vocab/renamed';
 import { LAST_BOX, type SrsEntry } from '@/features/review/srs';
 import { MAX_HISTORY_DAYS, type DayActivity } from '@/features/stats/metrics';
 import { findWord } from '@/content';
@@ -203,13 +204,17 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
     challenges[word] = true;
   }
 
+  // Palavras com a escrita corrigida desde o backup: o cartão passa para o id novo ANTES de ser validado
+  // (o id antigo já não existe no vocabulário, e a validação o descartaria).
   const vocab: Record<string, SrsEntry> = {};
-  for (const [key, v] of Object.entries(recordField(root, 'vocab'))) {
+  for (const [rawKey, v] of Object.entries(recordField(root, 'vocab'))) {
+    const key = migrateVocabKey(rawKey);
     if (!parseCardKey(key) || !isRecord(v) || !isCount(v.b) || !isCount(v.due)) {
       ignored++;
       continue;
     }
-    vocab[key] = srsEntry(v.b, v.due, v.l, v);
+    const entry = srsEntry(v.b, v.due, v.l, v);
+    vocab[key] = vocab[key] ? freshestCard(vocab[key], entry) : entry;
   }
 
   const conj: Record<string, SrsEntry> = {};
@@ -231,12 +236,15 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
   }
 
   const wordNotes: Record<string, string> = {};
-  for (const [id, v] of Object.entries(recordField(root, 'wordNotes'))) {
+  for (const [rawId, v] of Object.entries(recordField(root, 'wordNotes'))) {
+    // Como nos cartões: o id antigo de uma palavra corrigida passa para o novo antes de ser validado.
+    const id = currentWordId(rawId);
     if (!findWord(id) || typeof v !== 'string' || v.trim().length === 0 || v.length > MAX_NOTE_LENGTH) {
       ignored++;
       continue;
     }
-    wordNotes[id] = v.trim();
+    // Se as duas formas tinham historinha, vale a da forma nova.
+    if (id === rawId || wordNotes[id] === undefined) wordNotes[id] = v.trim();
   }
 
   const journey = sanitizeJourney(root.journey);

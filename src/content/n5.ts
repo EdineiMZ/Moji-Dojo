@@ -417,7 +417,7 @@ export const N5_WORDS: readonly SourceWord[] = [
   { jp: "大きな", reading: "おおきな", meaning: "grande (antes de substantivo)", en: "big", group: "Adjetivos" },
   { jp: "大勢", reading: "おおぜい", meaning: "muita gente", en: "great number of people", group: "Pessoas e escola" },
   { jp: "お皿", reading: "おさら", meaning: "prato", en: "plate, dish", group: "Coisas e lugares" },
-  { jp: "伯父", reading: "おじさん", meaning: "tio; senhor de meia-idade", en: "uncle, middle-aged man", group: "Pessoas e escola" },
+  { jp: "伯父さん", reading: "おじさん", meaning: "tio; senhor de meia-idade", en: "uncle, middle-aged man", group: "Pessoas e escola" },
   { jp: "教える", reading: "おしえる", meaning: "ensinar; informar", en: "to teach, to inform, to instruct", group: "Verbos" },
   { jp: "おととし", reading: "おととし", meaning: "ano retrasado", en: "year before last", group: "Dias e tempo" },
   { jp: "お腹", reading: "おなか", meaning: "barriga, estômago", en: "stomach", group: "Natureza e corpo" },

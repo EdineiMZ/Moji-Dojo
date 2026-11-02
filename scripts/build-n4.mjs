@@ -11,6 +11,7 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
 const { cleanRows } = createRequire(import.meta.url)('./n5Clean.cjs');
+const { applyFix } = createRequire(import.meta.url)('./vocabFixes.cjs');
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = path.join(ROOT, 'scripts', 'vocab-n4');
@@ -70,7 +71,7 @@ for (const r of rows) {
   if (t.group === '-') continue;
   if (seenJp.has(r.jp)) continue;
   seenJp.add(r.jp);
-  words.push({ jp: r.jp, reading: fixReading(r.jp, r.reading), meaning: t.meaning, en: r.en, group: GROUPS[t.group] });
+  words.push(applyFix({ jp: r.jp, reading: fixReading(r.jp, r.reading), meaning: t.meaning, en: r.en, group: GROUPS[t.group] }));
 }
 
 const q = (s) => JSON.stringify(s);

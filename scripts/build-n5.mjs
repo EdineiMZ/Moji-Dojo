@@ -11,6 +11,7 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
 const { cleanRows, studyOrder } = createRequire(import.meta.url)('./n5Clean.cjs');
+const { applyFix } = createRequire(import.meta.url)('./vocabFixes.cjs');
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = path.join(ROOT, 'scripts', 'vocab-n5');
@@ -64,7 +65,7 @@ const words = studyOrder(rows)
   .filter((r) => translations.get(r.row).group !== '-')
   .map((r) => {
     const t = translations.get(r.row);
-    return { jp: r.jp, reading: r.reading, meaning: t.meaning, en: r.en, group: GROUPS[t.group], ...(r.lesson ? { lesson: r.lesson } : {}) };
+    return applyFix({ jp: r.jp, reading: r.reading, meaning: t.meaning, en: r.en, group: GROUPS[t.group], ...(r.lesson ? { lesson: r.lesson } : {}) });
   });
 
 const q = (s) => JSON.stringify(s);

@@ -188,7 +188,7 @@ export const N1_WORDS: readonly SourceWord[] = [
   { jp: "差し出す", reading: "さしだす", meaning: "apresentar; estender; entregar", en: "to present, to submit, to hold out", group: "N1: Verbos" },
   { jp: "差し支える", reading: "さしつかえる", meaning: "atrapalhar; impedir", en: "to interfere, to hinder", group: "N1: Verbos" },
   { jp: "授ける", reading: "さずける", meaning: "conceder; ensinar", en: "to grant, to award, to teach", group: "N1: Verbos" },
-  { jp: "摩する", reading: "さする", meaning: "esfregar; acariciar", en: "to rub, to stroke", group: "N1: Verbos" },
+  { jp: "摩る", reading: "さする", meaning: "esfregar; acariciar", en: "to rub, to stroke", group: "N1: Verbos" },
   { jp: "さぞ", reading: "さぞ", meaning: "certamente; sem dúvida", en: "I am sure, certainly, no doubt", group: "N1: Expressões e palavras de ligação" },
   { jp: "定まる", reading: "さだまる", meaning: "firmar-se; ficar definido", en: "to become settled, to be fixed", group: "N1: Verbos" },
   { jp: "定める", reading: "さだめる", meaning: "decidir; determinar", en: "to decide, to determine", group: "N1: Verbos" },

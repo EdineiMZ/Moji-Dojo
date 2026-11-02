@@ -1,4 +1,4 @@
-// Gerado por scripts/grammar-n5/build.mjs a partir de scripts/grammar-n5/topics.mjs. Não edite à mão.
+// Gerado por scripts/grammar-n5/build.mjs  a partir de scripts/grammar-n5/topics.mjs. Não edite à mão.
 // Exemplos: frases do Tatoeba (CC BY 2.0 FR), conferidas por scripts/grammar-n5/verify.mjs. Ver LICENSE.md.
 import type { BuildExercise, GrammarTopic } from '@/data/types';
 
@@ -4881,7 +4881,7 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
               "ja": true
             },
             {
-              "text": "dicionário (a forma que você já viu em まえに)"
+              "text": "dicionário (a forma básica do verbo)"
             }
           ],
           [

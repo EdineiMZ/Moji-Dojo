@@ -601,7 +601,6 @@ export const N3_WORDS: readonly SourceWord[] = [
   { jp: "数える", reading: "かぞえる", meaning: "contar", en: "to count", group: "N3: Verbos" },
   { jp: "型", reading: "かた", meaning: "modelo; tipo; molde", en: "mold, model, style", group: "N3: Ideias e sentimentos" },
   { jp: "肩", reading: "かた", meaning: "ombro", en: "shoulder", group: "N3: Natureza e corpo" },
-  { jp: "堅い", reading: "かたい", meaning: "duro; firme", en: "hard, firm, solid", group: "N3: Adjetivos" },
   { jp: "硬い", reading: "かたい", meaning: "duro; rígido", en: "hard, firm, solid", group: "N3: Adjetivos" },
   { jp: "方々", reading: "かたがた", meaning: "pessoas (honorífico); senhores", en: "persons", group: "N3: Pessoas" },
   { jp: "片付く", reading: "かたづく", meaning: "ficar arrumado; ser resolvido", en: "to put in order, to solve", group: "N3: Verbos" },

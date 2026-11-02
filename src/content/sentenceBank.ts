@@ -3645,7 +3645,7 @@ export const SENTENCE_BANK: readonly BankSentence[] = [
   {"id":1229048,"jp":"二日ほど休みをとります。","furi":"[二|ふつ][日|か]ほど[休|やす]みをとります。","kana":"ふつかほど やすみを とります","romaji":"futsuka hodo yasumi o torimasu","pt":"Estou tirando uns dias de folga.","uses":["二日","休み","取る"]},
   {"id":1452348,"jp":"ガムを持っていませんか。","furi":"ガムを[持|も]っていませんか。","kana":"ガムを もっていませんか","romaji":"gamu o motte imasenka","pt":"Você tem algum chiclete?","uses":["ガム","持つ","居る"]},
   {"id":1485593,"jp":"どんな洋服が好みですか。","furi":"どんな[洋服|よう|ふく]が[好|この]みですか。","kana":"どんな ようふくが このみですか","romaji":"donna yōfuku ga konomi desuka","pt":"Qual é a sua peça de vestuário favorita?","uses":["どんな","洋服","好み"]},
-  {"id":1560158,"jp":"私のおじさんは医者です。","furi":"[私|わたし]のおじさんは[医者|い|しゃ]です。","kana":"わたしの おじさんは いしゃです","romaji":"watashi no ojisan wa isha desu","pt":"Um tio meu é médico.","uses":["私","伯父","医者"]},
+  {"id":1560158,"jp":"私のおじさんは医者です。","furi":"[私|わたし]のおじさんは[医者|い|しゃ]です。","kana":"わたしの おじさんは いしゃです","romaji":"watashi no ojisan wa isha desu","pt":"Um tio meu é médico.","uses":["私","伯父さん","医者"]},
   {"id":1578998,"jp":"あなたは決まりましたか。","furi":"あなたは[決|き]まりましたか。","kana":"あなたは きまり ましたか","romaji":"anata wa kimari mashita ka","pt":"Decidiu?","uses":["あなた","決まり","真下"]},
   {"id":1699768,"jp":"午後には上がるだろうか？","furi":"[午後|ご|ご]には[上|あ]がるだろうか？","kana":"ごごには あがるだ ろうか","romaji":"gogo ni wa agaru da rōka","pt":"Será que vai clarear esta tarde?","uses":["午後","上がる","廊下"]},
   {"id":1984211,"jp":"新しい自動車が必要です。","furi":"[新|あたら]しい[自動車|じ|どう|しゃ]が[必要|ひつ|よう]です。","kana":"あたらしい じどうしゃが ひつようです","romaji":"atarashii jidōsha ga hitsuyō desu","pt":"Preciso de um carro novo.","uses":["新しい","自動車","必要"]},

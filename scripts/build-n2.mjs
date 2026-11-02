@@ -11,6 +11,7 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
 const { cleanRows } = createRequire(import.meta.url)('./n5Clean.cjs');
+const { applyFix, undoFix } = createRequire(import.meta.url)('./vocabFixes.cjs');
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = path.join(ROOT, 'scripts', 'vocab-n2');
@@ -34,9 +35,13 @@ const GROUPS = {
 };
 
 /** Palavras que já estão no N5, N4, N3 ou na casa ficam fora: o N3 só traz o que é novo. */
-const known = new Set(
+// Escritas que já estão nas listas de baixo (já corrigidas).
+const lowerJp = new Set(
   ['n5.ts', 'n4.ts', 'n3.ts', 'house.ts'].flatMap((f) => [...fs.readFileSync(path.join(ROOT, 'src', 'content', f), 'utf8').matchAll(/jp: "([^"]+)"/g)].map((m) => m[1])),
 );
+// Os números de linha das traduções contam com a escrita original da lista (ver undoFix em vocabFixes.cjs).
+const known = new Set([...lowerJp].map(undoFix));
+
 const { rows: allRows } = cleanRows(fs.readFileSync(path.join(DIR, 'n2.csv'), 'utf8'));
 const rows = allRows.filter((r) => !known.has(r.jp));
 const byRow = new Map(rows.map((r) => [r.row, r]));
@@ -76,7 +81,10 @@ for (const r of rows) {
   if (t.group === '-') continue;
   if (seenJp.has(r.jp)) continue;
   seenJp.add(r.jp);
-  words.push({ jp: r.jp, reading: fixReading(r.jp, r.reading), meaning: t.meaning, en: r.en, group: GROUPS[t.group] });
+  const word = applyFix({ jp: r.jp, reading: fixReading(r.jp, r.reading), meaning: t.meaning, en: r.en, group: GROUPS[t.group] });
+  // Depois da correção a palavra pode já estar numa lista de baixo (堅い no N4 e no N3): fica só a de baixo.
+  if (lowerJp.has(word.jp)) continue;
+  words.push(word);
 }
 
 const q = (s) => JSON.stringify(s);

@@ -7,6 +7,7 @@ import { answerReview, boostSkippedItems, learnItems, shouldApplyReviewAnswer, t
 import { addActivity, type ActivityHistory } from '@/features/stats/metrics';
 import { markDay } from '@/features/streak/days';
 import { findItem } from '@/features/catalog';
+import { migrateVocabCards, migrateWordNotes } from '@/features/vocab/renamed';
 import { addConfusion, sanitizeConfusions, type Confusions } from '@/features/review/confusions';
 import { checkPhrase, newPhraseId, type MyPhrase, type MyPhrases, type PhraseProblem } from '@/features/myphrases/phrases';
 import { cardKeysFor as verbCardKeys, extraKeysFor as verbExtraKeys, EXTRA_PER_DAY, learnedVerbIds } from '@/features/conjugation/cards';
@@ -633,7 +634,7 @@ export function createProgressStore(storage: StateStorage) {
         // O que vem do disco passa pela leitura segura: estado salvo por uma versão antiga ganha os campos novos.
         merge: (persisted, current) => {
           const saved = (persisted ?? {}) as Partial<ProgressState> & { journey?: unknown };
-          return { ...current, ...saved, journey: sanitizeJourney(saved.journey), typing: sanitizeTyping((saved as { typing?: unknown }).typing), confusions: sanitizeConfusions((saved as { confusions?: unknown }).confusions), charNotes: saved.charNotes ?? {}, reads: sanitizeReads((saved as { reads?: unknown }).reads) };
+          return { ...current, ...saved, journey: sanitizeJourney(saved.journey), typing: sanitizeTyping((saved as { typing?: unknown }).typing), confusions: sanitizeConfusions((saved as { confusions?: unknown }).confusions), vocab: migrateVocabCards(saved.vocab ?? current.vocab), wordNotes: migrateWordNotes(saved.wordNotes ?? current.wordNotes), charNotes: saved.charNotes ?? {}, reads: sanitizeReads((saved as { reads?: unknown }).reads) };
         },
         // Só os dados são salvos, nunca as funções.
         partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, wordNotes, charNotes, confusions, journey, mastered, myPhrases, typing, reads }) => ({

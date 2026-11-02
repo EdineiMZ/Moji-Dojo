@@ -107,3 +107,64 @@ describe('importar o backup do formato antigo (NDJ1)', () => {
     expect(ignoredNote(2)).toContain('2 itens do código foram ignorados');
   });
 });
+
+describe('datas absurdas no backup (relógio errado no aparelho de origem)', () => {
+  const YEAR_MS = 365 * DAY_MS;
+  const code = (entry: object, extra: object = {}) =>
+    'MDJ1:' + btoa(unescape(encodeURIComponent(JSON.stringify({ v: 1, app: 'moji-dojo', srs: { あ: entry }, lessons: {}, stats: {}, days: [], ...extra }))));
+
+  beforeEach(() => {
+    jest.useFakeTimers();
+    jest.setSystemTime(NOW);
+  });
+  afterEach(() => jest.useRealTimers());
+
+  it('vencimento a anos de distância é limitado a um ano mais um dia', () => {
+    const result = parseBackup(code({ b: 6, due: NOW + 50 * YEAR_MS }));
+    if (!result.ok) throw new Error('esperava sucesso');
+    expect(result.snapshot.srs['あ']?.due).toBe(NOW + 366 * DAY_MS);
+  });
+
+  it('vencimento normal passa intacto, inclusive o de um cartão atrasado', () => {
+    const ok = parseBackup(code({ b: 3, due: NOW + 10 * DAY_MS }));
+    const late = parseBackup(code({ b: 1, due: NOW - 400 * DAY_MS }));
+    if (!ok.ok || !late.ok) throw new Error('esperava sucesso');
+    expect(ok.snapshot.srs['あ']?.due).toBe(NOW + 10 * DAY_MS);
+    expect(late.snapshot.srs['あ']?.due).toBe(NOW - 400 * DAY_MS);
+  });
+
+  it('a última revisão no futuro vira agora (senão o tempo decorrido ficaria zerado e a estabilidade não cresceria)', () => {
+    const result = parseBackup(code({ b: 3, due: NOW + DAY_MS, s: 8, d: 5, t: NOW + 30 * DAY_MS }));
+    if (!result.ok) throw new Error('esperava sucesso');
+    expect(result.snapshot.srs['あ']).toMatchObject({ s: 8, d: 5, t: NOW });
+  });
+
+  it('a última revisão no passado fica como está', () => {
+    const result = parseBackup(code({ b: 3, due: NOW + DAY_MS, s: 8, d: 5, t: NOW - 5 * DAY_MS }));
+    if (!result.ok) throw new Error('esperava sucesso');
+    expect(result.snapshot.srs['あ']?.t).toBe(NOW - 5 * DAY_MS);
+  });
+
+  it('o mesmo vale para vocabulário e frases próprias', () => {
+    const result = parseBackup(
+      code(
+        { b: 1, due: NOW },
+        {
+          vocab: { 'ねこ|jm': { b: 2, due: NOW + 99 * YEAR_MS } },
+          myPhrases: { m1: { jp: 'わたしは ブラジルに すんでいます', pt: 'Eu moro no Brasil.', at: NOW, b: 2, due: NOW + 99 * YEAR_MS } },
+        },
+      ),
+    );
+    if (!result.ok) throw new Error('esperava sucesso');
+    expect(result.extras?.vocab['ねこ|jm']?.due).toBe(NOW + 366 * DAY_MS);
+    expect(result.extras?.myPhrases['m1']?.due).toBe(NOW + 366 * DAY_MS);
+  });
+
+  it('importar com a data absurda e abrir a revisão: o cartão aparece em no máximo um ano, não em décadas', () => {
+    const result = parseBackup(code({ b: 6, due: NOW + 80 * YEAR_MS }));
+    if (!result.ok) throw new Error('esperava sucesso');
+    const store = createProgressStore(memory());
+    store.getState().replaceProgress(result.snapshot);
+    expect(Object.values(store.getState().srs).every((e) => e.due <= NOW + 366 * DAY_MS)).toBe(true);
+  });
+});

@@ -3,7 +3,7 @@ import { findItem } from '@/features/catalog';
 import type { CharStats, ProgressSnapshot } from '@/features/progress/types';
 import { sanitizeConfusions } from '@/features/review/confusions';
 import { currentWordId, freshestCard, migrateVocabKey } from '@/features/vocab/renamed';
-import { LAST_BOX, type SrsEntry } from '@/features/review/srs';
+import { DAY_MS, LAST_BOX, MAX_INTERVAL_DAYS, type SrsEntry } from '@/features/review/srs';
 import { MAX_HISTORY_DAYS, type DayActivity } from '@/features/stats/metrics';
 import { findWord } from '@/content';
 import { sanitizeTyping } from '@/features/keyboard/typingStats';
@@ -24,8 +24,11 @@ import { MAX_NOTE_LENGTH, type ProgressExtras, type ShadowRating } from '@/store
  *   desafios de digitação e vocabulário, com um campo `v` de versão. Campos novos entram como opcionais,
  *   então um código antigo continua valendo (sem o campo, vale vazio).
  */
+/** Maior vencimento aceito: o intervalo máximo do app (um ano) mais um dia de folga. Mais que isso é relógio errado. */
+const clampDue = (due: number, now: number): number => Math.min(due, now + (MAX_INTERVAL_DAYS + 1) * DAY_MS);
+
 /** Entrada de revisão lida do backup: caixa dentro dos limites e, se houver, o número de esquecimentos. */
-function srsEntry(b: number, due: number, lapses: unknown, fsrs?: Record<string, unknown>): SrsEntry {
+function srsEntry(b: number, due: number, lapses: unknown, fsrs: Record<string, unknown> | undefined, now: number): SrsEntry {
   const l = isCount(lapses) ? Math.min(Math.round(lapses), 99) : 0;
   // Os campos do FSRS (estabilidade, dificuldade e a última revisão) só entram se forem números plausíveis; senão o cartão
   // volta ao agendamento pela caixa, como num backup antigo.
@@ -34,9 +37,9 @@ function srsEntry(b: number, due: number, lapses: unknown, fsrs?: Record<string,
   const t = fsrs?.t;
   const memory =
     typeof s === 'number' && Number.isFinite(s) && s > 0 && s <= 36500 && typeof d === 'number' && Number.isFinite(d) && d >= 1 && d <= 10 && isCount(t)
-      ? { s, d, t }
+      ? { s, d, t: Math.min(t, now) } // ninguém revisou no futuro: um relógio errado no aparelho de origem não zera o tempo decorrido
       : {};
-  return { b: Math.min(Math.max(Math.round(b), 1), LAST_BOX), due, ...(l > 0 ? { l } : {}), ...memory };
+  return { b: Math.min(Math.max(Math.round(b), 1), LAST_BOX), due: clampDue(due, now), ...(l > 0 ? { l } : {}), ...memory };
 }
 
 export const BACKUP_PREFIX = 'NDJ1:';
@@ -172,7 +175,7 @@ function recordField(root: Record<string, unknown>, key: string): Record<string,
 const RATINGS: readonly ShadowRating[] = ['ok', 'mid', 'bad'];
 
 /** Histórico, autoavaliação e desafios do backup do app; o que não tem a forma certa é descartado. */
-function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ignored: number } {
+function parseExtras(root: Record<string, unknown>, now: number): { value: ProgressExtras; ignored: number } {
   let ignored = 0;
 
   const history: Record<string, DayActivity> = {};
@@ -213,7 +216,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
       ignored++;
       continue;
     }
-    const entry = srsEntry(v.b, v.due, v.l, v);
+    const entry = srsEntry(v.b, v.due, v.l, v, now);
     vocab[key] = vocab[key] ? freshestCard(vocab[key], entry) : entry;
   }
 
@@ -223,7 +226,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
       ignored++;
       continue;
     }
-    conj[key] = srsEntry(v.b, v.due, v.l, v);
+    conj[key] = srsEntry(v.b, v.due, v.l, v, now);
   }
 
   const particles: Record<string, SrsEntry> = {};
@@ -232,7 +235,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
       ignored++;
       continue;
     }
-    particles[key] = srsEntry(v.b, v.due, v.l, v);
+    particles[key] = srsEntry(v.b, v.due, v.l, v, now);
   }
 
   const wordNotes: Record<string, string> = {};
@@ -276,7 +279,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
       pt: (phrase.pt as string).trim(),
       at: phrase.at as number,
       b: Math.min(Math.max(Math.round(phrase.b as number), 1), LAST_BOX),
-      due: phrase.due as number,
+      due: clampDue(phrase.due as number, now),
     };
   }
 
@@ -296,7 +299,7 @@ function parseExtras(root: Record<string, unknown>): { value: ProgressExtras; ig
  * Valida o código e devolve o progresso já limpo: só caracteres e lições que
  * existem neste app, com valores no intervalo certo. Não altera nada salvo.
  */
-export function parseBackup(code: string): BackupParseResult {
+export function parseBackup(code: string, now: number = Date.now()): BackupParseResult {
   try {
     const { root, source } = decodePayload(code);
     if (!isRecord(root)) throw new BackupFailure('data');
@@ -315,7 +318,7 @@ export function parseBackup(code: string): BackupParseResult {
         ignored++;
         continue;
       }
-      srs[char] = srsEntry(v.b, v.due, v.l, v);
+      srs[char] = srsEntry(v.b, v.due, v.l, v, now);
     }
 
     const knownLessons = new Set(Object.values(LESSONS).flatMap((list) => list.map((l) => l.id)));
@@ -349,7 +352,7 @@ export function parseBackup(code: string): BackupParseResult {
       throw new BackupFailure('empty');
     }
     if (source === 'prototype') return { ok: true, snapshot, summary: { ...counts, ignored }, source };
-    const extras = parseExtras(root);
+    const extras = parseExtras(root, now);
     return {
       ok: true,
       snapshot,

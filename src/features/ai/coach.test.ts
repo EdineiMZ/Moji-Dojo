@@ -32,7 +32,7 @@ describe('buildCoachStats', () => {
 
   it('conta os itens teimosos por área, sem guardar quais são', () => {
     const stats = buildCoachStats(input({ particles: { は: { b: 1, due: 0, l: 5 }, が: { b: 1, due: 0, l: 6 } } }), NOW);
-    expect(stats.leeches).toEqual({ kana: 0, vocab: 0, conj: 0, particle: 2 });
+    expect(stats.leeches).toEqual({ kana: 0, kanji: 0, vocab: 0, conj: 0, particle: 2 });
   });
 });
 

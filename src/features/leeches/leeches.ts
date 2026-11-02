@@ -3,7 +3,7 @@ import { FORM_LABELS, parseCardKey as parseVerbKey } from '@/features/conjugatio
 import { isLeech, type SrsState } from '@/features/review/srs';
 import { parseCardKey as parseWordKey } from '@/features/vocab/cards';
 
-export type LeechArea = 'kana' | 'vocab' | 'conj' | 'particle';
+export type LeechArea = 'kana' | 'kanji' | 'vocab' | 'conj' | 'particle';
 
 export interface Leech {
   area: LeechArea;
@@ -17,6 +17,7 @@ export interface Leech {
 }
 
 const TIPS: Readonly<Record<LeechArea, string>> = {
+  kanji: 'Escreva o kanji devagar, na ordem dos traços, e separe-o em partes que você já conhece (leia a historinha dele). Depois compare com um parecido.',
   kana: 'Desenhe o caractere devagar três vezes e invente uma imagem para ele (o que a forma lembra?). Depois compare com um parecido.',
   vocab: 'Em vez de repetir a tradução, escreva uma frase sua com a palavra ou veja as frases do Banco. Anote o que a confunde com outra.',
   conj: 'Volte à regra do grupo do verbo e conjugue em voz alta, devagar, antes de revisar de novo.',
@@ -36,12 +37,19 @@ export function findLeeches({ srs, vocab, conj, particles }: Sources): Leech[] {
   const add = (area: LeechArea, label: string, lapses: number, id?: string) => out.push({ area, label, lapses, tip: TIPS[area], ...(id ? { id } : {}) });
   for (const [char, entry] of Object.entries(srs)) {
     const item = findItem(char);
-    if (item && isLeech(entry)) add('kana', `${char} (${item.label})`, entry.l ?? 0);
+    if (item && isLeech(entry)) add(item.script === 'kanji' ? 'kanji' : 'kana', `${char} (${item.label})`, entry.l ?? 0);
   }
+  // Uma palavra tem até 3 cartões (japonês→significado, significado→japonês, ouvido ou leitura): conta uma vez só, com o pior
+  // número de esquecimentos. Senão duas palavras difíceis já somariam 6 itens teimosos e acionariam o freio sozinhas.
+  const words = new Map<string, { jp: string; meaning: string; lapses: number }>();
   for (const [key, entry] of Object.entries(vocab)) {
     const card = parseWordKey(key);
-    if (card && isLeech(entry)) add('vocab', `${card.word.jp} · ${card.word.meaning}`, entry.l ?? 0, card.word.id);
+    if (!card || !isLeech(entry)) continue;
+    const prev = words.get(card.word.id);
+    const lapses = Math.max(prev?.lapses ?? 0, entry.l ?? 0);
+    words.set(card.word.id, { jp: card.word.jp, meaning: card.word.meaning, lapses });
   }
+  for (const [id, w] of words) add('vocab', `${w.jp} · ${w.meaning}`, w.lapses, id);
   for (const [key, entry] of Object.entries(conj)) {
     const card = parseVerbKey(key);
     if (card && isLeech(entry)) add('conj', `${card.verb.word.jp} · ${FORM_LABELS[card.form]}`, entry.l ?? 0);

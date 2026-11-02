@@ -46,7 +46,7 @@ const pick = ({ studiedDays, elapsedDays, answers, accuracy, learned }: PeriodSu
 
 /** As estatísticas agregadas da semana, calculadas no aparelho. É só isto que a IA recebe. */
 export function buildCoachStats(input: CoachInput, now: Date): CoachStats {
-  const leeches: Record<LeechArea, number> = { kana: 0, vocab: 0, conj: 0, particle: 0 };
+  const leeches: Record<LeechArea, number> = { kana: 0, kanji: 0, vocab: 0, conj: 0, particle: 0 };
   for (const l of findLeeches({ srs: input.srs, vocab: input.vocab, conj: input.conj, particles: input.particles })) leeches[l.area]++;
   return {
     weekKey: weekKey(now),

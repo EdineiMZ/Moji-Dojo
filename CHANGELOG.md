@@ -2,6 +2,19 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.43.0] - 2026-11-02
+
+Alternativas sem resposta repetida, sufixos com exemplo, historinha nas palavras e correções de leitura achadas na auditoria.
+
+- **Alternativas sem sentido repetido:** uma alternativa errada nunca divide um sentido com a certa (compara os sentidos inteiros, separados por ";", sem acento e ignorando palavras genéricas como "fazer" e "coisa"). No ouvido, palavras com a mesma leitura também ficam de fora. Vale para o vocabulário e para "Ler palavras". Sempre 4 alternativas.
+- **Sufixos como 〜にくい:** sufixos e prefixos aparecem com o traço (〜にくい, 〜やすい, マイ〜). 10 deles trazem um exemplo de uso com tradução (frases do Tatoeba, CC BY 2.0 FR). Depois da resposta e no cartão da palavra aparece "Outros sentidos de にくい" (〜にくい "difícil de" × 憎い "odioso").
+- **Historinha ao errar uma palavra:** aparece a pronta (os kanji da palavra, com o significado e a dica) e dá para escrever a sua, que passa a valer no lugar dela.
+- **Leituras corrigidas (conferidas no JMdict):** 伯父 virou 伯父さん, お金持ち lê-se おかねもち, 堅 virou 堅い, 摩する virou 摩る (さする) e 田ぼ virou 田んぼ. Quem já estudava essas palavras mantém os cartões e as historinhas (migram ao abrir o app e ao importar backup).
+- **Ordem da gramática N5:** "Quem faz: が" vem logo depois dos 10 primeiros tópicos e "Forma simples" antes de "〜ないでください", que depende dela.
+- **Auditoria:** `docs/auditoria-opus.md` (conteúdo em japonês, lógica de aprendizado e testes) e `docs/revisao-vocabulario.md` (`npm run audit-vocab`).
+- **Para revisar por um falante:** a leitura em kana de 4 exemplos de sufixo (〜がち, 〜っぽい, 〜ずつ, 〜ごと) foi escrita à mão.
+- **Testes:** sentidos e alternativas, auditoria, sufixos e outros sentidos, historinha de palavra, migração do progresso (cartões, historinhas, abertura do app e backup) e as correções do vocabulário.
+
 ## [2.42.2] - 2026-11-01
 
 Ajustes no treino "Ler palavras": só o que você já aprendeu, as básicas primeiro e uma dica quando o sinal pede.

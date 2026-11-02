@@ -77,7 +77,10 @@ export interface PlannedReminder {
   body: string;
 }
 
-const MIN_STREAK_FOR_RISK = 3;
+/** O aviso da noite protege qualquer sequência, a partir de 1 dia: quem está começando é quem mais perde ao quebrá-la. */
+export const MIN_STREAK_FOR_RISK = 1;
+/** O lembrete diário só cita a sequência ("5 dias seguidos") quando ela já é uma conquista. */
+export const MIN_STREAK_FOR_TEXT = 3;
 
 /** A hora `hour` cai no horário de silêncio? */
 export function inQuiet(hour: number, minute: number, from: number, to: number): boolean {
@@ -118,14 +121,14 @@ function dailyText(input: PlanInput, offset: number, gap: number, date: Date): R
     if (turn === 1 && !(offset === 0 && (input.newToday ?? 0) > 0)) return pick(NEW_THING_MESSAGES, seed)(name);
   }
   if (offset === 0 && input.dueCount > 0 && seed % 2 === 0) return pick(DUE_MESSAGES, seed)(input.dueCount);
-  if (input.streak >= MIN_STREAK_FOR_RISK && offset <= 1 && seed % 3 === 0) return pick(STREAK_MESSAGES, seed)(input.streak);
+  if (input.streak >= MIN_STREAK_FOR_TEXT && offset <= 1 && seed % 3 === 0) return pick(STREAK_MESSAGES, seed)(input.streak);
   return pick(DAILY_MESSAGES, seed);
 }
 
 /**
  * O plano de lembretes dos próximos dias. Regras: só nos dias escolhidos, no horário escolhido (empurrado para o fim do
  * silêncio se cair nele), nada para hoje se já estudou ou se a hora passou, no máximo 2 por dia, e o aviso da noite só
- * para quem tem sequência de 3 dias ou mais e ainda não estudou. A lista vem em ordem de data.
+ * para quem tem uma sequência (1 dia ou mais) e ainda não estudou. A lista vem em ordem de data.
  */
 export function planReminders(input: PlanInput): PlannedReminder[] {
   const { now, settings } = input;

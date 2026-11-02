@@ -97,7 +97,7 @@ describe('plano de lembretes', () => {
 });
 
 describe('aviso da noite (sequência em risco)', () => {
-  it('só com sequência de 3 dias ou mais e sem estudo hoje', () => {
+  it('com qualquer sequência (1 dia ou mais) e sem estudo hoje', () => {
     const risky = planReminders(input({ streak: 5, daysAway: 1 }));
     const risk = risky.filter((p) => p.kind === 'risk');
     expect(risk.length).toBeGreaterThan(0);
@@ -105,7 +105,10 @@ describe('aviso da noite (sequência em risco)', () => {
     expect(risk.every((p) => p.at.getHours() === 21 && p.at.getMinutes() === 0)).toBe(true);
     expect(risk[0]?.at.getDate()).toBe(21);
 
-    expect(planReminders(input({ streak: 2, daysAway: 1 })).some((p) => p.kind === 'risk')).toBe(false);
+    // 1 dia de sequência já merece o aviso; sem sequência (0), não há o que proteger.
+    expect(planReminders(input({ streak: 1, daysAway: 1 })).some((p) => p.kind === 'risk')).toBe(true);
+    expect(planReminders(input({ streak: 2, daysAway: 1 })).some((p) => p.kind === 'risk')).toBe(true);
+    expect(planReminders(input({ streak: 0, daysAway: 1 })).some((p) => p.kind === 'risk')).toBe(false);
     expect(planReminders(input({ streak: 5, daysAway: 1 }, { risk: false })).some((p) => p.kind === 'risk')).toBe(false);
     expect(planReminders(input({ streak: 5, studiedToday: true, daysAway: 0 })).filter((p) => p.kind === 'risk').every((p) => p.at.getDate() !== 21)).toBe(true);
   });

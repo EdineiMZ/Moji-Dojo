@@ -66,9 +66,9 @@ export const COMEBACK_MESSAGES: readonly ReminderText[] = [
 
 /** Aviso da noite: a sequência pode se perder se hoje passar sem estudo. */
 export const RISK_MESSAGES: readonly ((days: number) => ReminderText)[] = [
-  (n) => ({ title: `Sua sequência de ${n} dias`, body: 'Ainda dá tempo de estudar hoje. Uma revisão curta mantém tudo.' }),
+  (n) => ({ title: `Sua sequência de ${n} ${n === 1 ? 'dia' : 'dias'}`, body: 'Ainda dá tempo de estudar hoje. Uma revisão curta mantém tudo.' }),
   (n) => ({ title: 'Última chamada do dojo 🌙', body: `Hoje ainda não teve estudo. Salve o dia ${n + 1} com cinco minutinhos.` }),
-  (n) => ({ title: 'Antes de dormir', body: `Que tal um exercício rápido? Seus ${n} dias seguidos agradecem.` }),
+  (n) => ({ title: 'Antes de dormir', body: `Que tal um exercício rápido? ${n === 1 ? 'Seu primeiro dia seguido agradece' : `Seus ${n} dias seguidos agradecem`}.` }),
 ];
 
 /** Número repetível a partir do dia, para escolher o mesmo texto sempre que o dia for o mesmo. */

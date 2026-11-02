@@ -1560,7 +1560,7 @@ export const GRAMMAR_N3: readonly GrammarTopic[] = [
           }
         ],
         "romaji": "honki no hazu ga naiwa",
-        "pt": "Não podes estar a falar a sério."
+        "pt": "Você não pode estar falando sério."
       },
       {
         "jp": "かれが うそを いった はずが ない",
@@ -1987,7 +1987,7 @@ export const GRAMMAR_N3: readonly GrammarTopic[] = [
           }
         ],
         "romaji": "atatakai uchi ni tabeyō",
-        "pt": "Comamos enquanto esteja quente."
+        "pt": "Vamos comer enquanto a comida está quente."
       },
       {
         "jp": "ちかい うちに お たずね します",
@@ -6536,7 +6536,7 @@ export const BUILD_N3: readonly BuildExercise[] = [
   },
   {
     "topic": "n3-8",
-    "pt": "Não podes estar a falar a sério.",
+    "pt": "Você não pode estar falando sério.",
     "answer": [
       "ほんき",
       "の",
@@ -6660,7 +6660,7 @@ export const BUILD_N3: readonly BuildExercise[] = [
   },
   {
     "topic": "n3-10",
-    "pt": "Comamos enquanto esteja quente.",
+    "pt": "Vamos comer enquanto a comida está quente.",
     "answer": [
       "あたたかい",
       "うち",

@@ -750,7 +750,7 @@ export const N2_WORDS: readonly SourceWord[] = [
   { jp: "縮小", reading: "しゅくしょう", meaning: "redução", en: "reduction, curtailment", group: "N2: Ideias e sentimentos" },
   { jp: "受験", reading: "じゅけん", meaning: "prestar exame", en: "taking an examination", group: "N2: Sociedade e trabalho" },
   { jp: "主語", reading: "しゅご", meaning: "sujeito (gramática)", en: "(gram) subject", group: "N2: Ideias e sentimentos" },
-  { jp: "主人", reading: "しゅじん", meaning: "marido (próprio)", en: "(one's own) husband", group: "N2: Pessoas" },
+  { jp: "主人", reading: "しゅじん", meaning: "marido (próprio); dono; patrão; anfitrião", en: "(one's own) husband", group: "N2: Pessoas" },
   { jp: "出勤", reading: "しゅっきん", meaning: "ir ao trabalho; estar no trabalho", en: "going to work, at work", group: "N2: Sociedade e trabalho" },
   { jp: "述語", reading: "じゅつご", meaning: "predicado", en: "predicate", group: "N2: Ideias e sentimentos" },
   { jp: "出張", reading: "しゅっちょう", meaning: "viagem de negócios", en: "official tour, business trip", group: "N2: Sociedade e trabalho" },

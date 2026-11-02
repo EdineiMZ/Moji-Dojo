@@ -16,6 +16,8 @@ const FIXES = {
   摩する: { jp: '摩る' },
   // JMdict: たんぼ é 田んぼ (田ぼ é só forma de busca).
   田ぼ: { jp: '田んぼ' },
+  // JMdict: 主人 é o chefe da casa, o dono (de loja), o senhorio, o marido, o patrão e o anfitrião; a lista só trazia "marido".
+  主人: { meaning: 'marido (próprio); dono; patrão; anfitrião' },
 };
 
 /** Palavras que mudaram de escrita (e portanto de id) por causa das correções: id antigo → id novo. */

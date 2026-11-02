@@ -443,7 +443,7 @@ export const TOPICS = [
         "ja": "本気のはずがないわ。",
         "furi": "[本気|ほん|き]のはずがないわ。",
         "kana": "ほんき~の はず~が ないわ",
-        "pt": "Não podes estar a falar a sério."
+        "pt": "Você não pode estar falando sério."
       },
       {
         "id": 121048,
@@ -574,7 +574,7 @@ export const TOPICS = [
         "ja": "温かいうちに食べよう。",
         "furi": "[温|あたた]かいうちに[食|た]べよう。",
         "kana": "あたたかい うち~に たべよう",
-        "pt": "Comamos enquanto esteja quente."
+        "pt": "Vamos comer enquanto a comida está quente."
       },
       {
         "id": 179920,

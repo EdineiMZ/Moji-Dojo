@@ -13,7 +13,7 @@ Revisor: Claude (Opus 5.5). Nenhum arquivo do app foi alterado; só este relató
 
 ### Corrigir já (errado)
 
-> **Status (2026-11-01): E1 a E6 corrigidos** no commit "fix(content): leituras e ordem…". As correções de vocabulário ficam em `scripts/vocabFixes.cjs` (aplicadas pelos `build-n*.mjs`, que não editam os CSVs da lista aberta); o progresso de quem já estudava 伯父, 堅, 摩する ou 田ぼ migra para o id novo ao abrir o app e ao importar backup. F1–F18 seguem abertos.
+> **Status (2026-11-01): E1 a E6 corrigidos** no commit "fix(content): leituras e ordem…". As correções de vocabulário ficam em `scripts/vocabFixes.cjs` (aplicadas pelos `build-n*.mjs`, que não editam os CSVs da lista aberta); o progresso de quem já estudava 伯父, 堅, 摩する ou 田ぼ migra para o id novo ao abrir o app e ao importar backup. F11–F17 (lógica) e F3, F4, F5, F6, F7, F10 (conteúdo) foram tratados depois, em commits próprios; ver a tabela "Status das melhorias" no fim do arquivo.
 
 | # | Onde | Problema | Certeza |
 |---|---|---|---|
@@ -56,7 +56,7 @@ Revisor: Claude (Opus 5.5). Nenhum arquivo do app foi alterado; só este relató
 - **Gramática g1–g10 (todos lidos) e 22 tópicos N4/N3 por amostragem:** as explicações estão corretas, salvo F3, F4 e F6. Os tópicos de passiva, causativa passiva, 〜てみる, 〜ようになる, によって, うちに, ことになる, てほしい e ことはない estão certos e claros.
 - **Traduções do vocabulário (amostra de 110 palavras, 22 por nível):** cerca de 98% corretas. A única imprecisão relevante é F7.
 - **Leituras e diálogos (amostra de 3 textos e 1 diálogo):** japonês natural, traduções corretas.
-- **Lógica:** a suíte inteira passa (1.750 testes, 5 pulados de propósito), inclusive com o fuso trocado para `America/New_York`, `Asia/Tokyo` e `Pacific/Auckland`. A cobertura dos módulos de aprendizado é de 93% das linhas e 86% dos ramos. Desenho sem dados de traço é tratado: os 82 kana combinados/estrangeiros sem traço são filtrados por `isWritable` (`src/features/writing/model.ts:6`). O import de backup valida tipos e faixa de `b`, `s` e `d`.
+- **Lógica:** a suíte inteira passa (1.750 testes, 5 pulados de propósito), (a conferência em outros fusos que fiz na primeira versão deste relatório **não valia**: no Git Bash do Windows a variável `TZ` com nome de região não é aplicada, e tudo rodou em horário de São Paulo; refeita pelo PowerShell em 5 fusos, ver a seção 2.1). A cobertura dos módulos de aprendizado é de 93% das linhas e 86% dos ramos. Desenho sem dados de traço é tratado: os 82 kana combinados/estrangeiros sem traço são filtrados por `isWritable` (`src/features/writing/model.ts:6`). O import de backup valida tipos e faixa de `b`, `s` e `d`.
 
 ---
 
@@ -161,7 +161,7 @@ O que não foi lido fica como pendência para o falante, com o grupo (b) acima c
 ### 2.1 Suíte
 
 - `npx jest`: **1.750 passaram, 5 pulados, 0 falhas** (173 suítes).
-- Com `TZ=America/New_York`, `TZ=Asia/Tokyo` e `TZ=Pacific/Auckland`: **0 falhas**.
+- **Correção:** a primeira conferência em outros fusos estava errada (a variável `TZ` com nome de região é ignorada no Git Bash do Windows; os testes rodaram sempre em São Paulo). Definindo o fuso pelo PowerShell (`$env:TZ = 'America/New_York'`), a suíte passou em São Paulo, Nova York, Auckland, Tóquio e Londres depois das correções F11 e F15; o teste novo do freio **falha no código antigo** em Nova York e em Auckland, o que confirma o F15.
 - Os avisos de `act(...)` aparecem nas suítes de HomeView, ShopView, Mascot, RoomScene, ChestHost e JpInline. Não quebram nada, mas escondem avisos novos.
 
 ### 2.2 Cobertura dos módulos de aprendizado
@@ -259,3 +259,25 @@ Arquivos abaixo da média:
 - ポテト = "batata frita": em japonês, ポテト sozinho costuma ser batata frita mesmo; ok.
 - Kana: キス ("beijo") como exemplo de キ é correto; só escolha de palavra.
 - 来 descrito com 米 ("grãos caindo"): é mnemônico, não etimologia; ok.
+
+## Status das melhorias (F1 a F18)
+
+| # | Estado | Como |
+|---|---|---|
+| F1 | aberto | 真中, 沿い, 遣い, 初: leituras de sufixo ou escrita incomum, a decidir com um falante |
+| F2 | aberto | exemplos de kanji com kanji ainda não ensinados |
+| F3 | feito | g1: "está" só para estado, lugar remete ao tópico 7 |
+| F4 | feito | g9: aviso de que きれい termina em い mas é do tipo な |
+| F5 | feito | g7 avisa do が e o tópico 11 o explica (g39 movido) |
+| F6 | parcial | trocadas por outras traduções do próprio Tatoeba: "Não se preocupe.", "Planejo ir ao cinema.", "Você não pode estar falando sério.", "Vamos comer enquanto a comida está quente.". Ficam as que têm uma só tradução no Tatoeba ("Eu vim conhecê-lo", "Ele foi feito para ir lá") e "Gostaria de trocar de lugar" |
+| F7 | feito | 主人: "marido (próprio); dono; patrão; anfitrião" (JMdict) |
+| F8, F9 | aberto | mnemônicos de 姉 e 九: gosto, decidir com um falante |
+| F10 | feito | らーめん → ラーメン no guia de sons |
+| F11 | feito | vencimento por dia de estudo (virada às 4h); testes com fake timers e em 5 fusos |
+| F12 | feito | palavra conta uma vez só nos teimosos |
+| F13 | feito | kanji teimoso aparece como kanji |
+| F14 | feito | pares de mesmo som fora das vagas do treino |
+| F15 | feito | freio recua por dia de calendário; teste falha no código antigo em Nova York e Auckland |
+| F16 | feito | datas absurdas do backup são limitadas |
+| F17 | feito | aviso de risco com 1 dia; scheduler e sync agora têm testes |
+| F18 | aberto | caminho sugerido kana → gramática → kanji |

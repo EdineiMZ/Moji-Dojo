@@ -121,7 +121,7 @@ export const TOPICS = [
     hint: 'Forma ない + で + ください = por favor, não faça.',
     examples: [
       { id: 2006378, ja: '行かないでください。', furi: '[行|い]かないでください。', kana: 'いかないで|ください', pt: 'Por favor, não vá embora.' },
-      { id: 2349145, ja: '心配しないでください。', furi: '[心配|しん|ぱい]しないでください。', kana: 'しんぱい しないで|ください', pt: 'Não te preocupes.' },
+      { id: 2349145, ja: '心配しないでください。', furi: '[心配|しん|ぱい]しないでください。', kana: 'しんぱい しないで|ください', pt: 'Não se preocupe.' },
       { id: 123791, ja: '動かないでください。', furi: '[動|うご]かないでください。', kana: 'うごかないで|ください', pt: 'Não se mexa, por favor.' },
       { id: 5845217, ja: '音を立てないでください。', furi: '[音|おと]を[立|た]てないでください。', furi: '[音|おと]を[立|た]てないでください。', kana: 'おと~を たてないで|ください', pt: 'Não faça barulho.' },
       { id: 168184, ja: '枝を折らないでください。', furi: '[枝|えだ]を[折|お]らないでください。', kana: 'えだ~を おらないで|ください', pt: 'Não quebrem os ramos.' },
@@ -647,7 +647,7 @@ export const TOPICS = [
     pattern: '[verbo na forma de dicionário] つもりです',
     hint: 'Dicionário (る) + つもりです = pretendo. Com ない: pretendo não.',
     examples: [
-      { id: 189334, ja: '映画に行くつもりです。', furi: '[映画|えい|が]に[行|い]くつもりです。', kana: 'えいが~に いく|つもり|です', pt: 'Vou ir ao cinema.' },
+      { id: 189334, ja: '映画に行くつもりです。', furi: '[映画|えい|が]に[行|い]くつもりです。', kana: 'えいが~に いく|つもり|です', pt: 'Planejo ir ao cinema.' },
       { id: 156072, ja: '手紙を書くつもりです。', furi: '[手紙|て|がみ]を[書|か]くつもりです。', kana: 'てがみ~を かく|つもり|です', pt: 'Vou escrever uma carta.' },
       { id: 80261, ja: '明日彼に会うつもりです。', furi: '[明日|あした][彼|かれ]に[会|あ]うつもりです。', kana: 'あした かれ~に あう|つもり|です', pt: 'Eu vou encontrar ele amanhã.' },
       { id: 12003468, ja: '2泊するつもりです。', furi: '[2|に][泊|はく]するつもりです。', kana: 'にはく する|つもり|です', pt: 'Vou ficar duas noites.' },

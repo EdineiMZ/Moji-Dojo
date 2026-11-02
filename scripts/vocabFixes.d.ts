@@ -1,6 +1,7 @@
 export interface WordFix {
   jp?: string;
   reading?: string;
+  meaning?: string;
 }
 export const FIXES: Readonly<Record<string, WordFix>>;
 export const RENAMED_WORDS: Readonly<Record<string, string>>;

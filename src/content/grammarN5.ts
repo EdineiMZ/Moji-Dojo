@@ -1023,7 +1023,7 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
           }
         ],
         "romaji": "shinpai shinaide kudasai",
-        "pt": "Não te preocupes."
+        "pt": "Não se preocupe."
       },
       {
         "jp": "うごかないでください",
@@ -5886,7 +5886,7 @@ export const GRAMMAR_N5: readonly GrammarTopic[] = [
           }
         ],
         "romaji": "eiga ni iku tsumori desu",
-        "pt": "Vou ir ao cinema."
+        "pt": "Planejo ir ao cinema."
       },
       {
         "jp": "てがみを かくつもりです",
@@ -9228,7 +9228,7 @@ export const BUILD_N5: readonly BuildExercise[] = [
   },
   {
     "topic": "g44",
-    "pt": "Vou ir ao cinema.",
+    "pt": "Planejo ir ao cinema.",
     "answer": [
       "えいが",
       "に",

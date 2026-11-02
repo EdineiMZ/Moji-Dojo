@@ -59,6 +59,11 @@ describe('correções das listas (auditoria de 2026-11-01)', () => {
     expect(findWord('お金持ち')?.reading).not.toBe('かねもち');
   });
 
+  it('主人 traz os sentidos do JMdict (dono, patrão, anfitrião), não só "marido"', () => {
+    expect(findWord('主人')?.meaning).toBe('marido (próprio); dono; patrão; anfitrião');
+    expect(scripts.applyFix({ jp: '主人', reading: 'しゅじん', meaning: 'marido (próprio)' }).meaning).toContain('dono');
+  });
+
   it('cada palavra renomeada continua sendo uma só (sem duplicata do id novo)', () => {
     for (const to of Object.values(APP_RENAMES)) expect(VOCAB.filter((w) => w.id === to)).toHaveLength(1);
   });

@@ -1,3 +1,4 @@
+import { isDue } from '@/features/review/srs';
 import { useMemo, useState } from 'react';
 import { findItem } from '@/features/catalog';
 import { mnemonicFor } from '@/features/quiz/explain';
@@ -104,7 +105,7 @@ function Session({ cards, onExit }: { cards: FlashCard[]; onExit: () => void }) 
     if (grade?.kind === 'vocab') {
       // Auto-avaliação vale menos que um quiz: acertar só conta para o agendamento se o cartão já estava vencido; errar sempre conta.
       const entry = useProgressStore.getState().vocab[grade.key];
-      if (!ok || (entry && entry.due <= Date.now())) recordVocabAnswer(grade.key, ok, firstTry && ok);
+      if (!ok || (entry && isDue(entry.due, Date.now()))) recordVocabAnswer(grade.key, ok, firstTry && ok);
     } else if (grade?.kind === 'kana') {
       recordReviewAnswer(grade.char, ok, firstTry && ok, true);
     } else if (grade?.kind === 'learn' && ok) {

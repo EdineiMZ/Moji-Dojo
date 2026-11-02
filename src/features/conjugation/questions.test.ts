@@ -62,7 +62,7 @@ describe('cartões', () => {
 
   it('conta verbos aprendidos, novos e vencidos', () => {
     const now = 1_000;
-    const conj = { '飲む|te': { b: 1, due: now }, '食べる|ta': { b: 3, due: now + 5_000 } };
+    const conj = { '飲む|te': { b: 1, due: now }, '食べる|ta': { b: 3, due: now + 3 * 86_400_000 } };
     expect([...learnedVerbIds(conj)].sort()).toEqual(['食べる', '飲む'].sort());
     expect(dueCards(conj, now)).toEqual(['飲む|te']);
     expect(newVerbs(conj).some((v) => v.word.id === '飲む')).toBe(false);

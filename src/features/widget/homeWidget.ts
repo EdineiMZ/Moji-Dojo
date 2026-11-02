@@ -3,7 +3,7 @@ import { AppState } from 'react-native';
 import { requireOptionalNativeModule } from 'expo';
 import { findItem } from '@/features/catalog';
 import { dueCards as conjDue } from '@/features/conjugation/cards';
-import { dueChars, type SrsState } from '@/features/review/srs';
+import { becomesDueAt, dueChars, isDue, type SrsState } from '@/features/review/srs';
 import { streakDays } from '@/features/streak/days';
 import { dueCards as vocabDue } from '@/features/vocab/cards';
 import { useProgressStore } from '@/store';
@@ -49,12 +49,13 @@ export function widgetPayload(progress: WidgetProgress, now: number): WidgetPayl
     { state: progress.srs, dueAt: (at) => dueChars(progress.srs, at, isKnownKana) },
     { state: progress.vocab, dueAt: (at) => vocabDue(progress.vocab, at) },
     { state: progress.conj, dueAt: (at) => conjDue(progress.conj, at) },
-    { state: progress.particles, dueAt: (at) => Object.keys(progress.particles).filter((k) => (progress.particles[k]?.due ?? Infinity) <= at) },
+    { state: progress.particles, dueAt: (at) => Object.keys(progress.particles).filter((k) => isDue(progress.particles[k]?.due ?? Infinity, at)) },
   ];
   const horizon = now + HORIZON_MS;
   const dueNow = groups.reduce((sum, g) => sum + g.dueAt(now).length, 0);
   const upcoming = groups
-    .flatMap((g) => g.dueAt(horizon).map((key) => g.state[key]?.due ?? 0))
+    // Quando a contagem de cada cartão sobe (a virada do dia em que ele vence), não a hora exata do vencimento.
+    .flatMap((g) => g.dueAt(horizon).map((key) => becomesDueAt(g.state[key]?.due ?? 0)))
     .filter((at) => at > now)
     .sort((a, b) => a - b)
     .slice(0, MAX_UPCOMING);

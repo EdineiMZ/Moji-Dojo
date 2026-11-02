@@ -63,9 +63,10 @@ describe('importar o backup do formato antigo (NDJ1)', () => {
     expect([0, 1, 2, 3, 4].map((i) => lessonStatus('hira', i, s.lessons))).toEqual(['done', 'done', 'done', 'open', 'lock']);
     expect(lessonStatus('kata', 0, s.lessons)).toBe('open');
 
-    // Início: 6 revisões vencidas, 4 dias seguidos, próxima lição é a 4ª de hiragana
+    // Início: 6 vencidas há mais de um dia + 2 que vencem hoje mais tarde (antes da virada das 4h, já contam), 4 dias seguidos,
+    // próxima lição é a 4ª de hiragana
     const summary = buildTodaySummary(s, NOW);
-    expect(summary.dueCount).toBe(6);
+    expect(summary.dueCount).toBe(8);
     expect(summary.streak).toBe(4);
     expect(summary.learnedCount).toBe(15);
     expect(summary.nextLesson).toMatchObject({ script: 'hira', index: 3 });

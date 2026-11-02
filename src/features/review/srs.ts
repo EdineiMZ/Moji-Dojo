@@ -113,10 +113,39 @@ export const isLeech = (entry: SrsEntry): boolean => (entry.l ?? 0) >= LEECH_LAP
 export const shouldApplyReviewAnswer = (extra: boolean, ok: boolean, firstTry: boolean, hinted = false): boolean =>
   hinted && ok && firstTry ? false : !extra || !ok || !firstTry;
 
+/** A que horas o dia de estudo "vira" (como no Anki): antes disso, ainda conta como o dia anterior. Quem estuda de madrugada não ganha dois dias. */
+export const DAY_ROLLOVER_HOUR = 4;
+
+/**
+ * Até quando um cartão conta como "vencido hoje": a próxima virada do dia (4h no horário local) depois de `now`.
+ * Um cartão aprendido às 23h vence às 23h do dia seguinte, mas quem revisa de manhã não deve esperar até a noite: ele já
+ * conta como vencido o dia todo. Usa o calendário local (`setHours`), então mudança de horário de verão não desloca nada.
+ */
+export function dueCutoff(now: number): number {
+  const d = new Date(now);
+  const cutoff = new Date(d.getFullYear(), d.getMonth(), d.getDate(), DAY_ROLLOVER_HOUR, 0, 0, 0);
+  if (cutoff.getTime() <= now) cutoff.setDate(cutoff.getDate() + 1);
+  return cutoff.getTime();
+}
+
+/**
+ * Desde quando o cartão com vencimento `due` conta como vencido: a última virada do dia (4h local) até `due`. É o inverso de
+ * `isDue`: `isDue(due, t)` vale exatamente para `t >= becomesDueAt(due)`. O widget usa isto para saber quando a contagem sobe.
+ */
+export function becomesDueAt(due: number): number {
+  const d = new Date(due);
+  const boundary = new Date(d.getFullYear(), d.getMonth(), d.getDate(), DAY_ROLLOVER_HOUR, 0, 0, 0);
+  if (boundary.getTime() > due) boundary.setDate(boundary.getDate() - 1);
+  return boundary.getTime();
+}
+
+/** O cartão com vencimento `due` já pode ser revisado agora? */
+export const isDue = (due: number, now: number): boolean => due < dueCutoff(now);
+
 /** Caracteres vencidos, do mais atrasado para o menos. `isKnown` ignora chaves que não existem mais. */
 export function dueChars(srs: SrsState, now: number, isKnown: (char: string) => boolean = () => true): string[] {
   return Object.keys(srs)
-    .filter((c) => isKnown(c) && (srs[c]?.due ?? Infinity) <= now)
+    .filter((c) => isKnown(c) && isDue(srs[c]?.due ?? Infinity, now))
     .sort((a, b) => (srs[a]?.due ?? 0) - (srs[b]?.due ?? 0));
 }
 
@@ -136,7 +165,7 @@ export function upcomingReviews(
   const future = Object.keys(srs)
     .filter((c) => isKnown(c))
     .map((c) => srs[c]?.due ?? 0)
-    .filter((due) => due > now);
+    .filter((due) => !isDue(due, now));
   if (!future.length) return null;
   const at = Math.min(...future);
   const day = new Date(at).toDateString();

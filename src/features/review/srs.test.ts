@@ -1,7 +1,10 @@
 import {
   answerReview,
   boostSkippedItems,
+  becomesDueAt,
   dueChars,
+  dueCutoff,
+  isDue,
   DAY_MS,
   learnItems,
   shouldApplyReviewAnswer,
@@ -147,19 +150,83 @@ describe('shouldApplyReviewAnswer', () => {
 });
 
 describe('dueChars', () => {
+  // NOW é 10:00; a virada do dia é às 4h, então "hoje" vai até quinta, 23/10, 4:00 (NOW + 18 h).
+  const HOUR = 3_600_000;
   const srs: SrsState = {
     あ: { b: 2, due: NOW - DAY_MS },
     い: { b: 1, due: NOW - 3 * DAY_MS },
     う: { b: 1, due: NOW }, // vence exatamente agora: conta
-    え: { b: 1, due: NOW + 1 },
+    え: { b: 1, due: NOW + 18 * HOUR }, // vence na virada do dia: ainda não
+    お: { b: 1, due: NOW + 17 * HOUR }, // vence hoje mais tarde: já conta
   };
 
-  it('lista só os vencidos, do mais atrasado ao menos', () => {
-    expect(dueChars(srs, NOW)).toEqual(['い', 'あ', 'う']);
+  it('lista só os vencidos (inclusive o que vence hoje mais tarde), do mais atrasado ao menos', () => {
+    expect(dueChars(srs, NOW)).toEqual(['い', 'あ', 'う', 'お']);
   });
 
   it('ignora chaves desconhecidas', () => {
-    expect(dueChars(srs, NOW, (c) => c !== 'い')).toEqual(['あ', 'う']);
+    expect(dueChars(srs, NOW, (c) => c !== 'い')).toEqual(['あ', 'う', 'お']);
+  });
+});
+
+describe('virada do dia (4h, horário local)', () => {
+  afterEach(() => jest.useRealTimers());
+
+  it('dueCutoff: antes das 4h é hoje às 4h; a partir das 4h é amanhã às 4h', () => {
+    const at = (h: number, m = 0) => new Date(2026, 9, 22, h, m).getTime();
+    expect(dueCutoff(at(0, 30))).toBe(at(4));
+    expect(dueCutoff(at(3, 59))).toBe(at(4));
+    expect(dueCutoff(at(4))).toBe(new Date(2026, 9, 23, 4).getTime());
+    expect(dueCutoff(at(23, 59))).toBe(new Date(2026, 9, 23, 4).getTime());
+  });
+
+  it('isDue: o limite é exclusivo (vencer exatamente na virada é só do dia seguinte)', () => {
+    const cutoff = dueCutoff(NOW);
+    expect(isDue(cutoff - 1, NOW)).toBe(true);
+    expect(isDue(cutoff, NOW)).toBe(false);
+  });
+
+  it('becomesDueAt é o inverso de isDue, para qualquer hora do dia', () => {
+    for (const hour of [0, 1, 3, 4, 5, 12, 23]) {
+      const due = new Date(2026, 9, 22, hour, 17).getTime();
+      const from = becomesDueAt(due);
+      expect(from).toBeLessThanOrEqual(due);
+      expect(isDue(due, from)).toBe(true);
+      expect(isDue(due, from - 1)).toBe(false);
+    }
+  });
+
+  it('virada do horário de verão: o dia com 25 ou 23 horas continua virando às 4h do relógio', () => {
+    // Em 1/11/2026 acaba o horário de verão nos EUA e em 4/10/2026 começa na Nova Zelândia; em outros fusos é um dia comum.
+    for (const [y, mo, d] of [[2026, 10, 1], [2026, 2, 8], [2026, 8, 27], [2026, 9, 4]] as const) {
+      const night = new Date(y, mo, d, 1, 30).getTime();
+      expect(dueCutoff(night)).toBe(new Date(y, mo, d, 4, 0).getTime());
+      expect(new Date(dueCutoff(new Date(y, mo, d, 12).getTime())).getHours()).toBe(4);
+    }
+  });
+
+  it('o cartão aprendido à noite aparece na revisão da manhã seguinte (o caso que atrasava um dia)', () => {
+    jest.useFakeTimers();
+    jest.setSystemTime(new Date(2026, 9, 22, 23, 0));
+    const learned = learnItems({}, ['あ'], Date.now());
+    expect(learned['あ']?.due).toBe(new Date(2026, 9, 23, 23, 0).getTime());
+    jest.setSystemTime(new Date(2026, 9, 23, 8, 0));
+    expect(dueChars(learned, Date.now())).toEqual(['あ']);
+    jest.setSystemTime(new Date(2026, 9, 22, 23, 30));
+    expect(dueChars(learned, Date.now())).toEqual([]);
+  });
+
+  it('quem estuda de madrugada (1h) ainda está no dia anterior', () => {
+    jest.useFakeTimers();
+    jest.setSystemTime(new Date(2026, 9, 23, 1, 0));
+    const srs: SrsState = { あ: { b: 1, due: new Date(2026, 9, 23, 3, 0).getTime() }, い: { b: 1, due: new Date(2026, 9, 23, 4, 0).getTime() } };
+    expect(dueChars(srs, Date.now())).toEqual(['あ']);
+  });
+
+  it('upcomingReviews não repete o que já conta como vencido hoje', () => {
+    const lateToday = NOW + 5 * 3_600_000;
+    const tomorrow = new Date(2026, 9, 23, 9, 0).getTime();
+    expect(upcomingReviews({ あ: { b: 1, due: lateToday }, い: { b: 1, due: tomorrow } }, NOW)).toEqual({ at: tomorrow, count: 1 });
   });
 });
 

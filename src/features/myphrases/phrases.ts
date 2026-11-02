@@ -1,3 +1,4 @@
+import { isDue } from '@/features/review/srs';
 import { normalizeJapanese } from '@/features/translate/check';
 
 /** Uma frase do próprio aluno: o japonês que ele escreveu, o que quis dizer e o agendamento da revisão. */
@@ -54,7 +55,7 @@ export function newPhraseId(existing: MyPhrases, now: number): string {
 /** Frases com a revisão vencida, da mais atrasada para a menos. */
 export function duePhrases(phrases: MyPhrases, now: number): string[] {
   return Object.entries(phrases)
-    .filter(([, p]) => p.due <= now)
+    .filter(([, p]) => isDue(p.due, now))
     .sort((a, b) => a[1].due - b[1].due)
     .map(([id]) => id);
 }

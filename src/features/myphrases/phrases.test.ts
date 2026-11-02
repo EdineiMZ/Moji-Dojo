@@ -58,7 +58,7 @@ describe('ids e ordem', () => {
     const phrases: MyPhrases = {
       a: { jp: 'あ', pt: 'a', at: 1, b: 1, due: NOW - 5 },
       b: { jp: 'い', pt: 'b', at: 3, b: 2, due: NOW - 10 },
-      c: { jp: 'う', pt: 'c', at: 2, b: 3, due: NOW + 1 },
+      c: { jp: 'う', pt: 'c', at: 2, b: 3, due: NOW + 2 * 86_400_000 },
     };
     expect(duePhrases(phrases, NOW)).toEqual(['b', 'a']);
     expect(newestFirst(phrases).map(([id]) => id)).toEqual(['b', 'c', 'a']);

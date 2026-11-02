@@ -1,3 +1,4 @@
+import { isDue } from '@/features/review/srs';
 import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -21,7 +22,7 @@ export function DailyPlanCard({ dueKana, now, embedded = false }: { dueKana: num
   const particles = useProgressStore((s) => s.particles);
 
   const dueOther = useMemo(
-    () => vocabDue(vocab, now).length + conjDue(conj, now).length + Object.values(particles).filter((p) => p.due <= now).length,
+    () => vocabDue(vocab, now).length + conjDue(conj, now).length + Object.values(particles).filter((p) => isDue(p.due, now)).length,
     [vocab, conj, particles, now],
   );
   // Dentro do cartão "Estudar hoje", que já tem o botão de revisar o kana, esse passo não se repete.

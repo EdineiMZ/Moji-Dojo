@@ -2,6 +2,18 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.44.0] - 2026-11-02
+
+Palavras que você produz (montar e digitar), sósias de kanji e de palavras, pares confusos de kanji e freio pelos teimosos que crescem.
+
+- **O mesmo cartão, três exercícios:** o cartão "significado → escrita" de uma palavra só de kana muda com a caixa. Caixas 1 e 2: escolher entre alternativas. Caixas 3 e 4: montar a palavra tocando nas peças de kana na ordem (com 2 peças de enfeite parecidas). Caixas 5 e 6: digitar no teclado de flick. "Não sei" conta como erro e mostra a resposta; errar volta o cartão à caixa 1 e, com ele, à escolha. Não há cartão novo: o agendamento e o backup são os mesmos. Palavras com kanji e os outros cartões seguem por alternativas.
+- **Sósias de kanji e de palavras:** 51 pares de kanji que se parecem (大 犬 太, 問 間 開, 遠 違, 休 体, 持 待 特 時...), calculados pelos traços do KanjiVG, entram como alternativas erradas. Nas palavras, até 2 alternativas têm escrita parecida (持つ × 待つ) quando você escolhe o japonês ou ouve e escolhe.
+- **Pares confusos de kanji:** o app também guarda quando você troca um kanji por outro e monta o treino lado a lado (大 × 犬), junto com os pares de kana.
+- **Freio por crescimento:** se os itens teimosos crescem 3 ou mais em 7 dias, a Trilha sugere revisar antes de uma lição nova ("subiram de 1 para 4 na última semana"). O app passa a guardar a contagem diária de teimosos (fica fora do backup). Continua sendo só uma sugestão.
+- **Desenho "Não lembro":** ganhou testes de tela (desistir é erro sem nota, o traçado guiado não vale nota, o desenho errado aparece ao lado do certo).
+- **Para conferir:** os 51 pares de kanji são automáticos (alguns, como 木 e 水, são só parecidos); a montagem é por toque, não por arrastar.
+- **Testes:** variantes por caixa com o relógio fixo, peças e conferência, telas de montar e digitar, tabela de sósias, pares de kanji, janela do freio (inclusive na troca do horário de verão) e fluxo "Não lembro".
+
 ## [2.43.1] - 2026-11-02
 
 Correções de lógica e de textos achadas na auditoria.

@@ -2,6 +2,20 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.43.1] - 2026-11-02
+
+Correções de lógica e de textos achadas na auditoria.
+
+- **Revisões do dia:** o que vence até a virada do dia (4h) já conta como vencido. Antes, um cartão aprendido às 23h só aparecia às 23h do dia seguinte, e quem revisa de manhã o via um dia depois. Vale também para o widget.
+- **Itens teimosos:** uma palavra conta uma vez só (antes cada um dos 3 cartões contava, e duas palavras difíceis já acionavam o aviso de revisar primeiro). Kanji teimoso aparece como kanji.
+- **Pares confusos:** pares com o mesmo som (じ/ぢ, ず/づ) não ocupam as vagas do treino por som.
+- **Freio:** os dias recentes são contados pelo calendário; na troca do horário de verão, subtrair 24 h pulava ou repetia um dia.
+- **Backup:** datas absurdas (relógio errado no aparelho de origem) são limitadas a um ano e um dia à frente.
+- **Lembretes:** o aviso da noite que protege a sequência vale a partir de 1 dia de sequência (era 3), com o texto no singular.
+- **Lição de kanji:** sob a palavra de exemplo aparece quais kanji dela ainda não foram vistos ("本 (lição 18)").
+- **Textos:** o g1 explica que "está" só vale para estado; o g9 avisa que きれい termina em い mas é do tipo な; quatro traduções em português de Portugal ou que mudavam o sentido foram trocadas por outras do próprio Tatoeba; 主人 ganha os sentidos de dono, patrão e anfitrião; o guia de sons usa ラーメン.
+- **Testes:** virada do dia, fusos com horário de verão (a suíte foi conferida em 5 fusos), teimosos, pares, backup com datas absurdas, lembretes (agendamento e sincronização) e kanji ainda não vistos.
+
 ## [2.43.0] - 2026-11-02
 
 Alternativas sem resposta repetida, sufixos com exemplo, historinha nas palavras e correções de leitura achadas na auditoria.

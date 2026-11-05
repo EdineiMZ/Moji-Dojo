@@ -53,7 +53,7 @@ describe('learnWords e recordVocabAnswer', () => {
     expect(store.getState().vocab[key]).toMatchObject({ b: 1, due: NOW, l: 1 });
 
     store.getState().recordVocabAnswer(key, true, false, NOW);
-    expect(store.getState().vocab[key]).toMatchObject({ b: 1, l: 2 });
+    expect(store.getState().vocab[key]).toMatchObject({ b: 1, l: 1 });
     expect(store.getState().vocab[key]!.due).toBeGreaterThanOrEqual(NOW + DAY_MS);
   });
 

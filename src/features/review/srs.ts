@@ -91,12 +91,14 @@ export function answerReview(entry: SrsEntry, ok: boolean, wasWrong: boolean, no
     d = initialDifficulty(grade);
   }
 
-  const lapsedNow = grade < 3;
+  // Esquecer conta uma vez por item e por sessão: a repetição depois do erro (`wasWrong`) é treino e não soma outro esquecimento,
+  // nem errando de novo, nem acertando só depois de errar.
+  const lapsedNow = grade < 3 && !wasWrong;
   // Errou: volta agora. Acertou só depois de errar: volta amanhã (a estabilidade guardada decide o resto depois).
   const days = grade === 1 ? 0 : grade === 2 ? 1 : Math.min(MAX_INTERVAL_DAYS, Math.max(1, Math.round(intervalFor(s, retention))));
   const box = grade < 3 ? 1 : boxFor(days);
   // Quem chega à caixa firme sem tropeçar de novo vai "perdoando" um esquecimento.
-  const newLapses = lapsedNow ? lapses + 1 : box >= FIRM_BOX ? Math.max(0, lapses - 1) : lapses;
+  const newLapses = lapsedNow ? lapses + 1 : box >= FIRM_BOX && !wasWrong ? Math.max(0, lapses - 1) : lapses;
   return { b: box, due: now + days * DAY_MS, ...(newLapses > 0 ? { l: newLapses } : {}), s, d, t: now };
 }
 

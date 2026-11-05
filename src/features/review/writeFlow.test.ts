@@ -87,7 +87,7 @@ describe('modo write + SRS (relógio congelado)', () => {
 
     const result = playWriteSession(store, 'あ', [scribble, perfect('あ')]);
     expect(result).toEqual({ total: 1, first: 0, wrong: ['あ'] });
-    expect(store.getState().srs['あ']).toMatchObject({ b: 1, l: 2 });
+    expect(store.getState().srs['あ']).toMatchObject({ b: 1, l: 1 });
     expect(store.getState().srs['あ']!.due).toBeGreaterThanOrEqual(NOW + DAY_MS);
     expect(store.getState().stats['あ']).toEqual({ c: 1, w: 1 });
   });

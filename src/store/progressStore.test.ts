@@ -77,7 +77,9 @@ describe('recordReviewAnswer', () => {
   it('acerto numa repetição vence amanhã', () => {
     const store = withEntry();
     store.getState().recordReviewAnswer('あ', true, false, false);
-    expect(store.getState().srs['あ']).toMatchObject({ b: 1, l: 1 });
+    // a repetição, sozinha, não é esquecimento nenhum
+    expect(store.getState().srs['あ']).toMatchObject({ b: 1 });
+    expect(store.getState().srs['あ']!.l).toBeUndefined();
     expect(store.getState().srs['あ']!.due).toBeGreaterThanOrEqual(NOW + DAY_MS);
   });
 

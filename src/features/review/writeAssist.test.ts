@@ -105,8 +105,8 @@ describe('"Não lembro" (desistir) no modo write', () => {
     expect(order).toContain(`${target}*`);
     expect(quizResult(state).wrong).toEqual([target]);
     expect(boxBefore).toBeGreaterThan(0);
-    // igual ao erro normal (ver writeFlow.test.ts): o erro e a repetição acertada contam esquecimentos
-    expect(store.getState().srs[target]).toMatchObject({ b: 1, l: 2 });
+    // igual ao erro normal (ver writeFlow.test.ts): o erro conta um esquecimento; a repetição acertada não soma outro
+    expect(store.getState().srs[target]).toMatchObject({ b: 1, l: 1 });
     expect(store.getState().srs[target]!.due).toBeGreaterThanOrEqual(NOW + DAY_MS);
   });
 
@@ -116,13 +116,13 @@ describe('"Não lembro" (desistir) no modo write', () => {
     expect(store.getState().srs['あ']).toMatchObject({ b: 1, due: NOW });
   });
 
-  it('desistir de novo na repetição conta outro esquecimento', () => {
+  it('desistir de novo na repetição não conta outro esquecimento (é um só por sessão)', () => {
     const store = storeWith({ あ: 4 });
     let state = newSession(store);
     state = act(store, state, { kind: 'giveUp' });
     expect(state.current!.retry).toBe(true);
     act(store, state, { kind: 'giveUp' });
-    expect(store.getState().srs['あ']).toMatchObject({ b: 1, l: 2 });
+    expect(store.getState().srs['あ']).toMatchObject({ b: 1, l: 1 });
     expect(store.getState().stats['あ']).toEqual({ c: 0, w: 2 });
   });
 });
@@ -180,7 +180,7 @@ describe('"Dica" no modo write', () => {
     let state = newSession(store);
     state = act(store, state, { kind: 'giveUp' });
     act(store, state, check('あ', perfect('あ'), true));
-    expect(store.getState().srs['あ']).toMatchObject({ b: 1, l: 2 });
+    expect(store.getState().srs['あ']).toMatchObject({ b: 1, l: 1 });
     expect(store.getState().srs['あ']!.due).toBeGreaterThanOrEqual(NOW + DAY_MS);
   });
 

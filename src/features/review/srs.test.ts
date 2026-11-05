@@ -98,7 +98,7 @@ describe('answerReview (FSRS)', () => {
     const next = answerReview(wrong, true, true, NOW);
     expect(next.due - NOW).toBeGreaterThanOrEqual(DAY_MS);
     expect(next.b).toBeLessThanOrEqual(2);
-    expect(next.l).toBe(2);
+    expect(next.l).toBe(1);
   });
 
   it('errar deixa o cartão mais difícil e acertar de primeira, menos', () => {
@@ -254,6 +254,44 @@ describe('esquecimentos e itens teimosos', () => {
   it('chegar à caixa firme sem tropeçar perdoa um esquecimento', () => {
     expect(answerReview({ b: 3, due: NOW, l: 2 }, true, false, NOW).l).toBe(1);
     expect(answerReview({ b: 3, due: NOW, l: 1 }, true, false, NOW).l).toBeUndefined();
+  });
+
+  describe('esquecimento conta uma vez por item e por sessão', () => {
+    beforeEach(() => jest.useFakeTimers());
+    afterEach(() => jest.useRealTimers());
+
+    it('um erro e o acerto na repetição somam um esquecimento, não dois', () => {
+      jest.setSystemTime(new Date(2026, 9, 22, 10, 0));
+      const wrong = answerReview({ b: 1, due: Date.now() }, false, false, Date.now());
+      jest.setSystemTime(new Date(2026, 9, 22, 10, 1));
+      const right = answerReview(wrong, true, true, Date.now());
+      expect(wrong.l).toBe(1);
+      expect(right.l).toBe(1);
+    });
+
+    it('errar várias vezes seguidas na mesma sessão soma um esquecimento só', () => {
+      jest.setSystemTime(new Date(2026, 9, 22, 10, 0));
+      let entry = answerReview({ b: 1, due: Date.now() }, false, false, Date.now());
+      for (const minute of [1, 2, 3]) {
+        jest.setSystemTime(new Date(2026, 9, 22, 10, minute));
+        entry = answerReview(entry, false, true, Date.now());
+      }
+      jest.setSystemTime(new Date(2026, 9, 22, 10, 4));
+      entry = answerReview(entry, true, true, Date.now());
+      expect(entry.l).toBe(1);
+    });
+
+    it('a repetição de um item na caixa firme não "perdoa" esquecimentos', () => {
+      expect(answerReview({ b: 3, due: NOW, l: 2 }, true, true, NOW).l).toBe(2);
+    });
+
+    it('sessões em dias diferentes continuam somando', () => {
+      jest.setSystemTime(new Date(2026, 9, 22, 10, 0));
+      let entry = answerReview({ b: 1, due: Date.now() }, false, false, Date.now());
+      jest.setSystemTime(new Date(2026, 9, 23, 10, 0));
+      entry = answerReview(entry, false, false, Date.now());
+      expect(entry.l).toBe(2);
+    });
   });
 
   it('teimoso: 4 esquecimentos e ainda nas caixas 1 e 2', () => {

@@ -78,7 +78,8 @@ describe('quem já estudava com o nome antigo mantém tudo', () => {
     expect(settings.writeInReview).toBe(false);
     expect(settings.speechSpeed).toBe('slow');
 
-    expect([...storage.data.keys()].sort()).toEqual(['moji-dojo-progress', 'moji-dojo-settings']);
+    // Além das chaves novas, o progresso v1 ganha a cópia de segurança da migração (v1 → v2).
+    expect([...storage.data.keys()].sort()).toEqual(['moji-dojo-progress', 'moji-dojo-progress.backup-antes-da-v2', 'moji-dojo-settings']);
   });
 
   it('instalação nova (sem nada salvo) começa vazia', () => {

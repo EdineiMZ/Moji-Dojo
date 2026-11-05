@@ -8,6 +8,7 @@ import { addActivity, type ActivityHistory } from '@/features/stats/metrics';
 import { markDay } from '@/features/streak/days';
 import { findItem } from '@/features/catalog';
 import { recordLeechCount, sanitizeLeechTrend, type LeechTrend } from '@/features/review/brake';
+import { PROGRESS_VERSION_AFTER_LAPSE_FIX, resetLapsesInSaved } from '@/features/review/lapseReset';
 import { migrateVocabCards, migrateWordNotes } from '@/features/vocab/renamed';
 import { addConfusion, sanitizeConfusions, type Confusions } from '@/features/review/confusions';
 import { checkPhrase, newPhraseId, type MyPhrase, type MyPhrases, type PhraseProblem } from '@/features/myphrases/phrases';
@@ -199,6 +200,8 @@ export interface LeechTrendState {
 export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions & LeechTrendState;
 
 export const PROGRESS_STORAGE_KEY = 'moji-dojo-progress';
+/** Cópia exata do progresso como estava antes da migração que zerou os esquecimentos (mesmo formato da chave principal). */
+export const PRE_LAPSE_FIX_BACKUP_KEY = `${PROGRESS_STORAGE_KEY}.backup-antes-da-v2`;
 
 /**
  * Cria o store de progresso. O armazenamento é injetado: o app usa o SQLite
@@ -644,8 +647,22 @@ export function createProgressStore(storage: StateStorage) {
       }),
       {
         name: PROGRESS_STORAGE_KEY,
-        version: 1,
+        version: PROGRESS_VERSION_AFTER_LAPSE_FIX,
         storage: createJSONStorage(() => storage),
+        // v1 → v2: os esquecimentos e a dificuldade estavam inflados pelas repetições da sessão. Antes de mexer, guarda uma
+        // cópia do estado salvo (que pode ser devolvida à chave principal). Sem a cópia, nada é alterado: perder dados é pior
+        // do que manter contadores inflados.
+        migrate: (persisted, version) => {
+          if (version >= PROGRESS_VERSION_AFTER_LAPSE_FIX) return persisted as ProgressState;
+          try {
+            if (storage.getItem(PRE_LAPSE_FIX_BACKUP_KEY) == null) {
+              storage.setItem(PRE_LAPSE_FIX_BACKUP_KEY, JSON.stringify({ state: persisted, version, backedUpAt: Date.now() }));
+            }
+          } catch {
+            return persisted as ProgressState;
+          }
+          return resetLapsesInSaved(persisted) as ProgressState;
+        },
         // O que vem do disco passa pela leitura segura: estado salvo por uma versão antiga ganha os campos novos.
         merge: (persisted, current) => {
           const saved = (persisted ?? {}) as Partial<ProgressState> & { journey?: unknown };

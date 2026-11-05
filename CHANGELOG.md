@@ -2,6 +2,18 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.45.0] - 2026-11-05
+
+Investigação do "い esquecido 42 vezes": os contadores estavam inflados pelas repetições da sessão, e o desenho encurtado zerava alguns kana.
+
+- **Esquecimento conta uma vez:** errar e depois repetir a pergunta (errando de novo ou acertando) somava um esquecimento a cada tentativa, então um erro virava 2 e uma sessão difícil virava 4. Agora só a primeira resposta do item no dia conta, nas revisões de kana, kanji, vocabulário, conjugação e partículas.
+- **Repetição não mexe no agendamento:** a estabilidade e a dificuldade eram recalculadas a cada tentativa da sessão; o い chegou a dificuldade 9,9 e estabilidade 0,1 preso na caixa 1. Agora a repetição é treino: só adia a volta para amanhã quando você acerta um item que ficou vencido pelo erro. Errar depois de já ter acertado no mesmo dia (revisão extra) continua valendo.
+- **Migração única (progresso v1 → v2):** zera o contador de esquecimentos de todos os cartões, limita a dificuldade a 7,19 e a estabilidade mínima a 0,40 (os valores de um primeiro erro) e recomeça a contagem de teimosos do freio. Acertos, erros, caixas, vencimentos, lições, dias e histórico ficam como estavam. Antes de mexer, o app guarda uma cópia exata do progresso (`moji-dojo-progress.backup-antes-da-v2`); se a cópia não puder ser gravada, nada é alterado. Backups MDJ1 feitos antes desta versão trazem os contadores antigos de volta quando importados.
+- **Registro de tentativas:** cada resposta a um kana ou kanji guarda o tipo de exercício (k2r, r2k, áudio, desenho), se foi repetição, a nota do desenho e o corte exigido na hora, a dica e a desistência. São as últimas 1500, no progresso e no backup. Ainda não aparece em nenhuma tela: serve para descobrir onde cada item falha. O contador de "erro por pouco" fica para quando houver dados.
+- **Desenho com o final encurtado:** quem não terminava o rabisco de そ, ん, の, ろ, つ, フ ou 夕 tirava quase zero (10% a menos já dava 0 a 29). Agora o desenho é comparado também com o modelo encurtado em até 20%: 5% a menos fica perto de 87, 10% em 78, 15% em 70, 20% em 62, e 30% ou mais continua nota baixa. Os cortes de nota não mudaram, e o desenho de um caractere parecido (れ/わ, ぬ/め, 土/上) tem as mesmas notas de antes.
+- **Para conferir:** nos pares de hiragana diferentes, os que passam de 70 sobem de 8 para 11 (formas já quase idênticas, como ほ/ぽ e ふ/ぷ). O cálculo do desenho ficou mais pesado: cerca de 3 ms por kana e 45 ms no pior kanji; o palpite de "você desenhou outro kana" leva ~120 ms ao errar.
+- **Testes:** contagem de esquecimentos e agendamento com o relógio fixo, a migração (cópia, idempotência, falha ao gravar, instalação nova), o registro nas telas do quiz, e as notas do い (inclinado 8°, tremor, 15% mais curto) e dos caracteres de um traço com o final encurtado, além de pares diferentes que continuam reprovando.
+
 ## [2.44.0] - 2026-11-02
 
 Palavras que você produz (montar e digitar), sósias de kanji e de palavras, pares confusos de kanji e freio pelos teimosos que crescem.

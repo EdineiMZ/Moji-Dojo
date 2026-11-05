@@ -1,5 +1,5 @@
 import type { Point } from '@/features/strokes/svgPath';
-import { alignToModel, assignMinCost, boundsOf, meanDistance, resample } from './geometry';
+import { alignToModel, assignMinCost, boundsOf, meanDistance, resample, sliceStroke } from './geometry';
 
 describe('resample', () => {
   it('reparte os pontos igualmente ao longo do traço', () => {
@@ -108,5 +108,45 @@ describe('assignMinCost (algoritmo húngaro)', () => {
       const got = assignMinCost(cost);
       expect(got.reduce((s, c, r) => s + cost[r]![c]!, 0)).toBe(best);
     }
+  });
+});
+
+describe('sliceStroke', () => {
+  const line: Point[] = [[0, 0], [100, 0]];
+
+  it('pega o começo ou o fim do traço pela fração do comprimento', () => {
+    expect(sliceStroke(line, 0, 0.8)).toEqual([[0, 0], [80, 0]]);
+    expect(sliceStroke(line, 0.2, 1)).toEqual([[20, 0], [100, 0]]);
+  });
+
+  it('segue as dobras e mantém os cantos que ficam dentro do trecho', () => {
+    const ell: Point[] = [[0, 0], [10, 0], [10, 10]]; // comprimento 20
+    expect(sliceStroke(ell, 0, 0.75)).toEqual([[0, 0], [10, 0], [10, 5]]);
+    expect(sliceStroke(ell, 0.25, 1)).toEqual([[5, 0], [10, 0], [10, 10]]);
+  });
+
+  it('o trecho inteiro é o próprio traço', () => {
+    const ell: Point[] = [[0, 0], [10, 0], [10, 10]];
+    expect(sliceStroke(ell, 0, 1)).toEqual(ell);
+  });
+
+  it('traço sem comprimento ou faixa vazia devolve um ponto; vazio devolve vazio', () => {
+    expect(sliceStroke([[3, 4], [3, 4]], 0, 0.5)).toEqual([[3, 4]]);
+    expect(sliceStroke(line, 0.5, 0.5)).toEqual([[0, 0]]);
+    expect(sliceStroke([], 0, 1)).toEqual([]);
+  });
+});
+
+describe('meanDistance com limite', () => {
+  const a: Point[] = [[0, 0], [10, 0], [20, 0], [30, 0]];
+  const b: Point[] = [[0, 5], [10, 5], [20, 5], [30, 5]];
+
+  it('abaixo do limite devolve a média de sempre', () => {
+    expect(meanDistance(a, b, 6)).toBe(5);
+  });
+
+  it('desiste (Infinity) quando a média não pode ficar abaixo do limite', () => {
+    expect(meanDistance(a, b, 5)).toBe(Infinity);
+    expect(meanDistance(a, b, 2)).toBe(Infinity);
   });
 });

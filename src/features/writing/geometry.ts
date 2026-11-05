@@ -34,6 +34,41 @@ export function resample(points: readonly Point[], n: number = RESAMPLE_POINTS):
   return out;
 }
 
+/**
+ * O trecho do traço entre as frações `from` e `to` do comprimento (0 a 1). Serve para comparar um traço desenhado mais curto
+ * (a pessoa não terminou o rabisco final) com a parte do modelo que ele realmente cobre.
+ */
+export function sliceStroke(points: readonly Point[], from: number, to: number): Point[] {
+  const first = points[0];
+  if (!first) return [];
+  const cumulative = [0];
+  for (let i = 1; i < points.length; i++) {
+    cumulative.push((cumulative[i - 1] as number) + dist(points[i - 1] as Point, points[i] as Point));
+  }
+  const total = cumulative[cumulative.length - 1] as number;
+  if (total === 0 || to <= from) return [first];
+
+  const at = (d: number): Point => {
+    let seg = 1;
+    while (seg < points.length - 1 && (cumulative[seg] as number) < d) seg++;
+    const a = points[seg - 1] as Point;
+    const b = points[seg] as Point;
+    const length = (cumulative[seg] as number) - (cumulative[seg - 1] as number);
+    const t = length === 0 ? 0 : Math.min(1, Math.max(0, (d - (cumulative[seg - 1] as number)) / length));
+    return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+  };
+
+  const start = from * total;
+  const end = to * total;
+  const out: Point[] = [at(start)];
+  for (let i = 1; i < points.length - 1; i++) {
+    const c = cumulative[i] as number;
+    if (c > start && c < end) out.push(points[i] as Point);
+  }
+  out.push(at(end));
+  return out;
+}
+
 export interface Bounds {
   minX: number;
   minY: number;
@@ -82,12 +117,19 @@ export function alignToModel(
   );
 }
 
-/** Distância média entre dois traços já reamostrados, ponto a ponto, na mesma direção. */
-export function meanDistance(a: readonly Point[], b: readonly Point[]): number {
+/**
+ * Distância média entre dois traços já reamostrados, ponto a ponto, na mesma direção.
+ * Com `limit`, desiste assim que a média já não pode ficar abaixo dele e devolve Infinity (serve para descartar candidatos).
+ */
+export function meanDistance(a: readonly Point[], b: readonly Point[], limit: number = Infinity): number {
   const n = Math.min(a.length, b.length);
   if (n === 0) return Infinity;
+  const budget = limit * n;
   let sum = 0;
-  for (let i = 0; i < n; i++) sum += dist(a[i] as Point, b[i] as Point);
+  for (let i = 0; i < n; i++) {
+    sum += dist(a[i] as Point, b[i] as Point);
+    if (sum >= budget) return Infinity;
+  }
   return sum / n;
 }
 

@@ -24,6 +24,7 @@ import { AiExplain } from '@/features/ai/AiParts';
 import { pronunciationText } from '@/features/catalog';
 import { speakJapanese } from '@/features/speech/voiceStore';
 import { guessDrawn, writeVerdict, type WriteAction } from '@/features/writing/assist';
+import { makeAttempt } from '@/features/review/attempts';
 import { writePassScore } from '@/features/writing/score';
 import { useProgressStore, useSettingsStore } from '@/store';
 import { SPEECH_RATES } from '@/store/settingsStore';
@@ -147,11 +148,25 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
   };
 
   /** Parte comum a qualquer resposta: estado, feedback, vibração, animação e avanço automático. */
-  const settle = (outcome: AnswerOutcome, chosen: string, write?: WriteResult, hinted = false) => {
+  const settle = (outcome: AnswerOutcome, chosen: string, write?: WriteResult, hinted = false, need?: number) => {
     setQuiz(outcome.state);
     setAnswered({ chosen, correct: outcome.correct, feedback: buildFeedback(current.item, outcome.correct, chosen), ...(write ? { write } : {}) });
     setMood(outcome.correct ? 'happy' : 'sad');
     onAnswer?.(current, outcome.correct, outcome.firstTry, hinted);
+    // Registro de tentativas: o tipo de exercício e, no desenho, a nota (só para caracteres, não para palavras montadas ou digitadas).
+    if (isStudyItem(current.item) && !current.mode) {
+      useProgressStore.getState().recordAttempt(
+        makeAttempt({
+          char: current.item.char,
+          direction: current.direction,
+          ok: outcome.correct,
+          retry: current.retry,
+          ...(write?.kind === 'scored' ? { score: write.score.pct, ...(need !== undefined ? { need } : {}) } : {}),
+          hinted,
+          gaveUp: write?.kind === 'gaveUp',
+        }),
+      );
+    }
 
     if (outcome.correct) {
       feedbackCorrect();
@@ -188,15 +203,15 @@ export function QuizView({ questions, title, onAnswer, onDone, onDrawingChange }
    */
   const submitWriting = (action: WriteAction) => {
     if (answered) return;
-    const { correct, hinted } = writeVerdict(action, writePassScore(useProgressStore.getState().srs[current.item.char]?.b));
+    const need = writePassScore(useProgressStore.getState().srs[current.item.char]?.b);
+    const { correct, hinted } = writeVerdict(action, need);
     // Errou o desenho: se ele lembra mais outro kana, anota a troca (alimenta o treino de pares confusos).
     if (action.kind === 'check' && !correct && action.drawing && isStudyItem(current.item)) {
-      const need = writePassScore(useProgressStore.getState().srs[current.item.char]?.b);
       const guess = guessDrawn(current.item.char, action.drawing, action.score.pct, need);
       if (guess) useProgressStore.getState().recordConfusion(current.item.char, guess);
     }
     const write: WriteResult = action.kind === 'giveUp' ? { kind: 'gaveUp' } : { kind: 'scored', score: action.score, correct };
-    settle(resolveQuestion(quiz, correct), '', write, hinted);
+    settle(resolveQuestion(quiz, correct), '', write, hinted, need);
   };
 
   /**

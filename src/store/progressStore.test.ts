@@ -1,4 +1,4 @@
-import { parseBackup } from '@/features/backup/backup';
+import { decodeUtf8, encodeUtf8, exportBackup, parseBackup } from '@/features/backup/backup';
 import { DAY_MS } from '@/features/review/srs';
 import { createProgressStore, PROGRESS_STORAGE_KEY } from './progressStore';
 
@@ -208,7 +208,7 @@ describe('persistência', () => {
     first.getState().recordAnswer('あ', true);
 
     const saved = JSON.parse(storage.data.get(PROGRESS_STORAGE_KEY) ?? '{}');
-    expect(Object.keys(saved.state).sort()).toEqual(['challenges', 'charNotes', 'confusions', 'conj', 'days', 'history', 'journey', 'leechTrend', 'lessons', 'mastered', 'myPhrases', 'particles', 'reads', 'shadow', 'srs', 'stats', 'typing', 'vocab', 'wordNotes']);
+    expect(Object.keys(saved.state).sort()).toEqual(['attempts', 'challenges', 'charNotes', 'confusions', 'conj', 'days', 'history', 'journey', 'leechTrend', 'lessons', 'mastered', 'myPhrases', 'particles', 'reads', 'shadow', 'srs', 'stats', 'typing', 'vocab', 'wordNotes']);
 
     const second = createProgressStore(storage);
     expect(second.persist.hasHydrated()).toBe(true);
@@ -263,5 +263,73 @@ describe('jornada no progresso', () => {
     const store = createProgressStore(storage);
     expect(store.getState().journey.petals).toBe(0);
     expect(store.getState().days).toEqual(['2026-10-01']);
+  });
+});
+
+describe('registro de tentativas (attempts)', () => {
+  const draft = { c: 'い', k: 'write' as const, ok: false, n: 45, p: 50 };
+  const attempt = { ...draft, t: NOW };
+
+  it('recordAttempt acrescenta sem mexer em estatísticas nem no agendamento', () => {
+    const store = createProgressStore(memoryStorage());
+    store.getState().replaceProgress({ srs: { い: { b: 2, due: NOW } }, lessons: {}, stats: { い: { c: 1, w: 1 } }, days: [] });
+    const before = { srs: store.getState().srs, stats: store.getState().stats, days: store.getState().days };
+    store.getState().recordAttempt(draft);
+    expect(store.getState().attempts).toEqual([attempt]);
+    expect({ srs: store.getState().srs, stats: store.getState().stats, days: store.getState().days }).toEqual(before);
+  });
+
+  it('é salvo e volta ao reabrir o app', () => {
+    const storage = memoryStorage();
+    createProgressStore(storage).getState().recordAttempt(draft);
+    expect(createProgressStore(storage).getState().attempts).toEqual([attempt]);
+  });
+
+  it('progresso salvo por versão sem o registro abre com lista vazia', () => {
+    const storage = memoryStorage();
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify({ state: { srs: {}, lessons: {} }, version: 2 }));
+    expect(createProgressStore(storage).getState().attempts).toEqual([]);
+  });
+
+  const withProgress = () => {
+    const store = createProgressStore(memoryStorage());
+    store.getState().replaceProgress({ srs: { い: { b: 1, due: NOW } }, lessons: { 'hira:L0': true }, stats: { い: { c: 1, w: 1 } }, days: ['2026-10-22'] });
+    return store;
+  };
+
+  it('o backup leva o registro e a importação o devolve', () => {
+    const store = withProgress();
+    store.getState().recordAttempt(draft);
+    const s = store.getState();
+    const code = exportBackup({ ...s });
+    const parsed = parseBackup(code);
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+    expect(parsed.extras?.attempts).toEqual([attempt]);
+
+    const other = createProgressStore(memoryStorage());
+    other.getState().replaceProgress(parsed.snapshot, parsed.extras);
+    expect(other.getState().attempts).toEqual([attempt]);
+  });
+
+  it('backup antigo (sem o campo) importa com lista vazia', () => {
+    const store = withProgress();
+    store.getState().recordAttempt(draft);
+    const old = JSON.parse(decodeUtf8(atob(exportBackup({ ...store.getState() }).slice(5))));
+    expect(old.attempts).toHaveLength(1);
+    delete old.attempts;
+    const parsed = parseBackup('MDJ1:' + btoa(encodeUtf8(JSON.stringify(old))));
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+    const other = createProgressStore(memoryStorage());
+    other.getState().replaceProgress(parsed.snapshot, parsed.extras);
+    expect(other.getState().attempts).toEqual([]);
+  });
+
+  it('zerar o progresso apaga o registro', () => {
+    const store = createProgressStore(memoryStorage());
+    store.getState().recordAttempt(draft);
+    store.getState().resetProgress();
+    expect(store.getState().attempts).toEqual([]);
   });
 });

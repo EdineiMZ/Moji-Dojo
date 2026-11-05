@@ -8,13 +8,14 @@ import { MAX_HISTORY_DAYS, type DayActivity } from '@/features/stats/metrics';
 import { findWord } from '@/content';
 import { sanitizeTyping } from '@/features/keyboard/typingStats';
 import { sanitizeReads } from '@/features/reading/reads';
+import { sanitizeAttempts } from '@/features/review/attempts';
 import { sanitizeJourney } from '@/features/journey/journey';
 import { ALL_GRAMMAR } from '@/content/grammar';
 import { MAX_MY_PHRASES, MAX_PHRASE_LENGTH, type MyPhrase } from '@/features/myphrases/phrases';
 import { parseCardKey as parseVerbKey } from '@/features/conjugation/cards';
 import { isParticleCard } from '@/features/cloze/particles';
 import { learnedWordIds, parseCardKey } from '@/features/vocab/cards';
-import { MAX_NOTE_LENGTH, type ProgressExtras, type ShadowRating } from '@/store/progressStore';
+import { MAX_NOTE_LENGTH, type AttemptsState, type ProgressExtras, type ShadowRating } from '@/store/progressStore';
 
 /**
  * Dois formatos, os dois "prefixo" + base64 de um JSON em UTF-8:
@@ -96,7 +97,7 @@ export type BackupParseResult =
       /** "prototype" = NDJ1 (HTML); "app" = MDJ1 (este app). */
       source: 'prototype' | 'app';
       /** Só nos backups do app. */
-      extras?: ProgressExtras;
+      extras?: ProgressExtras & Partial<AttemptsState>;
     }
   | { ok: false; error: BackupError };
 
@@ -175,7 +176,7 @@ function recordField(root: Record<string, unknown>, key: string): Record<string,
 const RATINGS: readonly ShadowRating[] = ['ok', 'mid', 'bad'];
 
 /** Histórico, autoavaliação e desafios do backup do app; o que não tem a forma certa é descartado. */
-function parseExtras(root: Record<string, unknown>, now: number): { value: ProgressExtras; ignored: number } {
+function parseExtras(root: Record<string, unknown>, now: number): { value: ProgressExtras & Partial<AttemptsState>; ignored: number } {
   let ignored = 0;
 
   const history: Record<string, DayActivity> = {};
@@ -292,7 +293,7 @@ function parseExtras(root: Record<string, unknown>, now: number): { value: Progr
     charNotes[char] = v.trim();
   }
 
-  return { value: { history: recent, shadow, challenges, vocab, conj, particles, wordNotes, charNotes, confusions: sanitizeConfusions(root.confusions), journey, mastered, myPhrases, typing: sanitizeTyping(root.typing), reads: sanitizeReads(root.reads) }, ignored };
+  return { value: { history: recent, shadow, challenges, vocab, conj, particles, wordNotes, charNotes, confusions: sanitizeConfusions(root.confusions), journey, mastered, myPhrases, typing: sanitizeTyping(root.typing), reads: sanitizeReads(root.reads), attempts: sanitizeAttempts(root.attempts) }, ignored };
 }
 
 /**
@@ -392,7 +393,7 @@ export function encodeUtf8(text: string): string {
  * Gera o código de backup do app ("MDJ1:...") com todo o progresso; `parseBackup` lê o resultado de volta.
  * Funciona sem internet, e o código pode ser guardado em qualquer lugar (notas, e-mail, nuvem).
  */
-export function exportBackup(progress: ProgressSnapshot & ProgressExtras, now: Date = new Date()): string {
+export function exportBackup(progress: ProgressSnapshot & ProgressExtras & Partial<AttemptsState>, now: Date = new Date()): string {
   const payload = {
     v: APP_BACKUP_VERSION,
     app: 'moji-dojo',
@@ -415,6 +416,7 @@ export function exportBackup(progress: ProgressSnapshot & ProgressExtras, now: D
     myPhrases: progress.myPhrases,
     typing: progress.typing,
     reads: progress.reads,
+    attempts: progress.attempts ?? [],
   };
   return APP_BACKUP_PREFIX + btoa(encodeUtf8(JSON.stringify(payload)));
 }

@@ -8,6 +8,7 @@ import { addActivity, type ActivityHistory } from '@/features/stats/metrics';
 import { markDay } from '@/features/streak/days';
 import { findItem } from '@/features/catalog';
 import { recordLeechCount, sanitizeLeechTrend, type LeechTrend } from '@/features/review/brake';
+import { addAttempt, sanitizeAttempts, type Attempt, type AttemptDraft } from '@/features/review/attempts';
 import { PROGRESS_VERSION_AFTER_LAPSE_FIX, resetLapsesInSaved } from '@/features/review/lapseReset';
 import { migrateVocabCards, migrateWordNotes } from '@/features/vocab/renamed';
 import { addConfusion, sanitizeConfusions, type Confusions } from '@/features/review/confusions';
@@ -51,6 +52,8 @@ export interface ProgressActions {
   recordAnswer: (char: string, ok: boolean, now?: number, drawn?: boolean) => void;
   /** Resposta numa revisão: além das estatísticas, reagenda o caractere. */
   recordReviewAnswer: (char: string, ok: boolean, firstTry: boolean, extra: boolean, now?: number, drawn?: boolean, hinted?: boolean) => void;
+  /** Guarda uma tentativa (tipo de exercício e nota do desenho) no registro; não mexe em estatísticas nem no agendamento. */
+  recordAttempt: (attempt: AttemptDraft, now?: number) => void;
   /** Marca um desafio de digitação (chave = a palavra-alvo) como feito e marca o dia. */
   completeChallenge: (word: string, now?: number) => void;
   /** Guarda a autoavaliação de uma frase do Repetir (chave = a frase em japonês) e marca o dia. */
@@ -154,7 +157,7 @@ export interface ProgressActions {
    * Substitui todo o progresso (importação de backup). Com `extras` (backup do próprio app), troca também
    * histórico, autoavaliação e desafios; sem eles (backup do formato antigo), só o histórico é zerado.
    */
-  replaceProgress: (snapshot: ProgressSnapshot, extras?: ProgressExtras) => void;
+  replaceProgress: (snapshot: ProgressSnapshot, extras?: ProgressExtras & Partial<AttemptsState>) => void;
   resetProgress: () => void;
 }
 
@@ -192,12 +195,17 @@ export interface ProgressExtras {
   reads: Readonly<Record<string, number>>;
 }
 
+/** As últimas respostas a caracteres, com o tipo de exercício e a nota do desenho (para achar onde cada item falha). Vai no backup, mas é opcional lá. */
+export interface AttemptsState {
+  attempts: readonly Attempt[];
+}
+
 /** Contagem diária de itens teimosos (para medir o crescimento): derivada, fica fora do backup. */
 export interface LeechTrendState {
   leechTrend: LeechTrend;
 }
 
-export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions & LeechTrendState;
+export type ProgressState = ProgressSnapshot & ProgressExtras & ProgressActions & LeechTrendState & AttemptsState;
 
 export const PROGRESS_STORAGE_KEY = 'moji-dojo-progress';
 /** Cópia exata do progresso como estava antes da migração que zerou os esquecimentos (mesmo formato da chave principal). */
@@ -227,6 +235,7 @@ export function createProgressStore(storage: StateStorage) {
         myPhrases: {},
         typing: EMPTY_TYPING,
         reads: {},
+        attempts: [],
 
         completeLesson: (lessonId, chars, skipped = false, now = Date.now(), result) =>
           set((s) => {
@@ -268,6 +277,8 @@ export function createProgressStore(storage: StateStorage) {
               ...(reschedule ? { srs: { ...s.srs, [char]: answerReview(entry, ok, !firstTry, now) } } : {}),
             };
           }),
+
+        recordAttempt: (attempt, now = Date.now()) => set((s) => ({ attempts: addAttempt(s.attempts, { ...attempt, t: now }) })),
 
         completeChallenge: (word, now = Date.now()) =>
           set((s) => ({ challenges: { ...s.challenges, [word]: true }, days: markDay(s.days, new Date(now)) })),
@@ -640,10 +651,10 @@ export function createProgressStore(storage: StateStorage) {
             days: snapshot.days,
             history: extras?.history ?? {},
             leechTrend: {}, // a contagem era do progresso antigo
-            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, particles: extras.particles, wordNotes: extras.wordNotes, charNotes: extras.charNotes, confusions: extras.confusions, journey: extras.journey, mastered: extras.mastered, myPhrases: extras.myPhrases, typing: extras.typing, reads: extras.reads } : {}),
+            ...(extras ? { shadow: extras.shadow, challenges: extras.challenges, vocab: extras.vocab, conj: extras.conj, particles: extras.particles, wordNotes: extras.wordNotes, charNotes: extras.charNotes, confusions: extras.confusions, journey: extras.journey, mastered: extras.mastered, myPhrases: extras.myPhrases, typing: extras.typing, reads: extras.reads, attempts: extras.attempts ?? [] } : {}),
           }),
 
-        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, charNotes: {}, confusions: {}, journey: emptyJourney(), mastered: {}, myPhrases: {}, typing: EMPTY_TYPING, reads: {}, leechTrend: {} }),
+        resetProgress: () => set({ ...emptyProgress(), shadow: {}, challenges: {}, history: {}, vocab: {}, conj: {}, particles: {}, wordNotes: {}, charNotes: {}, confusions: {}, journey: emptyJourney(), mastered: {}, myPhrases: {}, typing: EMPTY_TYPING, reads: {}, attempts: [], leechTrend: {} }),
       }),
       {
         name: PROGRESS_STORAGE_KEY,
@@ -666,10 +677,10 @@ export function createProgressStore(storage: StateStorage) {
         // O que vem do disco passa pela leitura segura: estado salvo por uma versão antiga ganha os campos novos.
         merge: (persisted, current) => {
           const saved = (persisted ?? {}) as Partial<ProgressState> & { journey?: unknown };
-          return { ...current, ...saved, journey: sanitizeJourney(saved.journey), typing: sanitizeTyping((saved as { typing?: unknown }).typing), confusions: sanitizeConfusions((saved as { confusions?: unknown }).confusions), vocab: migrateVocabCards(saved.vocab ?? current.vocab), wordNotes: migrateWordNotes(saved.wordNotes ?? current.wordNotes), charNotes: saved.charNotes ?? {}, reads: sanitizeReads((saved as { reads?: unknown }).reads), leechTrend: sanitizeLeechTrend((saved as { leechTrend?: unknown }).leechTrend) };
+          return { ...current, ...saved, journey: sanitizeJourney(saved.journey), typing: sanitizeTyping((saved as { typing?: unknown }).typing), confusions: sanitizeConfusions((saved as { confusions?: unknown }).confusions), vocab: migrateVocabCards(saved.vocab ?? current.vocab), wordNotes: migrateWordNotes(saved.wordNotes ?? current.wordNotes), charNotes: saved.charNotes ?? {}, reads: sanitizeReads((saved as { reads?: unknown }).reads), attempts: sanitizeAttempts((saved as { attempts?: unknown }).attempts), leechTrend: sanitizeLeechTrend((saved as { leechTrend?: unknown }).leechTrend) };
         },
         // Só os dados são salvos, nunca as funções.
-        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, wordNotes, charNotes, confusions, journey, mastered, myPhrases, typing, reads, leechTrend }) => ({
+        partialize: ({ srs, lessons, stats, days, shadow, challenges, history, vocab, conj, particles, wordNotes, charNotes, confusions, journey, mastered, myPhrases, typing, reads, attempts, leechTrend }) => ({
           srs,
           lessons,
           stats,
@@ -688,6 +699,7 @@ export function createProgressStore(storage: StateStorage) {
           myPhrases,
           typing,
           reads,
+          attempts,
           leechTrend,
         }),
       },

@@ -45,7 +45,7 @@ describe('exportBackup', () => {
     if (!result.ok) throw new Error(`esperava sucesso, veio ${result.error}`);
     expect(result.source).toBe('app');
     expect(result.snapshot).toEqual({ srs: progress.srs, lessons: progress.lessons, stats: progress.stats, days: progress.days });
-    expect(result.extras).toEqual({ history: progress.history, shadow: progress.shadow, challenges: progress.challenges, vocab: progress.vocab, conj: progress.conj, particles: progress.particles, wordNotes: progress.wordNotes, charNotes: progress.charNotes, confusions: progress.confusions, journey: progress.journey, mastered: progress.mastered, myPhrases: progress.myPhrases, typing: progress.typing, reads: progress.reads });
+    expect(result.extras).toEqual({ history: progress.history, shadow: progress.shadow, challenges: progress.challenges, vocab: progress.vocab, conj: progress.conj, particles: progress.particles, wordNotes: progress.wordNotes, charNotes: progress.charNotes, confusions: progress.confusions, journey: progress.journey, mastered: progress.mastered, myPhrases: progress.myPhrases, typing: progress.typing, reads: progress.reads, attempts: [] });
     expect(result.summary).toEqual({ lessons: 1, reviews: 2, characters: 2, days: 2, ignored: 0, words: 1, phrases: 1 });
   });
 
@@ -120,7 +120,7 @@ describe('parseBackup: backup do app (MDJ1)', () => {
       journey: emptyJourney(),
       mastered: {},
       myPhrases: {},
-      typing: EMPTY_TYPING, reads: {},
+      typing: EMPTY_TYPING, reads: {}, attempts: [],
     });
     expect(result.summary.ignored).toBe(5);
   });

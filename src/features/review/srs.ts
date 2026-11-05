@@ -63,14 +63,28 @@ export const DESIRED_RETENTION = 0.9;
 const isLegacyReviewed = (entry: SrsEntry): boolean => entry.s === undefined && (entry.b > 1 || (entry.l ?? 0) > 0 || entry.t !== undefined);
 
 /**
+ * A resposta é uma repetição de um item que já foi respondido hoje? Vale quando a pergunta voltou depois do erro na mesma sessão
+ * (`wasWrong`) ou quando o item já errou hoje: o erro o deixa na caixa 1 com a hora da última revisão no mesmo dia de estudo
+ * (um acerto de primeira nunca deixa a caixa 1). Errar depois de já ter acertado hoje (revisão extra) continua valendo.
+ */
+function isRepeatToday(entry: SrsEntry, wasWrong: boolean, now: number): boolean {
+  if (wasWrong) return true;
+  return entry.b === 1 && entry.t !== undefined && dueCutoff(entry.t) === dueCutoff(now);
+}
+
+/**
  * Resultado de uma resposta na revisão, pelo FSRS.
  * - errou: nota 1; o cartão volta à caixa 1 e fica vencido agora;
- * - acertou, mas só depois de errar na mesma sessão (`wasWrong`): nota 2, vence em pelo menos um dia;
  * - acertou de primeira: nota 3; o intervalo cresce conforme a estabilidade e a dificuldade do cartão.
+ *
+ * Só a primeira resposta do item no dia mexe no agendamento (caixa, estabilidade, dificuldade e esquecimentos). As repetições
+ * (`wasWrong`: a pergunta que volta depois do erro na sessão; ou o item que errou hoje e reaparece em outra sessão) são treino:
+ * a única coisa que fazem é, ao acertar um item que ficou vencido pelo erro, adiar a volta para amanhã.
  */
 export function answerReview(entry: SrsEntry, ok: boolean, wasWrong: boolean, now: number, retention: number = getRetention()): SrsEntry {
+  if (isRepeatToday(entry, wasWrong, now)) return ok && entry.due <= now ? { ...entry, due: now + DAY_MS } : entry;
   const lapses = entry.l ?? 0;
-  const grade: Grade = !ok ? 1 : wasWrong ? 2 : 3;
+  const grade: Grade = ok ? 3 : 1;
   const lastReviewed = entry.t ?? entry.due - (BOX_DAYS[entry.b] ?? 1) * DAY_MS;
   const elapsed = Math.max(0, (now - lastReviewed) / DAY_MS);
 
@@ -91,14 +105,12 @@ export function answerReview(entry: SrsEntry, ok: boolean, wasWrong: boolean, no
     d = initialDifficulty(grade);
   }
 
-  // Esquecer conta uma vez por item e por sessão: a repetição depois do erro (`wasWrong`) é treino e não soma outro esquecimento,
-  // nem errando de novo, nem acertando só depois de errar.
-  const lapsedNow = grade < 3 && !wasWrong;
-  // Errou: volta agora. Acertou só depois de errar: volta amanhã (a estabilidade guardada decide o resto depois).
-  const days = grade === 1 ? 0 : grade === 2 ? 1 : Math.min(MAX_INTERVAL_DAYS, Math.max(1, Math.round(intervalFor(s, retention))));
+  const lapsedNow = grade < 3;
+  // Errou: volta agora.
+  const days = grade === 1 ? 0 : Math.min(MAX_INTERVAL_DAYS, Math.max(1, Math.round(intervalFor(s, retention))));
   const box = grade < 3 ? 1 : boxFor(days);
   // Quem chega à caixa firme sem tropeçar de novo vai "perdoando" um esquecimento.
-  const newLapses = lapsedNow ? lapses + 1 : box >= FIRM_BOX && !wasWrong ? Math.max(0, lapses - 1) : lapses;
+  const newLapses = lapsedNow ? lapses + 1 : box >= FIRM_BOX ? Math.max(0, lapses - 1) : lapses;
   return { b: box, due: now + days * DAY_MS, ...(newLapses > 0 ? { l: newLapses } : {}), s, d, t: now };
 }
 

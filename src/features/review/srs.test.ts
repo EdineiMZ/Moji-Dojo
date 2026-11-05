@@ -294,6 +294,69 @@ describe('esquecimentos e itens teimosos', () => {
     });
   });
 
+  describe('só a primeira resposta do dia mexe no agendamento', () => {
+    beforeEach(() => jest.useFakeTimers());
+    afterEach(() => jest.useRealTimers());
+    const at = (day: number, hour: number, minute = 0) => {
+      jest.setSystemTime(new Date(2026, 9, day, hour, minute));
+      return Date.now();
+    };
+
+    it('as repetições depois do erro não mudam estabilidade, dificuldade, caixa nem esquecimentos', () => {
+      const miss = answerReview({ b: 4, due: at(22, 10) }, false, false, Date.now());
+      let entry = miss;
+      for (const minute of [1, 2, 3, 4, 5]) entry = answerReview(entry, false, true, at(22, 10, minute));
+      expect({ b: entry.b, l: entry.l, s: entry.s, d: entry.d, t: entry.t }).toEqual({ b: 1, l: 1, s: miss.s, d: miss.d, t: miss.t });
+      expect(entry.due).toBe(miss.due); // continua vencido: errar a repetição não adia nada
+    });
+
+    it('acertar a repetição só adia a volta para amanhã', () => {
+      const miss = answerReview({ b: 4, due: at(22, 10) }, false, false, Date.now());
+      const now = at(22, 10, 3);
+      const right = answerReview(miss, true, true, now);
+      expect(right).toEqual({ ...miss, due: now + DAY_MS });
+    });
+
+    it('o item que errou de manhã e reaparece à tarde, em outra sessão, também é repetição', () => {
+      const miss = answerReview({ b: 4, due: at(22, 9) }, false, false, Date.now());
+      const afternoon = at(22, 16);
+      expect(answerReview(miss, false, false, afternoon)).toEqual(miss);
+      expect(answerReview(miss, true, false, afternoon)).toEqual({ ...miss, due: afternoon + DAY_MS });
+    });
+
+    it('no dia seguinte a primeira resposta volta a valer', () => {
+      const miss = answerReview({ b: 4, due: at(22, 9) }, false, false, Date.now());
+      const next = answerReview(miss, false, false, at(23, 9));
+      expect(next.l).toBe(2);
+      expect(next.d).toBeGreaterThanOrEqual(miss.d as number);
+    });
+
+    it('errar depois de já ter acertado hoje (revisão extra) continua sendo esquecimento', () => {
+      const right = answerReview({ b: 2, due: at(22, 9) }, true, false, Date.now());
+      expect(right.b).toBeGreaterThanOrEqual(2);
+      const wrong = answerReview(right, false, false, at(22, 18));
+      expect(wrong).toMatchObject({ b: 1, l: 1 });
+    });
+
+    it('o い de sempre: 12 tentativas erradas em 3 dias não passam de 3 esquecimentos nem estouram a dificuldade', () => {
+      let entry: SrsEntry = { b: 1, due: at(20, 9) };
+      let lastFirstD = 0;
+      for (const day of [20, 21, 22]) {
+        entry = answerReview(entry, false, false, at(day, 9));
+        lastFirstD = entry.d as number;
+        for (let k = 1; k <= 3; k++) entry = answerReview(entry, false, true, at(day, 9, k));
+      }
+      expect(entry.l).toBe(3);
+      expect(entry.d).toBe(lastFirstD); // as repetições não empurraram a dificuldade
+      expect(entry.d).toBeLessThan(10);
+      expect(entry.s).toBeGreaterThan(0.1); // a estabilidade não foi esmagada a cada tentativa
+    });
+
+    it('cartão novo (sem hora de revisão) responde normalmente na primeira vez', () => {
+      expect(answerReview({ b: 1, due: at(22, 9) }, true, false, Date.now()).b).toBeGreaterThanOrEqual(2);
+    });
+  });
+
   it('teimoso: 4 esquecimentos e ainda nas caixas 1 e 2', () => {
     expect(isLeech({ b: 1, due: NOW, l: 4 })).toBe(true);
     expect(isLeech({ b: 3, due: NOW, l: 4 })).toBe(false);

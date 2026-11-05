@@ -74,13 +74,16 @@ describe('recordReviewAnswer', () => {
     expect(store.getState().srs['あ']).toMatchObject({ b: 1, due: NOW, l: 1 });
   });
 
-  it('acerto numa repetição vence amanhã', () => {
+  it('acerto numa repetição vence amanhã e não mexe no resto do agendamento', () => {
     const store = withEntry();
+    store.getState().recordReviewAnswer('あ', false, true, false);
+    const afterMiss = store.getState().srs['あ']!;
     store.getState().recordReviewAnswer('あ', true, false, false);
-    // a repetição, sozinha, não é esquecimento nenhum
-    expect(store.getState().srs['あ']).toMatchObject({ b: 1 });
-    expect(store.getState().srs['あ']!.l).toBeUndefined();
-    expect(store.getState().srs['あ']!.due).toBeGreaterThanOrEqual(NOW + DAY_MS);
+    const after = store.getState().srs['あ']!;
+    expect(after).toMatchObject({ b: 1, l: 1 });
+    expect(after.due).toBeGreaterThanOrEqual(NOW + DAY_MS);
+    // estabilidade, dificuldade e hora da revisão ficam como o erro deixou
+    expect({ s: after.s, d: after.d, t: after.t }).toEqual({ s: afterMiss.s, d: afterMiss.d, t: afterMiss.t });
   });
 
   it('na revisão extra, acertar de primeira não reagenda, mas conta nas estatísticas', () => {

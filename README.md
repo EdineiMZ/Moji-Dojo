@@ -19,6 +19,7 @@
 </p>
 
 <p align="center">
+  <a href="#sobre-este-projeto">Sobre</a> ·
   <a href="#baixar-e-testar-o-app">Baixar o APK</a> ·
   <a href="#funcionalidades">Funcionalidades</a> ·
   <a href="#galeria">Galeria</a> ·
@@ -30,6 +31,20 @@
 </p>
 
 ---
+
+## Sobre este projeto
+
+**Eu não falo japonês.** Criei o Moji Dojo por iniciativa própria, para tentar aprender o idioma, e fui construindo o app junto com o meu estudo.
+
+Como não sou falante, o conteúdo escrito aqui (explicações de gramática, diálogos, textos de leitura, significados em português, dicas dos kanji e descrições das vozes) foi **escrito e revisado com ajuda de inteligência artificial**, a partir de fontes abertas (Tatoeba, JMdict, KanjiVG e outras, listadas em [Licenças e créditos](#conteúdo-licenças-e-créditos)). **Ninguém que fale japonês revisou isso ainda**, então é certo que há erros: de tradução, de leitura, de naturalidade, de gramática ou de português.
+
+**Se você achar um erro, fique à vontade para avisar ou corrigir.** Vale tudo, de uma vírgula a um tópico inteiro:
+
+- **Só avisar:** abra uma [issue](https://github.com/EdineiMZ/Moji-Dojo/issues/new) dizendo onde está (a tela, o texto) e, se souber, qual seria o certo.
+- **Corrigir você mesmo:** mande um pull request. O [`CONTRIBUTING.md`](CONTRIBUTING.md) explica como, e correções de conteúdo não exigem mexer em código complicado.
+- **Erro de app (travou, não toca o som, layout quebrado):** também é uma issue; diga o modelo do celular e a versão do Android.
+
+Críticas são bem-vindas e ajudam outros estudantes que usarem o app. Obrigado!
 
 ## Baixar e testar o app
 

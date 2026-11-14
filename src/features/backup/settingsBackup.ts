@@ -35,7 +35,7 @@ export const SETTINGS_BACKUP_ERROR_MESSAGES: Readonly<Record<SettingsBackupError
   empty: 'O código não trouxe nenhuma configuração válida.',
 };
 
-export type ExportedSettings = Omit<SettingsData, 'voiceId' | 'aiUsage' | 'profile'> & { profile: Omit<SettingsData['profile'], 'username'> };
+export type ExportedSettings = Omit<SettingsData, 'voiceId' | 'aiUsage' | 'profile' | 'updates'> & { profile: Omit<SettingsData['profile'], 'username'> };
 
 const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
 const bool = (v: unknown): boolean | undefined => (typeof v === 'boolean' ? v : undefined);

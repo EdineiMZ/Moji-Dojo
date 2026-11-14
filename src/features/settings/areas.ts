@@ -56,6 +56,6 @@ export function summaryOf(area: SettingsArea, s: Summarized): string {
     case 'data':
       return 'Exportar, backup e zerar o progresso';
     case 'advanced':
-      return 'Diagnóstico de som e detalhes técnicos';
+      return 'Atualizações, diagnóstico de som e detalhes técnicos';
   }
 }

@@ -2,6 +2,17 @@
 
 Cada versão do app tem uma entrada aqui. A política de versões (quando aumentar MAIOR, MENOR ou CORREÇÃO) está em `scripts/versioning.cjs`, e um teste falha se a versão, o `versionCode` e este arquivo divergirem. Para uma versão nova: `npm run version:bump -- <patch|minor|major>`.
 
+## [2.46.0] - 2026-11-14
+
+Primeira versão publicada no GitHub como código aberto, e o app passa a avisar quando sai uma versão nova.
+
+- **Aviso de versão nova:** ao abrir o app (no máximo uma vez por dia), ele pergunta ao GitHub (`releases/latest`) qual é a última versão. Se for mais nova que a instalada, o Início mostra um cartão com "Baixar atualização" (o APK), "Ver novidades" (a página da release) e "Depois" (esconde só aquela versão). Instalar por cima mantém o progresso.
+- **Em Ajustes → Avançado → Atualizações:** a versão instalada, a opção de procurar sozinho (ligada por padrão) e "Procurar agora", que ignora o intervalo de um dia.
+- **Privacidade:** a consulta é um GET anônimo, sem conta, sem a versão instalada e sem dado nenhum do aluno; só o GitHub vê o endereço de rede, como em qualquer acesso. Falha de rede, resposta estranha ou ausência de release (404) nunca mostram erro na tela do Início e não travam nada.
+- **Segurança:** só abre links do próprio repositório (`github.com/EdineiMZ/Moji-Dojo/`); rascunhos e pré-lançamentos são ignorados; o APK principal é o arm64 (o de 32 bits é ignorado). O app não instala nada sozinho: quem baixa e confirma a instalação é a pessoa.
+- **Código aberto:** `CONTRIBUTING.md`, `SECURITY.md` e `CODE_OF_CONDUCT.md`; descrição e tópicos do repositório; capturas de celular antigas removidas do histórico do git.
+- **Testes:** comparação de versões (2.10 > 2.9), leitura da release (APK principal, links de fora, notas longas), 404, 500, corpo inválido, falha de rede, a requisição sem dados da pessoa e o intervalo de um dia (inclusive com o relógio voltando).
+
 ## [2.45.0] - 2026-11-05
 
 Investigação do "い esquecido 42 vezes": os contadores estavam inflados pelas repetições da sessão, e o desenho encurtado zerava alguns kana.

@@ -14,6 +14,7 @@ import { RemindersCard } from '@/features/reminders/RemindersCard';
 import { ReviewSettingsCard } from '@/features/review/ReviewSettingsCard';
 import { AREAS, isArea, type SettingsArea } from '@/features/settings/areas';
 import { SpeedControl } from '@/features/speech/SpeedControl';
+import { UpdateCard } from '@/features/updates/UpdateCard';
 import { VoiceDiagnosticsCard } from '@/features/speech/VoiceDiagnosticsCard';
 import { VoiceStatusCard } from '@/features/speech/VoiceStatusCard';
 import { WidgetCard } from '@/features/widget/WidgetCard';
@@ -62,7 +63,12 @@ function Content({ area }: { area: SettingsArea }) {
         </>
       );
     case 'advanced':
-      return <VoiceDiagnosticsCard />;
+      return (
+        <>
+          <UpdateCard />
+          <VoiceDiagnosticsCard />
+        </>
+      );
   }
 }
 

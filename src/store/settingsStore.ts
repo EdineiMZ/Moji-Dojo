@@ -6,6 +6,7 @@ import { DEFAULT_PROFILE, sanitizeProfile, type Profile } from '@/features/profi
 import { DEFAULT_COLOR_THEME, isColorTheme, type ColorTheme } from '@/theme/colors';
 import { DEFAULT_REMINDERS, type ReminderSettings } from '@/features/reminders/plan';
 import { DEFAULT_RETENTION, sanitizeRetention } from '@/features/review/retention';
+import { DEFAULT_UPDATES, sanitizeUpdates, type UpdateSettings } from '@/features/updates/settings';
 import { DEFAULT_INTONATION, DEFAULT_PITCH, sanitizeFavorites, sanitizeIntonation, sanitizePitch, sanitizeStaffStyle } from '@/features/speech/voiceTuning';
 
 export type SpeechSpeed = 'normal' | 'slow';
@@ -85,6 +86,8 @@ export interface SettingsData {
   ai: AiSettings;
   /** Pedidos à IA de hoje. */
   aiUsage: AiUsage;
+  /** Checagem de versão nova do app (GitHub Releases). */
+  updates: UpdateSettings;
 }
 
 export interface SettingsActions {
@@ -115,6 +118,7 @@ export interface SettingsActions {
   setAi: (change: Partial<AiSettings>) => void;
   /** Soma um pedido à IA ao uso do dia. */
   recordAiUsage: (tokensIn: number, tokensOut: number, now?: number) => void;
+  setUpdates: (change: Partial<UpdateSettings>) => void;
 }
 
 export type SettingsState = SettingsData & SettingsActions;
@@ -147,6 +151,7 @@ export const DEFAULT_SETTINGS: SettingsData = {
   profile: DEFAULT_PROFILE,
   ai: DEFAULT_AI,
   aiUsage: EMPTY_USAGE,
+  updates: DEFAULT_UPDATES,
 };
 
 /**
@@ -183,6 +188,7 @@ export function createSettingsStore(storage: StateStorage) {
         setProfile: (change) => set((s) => ({ profile: sanitizeProfile({ ...s.profile, ...change }) })),
         setAi: (change) => set((s) => ({ ai: sanitizeAi({ ...s.ai, ...change, models: { ...s.ai.models, ...change.models } }) })),
         recordAiUsage: (tokensIn, tokensOut, now = Date.now()) => set((s) => ({ aiUsage: addUsage(s.aiUsage, now, tokensIn, tokensOut) })),
+        setUpdates: (change) => set((s) => ({ updates: sanitizeUpdates({ ...s.updates, ...change }) })),
       }),
       {
         name: SETTINGS_STORAGE_KEY,
@@ -206,9 +212,10 @@ export function createSettingsStore(storage: StateStorage) {
             favoriteVoices: sanitizeFavorites(saved.favoriteVoices),
             ai: sanitizeAi(saved.ai),
             aiUsage: sanitizeUsage(saved.aiUsage),
+            updates: sanitizeUpdates(saved.updates),
           };
         },
-        partialize: ({ themeMode, colorTheme, typingGoal, retention, writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage }) => ({
+        partialize: ({ themeMode, colorTheme, typingGoal, retention, writeInReview, speechSpeed, hapticsEnabled, soundEnabled, romajiMode, showKanji, furiganaMode, typingInput, voiceId, voiceEngine, voicevoxStyle, voicevoxPitch, voicevoxIntonation, voicevoxStaffStyle, favoriteVoices, nativeAudio, reminders, limits, profile, ai, aiUsage, updates }) => ({
           themeMode,
           colorTheme,
           typingGoal,
@@ -234,6 +241,7 @@ export function createSettingsStore(storage: StateStorage) {
           profile,
           ai,
           aiUsage,
+          updates,
         }),
       },
     ),

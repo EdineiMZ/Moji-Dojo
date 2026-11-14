@@ -55,6 +55,7 @@ A versão mais recente fica na aba **[Releases](https://github.com/EdineiMZ/Moji
 **Permissões e privacidade**
 
 - Os dados de estudo ficam **só no aparelho**. Não há conta nem anúncio, e o app não tem análise de uso própria.
+- **Aviso de versão nova:** uma vez por dia, ao abrir o app, ele faz uma consulta anônima ao GitHub (`releases/latest`) para saber se saiu uma versão mais nova. Não envia a versão instalada nem dado nenhum seu; só o GitHub vê o endereço de rede, como em qualquer acesso. Dá para desligar em **Ajustes → Avançado → Atualizações**. O app nunca instala nada sozinho: ele abre o link do APK e você confirma a instalação.
 - **Uma exceção, do Google ML Kit** (a câmera que lê texto): segundo o Google, o ML Kit envia a ele dados técnicos (modelo do aparelho, versão do Android, nome e versão do app, um identificador por instalação e métricas de desempenho). O conteúdo das imagens não está na lista do Google. O detalhe está em **Ajustes → Créditos e licenças**.
 - **Câmera:** só para ler um texto em japonês fotografado; o reconhecimento roda no aparelho.
 - **Microfone:** só para gravar a sua voz (Ouvir → Repetir) e para o reconhecimento de fala, que usa o serviço de fala do Android.
@@ -208,6 +209,10 @@ O conteúdo vem de **fontes abertas com licença conferida e creditada**; o que 
 ## Status do projeto
 
 Projeto pessoal de estudo e de portfólio, só para Android. O que ainda precisa de validação (revisão do japonês por um falante, testes em aparelho) e o que vem a seguir estão no [`ROADMAP.md`](ROADMAP.md).
+
+## Contribuir
+
+Correções de japonês, de tradução e de código são bem-vindas. Veja [`CONTRIBUTING.md`](CONTRIBUTING.md), o [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) e, para falhas de segurança, o [`SECURITY.md`](SECURITY.md).
 
 ## Licença
 

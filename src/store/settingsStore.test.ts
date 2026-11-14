@@ -57,6 +57,7 @@ describe('settingsStore', () => {
       profile: { username: '', onboarded: false, goalMinutes: 15 },
       ai: DEFAULT_AI,
       aiUsage: EMPTY_USAGE,
+      updates: { autoCheck: true, lastCheckAt: 0, dismissed: null },
     });
     expect(createSettingsStore(storage).getState().writeInReview).toBe(false);
   });
